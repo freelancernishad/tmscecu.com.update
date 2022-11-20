@@ -1,0 +1,774 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:: Welcome to UnionTax ::</title>
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.2/css/pro.min.css" rel="stylesheet">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/bangladesh-govt.png" />
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="assets/js/jquery-3.2.1.slim.min.js"></script>
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.rcbrand.js"></script>
+
+	<link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
+
+<style>
+div#exampleModal {
+    z-index: 99999;
+}
+.serviceBox {
+    cursor: pointer;
+
+}
+
+.serviceBox {
+    box-shadow: 0px 0px 0px 1px #159513 !important;
+    padding: 13px 4px;
+    height: 188px;
+    transition: all 0.4s;
+}
+</style>
+
+<link type="text/css" href="{{ asset('slider/css/jquery.bbslider.css') }}" rel="stylesheet" media="screen"/>
+
+<style type="text/css">
+
+  .bbslider-wrapper.carousel {
+    width: 1521px;
+  }
+
+
+.prev-control-wrapper.control-wrapper {
+    display: none;
+}
+
+.next-control-wrapper.control-wrapper {
+    display: none;
+}
+</style>
+
+
+</head>
+
+<body style="font-family: 'Kalpurush', sans-serif;">
+
+    <div class="container p-0">
+        <header>
+
+            <div class="topHeader">
+                <div class="row">
+
+                    <div class="topheaderItem col-md-6 col-6"><span>ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমে স্বাগতম</span></div>
+                    <div class="topheaderItem col-md-6 col-6 text-right"><span style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">
+                    <x-bangladate />
+                        <?php
+
+
+                        $time = time();
+                        $Bdate = BDdate($time);
+                        echo $Bdate;
+
+                        ?>
+
+
+                    </span><span style=""><?php         $orgDate = date('Y-m-d');
+                      echo   $newDate = date("d F Y", strtotime($orgDate));   ?></span></div>
+
+                </div>
+            </div>
+
+            <div class="middleHeader ">
+                <div class="row">
+                    <div class="middleHeaderItem col-md-6 mt-3 mb-3"><a href="{{ url('/') }}"><img width="50%" src="{{ asset('assets/img/mail_logo-01.png') }}" alt=""></a></div>
+                    <div class="middleHeaderItem col-md-6 mb-3">
+
+                        <h3 class="searchHeader">ইউনিয়ন নির্বাচন করুন </h3>
+
+                        <x-selectcountryadmin />
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <nav class="">
+                <div class="row">
+                    <div class="col-md-12"><div class="navBar" ><i id="navBar" class="fas fa-bars"></i></div></div>
+
+                    <div class="col-md-12 pcnav" id="mainMenu">
+                        <ul class="d-flex align-items-center list-unstyled mainMenu m-0">
+                            <li class="menuItem">
+                                <a href="{{ url('/') }}">হোম</a>
+
+                            </li>
+                                  <li class="menuItem">
+                                <a href="{{ url('/details/ইউপি সেবা পরিচিতি') }}">ইউপি সেবা পরিচিতি</a>
+
+                            </li>
+                            <li class="menuItem position-relative dropdown">
+                                <a href="javascript:void(0);" onclick="Submenu(1)">বার্তা</a>
+
+                                    <ul class="submenu list-unstyled" id="submenu1">
+                                        <li><a href="{{ url('/details/জেলা প্রশাসকের বার্তা') }}">জেলা প্রশাসকের বার্তা</a></li>
+                                        <li><a href="{{ url('/details/উপজেলা নির্বাহী অফিসারের বার্তা') }}">উপজেলা নির্বাহী অফিসারের বার্তা</a></li>
+
+                                    </ul>
+
+
+                            </li>
+                             <li class="menuItem position-relative dropdown">
+                                <a href="javascript:void(0);" onclick="Submenu(2)">নাগরিক সেবা</a>
+
+                                    <ul class="submenu list-unstyled" id="submenu2">
+
+
+
+                                        <li><a href="javascript:void(0)" onclick="item('citizen_apps/1')" data-toggle="modal" data-target="#exampleModal">নাগরিকত্ব সনদের আবেদন</a></li>
+                                        <li><a href="javascript:void(0)" onclick="item('trade_license_apps')" data-toggle="modal" data-target="#exampleModal">ট্রেড লাইসেন্সের আবেদন</a></li>
+
+                                        <li><a href="javascript:void(0)" onclick="item('citizen_apps/3')" data-toggle="modal" data-target="#exampleModal"> চারিত্রিক সনদের আবেদন</a></li>
+                                        <li><a href="javascript:void(0)" onclick="item('citizen_apps/5')" data-toggle="modal" data-target="#exampleModal"> ভূমিহীন সনদের আবেদন</a></li>
+                                        <li><a href="javascript:void(0)" onclick="item('successor_apps')" data-toggle="modal" data-target="#exampleModal"> ওয়ারিশান সনদের আবেদন</a></li>
+                                        <li><a href="javascript:void(0)" onclick="item('familly_apps')" data-toggle="modal" data-target="#exampleModal"> পারিবারিক সনদের আবেদন</a></li>
+                                        <li><a href="javascript:void(0)" onclick="item('citizen_apps/4')" data-toggle="modal" data-target="#exampleModal"> অবিবাহিত সনদের আবেদন</a></li>
+                                        <li><a href="javascript:void(0)" onclick="item('citizen_apps/6')" data-toggle="modal" data-target="#exampleModal"> পুন:বিবাহ না হওয়ার সনদের আবেদন</a></li>
+                                        <li><a href="javascript:void(0)" onclick="item('citizen_apps/7')" data-toggle="modal" data-target="#exampleModal"> বার্ষিক আয়ের প্রত্যয়নের আবেদন</a></li>
+
+
+
+
+
+                                        <li><a href="javascript:void(0)" onclick="item('citizen_apps/8')" data-toggle="modal" data-target="#exampleModal"> একই নামের প্রত্যয়নের আবেদন</a></li>
+                                        <li><a href="javascript:void(0)" onclick="item('citizen_apps/9')" data-toggle="modal" data-target="#exampleModal"> প্রতিবন্ধী প্রত্যয়নের আবেদন</a></li>
+
+                                        <li><a href="javascript:void(0)"onclick="item('citizen_apps/2')" data-toggle="modal" data-target="#exampleModal"> বিভিন্ন প্রত্যয়নপত্র</a></li>
+
+
+
+
+                                    </ul>
+
+
+                            </li>
+
+							<li class="menuItem position-relative dropdown">
+                                <a href="javascript:void(0);" onclick="Submenu(3)">অন্যান্য</a>
+
+                                    <ul class="submenu list-unstyled" id="submenu3">
+
+
+
+
+                                        <li><a href="https://bdris.gov.bd/br/application" >জন্ম নিবন্ধন সনদের আবেদন</a></li>
+                                       <li><a href="https://bdris.gov.bd/dr/application" >মৃত্যু নিবন্ধন সনদের আবেদন</a></li>
+
+                                       <li><a href="#" >অগভীর নলকূপ স্থাপনের লাইসেন্স</a></li>
+
+
+
+
+
+                                    </ul>
+
+
+                            </li>
+                        </li>
+                        <li class="menuItem">
+                      <a href="#">ইস্যুকৃত সনদ যাচাই</a>
+
+                  </li>
+                      <li class="menuItem">
+                      <a href="{{ url('/notice') }}">নোটিশ</a>
+
+                  </li>
+                   <li class="menuItem">
+                      <a href="{{ url('/contact-us') }}">যোগাযোগ</a>
+
+                  </li>
+                     <li class="menuItem"><a href="{{ url('/holding/tax/search') }}" >হোল্ডিং ট্যাক্স</a></li>
+                   <li class="menuItem">
+                      <a href="{{ url('/dashbord') }}">লগইন</a>
+
+                  </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+        </header>
+
+
+        <div class="middeleContent">
+
+
+
+
+
+            <div class="row">
+            <div class="mainBody col-md-9 mt-3">
+                <div class="pmCover">
+
+              <div id="auto" style="width:100% !important;height:485px !important">
+                        <div title=""><img width="100%" height="100%" src="assets/img/National-Portal-Card-PM.jpeg" alt="glasses" width="507" height="338"/></div>
+                        <div title=""><img width="100%" height="100%" src="assets/img/slider2.png" alt="mouse" width="507" height="338"/></div>
+
+
+
+                      </div>
+
+
+            <!--        <img width="100%" src="assets/img/National-Portal-Card-PM.jpeg" alt=""> --->
+                </div>
+
+
+                <div class="services mt-3">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="serviceTitle position-relative">সেবাসমূহ</h6>
+                        </div>
+                        <div class="col-md-3 col-6 mt-3 mb-3 text-center" onclick="item('citizen_apps/1')" data-toggle="modal" data-target="#exampleModal">
+                            <div class="serviceBox">
+                            <div class="serviceLogo"><img src="assets/img/pic-01.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">নাগরিক সনদের আবেদন</a>
+                            </div>
+                        </div>
+
+
+
+
+                        </div>
+                        <div class="col-md-3 col-6 mt-3 mb-3 text-center" onclick="item('trade_license_apps')" data-toggle="modal" data-target="#exampleModal">
+                            <div class="serviceBox">
+                            <div class="serviceLogo"><img src="assets/img/pic-04.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">ট্রেড লাইসেন্স সনদের আবেদন</a>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mt-3 mb-3 text-center"  onclick="item('successor_apps')" data-toggle="modal" data-target="#exampleModal">
+                            <div class="serviceBox">
+                            <div class="serviceLogo"><img src="assets/img/pic-02.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">ওয়ারিশ সনদের আবেদন</a>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mt-3 mb-3 text-center"  onclick="item('citizen_apps/3')" data-toggle="modal" data-target="#exampleModal">
+                            <div class="serviceBox">
+                            <div class="serviceLogo"><img src="assets/img/pic-03.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">চারিত্রিক সনদের আবেদন</a>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mt-3 mb-3 text-center"  onclick="item('citizen_apps/5')" data-toggle="modal" data-target="#exampleModal">
+                            <div class="serviceBox">
+                            <div class="serviceLogo"><img src="assets/img/pic-05.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">ভূমিহীন সনদের আবেদন</a>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mt-3 mb-3 text-center"  onclick="item('familly_apps')" data-toggle="modal" data-target="#exampleModal">
+                            <div class="serviceBox">
+                            <div class="serviceLogo"><img src="assets/img/pic-01.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">পারিবারিক সনদের আবেদন</a>
+                            </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3 col-6 mt-3 mb-3 text-center"  onclick="item('citizen_apps/4')" data-toggle="modal" data-target="#exampleModal">
+                            <div class="serviceBox">
+                            <div class="serviceLogo"><img src="assets/img/pic-06.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">অবিবাহিত সনদের আবেদন</a>
+                            </div>
+                            </div>
+                        </div>
+                  <div class="col-md-3 col-6 mt-3 mb-3 text-center"  onclick="item('citizen_apps/6')" data-toggle="modal" data-target="#exampleModal">
+                    <div class="serviceBox">
+                            <div class="serviceLogo"><img src="assets/img/pic-09.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">পুনঃ বিবাহ না হওয়া সনদের আবেদন</a>
+                            </div>
+                            </div>
+                        </div>
+                  <div class="col-md-3 col-6 mt-3 mb-3 text-center"  onclick="item('citizen_apps/7')" data-toggle="modal" data-target="#exampleModal">
+                    <div class="serviceBox">
+                            <div class="serviceLogo"><img src="assets/img/pic-11.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">বার্ষিক আয়ের প্রত্যয়ন আবেদন</a>
+                            </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                  <div class="col-md-3 col-6 mt-3 mb-3 text-center"  onclick="item('citizen_apps/8')" data-toggle="modal" data-target="#exampleModal">
+                    <div class="serviceBox">
+                            <div class="serviceLogo"><img src="assets/img/pic-08.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">একই নামের প্রত্যয়ন আবেদন</a>
+                            </div>
+                            </div>
+                        </div>
+
+
+
+                  <div class="col-md-3 col-6 mt-3 mb-3 text-center"  onclick="item('citizen_apps/2')" data-toggle="modal" data-target="#exampleModal">        <div class="serviceBox">                <div class="serviceLogo"><img src="assets/img/pic-06.png" width='50%' alt=""></div>                <div class="serviceTitle">                    <a href="#">বিবিধ প্রত্যয়নপত্রের আবেদন</a>                </div>            </div>            </div>
+
+
+
+
+
+
+                  <div class="col-md-3 col-6 mt-3 mb-3 text-center"  onclick="item('citizen_apps/9')" data-toggle="modal" data-target="#exampleModal">
+                    <div class="serviceBox">
+                            <div class="serviceLogo"><img src="assets/img/pic-07.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">প্রতিবন্ধী সনদের আবেদন</a>
+                            </div>
+                        </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+                  <div class="col-md-3 col-6 mt-3 mb-3 text-center">
+                    <div class="serviceBox">
+
+                            <div class="serviceLogo"><img src="assets/img/pic-06.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="https://bdris.gov.bd/br/application">জন্ম নিবন্ধন সনদের আবেদন</a>
+                            </div>
+                        </div>
+                        </div>
+
+
+                        <div class="col-md-3 col-6 mt-3 mb-3 text-center"  onclick="item('citizen_apps/2')" data-toggle="modal" data-target="#exampleModal">                <div class="serviceBox">                <div class="serviceLogo"><img src="assets/img/pic-10.png" width='50%' alt=""></div>                <div class="serviceTitle">                    <a href="https://bdris.gov.bd/dr/application">মৃত্যু নিবন্ধন সনদের আবেদন</a>                </div>                </div>            </div>
+
+                              <div class="col-md-3 col-6 mt-3 mb-3 text-center" >
+                    <div class="serviceBox">
+                            <div class="serviceLogo"><img src="assets/img/pic-06.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">হোল্ডিং ট্যাক্স</a>
+                            </div>
+                            </div>
+                        </div>
+
+
+
+
+                  <div class="col-md-3 col-6 mt-3 mb-3 text-center"  onclick="item('citizen_apps/1')" data-toggle="modal" data-target="#exampleModal">
+                    <div class="serviceBox">
+
+                            <div class="serviceLogo"><img src="assets/img/Untitled-1-12.png" width='50%' alt=""></div>
+                            <div class="serviceTitle">
+                                <a href="#">অগভীর নলকূপ স্থাপনের লাইসেন্স</a>
+                            </div>
+                        </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <h6 class="serviceTitle position-relative">ইউনিয়ন পরিষদ ডিজিটাল সেবা</h6>
+                        </div>
+
+                        <div class="col-md-12" style="background: #e0e0e0;">
+                            <p style="font-size: 14px;
+                            line-height: 2;
+                            color: #000000;text-align: justify;">ইউনিয়ন পরিষদ হল বাংলাদেশে পল্লী অঞ্চলের সর্বনিম্ন প্রশাসনিক একক। গ্রাম চৌকিদারি আইনের ১৮৭০ এর অধীনে ইউনিয়ন পরিষদের সৃষ্টি হয়। প্রাথমিক পর্যায়ে এর ভূমিকা নিরাপত্তামূলক কর্মকাণ্ডে সীমাবদ্ধ থাকলেও পরবর্তী কালে এটিই স্থানীয় সরকারের প্রাথমিক ইউনিটের ভিত্তিরুপে গড়ে উঠে। বর্তমানে ইউনিয়ন পরিষদ থেকে ট্রেড লাইসেন্স, চারিত্রিক সনদপত্র, ভূমিহীন সনদপত্র, ওয়ারিশান সনদপত্র, অবিবাহিত সনদপত্র, প্রত্যয়নপত্র, অস্বচ্ছল প্রত্যয়নপত্র, নাগরিক সনদপত্র, উত্তরাধিকার সনদপত্র ইত্যাদি সেবা প্রদান করা হয়। বহুল প্রচলিত এই সকল সেবাকে জনবান্ধব করার জন্য একটি ডিজিটাল প্লাটফর্ম অত্যাবশ্যকীয় হয়ে পড়ে। সে লক্ষ্যে ইউনিয়ন পরিষদ থেকে প্রদত্ত সেবাসমূহকে জনগণের কাছে স্বল্প খরচে, স্বল্প সময়ে এবং হয়রানিমুক্তভাবে প্রদান নিশ্চিত করার জন্য একটি এ্যাপ্লিকেশন থেকে সকল সেবা প্রদানের নিমিত্ত গত ২০১৯-২০ অর্থ-বছরে সম্ভব্যতা যাচাইয়ের মাধ্যমে www.uniontax.gov.bd নামক একটি অনলাইন সিস্টেম কার্যক্রম চালু করা হয়। সম্ভব্যতা যাচাইয়ের জন্য জিজ্ঞসাবাদের মাধ্যমকে সামনে রেখে প্রথমে একটি ইউনিয়নের সকল ওয়ার্ডের কিছু সংখ্যক মানুষকে দৈব চয়ন ভিত্তিতে চিহ্নিত করে ইউনিয়ন পরিষদ প্রদত্ত সেবাসমূহকে ডিজিটালাইজ করার সম্ভবনা যাচাই করা হয়। এই পদ্ধতিতে প্রাপ্ত তথ্যের আলোকে “ইউনিয়ন পরিষদ ডিজিটাল সেবা” নামক অনলাইন সফটওয়্যারটি তৈরী করা হয় এবং পরবর্তীতে ২০২০-২০২১ অর্থ বছরে ৩নং তেঁতুলিয়া ইউনিয়ন পরিষদে পাইলটিং হিসেবে চালু করার পর সকল ইউনিয়নে বাস্তবায়ন করা হলে আশাব্যঞ্জক সাড়া পাওয়া যায় এবং গত ০৫/১০/২০২১ তারিখে রংপুর বিভাগের মাননীয় বিভাগীয় কমিশনার জনাব মো: আব্দুল ওয়াহাব ভূঞা মহোদয় www.uniontax.gov.bd অনলাইন সিস্টেমটির শুভ উদ্বোধন করেন।</p>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+            <div class="RightSidebar col-md-3 mt-3">
+                <div class="sidebarTitle mb-3">
+                    <h4>উপদেষ্টা ও তত্ত্বাবধানে</h4>
+                </div>
+                <p class='sidebaruser text-center'>
+                    <img width="70%" alt="" src="{{ asset('assets/img/DC-Panchagarh.png') }}"> </p>
+            <div class="contactInfo text-center">
+                <span><b> জনাব মো: জহুরুল ইসলাম</b></span> <br>
+                <span><b>জেলা প্রশাসক</b></span> <br>
+
+            </div>
+
+                 <div class="sidebarTitle mb-3">
+                    <h4>পরিকল্পনা ও বাস্তবায়নে</h4>
+                </div>
+                <p class='sidebaruser text-center'>
+                    <img width="70%" alt="" src="{{ asset('assets/img/uno-pic.png') }}"> </p>
+            <div class="contactInfo text-center">
+                <span><b> সোহাগ চন্দ্র সাহা</b></span> <br>
+                <span><b>উপজেলা নির্বাহী অফিসার</b></span> <br>
+
+            </div>
+
+                <div class="sidebarTitle mb-3">
+                    <h4>জরুরি হটলাইন</h4>
+                </div>
+
+
+
+                <div class="column block">
+
+
+            <img width="100%" src="{{ asset('assets/img/suport.jpg') }}" alt="" />
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="fb-page" data-href="https://www.facebook.com/unotetuliaofficial" data-width="350" data-height="300" data-adapt-container-width="true"  data-show-facepile="true"></div>
+
+
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=950733182430544&autoLogAppEvents=1" nonce="TCETTK6f"></script>
+
+
+
+                <iframe style="    width: 100% !important;height:175px !important; margin-top:15px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.865057112837!2d88.33814421440648!3d26.49228938444128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e459ed87df315f%3A0xb9a1ec4aeff5a432!2sUpazila%20Parishad%20Complex%2CTetulia%20Panchogar!5e0!3m2!1sen!2sbd!4v1636191662705!5m2!1sen!2sbd"  style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+
+
+
+
+
+            </div>
+
+            <div class="col-md-12">
+
+                <section id="services" class="about">
+                    <div class="container">
+
+                            <h6 class="serviceTitle position-relative" style="text-align: center;
+                            background: #023076;
+                            color: white;">ইউপি সেবার সুবিধা</h6>
+
+
+
+
+                         <ul id="rcbrand1">                    <li>                        <div class="serviceBox2">                            <div class="serviceicon text-center">                                <img style="    width: 76px;margin-bottom: 10px;" src="{{ asset('assets/upIcon/app.png') }}" alt="" />                                                       </div>                                                    </div>                    </li>                    <li>                        <div class="serviceBox2">                            <div class="serviceicon text-center">                                <img style="    width: 76px;margin-bottom: 10px;" src="{{ asset('assets/upIcon/application.png') }}" alt="" />                                                       </div>                                                    </div>                    </li>                    <li>                        <div class="serviceBox2">                            <div class="serviceicon text-center">                                <img style="    width: 76px;margin-bottom: 10px;" src="{{ asset('assets/upIcon/nid.png') }}" alt="" />                                                       </div>                                                    </div>                    </li>                    <li>                        <div class="serviceBox2">                            <div class="serviceicon text-center">                                <img style="    width: 76px;margin-bottom: 10px;" src="{{ asset('assets/upIcon/online.png') }}" alt="" />                                                       </div>                                                    </div>                    </li>                    <li>                        <div class="serviceBox2">                            <div class="serviceicon text-center">                                <img style="    width: 76px;margin-bottom: 10px;" src="{{ asset('assets/upIcon/payment.png') }}" alt="" />                                                       </div>                                                    </div>                    </li>                    <li>                        <div class="serviceBox2">                            <div class="serviceicon text-center">                                <img style="    width: 76px;margin-bottom: 10px;" src="{{ asset('assets/upIcon/storage.png') }}" alt="" />                                                       </div>                                                    </div>                    </li>                    <li>                        <div class="serviceBox2">                            <div class="serviceicon text-center">                                <img style="    width: 76px;margin-bottom: 10px;" src="{{ asset('assets/upIcon/tax.png') }}" alt="" />                                                       </div>                                                    </div>                    </li>                    <li>                        <div class="serviceBox2">                            <div class="serviceicon text-center">                                <img style="    width: 76px;margin-bottom: 10px;" src="{{ asset('assets/upIcon/uddokta.png') }}" alt="" />                                                       </div>                                                    </div>                    </li>                                  </ul>
+
+
+
+
+
+
+
+                    </div>
+                </section>
+
+
+                <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+                <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" />
+                <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+                <script type="text/javascript" src="{{asset('assets/js/jquery.rcbrand.js')}}"></script>
+            <script>
+
+            $("#rcbrand1").rcbrand({
+                    visibleItems: 4,
+                    itemsToScroll: 1,
+                    animationSpeed: 200,
+                    infinite: true,
+                    navigationTargetSelector: null,
+                    autoPlay: {
+                        enable: true,
+                        interval: 3000,
+                        pauseOnHover: true
+                    },
+                    responsiveBreakpoints: {
+                        portrait: {
+                            changePoint:480,
+                            visibleItems: 1,
+                            itemsToScroll: 1
+                        },
+                        landscape: {
+                            changePoint:640,
+                            visibleItems: 2,
+                            itemsToScroll: 2
+                        },
+                        tablet: {
+                            changePoint:768,
+                            visibleItems: 3,
+                            itemsToScroll: 3
+                        }
+                    }
+                });
+
+                document.getElementsByClassName('rc-rcbrand-nav-left')[0].innerHTML = '<i class="fal fa-angle-left"></i>';
+            document.getElementsByClassName('rc-rcbrand-nav-right')[0].innerHTML = '<i class="fal fa-angle-right"></i>';
+            </script>
+
+
+
+
+            </div>
+
+
+
+
+
+
+            <div class="col-md-12 mt-3 mb-3">
+
+
+            <style type="text/css">
+            .imbox {
+                background: #e0e0e0 !important;
+                height: 240px !important;
+            }
+
+            ul.importantLInk li a {
+                font-size: 14px;
+                color: #000000 !important;
+                /* text-decoration: none; */
+            }
+            </style>
+
+                <div class="row">
+
+
+
+
+                    <div class="col-md-4">
+            <div class="imbox">
+                        <div class="sidebarTitle mb-3">
+                            <h4 class='text-center'>গুরুত্বপূর্ণ লিংক</h4>
+                        </div>
+                        <ul class='list-unstyled importantLInk' style="padding: 0 11px;">
+
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="http://www.bangabhaban.gov.bd/" title="রাষ্ট্রপতির কার্যালয়">রাষ্ট্রপতির কার্যালয়</a></li>
+
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="http://www.pmo.gov.bd" title="প্রধানমন্ত্রীর কার্যালয়">প্রধানমন্ত্রীর কার্যালয়</a></li>
+
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="http://www.parliament.gov.bd/" title=" জাতীয় সংসদ">জাতীয় সংসদ</a></li>
+
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="http://mopa.gov.bd" title="জনপ্রশাসন মন্ত্রণালয়">জনপ্রশাসন মন্ত্রণালয়</a></li>
+
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="http://www.bangladesh.gov.bd" title="জাতীয় তথ্য বাতায়ন">জাতীয় তথ্য বাতায়ন</a></li>
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="http://www.panchagarh.gov.bd" title="পঞ্চগড় জেলা">পঞ্চগড় জেলা</a></li>
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="https://tetulia.panchagarh.gov.bd/" title="তেঁতুলিয়া উপজেলা">তেঁতুলিয়া উপজেলা</a></li>
+
+
+                                </ul>
+
+
+            </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="col-md-4">
+            <div class="imbox">
+                        <div class="sidebarTitle mb-3">
+                            <h4 class='text-center'>অন্যান্য</h4>
+                        </div>
+                        <ul class='list-unstyled importantLInk' style="padding: 0 11px;">
+
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="http://forms.mygov.bd/" title="বাংলাদেশ ফরম">বাংলাদেশ ফরম</a></li>
+
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="http://www.ebook.gov.bd/" title="ই-বুক">ই-বুক</a></li>
+
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="https://www.mygov.bd/" title="সকল ই-সেবা">সকল ই-সেবা</a></li>
+
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="http://mopa.gov.bd" title="পাসপোর্টের আবেদন">পাসপোর্টের আবেদন</a></li>
+
+
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="http://echallan.gov.bd/" title="ই-চালান প্রশিক্ষণ">ই-চালান</a></li>
+
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="https://ldtax.gov.bd/" title="ভূমি সেবা">ভূমি সেবা</a></li>
+                            <li><i class="fas fa-check-circle"></i> &nbsp;<a href="https://a2i.gov.bd/" title="এটুআই">এটুআই</a></li>
+                                </ul>
+
+
+                    </div>
+                    </div>
+
+
+
+
+
+                            <div class="col-md-4">
+                    <div class="imbox">
+
+                        <div class="column block" style="padding: 0 0px;">
+
+                          <iframe width="100%" height="240" src="https://www.youtube.com/embed/QNUSIOMb6vI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                        </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+             <script>
+            function item(data){
+            $('#url').val(data);
+
+            }
+
+             </script>
+
+
+
+
+
+</div>
+<footer>
+    <div class="footer_top_bg" style="background: url({{ asset('assets/img/footer_top_bg.png')}}); height: 93px; background-repeat: no-repeat; background-size: cover;"></div>
+    <div class="footerBottom">
+        <div class="row">
+            <div class="col-6">
+                <ul class="footerList">
+
+                    <li style="font-size:font-size:15px">পরিকল্পনা ও বাস্তবায়নে: সোহাগ চন্দ্র সাহা, উপজেলা নির্বাহী অফিসার, তেঁতুলিয়া, পঞ্চগড় </li>
+                    <li style="font-size:font-size:15px"><img style="width:40px !important"  src="{{ asset('assets/img/bd-logo.png')}}" alt=""> সার্বিক তত্ত্বাবধানে: উপজেলা প্রশাসন, তেঁতুলিয়া</li>
+                </ul>
+            </div>
+            <div class="col-6">
+                <p class="footerText" style="font-size: 14px; !important">ইউনিয়ন পরিষদের ডিজিটাল সেবা গ্রহণের জন্য ধন্যবাদ</p>
+                <p class="help text-right" style="display: flex;
+                justify-content: end;
+                align-items: center;
+                width: 100%;"> <img style="    width: 40px !important;" class="footerImg" src="{{ asset('assets/img/favicon1.png') }}" alt="" /> <span style="font-size: 14px;"> <span style="    border-bottom: 1px solid #737272;"> কারিগরি সহায়তায় </span> <br> <a target="_blank" style="    color: #4e4e4e;" href="https://softlabltd.com">  সফটল্যাব লিমিটেড </a></span> </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</div>
+
+<div class="modal fade  bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">ইউনিয়ন নির্বাচন করুন</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class='d-flex'>
+
+            <x-selectcountrymodal />
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript" src="slider/js/jquery.bbslider.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+
+
+
+    $('#auto').bbslider({auto: true, timer: 3000, controls: true, loop: true, pauseOnHit: false});
+
+
+
+
+    $('#touch').bbslider({controls: false, touch: true, transition: 'slide', touchoffset: 50});
+
+    $(window).resize(rsz);
+    $(window).on('load', rsz);
+  });
+</script>
+<script src="assets/js/custom.js"></script>
+</body>
+
+</html>
