@@ -251,7 +251,7 @@ function ekpayToken($trnx_id=123456789,$trnx_amt=0,$cust_info=[],$path='payment'
 /*      echo '<pre>';
    print_r($response); */
 
-   return  $response = json_decode($response);
+     $response = json_decode($response);
 
    $sToken =  $response->secure_token;
 

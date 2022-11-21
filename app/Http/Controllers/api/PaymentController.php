@@ -18,19 +18,19 @@ class PaymentController extends Controller
     public function paymentCreate(Request $request)
     {
 
-        $trnx_id = time();
-        $cust_info = [
-            "cust_email" => "",
-            "cust_id" => "1",
-            "cust_mail_addr" => "Address",
-            "cust_mobo_no" => "01909756552",
-            "cust_name" => "Customer Name"
-        ];
+        // $trnx_id = time();
+        // $cust_info = [
+        //     "cust_email" => "",
+        //     "cust_id" => "1",
+        //     "cust_mail_addr" => "Address",
+        //     "cust_mobo_no" => "01909756552",
+        //     "cust_name" => "Customer Name"
+        // ];
 
-        $req_timestamp = date('Y-m-d H:i:s');
+        // $req_timestamp = date('Y-m-d H:i:s');
 
 
-        return $redirectutl =  ekpayToken($trnx_id, 100, $cust_info,'holdingPay');
+        // return $redirectutl =  ekpayToken($trnx_id, 100, $cust_info,'holdingPay');
 
 
 
@@ -53,7 +53,8 @@ class PaymentController extends Controller
         "cust_mobo_no" => "$studentMobile",
         "cust_name" => "Customer Name"
     ];
-       return ekpayToken($trnx_id, $amount,$cust_info);
+        $redirectutl = ekpayToken($trnx_id, $amount,$cust_info);
+        return redirect($redirectutl);
 
 
 
