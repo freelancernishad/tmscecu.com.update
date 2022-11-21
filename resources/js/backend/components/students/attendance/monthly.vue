@@ -25,7 +25,7 @@
                         </router-link>
                 </div>
                 <div class="dropdown">
-                 <a target="_blank" :href="'/dashboard/attendence_sheet/pdf/'+school_id+'/'+StudentClass+'/'+veiwtype+'/'+dateormonth" class="btn-fill-lmd text-light gradient-dodger-blue" style="float:right;margin-bottom:10px"  rel="noopener noreferrer" @click="preloader = true">Download Full Report</a>
+                 <a target="_blank" :href="'/dashboard/attendence_sheet/pdf/'+school_id+'/'+StudentClass+'/'+veiwtype+'/'+dateormonth" class="btn-fill-lmd text-light gradient-dodger-blue" style="float:right;margin-bottom:10px"  rel="noopener noreferrer" >Download Full Report</a>
 
                 </div>
             </div>
