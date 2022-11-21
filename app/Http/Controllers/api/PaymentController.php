@@ -15,6 +15,67 @@ use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 class PaymentController extends Controller
 {
 
+    public function paymentCreate(Request $request)
+    {
+
+        $trnx_id = time();
+        $cust_info = [
+            "cust_email" => "",
+            "cust_id" => "1",
+            "cust_mail_addr" => "Address",
+            "cust_mobo_no" => "01909756552",
+            "cust_name" => "Customer Name"
+        ];
+
+        $req_timestamp = date('Y-m-d H:i:s');
+
+
+        return $redirectutl =  ekpayToken($trnx_id, 100, $cust_info,'holdingPay');
+
+
+
+
+    //    return $request->all();
+       $trnx_id = time();
+       $studentId = $request->studentId;
+        $student = student::find($studentId);
+
+       $studentMobile = '01909756552';
+    //    if($student->StudentPhoneNumber){
+
+    //        $studentMobile = $student->StudentPhoneNumber;
+    //    }
+       $amount = $request->amount;
+       $cust_info = [
+        "cust_email" => "",
+        "cust_id" => "$studentId",
+        "cust_mail_addr" => "Address",
+        "cust_mobo_no" => "$studentMobile",
+        "cust_name" => "Customer Name"
+    ];
+       return ekpayToken($trnx_id, $amount,$cust_info);
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
     public function payments(Request $request)
     {
         $datatype = $request->datatype;

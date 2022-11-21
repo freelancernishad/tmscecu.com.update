@@ -201,70 +201,67 @@ function pushNotification($data)
 
 
 
-
-
-function ekpayToken($trnx_id = 123456789, $trnx_amt = 0, $cust_info = [], $path = 'payment')
-{
+function ekpayToken($trnx_id=123456789,$trnx_amt=0,$cust_info=[],$path='payment'){
 
     $url = "http://" . $_SERVER['HTTP_HOST'];
-    $req_timestamp = date('Y-m-d H:i:s');
+   $req_timestamp = date('Y-m-d H:i:s');
 
 
 
 
-    $post = [
-        'mer_info' => [
-            "mer_reg_id" => "tetulia_test",
-            "mer_pas_key" => "TetuLiA@tsT19"
-        ],
-        "req_timestamp" => "$req_timestamp GMT+6",
-        "feed_uri" => [
-            "c_uri" => "$url/$path/cancel",
-            "f_uri" => "$url/$path/fail",
-            "s_uri" => "$url/$path/success"
-        ],
-        "cust_info" => $cust_info,
-        "trns_info" => [
-            "ord_det" => "Payment for sonod",
-            "ord_id" => "$trnx_id",
-            "trnx_amt" => $trnx_amt,
-            "trnx_currency" => "BDT",
-            "trnx_id" => "$trnx_id"
-        ],
-        "ipn_info" => [
-            "ipn_channel" => "3",
-            "ipn_email" => "freelancernishad123@gmail.com",
-            "ipn_uri" => "$url/api/ipn"
-        ],
-        "mac_addr" => "1.1.1.1"
-    ];
+   $post = [
+      'mer_info' => [
+         "mer_reg_id" => "tetulia_test",
+         "mer_pas_key" => "TetuLiA@tsT19"
+      ],
+      "req_timestamp" => "$req_timestamp GMT+6",
+      "feed_uri" => [
+         "c_uri" => "$url/$path/cancel",
+         "f_uri" => "$url/$path/fail",
+         "s_uri" => "$url/$path/success"
+      ],
+      "cust_info" => $cust_info,
+      "trns_info" => [
+         "ord_det" => "Payment for sonod",
+         "ord_id" => "$trnx_id",
+         "trnx_amt" => $trnx_amt,
+         "trnx_currency" => "BDT",
+         "trnx_id" => "$trnx_id"
+      ],
+      "ipn_info" => [
+         "ipn_channel" => "3",
+         "ipn_email" => "freelancernishad123@gmail.com",
+         "ipn_uri" => "$url/api/ipn"
+      ],
+      "mac_addr" => "1.1.1.1"
+   ];
 
-    // 148.163.122.80
-    $post = json_encode($post);
+   // 148.163.122.80
+   $post = json_encode($post);
 
-    $ch = curl_init('https://sandbox.ekpay.gov.bd/ekpaypg/v1/merchant-api');
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
-    $response = curl_exec($ch);
-    curl_close($ch);
+   $ch = curl_init('https://sandbox.ekpay.gov.bd/ekpaypg/v1/merchant-api');
+   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+   curl_setopt($ch, CURLOPT_POST, true);
+   curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+   curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+   $response = curl_exec($ch);
+   curl_close($ch);
 
-    /*      echo '<pre>';
-        print_r($response); */
+/*      echo '<pre>';
+   print_r($response); */
 
-    $response = json_decode($response);
+   return  $response = json_decode($response);
 
-    $sToken =  $response->secure_token;
-
-
-    return "https://sandbox.ekpay.gov.bd/ekpaypg/v1?sToken=$sToken&trnsID=$trnx_id";
-
-    //  return    'https://sandbox.ekpay.gov.bd/ekpaypg/v1?sToken=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJla3BheWNvcmUiLCJhdXRoIjoiUk9MRV9NRVJDSEFOVCIsImV4cCI6MTU0NTMyMjcxMn0.lqjBuvtqyUbhy4pteKa0IaqpjYQoEDjjnJWSFwcv0Ho2JJHN-8xqr8Q7r-tIJUy_dLajS2XbmrR6lBGrlGFYhQ&trnsID=1234'
+   $sToken =  $response->secure_token;
 
 
-    //   return "https://sandbox.ekpay.gov.bd/ekpaypg/v1?sToken=$sToken&trnsID=$trnx_id";
+   return "https://sandbox.ekpay.gov.bd/ekpaypg/v1?sToken=$sToken&trnsID=$trnx_id";
+
+//  return    'https://sandbox.ekpay.gov.bd/ekpaypg/v1?sToken=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJla3BheWNvcmUiLCJhdXRoIjoiUk9MRV9NRVJDSEFOVCIsImV4cCI6MTU0NTMyMjcxMn0.lqjBuvtqyUbhy4pteKa0IaqpjYQoEDjjnJWSFwcv0Ho2JJHN-8xqr8Q7r-tIJUy_dLajS2XbmrR6lBGrlGFYhQ&trnsID=1234'
+
+
+//   return "https://sandbox.ekpay.gov.bd/ekpaypg/v1?sToken=$sToken&trnsID=$trnx_id";
 
 }
 

@@ -67,7 +67,7 @@ Route::post('logout',[LoginController::class,'logout']);
 
 
 
-
+Route::get('/payment',[PaymentController::class ,'paymentCreate']);
 
 
 Route::get('/report/export', [PaymentController::class,'export']);
