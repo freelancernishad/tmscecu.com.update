@@ -799,7 +799,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
 
 
-    public function student_list_pdf(Request $r,$year,$class)
+    public function student_list_pdf(Request $r,$year,$class,$school_id)
     {
         $school_id = sitedetails()->school_id;
 

@@ -299,6 +299,8 @@ $data['year'] = $year;
         $datais = file_get_contents($paths);
         $logos = 'data:image/' . $types . ';base64,' . base64_encode($datais);
         $data['sign'] = $logos;
+
+
         $pdf = LaravelMpdf::loadView('admin/pdfReports.view_result', $data);
         return $pdf->stream('document.pdf');
         // return view('view_result', $data);

@@ -105,7 +105,7 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
 
       Route::get('/result_sheet/pdf/{school_id}/{group}/{class}/{exam}/All/{date}',[resultController::class , 'resultViewpdf']);
 
-      Route::get('/student_list/pdf/{year}/{class}/{student_id}',[studentsController::class ,'student_list_pdf']);
+      Route::get('/student_list/pdf/{year}/{class}/{school_id}',[studentsController::class ,'student_list_pdf']);
 
 
 

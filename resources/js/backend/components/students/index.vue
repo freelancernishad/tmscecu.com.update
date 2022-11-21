@@ -102,8 +102,8 @@
 
 
                 <a v-if="searchtype == 'filterclass'"
-                    class="btn-fill-lg font-normal text-light gradient-pastel-green float-right"
-                    :href="'/dashboard/student_list/pdf/' + year + '/' + student_class + '/' + school_id" @click="preloader = true">Download Student List</a>
+                    class="btn-fill-lg font-normal text-light gradient-pastel-green float-right" target="_blank"
+                    :href="'/dashboard/student_list/pdf/' + year + '/' + student_class + '/' + school_id" >Download Student List</a>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -216,7 +216,7 @@ export default {
             name: "",
             student_class: "",
             status: "Active",
-            school_id: "",
+
             year: new Date().getFullYear(),
             timeout: null,
             allSelected: false,
