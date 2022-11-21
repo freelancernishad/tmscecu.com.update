@@ -48,8 +48,8 @@
 
                         <div class="text-center mt-3">
                                     <img width="50px" :src="$asseturl+'assets/img/bangladesh-govt.png'" alt="">
-                                    <h4 style="margin: 0;    margin-top: 10px;">উপজেলা প্রশাসন</h4>
-                                    তেঁতুলিয়া, পঞ্চগড়।
+                                    <h4 style="margin: 0;    margin-top: 10px;"> টেপ্রীগঞ্জ আদর্শ দ্বি-মুখী উচ্চ বিদ্যালয়</h4>
+                                    টেপ্রীগঞ্জ, দেবীগঞ্জ, পঞ্চগড়
 								</div>
 
                     </form>
