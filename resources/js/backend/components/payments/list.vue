@@ -25,7 +25,7 @@
                     </div>
                     <div class="dropdown">
                         <!-- {{ url('/school/student/'.$class.'/'.$year.'/'.$type.'/sheet') }} -->
-                        <a :href="'/school/student/' + school_id + '/' + payment_class + '/' + year + '/' + type + '/paymnetsheet'"
+                        <a target="_blank" :href="'/dashboard/student/' + school_id + '/' + payment_class + '/' + year + '/' + type + '/paymnetsheet'"
                             class="btn-fill-lmd text-light gradient-dodger-blue" style="float:right;margin-bottom:10px"
                             rel="noopener noreferrer">Download Full Year Sheet</a>
                     </div>
