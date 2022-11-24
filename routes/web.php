@@ -56,9 +56,9 @@ return view('unioncreate');
 
 Route::get('/payment/success', function (Request $request) {
 
+    return $request->all();
 
-
-    return redirect('/student/applicant/copy/2012210212');
+    // return redirect('/student/applicant/copy/2012210212');
 
 
 
