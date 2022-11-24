@@ -84,7 +84,17 @@ Route::get('/allow/application/notification', function () {
 
         return view('pdftest');
         });
+
+
+        Route::get('student/applicant/copy/{applicant_id}',[studentsController::class , 'applicant_copy']);
+
+
+
         Route::get('school/payment/invoice/{id}',[PaymentController::class , 'invoice']);
+
+
+
+
         Route::get('/pdf/{school_id}/{class}/{roll}/{year}/{exam}',[frontendController::class ,'view_result_pdf']);
 
         Route::get('/routines/{school_id}/{class}/{year}/download',[RoutineController::class , 'routine_download'])->name('routines.routine_download');
@@ -116,7 +126,7 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
         // return   Auth::user()->roles->permission;
         //   Auth::user()->roles;
           $roles = Role::all();
-           $classess = json_encode(['Play', 'Nursery', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten']);
+           $classess = json_encode(['Six', 'Seven', 'Eight', 'Nine', 'Ten']);
 
 
 
@@ -130,7 +140,7 @@ Route::get('/{vue_capture?}', function () {
         // return  Uniouninfo::find(1);
  $uniounDetials['defaultColor']  = 'green';
       $uniounDetials = json_decode(json_encode($uniounDetials));
-      $classess = json_encode(['Play', 'Nursery', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten']);
+      $classess = json_encode(['Six', 'Seven', 'Eight', 'Nine', 'Ten']);
 
 
      return view('frontlayout',compact('uniounDetials','classess'));

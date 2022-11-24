@@ -8,6 +8,7 @@ use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\StudentResult;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -254,33 +255,18 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
     public function student_submit(Request $r)
     {
-        // return $r->all();
         $id = $r->id;
-        $status = $r->status;
-        $data = [];
-        $inputData = $r->all();
-        foreach ($inputData as $key => $value) {
-            if ($key == 'id' || $key == '_token' || $key == 'status') {
-            } else {
-                $data[$key] = $value;
-            }
-        }
+        $data = $r->all();
+
         if ($id == '') {
+            $data['JoiningDate'] = date("Y-m-d");
+            $data['StudentStatus'] = 'Applied';
             $result =   student::create($data);
-            $results['result'] = $result;
-            $results['status'] = 'Created';
-
-
-            $this->usercreate($result->school_id,$result->StudentName,$result->StudentEmail,$result->StudentPassword,$result->id,$result->StudentClass,'student');
-            $this->usercreate($result->school_id,$result->StudentFatherName,$result->ParentEmail,$result->ParentPassword,$result->id,$result->StudentClass,'parent');
-
         } else {
             $student = student::find($r->id);
             $result = $student->update($data);
-            $results['result'] = $result;
-            $results['status'] = 'Updated';
         }
-        return response()->json($results);
+        return $result;
     }
 
     public function imageupload(Request $request)
@@ -839,6 +825,210 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     }
 
 
+        public function applicant_copy($applicant_id)
+        {
+           return  $student =  student::where('AdmissionID',$applicant_id)->latest()->first();
 
+
+            $html = '';
+
+
+
+            $html="
+
+            <!DOCTYPE HTML>
+<html lang='en-US'>
+<head>
+	<meta charset='UTF-8'>
+	<title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        .rootContainer {
+            margin: 25px;
+            border: 1px solid;
+            padding: 5px 21px;
+        }
+
+        .tableTag, .tableTag td, .tableTag th {
+        border: 1px solid #6c6c6c;
+        border-collapse: collapse;
+        padding: 3px 7px;
+        font-size:10px;
+        }
+        td.tableRowHead {
+            background: #e9e9e9;
+            color: black !important;
+        }
+        .fontsize1{
+            font-size:16px;
+        }
+        .fontsize2{
+            font-size:25px;
+        }
+        .copyTitle{
+            font-size:23px;
+            color:#3E4D5B;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class='rootContainer'>
+
+        <div class='headerSection'>
+
+            <table width='100%'>
+                <tr>
+                    <td>
+                        <p class='fontsize1'>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার </p>
+                        <p class='fontsize2'>মাধ্যমিক ও উচ্চমাধ্যমিক শিক্ষা অধিদপ্তর</p>
+
+                    </td>
+                    <td style='text-align: right'>
+                        <p>Applicant's Copy</p>
+                    </td>
+                </tr>
+            </table>
+
+            <p style='    border-bottom: 3px solid #808080;    margin-top: 10px; margin-bottom: 20px;'></p>
+            <h3 style='text-align:center' class='copyTitle'>সরকারি বিদ্যালয় সমূহের ভর্তি ২০২৩</h3>
+
+            <table class='tableTag' width='100%' style='margin-top:20px ;margin-bottom:20px ;'>
+
+                <tr>
+                    <td width='15%' class='tableRowHead' >Admssion Id</td>
+                    <td colspan='3'>$student->AdmissionID</td>
+                </tr>
+
+
+                <tr>
+                    <td class='tableRowHead' >Class</td>
+                    <td>$student->StudentClass</td>
+                    <td class='tableRowHead'  width='10%'>Group</td>
+                    <td>$student->StudentGroup</td>
+                </tr>
+
+
+            </table>
+
+
+            <table class='tableTag' width='100%' style='margin-top:20px ;margin-bottom:20px ;'>
+
+                <tr>
+                    <td class='tableRowHead'  width='20%'>Name</td>
+                    <td colspan='3'>$student->StudentName</td>
+                    <td width='20%' style='padding:0 !important;' rowspan='6'><img width='180px' style='overflow:hidden' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfOcr1OHnhhPCnQZrdBTc4kaopGN_phjZ8QQ&usqp=CAU' alt=''></td>
+                </tr>
+
+
+                <tr>
+                    <td class='tableRowHead' >Father Name</td>
+                    <td>$student->StudentFatherNameBn</td>
+                    <td class='tableRowHead'  width='13%'>Nid</td>
+                    <td>$student->StudentFatherNid</td>
+
+                </tr>
+                <tr>
+                    <td class='tableRowHead' >Mother Name</td>
+                    <td>$student->StudentMotherNameBn</td>
+                    <td class='tableRowHead' >Nid</td>
+                    <td>$student->StudentMotherNid</td>
+                </tr>
+                <tr>
+                    <td class='tableRowHead' >Date of Birth</td>
+                    <td>$student->StudentDateOfBirth</td>
+                    <td class='tableRowHead' >Birth Reg.</td>
+                    <td>$student->StudentBirthCertificateNo</td>
+                </tr>
+                <tr>
+                    <td class='tableRowHead' >Mobile No.</td>
+                    <td>$student->StudentPhoneNumber</td>
+                    <td class='tableRowHead' >Nationality</td>
+                    <td>Banglideshi</td>
+                </tr>
+                <tr>
+                    <td class='tableRowHead' >Gender</td>
+                    <td colspan='3'>$student->StudentGender</td>
+                </tr>
+                <tr>
+                    <td class='tableRowHead' >Guard. Name</td>
+                    <td></td>
+                    <td class='tableRowHead' >Guard. Nid</td>
+                    <td colspan='2'></td>
+                </tr>
+                <tr>
+                    <td class='tableRowHead' >Prev School</td>
+                    <td colspan='4'></td>
+                </tr>
+                <tr>
+                    <td class='tableRowHead' >Prev Class</td>
+                    <td colspan='4'></td>
+                </tr>
+                <tr>
+                    <td class='tableRowHead' >Present Address</td>
+                    <td colspan='4'>$student->StudentAddress</td>
+                </tr>
+                <tr>
+                    <td class='tableRowHead' >Permanent Address</td>
+                    <td colspan='4'>$student->StudentAddress</td>
+                </tr>
+
+
+            </table>
+
+
+            <table class='tableTag' width='100%' style='margin-top:20px ;margin-bottom:20px ;'>
+
+
+
+                <tr>
+                    <td class='tableRowHead'  width='15%'>Applied On</td>
+                    <td>$student->JoiningDate</td>
+                    <td  class='tableRowHead' width='15%'>Printed On</td>
+                    <td>".date('Y-m-d')."</td>
+
+                </tr>
+
+                <tr>
+                    <td class='tableRowHead'>Declaration</td>
+                    <td colspan='3'>sdfghj</td>
+
+
+
+                </tr>
+
+
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+</body>
+</html>
+
+
+            ";
+
+
+    // return $html;
+
+
+    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4','default_font' => 'bangla','margin_left' => 5,
+    'margin_right' => 5,
+    'margin_top' => 6,
+    'margin_bottom' => 6,]);
+    $mpdf->WriteHTML($html);
+    $mpdf->Output('document.pdf','I');
+
+        }
 
 }
