@@ -2,18 +2,19 @@
 use App\Models\Role;
 use App\Models\Visitor;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\frontendController;
 use App\Http\Controllers\api\resultController;
+
 use App\Http\Controllers\Auth\LoginController;
-
 use App\Http\Controllers\api\PaymentController;
-use App\Http\Controllers\api\RoutineController;
 
+use App\Http\Controllers\api\RoutineController;
 use App\Http\Controllers\api\studentsController;
 use App\Http\Controllers\NotificationsController;
 /*
@@ -51,6 +52,21 @@ Route::get('/unioncreate', function () {
 return view('unioncreate');
 
 
+});
+
+Route::get('/payment/success', function (Request $request) {
+echo "payment success";
+return $request->all();
+});
+
+Route::get('/payment/fail', function (Request $request) {
+echo "payment fail";
+return $request->all();
+});
+
+Route::get('/payment/cancel', function (Request $request) {
+echo "payment cancel";
+return $request->all();
 });
 
 

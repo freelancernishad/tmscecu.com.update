@@ -522,7 +522,7 @@
                     <div class="col-md-6"><b>ধর্ম : </b>{{ this.form.StudentReligion }}</div>
                     <div class="col-md-6"><b>নাম (বাংলা) : </b>{{ this.form.StudentName }}</div>
                     <div class="col-md-6"><b>নাম (English) : </b>{{ this.form.StudentNameEn }}</div>
-              
+
                     <div class="col-md-6"><b>জন্ম তারিখ : </b>{{ this.form.StudentDateOfBirth }}</div>
                     <div class="col-md-6"><b>জন্ম নিবন্ধন নং : </b>{{ this.form.StudentBirthCertificateNo }}</div>
                     <div class="col-md-6"><b>Student category : </b>{{ this.form.StudentCategory }}</div>
@@ -537,7 +537,7 @@
                     <div class="col-md-6"><b>পোস্টাল কোড : </b>{{ this.form.AreaPostalCode }}</div>
 
                     <div class="col-md-12"><h2 class="previewHead">অভিভাবকের তথ্য</h2></div>
-                   
+
                     <div class="col-md-6"><b>পিতার নাম (বাংলা) : </b>{{ this.form.StudentFatherNameBn }}</div>
                     <div class="col-md-6"><b>পিতার নাম (English) : </b>{{ this.form.StudentFatherName }}</div>
                     <div class="col-md-6"><b>মাতার নাম (বাংলা) : </b>{{ this.form.StudentMotherNameBn }}</div>
@@ -814,19 +814,14 @@ if(this.form.StudentClass!='Nine' || this.form.StudentClass!='Ten') this.form.St
 
 
 
-       submit() {
+      async submit() {
 
                       this.preloader = true;
-                axios.post(`/api/students/form/submit`,this.form)
-                .then(({data}) => {
-                    //  console.log(data)
-                        // this.$router.push({name: 'students'})
+                       var res = await this.callApi('post',`/api/students/form/submit`,this.form)
+                    //    console.log(res.data)
+                        window.location.href=`/payment?amount=10&studentId=${res.data.id}`;
                         Notification.success();
-                                  this.preloader = false;
-                })
-                .catch(() => {
-                    // this.$router.push({name: 'supplier'})
-                })
+                        // this.preloader = false;
 
        }
 

@@ -61,6 +61,10 @@ Route::group([
 
 
 
+Route::post('/ipn',[PaymentController::class ,'ipn']);
+
+
+
 Route::get('/users/get',[MessageController::class ,'usersget']);
 Route::get('/conversion/get',[MessageController::class ,'conversionget']);
 Route::get('/messages/get',[MessageController::class ,'messagesget']);

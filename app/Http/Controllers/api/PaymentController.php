@@ -15,6 +15,15 @@ use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 class PaymentController extends Controller
 {
 
+
+    public function ipn(Request $request)
+    {
+        $data = json_encode($request->all());
+        payment::create(['bokeya'=>$data]);
+
+    }
+
+
     public function paymentCreate(Request $request)
     {
 
