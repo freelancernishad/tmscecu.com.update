@@ -20,7 +20,7 @@ class PaymentController extends Controller
     public function ipn(Request $request)
     {
         $data = $request->all();
-
+        Log::info($data);
 // return $data['secure_token'];
 
 
@@ -47,7 +47,8 @@ class PaymentController extends Controller
             $Insertdata['status']='Unpaid';
         }
         // return $Insertdata;
-        // Log::info($data);
+        Log::info($Insertdata);
+
       return payment::create($Insertdata);
 
     }
