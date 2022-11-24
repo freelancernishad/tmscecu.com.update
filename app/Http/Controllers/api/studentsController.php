@@ -827,7 +827,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
         public function applicant_copy($applicant_id)
         {
-           return  $student =  student::where('AdmissionID',$applicant_id)->latest()->first();
+             $student =  student::where('AdmissionID',$applicant_id)->latest()->first();
 
 
             $html = '';

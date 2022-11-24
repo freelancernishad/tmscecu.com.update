@@ -55,8 +55,13 @@ return view('unioncreate');
 });
 
 Route::get('/payment/success', function (Request $request) {
-echo "payment success";
-return $request->all();
+
+
+
+    return redirect('/student/applicant/copy/2012210212');
+
+
+
 });
 
 Route::get('/payment/fail', function (Request $request) {

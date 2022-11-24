@@ -20,8 +20,35 @@ class PaymentController extends Controller
     public function ipn(Request $request)
     {
         $data = $request->all();
-        Log::info($data);
-        // payment::create(['bokeya'=>$data]);
+
+// return $data['secure_token'];
+
+
+        $student = student::find($data['cust_info']['cust_id']);
+
+        $Insertdata = [
+                'school_id'=>$student->school_id,
+                'studentClass'=>$student->StudentClass,
+                'studentRoll'=>$student->StudentRoll,
+                'studentId'=>$student->StudentID,
+                'admissionId'=>$student->AdmissionID,
+                'Name'=>$student->StudentName,
+                'method'=>$data['pi_det_info']['pi_name'],
+                'amount'=>$data['trnx_info']['total_pabl_amt'],
+                'date'=>date("Y-m-d"),
+                'month'=>date("F"),
+                'year'=>date("Y"),
+
+        ];
+
+        if($data['msg_code']=='1020'){
+            $Insertdata['status']='Paid';
+        }else{
+            $Insertdata['status']='Unpaid';
+        }
+        // return $Insertdata;
+        // Log::info($data);
+      return payment::create($Insertdata);
 
     }
 
