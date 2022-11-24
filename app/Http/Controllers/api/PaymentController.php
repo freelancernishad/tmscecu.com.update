@@ -19,9 +19,9 @@ class PaymentController extends Controller
 
     public function ipn(Request $request)
     {
-        $data = json_encode($request->all());
+        $data = $request->all();
         Log::info($data);
-        payment::create(['bokeya'=>$data]);
+        // payment::create(['bokeya'=>$data]);
 
     }
 
