@@ -4,9 +4,10 @@ use App\Models\payment;
 // use PDF;
 use App\Models\student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use App\Models\school_detail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Rakibhstu\Banglanumber\NumberToBangla;
@@ -19,6 +20,7 @@ class PaymentController extends Controller
     public function ipn(Request $request)
     {
         $data = json_encode($request->all());
+        Log::info($data);
         payment::create(['bokeya'=>$data]);
 
     }
