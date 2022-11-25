@@ -11,10 +11,6 @@ class payment extends Model
 
 
     protected $fillable = [
-
-
-
-
         'trxid',
         'school_id',
         'studentClass',
@@ -26,12 +22,13 @@ class payment extends Model
         'amount',
         'bokeya',
         'type',
+        'paymentUrl',
+        'ipnResponse',
         'type_name',
         'date',
         'month',
         'year',
         'status',
-
     ];
 
 }

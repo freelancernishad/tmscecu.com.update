@@ -13,50 +13,116 @@ use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Rakibhstu\Banglanumber\NumberToBangla;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf;
-
 class PaymentController extends Controller
 {
+    public function Search(Request $request)
+    {
+         $type = $request->type;
+        $paymenttype = $request->paymenttype;
+        $adminssionId = $request->adminssionId;
+
+        $StudentID = $request->StudentID;
 
 
+        $student_class = $request->student_class;
+        $StudentGroup = $request->StudentGroup;
+        $StudentRoll = $request->StudentRoll;
+
+        $month = $request->month;
+
+
+
+
+
+        $paymentUrl = '';
+        $paymentStatus = 'none';
+
+
+        $paymentfilter = [
+            'type' => $type,
+            'admissionId' => $adminssionId,
+            'status' => 'Paid',
+        ];
+        if($type=='monthly_fee'){
+
+            $paymentfilter['month'] = $month;
+        }
+
+        $paidPaymentCount = payment::where($paymentfilter)->count();
+        if ($paidPaymentCount > 0) {
+
+            $paidPayment = payment::where($paymentfilter)->latest()->first();
+
+                 $paymentStatus = $paidPayment->status;
+
+        }
+
+
+
+
+
+        if($type=='Admission_fee'){
+            $student = student::where(['admissionId' => $adminssionId])->latest()->first();
+        }else{
+            if($paymenttype=='AdmissionID'){
+
+                $student = student::where(['admissionId' => $adminssionId,'StudentStatus'=>'active'])->latest()->first();
+            }elseif($paymenttype=='StudentID'){
+
+                $student = student::where(['StudentID' => $StudentID,'StudentStatus'=>'active'])->latest()->first();
+            }elseif($paymenttype=='other'){
+                if($student_class=='Nine' || $student_class=='Ten'){
+                    $student = student::where(['StudentClass' => $student_class,'StudentGroup' => $StudentGroup,'StudentRoll' => $StudentRoll,'StudentStatus'=>'active'])->latest()->first();
+                }else{
+                    $student = student::where(['StudentClass' => $student_class,'StudentRoll' => $StudentRoll,'StudentStatus'=>'active'])->latest()->first();
+                }
+            }
+        }
+
+
+
+        $data = [
+            'paymentUrl' => $paymentUrl,
+            'student' => $student,
+            'paymentStatus' => $paymentStatus,
+            'searched' => 1,
+        ];
+        return $data;
+    }
     public function ipn(Request $request)
     {
         $data = $request->all();
         $student = student::find($data['cust_info']['cust_id']);
         $trnx_id = $data['trnx_info']['mer_trnx_id'];
-         $payment = payment::where('trxid',$trnx_id)->first();
+        $payment = payment::where('trxid', $trnx_id)->first();
         $Insertdata = [];
-        if($data['msg_code']=='1020'){
+        if ($data['msg_code'] == '1020') {
             $Insertdata = [
-                'status'=>'Paid',
-                'method'=>$data['pi_det_info']['pi_name'],
+                'status' => 'Paid',
+                'method' => $data['pi_det_info']['pi_name'],
             ];
-
-        }else{
+        } else {
             $Insertdata = [
-                'status'=>'Failed',
+                'status' => 'Failed',
             ];
         }
+        $Insertdata['ipnResponse'] = json_encode($data);
         // return $Insertdata;
         Log::info(json_encode($data));
-
-         $student->update(['StudentStatus'=>'Pending']);
+        $student->update(['StudentStatus' => 'Pending']);
         return $payment->update($Insertdata);
-
     }
-
-
     public function paymentCreate(Request $request)
     {
         $trnx_id = time();
         $studentId = $request->studentId;
+        $month = $request->month;
         $student = student::find($studentId);
-       $studentMobile = '01909756552';
+        $studentMobile = '01909756552';
         $class = $student->StudentClass;
         $type = $request->type;
-
-        $schoolFee = SchoolFee::where(['class'=>$class,'type'=>$type])->latest()->first();
+        $schoolFee = SchoolFee::where(['class' => $class, 'type' => $type])->latest()->first();
         $amount = $schoolFee->fees;
-
         $cust_info = [
             "cust_email" => "",
             "cust_id" => "$studentId",
@@ -64,8 +130,6 @@ class PaymentController extends Controller
             "cust_mobo_no" => "$studentMobile",
             "cust_name" => "Customer Name"
         ];
-
-
         $trns_info = [
             "ord_det" => $type,
             "ord_id" => $student->AdmissionID,
@@ -73,210 +137,127 @@ class PaymentController extends Controller
             "trnx_currency" => "BDT",
             "trnx_id" => "$trnx_id"
         ];
-
-
-
+        $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info);
         $Insertdata = [
-                'trxid'=>$trnx_id,
-                'school_id'=>$student->school_id,
-                'studentClass'=>$student->StudentClass,
-                'studentRoll'=>$student->StudentRoll,
-                'studentId'=>$student->StudentID,
-                'admissionId'=>$student->AdmissionID,
-                'Name'=>$student->StudentName,
-                'method'=>'',
-                'amount'=>$amount,
-                'type'=>$type,
-                'date'=>date("Y-m-d"),
-                'month'=>date("F"),
-                'year'=>date("Y"),
-                'year'=>date("Y"),
-                'status'=>'Pending',
-
+            'trxid' => $trnx_id,
+            'school_id' => $student->school_id,
+            'studentClass' => $student->StudentClass,
+            'studentRoll' => $student->StudentRoll,
+            'studentId' => $student->StudentID,
+            'admissionId' => $student->AdmissionID,
+            'Name' => $student->StudentName,
+            'method' => '',
+            'amount' => $amount,
+            'type' => $type,
+            'paymentUrl' => $redirectutl,
+            'date' => date("Y-m-d"),
+            'year' => date("Y"),
+            'status' => 'Pending',
         ];
-       payment::create($Insertdata);
 
 
+        if($month){
+            $Insertdata['month'] = $month;
+        }else{
+            $Insertdata['month'] =  date("F");
 
+        }
 
-
-
-
-
-
-
-        $redirectutl = ekpayToken($trnx_id, $trns_info,$cust_info);
+        payment::create($Insertdata);
         return redirect($redirectutl);
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
     public function payments(Request $request)
     {
         $datatype = $request->datatype;
         $datas = QueryBuilder::for(payment::class)
-        ->allowedFilters([
-            AllowedFilter::exact('id'),
-            AllowedFilter::exact('school_id'),
-            AllowedFilter::exact('studentClass'),
-            AllowedFilter::exact('studentRoll'),
-            AllowedFilter::exact('studentId'),
-            AllowedFilter::exact('admissionId'),
-            AllowedFilter::exact('date'),
-            AllowedFilter::exact('type'),
-            AllowedFilter::exact('type_name'),
-            AllowedFilter::exact('month'),
-            AllowedFilter::exact('year'),
-            AllowedFilter::exact('status'),
-            AllowedFilter::exact('method'),
-            'Name',
-            'amount',
-            'bokeya',
-
-        ]);
-
-
-
-        if($datatype=='count'){
-            $result= $datas->sum('amount');
-        }else{
-            $result= $datas ->get();
+            ->allowedFilters([
+                AllowedFilter::exact('id'),
+                AllowedFilter::exact('school_id'),
+                AllowedFilter::exact('studentClass'),
+                AllowedFilter::exact('studentRoll'),
+                AllowedFilter::exact('studentId'),
+                AllowedFilter::exact('admissionId'),
+                AllowedFilter::exact('date'),
+                AllowedFilter::exact('type'),
+                AllowedFilter::exact('type_name'),
+                AllowedFilter::exact('month'),
+                AllowedFilter::exact('year'),
+                AllowedFilter::exact('status'),
+                AllowedFilter::exact('method'),
+                'Name',
+                'amount',
+                'bokeya',
+            ]);
+        if ($datatype == 'count') {
+            $result = $datas->sum('amount');
+        } else {
+            $result = $datas->get();
         }
-    return response()->json($result);
+        return response()->json($result);
     }
-
-
     public function payments_submit(Request $r)
     {
-
-
-$formtype = $r->formtype;
-$id = $r->id;
-
+        $formtype = $r->formtype;
+        $id = $r->id;
         $oldItem[0] = [
             'Bmonth' => '',
             'Bamount' => 0,
         ];
         $oldItemg = json_encode($oldItem);
-
-
-
-             $data = [
-                'school_id' => $r->school_id,
-                'studentClass' => $r->StudentClass,
-                'studentRoll' => $r->StudentRoll,
-                'studentId' => $r->StudentID,
-                'admissionId' => $r->AdmissionID,
-                'Name' => $r->StudentName,
-                'method' => $r->method,
-                'amount' => $r->amount,
-                'bokeya' => $oldItemg,
-                'type' => $r->type,
-                'type_name' => $r->type_name,
-                'date' => $r->date,
-                'month' => $r->month,
-                'year' => $r->year,
-                'status' => $r->status,
-            ];
-
-
-            $wh = [
-
-                'StudentID'=>$r->StudentID,
-            ];
-
-     $StudentPhoneNumber = DB::table('students')->where($wh)->get()[0]->StudentPhoneNumber;
-
-
-            $messages = array();
-            $responsemessege = [];
-
-            if($r->type=='পরিক্ষার ফি'){
-
-                $message = "আপনার সন্তানের ".$r->type_name." ফি ".int_en_to_bn($r->amount)." টাকা বিদ্যালয়ে জমা হয়েছে";
-            }else{
-                $message = "আপনার সন্তানের ".month_en_to_bn($r->month)." মাসের বেতন ".int_en_to_bn($r->amount)." টাকা বিদ্যালয়ে জমা হয়েছে";
-
+        $data = [
+            'school_id' => $r->school_id,
+            'studentClass' => $r->StudentClass,
+            'studentRoll' => $r->StudentRoll,
+            'studentId' => $r->StudentID,
+            'admissionId' => $r->AdmissionID,
+            'Name' => $r->StudentName,
+            'method' => $r->method,
+            'amount' => $r->amount,
+            'bokeya' => $oldItemg,
+            'type' => $r->type,
+            'type_name' => $r->type_name,
+            'date' => $r->date,
+            'month' => $r->month,
+            'year' => $r->year,
+            'status' => $r->status,
+        ];
+        $wh = [
+            'StudentID' => $r->StudentID,
+        ];
+        $StudentPhoneNumber = DB::table('students')->where($wh)->get()[0]->StudentPhoneNumber;
+        $messages = array();
+        $responsemessege = [];
+        if ($r->type == 'পরিক্ষার ফি') {
+            $message = "আপনার সন্তানের " . $r->type_name . " ফি " . int_en_to_bn($r->amount) . " টাকা বিদ্যালয়ে জমা হয়েছে";
+        } else {
+            $message = "আপনার সন্তানের " . month_en_to_bn($r->month) . " মাসের বেতন " . int_en_to_bn($r->amount) . " টাকা বিদ্যালয়ে জমা হয়েছে";
+        }
+        array_push(
+            $messages,
+            [
+                "number" => '88' . int_bn_to_en($StudentPhoneNumber),
+                "message" => "$message"
+            ]
+        );
+        if ($formtype == 'create') {
+            $data = payment::create($data);
+            try {
+                $msgs = sendMessages($messages);
+                foreach ($msgs as $value) {
+                    array_push($responsemessege, 'Sms Successfully Sent To : ' . $value["number"]);
+                }
+            } catch (Exception $e) {
+                array_push($responsemessege, $e->getMessage());
             }
-
-
-
-            array_push(
-                $messages,
-                [
-                    "number" => '88' . int_bn_to_en($StudentPhoneNumber),
-                    "message" => "$message"
-                ]
-            );
-if($formtype=='create'){
-    $data = payment::create($data);
-
-
-    try {
-        $msgs = sendMessages($messages);
-        foreach ($msgs as $value) {
-array_push($responsemessege,'Sms Successfully Sent To : ' . $value["number"]);
-     }
-    } catch (Exception $e) {
-        array_push($responsemessege,$e->getMessage());
+        } else {
+            $payment = payment::find($id);
+            $data = $payment->update($data);
+        }
+        return response()->json($data);
     }
-
-
-
-}else{
-  $payment = payment::find($id);
-  $data = $payment->update($data);
-
-}
-
-         return response()->json($data);
-
-
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function invoice(Request $r, $id)
     {
-         $rows = DB::table('payments')->where('id', $id)->first();
+        $rows = DB::table('payments')->where('id', $id)->first();
         $StudentID = $rows->studentId;
         $wds = [
             'StudentID' => $StudentID,
@@ -284,11 +265,7 @@ array_push($responsemessege,'Sms Successfully Sent To : ' . $value["number"]);
         $stdata = DB::table('students')->where($wds)->first();
         $data['types'] = 'pdf';
         //in Controller
-
-         $data['sign'] = base64('frontend/sing.png');
-
-
-
+        $data['sign'] = base64('frontend/sing.png');
         $URL =  url('/school/payment/invoice/' . $id);
         $qrcode = \QrCode::size(70)
             ->format('svg')
@@ -297,32 +274,22 @@ array_push($responsemessege,'Sms Successfully Sent To : ' . $value["number"]);
         $data['qrcode'] = $output;
         // return view('dashboard/payments.invoice',$data);
         $numto = new NumberToBangla();
-
-            $amount = $rows->amount;
-            $bokeya = json_decode($rows->bokeya);
-            $bTotal = 0;
-            foreach ($bokeya as $list) {
-                $bTotal = $bTotal + $list->Bamount;
-            }
-
+        $amount = $rows->amount;
+        $bokeya = json_decode($rows->bokeya);
+        $bTotal = 0;
+        foreach ($bokeya as $list) {
+            $bTotal = $bTotal + $list->Bamount;
+        }
         $Total = $amount + $bTotal;
         $data['TotalAmount'] = $numto->bnMoney($Total);
         //in Controller
-
-        $school_detail =  school_detail::where('school_id',$stdata->school_id)->first();
+        $school_detail =  school_detail::where('school_id', $stdata->school_id)->first();
         $data['logo'] = base64($school_detail->logo);
-
-
-
-
         $fileName = 'Invoice-' . date('Y-m-d H:m:s');
         $data['fileName'] = $fileName;
-        $pdf = LaravelMpdf::loadView('admin/pdfReports.invoice', $data ,compact('rows','stdata','school_detail'));
+        $pdf = LaravelMpdf::loadView('admin/pdfReports.invoice', $data, compact('rows', 'stdata', 'school_detail'));
         return $pdf->stream("$fileName.pdf");
     }
-
-
-
     /**
      * Display a listing of the resource.
      *
@@ -330,11 +297,9 @@ array_push($responsemessege,'Sms Successfully Sent To : ' . $value["number"]);
      */
     public function index($class, $month, $year, $type)
     {
-
     }
-    public function paymentsheet($school_id,$class, $year, $type)
+    public function paymentsheet($school_id, $class, $year, $type)
     {
-
         $data['class'] = $class;
         $data['year'] = $year;
         $data['type'] = feesconvert($type);

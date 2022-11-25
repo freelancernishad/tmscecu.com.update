@@ -3135,6 +3135,95 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/payment.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/payment.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  created: function created() {},
+  data: function data() {
+    return {
+      preloader: false,
+      form: {
+        type: '',
+        adminssionId: '',
+        StudentID: '',
+        month: '',
+        paymenttype: '',
+        student_class: '',
+        StudentGroup: '',
+        StudentRoll: ''
+      },
+      student: {},
+      paymentStatus: 'Paid',
+      paymentUrl: '#',
+      searched: 0
+    };
+  },
+  methods: {
+    PaymentSearch: function PaymentSearch() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var res;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.callApi('post', "/api/payment/data/search", _this.form);
+
+              case 2:
+                res = _context.sent;
+
+                if (res.data.student) {
+                  _this.student = res.data.student;
+                  _this.searched = res.data.searched;
+                } else {
+                  _this.student = {};
+                  _this.searched = 2;
+                }
+
+                _this.paymentUrl = res.data.paymentUrl;
+                _this.paymentStatus = res.data.paymentStatus; // var res2 = await this.callApi('get',`/api/student/applicant/copy/${res.data.student.AdmissionID}`,[]);
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  mounted: function mounted() {
+    this.all_list('groups');
+
+    if (this.$route.query.adminssionId && this.$route.query.type) {
+      this.form.adminssionId = this.$route.query.adminssionId;
+      this.form.type = this.$route.query.type;
+      this.PaymentSearch();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/register.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/register.vue?vue&type=script&lang=js& ***!
@@ -3210,6 +3299,8 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
         StudentBirthCertificateNo: null,
         StudentCategory: null,
         StudentKota: null,
+        preSchool: null,
+        preClass: null,
         bigBroSis: "No",
         bigBroSisName: null,
         bigBroSisClass: null,
@@ -4892,6 +4983,16 @@ var render = function render() {
     attrs: {
       "aria-current": "page",
       to: {
+        name: "payment"
+      }
+    }
+  }, [_vm._v("পেমেন্ট")])], 1), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("router-link", {
+    staticClass: "text-light px-3 nav-link",
+    attrs: {
+      "aria-current": "page",
+      to: {
         name: "login"
       }
     }
@@ -5945,6 +6046,630 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/payment.vue?vue&type=template&id=bd499866&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/payment.vue?vue&type=template&id=bd499866&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", [_vm.preloader == true ? _c("loader", {
+    attrs: {
+      object: "#ff9633",
+      color1: "#ffffff",
+      color2: "#17fd3d",
+      size: "5",
+      speed: "2",
+      bg: "#343a40",
+      objectbg: "#999793",
+      opacity: "80",
+      disableScrolling: "false",
+      name: "circular"
+    }
+  }) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("main", {
+    staticClass: "container-fluid"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-9 my-3"
+  }, [_c("div", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("পেমেন্ট ক্যাটাগরি")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.type,
+      expression: "form.type"
+    }],
+    staticClass: "form-control",
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "type", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("পেমেন্ট ক্যাটাগরি নির্বাচন করুন")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "Admission_fee"
+    }
+  }, [_vm._v("ভর্তি ফি")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "monthly_fee"
+    }
+  }, [_vm._v("মাসিক বেতন")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "session_fee"
+    }
+  }, [_vm._v("সেশান ফি")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "exam_fee"
+    }
+  }, [_vm._v("পরীক্ষার ফি")])])]), _vm._v(" "), _vm.form.type == "Admission_fee" ? _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("ভর্তি আইডি")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.adminssionId,
+      expression: "form.adminssionId"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form.adminssionId
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "adminssionId", $event.target.value);
+      }
+    }
+  })]) : _vm._e(), _vm._v(" "), _vm.form.type == "monthly_fee" || _vm.form.type == "session_fee" ? _c("div", {
+    staticClass: "monthly_fee"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("পেমেন্ট করার মাধ্যম")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.paymenttype,
+      expression: "form.paymenttype"
+    }],
+    staticClass: "form-control",
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "paymenttype", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("পেমেন্ট করার মাধ্যম নির্বাচন করুন")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "AdmissionID"
+    }
+  }, [_vm._v("ভর্তি আইডি")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "StudentID"
+    }
+  }, [_vm._v("স্টুডেন্ট আইডি")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "other"
+    }
+  }, [_vm._v("অন্যান্য")])])]), _vm._v(" "), _vm.form.type == "monthly_fee" ? _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("মাসের নাম")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.month,
+      expression: "form.month"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "month",
+      required: ""
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "month", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("\n                            SELECT\n                        ")]), _vm._v(" "), _vm._l(_vm.months, function (monthlist, indd) {
+    return _c("option", {
+      key: "mon" + indd
+    }, [_vm._v(_vm._s(monthlist))]);
+  })], 2)]) : _vm._e(), _vm._v(" "), _vm.form.paymenttype == "AdmissionID" ? _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("ভর্তি আইডি")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.adminssionId,
+      expression: "form.adminssionId"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form.adminssionId
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "adminssionId", $event.target.value);
+      }
+    }
+  })]) : _vm._e(), _vm._v(" "), _vm.form.paymenttype == "StudentID" ? _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("স্টুডেন্ট আইডি")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.StudentID,
+      expression: "form.StudentID"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form.StudentID
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "StudentID", $event.target.value);
+      }
+    }
+  })]) : _vm._e(), _vm._v(" "), _vm.form.paymenttype == "other" ? _c("div", {
+    staticClass: "other"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", [_vm._v("শ্রেণি")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.student_class,
+      expression: "form.student_class"
+    }],
+    staticClass: "form-control",
+    staticStyle: {
+      width: "100%"
+    },
+    attrs: {
+      required: ""
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "student_class", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("\n                                        SELECT\n                                    ")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist, index) {
+    return _c("option", {
+      key: "class" + index
+    }, [_vm._v(_vm._s(classlist))]);
+  })], 2)]), _vm._v(" "), _vm.form.student_class == "Nine" || _vm.form.student_class == "Ten" ? _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", [_vm._v("গ্রুপ")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.StudentGroup,
+      expression: "form.StudentGroup"
+    }],
+    staticClass: "form-control",
+    staticStyle: {
+      width: "100%"
+    },
+    attrs: {
+      id: "group",
+      required: ""
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "StudentGroup", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("select")]), _vm._v(" "), _vm._l(_vm.groups, function (group, ind) {
+    return _c("option", {
+      key: "group" + ind
+    }, [_vm._v(_vm._s(group))]);
+  })], 2)]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("রোল")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.StudentRoll,
+      expression: "form.StudentRoll"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form.StudentRoll
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "StudentRoll", $event.target.value);
+      }
+    }
+  })])]) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-info",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: _vm.PaymentSearch
+    }
+  }, [_vm._v("খুঁজুন")]), _vm._v(" "), _vm.searched == 1 ? _c("div", {
+    staticClass: "rootContainer"
+  }, [_c("div", {
+    staticClass: "headerSection"
+  }, [_c("table", {
+    attrs: {
+      width: "100%"
+    }
+  }, [_c("tr", [_vm._m(1), _vm._v(" "), _c("td", {
+    staticStyle: {
+      "text-align": "right"
+    }
+  }, [_vm.paymentStatus == "Paid" ? _c("div", {
+    staticClass: "paiddiv"
+  }, [_c("button", {
+    staticClass: "btn btn-success"
+  }, [_vm._v("Paid")]), _vm._v(" "), _c("a", {
+    staticClass: "btn btn-info",
+    attrs: {
+      target: "_blank",
+      href: "/student/applicant/copy/" + _vm.student.AdmissionID
+    }
+  }, [_vm._v("Print\n                                                Applicant Copy")])]) : _vm.paymentStatus == "Pending" ? _c("a", {
+    staticClass: "btn btn-info",
+    attrs: {
+      href: _vm.paymentUrl
+    }
+  }, [_vm._v("Pay Pending Payment")]) : _vm.paymentStatus == "Failed" ? _c("a", {
+    staticClass: "btn btn-info",
+    attrs: {
+      href: _vm.paymentUrl
+    }
+  }, [_vm._v("Pay Failed Payment")]) : _c("a", {
+    staticClass: "btn btn-info",
+    attrs: {
+      href: "/payment?studentId=" + _vm.student.id + "&type=" + _vm.form.type + "&month=" + _vm.form.month
+    }
+  }, [_vm._v("Pay Now")])])])]), _vm._v(" "), _c("p", {
+    staticStyle: {
+      "border-bottom": "3px solid #808080",
+      "margin-top": "10px",
+      "margin-bottom": "20px"
+    }
+  }), _vm._v(" "), _c("h3", {
+    staticClass: "copyTitle",
+    staticStyle: {
+      "text-align": "center"
+    }
+  }), _vm._v(" "), _c("table", {
+    staticClass: "tableTag",
+    staticStyle: {
+      "margin-top": "20px",
+      "margin-bottom": "20px"
+    },
+    attrs: {
+      width: "100%"
+    }
+  }, [_c("tr", [_c("td", {
+    staticClass: "tableRowHead",
+    attrs: {
+      width: "15%"
+    }
+  }, [_vm._v("Admssion Id")]), _vm._v(" "), _c("td", {
+    attrs: {
+      colspan: "3"
+    }
+  }, [_vm._v(_vm._s(_vm.student.AdmissionID))])]), _vm._v(" "), _c("tr", [_c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Class")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentClass))]), _vm._v(" "), _c("td", {
+    staticClass: "tableRowHead",
+    attrs: {
+      width: "10%"
+    }
+  }, [_vm._v("Group")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentGroup))])])]), _vm._v(" "), _c("table", {
+    staticClass: "tableTag",
+    staticStyle: {
+      "margin-top": "20px",
+      "margin-bottom": "20px"
+    },
+    attrs: {
+      width: "100%"
+    }
+  }, [_c("tr", [_c("td", {
+    staticClass: "tableRowHead",
+    attrs: {
+      width: "20%"
+    }
+  }, [_vm._v("Name")]), _vm._v(" "), _c("td", {
+    attrs: {
+      colspan: "3"
+    }
+  }, [_vm._v(_vm._s(_vm.student.StudentName))]), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c("tr", [_c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Father Name")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentFatherNameBn))]), _vm._v(" "), _c("td", {
+    staticClass: "tableRowHead",
+    attrs: {
+      width: "13%"
+    }
+  }, [_vm._v("Nid")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentFatherNid))])]), _vm._v(" "), _c("tr", [_c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Mother Name")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentMotherNameBn))]), _vm._v(" "), _c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Nid")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentMotherNid))])]), _vm._v(" "), _c("tr", [_c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Date of Birth")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentDateOfBirth))]), _vm._v(" "), _c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Birth Reg.")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentBirthCertificateNo))])]), _vm._v(" "), _c("tr", [_c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Mobile No.")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentPhoneNumber))]), _vm._v(" "), _c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Nationality")]), _vm._v(" "), _c("td", [_vm._v("Banglideshi")])]), _vm._v(" "), _c("tr", [_c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Gender")]), _vm._v(" "), _c("td", {
+    attrs: {
+      colspan: "3"
+    }
+  }, [_vm._v(_vm._s(_vm.student.StudentGender))])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _c("tr", [_c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Present Address")]), _vm._v(" "), _c("td", {
+    attrs: {
+      colspan: "4"
+    }
+  }, [_vm._v(_vm._s(_vm.student.StudentAddress))])]), _vm._v(" "), _c("tr", [_c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Permanent Address")]), _vm._v(" "), _c("td", {
+    attrs: {
+      colspan: "4"
+    }
+  }, [_vm._v(_vm._s(_vm.student.StudentAddress))])])]), _vm._v(" "), _c("table", {
+    staticClass: "tableTag",
+    staticStyle: {
+      "margin-top": "20px",
+      "margin-bottom": "20px"
+    },
+    attrs: {
+      width: "100%"
+    }
+  }, [_c("tr", [_c("td", {
+    staticClass: "tableRowHead",
+    attrs: {
+      width: "15%"
+    }
+  }, [_vm._v("Applied On")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.JoiningDate))]), _vm._v(" "), _c("td", {
+    staticClass: "tableRowHead",
+    attrs: {
+      width: "15%"
+    }
+  }, [_vm._v("Printed On")]), _vm._v(" "), _c("td", [_vm._v("\".date('Y-m-d').\"")])]), _vm._v(" "), _vm._m(6)])])]) : _vm._e(), _vm._v(" "), _vm.searched == 2 ? _c("h2", {
+    staticStyle: {
+      color: "red",
+      "text-align": "center",
+      "font-size": "33px"
+    }
+  }, [_vm._v(" No Data Found! ")]) : _vm._e()])]), _vm._v(" "), _c("side-bar", {
+    attrs: {
+      "class-name": "col-md-3"
+    }
+  })], 1)])], 1);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("section", {
+    staticClass: "inner-header divider layer-overlay overlay-theme-colored-7"
+  }, [_c("div", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "section-content"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_c("h1", {
+    staticClass: "text-theme-colored2 font-36"
+  }, [_vm._v("পেমেন্ট\n                        ")]), _vm._v(" "), _c("ol", {
+    staticClass: "breadcrumb text-left mt-10 white"
+  }, [_c("li", [_c("a", {
+    attrs: {
+      href: ""
+    }
+  }, [_vm._v("Home")])]), _vm._v(" "), _c("li", {
+    staticClass: "active"
+  }, [_vm._v("পেমেন্ট")])])])])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("td", [_c("p", {
+    staticClass: "fontsize1"
+  }, [_vm._v("গণপ্রজাতন্ত্রী বাংলাদেশ সরকার ")]), _vm._v(" "), _c("p", {
+    staticClass: "fontsize2"
+  }, [_vm._v("মাধ্যমিক ও উচ্চমাধ্যমিক শিক্ষা অধিদপ্তর")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("td", {
+    staticStyle: {
+      padding: "0 !important"
+    },
+    attrs: {
+      width: "20%",
+      rowspan: "6"
+    }
+  }, [_c("img", {
+    staticStyle: {
+      overflow: "hidden"
+    },
+    attrs: {
+      width: "180px",
+      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfOcr1OHnhhPCnQZrdBTc4kaopGN_phjZ8QQ&usqp=CAU",
+      alt: ""
+    }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("tr", [_c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Guard. Name")]), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Guard. Nid")]), _vm._v(" "), _c("td", {
+    attrs: {
+      colspan: "2"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("tr", [_c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Prev School")]), _vm._v(" "), _c("td", {
+    attrs: {
+      colspan: "4"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("tr", [_c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Prev Class")]), _vm._v(" "), _c("td", {
+    attrs: {
+      colspan: "4"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("tr", [_c("td", {
+    staticClass: "tableRowHead"
+  }, [_vm._v("Declaration")]), _vm._v(" "), _c("td", {
+    attrs: {
+      colspan: "3"
+    }
+  }, [_vm._v("sdfghj")])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/register.vue?vue&type=template&id=44805b6c&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/register.vue?vue&type=template&id=44805b6c& ***!
@@ -6007,12 +6732,12 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("ভর্তি আইডি")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("নাম (বাংলা):")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.form.AdmissionID,
-      expression: "form.AdmissionID"
+      value: _vm.form.StudentName,
+      expression: "form.StudentName"
     }, {
       name: "validate",
       rawName: "v-validate",
@@ -6022,30 +6747,72 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Admission ID",
-      name: "AdmissionID",
-      readonly: "",
+      placeholder: "Enter StudentName",
+      name: "StudentName",
       "data-vv-scope": "step1"
     },
     domProps: {
-      value: _vm.form.AdmissionID
+      value: _vm.form.StudentName
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
 
-        _vm.$set(_vm.form, "AdmissionID", $event.target.value);
+        _vm.$set(_vm.form, "StudentName", $event.target.value);
       }
     }
   }), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.AdmissionID"),
-      expression: "errors.has('step1.AdmissionID')"
+      value: _vm.errors.has("step1.StudentName"),
+      expression: "errors.has('step1.StudentName')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.AdmissionID")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentName")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4 mt-3"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label"
+  }, [_vm._v("নাম (English):")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.StudentNameEn,
+      expression: "form.StudentNameEn"
+    }, {
+      name: "validate",
+      rawName: "v-validate",
+      value: "required",
+      expression: "'required'"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      placeholder: "Enter StudentName",
+      name: "StudentNameEn",
+      "data-vv-scope": "step1"
+    },
+    domProps: {
+      value: _vm.form.StudentNameEn
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "StudentNameEn", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("p", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.errors.has("step1.StudentNameEn"),
+      expression: "errors.has('step1.StudentNameEn')"
+    }],
+    staticClass: "help is-danger"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentNameEn")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 mt-3"
   }, [_c("div", {
     staticClass: "form-group"
@@ -6072,7 +6839,7 @@ var render = function render() {
       "data-vv-scope": "step1"
     },
     on: {
-      change: [function ($event) {
+      change: function change($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
           return o.selected;
         }).map(function (o) {
@@ -6081,7 +6848,7 @@ var render = function render() {
         });
 
         _vm.$set(_vm.form, "StudentClass", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }, _vm.checkstudent]
+      }
     }
   }, [_c("option", {
     attrs: {
@@ -6223,12 +6990,12 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("নাম (বাংলা):")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("জন্ম নিবন্ধন নং")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.form.StudentName,
-      expression: "form.StudentName"
+      value: _vm.form.StudentBirthCertificateNo,
+      expression: "form.StudentBirthCertificateNo"
     }, {
       name: "validate",
       rawName: "v-validate",
@@ -6238,72 +7005,30 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter StudentName",
-      name: "StudentName",
+      placeholder: "Enter Student Birth Certificate No",
+      name: "StudentBirthCertificateNo",
+      maxlength: "17",
       "data-vv-scope": "step1"
     },
     domProps: {
-      value: _vm.form.StudentName
+      value: _vm.form.StudentBirthCertificateNo
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
 
-        _vm.$set(_vm.form, "StudentName", $event.target.value);
+        _vm.$set(_vm.form, "StudentBirthCertificateNo", $event.target.value);
       }
     }
   }), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.StudentName"),
-      expression: "errors.has('step1.StudentName')"
+      value: _vm.errors.has("step1.StudentBirthCertificateNo"),
+      expression: "errors.has('step1.StudentBirthCertificateNo')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentName")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "form_label"
-  }, [_vm._v("নাম (English):")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.StudentNameEn,
-      expression: "form.StudentNameEn"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      placeholder: "Enter StudentName",
-      name: "StudentNameEn",
-      "data-vv-scope": "step1"
-    },
-    domProps: {
-      value: _vm.form.StudentNameEn
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "StudentNameEn", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _c("p", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.errors.has("step1.StudentNameEn"),
-      expression: "errors.has('step1.StudentNameEn')"
-    }],
-    staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentNameEn")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentBirthCertificateNo")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 mt-3"
   }, [_c("div", {
     staticClass: "form-group"
@@ -6347,50 +7072,6 @@ var render = function render() {
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentDateOfBirth")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "form_label"
-  }, [_vm._v("জন্ম নিবন্ধন নং")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.StudentBirthCertificateNo,
-      expression: "form.StudentBirthCertificateNo"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      placeholder: "Enter Student Birth Certificate No",
-      name: "StudentBirthCertificateNo",
-      maxlength: "17",
-      "data-vv-scope": "step1"
-    },
-    domProps: {
-      value: _vm.form.StudentBirthCertificateNo
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "StudentBirthCertificateNo", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _c("p", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.errors.has("step1.StudentBirthCertificateNo"),
-      expression: "errors.has('step1.StudentBirthCertificateNo')"
-    }],
-    staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentBirthCertificateNo")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 mt-3"
   }, [_c("div", {
     staticClass: "form-group"
@@ -6491,6 +7172,101 @@ var render = function render() {
     }],
     staticClass: "help is-danger"
   }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentKota")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4 mt-3"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label"
+  }, [_vm._v("পূর্বে অধ্যায়নরত স্কুল এর নাম ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.preSchool,
+      expression: "form.preSchool"
+    }, {
+      name: "validate",
+      rawName: "v-validate",
+      value: "required",
+      expression: "'required'"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      placeholder: "Enter Student Birth Certificate No",
+      name: "preSchool",
+      "data-vv-scope": "step1"
+    },
+    domProps: {
+      value: _vm.form.preSchool
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "preSchool", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("p", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.errors.has("step1.preSchool"),
+      expression: "errors.has('step1.preSchool')"
+    }],
+    staticClass: "help is-danger"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.preSchool")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4 mt-3"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label"
+  }, [_vm._v("পূর্বে অধ্যায়নরত শ্রেণি")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.preClass,
+      expression: "form.preClass"
+    }, {
+      name: "validate",
+      rawName: "v-validate",
+      value: "required",
+      expression: "'required'"
+    }],
+    staticClass: "form-control",
+    staticStyle: {
+      width: "100%"
+    },
+    attrs: {
+      name: "preClass",
+      "data-vv-scope": "step1"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "preClass", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("\n                                    SELECT\n                                ")]), _vm._v(" "), _c("option", [_vm._v("Five")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist) {
+    return _c("option", [_vm._v(_vm._s(classlist))]);
+  })], 2), _vm._v(" "), _c("p", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.errors.has("step1.preClass"),
+      expression: "errors.has('step1.preClass')"
+    }],
+    staticClass: "help is-danger"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.preClass")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4 mt-3"
   }, [_c("div", {
     staticClass: "form-group"
@@ -9294,6 +10070,8 @@ var frontcontact_us = (__webpack_require__(/*! ./components/themes/default/conta
 
 var student_register = (__webpack_require__(/*! ./components/themes/default/register.vue */ "./resources/js/frontend/components/themes/default/register.vue")["default"]);
 
+var payment = (__webpack_require__(/*! ./components/themes/default/payment.vue */ "./resources/js/frontend/components/themes/default/payment.vue")["default"]);
+
 var reject = (__webpack_require__(/*! ./components/reject.vue */ "./resources/js/frontend/components/reject.vue")["default"]);
 
 var PageNotFound = (__webpack_require__(/*! ./components/404.vue */ "./resources/js/frontend/components/404.vue")["default"]);
@@ -9422,6 +10200,13 @@ var routes = [{
   path: "".concat(prefix, "student/register"),
   component: student_register,
   name: 'student_register',
+  meta: {
+    layout: layout
+  }
+}, {
+  path: "".concat(prefix, "student/payment"),
+  component: payment,
+  name: 'payment',
   meta: {
     layout: layout
   }
@@ -27014,6 +27799,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.mini-profile-widget .image-containe
 
 /***/ }),
 
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/payment.vue?vue&type=style&index=0&id=bd499866&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/payment.vue?vue&type=style&index=0&id=bd499866&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.rootContainer[data-v-bd499866] {\n    margin-top: 25px;\n    border: 1px solid;\n    padding: 5px 21px;\n}\n.tableTag[data-v-bd499866],\n.tableTag td[data-v-bd499866],\n.tableTag th[data-v-bd499866] {\n    border: 1px solid #6c6c6c;\n    border-collapse: collapse;\n    padding: 3px 7px;\n    font-size: 10px;\n}\ntd.tableRowHead[data-v-bd499866] {\n    background: #e9e9e9;\n    color: black !important;\n}\n.fontsize1[data-v-bd499866] {\n    font-size: 16px;\n}\n.fontsize2[data-v-bd499866] {\n    font-size: 25px;\n}\n.copyTitle[data-v-bd499866] {\n    font-size: 23px;\n    color: #3E4D5B;\n}\n.mini-profile-widget .image-container .avatar[data-v-bd499866] {\n    width: 180px;\n    height: 180px;\n    display: block;\n    margin: 0 auto;\n    border-radius: 50%;\n    background: white;\n    padding: 4px;\n    border: 1px solid #dddddd;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/result.vue?vue&type=style&index=0&id=b8183fb4&lang=css&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/result.vue?vue&type=style&index=0&id=b8183fb4&lang=css& ***!
@@ -31062,6 +31871,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_noticesingle_vue_vue_type_style_index_0_id_41fefee9_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/payment.vue?vue&type=style&index=0&id=bd499866&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/payment.vue?vue&type=style&index=0&id=bd499866&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_payment_vue_vue_type_style_index_0_id_bd499866_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./payment.vue?vue&type=style&index=0&id=bd499866&scoped=true&lang=css& */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/payment.vue?vue&type=style&index=0&id=bd499866&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_payment_vue_vue_type_style_index_0_id_bd499866_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_payment_vue_vue_type_style_index_0_id_bd499866_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -47542,6 +48381,47 @@ component.options.__file = "resources/js/frontend/components/themes/default/noti
 
 /***/ }),
 
+/***/ "./resources/js/frontend/components/themes/default/payment.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/js/frontend/components/themes/default/payment.vue ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _payment_vue_vue_type_template_id_bd499866_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./payment.vue?vue&type=template&id=bd499866&scoped=true& */ "./resources/js/frontend/components/themes/default/payment.vue?vue&type=template&id=bd499866&scoped=true&");
+/* harmony import */ var _payment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./payment.vue?vue&type=script&lang=js& */ "./resources/js/frontend/components/themes/default/payment.vue?vue&type=script&lang=js&");
+/* harmony import */ var _payment_vue_vue_type_style_index_0_id_bd499866_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./payment.vue?vue&type=style&index=0&id=bd499866&scoped=true&lang=css& */ "./resources/js/frontend/components/themes/default/payment.vue?vue&type=style&index=0&id=bd499866&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _payment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _payment_vue_vue_type_template_id_bd499866_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _payment_vue_vue_type_template_id_bd499866_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "bd499866",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/frontend/components/themes/default/payment.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/frontend/components/themes/default/register.vue":
 /*!**********************************************************************!*\
   !*** ./resources/js/frontend/components/themes/default/register.vue ***!
@@ -48101,6 +48981,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/frontend/components/themes/default/payment.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/frontend/components/themes/default/payment.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_payment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./payment.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/payment.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_payment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/frontend/components/themes/default/register.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************!*\
   !*** ./resources/js/frontend/components/themes/default/register.vue?vue&type=script&lang=js& ***!
@@ -48519,6 +49415,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/frontend/components/themes/default/payment.vue?vue&type=template&id=bd499866&scoped=true&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/frontend/components/themes/default/payment.vue?vue&type=template&id=bd499866&scoped=true& ***!
+  \****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_payment_vue_vue_type_template_id_bd499866_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_payment_vue_vue_type_template_id_bd499866_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_payment_vue_vue_type_template_id_bd499866_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./payment.vue?vue&type=template&id=bd499866&scoped=true& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/payment.vue?vue&type=template&id=bd499866&scoped=true&");
+
+
+/***/ }),
+
 /***/ "./resources/js/frontend/components/themes/default/register.vue?vue&type=template&id=44805b6c&":
 /*!*****************************************************************************************************!*\
   !*** ./resources/js/frontend/components/themes/default/register.vue?vue&type=template&id=44805b6c& ***!
@@ -48842,6 +49755,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_noticesingle_vue_vue_type_style_index_0_id_41fefee9_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/style-loader/dist/cjs.js!../../../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./noticesingle.vue?vue&type=style&index=0&id=41fefee9&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/noticesingle.vue?vue&type=style&index=0&id=41fefee9&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/frontend/components/themes/default/payment.vue?vue&type=style&index=0&id=bd499866&scoped=true&lang=css&":
+/*!******************************************************************************************************************************!*\
+  !*** ./resources/js/frontend/components/themes/default/payment.vue?vue&type=style&index=0&id=bd499866&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_payment_vue_vue_type_style_index_0_id_bd499866_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/style-loader/dist/cjs.js!../../../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./payment.vue?vue&type=style&index=0&id=bd499866&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/frontend/components/themes/default/payment.vue?vue&type=style&index=0&id=bd499866&scoped=true&lang=css&");
 
 
 /***/ }),

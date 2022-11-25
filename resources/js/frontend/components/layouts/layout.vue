@@ -94,6 +94,9 @@
                             <li class="nav-item">
                                 <router-link class="text-light px-3 nav-link " aria-current="page" to="/student/register">আবেদন</router-link>
                             </li>
+                            <li class="nav-item">
+                                <router-link class="text-light px-3 nav-link " aria-current="page" :to="{name:'payment'}">পেমেন্ট</router-link>
+                            </li>
 
                             <li class="nav-item">
                                 <router-link class="text-light px-3 nav-link " aria-current="page" :to="{name:'login' }">লগইন</router-link>

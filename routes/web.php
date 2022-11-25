@@ -1,19 +1,20 @@
 <?php
 use App\Models\Role;
-use App\Models\Visitor;
+use App\Models\payment;
 
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\frontendController;
+
 use App\Http\Controllers\api\resultController;
-
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\api\PaymentController;
 
+use App\Http\Controllers\api\PaymentController;
 use App\Http\Controllers\api\RoutineController;
 use App\Http\Controllers\api\studentsController;
 use App\Http\Controllers\NotificationsController;
@@ -56,9 +57,12 @@ return view('unioncreate');
 
 Route::get('/payment/success', function (Request $request) {
 
-    return $request->all();
+    // return $request->all();
+    $transId = $request->transId;
+    $payment = payment::where('trxid',$transId)->first();
 
-    // return redirect('/student/applicant/copy/2012210212');
+
+    return redirect("/student/applicant/copy/$payment->admissionId");
 
 
 
@@ -70,8 +74,11 @@ return $request->all();
 });
 
 Route::get('/payment/cancel', function (Request $request) {
-echo "payment cancel";
-return $request->all();
+    $transId = $request->transId;
+    $payment = payment::where('trxid',$transId)->first();
+
+
+    return redirect("/student/payment?adminssionId=$payment->admissionId&type=$payment->type");
 });
 
 

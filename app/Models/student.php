@@ -40,6 +40,8 @@ class student extends Model
         'StudentBirthCertificateNo',
         'StudentCategory',
         'StudentKota',
+        'preSchool',
+        'preClass',
         'bigBroSis',
         'bigBroSisName',
         'bigBroSisClass',
@@ -55,7 +57,7 @@ class student extends Model
         'StudentTranferStatus',
         'AplicationStatus',
         'ThisMonthPaymentStatus',
-      
+
 
 
     ];

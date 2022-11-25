@@ -150,12 +150,29 @@ class studentsController extends Controller
     }
 
 
-    public function StudentAdmissionId($admition_id,$school_id)
+    public function StudentAdmissionId($admition_id='',$school_id)
     {
 
+
+        $studentCount =  student::where(['school_id'=>$school_id])->count();
+        if($studentCount>0){
+
+        $student =  student::where(['school_id'=>$school_id])->latest()->first();
+        $admition_id = $student->AdmissionID;
         $mutiple = (rand(1, 9));
-        $admition_ID = $admition_id;
-        return $admition_ID += $mutiple;
+            if($admition_id=='' || $admition_id==null){
+                    $one = "0001";
+                    $year = date("dmy");
+                  return  $admition_ID = $school_id . $year . $one;
+                 }
+                 $admition_ID =  $admition_id;
+                 return $admition_ID += $mutiple;
+
+            }else{
+                $one = "0001";
+                $year = date("dmy");
+               return $admition_ID = $school_id . $year . $one;
+            }
     }
 
 
@@ -234,7 +251,7 @@ class studentsController extends Controller
             $row = DB::table('students')->where($wheredata)->orderBy('StudentRoll', 'DESC')->get();
             $admition_id = $row[0]->AdmissionID;
             $roll = $row[0]->StudentRoll + 1;
-            $admition_ID = $this->StudentAdmissionId($admition_id,$school_id);
+            $admition_ID = (string)$this->StudentAdmissionId($admition_id,$school_id);
             $StudentID = $this->StudentId($class, $roll,$school_id);
             $data = ['admition_ID' => $admition_ID, 'StudentID' => $StudentID, 'StudentRoll' => $row[0]->StudentRoll + 1];
         } else {
@@ -266,7 +283,14 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     public function student_submit(Request $r)
     {
         $id = $r->id;
-        $data = $r->all();
+        $data = $r->except('AdmissionID');
+
+$school_id = $r->school_id;
+
+
+        $data['AdmissionID'] = (string)$this->StudentAdmissionId('',$school_id);
+
+
 
         if ($id == '') {
             $data['JoiningDate'] = date("Y-m-d");
@@ -837,7 +861,23 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
         public function applicant_copy($applicant_id)
         {
-             $student =  student::where('AdmissionID',$applicant_id)->latest()->first();
+
+    // return $html;
+
+
+    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4','default_font' => 'bangla','margin_left' => 5,
+    'margin_right' => 5,
+    'margin_top' => 6,
+    'margin_bottom' => 6,]);
+    $mpdf->WriteHTML($this->applicant_copy_html($applicant_id));
+    $mpdf->Output('document.pdf','I');
+
+        }
+
+
+        public function applicant_copy_html($applicant_id)
+        {
+            $student =  student::where('AdmissionID',$applicant_id)->latest()->first();
 
 
             $html = '';
@@ -1028,17 +1068,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
             ";
 
-
-    // return $html;
-
-
-    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4','default_font' => 'bangla','margin_left' => 5,
-    'margin_right' => 5,
-    'margin_top' => 6,
-    'margin_bottom' => 6,]);
-    $mpdf->WriteHTML($html);
-    $mpdf->Output('document.pdf','I');
-
+return $html;
         }
 
 }
