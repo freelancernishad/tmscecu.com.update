@@ -86,6 +86,7 @@ class PaymentController extends Controller
                 'Name'=>$student->StudentName,
                 'method'=>'',
                 'amount'=>$amount,
+                'type'=>$type,
                 'date'=>date("Y-m-d"),
                 'month'=>date("F"),
                 'year'=>date("Y"),
