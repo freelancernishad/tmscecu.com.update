@@ -5,6 +5,7 @@ use App\Models\Visitor;
 use App\Models\Uniouninfo;
 use App\Models\Sonodnamelist;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
@@ -233,6 +234,7 @@ function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='paymen
 
    // 148.163.122.80
    $post = json_encode($post);
+   Log::info($post);
 
    $ch = curl_init($Apiurl);
    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -247,7 +249,7 @@ function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='paymen
    print_r($response); */
 
      $response = json_decode($response);
-
+     Log::info($response);
    $sToken =  $response->secure_token;
 
 
