@@ -123,20 +123,30 @@ class studentsController extends Controller
     public function AdmissionIdgenarate(Request $request)
     {
         $school_id = $request->school_id;
+
+        $studentCount =  student::where(['school_id'=>$school_id])->count();
+        if($studentCount>0){
+
         $student =  student::where(['school_id'=>$school_id])->latest()->first();
         $admition_id = $student->AdmissionID;
         $mutiple = (rand(1, 9));
-if($admition_id=='' || $admition_id==null){
-            $one = "0001";
-        $year = date("dmy");
-         $admition_ID = $school_id . $year . $one;
-         return $admition_ID += $mutiple;
-}
+            if($admition_id=='' || $admition_id==null){
+                    $one = "0001";
+                    $year = date("dmy");
+                  return  $admition_ID = $school_id . $year . $one;
+                 }
+                 $admition_ID =  $admition_id;
+                 return $admition_ID += $mutiple;
+
+            }else{
+                $one = "0001";
+                $year = date("dmy");
+               return $admition_ID = $school_id . $year . $one;
+            }
 
 
 
-        $admition_ID =  $admition_id;
-        return $admition_ID += $mutiple;
+
     }
 
 
