@@ -24,6 +24,7 @@ class PaymentController extends Controller
         $student = student::find($data['cust_info']['cust_id']);
         $trnx_id = $data['trnx_info']['trnx_id'];
         $payment = payment::where('trxid',$trnx_id)->first();
+        $Insertdata = [];
         if($data['msg_code']=='1020'){
             $Insertdata['status']='Paid';
             $Insertdata['method'] = $data['pi_det_info']['pi_name'];
