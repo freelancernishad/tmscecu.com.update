@@ -22,15 +22,21 @@ class PaymentController extends Controller
     {
         $data = $request->all();
         $student = student::find($data['cust_info']['cust_id']);
-        $trnx_id = $data['trnx_info']['trnx_id'];
-        $payment = payment::where('trxid',$trnx_id)->first();
+        $trnx_id = $data['trnx_info']['mer_trnx_id'];
+         $payment = payment::where('trxid',$trnx_id)->first();
         $Insertdata = [];
         if($data['msg_code']=='1020'){
-            $Insertdata['status']='Paid';
-            $Insertdata['method'] = $data['pi_det_info']['pi_name'];
+            $Insertdata = [
+                'status'=>'Paid',
+                'method'=>$data['pi_det_info']['pi_name'],
+            ];
+
         }else{
-            $Insertdata['status']='Failed';
+            $Insertdata = [
+                'status'=>'Failed',
+            ];
         }
+        // return $Insertdata;
         Log::info(json_encode($data));
 
         return $payment->update($Insertdata);
