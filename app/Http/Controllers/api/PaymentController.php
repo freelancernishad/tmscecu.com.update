@@ -21,9 +21,8 @@ class PaymentController extends Controller
     public function ipn(Request $request)
     {
         $data = $request->all();
-        Log::info($data);
         $student = student::find($data['cust_info']['cust_id']);
-        $trnx_id = $data['trns_info']['trnx_id'];
+        $trnx_id = $data['trnx_info']['trnx_id'];
         $payment = payment::where('trxid',$trnx_id)->first();
         if($data['msg_code']=='1020'){
             $Insertdata['status']='Paid';
@@ -31,6 +30,8 @@ class PaymentController extends Controller
         }else{
             $Insertdata['status']='Failed';
         }
+        Log::info(json_encode($data));
+
         return $payment->update($Insertdata);
 
     }
