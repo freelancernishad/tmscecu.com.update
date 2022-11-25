@@ -2911,7 +2911,7 @@ __webpack_require__.r(__webpack_exports__);
       searchtype: '',
       field: 'id',
       sorttype: '',
-      preloader: true
+      preloader: false
     };
   },
   methods: {
@@ -3288,6 +3288,8 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
         StudentMotherNid: null,
         StudentFatherBCN: null,
         StudentMotherBCN: null,
+        guardName: null,
+        guardNid: null,
         StudentFatherOccupation: null,
         parentEarn: null,
         StudentMotherOccupation: null,
@@ -6727,12 +6729,12 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-md-4 mt-3"
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("নাম (বাংলা):")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("নাম (বাংলা)")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -6747,8 +6749,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter StudentName",
-      name: "StudentName",
+      placeholder: "নাম (বাংলা)",
+      name: "নাম-(বাংলা)",
       "data-vv-scope": "step1"
     },
     domProps: {
@@ -6765,17 +6767,17 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.StudentName"),
-      expression: "errors.has('step1.StudentName')"
+      value: _vm.errors.has("step1.নাম-(বাংলা)"),
+      expression: "errors.has('step1.নাম-(বাংলা)')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentName")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.নাম-(বাংলা)")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("নাম (English):")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("নাম (English)")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -6788,10 +6790,13 @@ var render = function render() {
       expression: "'required'"
     }],
     staticClass: "form-control",
+    staticStyle: {
+      "text-transform": "uppercase"
+    },
     attrs: {
       type: "text",
-      placeholder: "Enter StudentName",
-      name: "StudentNameEn",
+      placeholder: "নাম (English)",
+      name: "নাম (English)",
       "data-vv-scope": "step1"
     },
     domProps: {
@@ -6808,12 +6813,12 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.StudentNameEn"),
-      expression: "errors.has('step1.StudentNameEn')"
+      value: _vm.errors.has("step1.নাম (English)"),
+      expression: "errors.has('step1.নাম (English)')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentNameEn")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.নাম (English)")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -6835,7 +6840,7 @@ var render = function render() {
       width: "100%"
     },
     attrs: {
-      name: "StudentClass",
+      name: "শ্রেণি",
       "data-vv-scope": "step1"
     },
     on: {
@@ -6854,18 +6859,71 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                    SELECT\n                                ")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist) {
+  }, [_vm._v("\n                                    নির্বাচন করুন\n                                ")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist) {
     return _c("option", [_vm._v(_vm._s(classlist))]);
   })], 2), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.StudentClass"),
-      expression: "errors.has('step1.StudentClass')"
+      value: _vm.errors.has("step1.শ্রেণি"),
+      expression: "errors.has('step1.শ্রেণি')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentClass")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.শ্রেণি")) + "\n                          ")])])]), _vm._v(" "), _vm.form.StudentClass == "Nine" || _vm.form.StudentClass == "Ten" ? _c("div", {
+    staticClass: "col-md-4",
+    attrs: {
+      id: "Sgroup"
+    }
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label"
+  }, [_vm._v("গ্রুপ")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.StudentGroup,
+      expression: "form.StudentGroup"
+    }, {
+      name: "validate",
+      rawName: "v-validate",
+      value: "required",
+      expression: "'required'"
+    }],
+    staticClass: "form-control",
+    staticStyle: {
+      width: "100%"
+    },
+    attrs: {
+      name: "গ্রুপ",
+      "data-vv-scope": "step1"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "StudentGroup", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("\n                                Science\n                            ")]), _vm._v(" "), _c("option", [_vm._v("\n                                Humanities\n                            ")]), _vm._v(" "), _c("option", [_vm._v("\n                                Commerce\n                            ")])]), _vm._v(" "), _c("p", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.errors.has("step1.গ্রুপ"),
+      expression: "errors.has('step1.গ্রুপ')"
+    }],
+    staticClass: "help is-danger"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.গ্রুপ")) + "\n                          ")])])]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -6887,7 +6945,7 @@ var render = function render() {
       width: "100%"
     },
     attrs: {
-      name: "StudentGender",
+      name: "লিঙ্গ",
       "data-vv-scope": "step1"
     },
     on: {
@@ -6906,7 +6964,7 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                লিঙ্গ নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", {
+  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "Male"
     }
@@ -6918,12 +6976,12 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.StudentGender"),
-      expression: "errors.has('step1.StudentGender')"
+      value: _vm.errors.has("step1.লিঙ্গ"),
+      expression: "errors.has('step1.লিঙ্গ')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentGender")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.লিঙ্গ")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -6945,7 +7003,7 @@ var render = function render() {
       width: "100%"
     },
     attrs: {
-      name: "StudentReligion",
+      name: "ধর্ম",
       "data-vv-scope": "step1"
     },
     on: {
@@ -6964,7 +7022,7 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                ধর্ম নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", {
+  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "Islam"
     }
@@ -6980,12 +7038,12 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.StudentReligion"),
-      expression: "errors.has('step1.StudentReligion')"
+      value: _vm.errors.has("step1.ধর্ম"),
+      expression: "errors.has('step1.ধর্ম')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentReligion")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.ধর্ম")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -7005,8 +7063,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Birth Certificate No",
-      name: "StudentBirthCertificateNo",
+      placeholder: "জন্ম নিবন্ধন নং",
+      name: "জন্ম নিবন্ধন নং",
       maxlength: "17",
       "data-vv-scope": "step1"
     },
@@ -7024,12 +7082,12 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.StudentBirthCertificateNo"),
-      expression: "errors.has('step1.StudentBirthCertificateNo')"
+      value: _vm.errors.has("step1.জন্ম নিবন্ধন নং"),
+      expression: "errors.has('step1.জন্ম নিবন্ধন নং')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentBirthCertificateNo")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.জন্ম নিবন্ধন নং")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -7049,8 +7107,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "date",
-      placeholder: "Enter Student Date Of Birth",
-      name: "StudentDateOfBirth",
+      placeholder: "জন্ম তারিখ",
+      name: "জন্ম তারিখ",
       "data-vv-scope": "step1"
     },
     domProps: {
@@ -7067,17 +7125,17 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.StudentDateOfBirth"),
-      expression: "errors.has('step1.StudentDateOfBirth')"
+      value: _vm.errors.has("step1.জন্ম তারিখ"),
+      expression: "errors.has('step1.জন্ম তারিখ')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentDateOfBirth")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.জন্ম তারিখ")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("Student category:")]), _vm._v(" "), _c("select", {
+  }, [_vm._v("Student category")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7094,7 +7152,7 @@ var render = function render() {
       width: "100%"
     },
     attrs: {
-      name: "StudentCategory",
+      name: "Student category",
       "data-vv-scope": "step1"
     },
     on: {
@@ -7117,12 +7175,12 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.StudentCategory"),
-      expression: "errors.has('step1.StudentCategory')"
+      value: _vm.errors.has("step1.Student category"),
+      expression: "errors.has('step1.Student category')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentCategory")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.Student category")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -7144,7 +7202,7 @@ var render = function render() {
       width: "100%"
     },
     attrs: {
-      name: "StudentKota",
+      name: "কোটা",
       "data-vv-scope": "step1"
     },
     on: {
@@ -7163,16 +7221,16 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                কোটা নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("মুক্তিযোদ্ধার সন্তান, নাতী নাতনী")]), _vm._v(" "), _c("option", [_vm._v("অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান")]), _vm._v(" "), _c("option", [_vm._v("প্রতিবন্ধী")]), _vm._v(" "), _c("option", [_vm._v("সাধারণ কোটা")]), _vm._v(" "), _c("option", [_vm._v("কোন কোটা নেই")])]), _vm._v(" "), _c("p", {
+  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("মুক্তিযোদ্ধার সন্তান, নাতী নাতনী")]), _vm._v(" "), _c("option", [_vm._v("অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান")]), _vm._v(" "), _c("option", [_vm._v("প্রতিবন্ধী")]), _vm._v(" "), _c("option", [_vm._v("সাধারণ কোটা")]), _vm._v(" "), _c("option", [_vm._v("কোন কোটা নেই")])]), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.StudentKota"),
-      expression: "errors.has('step1.StudentKota')"
+      value: _vm.errors.has("step1.কোটা"),
+      expression: "errors.has('step1.কোটা')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentKota")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.কোটা")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -7192,8 +7250,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Birth Certificate No",
-      name: "preSchool",
+      placeholder: "পূর্বে অধ্যায়নরত স্কুল এর নাম",
+      name: "পূর্বে অধ্যায়নরত স্কুল এর নাম",
       "data-vv-scope": "step1"
     },
     domProps: {
@@ -7210,12 +7268,12 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.preSchool"),
-      expression: "errors.has('step1.preSchool')"
+      value: _vm.errors.has("step1.পূর্বে অধ্যায়নরত স্কুল এর নাম"),
+      expression: "errors.has('step1.পূর্বে অধ্যায়নরত স্কুল এর নাম')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.preSchool")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পূর্বে অধ্যায়নরত স্কুল এর নাম")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -7237,7 +7295,7 @@ var render = function render() {
       width: "100%"
     },
     attrs: {
-      name: "preClass",
+      name: "পূর্বে অধ্যায়নরত শ্রেণি",
       "data-vv-scope": "step1"
     },
     on: {
@@ -7256,18 +7314,18 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                    SELECT\n                                ")]), _vm._v(" "), _c("option", [_vm._v("Five")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist) {
+  }, [_vm._v("\n                                    নির্বাচন করুন\n                                ")]), _vm._v(" "), _c("option", [_vm._v("Five")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist) {
     return _c("option", [_vm._v(_vm._s(classlist))]);
   })], 2), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.preClass"),
-      expression: "errors.has('step1.preClass')"
+      value: _vm.errors.has("step1.পূর্বে অধ্যায়নরত শ্রেণি"),
+      expression: "errors.has('step1.পূর্বে অধ্যায়নরত শ্রেণি')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.preClass")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পূর্বে অধ্যায়নরত শ্রেণি")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -7289,7 +7347,7 @@ var render = function render() {
       width: "100%"
     },
     attrs: {
-      name: "bigBroSis",
+      name: "কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না",
       "data-vv-scope": "step1"
     },
     on: {
@@ -7316,12 +7374,12 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.bigBroSis"),
-      expression: "errors.has('step1.bigBroSis')"
+      value: _vm.errors.has("step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না"),
+      expression: "errors.has('step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.bigBroSis")) + "\n                          ")])])]), _vm._v(" "), _vm.form.bigBroSis == "Yes" ? _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না")) + "\n                          ")])])]), _vm._v(" "), _vm.form.bigBroSis == "Yes" ? _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -7341,8 +7399,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Birth Certificate No",
-      name: "bigBroSisName",
+      placeholder: "অধ্যয়নরত ভাই/বোনের নাম",
+      name: "অধ্যয়নরত ভাই/বোনের নাম",
       "data-vv-scope": "step1"
     },
     domProps: {
@@ -7359,12 +7417,12 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.bigBroSisName"),
-      expression: "errors.has('step1.bigBroSisName')"
+      value: _vm.errors.has("step1.অধ্যয়নরত ভাই/বোনের নাম"),
+      expression: "errors.has('step1.অধ্যয়নরত ভাই/বোনের নাম')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.bigBroSisName")) + "\n                          ")])])]) : _vm._e(), _vm._v(" "), _vm.form.bigBroSis == "Yes" ? _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.অধ্যয়নরত ভাই/বোনের নাম")) + "\n                          ")])])]) : _vm._e(), _vm._v(" "), _vm.form.bigBroSis == "Yes" ? _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -7384,8 +7442,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Birth Certificate No",
-      name: "bigBroSisClass",
+      placeholder: "অধ্যয়নরত ভাই/বোনের শ্রেণি",
+      name: "অধ্যয়নরত ভাই/বোনের শ্রেণি",
       "data-vv-scope": "step1"
     },
     domProps: {
@@ -7402,12 +7460,12 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.bigBroSisClass"),
-      expression: "errors.has('step1.bigBroSisClass')"
+      value: _vm.errors.has("step1.অধ্যয়নরত ভাই/বোনের শ্রেণি"),
+      expression: "errors.has('step1.অধ্যয়নরত ভাই/বোনের শ্রেণি')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.bigBroSisClass")) + "\n                          ")])])]) : _vm._e(), _vm._v(" "), _vm.form.bigBroSis == "Yes" ? _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.অধ্যয়নরত ভাই/বোনের শ্রেণি")) + "\n                          ")])])]) : _vm._e(), _vm._v(" "), _vm.form.bigBroSis == "Yes" ? _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -7427,8 +7485,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Birth Certificate No",
-      name: "bigBroSisRoll",
+      placeholder: "অধ্যয়নরত ভাই/বোনের রোল",
+      name: "অধ্যয়নরত ভাই/বোনের রোল",
       "data-vv-scope": "step1"
     },
     domProps: {
@@ -7445,65 +7503,12 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.bigBroSisRoll"),
-      expression: "errors.has('step1.bigBroSisRoll')"
+      value: _vm.errors.has("step1.অধ্যয়নরত ভাই/বোনের রোল"),
+      expression: "errors.has('step1.অধ্যয়নরত ভাই/বোনের রোল')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.bigBroSisRoll")) + "\n                          ")])])]) : _vm._e(), _vm._v(" "), _vm.form.StudentClass == "Nine" || _vm.form.StudentClass == "Ten" ? _c("div", {
-    staticClass: "col-md-4 mt-3",
-    attrs: {
-      id: "Sgroup"
-    }
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "form_label"
-  }, [_vm._v("গ্রুপ")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.StudentGroup,
-      expression: "form.StudentGroup"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
-    }],
-    staticClass: "form-control",
-    staticStyle: {
-      width: "100%"
-    },
-    attrs: {
-      name: "StudentGroup",
-      "data-vv-scope": "step1"
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-
-        _vm.$set(_vm.form, "StudentGroup", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
-    }
-  }, [_c("option", {
-    attrs: {
-      value: ""
-    }
-  }, [_vm._v("\n                                গ্রুপ নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("\n                                Science\n                            ")]), _vm._v(" "), _c("option", [_vm._v("\n                                Humanities\n                            ")]), _vm._v(" "), _c("option", [_vm._v("\n                                Commerce\n                            ")])]), _vm._v(" "), _c("p", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.errors.has("step1.StudentGroup"),
-      expression: "errors.has('step1.StudentGroup')"
-    }],
-    staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentGroup")) + "\n                          ")])])]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.অধ্যয়নরত ভাই/বোনের রোল")) + "\n                          ")])])]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -7523,8 +7528,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Address",
-      name: "StudentAddress",
+      placeholder: "ঠিকানা",
+      name: "ঠিকানা",
       "data-vv-scope": "step1"
     },
     domProps: {
@@ -7541,12 +7546,12 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.StudentAddress"),
-      expression: "errors.has('step1.StudentAddress')"
+      value: _vm.errors.has("step1.ঠিকানা"),
+      expression: "errors.has('step1.ঠিকানা')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentAddress")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.ঠিকানা")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -7566,8 +7571,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Phone Number",
-      name: "StudentPhoneNumber",
+      placeholder: "মোবাইল নাম্বার",
+      name: "মোবাইল নাম্বার",
       maxlength: "11",
       "data-vv-scope": "step1"
     },
@@ -7585,12 +7590,12 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.StudentPhoneNumber"),
-      expression: "errors.has('step1.StudentPhoneNumber')"
+      value: _vm.errors.has("step1.মোবাইল নাম্বার"),
+      expression: "errors.has('step1.মোবাইল নাম্বার')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.StudentPhoneNumber")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4 mt-3"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.মোবাইল নাম্বার")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
@@ -7610,8 +7615,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Area Postal Code",
-      name: "AreaPostalCode",
+      placeholder: "পোস্টাল কোড",
+      name: "পোস্টাল কোড",
       "data-vv-scope": "step1"
     },
     domProps: {
@@ -7628,11 +7633,11 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.AreaPostalCode"),
-      expression: "errors.has('step1.AreaPostalCode')"
+      value: _vm.errors.has("step1.পোস্টাল কোড"),
+      expression: "errors.has('step1.পোস্টাল কোড')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.AreaPostalCode")) + "\n                          ")])])])])]), _vm._v(" "), _c("tab", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পোস্টাল কোড")) + "\n                          ")])])])])]), _vm._v(" "), _c("tab", {
     attrs: {
       name: "Parent Details",
       "data-vv-scope": "step2"
@@ -7660,8 +7665,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Father Name",
-      name: "StudentFatherNameBn",
+      placeholder: "পিতার নাম (বাংলা)",
+      name: "পিতার নাম (বাংলা)",
       "data-vv-scope": "step2"
     },
     domProps: {
@@ -7678,11 +7683,11 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step2.StudentFatherNameBn"),
-      expression: "errors.has('step2.StudentFatherNameBn')"
+      value: _vm.errors.has("step2.পিতার নাম (বাংলা)"),
+      expression: "errors.has('step2.পিতার নাম (বাংলা)')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.StudentFatherNameBn")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.পিতার নাম (বাংলা)")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -7701,10 +7706,13 @@ var render = function render() {
       expression: "'required'"
     }],
     staticClass: "form-control",
+    staticStyle: {
+      "text-transform": "uppercase"
+    },
     attrs: {
       type: "text",
-      placeholder: "Enter Student Father Name",
-      name: "StudentFatherName",
+      placeholder: "পিতার নাম (English)",
+      name: "পিতার নাম (English)",
       "data-vv-scope": "step2"
     },
     domProps: {
@@ -7721,97 +7729,11 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step2.StudentFatherName"),
-      expression: "errors.has('step2.StudentFatherName')"
+      value: _vm.errors.has("step2.পিতার নাম (English)"),
+      expression: "errors.has('step2.পিতার নাম (English)')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.StudentFatherName")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "form_label"
-  }, [_vm._v("মাতার নাম (বাংলা)")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.StudentMotherNameBn,
-      expression: "form.StudentMotherNameBn"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      placeholder: "Enter Student Mother Name",
-      name: "StudentMotherNameBn",
-      "data-vv-scope": "step2"
-    },
-    domProps: {
-      value: _vm.form.StudentMotherNameBn
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "StudentMotherNameBn", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _c("p", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.errors.has("step2.StudentMotherNameBn"),
-      expression: "errors.has('step2.StudentMotherNameBn')"
-    }],
-    staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.StudentMotherNameBn")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    staticClass: "form_label"
-  }, [_vm._v("মাতার নাম (English)")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.StudentMotherName,
-      expression: "form.StudentMotherName"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      placeholder: "Enter Student Mother Name",
-      name: "StudentMotherName",
-      "data-vv-scope": "step2"
-    },
-    domProps: {
-      value: _vm.form.StudentMotherName
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "StudentMotherName", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _c("p", {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: _vm.errors.has("step2.StudentMotherName"),
-      expression: "errors.has('step2.StudentMotherName')"
-    }],
-    staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.StudentMotherName")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.পিতার নাম (English)")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -7832,8 +7754,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Father Name",
-      name: "StudentFatherNid",
+      placeholder: "পিতার জাতীয় পরিচয় পত্র নং",
+      name: "পিতার জাতীয় পরিচয় পত্র নং",
       "data-vv-scope": "step2"
     },
     domProps: {
@@ -7850,11 +7772,100 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step2.StudentFatherNid"),
-      expression: "errors.has('step2.StudentFatherNid')"
+      value: _vm.errors.has("step2.পিতার জাতীয় পরিচয় পত্র নং"),
+      expression: "errors.has('step2.পিতার জাতীয় পরিচয় পত্র নং')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.StudentFatherNid")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.পিতার জাতীয় পরিচয় পত্র নং")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label"
+  }, [_vm._v("মাতার নাম (বাংলা)")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.StudentMotherNameBn,
+      expression: "form.StudentMotherNameBn"
+    }, {
+      name: "validate",
+      rawName: "v-validate",
+      value: "required",
+      expression: "'required'"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      placeholder: "মাতার নাম (বাংলা)",
+      name: "মাতার নাম (বাংলা)",
+      "data-vv-scope": "step2"
+    },
+    domProps: {
+      value: _vm.form.StudentMotherNameBn
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "StudentMotherNameBn", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("p", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.errors.has("step2.মাতার নাম (বাংলা)"),
+      expression: "errors.has('step2.মাতার নাম (বাংলা)')"
+    }],
+    staticClass: "help is-danger"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.মাতার নাম (বাংলা)")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label"
+  }, [_vm._v("মাতার নাম (English)")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.StudentMotherName,
+      expression: "form.StudentMotherName"
+    }, {
+      name: "validate",
+      rawName: "v-validate",
+      value: "required",
+      expression: "'required'"
+    }],
+    staticClass: "form-control",
+    staticStyle: {
+      "text-transform": "uppercase"
+    },
+    attrs: {
+      type: "text",
+      placeholder: "মাতার নাম (English)",
+      name: "মাতার নাম (English)",
+      "data-vv-scope": "step2"
+    },
+    domProps: {
+      value: _vm.form.StudentMotherName
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "StudentMotherName", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("p", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.errors.has("step2.মাতার নাম (English)"),
+      expression: "errors.has('step2.মাতার নাম (English)')"
+    }],
+    staticClass: "help is-danger"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.মাতার নাম (English)")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -7875,8 +7886,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Mother Name",
-      name: "StudentMotherNid",
+      placeholder: "মাতার জাতীয় পরিচয় পত্র নং",
+      name: "মাতার জাতীয় পরিচয় পত্র নং",
       "data-vv-scope": "step2"
     },
     domProps: {
@@ -7893,11 +7904,11 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step2.StudentMotherNid"),
-      expression: "errors.has('step2.StudentMotherNid')"
+      value: _vm.errors.has("step2.মাতার জাতীয় পরিচয় পত্র নং"),
+      expression: "errors.has('step2.মাতার জাতীয় পরিচয় পত্র নং')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.StudentMotherNid")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.মাতার জাতীয় পরিচয় পত্র নং")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -7918,8 +7929,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Father Name",
-      name: "Father-Birth-Certificate-No",
+      placeholder: "পিতার জন্ম নিবন্ধন নং",
+      name: "পিতার জন্ম নিবন্ধন নং",
       "data-vv-scope": "step2"
     },
     domProps: {
@@ -7936,11 +7947,11 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step2.Father-Birth-Certificate-No"),
-      expression: "errors.has('step2.Father-Birth-Certificate-No')"
+      value: _vm.errors.has("step2.পিতার জন্ম নিবন্ধন নং"),
+      expression: "errors.has('step2.পিতার জন্ম নিবন্ধন নং')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.Father-Birth-Certificate-No")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.পিতার জন্ম নিবন্ধন নং")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -7961,8 +7972,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Mother Name",
-      name: "Mother-Birth-Certificate-No",
+      placeholder: "মাতার জন্ম নিবন্ধন নং",
+      name: "মাতার জন্ম নিবন্ধন নং",
       "data-vv-scope": "step2"
     },
     domProps: {
@@ -7979,11 +7990,97 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step2.Mother-Birth-Certificate-No"),
-      expression: "errors.has('step2.Mother-Birth-Certificate-No')"
+      value: _vm.errors.has("step2.মাতার জন্ম নিবন্ধন নং"),
+      expression: "errors.has('step2.মাতার জন্ম নিবন্ধন নং')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.Mother-Birth-Certificate-No")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.মাতার জন্ম নিবন্ধন নং")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label"
+  }, [_vm._v("পিতা/মাতা না থাকলে অভিভাবকের নাম")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.guardName,
+      expression: "form.guardName"
+    }, {
+      name: "validate",
+      rawName: "v-validate",
+      value: "required",
+      expression: "'required'"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      placeholder: "পিতা/মাতা না থাকলে অভিভাবকের নাম",
+      name: "পিতা/মাতা না থাকলে অভিভাবকের নাম",
+      "data-vv-scope": "step2"
+    },
+    domProps: {
+      value: _vm.form.guardName
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "guardName", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("p", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.errors.has("step2.পিতা/মাতা না থাকলে অভিভাবকের নাম"),
+      expression: "errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের নাম')"
+    }],
+    staticClass: "help is-danger"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.পিতা/মাতা না থাকলে অভিভাবকের নাম")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label"
+  }, [_vm._v("পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.guardNid,
+      expression: "form.guardNid"
+    }, {
+      name: "validate",
+      rawName: "v-validate",
+      value: "required",
+      expression: "'required'"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      placeholder: "পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং",
+      name: "পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং",
+      "data-vv-scope": "step2"
+    },
+    domProps: {
+      value: _vm.form.guardNid
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "guardNid", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("p", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.errors.has("step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং"),
+      expression: "errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং')"
+    }],
+    staticClass: "help is-danger"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -8004,8 +8101,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "Enter Student Mother Name",
-      name: "parentEarn",
+      placeholder: "অভিভাবকের মাসিক আয়",
+      name: "অভিভাবকের মাসিক আয়",
       "data-vv-scope": "step2"
     },
     domProps: {
@@ -8022,11 +8119,11 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step2.parentEarn"),
-      expression: "errors.has('step2.parentEarn')"
+      value: _vm.errors.has("step2.অভিভাবকের মাসিক আয়"),
+      expression: "errors.has('step2.অভিভাবকের মাসিক আয়')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.parentEarn")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.অভিভাবকের মাসিক আয়")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -8049,7 +8146,7 @@ var render = function render() {
       width: "100%"
     },
     attrs: {
-      name: "StudentFatherOccupation",
+      name: "অভিভাবকের পেশা",
       "data-vv-scope": "step2"
     },
     on: {
@@ -8068,15 +8165,15 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                অভিভাবকের পেশা নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("ব্যবসায়ি")]), _vm._v(" "), _c("option", [_vm._v("কৃষি শ্রমিক")]), _vm._v(" "), _c("option", [_vm._v("ডাক্তার")]), _vm._v(" "), _c("option", [_vm._v("জেলে")]), _vm._v(" "), _c("option", [_vm._v("সরকারি চাকুরি")]), _vm._v(" "), _c("option", [_vm._v("কামার/কুমোর")]), _vm._v(" "), _c("option", [_vm._v("প্রবাসি")]), _vm._v(" "), _c("option", [_vm._v("ক্ষুদ্র ব্যবসায়ি")]), _vm._v(" "), _c("option", [_vm._v("শিক্ষক")]), _vm._v(" "), _c("option", [_vm._v("অকৃষি শ্রমিক")]), _vm._v(" "), _c("option", [_vm._v("অন্যান্য")])]), _vm._v(" "), _c("p", {
+  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("ব্যবসায়ি")]), _vm._v(" "), _c("option", [_vm._v("কৃষি শ্রমিক")]), _vm._v(" "), _c("option", [_vm._v("ডাক্তার")]), _vm._v(" "), _c("option", [_vm._v("জেলে")]), _vm._v(" "), _c("option", [_vm._v("সরকারি চাকুরি")]), _vm._v(" "), _c("option", [_vm._v("কামার/কুমোর")]), _vm._v(" "), _c("option", [_vm._v("প্রবাসি")]), _vm._v(" "), _c("option", [_vm._v("ক্ষুদ্র ব্যবসায়ি")]), _vm._v(" "), _c("option", [_vm._v("শিক্ষক")]), _vm._v(" "), _c("option", [_vm._v("অকৃষি শ্রমিক")]), _vm._v(" "), _c("option", [_vm._v("অন্যান্য")])]), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step2.StudentFatherOccupation"),
-      expression: "errors.has('step2.StudentFatherOccupation')"
+      value: _vm.errors.has("step2.অভিভাবকের পেশা"),
+      expression: "errors.has('step2.অভিভাবকের পেশা')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.StudentFatherOccupation")) + "\n                          ")])])])])]), _vm._v(" "), _c("tab", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.অভিভাবকের পেশা")) + "\n                          ")])])])])]), _vm._v(" "), _c("tab", {
     attrs: {
       name: "Preview",
       info: "Finishing Up"
@@ -9520,7 +9617,7 @@ if (window.location.port == '8000') {
   vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$withOutWWW = 3;
 }
 
-localStorage.setItem('getschoolid', '123');
+localStorage.setItem('getschoolid', '125983');
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$localStorage = localStorage;
 window.ASSETURL = vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$asseturl; // Vue.prototype.$appName = process.env.MIX_FILE_PATH
 // console.log(process.env.MIX_FILE_PATH)

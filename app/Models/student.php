@@ -29,6 +29,8 @@ class student extends Model
         'StudentMotherNid',
         'StudentFatherBCN',
         'StudentMotherBCN',
+        'guardName',
+        'guardNid',
         'StudentFatherOccupation',
         'parentEarn',
         'StudentMotherOccupation',

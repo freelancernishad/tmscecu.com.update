@@ -21,7 +21,7 @@
  <div class="row">
 <!--
 
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">ভর্তি আইডি</label>
                         <input class="form-control" type="text"  placeholder="Enter Admission ID" v-model="form.AdmissionID" name="AdmissionID" readonly v-validate="'required'" data-vv-scope="step1" />
@@ -35,54 +35,81 @@
 
 
 
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form_label">নাম (বাংলা):</label>
-                        <input class="form-control" type="text"  placeholder="Enter StudentName" v-model="form.StudentName" name="StudentName" v-validate="'required'" data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.StudentName')">
-                             {{ errors.first('step1.StudentName') }}
+                        <label class="form_label">নাম (বাংলা)</label>
+                        <input class="form-control" type="text"  placeholder="নাম (বাংলা)" v-model="form.StudentName" name="নাম-(বাংলা)" v-validate="'required'" data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.নাম-(বাংলা)')">
+                             {{ errors.first('step1.নাম-(বাংলা)') }}
                           </p>
                     </div>
                 </div>
 
 
 
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form_label">নাম (English):</label>
-                        <input class="form-control" type="text"  placeholder="Enter StudentName" v-model="form.StudentNameEn" name="StudentNameEn" v-validate="'required'" data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.StudentNameEn')">
-                             {{ errors.first('step1.StudentNameEn') }}
+                        <label class="form_label">নাম (English)</label>
+                        <input class="form-control" style="text-transform:uppercase"  type="text"  placeholder="নাম (English)" v-model="form.StudentNameEn" name="নাম (English)" v-validate="'required'" data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.নাম (English)')">
+                             {{ errors.first('step1.নাম (English)') }}
                           </p>
                     </div>
                 </div>
 
 
 
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">শ্রেণি</label>
 
 
-                            <select  class="form-control"  style="width: 100%;" v-model="form.StudentClass" name="StudentClass"  v-validate="'required'" data-vv-scope="step1">
+                            <select  class="form-control"  style="width: 100%;" v-model="form.StudentClass" name="শ্রেণি"  v-validate="'required'" data-vv-scope="step1">
                                 <option value="">
-                                    SELECT
+                                    নির্বাচন করুন
                                 </option>
                                 <option v-for="classlist in classess">{{ classlist }}</option>
                             </select>
-                         <p class="help is-danger" v-show="errors.has('step1.StudentClass')">
-                             {{ errors.first('step1.StudentClass') }}
+                         <p class="help is-danger" v-show="errors.has('step1.শ্রেণি')">
+                             {{ errors.first('step1.শ্রেণি') }}
                           </p>
                     </div>
 
 
                 </div>
-                <div class="col-md-4 mt-3">
+
+
+
+                <div class="col-md-4" v-if="form.StudentClass=='Nine' || form.StudentClass=='Ten'" id="Sgroup" >
+                    <div class="form-group">
+                        <label class="form_label">গ্রুপ</label>
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentGroup" name="গ্রুপ" v-validate="'required'" data-vv-scope="step1" >
+                            <option value="">
+                                নির্বাচন করুন
+                            </option>
+                            <option>
+                                Science
+                            </option>
+                            <option>
+                                Humanities
+                            </option>
+                            <option>
+                                Commerce
+                            </option>
+                        </select>
+                         <p class="help is-danger" v-show="errors.has('step1.গ্রুপ')">
+                             {{ errors.first('step1.গ্রুপ') }}
+                          </p>
+                    </div>
+                    </div>
+
+
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">লিঙ্গ</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentGender" name="StudentGender" v-validate="'required'" data-vv-scope="step1">
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentGender" name="লিঙ্গ" v-validate="'required'" data-vv-scope="step1">
                             <option value="">
-                                লিঙ্গ নির্বাচন করুন
+                                নির্বাচন করুন
                             </option>
                             <option value="Male">
                                 ছেলে
@@ -91,19 +118,19 @@
                                 মেয়ে
                             </option>
                         </select>
-                         <p class="help is-danger" v-show="errors.has('step1.StudentGender')">
-                             {{ errors.first('step1.StudentGender') }}
+                         <p class="help is-danger" v-show="errors.has('step1.লিঙ্গ')">
+                             {{ errors.first('step1.লিঙ্গ') }}
                           </p>
                     </div>
 
 
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">ধর্ম</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentReligion" name="StudentReligion" v-validate="'required'" data-vv-scope="step1">
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentReligion" name="ধর্ম" v-validate="'required'" data-vv-scope="step1">
                             <option value="">
-                                ধর্ম নির্বাচন করুন
+                                নির্বাচন করুন
                             </option>
                             <option value="Islam">
                                 ইসলাম
@@ -115,8 +142,8 @@
                                 অন্যান্য
                             </option>
                         </select>
-                         <p class="help is-danger" v-show="errors.has('step1.StudentReligion')">
-                             {{ errors.first('step1.StudentReligion') }}
+                         <p class="help is-danger" v-show="errors.has('step1.ধর্ম')">
+                             {{ errors.first('step1.ধর্ম') }}
                           </p>
                     </div>
 
@@ -127,7 +154,7 @@
 
 
 <!--
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">Student Email:</label>
                         <input class="form-control" type="text"  placeholder="Enter Student Email" v-model="form.StudentEmail" name="StudentEmail" data-vv-scope="step1"  />
@@ -141,7 +168,7 @@
                 </div>
 
 
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">Student Password:</label>
                         <input class="form-control" type="password" name="StudentPassword"  placeholder="Enter Student Password" v-model="form.StudentPassword"  data-vv-scope="step1" />
@@ -153,34 +180,34 @@
 
 
 
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">জন্ম নিবন্ধন নং</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Birth Certificate No" v-model="form.StudentBirthCertificateNo" name="StudentBirthCertificateNo" maxlength="17" v-validate="'required'" data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.StudentBirthCertificateNo')">
-                             {{ errors.first('step1.StudentBirthCertificateNo') }}
+                        <input class="form-control" type="text"  placeholder="জন্ম নিবন্ধন নং" v-model="form.StudentBirthCertificateNo" name="জন্ম নিবন্ধন নং" maxlength="17" v-validate="'required'" data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.জন্ম নিবন্ধন নং')">
+                             {{ errors.first('step1.জন্ম নিবন্ধন নং') }}
                           </p>
                     </div>
                 </div>
 
 
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">জন্ম তারিখ</label>
-                        <input class="form-control" type="date"  placeholder="Enter Student Date Of Birth" v-model="form.StudentDateOfBirth" name="StudentDateOfBirth" v-validate="'required'" data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.StudentDateOfBirth')">
-                             {{ errors.first('step1.StudentDateOfBirth') }}
+                        <input class="form-control" type="date"  placeholder="জন্ম তারিখ" v-model="form.StudentDateOfBirth" name="জন্ম তারিখ" v-validate="'required'" data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.জন্ম তারিখ')">
+                             {{ errors.first('step1.জন্ম তারিখ') }}
                           </p>
                     </div>
                 </div>
 
 
-                
 
-                <div class="col-md-4 mt-3"  >
+
+                <div class="col-md-4"  >
                     <div class="form-group">
-                        <label class="form_label">Student category:</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentCategory" name="StudentCategory" v-validate="'required'" data-vv-scope="step1" >
+                        <label class="form_label">Student category</label>
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentCategory" name="Student category" v-validate="'required'" data-vv-scope="step1" >
                             <option value="">Select Student category</option>
                             <option>কর্মজীবী শিক্ষার্থী</option>
                             <option>ভূমিহীন অভিভাবকের সন্তান</option>
@@ -190,19 +217,19 @@
                             <option>অনাথ/এতিম শিক্ষা</option>
                             <option>অন্যান্য</option>
                         </select>
-                         <p class="help is-danger" v-show="errors.has('step1.StudentCategory')">
-                             {{ errors.first('step1.StudentCategory') }}
+                         <p class="help is-danger" v-show="errors.has('step1.Student category')">
+                             {{ errors.first('step1.Student category') }}
                           </p>
                     </div>
                     </div>
 
 
-                <div class="col-md-4 mt-3"  >
+                <div class="col-md-4"  >
                     <div class="form-group">
                         <label class="form_label">কোটা</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentKota" name="StudentKota" v-validate="'required'" data-vv-scope="step1" >
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentKota" name="কোটা" v-validate="'required'" data-vv-scope="step1" >
                             <option value="">
-                                কোটা নির্বাচন করুন
+                                নির্বাচন করুন
                             </option>
                             <option>মুক্তিযোদ্ধার সন্তান, নাতী নাতনী</option>
                             <option>অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান</option>
@@ -210,83 +237,83 @@
                             <option>সাধারণ কোটা</option>
                             <option>কোন কোটা নেই</option>
                         </select>
-                         <p class="help is-danger" v-show="errors.has('step1.StudentKota')">
-                             {{ errors.first('step1.StudentKota') }}
+                         <p class="help is-danger" v-show="errors.has('step1.কোটা')">
+                             {{ errors.first('step1.কোটা') }}
                           </p>
                     </div>
                     </div>
 
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পূর্বে অধ্যায়নরত স্কুল এর নাম </label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Birth Certificate No" v-model="form.preSchool" name="preSchool" v-validate="'required'"   data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.preSchool')">
-                             {{ errors.first('step1.preSchool') }}
+                        <input class="form-control" type="text"  placeholder="পূর্বে অধ্যায়নরত স্কুল এর নাম" v-model="form.preSchool" name="পূর্বে অধ্যায়নরত স্কুল এর নাম" v-validate="'required'"   data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.পূর্বে অধ্যায়নরত স্কুল এর নাম')">
+                             {{ errors.first('step1.পূর্বে অধ্যায়নরত স্কুল এর নাম') }}
                           </p>
                     </div>
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পূর্বে অধ্যায়নরত শ্রেণি</label>
 
-                        <select  class="form-control"  style="width: 100%;" v-model="form.preClass" name="preClass"  v-validate="'required'" data-vv-scope="step1">
+                        <select  class="form-control"  style="width: 100%;" v-model="form.preClass" name="পূর্বে অধ্যায়নরত শ্রেণি"  v-validate="'required'" data-vv-scope="step1">
                                 <option value="">
-                                    SELECT
+                                    নির্বাচন করুন
                                 </option>
                                 <option>Five</option>
                                 <option v-for="classlist in classess">{{ classlist }}</option>
                             </select>
-                         <p class="help is-danger" v-show="errors.has('step1.preClass')">
-                             {{ errors.first('step1.preClass') }}
+                         <p class="help is-danger" v-show="errors.has('step1.পূর্বে অধ্যায়নরত শ্রেণি')">
+                             {{ errors.first('step1.পূর্বে অধ্যায়নরত শ্রেণি') }}
                           </p>
                     </div>
                 </div>
 
 
-                <div class="col-md-4 mt-3"  >
+                <div class="col-md-4"  >
                     <div class="form-group">
                         <label class="form_label">কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.bigBroSis" name="bigBroSis" v-validate="'required'" data-vv-scope="step1" >
+                        <select class="form-control" style="width: 100%;" v-model="form.bigBroSis" name="কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না" v-validate="'required'" data-vv-scope="step1" >
                             <option value="No">না</option>
                             <option value="Yes">হ্যাঁ</option>
 
                         </select>
-                         <p class="help is-danger" v-show="errors.has('step1.bigBroSis')">
-                             {{ errors.first('step1.bigBroSis') }}
+                         <p class="help is-danger" v-show="errors.has('step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না')">
+                             {{ errors.first('step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না') }}
                           </p>
                     </div>
                 </div>
 
 
 
-                <div class="col-md-4 mt-3" v-if="form.bigBroSis=='Yes'" >
+                <div class="col-md-4" v-if="form.bigBroSis=='Yes'" >
                     <div class="form-group">
                         <label class="form_label">অধ্যয়নরত ভাই/বোনের নাম</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Birth Certificate No" v-model="form.bigBroSisName" name="bigBroSisName" v-validate="'required'"   data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.bigBroSisName')">
-                             {{ errors.first('step1.bigBroSisName') }}
+                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের নাম" v-model="form.bigBroSisName" name="অধ্যয়নরত ভাই/বোনের নাম" v-validate="'required'"   data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.অধ্যয়নরত ভাই/বোনের নাম')">
+                             {{ errors.first('step1.অধ্যয়নরত ভাই/বোনের নাম') }}
                           </p>
                     </div>
                 </div>
 
 
-                <div class="col-md-4 mt-3"  v-if="form.bigBroSis=='Yes'"  >
+                <div class="col-md-4"  v-if="form.bigBroSis=='Yes'"  >
                     <div class="form-group">
                         <label class="form_label">অধ্যয়নরত ভাই/বোনের শ্রেণি</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Birth Certificate No" v-model="form.bigBroSisClass" name="bigBroSisClass" v-validate="'required'"   data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.bigBroSisClass')">
-                             {{ errors.first('step1.bigBroSisClass') }}
+                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-model="form.bigBroSisClass" name="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-validate="'required'"   data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.অধ্যয়নরত ভাই/বোনের শ্রেণি')">
+                             {{ errors.first('step1.অধ্যয়নরত ভাই/বোনের শ্রেণি') }}
                           </p>
                     </div>
                 </div>
 
 
-                <div class="col-md-4 mt-3"  v-if="form.bigBroSis=='Yes'"  >
+                <div class="col-md-4"  v-if="form.bigBroSis=='Yes'"  >
                     <div class="form-group">
                         <label class="form_label">অধ্যয়নরত ভাই/বোনের রোল</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Birth Certificate No" v-model="form.bigBroSisRoll" name="bigBroSisRoll" v-validate="'required'"   data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.bigBroSisRoll')">
-                             {{ errors.first('step1.bigBroSisRoll') }}
+                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের রোল" v-model="form.bigBroSisRoll" name="অধ্যয়নরত ভাই/বোনের রোল" v-validate="'required'"   data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.অধ্যয়নরত ভাই/বোনের রোল')">
+                             {{ errors.first('step1.অধ্যয়নরত ভাই/বোনের রোল') }}
                           </p>
                     </div>
                 </div>
@@ -294,64 +321,32 @@
 
 
 
-
-
-                <div class="col-md-4 mt-3" v-if="form.StudentClass=='Nine' || form.StudentClass=='Ten'" id="Sgroup" >
-                    <div class="form-group">
-                        <label class="form_label">গ্রুপ</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentGroup" name="StudentGroup" v-validate="'required'" data-vv-scope="step1" >
-                            <option value="">
-                                গ্রুপ নির্বাচন করুন
-                            </option>
-                            <option>
-                                Science
-                            </option>
-                            <option>
-                                Humanities
-                            </option>
-                            <option>
-                                Commerce
-                            </option>
-                        </select>
-                         <p class="help is-danger" v-show="errors.has('step1.StudentGroup')">
-                             {{ errors.first('step1.StudentGroup') }}
-                          </p>
-                    </div>
-
-
-
-
-
-
-
-                </div>
-
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">ঠিকানা</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Address" v-model="form.StudentAddress" name="StudentAddress" v-validate="'required'" data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.StudentAddress')">
-                             {{ errors.first('step1.StudentAddress') }}
+                        <input class="form-control" type="text"  placeholder="ঠিকানা" v-model="form.StudentAddress" name="ঠিকানা" v-validate="'required'" data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.ঠিকানা')">
+                             {{ errors.first('step1.ঠিকানা') }}
                           </p>
                     </div>
                 </div>
 
 
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মোবাইল নাম্বার</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Phone Number" v-model="form.StudentPhoneNumber" name="StudentPhoneNumber" maxlength="11" v-validate="'required'" data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.StudentPhoneNumber')">
-                             {{ errors.first('step1.StudentPhoneNumber') }}
+                        <input class="form-control" type="text"  placeholder="মোবাইল নাম্বার" v-model="form.StudentPhoneNumber" name="মোবাইল নাম্বার" maxlength="11" v-validate="'required'" data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.মোবাইল নাম্বার')">
+                             {{ errors.first('step1.মোবাইল নাম্বার') }}
                           </p>
                     </div>
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পোস্টাল কোড</label>
-                        <input class="form-control" type="text"  placeholder="Enter Area Postal Code" v-model="form.AreaPostalCode" name="AreaPostalCode" v-validate="'required'" data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.AreaPostalCode')">
-                             {{ errors.first('step1.AreaPostalCode') }}
+                        <input class="form-control" type="text"  placeholder="পোস্টাল কোড" v-model="form.AreaPostalCode" name="পোস্টাল কোড" v-validate="'required'" data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.পোস্টাল কোড')">
+                             {{ errors.first('step1.পোস্টাল কোড') }}
                           </p>
                     </div>
                 </div>
@@ -381,9 +376,9 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতার নাম (বাংলা)</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Father Name" v-model="form.StudentFatherNameBn" name="StudentFatherNameBn"  v-validate="'required'" data-vv-scope="step2" />
-                         <p class="help is-danger" v-show="errors.has('step2.StudentFatherNameBn')">
-                             {{ errors.first('step2.StudentFatherNameBn') }}
+                        <input class="form-control" type="text"  placeholder="পিতার নাম (বাংলা)" v-model="form.StudentFatherNameBn" name="পিতার নাম (বাংলা)"  v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.পিতার নাম (বাংলা)')">
+                             {{ errors.first('step2.পিতার নাম (বাংলা)') }}
                           </p>
                     </div>
                 </div>
@@ -392,21 +387,30 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতার নাম (English)</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Father Name" v-model="form.StudentFatherName" name="StudentFatherName"  v-validate="'required'" data-vv-scope="step2" />
-                         <p class="help is-danger" v-show="errors.has('step2.StudentFatherName')">
-                             {{ errors.first('step2.StudentFatherName') }}
+                        <input class="form-control" type="text"  placeholder="পিতার নাম (English)" v-model="form.StudentFatherName" name="পিতার নাম (English)" style="text-transform:uppercase"   v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.পিতার নাম (English)')">
+                             {{ errors.first('step2.পিতার নাম (English)') }}
+                          </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">পিতার জাতীয় পরিচয় পত্র নং</label>
+                        <input class="form-control" type="text"  placeholder="পিতার জাতীয় পরিচয় পত্র নং" v-model="form.StudentFatherNid" name="পিতার জাতীয় পরিচয় পত্র নং"  v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.পিতার জাতীয় পরিচয় পত্র নং')">
+                             {{ errors.first('step2.পিতার জাতীয় পরিচয় পত্র নং') }}
                           </p>
                     </div>
                 </div>
 
 
-
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মাতার নাম (বাংলা)</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Mother Name" v-model="form.StudentMotherNameBn" name="StudentMotherNameBn"  v-validate="'required'" data-vv-scope="step2" />
-                         <p class="help is-danger" v-show="errors.has('step2.StudentMotherNameBn')">
-                             {{ errors.first('step2.StudentMotherNameBn') }}
+                        <input class="form-control" type="text"  placeholder="মাতার নাম (বাংলা)" v-model="form.StudentMotherNameBn" name="মাতার নাম (বাংলা)"  v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.মাতার নাম (বাংলা)')">
+                             {{ errors.first('step2.মাতার নাম (বাংলা)') }}
                           </p>
                     </div>
                 </div>
@@ -415,28 +419,20 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মাতার নাম (English)</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Mother Name" v-model="form.StudentMotherName" name="StudentMotherName"  v-validate="'required'" data-vv-scope="step2" />
-                         <p class="help is-danger" v-show="errors.has('step2.StudentMotherName')">
-                             {{ errors.first('step2.StudentMotherName') }}
+                        <input class="form-control" type="text"  placeholder="মাতার নাম (English)" v-model="form.StudentMotherName" name="মাতার নাম (English)" style="text-transform:uppercase"   v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.মাতার নাম (English)')">
+                             {{ errors.first('step2.মাতার নাম (English)') }}
                           </p>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="form_label">পিতার জাতীয় পরিচয় পত্র নং</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Father Name" v-model="form.StudentFatherNid" name="StudentFatherNid"  v-validate="'required'" data-vv-scope="step2" />
-                         <p class="help is-danger" v-show="errors.has('step2.StudentFatherNid')">
-                             {{ errors.first('step2.StudentFatherNid') }}
-                          </p>
-                    </div>
-                </div>
+
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মাতার জাতীয় পরিচয় পত্র নং</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Mother Name" v-model="form.StudentMotherNid" name="StudentMotherNid"  v-validate="'required'" data-vv-scope="step2" />
-                         <p class="help is-danger" v-show="errors.has('step2.StudentMotherNid')">
-                             {{ errors.first('step2.StudentMotherNid') }}
+                        <input class="form-control" type="text"  placeholder="মাতার জাতীয় পরিচয় পত্র নং" v-model="form.StudentMotherNid" name="মাতার জাতীয় পরিচয় পত্র নং"  v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.মাতার জাতীয় পরিচয় পত্র নং')">
+                             {{ errors.first('step2.মাতার জাতীয় পরিচয় পত্র নং') }}
                           </p>
                     </div>
                 </div>
@@ -444,20 +440,35 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতার জন্ম নিবন্ধন নং</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Father Name" v-model="form.StudentFatherBCN" name="Father-Birth-Certificate-No"  v-validate="'required'" data-vv-scope="step2" />
-                         <p class="help is-danger" v-show="errors.has('step2.Father-Birth-Certificate-No')">
-                             {{ errors.first('step2.Father-Birth-Certificate-No') }}
+                        <input class="form-control" type="text"  placeholder="পিতার জন্ম নিবন্ধন নং" v-model="form.StudentFatherBCN" name="পিতার জন্ম নিবন্ধন নং"  v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.পিতার জন্ম নিবন্ধন নং')">
+                             {{ errors.first('step2.পিতার জন্ম নিবন্ধন নং') }}
                           </p>
                     </div>
                 </div>
+
+
+
 
 
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মাতার জন্ম নিবন্ধন নং</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Mother Name" v-model="form.StudentMotherBCN" name="Mother-Birth-Certificate-No"  v-validate="'required'" data-vv-scope="step2" />
-                         <p class="help is-danger" v-show="errors.has('step2.Mother-Birth-Certificate-No')">
-                             {{ errors.first('step2.Mother-Birth-Certificate-No') }}
+                        <input class="form-control" type="text"  placeholder="মাতার জন্ম নিবন্ধন নং" v-model="form.StudentMotherBCN" name="মাতার জন্ম নিবন্ধন নং"  v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.মাতার জন্ম নিবন্ধন নং')">
+                             {{ errors.first('step2.মাতার জন্ম নিবন্ধন নং') }}
+                          </p>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের নাম</label>
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম" v-model="form.guardName" name="পিতা/মাতা না থাকলে অভিভাবকের নাম"  v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের নাম')">
+                             {{ errors.first('step2.পিতা/মাতা না থাকলে অভিভাবকের নাম') }}
                           </p>
                     </div>
                 </div>
@@ -465,10 +476,26 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
+                        <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং</label>
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardNid" name="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং"  v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং')">
+                             {{ errors.first('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং') }}
+                          </p>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
                         <label class="form_label">অভিভাবকের মাসিক আয়</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Mother Name" v-model="form.parentEarn" name="parentEarn"  v-validate="'required'" data-vv-scope="step2" />
-                         <p class="help is-danger" v-show="errors.has('step2.parentEarn')">
-                             {{ errors.first('step2.parentEarn') }}
+                        <input class="form-control" type="text"  placeholder="অভিভাবকের মাসিক আয়" v-model="form.parentEarn" name="অভিভাবকের মাসিক আয়"  v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.অভিভাবকের মাসিক আয়')">
+                             {{ errors.first('step2.অভিভাবকের মাসিক আয়') }}
                           </p>
                     </div>
                 </div>
@@ -480,9 +507,9 @@
                         <label class="form_label">অভিভাবকের পেশা</label>
 
 
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentFatherOccupation" name="StudentFatherOccupation" v-validate="'required'" data-vv-scope="step2" >
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentFatherOccupation" name="অভিভাবকের পেশা" v-validate="'required'" data-vv-scope="step2" >
                             <option value="">
-                                অভিভাবকের পেশা নির্বাচন করুন
+                                নির্বাচন করুন
                             </option>
                             <option>ব্যবসায়ি</option>
                             <option>কৃষি শ্রমিক</option>
@@ -497,8 +524,8 @@
                             <option>অন্যান্য</option>
                         </select>
 
-                         <p class="help is-danger" v-show="errors.has('step2.StudentFatherOccupation')">
-                             {{ errors.first('step2.StudentFatherOccupation') }}
+                         <p class="help is-danger" v-show="errors.has('step2.অভিভাবকের পেশা')">
+                             {{ errors.first('step2.অভিভাবকের পেশা') }}
                           </p>
                     </div>
                 </div>
@@ -660,6 +687,8 @@ export default {
             StudentMotherNid:null,
             StudentFatherBCN:null,
             StudentMotherBCN:null,
+            guardName:null,
+            guardNid:null,
             StudentFatherOccupation:null,
             parentEarn:null,
             StudentMotherOccupation:null,

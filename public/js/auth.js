@@ -2088,7 +2088,7 @@ if (window.location.port == '8000') {
   vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$withOutWWW = 3;
 }
 
-localStorage.setItem('getschoolid', '123');
+localStorage.setItem('getschoolid', '125983');
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$localStorage = localStorage;
 window.ASSETURL = vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$asseturl; // Vue.prototype.$appName = process.env.MIX_FILE_PATH
 // console.log(process.env.MIX_FILE_PATH)

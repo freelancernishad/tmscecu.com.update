@@ -27,6 +27,9 @@
 div#exampleModal {
     z-index: 99999;
 }
+a.text-light.px-3.nav-link.router-link-exact-active.router-link-active {
+    background: #803a85;
+}
 .serviceBox {
     cursor: pointer;
 

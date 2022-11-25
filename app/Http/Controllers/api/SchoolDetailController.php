@@ -201,7 +201,7 @@ class SchoolDetailController extends Controller
         if (File::exists($school_detail->PRINCIPALS_IMGAGE)) {
             unlink($school_detail->PRINCIPALS_IMGAGE);
         }
-        $data['PRINCIPALS_IMGAGE'] = fileupload($request->PRINCIPALS_IMGAGE, 'backend/PRINCIPALS_IMGAGE/', 500, 300);
+        $data['PRINCIPALS_IMGAGE'] = fileupload($request->PRINCIPALS_IMGAGE, 'backend/PRINCIPALS_IMGAGE/', 300, 300);
 
         $imgPRINCIPALS_Signature = getimagesize($request->PRINCIPALS_Signature);
         $PRINCIPALS_Signature_width = $imgPRINCIPALS_Signature[0];

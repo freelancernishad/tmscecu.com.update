@@ -222,14 +222,25 @@ class studentsController extends Controller
         }
         return $result;
     }
-    public function StudentId($class, $roll,$school_id)
+    public function StudentId($class, $roll,$school_id,$StudentGroup='Humanities')
     {
+
+        $groupcode = 2;
+        if($StudentGroup=='Science'){
+            $groupcode=1;
+
+        }elseif($StudentGroup=='Humanities'){
+            $groupcode=2;
+        }elseif($StudentGroup=='Commerce'){
+            $groupcode=3;
+        }
+
 
         $classidd = $this->word_digit($class);
         $classid = str_pad($classidd, 2, '0', STR_PAD_LEFT);
         $yearid = date("y");
         $rollid = str_pad($roll, 3, '0', STR_PAD_LEFT);
-        return $school_id . '-' . $yearid . $classid . $rollid;
+        return $school_id . $yearid . $classid.$groupcode . $rollid;
     }
     public function student_check(Request $r)
     {
@@ -266,6 +277,19 @@ class studentsController extends Controller
     }
 
 
+    public function student_roll_check(Request $request)
+    {
+       $StudentRoll = $request->StudentRoll;
+       $StudentClass = $request->StudentClass;
+       $StudentGroup = $request->StudentGroup;
+       $year = date('Y');
+       return student::where(['StudentRoll'=>$StudentRoll,'StudentClass'=>$StudentClass,'StudentGroup'=>$StudentGroup,'year'=>$year])->count();
+    }
+
+
+
+
+
 public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 {
     $studentuserdata =[
@@ -282,10 +306,45 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
     public function student_submit(Request $r)
     {
-        $id = $r->id;
-        $data = $r->except('AdmissionID');
+        $submit_type = $r->submit_type;
 
-$school_id = $r->school_id;
+
+
+
+
+
+        $id = $r->id;
+        $data = $r->except('AdmissionID','StudentID');
+        $school_id = $r->school_id;
+
+        if($submit_type=='data_entry'){
+
+
+
+            $StudentClass = $r->StudentClass;
+            $StudentRoll = $r->StudentRoll;
+
+            $school_id = $r->school_id;
+            $year = date('Y');
+            $StudentGroup = $r->StudentGroup;
+// return $this->StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
+
+            $studentcount =  student::where(['StudentRoll'=>$StudentRoll,'StudentClass'=>$StudentClass,'StudentGroup'=>$StudentGroup,'year'=>$year])->count();
+            if($studentcount>0){
+                $resp = [
+                    'code'=>403,
+                    'message'=>"aleady have class:$StudentClass roll:$StudentRoll Student"
+                ];
+                return $resp;
+            }
+
+
+
+             $data['StudentID'] = (string)$this->StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
+
+
+
+        }
 
 
         $data['AdmissionID'] = (string)$this->StudentAdmissionId('',$school_id);
@@ -295,6 +354,9 @@ $school_id = $r->school_id;
         if ($id == '') {
             $data['JoiningDate'] = date("Y-m-d");
             $data['StudentStatus'] = 'Applied';
+            if($submit_type=='data_entry'){
+                $data['StudentStatus'] = 'Active';
+            }
             $result =   student::create($data);
         } else {
             $student = student::find($r->id);
@@ -1014,11 +1076,11 @@ $school_id = $r->school_id;
                 </tr>
                 <tr>
                     <td class='tableRowHead' >Prev School</td>
-                    <td colspan='4'></td>
+                    <td colspan='4'>$student->preSchool</td>
                 </tr>
                 <tr>
                     <td class='tableRowHead' >Prev Class</td>
-                    <td colspan='4'></td>
+                    <td colspan='4'>$student->preClass</td>
                 </tr>
                 <tr>
                     <td class='tableRowHead' >Present Address</td>

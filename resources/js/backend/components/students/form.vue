@@ -42,6 +42,9 @@
 
 
             <div class="row">
+<!--
+
+
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Admission ID:</label>
@@ -54,115 +57,50 @@
                         <input class="form-control" type="text" placeholder="Enter Student ID" v-model="form.StudentID" id="StudentID" readonly required />
                     </div>
                 </div>
-                <div class="col-md-4">
+ -->
+
+ <div class="col-md-4 mt-3">
                     <div class="form-group">
-                        <label>Student Roll:</label>
-                        <input class="form-control" type="text" placeholder="Enter Student Roll" v-model="form.StudentRoll" id="StudentRoll" readonly required />
+                        <label class="form_label">নাম (বাংলা)</label>
+                        <input class="form-control" type="text"  placeholder="নাম (বাংলা)" v-model="form.StudentName" required  />
+
                     </div>
                 </div>
-                <div class="col-md-4">
+
+
+
+                <div class="col-md-4 mt-3">
                     <div class="form-group">
-                        <label>Student Class:</label>
+                        <label class="form_label">নাম (English)</label>
+                        <input class="form-control" style="text-transform:uppercase"  type="text"  placeholder="নাম (English)" v-model="form.StudentNameEn" required />
+
+                    </div>
+                </div>
 
 
-                            <select :disabled="classdisable" class="form-control"  style="width: 100%;" v-model="form.StudentClass" @change="checkstudent" id="StudentClass"  required>
+
+
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
+                        <label class="form_label">শ্রেণি</label>
+
+
+                            <select  class="form-control"  style="width: 100%;" v-model="form.StudentClass" @change="checkRoll" required >
                                 <option value="">
-                                    SELECT
+                                    নির্বাচন করুন
                                 </option>
                                 <option v-for="classlist in classess">{{ classlist }}</option>
                             </select>
 
                     </div>
-
-
                 </div>
-                <div class="col-md-4">
+
+                <div class="col-md-4 mt-3" v-if="form.StudentClass=='Nine' || form.StudentClass=='Ten'" id="Sgroup" >
                     <div class="form-group">
-                        <label>Student Gender:</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentGender" id="StudentGender" required>
+                        <label class="form_label">গ্রুপ</label>
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentGroup" @change="checkRoll"  required>
                             <option value="">
-                                SELECT
-                            </option>
-                            <option>
-                                Male
-                            </option>
-                            <option>
-                                Female
-                            </option>
-                            <option>
-                                Other
-                            </option>
-                        </select>
-                    </div>
-
-
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Student Religion:</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentReligion" id="StudentReligion" required>
-                            <option value="">
-                                SELECT
-                            </option>
-                            <option>
-                                Islam
-                            </option>
-                            <option>
-                                Hindu
-                            </option>
-                            <option>
-                                Other
-                            </option>
-                        </select>
-                    </div>
-
-
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Student Name:</label>
-                        <input class="form-control" type="text"  placeholder="Enter StudentName" v-model="form.StudentName" id="StudentName" required />
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Student Email:</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Email" v-model="form.StudentEmail" id="StudentEmail" required />
-                    </div>
-                </div>
-
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Student Password:</label>
-                        <input class="form-control" type="password"  placeholder="Enter Student Password" v-model="form.StudentPassword" id="StudentEmail" required />
-                    </div>
-                </div>
-
-
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Student Date Of Birth:</label>
-                        <input class="form-control" type="date"  placeholder="Enter Student Date Of Birth" v-model="form.StudentDateOfBirth" id="StudentDateOfBirth" required />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Student Birth Certificate No:</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Birth Certificate No" v-model="form.StudentBirthCertificateNo" id="StudentBirthCertificateNo" maxlength="17" required />
-                    </div>
-                </div>
-
-
-
-                <div class="col-md-4" v-if="form.StudentClass=='Nine' || form.StudentClass=='Ten'" id="Sgroup" >
-                    <div class="form-group">
-                        <label>Student Group:</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentGroup" id="StudentGroup" >
-                            <option value="">
-                                SELECT
+                                নির্বাচন করুন
                             </option>
                             <option>
                                 Science
@@ -174,52 +112,244 @@
                                 Commerce
                             </option>
                         </select>
+
                     </div>
-
-
-
-
-
-
-
-                </div>
-
-                <div class="col-md-4">
+                    </div>
+                <div class="col-md-4 mt-3">
                     <div class="form-group">
-                        <label>Student Address:</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Address" v-model="form.StudentAddress" id="StudentAddress" required />
+                        <label class="form_label">রোল</label>
+                        <input class="form-control" style="text-transform:uppercase"  type="text" @keyup="checkRoll"  placeholder="রোল" v-model="form.StudentRoll"  required />
                     </div>
+                    <span v-if="alredyhave" style="color:red">{{ form.StudentClass }} Already Have Roll {{ form.StudentRoll }}</span>
                 </div>
 
 
-                <div class="col-md-4">
+                <div class="col-md-4 mt-3">
                     <div class="form-group">
-                        <label>Student Phone Number:</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Phone Number" v-model="form.StudentPhoneNumber" id="StudentPhoneNumber" maxlength="11" required />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Area Postal Code:</label>
-                        <input class="form-control" type="text"  placeholder="Enter Area Postal Code" v-model="form.AreaPostalCode" id="AreaPostalCode" required />
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Student Status:</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentStatus" id="StudentStatus" required>
-                            <option>
-                                Active
+                        <label class="form_label">লিঙ্গ</label>
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentGender" required>
+                            <option value="">
+                                নির্বাচন করুন
                             </option>
-                            <option>
-                                Pending
+                            <option value="Male">
+                                ছেলে
                             </option>
-
-                            <option>
-                                Reject
+                            <option value="Female">
+                                মেয়ে
                             </option>
                         </select>
+
+                    </div>
+
+
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
+                        <label class="form_label">ধর্ম</label>
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentReligion" required>
+                            <option value="">
+                                নির্বাচন করুন
+                            </option>
+                            <option value="Islam">
+                                ইসলাম
+                            </option>
+                            <option value="Hindu">
+                                হিন্দু
+                            </option>
+                            <option value="Other">
+                                অন্যান্য
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+<!--
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
+                        <label class="form_label">Student Email:</label>
+                        <input class="form-control" type="text"  placeholder="Enter Student Email" v-model="form.StudentEmail" name="StudentEmail" data-vv-scope="step1"  />
+                         <p class="help is-danger" v-show="errors.has('step1.StudentEmail')">
+                             {{ errors.first('step1.StudentEmail') }}
+                          </p>
+                         <p class="help is-danger" v-show="studentEmailerror!=''">
+                             {{ studentEmailerror }}
+                          </p>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
+                        <label class="form_label">Student Password:</label>
+                        <input class="form-control" type="password" name="StudentPassword"  placeholder="Enter Student Password" v-model="form.StudentPassword"  data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.StudentPassword')">
+                             {{ errors.first('step1.StudentPassword') }}
+                          </p>
+                    </div>
+                </div> -->
+
+
+
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
+                        <label class="form_label">জন্ম নিবন্ধন নং</label>
+                        <input class="form-control" type="text"  placeholder="জন্ম নিবন্ধন নং" v-model="form.StudentBirthCertificateNo" required />
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
+                        <label class="form_label">জন্ম তারিখ</label>
+                        <input class="form-control" type="date"  placeholder="জন্ম তারিখ" v-model="form.StudentDateOfBirth" required />
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-md-4 mt-3"  >
+                    <div class="form-group">
+                        <label class="form_label">Student category</label>
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentCategory" required >
+                            <option value="">Select Student category</option>
+                            <option>কর্মজীবী শিক্ষার্থী</option>
+                            <option>ভূমিহীন অভিভাবকের সন্তান</option>
+                            <option>মুক্তিযোদ্ধা পোষা/নাতি-নাতনি</option>
+                            <option>ক্ষুদ্র নৃ-গোষ্ঠী শিক্ষার্থী</option>
+                            <option>বিশেষ চাহিদা সম্পন্ন শিক্ষার্থী</option>
+                            <option>অনাথ/এতিম শিক্ষা</option>
+                            <option>অন্যান্য</option>
+                        </select>
+
+                    </div>
+                    </div>
+
+
+                <div class="col-md-4 mt-3"  >
+                    <div class="form-group">
+                        <label class="form_label">কোটা</label>
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentKota" required >
+                            <option value="">
+                                নির্বাচন করুন
+                            </option>
+                            <option>মুক্তিযোদ্ধার সন্তান, নাতী নাতনী</option>
+                            <option>অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান</option>
+                            <option>প্রতিবন্ধী</option>
+                            <option>সাধারণ কোটা</option>
+                            <option>কোন কোটা নেই</option>
+                        </select>
+
+                    </div>
+                    </div>
+
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
+                        <label class="form_label">পূর্বে অধ্যায়নরত স্কুল এর নাম </label>
+                        <input class="form-control" type="text"  placeholder="পূর্বে অধ্যায়নরত স্কুল এর নাম" required/>
+
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
+                        <label class="form_label">পূর্বে অধ্যায়নরত শ্রেণি</label>
+
+                        <select  class="form-control"  style="width: 100%;" v-model="form.preClass" required>
+                                <option value="">
+                                    নির্বাচন করুন
+                                </option>
+                                <option>Five</option>
+                                <option v-for="classlist in classess">{{ classlist }}</option>
+                            </select>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 mt-3"  >
+                    <div class="form-group">
+                        <label class="form_label">কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না</label>
+                        <select class="form-control" style="width: 100%;" v-model="form.bigBroSis"  required>
+                            <option value="No">না</option>
+                            <option value="Yes">হ্যাঁ</option>
+
+                        </select>
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-4 mt-3" v-if="form.bigBroSis=='Yes'" >
+                    <div class="form-group">
+                        <label class="form_label">অধ্যয়নরত ভাই/বোনের নাম</label>
+                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের নাম" v-model="form.bigBroSisName" required/>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 mt-3"  v-if="form.bigBroSis=='Yes'"  >
+                    <div class="form-group">
+                        <label class="form_label">অধ্যয়নরত ভাই/বোনের শ্রেণি</label>
+                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-model="form.bigBroSisClass" required />
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 mt-3"  v-if="form.bigBroSis=='Yes'"  >
+                    <div class="form-group">
+                        <label class="form_label">অধ্যয়নরত ভাই/বোনের রোল</label>
+                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের রোল" v-model="form.bigBroSisRoll" required />
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
+                        <label class="form_label">ঠিকানা</label>
+                        <input class="form-control" type="text"  placeholder="ঠিকানা" v-model="form.StudentAddress" required/>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
+                        <label class="form_label">মোবাইল নাম্বার</label>
+                        <input class="form-control" type="text"  placeholder="মোবাইল নাম্বার" v-model="form.StudentPhoneNumber" maxlength="11" required/>
+
+                    </div>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
+                        <label class="form_label">পোস্টাল কোড</label>
+                        <input class="form-control" type="text"  placeholder="পোস্টাল কোড" v-model="form.AreaPostalCode"  required/>
+
                     </div>
                 </div>
 
@@ -235,44 +365,136 @@
 
 
 
-                <div class="col-md-4">
+    <div class="col-md-4">
                     <div class="form-group">
-                        <label>Student Father Name:</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Father Name" v-model="form.StudentFatherName" id="StudentFatherName" required />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Mother Name:</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Mother Name" v-model="form.StudentMotherName" id="StudentMotherName" required />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Father Occupation:</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Father Occupation" v-model="form.StudentFatherOccupation" id="StudentFatherOccupation" required />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Mother Occupation:</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Mother Occupation" v-model="form.StudentMotherOccupation" id="StudentMotherOccupation" required />
+                        <label class="form_label">পিতার নাম (বাংলা)</label>
+                        <input class="form-control" type="text"  placeholder="পিতার নাম (বাংলা)" v-model="form.StudentFatherNameBn" required/>
+
                     </div>
                 </div>
 
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>Parent Email:</label>
-                        <input class="form-control" type="text"  placeholder="Enter Student Email" v-model="form.ParentEmail" id="StudentEmail" required />
+                        <label class="form_label">পিতার নাম (English)</label>
+                        <input class="form-control" type="text"  placeholder="পিতার নাম (English)" v-model="form.StudentFatherName" style="text-transform:uppercase" required />
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">পিতার জাতীয় পরিচয় পত্র নং</label>
+                        <input class="form-control" type="text"  placeholder="পিতার জাতীয় পরিচয় পত্র নং" v-model="form.StudentFatherNid" required />
+
                     </div>
                 </div>
 
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label>Parent Password:</label>
-                        <input class="form-control" type="password"  placeholder="Enter Student Password" v-model="form.ParentPassword" id="StudentEmail" required />
+                        <label class="form_label">মাতার নাম (বাংলা)</label>
+                        <input class="form-control" type="text"  placeholder="মাতার নাম (বাংলা)" v-model="form.StudentMotherNameBn"  required />
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">মাতার নাম (English)</label>
+                        <input class="form-control" type="text"  placeholder="মাতার নাম (English)" v-model="form.StudentMotherName"  style="text-transform:uppercase" required  />
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">মাতার জাতীয় পরিচয় পত্র নং</label>
+                        <input class="form-control" type="text"  placeholder="মাতার জাতীয় পরিচয় পত্র নং" v-model="form.StudentMotherNid"  required/>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">পিতার জন্ম নিবন্ধন নং</label>
+                        <input class="form-control" type="text"  placeholder="পিতার জন্ম নিবন্ধন নং" v-model="form.StudentFatherBCN" required />
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">মাতার জন্ম নিবন্ধন নং</label>
+                        <input class="form-control" type="text"  placeholder="মাতার জন্ম নিবন্ধন নং" v-model="form.StudentMotherBCN" required />
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের নাম</label>
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম" v-model="form.guardName"  required/>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র</label>
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardNid" required />
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">অভিভাবকের মাসিক আয়</label>
+                        <input class="form-control" type="text"  placeholder="অভিভাবকের মাসিক আয়" v-model="form.parentEarn"  required/>
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">অভিভাবকের পেশা</label>
+
+
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentFatherOccupation" name="অভিভাবকের পেশা" required >
+                            <option value="">
+                                নির্বাচন করুন
+                            </option>
+                            <option>ব্যবসায়ি</option>
+                            <option>কৃষি শ্রমিক</option>
+                            <option>ডাক্তার</option>
+                            <option>জেলে</option>
+                            <option>সরকারি চাকুরি</option>
+                            <option>কামার/কুমোর</option>
+                            <option>প্রবাসি</option>
+                            <option>ক্ষুদ্র ব্যবসায়ি</option>
+                            <option>শিক্ষক</option>
+                            <option>অকৃষি শ্রমিক</option>
+                            <option>অন্যান্য</option>
+                        </select>
+
+
                     </div>
                 </div>
 
@@ -336,51 +558,76 @@ export default {
                 StudentGender:null,
                 StudentReligion:null,
                 StudentName:null,
+                StudentNameEn:null,
+                StudentFatherNameBn:null,
                 StudentFatherName:null,
+                StudentMotherNameBn:null,
                 StudentMotherName:null,
+                StudentFatherNid:null,
+                StudentMotherNid:null,
+                StudentFatherBCN:null,
+                StudentMotherBCN:null,
+                guardName:null,
+                guardNid:null,
                 StudentFatherOccupation:null,
+                parentEarn:null,
                 StudentMotherOccupation:null,
                 ParentEmail:null,
-                StudentPassword:null,
+                ParentPassword:null,
                 StudentEmail:null,
                 StudentPassword:null,
                 StudentDateOfBirth:null,
                 StudentBirthCertificateNo:null,
-                StudentGroup:null,
+                StudentCategory:null,
+                StudentKota:null,
+                preSchool:null,
+                preClass:null,
+                bigBroSis:"No",
+                bigBroSisName:null,
+                bigBroSisClass:null,
+                bigBroSisRoll:null,
+                StudentGroup:'',
                 StudentAddress:null,
                 StudentPhoneNumber:null,
                 AreaPostalCode:null,
-                StudentStatus:null,
+                StudentStatus:'Pending',
                 StudentTranferFrom:null,
                 StudentPicture:null,
                 JoiningDate:null,
                 StudentTranferStatus:null,
                 AplicationStatus:null,
                 ThisMonthPaymentStatus:null,
-                status:null,
             },
 
             editid:'',
             classdisable:false,
+            alredyhave:false,
                preloader: true,
 		}
 	},
 
 	methods: {
-        checkstudent(){
-
-if(this.form.StudentClass!='Nine' || this.form.StudentClass!='Ten') this.form.StudentGroup=''
 
 
-		axios.get(`/api/student/check?classvalue=${this.form.StudentClass}&school_id=${this.form.school_id}`)
-			.then(({data}) => {
-                this.form.AdmissionID = data.admition_ID;
-                this.form.StudentID = data.StudentID;
-                this.form.StudentRoll = data.StudentRoll;
 
-            })
-			.catch()
+      async checkRoll(){
+
+
+        if(this.form.StudentClass=='Nine' || this.form.StudentClass=='Ten'){
+
+        }else{
+            this.form.StudentGroup = '';
+        }
+
+        var res = await this.callApi('get',`/api/check/student/roll?StudentRoll=${this.form.StudentRoll}&StudentClass=${this.form.StudentClass}&StudentGroup=${this.form.StudentGroup}`,[]);
+        this.alredyhave = res.data;
         },
+
+
+
+
+
+
 
 
         getstudent(){
@@ -396,18 +643,25 @@ if(this.form.StudentClass!='Nine' || this.form.StudentClass!='Ten') this.form.St
         },
 
 
-        formsubmit(){
-                      this.preloader = true;
-                axios.post(`/api/students/form/submit`,this.form)
-                .then(({data}) => {
-                    //  console.log(data)
-                        this.$router.push({name: 'students'})
-                        Notification.success();
-                                  this.preloader = false;
-                })
-                .catch(() => {
-                    // this.$router.push({name: 'supplier'})
-                })
+       async formsubmit(){
+
+
+            if(this.alredyhave){
+                Notification.customError(`${this.form.StudentClass} Already Have Roll ${this.form.StudentRoll}`);
+            }else{
+                this.preloader = true;
+                var res = await this.callApi('post',`/api/students/form/submit?submit_type=data_entry`,this.form);
+                this.$router.push({name: 'students'})
+                Notification.success();
+
+            }
+
+
+
+
+
+                    this.preloader = false;
+
         }
 
 
@@ -423,6 +677,7 @@ if(this.form.StudentClass!='Nine' || this.form.StudentClass!='Ten') this.form.St
        }else{
 
               this.preloader = false;
+              this.checkRoll();
        }
        if(this.editid!=''){
 

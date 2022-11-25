@@ -157,7 +157,7 @@ export default {
             searchtype: '',
             field: 'id',
             sorttype: '',
-            preloader: true,
+            preloader: false,
 
 		}
 	},

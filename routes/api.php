@@ -98,6 +98,7 @@ Route::post('/students/image/upload',[studentsController::class , 'imageupload']
 Route::get('/students/single',[studentsController::class , 'singlestudent']);
 Route::post('/students/form/submit',[studentsController::class , 'student_submit']);
 Route::post('/student/{action}',[studentsController::class , 'student_action']);
+Route::get('/check/student/roll',[studentsController::class , 'student_roll_check']);
 Route::get('/student/check',[studentsController::class , 'student_check']);
 
 Route::get('/student/admissionid/genarate',[studentsController::class , 'AdmissionIdgenarate']);
