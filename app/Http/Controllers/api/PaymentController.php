@@ -3,6 +3,7 @@ namespace App\Http\Controllers\api;
 use App\Models\payment;
 // use PDF;
 use App\Models\student;
+use App\Models\SchoolFee;
 use Illuminate\Http\Request;
 use App\Models\school_detail;
 use Illuminate\Support\Facades\DB;
@@ -21,56 +22,80 @@ class PaymentController extends Controller
     {
         $data = $request->all();
         Log::info($data);
-// return $data['secure_token'];
-
-
         $student = student::find($data['cust_info']['cust_id']);
-
-        $Insertdata = [
-                'school_id'=>$student->school_id,
-                'studentClass'=>$student->StudentClass,
-                'studentRoll'=>$student->StudentRoll,
-                'studentId'=>$student->StudentID,
-                'admissionId'=>$student->AdmissionID,
-                'Name'=>$student->StudentName,
-                'method'=>$data['pi_det_info']['pi_name'],
-                'amount'=>$data['trnx_info']['total_pabl_amt'],
-                'date'=>date("Y-m-d"),
-                'month'=>date("F"),
-                'year'=>date("Y"),
-
-        ];
-
+        $trnx_id = $data['trns_info']['trnx_id'];
+        $payment = payment::where('trxid',$trnx_id)->first();
         if($data['msg_code']=='1020'){
             $Insertdata['status']='Paid';
+            $Insertdata['method'] = $data['pi_det_info']['pi_name'];
         }else{
-            $Insertdata['status']='Unpaid';
+            $Insertdata['status']='Failed';
         }
-        // return $Insertdata;
-        Log::info($Insertdata);
-
-      return payment::create($Insertdata);
+        return $payment->update($Insertdata);
 
     }
 
 
     public function paymentCreate(Request $request)
     {
-
-
-       $trnx_id = time();
-       $studentId = $request->studentId;
+        $trnx_id = time();
+        $studentId = $request->studentId;
         $student = student::find($studentId);
        $studentMobile = '01909756552';
-       $amount = $request->amount;
-       $cust_info = [
-        "cust_email" => "",
-        "cust_id" => "$studentId",
-        "cust_mail_addr" => "Address",
-        "cust_mobo_no" => "$studentMobile",
-        "cust_name" => "Customer Name"
-    ];
-        $redirectutl = ekpayToken($trnx_id, $amount,$cust_info);
+        $class = $student->StudentClass;
+        $type = $request->type;
+
+        $schoolFee = SchoolFee::where(['class'=>$class,'type'=>$type])->latest()->first();
+        $amount = $schoolFee->fees;
+
+        $cust_info = [
+            "cust_email" => "",
+            "cust_id" => "$studentId",
+            "cust_mail_addr" => "Address",
+            "cust_mobo_no" => "$studentMobile",
+            "cust_name" => "Customer Name"
+        ];
+
+
+        $trns_info = [
+            "ord_det" => $type,
+            "ord_id" => $student->AdmissionID,
+            "trnx_amt" => $amount,
+            "trnx_currency" => "BDT",
+            "trnx_id" => "$trnx_id"
+        ];
+
+
+
+        $Insertdata = [
+                'trxid'=>$trnx_id,
+                'school_id'=>$student->school_id,
+                'studentClass'=>$student->StudentClass,
+                'studentRoll'=>$student->StudentRoll,
+                'studentId'=>$student->StudentID,
+                'admissionId'=>$student->AdmissionID,
+                'Name'=>$student->StudentName,
+                'method'=>'',
+                'amount'=>$amount,
+                'date'=>date("Y-m-d"),
+                'month'=>date("F"),
+                'year'=>date("Y"),
+                'year'=>date("Y"),
+                'status'=>'Pending',
+
+        ];
+       payment::create($Insertdata);
+
+
+
+
+
+
+
+
+
+
+        $redirectutl = ekpayToken($trnx_id, $trns_info,$cust_info);
         return redirect($redirectutl);
 
 

@@ -3340,7 +3340,7 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
               case 3:
                 res = _context.sent;
                 //    console.log(res.data)
-                window.location.href = "/payment?amount=10&studentId=".concat(res.data.id);
+                window.location.href = "/payment?studentId=".concat(res.data.id, "&type=Admission_fee");
                 Notification.success(); // this.preloader = false;
 
               case 6:

@@ -819,7 +819,7 @@ if(this.form.StudentClass!='Nine' || this.form.StudentClass!='Ten') this.form.St
                       this.preloader = true;
                        var res = await this.callApi('post',`/api/students/form/submit`,this.form)
                     //    console.log(res.data)
-                        window.location.href=`/payment?amount=10&studentId=${res.data.id}`;
+                        window.location.href=`/payment?studentId=${res.data.id}&type=Admission_fee`;
                         Notification.success();
                         // this.preloader = false;
 

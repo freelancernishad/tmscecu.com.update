@@ -201,9 +201,10 @@ function pushNotification($data)
 
 
 
-function ekpayToken($trnx_id=123456789,$trnx_amt=0,$cust_info=[],$path='payment'){
+function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='payment'){
 
-    $url = "http://" . $_SERVER['HTTP_HOST'];
+    $Apiurl = env('AKPAY_API_URL');
+    $url = env('AKPAY_IPN_URL');
    $req_timestamp = date('Y-m-d H:i:s');
 
 
@@ -211,25 +212,19 @@ function ekpayToken($trnx_id=123456789,$trnx_amt=0,$cust_info=[],$path='payment'
 
    $post = [
       'mer_info' => [
-         "mer_reg_id" => "tetulia_test",
-         "mer_pas_key" => "TetuLiA@tsT19"
+         "mer_reg_id" => env('AKPAY_MER_REG_ID'),
+         "mer_pas_key" => env('AKPAY_MER_PASS_KEY')
       ],
       "req_timestamp" => "$req_timestamp GMT+6",
       "feed_uri" => [
-         "c_uri" => "$url/$path/cancel",
-         "f_uri" => "$url/$path/fail",
-         "s_uri" => "$url/$path/success"
+         "c_uri" => url("$path/cancel"),
+         "f_uri" => url("$path/fail"),
+         "s_uri" => url("$path/success")
       ],
       "cust_info" => $cust_info,
-      "trns_info" => [
-         "ord_det" => "Payment for sonod",
-         "ord_id" => "$trnx_id",
-         "trnx_amt" => $trnx_amt,
-         "trnx_currency" => "BDT",
-         "trnx_id" => "$trnx_id"
-      ],
+      "trns_info" =>$trns_info,
       "ipn_info" => [
-         "ipn_channel" => "3",
+         "ipn_channel" => "1",
          "ipn_email" => "freelancernishad123@gmail.com",
          "ipn_uri" => "$url/api/ipn"
       ],
@@ -239,7 +234,7 @@ function ekpayToken($trnx_id=123456789,$trnx_amt=0,$cust_info=[],$path='payment'
    // 148.163.122.80
    $post = json_encode($post);
 
-   $ch = curl_init('https://sandbox.ekpay.gov.bd/ekpaypg/v1/merchant-api');
+   $ch = curl_init($Apiurl);
    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
    curl_setopt($ch, CURLOPT_POST, true);
    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);

@@ -15,6 +15,7 @@ class payment extends Model
 
 
 
+        'trxid',
         'school_id',
         'studentClass',
         'studentRoll',

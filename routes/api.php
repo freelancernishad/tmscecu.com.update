@@ -19,6 +19,8 @@ use App\Http\Controllers\api\HomeworkController;
 use App\Http\Controllers\api\studentsController;
 use App\Http\Controllers\QuestionbankController;
 use App\Http\Controllers\api\SchoolDetailController;
+use App\Http\Controllers\SchoolFeeController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -176,6 +178,7 @@ Route::post('/event/submit',[EventController::class , 'event_submit']);
 //Notice routes
 Route::resources([
 	'notice' => NoticeController::class,
+	'fees' => SchoolFeeController::class,
 
 ]);
 
