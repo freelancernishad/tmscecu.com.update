@@ -39,6 +39,7 @@ class PaymentController extends Controller
         // return $Insertdata;
         Log::info(json_encode($data));
 
+         $student->update(['StudentStatus'=>'Pending']);
         return $payment->update($Insertdata);
 
     }
