@@ -324,7 +324,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             $StudentClass = $r->StudentClass;
             $StudentRoll = $r->StudentRoll;
 
-            $school_id = $r->school_id;
+
             $year = date('Y');
             $StudentGroup = $r->StudentGroup;
 // return $this->StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
@@ -362,7 +362,12 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             $student = student::find($r->id);
             $result = $student->update($data);
         }
+
+
         return $result;
+
+
+        
     }
 
     public function imageupload(Request $request)
