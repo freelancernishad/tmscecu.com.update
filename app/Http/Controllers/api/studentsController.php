@@ -8,6 +8,7 @@ use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\school_detail;
 use App\Models\StudentResult;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
@@ -15,7 +16,6 @@ use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 use Illuminate\Support\Facades\Hash;
-
 class studentsController extends Controller
 {
     public function list(Request $r)
@@ -82,22 +82,11 @@ class studentsController extends Controller
                 'ThisMonthPaymentStatus', 'id'
             ])
             ->orderBy('StudentRoll', 'ASC');
-
-
-
             if($datatype=='count'){
                 $result= $datas->count();
             }else{
                 $result= $datas->paginate(20);
             }
-
-
-
-
-
-
-
-
         return response()->json($result);
     }
     public function student_action(Request $request, $action)
@@ -119,14 +108,11 @@ class studentsController extends Controller
         }
         return response()->json($data);
     }
-
     public function AdmissionIdgenarate(Request $request)
     {
         $school_id = $request->school_id;
-
         $studentCount =  student::where(['school_id'=>$school_id])->count();
         if($studentCount>0){
-
         $student =  student::where(['school_id'=>$school_id])->latest()->first();
         $admition_id = $student->AdmissionID;
         $mutiple = (rand(1, 9));
@@ -137,26 +123,16 @@ class studentsController extends Controller
                  }
                  $admition_ID =  $admition_id;
                  return $admition_ID += $mutiple;
-
             }else{
                 $one = "0001";
                 $year = date("dmy");
                return $admition_ID = $school_id . $year . $one;
             }
-
-
-
-
     }
-
-
     public function StudentAdmissionId($admition_id='',$school_id)
     {
-
-
         $studentCount =  student::where(['school_id'=>$school_id])->count();
         if($studentCount>0){
-
         $student =  student::where(['school_id'=>$school_id])->latest()->first();
         $admition_id = $student->AdmissionID;
         $mutiple = (rand(1, 9));
@@ -167,15 +143,12 @@ class studentsController extends Controller
                  }
                  $admition_ID =  $admition_id;
                  return $admition_ID += $mutiple;
-
             }else{
                 $one = "0001";
                 $year = date("dmy");
                return $admition_ID = $school_id . $year . $one;
             }
     }
-
-
     public function word_digit($word)
     {
         $warr = explode(';', $word);
@@ -224,18 +197,14 @@ class studentsController extends Controller
     }
     public function StudentId($class, $roll,$school_id,$StudentGroup='Humanities')
     {
-
         $groupcode = 2;
         if($StudentGroup=='Science'){
             $groupcode=1;
-
         }elseif($StudentGroup=='Humanities'){
             $groupcode=2;
         }elseif($StudentGroup=='Commerce'){
             $groupcode=3;
         }
-
-
         $classidd = $this->word_digit($class);
         $classid = str_pad($classidd, 2, '0', STR_PAD_LEFT);
         $yearid = date("y");
@@ -244,7 +213,6 @@ class studentsController extends Controller
     }
     public function student_check(Request $r)
     {
-
         $school_id = $r->school_id;
         $class = $r->classvalue;
         if ($class == '') {
@@ -275,8 +243,6 @@ class studentsController extends Controller
         }
         return response()->json($data);
     }
-
-
     public function student_roll_check(Request $request)
     {
        $StudentRoll = $request->StudentRoll;
@@ -285,11 +251,6 @@ class studentsController extends Controller
        $year = date('Y');
        return student::where(['StudentRoll'=>$StudentRoll,'StudentClass'=>$StudentClass,'StudentGroup'=>$StudentGroup,'year'=>$year])->count();
     }
-
-
-
-
-
 public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 {
     $studentuserdata =[
@@ -303,32 +264,18 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     ];
     $user =   User::create($studentuserdata);
 }
-
     public function student_submit(Request $r)
     {
         $submit_type = $r->submit_type;
-
-
-
-
-
-
         $id = $r->id;
-        $data = $r->except('AdmissionID','StudentID');
+        $data = $r->except('AdmissionID','StudentID','StudentPicture');
         $school_id = $r->school_id;
-
         if($submit_type=='data_entry'){
-
-
-
             $StudentClass = $r->StudentClass;
             $StudentRoll = $r->StudentRoll;
-
-
             $year = date('Y');
             $StudentGroup = $r->StudentGroup;
 // return $this->StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
-
             $studentcount =  student::where(['StudentRoll'=>$StudentRoll,'StudentClass'=>$StudentClass,'StudentGroup'=>$StudentGroup,'year'=>$year])->count();
             if($studentcount>0){
                 $resp = [
@@ -337,17 +284,16 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                 ];
                 return $resp;
             }
-
-
-
              $data['StudentID'] = (string)$this->StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
+        }
+        $data['AdmissionID'] = (string)$this->StudentAdmissionId('',$school_id);
 
 
-
+        $imageCount =  count(explode(';', $r->StudentPicture));
+        if ($imageCount > 1) {
+            $data['StudentPicture'] =  fileupload($r->StudentPicture, 'backend/students/',300,300);
         }
 
-
-        $data['AdmissionID'] = (string)$this->StudentAdmissionId('',$school_id);
 
 
 
@@ -362,14 +308,8 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             $student = student::find($r->id);
             $result = $student->update($data);
         }
-
-
         return $result;
-
-
-        
     }
-
     public function imageupload(Request $request)
     {
         $id =  $request->id;
@@ -377,34 +317,18 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         if(File::exists($student->StudentPicture)){
             unlink($student->StudentPicture);
         }
-      $StudentPicture=  fileupload($request->StudentPicture,'backend/students/',250,300,$student->StudentID);
-
+      $StudentPicture=  fileupload($request->StudentPicture,'backend/students/',300,300,$student->StudentID);
         return $student->update(['StudentPicture'=>$StudentPicture]);
-
-
     }
-
     public function imageget(Request $request)
     {
         $id =  $request->id;
         $student = student::find($id);
-
     return   $StudentPicture=  base64($student->StudentPicture);
-
-
-
-
     }
-
-
     public function singlestudent(Request $request)
     {
-
         // return student::with(['Payments'])->get();
-
-
-
-
         $result = QueryBuilder::for(student::class)
             ->allowedFilters([
                 'StudentName',
@@ -453,7 +377,6 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         ini_set('max_execution_time', '60000');
         ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
         ini_set('memory_limit', '12008M');
-
         if ($datavalue == 'class') {
             if ($id == 'All') {
                 $data['rows'] = DB::table('students')->orderBy('StudentRoll', 'ASC')->get();
@@ -472,15 +395,8 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             $data['rows'] = DB::table('students')->where($wds)->orderBy('StudentRoll', 'ASC')->get();
         }
         $data['types'] = 'pdf';
-
-
         $data['sign'] = base64('backend/students/1654069265____2211001.png');
-
-
          $data['card'] = base64('frontend/jss.PNG');
-
-
-
         $fileName = 'cards-' . date('Y-m-d H:m:s');
         $data['fileName'] = $fileName;
         $foldername = $data['rows'][0]->school_id;
@@ -489,11 +405,6 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         $pdf = PDF::loadView('admin/cards.' . $foldername, $data);
         return $pdf->stream("$fileName.pdf");
     }
-
-
-
-
-
     public function student_attendance(Request $request)
     {
         $id = $request->id;
@@ -527,12 +438,6 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         }
         return response()->json($data);
     }
-
-
-
-
-
-
     public function student_attendance_count(Request $request)
     {
         $school_id = $request->school_id;
@@ -548,9 +453,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             $StudentRoll = $students->StudentRoll;
             $StudentClass = $students->StudentClass;
         }
-
 // return $students;
-
     // $monthCount = cal_days_in_month(CAL_GREGORIAN,$monthNumber,$year);
     $monthCount = date('t', mktime(0, 0, 0, $monthNumber, 1, $year));
     $attendance = [];
@@ -560,7 +463,6 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             $absent = 0;
         $date = $year.'-'.sprintf('%02d', $monthNumber).'-'.sprintf('%02d', $i);
         array_push($datearray,$date);
-
             if($type=='student'){
                 $filterdata = [
                     'school_id'=>$school_id,
@@ -574,16 +476,10 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                 ];
             }
         $datas =  Attendance::where($filterdata)->get();
-
-
      foreach ($datas as $key => $value) {
-
          foreach (json_decode($value->attendance) as $key => $value) {
-
-
             if($type=='student'){
                 if($value->stu_roll==$StudentRoll){
-
                     if($value->attendence=='Present'){
                         $present +=1;
                     }else{
@@ -597,12 +493,6 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                     $absent +=1;
                 }
             }
-
-
-
-
-
-
          }
      }
         array_push($attendance,[
@@ -611,18 +501,12 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             'absent'=>$absent,
         ]);
         }
-
         $presuntcount = [];
         $absentcount = [];
-
         foreach ($attendance as $key => $value) {
-
         array_push($presuntcount,$value['present']);
         array_push($absentcount,$value['absent']);
-
         }
-
-
         $presuntArray = [
             'label' => 'Present',
             'backgroundColor' => 'green',
@@ -637,31 +521,10 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             'borderColor' => 'red',
             'borderWidth' => 1
         ];
-
         // return $presuntArray;
-
-
 // die();
-
-
-
-
-
-
-
-
-
         return response()->json(['dates'=>$datearray,'present'=>$presuntArray,'absent'=>$absentArray]);
     }
-
-
-
-
-
-
-
-
-
     public function student_attendance_submit(Request $request)
     {
         $id = $request->id;
@@ -748,15 +611,11 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         $monthYear = explode('-', $date_month);
         //$cal = cal_days_in_month(CAL_GREGORIAN, $monthYear[1], $monthYear[0]);
 		$cal = date('t', mktime(0, 0, 0, $monthYear[1], 1, $monthYear[0]));
-
         $months = date('F', strtotime($date_month));
         $year = date('Y', strtotime($date_month));
         $students = student::where(['school_id' => $school_id, 'StudentClass' => $class, 'Year' => $year, 'StudentStatus' => 'Active'])->get();
         // die();
         $table = "
-
-
-
             <div class='heading-layout1'>
                 <div class='item-title'>
                     <h5>
@@ -802,23 +661,14 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         $table .= "</tbody>
             </table>
              </div>
-
-
-
         ";
         return $table;
     }
-
-
-
-
     public function attendence_sheet_result_pdf(Request $r, $school_id, $student_class, $view, $date)
     {
         ini_set('max_execution_time', '60000');
         ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
         ini_set('memory_limit', '12008M');
-
-
         $data['data'] = $view;
         $data['class'] = $student_class;
         $data['date_month'] = $date;
@@ -831,15 +681,12 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             ];
             $data['count'] = DB::table('attendances')->where($coutnWhere)->count();
             if ($data['count'] > 0) {
-
                 $aWhere = [
                     'date' => $date,
                     'student_class' => $student_class,
                     'school_id'=>$school_id
-
                 ];
                 $data['attten'] = DB::table('attendances')->where($aWhere)->get();
-
             } else {
                 $sWhere = [
                     'school_id' => $school_id,
@@ -850,8 +697,6 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                 $data['rows'] = DB::table('students')->where($sWhere)->orderBy('StudentRoll', 'ASC')->get();
             }
         }else if ($data['data'] == 'Monthly'){
-
-
             $aWhere = [
                 'month' => date("F", strtotime($date)),
                 'student_class' => $student_class,
@@ -865,9 +710,6 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                 'StudentStatus' => 'Active',
             ];
             $data['students'] = DB::table('students')->where($sWhere)->orderBy('StudentRoll', 'ASC')->get();
-
-
-
         }
         $data['sign'] = base64(sitedetails()->PRINCIPALS_Signature);
         $data['tt'] = 'pdf';
@@ -875,21 +717,9 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         return $pdf->stream($date.'.pdf');
         // return view('dashboard/attendence.attenFull', $data);
     }
-
-
-
-
-
-
-
-
-
-
-
     public function student_list_pdf(Request $r,$year,$class,$school_id)
     {
         $school_id = sitedetails()->school_id;
-
         $wd = [
             'school_id'=>$school_id,
             'StudentClass' => $class,
@@ -901,58 +731,44 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             $data['rows'] = DB::table('students')->where($wd)->orderBy('StudentRoll','ASC')->get();
         }
         $data['pdf']='pdf';
-
-
         // frontend/schoolLogo.png
-
         //in Controller
         // $pathgovlogo = 'frontend/schoolLogo.png';
         // $typegovlogo = pathinfo($pathgovlogo, PATHINFO_EXTENSION);
         // $dataigovlogo = file_get_contents($pathgovlogo);
         // $govlogo = 'data:image/' . $typegovlogo . ';base64,' . base64_encode($dataigovlogo);
         // $data['logo'] = $govlogo;
-
         $fileName = 'students-'.date('Y-m-d H:m:s');
-
         $data['fileName'] = $fileName;
         // return $data;
-
         $pdf = LaravelMpdf::loadView('admin/pdfReports.total_student', $data);
         return $pdf->stream("$fileName.pdf");
-
         // return view('', $data);
-
-
     }
-
-
         public function applicant_copy($applicant_id)
         {
-
-    // return $html;
-
-
+    // return $this->applicant_copy_html($applicant_id);
     $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4','default_font' => 'bangla','margin_left' => 5,
     'margin_right' => 5,
     'margin_top' => 6,
     'margin_bottom' => 6,]);
     $mpdf->WriteHTML($this->applicant_copy_html($applicant_id));
     $mpdf->Output('document.pdf','I');
-
         }
+
+
+
+
 
 
         public function applicant_copy_html($applicant_id)
         {
             $student =  student::where('AdmissionID',$applicant_id)->latest()->first();
 
+            $schoolDetails = school_detail::where('school_id',$student->school_id)->first();
 
             $html = '';
-
-
-
             $html="
-
             <!DOCTYPE HTML>
 <html lang='en-US'>
 <head>
@@ -962,23 +778,22 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         *{
             margin: 0;
             padding: 0;
-
         }
         .rootContainer {
             margin: 25px;
             border: 1px solid;
             padding: 5px 21px;
         }
-
         .tableTag, .tableTag td, .tableTag th {
         border: 1px solid #6c6c6c;
         border-collapse: collapse;
         padding: 3px 7px;
-        font-size:10px;
+        font-size:11px;
         }
         td.tableRowHead {
             background: #e9e9e9;
             color: black !important;
+            font-size:12px;
         }
         .fontsize1{
             font-size:16px;
@@ -995,67 +810,53 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     </style>
 </head>
 <body>
-
     <div class='rootContainer'>
-
         <div class='headerSection'>
-
             <table width='100%'>
                 <tr>
-                    <td>
-                        <p class='fontsize1'>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার </p>
-                        <p class='fontsize2'>মাধ্যমিক ও উচ্চমাধ্যমিক শিক্ষা অধিদপ্তর</p>
-
+                    <td width='110px'>
+                        <img width='75px'  style='overflow:hidden;float:right' src='".base64($schoolDetails->logo)."' alt=''>
                     </td>
+                    <td>
+                        <p class='fontsize2'>$schoolDetails->SCHOLL_NAME</p>
+                        <p class='fontsize1'>$schoolDetails->SCHOLL_ADDRESS </p>
+                    </td>
+
                     <td style='text-align: right'>
                         <p>Applicant's Copy</p>
                     </td>
                 </tr>
             </table>
-
             <p style='    border-bottom: 3px solid #808080;    margin-top: 10px; margin-bottom: 20px;'></p>
-            <h3 style='text-align:center' class='copyTitle'>সরকারি বিদ্যালয় সমূহের ভর্তি ২০২৩</h3>
+
+            <div class='imgdiv'>
+            <img width='100px'  style='overflow:hidden;float:right' src='".base64($student->StudentPicture)."' alt=''>
+            </div>
+
+
 
             <table class='tableTag' width='100%' style='margin-top:20px ;margin-bottom:20px ;'>
-
                 <tr>
-                    <td width='15%' class='tableRowHead' >Admssion Id</td>
+                    <td width='18%' class='tableRowHead' >Admssion Id</td>
                     <td colspan='3'>$student->AdmissionID</td>
                 </tr>
-
-
                 <tr>
                     <td class='tableRowHead' >Class</td>
                     <td>$student->StudentClass</td>
                     <td class='tableRowHead'  width='10%'>Group</td>
                     <td>$student->StudentGroup</td>
                 </tr>
-
-
             </table>
-
-
             <table class='tableTag' width='100%' style='margin-top:20px ;margin-bottom:20px ;'>
-
                 <tr>
-                    <td class='tableRowHead'  width='20%'>Name</td>
-                    <td colspan='3'>$student->StudentName</td>
-                    <td width='20%' style='padding:0 !important;' rowspan='6'><img width='180px' style='overflow:hidden' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfOcr1OHnhhPCnQZrdBTc4kaopGN_phjZ8QQ&usqp=CAU' alt=''></td>
-                </tr>
-
-
-                <tr>
-                    <td class='tableRowHead' >Father Name</td>
-                    <td>$student->StudentFatherNameBn</td>
-                    <td class='tableRowHead'  width='13%'>Nid</td>
-                    <td>$student->StudentFatherNid</td>
-
+                    <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px' >Student</td>
                 </tr>
                 <tr>
-                    <td class='tableRowHead' >Mother Name</td>
-                    <td>$student->StudentMotherNameBn</td>
-                    <td class='tableRowHead' >Nid</td>
-                    <td>$student->StudentMotherNid</td>
+                    <td class='tableRowHead'  width='20%'>Name (বাংলা)</td>
+                    <td>$student->StudentName</td>
+                    <td class='tableRowHead'  width='20%'>Name (English)</td>
+                    <td>$student->StudentNameEn</td>
+
                 </tr>
                 <tr>
                     <td class='tableRowHead' >Date of Birth</td>
@@ -1064,78 +865,130 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                     <td>$student->StudentBirthCertificateNo</td>
                 </tr>
                 <tr>
-                    <td class='tableRowHead' >Mobile No.</td>
-                    <td>$student->StudentPhoneNumber</td>
+
                     <td class='tableRowHead' >Nationality</td>
-                    <td>Banglideshi</td>
+                    <td colspan='3'>Banglideshi</td>
                 </tr>
                 <tr>
                     <td class='tableRowHead' >Gender</td>
-                    <td colspan='3'>$student->StudentGender</td>
+                    <td>$student->StudentGender</td>
+                    <td class='tableRowHead' >Religion </td>
+                    <td>$student->StudentReligion </td>
+                </tr>
+
+
+
+
+                <tr>
+                <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px'  >Father</td>
+            </tr>
+                <tr>
+                    <td class='tableRowHead' >Father Name (বাংলা)</td>
+                    <td>$student->StudentFatherNameBn</td>
+                    <td class='tableRowHead' >Father Name (English)</td>
+                    <td>$student->StudentFatherName</td>
+
                 </tr>
                 <tr>
-                    <td class='tableRowHead' >Guard. Name</td>
-                    <td></td>
-                    <td class='tableRowHead' >Guard. Nid</td>
-                    <td colspan='2'></td>
+
+                    <td class='tableRowHead'  width='15%'>Nid</td>
+                    <td>$student->StudentFatherNid</td>
+                    <td class='tableRowHead'  width='15%'>Birth Reg</td>
+                    <td>$student->StudentFatherBCN</td>
+                </tr>
+                <tr>
+                <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px'  >Mother</td>
+            </tr>
+                <tr>
+                    <td class='tableRowHead' >Mother Name (বাংলা)</td>
+                    <td>$student->StudentMotherNameBn</td>
+                    <td class='tableRowHead' >Mother Name (English)</td>
+                    <td>$student->StudentMotherName</td>
+
+                </tr>
+                <tr>
+
+                    <td class='tableRowHead' >Nid</td>
+                    <td>$student->StudentMotherNid</td>
+                    <td class='tableRowHead'  width='15%'>Birth Reg</td>
+                    <td>$student->StudentMotherBCN</td>
+                </tr>
+
+
+
+                <tr>
+                <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px'  >Guardian</td>
+            </tr>
+
+
+
+
+                <tr>
+                    <td class='tableRowHead' >Guard. Name (বাংলা)</td>
+                    <td>$student->guardNameBn</td>
+                    <td class='tableRowHead' >Guard. Name (English)</td>
+                    <td>$student->guardName</td>
+
+                </tr>
+                <tr>
+                <td class='tableRowHead' >Guard. Nid</td>
+                <td>$student->guardNid</td>
+                <td class='tableRowHead' >Guard. Rel</td>
+                <td>$student->guardRalation</td>
+
+                </tr>
+
+                <tr>
+                <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px'  >Others</td>
+            </tr>
+                <tr>
+                    <td class='tableRowHead' >Student Quota</td>
+                    <td>$student->StudentKota</td>
+                    <td class='tableRowHead' >Sonod No</td>
+                    <td >$student->StudentKotaSonodNo</td>
+                </tr>
+                <tr>
+                    <td class='tableRowHead' >Student Category</td>
+                    <td colspan='3'>$student->StudentCategory</td>
+                </tr>
+                <tr>
+                <td class='tableRowHead' >Mobile No.</td>
+                <td  colspan='3'>$student->StudentPhoneNumber</td>
                 </tr>
                 <tr>
                     <td class='tableRowHead' >Prev School</td>
-                    <td colspan='4'>$student->preSchool</td>
+                    <td colspan='3'>$student->preSchool</td>
                 </tr>
                 <tr>
                     <td class='tableRowHead' >Prev Class</td>
-                    <td colspan='4'>$student->preClass</td>
+                    <td colspan='3'>$student->preClass</td>
                 </tr>
                 <tr>
                     <td class='tableRowHead' >Present Address</td>
-                    <td colspan='4'>$student->StudentAddress</td>
+                    <td colspan='3'>বিভাগঃ- $student->division, জেলাঃ- $student->district, উপজেলাঃ- $student->upazila, ইউনিয়নঃ- $student->union, পোস্ট অফিসঃ- $student->post_office($student->AreaPostalCode), গ্রামঃ- $student->StudentAddress</td>
                 </tr>
                 <tr>
                     <td class='tableRowHead' >Permanent Address</td>
-                    <td colspan='4'>$student->StudentAddress</td>
+                    <td colspan='3'>বিভাগঃ- $student->division, জেলাঃ- $student->district, উপজেলাঃ- $student->upazila, ইউনিয়নঃ- $student->union, পোস্ট অফিসঃ- $student->post_office($student->AreaPostalCode), গ্রামঃ- $student->StudentAddress</td>
                 </tr>
-
-
             </table>
-
-
             <table class='tableTag' width='100%' style='margin-top:20px ;margin-bottom:20px ;'>
-
-
-
                 <tr>
                     <td class='tableRowHead'  width='15%'>Applied On</td>
                     <td>$student->JoiningDate</td>
                     <td  class='tableRowHead' width='15%'>Printed On</td>
                     <td>".date('Y-m-d')."</td>
-
                 </tr>
-
                 <tr>
                     <td class='tableRowHead'>Declaration</td>
-                    <td colspan='3'>sdfghj</td>
-
-
-
+                    <td colspan='3'>I declare that the information provided in this form is correct, true and complete to the best of my knowledge and belief. If any information is found false, incorrect and incomplete or if any ineligibility is detected before or after the examination, any action can be taken against me by the Authority.</td>
                 </tr>
-
-
-
             </table>
-
         </div>
-
     </div>
-
-
 </body>
 </html>
-
-
             ";
-
 return $html;
         }
-
 }

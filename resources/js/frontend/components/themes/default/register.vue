@@ -35,6 +35,7 @@
 
 
 
+
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">নাম (বাংলা)</label>
@@ -206,8 +207,8 @@
 
                 <div class="col-md-4"  >
                     <div class="form-group">
-                        <label class="form_label">Student category</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentCategory" name="Student category" v-validate="'required'" data-vv-scope="step1" >
+                        <label class="form_label">শিক্ষার্থীর ধরন</label>
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentCategory" name="শিক্ষার্থীর-ধরন" v-validate="'required'" data-vv-scope="step1" >
                             <option value="">Select Student category</option>
                             <option>কর্মজীবী শিক্ষার্থী</option>
                             <option>ভূমিহীন অভিভাবকের সন্তান</option>
@@ -217,8 +218,8 @@
                             <option>অনাথ/এতিম শিক্ষা</option>
                             <option>অন্যান্য</option>
                         </select>
-                         <p class="help is-danger" v-show="errors.has('step1.Student category')">
-                             {{ errors.first('step1.Student category') }}
+                         <p class="help is-danger" v-show="errors.has('step1.শিক্ষার্থীর-ধরন')">
+                             {{ errors.first('step1.শিক্ষার্থীর-ধরন') }}
                           </p>
                     </div>
                     </div>
@@ -235,13 +236,26 @@
                             <option>অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান</option>
                             <option>প্রতিবন্ধী</option>
                             <option>সাধারণ কোটা</option>
-                            <option>কোন কোটা নেই</option>
                         </select>
                          <p class="help is-danger" v-show="errors.has('step1.কোটা')">
                              {{ errors.first('step1.কোটা') }}
                           </p>
                     </div>
                     </div>
+
+                    <div class="col-md-4" v-if="form.StudentKota=='মুক্তিযোদ্ধার সন্তান, নাতী নাতনী'">
+                    <div class="form-group">
+                        <label class="form_label">মুক্তিযোদ্ধা কোটা সনদ নং </label>
+                        <input class="form-control" type="text"  placeholder="মুক্তিযোদ্ধা কোটা সনদ নং" v-model="form.StudentKotaSonodNo" name="মুক্তিযোদ্ধা কোটা সনদ নং" v-validate="'required'"   data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.মুক্তিযোদ্ধা কোটা সনদ নং')">
+                             {{ errors.first('step1.মুক্তিযোদ্ধা কোটা সনদ নং') }}
+                          </p>
+                    </div>
+                </div>
+
+
+
+
 
                 <div class="col-md-4">
                     <div class="form-group">
@@ -252,6 +266,10 @@
                           </p>
                     </div>
                 </div>
+
+
+
+
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পূর্বে অধ্যায়নরত শ্রেণি</label>
@@ -321,15 +339,100 @@
 
 
 
+
+
                 <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="labelColor">বিভাগ</label>
+
+                            <select class='form-control' name="বিভাগ" id="division" v-model="Pdivision" @change="getdistrictFun" v-validate="'required'" data-vv-scope="step1" >
+                                <option value="">বিভাগ নির্বাচন করুন</option>
+                                <option v-for="div in getdivisions" :key="div.id" :value="div.id">{{ div.bn_name }}
+                                </option>
+                            </select>
+                            <p class="help is-danger" v-show="errors.has('step1.বিভাগ')">
+                             {{ errors.first('step1.বিভাগ') }}
+                          </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form_label">ঠিকানা</label>
-                        <input class="form-control" type="text"  placeholder="ঠিকানা" v-model="form.StudentAddress" name="ঠিকানা" v-validate="'required'" data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.ঠিকানা')">
-                             {{ errors.first('step1.ঠিকানা') }}
+                        <label for="" class="labelColor">জেলা</label>
+
+                        <select class='form-control' name="জেলা" id="district" v-model="applicant_present_district" @change="getthanaFun" v-validate="'required'" data-vv-scope="step1" >
+                            <option value="">জেলা নির্বাচন করুন</option>
+                            <option v-for="dist in getdistricts" :key="dist.id" :value="dist.id">{{ dist.bn_name }}
+                            </option>
+                        </select>
+                        <p class="help is-danger" v-show="errors.has('step1.জেলা')">
+                             {{ errors.first('step1.জেলা') }}
                           </p>
                     </div>
                 </div>
+
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="labelColor">উপজেলা/থানা</label>
+
+                        <select class='form-control' name="উপজেলা/থানা" id="thana" v-model="thana" @change="getuniounFun" v-validate="'required'" data-vv-scope="step1" >
+                            <option value="">উপজেলা নির্বাচন করুন</option>
+                            <option v-for="thana in getthanas" :key="thana.id" :value="thana.id">{{ thana.bn_name
+                            }}</option>
+                        </select>
+
+                        <p class="help is-danger" v-show="errors.has('step1.উপজেলা/থানা')">
+                             {{ errors.first('step1.উপজেলা/থানা') }}
+                          </p>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="labelColor">ইউনিয়ন</label>
+
+                        <select class='form-control' name="ইউনিয়ন" id="thana" v-model="form.union"  v-validate="'required'" data-vv-scope="step1" >
+                            <option value="">ইউনিয়ন নির্বাচন করুন</option>
+                            <option v-for="union in getuniouns" :key="union.id" :value="union.bn_name">{{ union.bn_name
+                            }}</option>
+                        </select>
+
+                        <p class="help is-danger" v-show="errors.has('step1.ইউনিয়ন')">
+                             {{ errors.first('step1.ইউনিয়ন') }}
+                          </p>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="" class="labelColor">পোষ্ট অফিস</label>
+                        <input type="text" class="form-control" name="পোষ্ট অফিস" v-model="form.post_office" v-validate="'required'" data-vv-scope="step1" >
+                    </div>
+                    <p class="help is-danger" v-show="errors.has('step1.পোষ্ট অফিস')">
+                             {{ errors.first('step1.পোষ্ট অফিস') }}
+                          </p>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">গ্রাম</label>
+                        <input class="form-control" type="text"  placeholder="ঠিকানা" v-model="form.StudentAddress" name="গ্রাম" v-validate="'required'" data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.গ্রাম')">
+                             {{ errors.first('step1.গ্রাম') }}
+                          </p>
+                    </div>
+                </div>
+
+
+
+
+
+
 
 
                 <div class="col-md-4">
@@ -465,7 +568,16 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের নাম</label>
+                        <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের নাম (বাংলা)</label>
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম" v-model="form.guardNameBn" name="পিতা/মাতা না থাকলে অভিভাবকের নাম"  v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের নাম')">
+                             {{ errors.first('step2.পিতা/মাতা না থাকলে অভিভাবকের নাম') }}
+                          </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের নাম (English)</label>
                         <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম" v-model="form.guardName" name="পিতা/মাতা না থাকলে অভিভাবকের নাম"  v-validate="'required'" data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের নাম')">
                              {{ errors.first('step2.পিতা/মাতা না থাকলে অভিভাবকের নাম') }}
@@ -478,6 +590,18 @@
                     <div class="form-group">
                         <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং</label>
                         <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardNid" name="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং"  v-validate="'required'" data-vv-scope="step2" />
+                         <p class="help is-danger" v-show="errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং')">
+                             {{ errors.first('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং') }}
+                          </p>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">অভিভাবকের সাথে শিক্ষার্থীর সম্পর্ক</label>
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardRalation" name="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং"  v-validate="'required'" data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং')">
                              {{ errors.first('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং') }}
                           </p>
@@ -574,45 +698,173 @@
                 </div>
           </tab>
           <tab name="Preview" info="Finishing Up" >
-                <div class="row">
-
-                    <div class="col-md-12"><h2 class="previewHead">ছাত্র/ছাত্রীর তথ্য</h2></div>
-                    <div class="col-md-6"><b>ভর্তি আইডি : </b>{{ this.form.AdmissionID }}</div>
-                    <div class="col-md-6"><b>শ্রেণি : </b>{{ this.form.StudentClass }}</div>
-                    <div class="col-md-6"><b>লিঙ্গ : </b>{{ this.form.StudentGender }}</div>
-                    <div class="col-md-6"><b>ধর্ম : </b>{{ this.form.StudentReligion }}</div>
-                    <div class="col-md-6"><b>নাম (বাংলা) : </b>{{ this.form.StudentName }}</div>
-                    <div class="col-md-6"><b>নাম (English) : </b>{{ this.form.StudentNameEn }}</div>
-
-                    <div class="col-md-6"><b>জন্ম তারিখ : </b>{{ this.form.StudentDateOfBirth }}</div>
-                    <div class="col-md-6"><b>জন্ম নিবন্ধন নং : </b>{{ this.form.StudentBirthCertificateNo }}</div>
-                    <div class="col-md-6"><b>Student category : </b>{{ this.form.StudentCategory }}</div>
-                    <div class="col-md-6"><b>কোটা : </b>{{ this.form.StudentKota }}</div>
-                    <div class="col-md-6"><b>কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না : </b>{{ this.form.bigBroSis }}</div>
-                    <div class="col-md-6"><b>অধ্যয়নরত ভাই/বোনের নাম : </b>{{ this.form.bigBroSisName }}</div>
-                    <div class="col-md-6"><b>অধ্যয়নরত ভাই/বোনের শ্রেণি : </b>{{ this.form.bigBroSisClass }}</div>
-                    <div class="col-md-6"><b>অধ্যয়নরত ভাই/বোনের রোল : </b>{{ this.form.bigBroSisRoll }}</div>
-                    <div class="col-md-6"><b>গ্রুপ : </b>{{ this.form.StudentGroup }}</div>
-                    <div class="col-md-6"><b>ঠিকানা : </b>{{ this.form.StudentAddress }}</div>
-                    <div class="col-md-6"><b>মোবাইল নাম্বার : </b>{{ this.form.StudentPhoneNumber }}</div>
-                    <div class="col-md-6"><b>পোস্টাল কোড : </b>{{ this.form.AreaPostalCode }}</div>
-
-                    <div class="col-md-12"><h2 class="previewHead">অভিভাবকের তথ্য</h2></div>
-
-                    <div class="col-md-6"><b>পিতার নাম (বাংলা) : </b>{{ this.form.StudentFatherNameBn }}</div>
-                    <div class="col-md-6"><b>পিতার নাম (English) : </b>{{ this.form.StudentFatherName }}</div>
-                    <div class="col-md-6"><b>মাতার নাম (বাংলা) : </b>{{ this.form.StudentMotherNameBn }}</div>
-                    <div class="col-md-6"><b>মাতার নাম (English) : </b>{{ this.form.StudentMotherName }}</div>
-                    <div class="col-md-6"><b>পিতার জাতীয় পরিচয় পত্র নং : </b>{{ this.form.StudentFatherNid }}</div>
-                    <div class="col-md-6"><b>মাতার জাতীয় পরিচয় পত্র নং : </b>{{ this.form.StudentMotherNid }}</div>
-                    <div class="col-md-6"><b>পিতার জন্ম নিবন্ধন নং : </b>{{ this.form.StudentFatherBCN }}</div>
-                    <div class="col-md-6"><b>মাতার জন্ম নিবন্ধন নং : </b>{{ this.form.StudentMotherBCN }}</div>
-                    <div class="col-md-6"><b>অভিভাবকের মাসিক আয় : </b>{{ this.form.parentEarn }}</div>
-                    <div class="col-md-6"><b>অভিভাবকের পেশা : </b>{{ this.form.StudentFatherOccupation }}</div>
 
 
 
-                </div>
+
+    <div class="rootContainer">
+
+        <div class="headerSection">
+
+            <div class="topHeadSection" style="text-align: center;position:relative;display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 200px;">
+			   <div class="titleHead"  style="text-align: center;">
+                <h3>টেপ্রীগঞ্জ আদর্শ দ্বি-মুখী উচ্চ বিদ্যালয়</h3>
+                <p>টেপ্রীগঞ্জ, দেবীগঞ্জ, পঞ্চগড়</p>
+                <p>শিক্ষাবর্ষ-২০২৩ খ্রি</p>
+					</div>
+
+				<div class="fileUpload">
+				<label for="fileupload" id="fileChoiceLable">
+					<img width="100%" height="100%" :src="form.StudentPicture" v-if="form.StudentPicture" alt="" />
+                    <span style="text-align: center;" v-else >Click Here to Upload Student Image</span>
+
+				</label>
+					<input type="file" id="fileupload" style="display:none"  @change="FileSelected($event, 'StudentPicture')" />
+
+				</div>
+
+
+            </div>
+
+            <table class="tableTag" width="100%" style="margin-top:20px ;margin-bottom:20px ;">
+
+                <tr>
+                    <th>শ্রেণিঃ {{ form.StudentClass }}</th>
+                    <th>ধর্মঃ {{ form.StudentReligion }}</th>
+                    <th>লিঙ্গঃ {{ form.StudentGender }}</th>
+                    <th>গ্রুপঃ {{ form.StudentGroup }}</th>
+                </tr>
+
+                <tr>
+                    <th>শিক্ষার্থীর নাম (বাংলা) </th>
+                    <th>শিক্ষার্থীর নাম (English) </th>
+                    <th>শিক্ষার্থীর জন্ম তারিখ </th>
+                    <th>শিক্ষার্থীর জন্ম নিবন্ধন নং </th>
+
+                </tr>
+                <tr>
+                    <td> {{ form.StudentName }}</td>
+                    <td> {{ form.StudentNameEn }}</td>
+                    <td> {{ form.StudentDateOfBirth }}</td>
+                    <td> {{ form.StudentBirthCertificateNo }}</td>
+
+                </tr>
+                <tr>
+                    <th>পিতার নাম (বাংলা) </th>
+                    <th>পিতার নাম (English) </th>
+                    <th>পিতার জাতীয় পরিচয়পত্র নং </th>
+                    <th>পিতার জন্ম নিবন্ধন নং </th>
+
+                </tr>
+                <tr>
+                    <td>{{ form.StudentFatherNameBn }}</td>
+                    <td>{{ form.StudentFatherName }}</td>
+                    <td>{{ form.StudentFatherNid }}</td>
+                    <td>{{ form.StudentFatherBCN }}</td>
+
+                </tr>
+                <tr>
+                    <th>মাতার নাম (বাংলা) </th>
+                    <th>মাতার নাম (English) </th>
+                    <th>মাতার জাতীয় পরিচয়পত্র নং </th>
+                    <th>মাতার জন্ম নিবন্ধন নং </th>
+
+                </tr>
+                <tr>
+                    <td>{{ form.StudentMotherNameBn }}</td>
+                    <td>{{ form.StudentMotherName }}</td>
+                    <td>{{ form.StudentMotherNid }}</td>
+                    <td>{{ form.StudentMotherBCN }}</td>
+
+                </tr>
+
+                <tr>
+                    <th>পিতা/মাতা জীবিত না থাকলে অভিভাবকের নাম (বাংলা)</th>
+                    <th>অভিভাবকের নাম (English) </th>
+                    <th>অভিভাবকের জাতীয় পরিচয়পত্র নং </th>
+                    <th>অভিভাবকের সাথে শিক্ষার্থীর সম্পর্ক </th>
+                </tr>
+                <tr>
+                    <td>{{ form.guardNameBn }}</td>
+                    <td>{{ form.guardName }}</td>
+                    <td>{{ form.guardNid }}</td>
+                    <td >{{ form.guardRalation }}</td>
+
+                </tr>
+                <tr>
+                    <th>অভিভাবকের পেশা</th>
+
+
+                    <td colspan="3">{{ form.StudentFatherOccupation }}</td>
+                </tr>
+                <tr>
+                    <th>অভিভাবকের মাসিক আয়</th>
+
+
+                    <td colspan="3">{{ form.parentEarn }}</td>
+                </tr>
+                <tr>
+                    <th>মোবাইল নাম্বার</th>
+
+
+                    <td colspan="3">{{ form.StudentPhoneNumber }}</td>
+                </tr>
+
+                <tr>
+                    <th colspan="2">শিক্ষার্থীর ধরন</th>
+                    <th colspan="2">শিক্ষার্থীর কোটা</th>
+
+                </tr>
+                <tr>
+                    <td colspan="2">{{ form.StudentName }}</td>
+                    <td colspan="2">{{ form.StudentKota }}</td>
+
+
+                </tr>
+
+                <tr>
+                    <th colspan="2">পূর্বে অধ্যায়নরত স্কুল এর নাম</th>
+                    <th colspan="2">পূর্বে অধ্যায়নরত শ্রেণি</th>
+
+                </tr>
+                <tr>
+                    <td colspan="2">{{ form.preSchool }}</td>
+                    <td colspan="2">{{ form.preClass }}</td>
+                </tr>
+
+
+
+                <tr>
+                    <th>কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না</th>
+                    <th>অধ্যয়নরত ভাই/বোনের নাম</th>
+                    <th>অধ্যয়নরত ভাই/বোনের শ্রেণি</th>
+                    <th>অধ্যয়নরত ভাই/বোনের রোল</th>
+                </tr>
+                <tr>
+                    <td>{{ form.bigBroSis }}</td>
+                    <td>{{ form.bigBroSisName }}</td>
+                    <td>{{ form.bigBroSisClass }}</td>
+                    <td>{{ form.bigBroSisRoll }}</td>
+
+                </tr>
+                <tr>
+                    <th>ঠিকানা</th>
+                    <td colspan="3">বিভাগঃ- {{ form.division }}, জেলাঃ- {{ form.district }}, উপজেলাঃ- {{ form.upazila }}, ইউনিয়নঃ- {{ form.union }}, পোস্ট অফিসঃ- {{ form.post_office }}({{ form.AreaPostalCode }}), গ্রামঃ- {{ form.StudentAddress }}</td>
+                </tr>
+
+
+            </table>
+
+
+
+        </div>
+
+    </div>
+
+
           </tab>
 
 
@@ -687,8 +939,10 @@ export default {
             StudentMotherNid:null,
             StudentFatherBCN:null,
             StudentMotherBCN:null,
+            guardNameBn:null,
             guardName:null,
             guardNid:null,
+            guardRalation:null,
             StudentFatherOccupation:null,
             parentEarn:null,
             StudentMotherOccupation:null,
@@ -700,6 +954,7 @@ export default {
             StudentBirthCertificateNo:null,
             StudentCategory:null,
             StudentKota:null,
+            StudentKotaSonodNo:null,
             preSchool:null,
             preClass:null,
             bigBroSis:"No",
@@ -708,6 +963,11 @@ export default {
             bigBroSisRoll:null,
             StudentGroup:null,
             StudentAddress:null,
+            division:null,
+            district:null,
+            upazila:null,
+            union:null,
+            post_office:null,
             StudentPhoneNumber:null,
             AreaPostalCode:null,
             StudentStatus:'Pending',
@@ -718,7 +978,18 @@ export default {
             AplicationStatus:null,
             ThisMonthPaymentStatus:null,
 
-        }
+        },
+
+        getdivisions: {},
+            getdistricts: {},
+            getthanas: {},
+            getuniouns: {},
+
+            Pdivision: '',
+            Perdivision: '',
+            applicant_present_district: '',
+            thana: '',
+            applicant_permanent_district: '',
 
 
 
@@ -738,6 +1009,21 @@ export default {
 
     mounted(){
         this.totalTabs = this.tabs.length;
+        this.getdivisionFun();
+        this.Pdivision = 7
+        this.applicant_present_district = 53
+        this.thana = 400
+        this.form.union = 'টেপ্রীগঞ্জ'
+        setTimeout(() => {
+            this.getdistrictFun()
+            setTimeout(() => {
+                this.getthanaFun();
+                setTimeout(() => {
+                this.getuniounFun();
+            }, 500);
+            }, 500);
+
+        }, 500);
 
     },
 
@@ -805,6 +1091,59 @@ export default {
 
   },
     methods:{
+
+
+
+
+        FileSelected($event, parent_index) {
+            let file = $event.target.files[0];
+            // console.log(file)
+            if (file.size > 5048576) {
+                Notification.image_validation();
+            } else {
+                let reader = new FileReader;
+                reader.onload = event => {
+
+
+console.log(event.target.result)
+
+   //Initiate the JavaScript Image object.
+   var image = new Image();
+
+ //Set the Base64 string return from FileReader as source.
+ image.src = event.target.result;
+
+ //Validate the File Height and Width.
+
+ var formThis = this;
+
+ image.onload = function () {
+    var height = this.height;
+     var width = this.width;
+    //  console.log( width,height)
+     if (height===width) {
+        formThis.form[parent_index] = event.target.result
+         return false;
+     }
+     alert("Uploaded image has valid Height and Width.");
+     return true;
+ };
+
+
+
+
+
+
+
+
+
+
+
+                };
+                reader.readAsDataURL(file)
+            }
+            //   console.log($event.target.result);
+        },
 
 
             checkstudent(){
@@ -875,7 +1214,44 @@ export default {
 
 
 
+        async getdivisionFun() {
+            var res = await this.callApi('get', `/api/getdivisions`, []);
+            this.getdivisions = res.data;
+        },
 
+        async getdistrictFun() {
+            var resdiv = await this.callApi('get', `/api/getdivisions?id=${this.Pdivision}`, []);
+            // console.log(resdiv)
+            this.form.division= resdiv.data.bn_name
+            var res = await this.callApi('get', `/api/getdistrict?id=${this.Pdivision}`, []);
+            this.getdistricts = res.data;
+
+
+
+
+        },
+
+        async getthanaFun() {
+            var res = await this.callApi('get', `/api/getthana?id=${this.applicant_present_district}`, []);
+            this.getthanas = res.data;
+            var resOwn = await this.callApi('get', `/api/getdistrict?ownid=${this.applicant_present_district}`, []);
+            this.form.district = resOwn.data.bn_name
+
+        },
+
+        async getuniounFun() {
+
+
+            var ress = await this.callApi('get', `/api/getthana?ownid=${this.thana}`, []);
+            // console.log(ress.data.bn_name);
+            this.form.upazila = ress.data.bn_name;
+            // this.getuniouns = ress.data;
+
+            var res = await this.callApi('get', `/api/getunioun?id=${this.thana}`, []);
+            this.getuniouns = res.data;
+
+
+        },
 
 
 
@@ -959,6 +1335,47 @@ label.form_label {
 p.help.is-danger {
     font-size: 15px;
     font-family: sans-serif;
+}
+
+
+
+
+.fileUpload {
+    width: 195px;
+    height: 195px;
+    border: 1px solid;
+	position: absolute;
+    top: 0;
+    right: 0;
+}
+#fileChoiceLable{
+	width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
+
+        .rootContainer {
+            margin: 25px;
+            border: 1px solid;
+            padding: 5px 21px;
+        }
+        .tableTag, .tableTag td, .tableTag th {
+        border: 1px solid;
+        border-collapse: collapse;
+        padding: 3px 7px;
+        }
+        td.tableRowHead {
+    background: #d1d1d1;
+}
+
+td {
+    height: 20px;
 }
 
 </style>

@@ -9,8 +9,10 @@ use App\Http\Controllers\api\BlogController;
 use App\Http\Controllers\frontendController;
 use  App\Http\Controllers\api\authController;
 use App\Http\Controllers\api\EventController;
+use App\Http\Controllers\SchoolFeeController;
 use App\Http\Controllers\api\resultController;
 use App\Http\Controllers\api\staffsController;
+use App\Http\Controllers\countryApiController;
 use App\Http\Controllers\OnlineexamController;
 use App\Http\Controllers\api\GalleryController;
 use App\Http\Controllers\api\PaymentController;
@@ -19,7 +21,6 @@ use App\Http\Controllers\api\HomeworkController;
 use App\Http\Controllers\api\studentsController;
 use App\Http\Controllers\QuestionbankController;
 use App\Http\Controllers\api\SchoolDetailController;
-use App\Http\Controllers\SchoolFeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,14 @@ Route::group([
 
 
 
+
+
+// country api
+Route::get('/getdivisions', [countryApiController::class,'getdivisions']);
+Route::get('/getdistrict', [countryApiController::class,'getdistrict']);
+Route::get('/getthana', [countryApiController::class,'getthana']);
+Route::get('/getunioun', [countryApiController::class,'getunioun']);
+Route::get('/gotoUnion', [countryApiController::class,'gotoUnion']);
 
 
 
