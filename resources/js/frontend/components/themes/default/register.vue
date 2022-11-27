@@ -62,17 +62,17 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form_label">শ্রেণি</label>
+                        <label class="form_label">যে শ্রেণিতে ভর্তি হতে ইচ্ছুক</label>
 
 
-                            <select  class="form-control"  style="width: 100%;" v-model="form.StudentClass" name="শ্রেণি"  v-validate="'required'" data-vv-scope="step1">
+                            <select  class="form-control"  style="width: 100%;" v-model="form.StudentClass" name="যে শ্রেণিতে ভর্তি হতে ইচ্ছুক"  v-validate="'required'" data-vv-scope="step1">
                                 <option value="">
                                     নির্বাচন করুন
                                 </option>
                                 <option v-for="classlist in classess">{{ classlist }}</option>
                             </select>
-                         <p class="help is-danger" v-show="errors.has('step1.শ্রেণি')">
-                             {{ errors.first('step1.শ্রেণি') }}
+                         <p class="help is-danger" v-show="errors.has('step1.যে শ্রেণিতে ভর্তি হতে ইচ্ছুক')">
+                             {{ errors.first('step1.যে শ্রেণিতে ভর্তি হতে ইচ্ছুক') }}
                           </p>
                     </div>
 
@@ -139,9 +139,13 @@
                             <option value="Hindu">
                                 হিন্দু
                             </option>
-                            <option value="Other">
-                                অন্যান্য
+                            <option value="Buddhist">
+                                বৌদ্ধ
                             </option>
+                            <option value="Christian">
+                                খ্রিষ্টান
+                            </option>
+
                         </select>
                          <p class="help is-danger" v-show="errors.has('step1.ধর্ম')">
                              {{ errors.first('step1.ধর্ম') }}
@@ -209,10 +213,9 @@
                     <div class="form-group">
                         <label class="form_label">শিক্ষার্থীর ধরন</label>
                         <select class="form-control" style="width: 100%;" v-model="form.StudentCategory" name="শিক্ষার্থীর-ধরন" v-validate="'required'" data-vv-scope="step1" >
-                            <option value="">Select Student category</option>
+                            <option value="">নির্বাচন করুন</option>
                             <option>কর্মজীবী শিক্ষার্থী</option>
                             <option>ভূমিহীন অভিভাবকের সন্তান</option>
-                            <option>মুক্তিযোদ্ধা পোষা/নাতি-নাতনি</option>
                             <option>ক্ষুদ্র নৃ-গোষ্ঠী শিক্ষার্থী</option>
                             <option>বিশেষ চাহিদা সম্পন্ন শিক্ষার্থী</option>
                             <option>অনাথ/এতিম শিক্ষা</option>
@@ -232,7 +235,7 @@
                             <option value="">
                                 নির্বাচন করুন
                             </option>
-                            <option>মুক্তিযোদ্ধার সন্তান, নাতী নাতনী</option>
+                            <option>মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী</option>
                             <option>অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান</option>
                             <option>প্রতিবন্ধী</option>
                             <option>সাধারণ কোটা</option>
@@ -243,9 +246,9 @@
                     </div>
                     </div>
 
-                    <div class="col-md-4" v-if="form.StudentKota=='মুক্তিযোদ্ধার সন্তান, নাতী নাতনী'">
+                    <div class="col-md-4" v-if="form.StudentKota=='মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী'">
                     <div class="form-group">
-                        <label class="form_label">মুক্তিযোদ্ধা কোটা সনদ নং </label>
+                        <label class="form_label">মুক্তিযোদ্ধার সনদ নং </label>
                         <input class="form-control" type="text"  placeholder="মুক্তিযোদ্ধা কোটা সনদ নং" v-model="form.StudentKotaSonodNo" name="মুক্তিযোদ্ধা কোটা সনদ নং" v-validate="'required'"   data-vv-scope="step1" />
                          <p class="help is-danger" v-show="errors.has('step1.মুক্তিযোদ্ধা কোটা সনদ নং')">
                              {{ errors.first('step1.মুক্তিযোদ্ধা কোটা সনদ নং') }}
@@ -259,10 +262,10 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form_label">পূর্বে অধ্যায়নরত স্কুল এর নাম </label>
-                        <input class="form-control" type="text"  placeholder="পূর্বে অধ্যায়নরত স্কুল এর নাম" v-model="form.preSchool" name="পূর্বে অধ্যায়নরত স্কুল এর নাম" v-validate="'required'"   data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.পূর্বে অধ্যায়নরত স্কুল এর নাম')">
-                             {{ errors.first('step1.পূর্বে অধ্যায়নরত স্কুল এর নাম') }}
+                        <label class="form_label">পূর্বে অধ্যয়নরত স্কুলের নাম </label>
+                        <input class="form-control" type="text"  placeholder="পূর্বে অধ্যয়নরত স্কুলের নাম" v-model="form.preSchool" name="পূর্বে অধ্যয়নরত স্কুলের নাম" v-validate="'required'"   data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.পূর্বে অধ্যয়নরত স্কুলের নাম')">
+                             {{ errors.first('step1.পূর্বে অধ্যয়নরত স্কুলের নাম') }}
                           </p>
                     </div>
                 </div>
@@ -272,17 +275,17 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form_label">পূর্বে অধ্যায়নরত শ্রেণি</label>
+                        <label class="form_label">পূর্বে অধ্যয়নরত শ্রেণি</label>
 
-                        <select  class="form-control"  style="width: 100%;" v-model="form.preClass" name="পূর্বে অধ্যায়নরত শ্রেণি"  v-validate="'required'" data-vv-scope="step1">
+                        <select  class="form-control"  style="width: 100%;" v-model="form.preClass" name="পূর্বে অধ্যয়নরত শ্রেণি"  v-validate="'required'" data-vv-scope="step1">
                                 <option value="">
                                     নির্বাচন করুন
                                 </option>
                                 <option>Five</option>
                                 <option v-for="classlist in classess">{{ classlist }}</option>
                             </select>
-                         <p class="help is-danger" v-show="errors.has('step1.পূর্বে অধ্যায়নরত শ্রেণি')">
-                             {{ errors.first('step1.পূর্বে অধ্যায়নরত শ্রেণি') }}
+                         <p class="help is-danger" v-show="errors.has('step1.পূর্বে অধ্যয়নরত শ্রেণি')">
+                             {{ errors.first('step1.পূর্বে অধ্যয়নরত শ্রেণি') }}
                           </p>
                     </div>
                 </div>
@@ -290,14 +293,14 @@
 
                 <div class="col-md-4"  >
                     <div class="form-group">
-                        <label class="form_label">কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.bigBroSis" name="কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না" v-validate="'required'" data-vv-scope="step1" >
+                        <label class="form_label">কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যয়নরত কি না</label>
+                        <select class="form-control" style="width: 100%;" v-model="form.bigBroSis" name="কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যয়নরত কি না" v-validate="'required'" data-vv-scope="step1" >
                             <option value="No">না</option>
                             <option value="Yes">হ্যাঁ</option>
 
                         </select>
-                         <p class="help is-danger" v-show="errors.has('step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না')">
-                             {{ errors.first('step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না') }}
+                         <p class="help is-danger" v-show="errors.has('step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যয়নরত কি না')">
+                             {{ errors.first('step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যয়নরত কি না') }}
                           </p>
                     </div>
                 </div>
@@ -343,7 +346,7 @@
 
                 <div class="col-md-4">
                         <div class="form-group">
-                            <label for="" class="labelColor">বিভাগ</label>
+                            <label for=""  class="form_label">বিভাগ</label>
 
                             <select class='form-control' name="বিভাগ" id="division" v-model="Pdivision" @change="getdistrictFun" v-validate="'required'" data-vv-scope="step1" >
                                 <option value="">বিভাগ নির্বাচন করুন</option>
@@ -358,7 +361,7 @@
 
                     <div class="col-md-4">
                     <div class="form-group">
-                        <label for="" class="labelColor">জেলা</label>
+                        <label for=""  class="form_label">জেলা</label>
 
                         <select class='form-control' name="জেলা" id="district" v-model="applicant_present_district" @change="getthanaFun" v-validate="'required'" data-vv-scope="step1" >
                             <option value="">জেলা নির্বাচন করুন</option>
@@ -375,7 +378,7 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="" class="labelColor">উপজেলা/থানা</label>
+                        <label for=""  class="form_label">উপজেলা/থানা</label>
 
                         <select class='form-control' name="উপজেলা/থানা" id="thana" v-model="thana" @change="getuniounFun" v-validate="'required'" data-vv-scope="step1" >
                             <option value="">উপজেলা নির্বাচন করুন</option>
@@ -392,7 +395,7 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="" class="labelColor">ইউনিয়ন</label>
+                        <label for=""  class="form_label">ইউনিয়ন</label>
 
                         <select class='form-control' name="ইউনিয়ন" id="thana" v-model="form.union"  v-validate="'required'" data-vv-scope="step1" >
                             <option value="">ইউনিয়ন নির্বাচন করুন</option>
@@ -409,12 +412,14 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="" class="labelColor">পোষ্ট অফিস</label>
+                        <label for=""  class="form_label">পোষ্ট অফিস</label>
                         <input type="text" class="form-control" name="পোষ্ট অফিস" v-model="form.post_office" v-validate="'required'" data-vv-scope="step1" >
-                    </div>
-                    <p class="help is-danger" v-show="errors.has('step1.পোষ্ট অফিস')">
+                        <p class="help is-danger" v-show="errors.has('step1.পোষ্ট অফিস')">
                              {{ errors.first('step1.পোষ্ট অফিস') }}
                           </p>
+
+                    </div>
+
                 </div>
 
 
@@ -446,10 +451,10 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form_label">পোস্টাল কোড</label>
-                        <input class="form-control" type="text"  placeholder="পোস্টাল কোড" v-model="form.AreaPostalCode" name="পোস্টাল কোড" v-validate="'required'" data-vv-scope="step1" />
-                         <p class="help is-danger" v-show="errors.has('step1.পোস্টাল কোড')">
-                             {{ errors.first('step1.পোস্টাল কোড') }}
+                        <label class="form_label">পোস্টাল কোড / পোস্ট কোড</label>
+                        <input class="form-control" type="text"  placeholder="পোস্টাল কোড / পোস্ট কোড" v-model="form.AreaPostalCode" name="পোস্টাল কোড / পোস্ট কোড" v-validate="'required'" data-vv-scope="step1" />
+                         <p class="help is-danger" v-show="errors.has('step1.পোস্টাল কোড / পোস্ট কোড')">
+                             {{ errors.first('step1.পোস্টাল কোড / পোস্ট কোড') }}
                           </p>
                     </div>
                 </div>
@@ -543,7 +548,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতার জন্ম নিবন্ধন নং</label>
-                        <input class="form-control" type="text"  placeholder="পিতার জন্ম নিবন্ধন নং" v-model="form.StudentFatherBCN" name="পিতার জন্ম নিবন্ধন নং"  v-validate="'required'" data-vv-scope="step2" />
+                        <input class="form-control" type="text"  placeholder="পিতার জন্ম নিবন্ধন নং" v-model="form.StudentFatherBCN" name="পিতার জন্ম নিবন্ধন নং"  data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.পিতার জন্ম নিবন্ধন নং')">
                              {{ errors.first('step2.পিতার জন্ম নিবন্ধন নং') }}
                           </p>
@@ -557,7 +562,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মাতার জন্ম নিবন্ধন নং</label>
-                        <input class="form-control" type="text"  placeholder="মাতার জন্ম নিবন্ধন নং" v-model="form.StudentMotherBCN" name="মাতার জন্ম নিবন্ধন নং"  v-validate="'required'" data-vv-scope="step2" />
+                        <input class="form-control" type="text"  placeholder="মাতার জন্ম নিবন্ধন নং" v-model="form.StudentMotherBCN" name="মাতার জন্ম নিবন্ধন নং" data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.মাতার জন্ম নিবন্ধন নং')">
                              {{ errors.first('step2.মাতার জন্ম নিবন্ধন নং') }}
                           </p>
@@ -569,7 +574,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের নাম (বাংলা)</label>
-                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম" v-model="form.guardNameBn" name="পিতা/মাতা না থাকলে অভিভাবকের নাম"  v-validate="'required'" data-vv-scope="step2" />
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম" v-model="form.guardNameBn" name="পিতা/মাতা না থাকলে অভিভাবকের নাম"  data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের নাম')">
                              {{ errors.first('step2.পিতা/মাতা না থাকলে অভিভাবকের নাম') }}
                           </p>
@@ -578,7 +583,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের নাম (English)</label>
-                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম" v-model="form.guardName" name="পিতা/মাতা না থাকলে অভিভাবকের নাম"  v-validate="'required'" data-vv-scope="step2" />
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম" v-model="form.guardName" name="পিতা/মাতা না থাকলে অভিভাবকের নাম"  data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের নাম')">
                              {{ errors.first('step2.পিতা/মাতা না থাকলে অভিভাবকের নাম') }}
                           </p>
@@ -589,7 +594,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং</label>
-                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardNid" name="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং"  v-validate="'required'" data-vv-scope="step2" />
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardNid" name="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং"  data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং')">
                              {{ errors.first('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং') }}
                           </p>
@@ -601,7 +606,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">অভিভাবকের সাথে শিক্ষার্থীর সম্পর্ক</label>
-                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardRalation" name="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং"  v-validate="'required'" data-vv-scope="step2" />
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardRalation" name="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং"  data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং')">
                              {{ errors.first('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং') }}
                           </p>
@@ -719,7 +724,7 @@
 				<div class="fileUpload">
 				<label for="fileupload" id="fileChoiceLable">
 					<img width="100%" height="100%" :src="form.StudentPicture" v-if="form.StudentPicture" alt="" />
-                    <span style="text-align: center;" v-else >Click Here to Upload Student Image</span>
+                    <span style="text-align: center;" v-else >Click Here to Upload Student Image <br> 300x300</span>
 
 				</label>
 					<input type="file" id="fileupload" style="display:none"  @change="FileSelected($event, 'StudentPicture')" />
@@ -838,7 +843,7 @@
 
 
                 <tr>
-                    <th>কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না</th>
+                    <th>কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যয়নরত কি না</th>
                     <th>অধ্যয়নরত ভাই/বোনের নাম</th>
                     <th>অধ্যয়নরত ভাই/বোনের শ্রেণি</th>
                     <th>অধ্যয়নরত ভাই/বোনের রোল</th>
@@ -1258,11 +1263,38 @@ console.log(event.target.result)
       async submit() {
 
                       this.preloader = true;
+
+
+                      if(this.form.StudentPicture){
+
+
+
+
                        var res = await this.callApi('post',`/api/students/form/submit`,this.form)
-                    //    console.log(res.data)
-                        window.location.href=`/payment?studentId=${res.data.id}&type=Admission_fee`;
-                        Notification.success();
-                        // this.preloader = false;
+                    //    console.log(res.status)
+
+                       if(res.status==201){
+                            if(res.data){
+                                Notification.success();
+                                window.location.href=`/payment?studentId=${res.data.id}&type=Admission_fee`;
+
+                            }else{
+                                Notification.customError2('Something is wrong! please try again');
+                            }
+
+                       }else{
+                        Notification.customError2('Something is wrong! please try again');
+                       }
+
+                        // window.location.href=`/payment?studentId=${res.data.id}&type=Admission_fee`;
+
+
+                    }else{
+                        Notification.customError2('Student image is required!');
+                          this.preloader = false;
+                    }
+
+
 
        }
 

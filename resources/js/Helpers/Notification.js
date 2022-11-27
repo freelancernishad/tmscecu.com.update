@@ -106,6 +106,43 @@ class Notification{
         this.errorSound()
 	}
 
+	customSuccess2(mess){
+
+        Swal.fire(
+            'Success!',
+            mess,
+            'success'
+          )
+
+		// new Noty({
+		// 	type: 'success',
+		// 	layout: 'topRight',
+		// 	text: mess,
+		// 	timeout: 2000,
+		// }).show();
+        // this.successSound()
+	}
+
+    customError2(mess){
+
+        Swal.fire(
+            'Opps!',
+            mess,
+            'error'
+          )
+
+		// new Noty({
+		// 	type: 'error',
+		// 	layout: 'topRight',
+		// 	text: mess,
+		// 	timeout: 2000,
+		// }).show();
+        // this.errorSound()
+
+	}
+
+
+
     customdelete (mess){
 		new Noty({
 			type: 'error',

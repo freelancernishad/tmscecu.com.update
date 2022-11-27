@@ -2821,6 +2821,28 @@ var Notification = /*#__PURE__*/function () {
       this.errorSound();
     }
   }, {
+    key: "customSuccess2",
+    value: function customSuccess2(mess) {
+      Swal.fire('Success!', mess, 'success'); // new Noty({
+      // 	type: 'success',
+      // 	layout: 'topRight',
+      // 	text: mess,
+      // 	timeout: 2000,
+      // }).show();
+      // this.successSound()
+    }
+  }, {
+    key: "customError2",
+    value: function customError2(mess) {
+      Swal.fire('Opps!', mess, 'error'); // new Noty({
+      // 	type: 'error',
+      // 	layout: 'topRight',
+      // 	text: mess,
+      // 	timeout: 2000,
+      // }).show();
+      // this.errorSound()
+    }
+  }, {
     key: "customdelete",
     value: function customdelete(mess) {
       new Noty({

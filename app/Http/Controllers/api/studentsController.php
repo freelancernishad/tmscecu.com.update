@@ -753,7 +753,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     'margin_top' => 6,
     'margin_bottom' => 6,]);
     $mpdf->WriteHTML($this->applicant_copy_html($applicant_id));
-    $mpdf->Output('document.pdf','I');
+    $mpdf->Output("applicant-copy-$applicant_id.pdf","I");
         }
 
 
@@ -773,7 +773,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 <html lang='en-US'>
 <head>
 	<meta charset='UTF-8'>
-	<title></title>
+	<title>applicant-copy-$student->AdmissionID.pdf</title>
     <style>
         *{
             margin: 0;
@@ -823,15 +823,15 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                     </td>
 
                     <td style='text-align: right'>
-                        <p>Applicant's Copy</p>
+                    <div class='imgdiv'>
+                    <img width='100px'  style='overflow:hidden;float:right' src='".base64($student->StudentPicture)."' alt=''>
+                    </div>
                     </td>
                 </tr>
             </table>
             <p style='    border-bottom: 3px solid #808080;    margin-top: 10px; margin-bottom: 20px;'></p>
 
-            <div class='imgdiv'>
-            <img width='100px'  style='overflow:hidden;float:right' src='".base64($student->StudentPicture)."' alt=''>
-            </div>
+
 
 
 

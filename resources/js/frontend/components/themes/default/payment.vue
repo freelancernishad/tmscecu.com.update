@@ -31,7 +31,7 @@
                                 <option value="">পেমেন্ট ক্যাটাগরি নির্বাচন করুন</option>
                                 <option value="Admission_fee">ভর্তি ফি</option>
                                 <option value="monthly_fee">মাসিক বেতন</option>
-                                <option value="session_fee">সেশান ফি</option>
+                                <option value="session_fee">সেশন ফি</option>
                                 <option value="exam_fee">পরীক্ষার ফি</option>
                             </select>
                         </div>
@@ -39,7 +39,7 @@
 
 
                         <div class="form-group" v-if="form.type == 'Admission_fee'">
-                            <label for="">ভর্তি আইডি</label>
+                            <label for="">এডমিশন আইডি</label>
                             <input type="text" v-model="form.adminssionId" class="form-control">
                         </div>
 
@@ -52,9 +52,9 @@
                                 <label for="">পেমেন্ট করার মাধ্যম</label>
                                 <select class="form-control" v-model="form.paymenttype">
                                     <option value="">পেমেন্ট করার মাধ্যম নির্বাচন করুন</option>
-                                    <option value="AdmissionID">ভর্তি আইডি</option>
-                                    <option value="StudentID">স্টুডেন্ট আইডি</option>
-                                    <option value="other">অন্যান্য</option>
+                                    <option value="AdmissionID">এডমিশন আইডি এর মাধমে</option>
+                                    <option value="StudentID">স্টুডেন্ট আইডি এর মাথমে</option>
+                                    <option value="other">শ্রেণি,রোল,গ্রপ এর মাথমে</option>
                                 </select>
                             </div>
 
@@ -74,7 +74,7 @@
 
 
                             <div class="form-group" v-if="form.paymenttype == 'AdmissionID'">
-                                <label for="">ভর্তি আইডি</label>
+                                <label for="">এডমিশন আইডি</label>
                                 <input type="text" v-model="form.adminssionId" class="form-control">
                             </div>
                             <div class="form-group" v-if="form.paymenttype == 'StudentID'">

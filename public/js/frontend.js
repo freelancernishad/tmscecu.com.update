@@ -3616,16 +3616,39 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
             switch (_context5.prev = _context5.next) {
               case 0:
                 _this9.preloader = true;
-                _context5.next = 3;
+
+                if (!_this9.form.StudentPicture) {
+                  _context5.next = 8;
+                  break;
+                }
+
+                _context5.next = 4;
                 return _this9.callApi('post', "/api/students/form/submit", _this9.form);
 
-              case 3:
+              case 4:
                 res = _context5.sent;
-                //    console.log(res.data)
-                window.location.href = "/payment?studentId=".concat(res.data.id, "&type=Admission_fee");
-                Notification.success(); // this.preloader = false;
 
-              case 6:
+                //    console.log(res.status)
+                if (res.status == 201) {
+                  if (res.data) {
+                    Notification.success();
+                    window.location.href = "/payment?studentId=".concat(res.data.id, "&type=Admission_fee");
+                  } else {
+                    Notification.customError2('Something is wrong! please try again');
+                  }
+                } else {
+                  Notification.customError2('Something is wrong! please try again');
+                } // window.location.href=`/payment?studentId=${res.data.id}&type=Admission_fee`;
+
+
+                _context5.next = 10;
+                break;
+
+              case 8:
+                Notification.customError2('Student image is required!');
+                _this9.preloader = false;
+
+              case 10:
               case "end":
                 return _context5.stop();
             }
@@ -6316,7 +6339,7 @@ var render = function render() {
     attrs: {
       value: "session_fee"
     }
-  }, [_vm._v("সেশান ফি")]), _vm._v(" "), _c("option", {
+  }, [_vm._v("সেশন ফি")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "exam_fee"
     }
@@ -6326,7 +6349,7 @@ var render = function render() {
     attrs: {
       "for": ""
     }
-  }, [_vm._v("ভর্তি আইডি")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("এডমিশন আইডি")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -6383,15 +6406,15 @@ var render = function render() {
     attrs: {
       value: "AdmissionID"
     }
-  }, [_vm._v("ভর্তি আইডি")]), _vm._v(" "), _c("option", {
+  }, [_vm._v("এডমিশন আইডি এর মাধমে")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "StudentID"
     }
-  }, [_vm._v("স্টুডেন্ট আইডি")]), _vm._v(" "), _c("option", {
+  }, [_vm._v("স্টুডেন্ট আইডি এর মাথমে")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "other"
     }
-  }, [_vm._v("অন্যান্য")])])]), _vm._v(" "), _vm.form.type == "monthly_fee" ? _c("div", {
+  }, [_vm._v("শ্রেণি,রোল,গ্রপ এর মাথমে")])])]), _vm._v(" "), _vm.form.type == "monthly_fee" ? _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {
@@ -6435,7 +6458,7 @@ var render = function render() {
     attrs: {
       "for": ""
     }
-  }, [_vm._v("ভর্তি আইডি")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("এডমিশন আইডি")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7012,7 +7035,7 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("শ্রেণি")]), _vm._v(" "), _c("select", {
+  }, [_vm._v("যে শ্রেণিতে ভর্তি হতে ইচ্ছুক")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7029,7 +7052,7 @@ var render = function render() {
       width: "100%"
     },
     attrs: {
-      name: "শ্রেণি",
+      name: "যে শ্রেণিতে ভর্তি হতে ইচ্ছুক",
       "data-vv-scope": "step1"
     },
     on: {
@@ -7054,11 +7077,11 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.শ্রেণি"),
-      expression: "errors.has('step1.শ্রেণি')"
+      value: _vm.errors.has("step1.যে শ্রেণিতে ভর্তি হতে ইচ্ছুক"),
+      expression: "errors.has('step1.যে শ্রেণিতে ভর্তি হতে ইচ্ছুক')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.শ্রেণি")) + "\n                          ")])])]), _vm._v(" "), _vm.form.StudentClass == "Nine" || _vm.form.StudentClass == "Ten" ? _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.যে শ্রেণিতে ভর্তি হতে ইচ্ছুক")) + "\n                          ")])])]), _vm._v(" "), _vm.form.StudentClass == "Nine" || _vm.form.StudentClass == "Ten" ? _c("div", {
     staticClass: "col-md-4",
     attrs: {
       id: "Sgroup"
@@ -7221,9 +7244,13 @@ var render = function render() {
     }
   }, [_vm._v("\n                                হিন্দু\n                            ")]), _vm._v(" "), _c("option", {
     attrs: {
-      value: "Other"
+      value: "Buddhist"
     }
-  }, [_vm._v("\n                                অন্যান্য\n                            ")])]), _vm._v(" "), _c("p", {
+  }, [_vm._v("\n                                বৌদ্ধ\n                            ")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "Christian"
+    }
+  }, [_vm._v("\n                                খ্রিষ্টান\n                            ")])]), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -7360,7 +7387,7 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("Select Student category")]), _vm._v(" "), _c("option", [_vm._v("কর্মজীবী শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("ভূমিহীন অভিভাবকের সন্তান")]), _vm._v(" "), _c("option", [_vm._v("মুক্তিযোদ্ধা পোষা/নাতি-নাতনি")]), _vm._v(" "), _c("option", [_vm._v("ক্ষুদ্র নৃ-গোষ্ঠী শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("বিশেষ চাহিদা সম্পন্ন শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("অনাথ/এতিম শিক্ষা")]), _vm._v(" "), _c("option", [_vm._v("অন্যান্য")])]), _vm._v(" "), _c("p", {
+  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("কর্মজীবী শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("ভূমিহীন অভিভাবকের সন্তান")]), _vm._v(" "), _c("option", [_vm._v("ক্ষুদ্র নৃ-গোষ্ঠী শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("বিশেষ চাহিদা সম্পন্ন শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("অনাথ/এতিম শিক্ষা")]), _vm._v(" "), _c("option", [_vm._v("অন্যান্য")])]), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -7410,7 +7437,7 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("মুক্তিযোদ্ধার সন্তান, নাতী নাতনী")]), _vm._v(" "), _c("option", [_vm._v("অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান")]), _vm._v(" "), _c("option", [_vm._v("প্রতিবন্ধী")]), _vm._v(" "), _c("option", [_vm._v("সাধারণ কোটা")])]), _vm._v(" "), _c("p", {
+  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী")]), _vm._v(" "), _c("option", [_vm._v("অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান")]), _vm._v(" "), _c("option", [_vm._v("প্রতিবন্ধী")]), _vm._v(" "), _c("option", [_vm._v("সাধারণ কোটা")])]), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -7418,13 +7445,13 @@ var render = function render() {
       expression: "errors.has('step1.কোটা')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.কোটা")) + "\n                          ")])])]), _vm._v(" "), _vm.form.StudentKota == "মুক্তিযোদ্ধার সন্তান, নাতী নাতনী" ? _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.কোটা")) + "\n                          ")])])]), _vm._v(" "), _vm.form.StudentKota == "মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী" ? _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("মুক্তিযোদ্ধা কোটা সনদ নং ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("মুক্তিযোদ্ধার সনদ নং ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7467,7 +7494,7 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("পূর্বে অধ্যায়নরত স্কুল এর নাম ")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("পূর্বে অধ্যয়নরত স্কুলের নাম ")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7482,8 +7509,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "পূর্বে অধ্যায়নরত স্কুল এর নাম",
-      name: "পূর্বে অধ্যায়নরত স্কুল এর নাম",
+      placeholder: "পূর্বে অধ্যয়নরত স্কুলের নাম",
+      name: "পূর্বে অধ্যয়নরত স্কুলের নাম",
       "data-vv-scope": "step1"
     },
     domProps: {
@@ -7500,17 +7527,17 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.পূর্বে অধ্যায়নরত স্কুল এর নাম"),
-      expression: "errors.has('step1.পূর্বে অধ্যায়নরত স্কুল এর নাম')"
+      value: _vm.errors.has("step1.পূর্বে অধ্যয়নরত স্কুলের নাম"),
+      expression: "errors.has('step1.পূর্বে অধ্যয়নরত স্কুলের নাম')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পূর্বে অধ্যায়নরত স্কুল এর নাম")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পূর্বে অধ্যয়নরত স্কুলের নাম")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("পূর্বে অধ্যায়নরত শ্রেণি")]), _vm._v(" "), _c("select", {
+  }, [_vm._v("পূর্বে অধ্যয়নরত শ্রেণি")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7527,7 +7554,7 @@ var render = function render() {
       width: "100%"
     },
     attrs: {
-      name: "পূর্বে অধ্যায়নরত শ্রেণি",
+      name: "পূর্বে অধ্যয়নরত শ্রেণি",
       "data-vv-scope": "step1"
     },
     on: {
@@ -7552,17 +7579,17 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.পূর্বে অধ্যায়নরত শ্রেণি"),
-      expression: "errors.has('step1.পূর্বে অধ্যায়নরত শ্রেণি')"
+      value: _vm.errors.has("step1.পূর্বে অধ্যয়নরত শ্রেণি"),
+      expression: "errors.has('step1.পূর্বে অধ্যয়নরত শ্রেণি')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পূর্বে অধ্যায়নরত শ্রেণি")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পূর্বে অধ্যয়নরত শ্রেণি")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না")]), _vm._v(" "), _c("select", {
+  }, [_vm._v("কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যয়নরত কি না")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7579,7 +7606,7 @@ var render = function render() {
       width: "100%"
     },
     attrs: {
-      name: "কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না",
+      name: "কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যয়নরত কি না",
       "data-vv-scope": "step1"
     },
     on: {
@@ -7606,11 +7633,11 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না"),
-      expression: "errors.has('step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না')"
+      value: _vm.errors.has("step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যয়নরত কি না"),
+      expression: "errors.has('step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যয়নরত কি না')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না")) + "\n                          ")])])]), _vm._v(" "), _vm.form.bigBroSis == "Yes" ? _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যয়নরত কি না")) + "\n                          ")])])]), _vm._v(" "), _vm.form.bigBroSis == "Yes" ? _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -7744,7 +7771,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
-    staticClass: "labelColor",
+    staticClass: "form_label",
     attrs: {
       "for": ""
     }
@@ -7801,7 +7828,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
-    staticClass: "labelColor",
+    staticClass: "form_label",
     attrs: {
       "for": ""
     }
@@ -7858,7 +7885,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
-    staticClass: "labelColor",
+    staticClass: "form_label",
     attrs: {
       "for": ""
     }
@@ -7915,7 +7942,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
-    staticClass: "labelColor",
+    staticClass: "form_label",
     attrs: {
       "for": ""
     }
@@ -7973,7 +8000,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
-    staticClass: "labelColor",
+    staticClass: "form_label",
     attrs: {
       "for": ""
     }
@@ -8005,7 +8032,7 @@ var render = function render() {
         _vm.$set(_vm.form, "post_office", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _c("p", {
+  }), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -8013,7 +8040,7 @@ var render = function render() {
       expression: "errors.has('step1.পোষ্ট অফিস')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পোষ্ট অফিস")) + "\n                          ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পোষ্ট অফিস")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -8106,7 +8133,7 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("পোস্টাল কোড")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("পোস্টাল কোড / পোস্ট কোড")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -8121,8 +8148,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "পোস্টাল কোড",
-      name: "পোস্টাল কোড",
+      placeholder: "পোস্টাল কোড / পোস্ট কোড",
+      name: "পোস্টাল কোড / পোস্ট কোড",
       "data-vv-scope": "step1"
     },
     domProps: {
@@ -8139,11 +8166,11 @@ var render = function render() {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: _vm.errors.has("step1.পোস্টাল কোড"),
-      expression: "errors.has('step1.পোস্টাল কোড')"
+      value: _vm.errors.has("step1.পোস্টাল কোড / পোস্ট কোড"),
+      expression: "errors.has('step1.পোস্টাল কোড / পোস্ট কোড')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পোস্টাল কোড")) + "\n                          ")])])])])]), _vm._v(" "), _c("tab", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পোস্টাল কোড / পোস্ট কোড")) + "\n                          ")])])])])]), _vm._v(" "), _c("tab", {
     attrs: {
       name: "Parent Details",
       "data-vv-scope": "step2"
@@ -8426,11 +8453,6 @@ var render = function render() {
       rawName: "v-model",
       value: _vm.form.StudentFatherBCN,
       expression: "form.StudentFatherBCN"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
     }],
     staticClass: "form-control",
     attrs: {
@@ -8469,11 +8491,6 @@ var render = function render() {
       rawName: "v-model",
       value: _vm.form.StudentMotherBCN,
       expression: "form.StudentMotherBCN"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
     }],
     staticClass: "form-control",
     attrs: {
@@ -8512,11 +8529,6 @@ var render = function render() {
       rawName: "v-model",
       value: _vm.form.guardNameBn,
       expression: "form.guardNameBn"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
     }],
     staticClass: "form-control",
     attrs: {
@@ -8555,11 +8567,6 @@ var render = function render() {
       rawName: "v-model",
       value: _vm.form.guardName,
       expression: "form.guardName"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
     }],
     staticClass: "form-control",
     attrs: {
@@ -8598,11 +8605,6 @@ var render = function render() {
       rawName: "v-model",
       value: _vm.form.guardNid,
       expression: "form.guardNid"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
     }],
     staticClass: "form-control",
     attrs: {
@@ -8641,11 +8643,6 @@ var render = function render() {
       rawName: "v-model",
       value: _vm.form.guardRalation,
       expression: "form.guardRalation"
-    }, {
-      name: "validate",
-      rawName: "v-validate",
-      value: "required",
-      expression: "'required'"
     }],
     staticClass: "form-control",
     attrs: {
@@ -8807,7 +8804,7 @@ var render = function render() {
     staticStyle: {
       "text-align": "center"
     }
-  }, [_vm._v("Click Here to Upload Student Image")])]), _vm._v(" "), _c("input", {
+  }, [_vm._v("Click Here to Upload Student Image "), _c("br"), _vm._v(" 300x300")])]), _vm._v(" "), _c("input", {
     staticStyle: {
       display: "none"
     },
@@ -8873,7 +8870,7 @@ var render = function render() {
     attrs: {
       colspan: "2"
     }
-  }, [_vm._v(_vm._s(_vm.form.preClass))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না")]), _vm._v(" "), _c("th", [_vm._v("অধ্যয়নরত ভাই/বোনের নাম")]), _vm._v(" "), _c("th", [_vm._v("অধ্যয়নরত ভাই/বোনের শ্রেণি")]), _vm._v(" "), _c("th", [_vm._v("অধ্যয়নরত ভাই/বোনের রোল")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v(_vm._s(_vm.form.bigBroSis))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.bigBroSisName))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.bigBroSisClass))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.bigBroSisRoll))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("ঠিকানা")]), _vm._v(" "), _c("td", {
+  }, [_vm._v(_vm._s(_vm.form.preClass))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যয়নরত কি না")]), _vm._v(" "), _c("th", [_vm._v("অধ্যয়নরত ভাই/বোনের নাম")]), _vm._v(" "), _c("th", [_vm._v("অধ্যয়নরত ভাই/বোনের শ্রেণি")]), _vm._v(" "), _c("th", [_vm._v("অধ্যয়নরত ভাই/বোনের রোল")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v(_vm._s(_vm.form.bigBroSis))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.bigBroSisName))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.bigBroSisClass))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.bigBroSisRoll))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("ঠিকানা")]), _vm._v(" "), _c("td", {
     attrs: {
       colspan: "3"
     }
@@ -11182,6 +11179,28 @@ var Notification = /*#__PURE__*/function () {
         timeout: 2000
       }).show();
       this.errorSound();
+    }
+  }, {
+    key: "customSuccess2",
+    value: function customSuccess2(mess) {
+      Swal.fire('Success!', mess, 'success'); // new Noty({
+      // 	type: 'success',
+      // 	layout: 'topRight',
+      // 	text: mess,
+      // 	timeout: 2000,
+      // }).show();
+      // this.successSound()
+    }
+  }, {
+    key: "customError2",
+    value: function customError2(mess) {
+      Swal.fire('Opps!', mess, 'error'); // new Noty({
+      // 	type: 'error',
+      // 	layout: 'topRight',
+      // 	text: mess,
+      // 	timeout: 2000,
+      // }).show();
+      // this.errorSound()
     }
   }, {
     key: "customdelete",
