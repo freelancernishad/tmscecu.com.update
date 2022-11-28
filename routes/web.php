@@ -18,6 +18,8 @@ use App\Http\Controllers\api\PaymentController;
 use App\Http\Controllers\api\RoutineController;
 use App\Http\Controllers\api\studentsController;
 use App\Http\Controllers\NotificationsController;
+use App\Models\student;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,12 +56,28 @@ return view('unioncreate');
 
 
 });
+Route::get('/inviceverify', function (Request $request) {
+
+$trx = $request->trx;
+
+return redirect("/student/applicant/invoice/$trx");
+
+});
 
 Route::get('/payment/success', function (Request $request) {
 
     // return $request->all();
     $transId = $request->transId;
-    $payment = payment::where('trxid',$transId)->first();
+     $payment = payment::where(['trxid'=>$transId,'status'=>'Paid'])->first();
+
+     $AdmissionID = $payment->admissionId;
+
+     $student = student::where(['AdmissionID'=>$AdmissionID])->first();
+
+
+    return view('applicationSuccess',compact('payment','student'));
+
+
 
 
     return redirect("/student/applicant/copy/$payment->admissionId");
@@ -115,6 +133,7 @@ Route::get('/allow/application/notification', function () {
 
 
         Route::get('student/applicant/copy/{applicant_id}',[studentsController::class , 'applicant_copy']);
+        Route::get('student/applicant/invoice/{trxid}',[studentsController::class , 'applicant_invoice']);
 
 
 

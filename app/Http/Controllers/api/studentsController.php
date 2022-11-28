@@ -3,19 +3,22 @@ namespace App\Http\Controllers\api;
 use PDF;
 use URL;
 use App\Models\User;
+use App\Models\payment;
 use App\Models\student;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use App\Models\school_detail;
 use App\Models\StudentResult;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use Rakibhstu\Banglanumber\NumberToBangla;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf;
-use Illuminate\Support\Facades\Hash;
+
 class studentsController extends Controller
 {
     public function list(Request $r)
@@ -745,6 +748,560 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         return $pdf->stream("$fileName.pdf");
         // return view('', $data);
     }
+
+
+
+
+    public function applicant_invoice($trxid)
+    {
+
+        $transId = $trxid;
+        $payment = payment::where(['trxid'=>$transId,'status'=>'Paid'])->first();
+
+        $AdmissionID = $payment->admissionId;
+
+        $student = student::where(['AdmissionID'=>$AdmissionID])->first();
+
+// return $this->invoice($payment,$student);
+
+        $fileName = 'Invoice-'.date('Y-m-d H:m:s');
+        $data['fileName'] = $fileName;
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L','default_font' => 'bangla',]);
+        $mpdf->WriteHTML( $this->invoice($payment,$student));
+      return   $mpdf->Output($fileName,'I');
+    }
+
+
+    public function invoice($payment,$student){
+
+        $school_id = $student->school_id;
+
+        $school_details = school_detail::where('school_id',$school_id)->first();
+        $full_name  = $school_details->SCHOLL_NAME;
+        $address  = $school_details->SCHOLL_ADDRESS;
+        $status  = $payment->status;
+        $invoiceId  = $payment->trxid;
+        $amount  = $payment->amount;
+        $created_at  = $payment->date;
+        $studentClass  = $payment->studentClass;
+        $studentRoll  = $payment->studentRoll;
+        $StudentName  = $student->StudentName;
+        $StudentFatherName  = $student->StudentFatherNameBn;
+        $mobile_no  = $student->StudentPhoneNumber;
+        $AdmissionID  = $student->AdmissionID;
+
+        $studentAddress  = "$student->district ,$student->upazila , $student->union , $student->StudentAddress";
+
+        $amounts = $amount;
+
+        $numto = new NumberToBangla();
+         $amountText = $numto->bnMoney($amounts);
+         $qrurl = url("/inviceverify?trx=$invoiceId");
+
+         // $qrurl = url("/verification/sonod/$row->id");
+         //in Controller
+         $qrcode = \QrCode::size(70)
+             ->format('svg')
+             ->generate($qrurl);
+             $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
+
+        // <div style='text-align:right'>(ডিলারের কপি)</div>
+        $html = "
+
+        <style>
+        @page {
+            margin: 10px;
+           }
+
+        .memoborder{
+            width: 48%;
+            border:3px solid black;
+
+        }
+
+        .memobg{
+            padding:15px;
+
+        }
+
+        .memo {
+        //    width: 500px;
+        //    margin:0 auto;
+        //    padding:20px;
+            background: white;
+
+        }
+
+
+
+        .memoHead {
+            text-align: center;
+            color:black
+        }
+        .companiname {
+            margin:0;
+        }
+        p {
+
+            color:black;
+            margin:0;
+
+        }div {
+
+            color:black;
+            margin:0;
+
+        }
+        p.defalttext.address {
+            background:black;
+            width: 269px;
+            margin: 0 auto;
+            color: white;
+            border-radius: 50px;
+            padding: 2px 0px;
+        }
+        p.defalttext {
+            font-weight: 600;
+            font-size: 18px;
+            margin: 0;
+            /* transform: scaleX(1.2); */
+
+        }
+        .defaltfont {
+            font-size: 18px;
+        }
+
+
+        .thead .tr {
+            color: black;
+        }
+        .thead .tr .th {
+            color: black;
+        }
+
+        .tr {
+            border: 1px solid black;
+        }
+
+        .th {
+            border: 1px solid black;
+            border-right: 1px solid white;
+        }
+
+        .td {
+            border: 1px solid black;
+        }
+        .table,  .td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          text-align: center;
+          color:black;
+        }.th, {
+          border: 1px solid white;
+          border-collapse: collapse;
+        }
+
+        .td {
+            height: 18.5px;
+
+        }
+        .slNo{
+            float: right;
+            width: 300px;
+        }
+
+
+
+.tdlist{
+    height: 200px;
+    vertical-align: top;
+}
+
+        </style>
+
+
+    <div id='body'>
+
+    <div class='memoborder' style='float:left' >
+    <div class='memobg memobg1'>
+            <div class='memo'>
+            <div class='memoHead'>
+
+
+
+            <h2 style='font-weight: 500;' class='companiname'>$full_name</h2>
+            <p class='defalttext'>$address</p>";
+
+            if($status=='Paid'){
+                $html .="            <h2 class='companiname' style='width: 160px;
+                margin: 0 auto;
+                background: green;
+                color: white;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 6px 0px;'>পরিশোধিত </h2>";
+            }else{
+
+                $html .="           <h2 class='companiname' style='width: 160px;
+                margin: 0 auto;
+                background: red;
+                color: white;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 6px 0px;'>অপরিশোধিত </h2>";
+            }
+
+
+
+            $html .="
+
+
+
+
+        </div>
+
+        <table style='width:100%'>
+        <tr>
+            <td colspan='2'>এডমিশন আইডিঃ- ".int_en_to_bn($AdmissionID)." </td>
+            <td class='defaltfont' style='text-align:right'>রশিদ নং- ".int_en_to_bn($invoiceId)."</td>
+        <tr>
+
+
+
+        <tr>
+            <td class='defaltfont' >নাম: $StudentName </td>
+            <td class='defaltfont' colspan='2'>পিতার নাম- $StudentFatherName</td>
+
+        <tr>
+
+        <tr>
+            <td class='defaltfont' >শ্রেণিঃ- $studentClass </td>";
+
+            if($payment->type=='Admission_fee'){
+
+                $html .=" <td class='defaltfont' colspan='2'></td>";
+            }else{
+
+                $html .=" <td class='defaltfont' colspan='2'> রোলঃ- $studentRoll </td>";
+            }
+
+
+       $html .=" <tr>
+        <tr>
+            <td class='defaltfont' >ঠিকানা: $studentAddress</td>
+            <td class='defaltfont' >মোবাইল: ".int_en_to_bn($mobile_no)."</td>
+
+        <tr>
+
+        </table>
+    <p></p>
+
+
+
+
+                <div class='memobody' style='position: relative;'>
+
+                    <div class='productDetails'>
+                        <table class='table' style='border:1px solid #444B8F;width:100%' cellspacing='0'>
+                            <thead class='thead'>
+                                <tr class='tr'>
+                                    <td class='th defaltfont' colspan='3' width='10%'>আদায়ের বিবরণ</td>
+                                </tr>
+
+                                <tr class='tr'>
+                                    <td class='td defaltfont' width='5%'>ক্র. নং</td>
+                                    <td class='td defaltfont' width='25%'>খাত</td>
+                                    <td class='td defaltfont' width='15%'>মোট টাকার পরিমাণ</td>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody class='tbody'>";
+
+
+
+                            $khat = [
+                                   'Admission_fee'=>'ভর্তি ফি',
+                                   'monthly_fee'=>'মাসিক বেতন',
+                                   'session_fee'=>'সেশন ফি',
+                                   'exam_fee'=>'পরীক্ষার ফি',
+                            ];
+
+                            $kahts = json_decode(json_encode($khat));
+                            print_r($kahts);
+
+
+                                    // $totalpay = $orders->pay;
+                                    // $totaldue = $orders->due;
+                                    $index = 1;
+                                foreach ($khat as $key=>$value) {
+
+                                  $html .="  <tr class='tr items'>
+                                        <td class='td  defaltfont'>".int_en_to_bn($index)."</td>
+                                        <td class='td  defaltfont'>$value</td>";
+
+                                        if($key==$payment->type){
+                                            $html .=" <td class='td  defaltfont'>".int_en_to_bn($amount)."</td>";
+                                        }else{
+                                            $html .=" <td class='td  defaltfont'>".int_en_to_bn(0)."</td>";
+
+                                        };
+
+
+
+                                  $html.="  </tr>";
+
+                                        $index++;
+
+
+                                    }
+
+
+
+
+
+
+
+                                $html .=" </tbody>
+                            <tfoot class='tfoot'>";
+
+
+
+
+
+                            $html .="
+                            <tr class='tr'>
+                            <td colspan='2' class='defalttext td defaltfont'style='text-align:right;    padding: 0 13px;'><p> মোট </p></td>
+                            <td class='td defaltfont'>".int_en_to_bn($amount)."</td>
+                    </tr>
+
+
+                      ";
+
+
+
+
+
+
+
+
+                                $html .=" </tfoot>
+                        </table>
+                        <p style='margin-top:15px;padding:0 15px;' class='defaltfont'>কথায় : $amountText মাত্র</p>
+
+                    </div>
+                </div>
+                <div class='memofooter' style='margin-top:25px'>
+
+                    <p style='float:left;width:30%;padding:10px 15px' class='defaltfont'>$qrcode</p>
+
+                    <p style='float:right;width:30%;text-align:right;padding:15px;margin-top:25px' class='defaltfont'>আদায়কারীর স্বাক্ষর <br/> তারিখ: ".int_en_to_bn($created_at)."</p>
+                </div>
+                <p style='background:#727272;text-align:center'><span style='color:white'> QR code স্ক্যান করে রশিদ যাচাই করুন </span> <br/></p>
+            </div>
+        </div>
+        </div>
+
+    <div class='memoborder' style='float:right' >
+    <div class='memobg memobg1'>
+            <div class='memo'>
+            <div class='memoHead'>
+
+
+
+            <h2 style='font-weight: 500;' class='companiname'>$full_name</h2>
+            <p class='defalttext'>$address</p>";
+
+            if($status=='Paid'){
+                $html .="            <h2 class='companiname' style='width: 160px;
+                margin: 0 auto;
+                background: green;
+                color: white;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 6px 0px;'>পরিশোধিত </h2>";
+            }else{
+
+                $html .="           <h2 class='companiname' style='width: 160px;
+                margin: 0 auto;
+                background: red;
+                color: white;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 6px 0px;'>অপরিশোধিত </h2>";
+            }
+
+
+
+            $html .="
+
+
+
+
+        </div>
+
+        <table style='width:100%'>
+        <tr>
+            <td colspan='2'>এডমিশন আইডিঃ- ".int_en_to_bn($AdmissionID)." </td>
+            <td class='defaltfont' style='text-align:right'>রশিদ নং- ".int_en_to_bn($invoiceId)."</td>
+        <tr>
+
+
+
+        <tr>
+            <td class='defaltfont' >নাম: $StudentName </td>
+            <td class='defaltfont' colspan='2'>পিতার নাম- $StudentFatherName</td>
+
+        <tr>
+
+        <tr>
+            <td class='defaltfont' >শ্রেণিঃ- $studentClass </td>";
+
+            if($payment->type=='Admission_fee'){
+
+                $html .=" <td class='defaltfont' colspan='2'></td>";
+            }else{
+
+                $html .=" <td class='defaltfont' colspan='2'> রোলঃ- $studentRoll </td>";
+            }
+
+
+       $html .=" <tr>
+        <tr>
+            <td class='defaltfont' >ঠিকানা: $studentAddress</td>
+            <td class='defaltfont' >মোবাইল: ".int_en_to_bn($mobile_no)."</td>
+
+        <tr>
+
+        </table>
+    <p></p>
+
+
+
+
+                <div class='memobody' style='position: relative;'>
+
+                    <div class='productDetails'>
+                        <table class='table' style='border:1px solid #444B8F;width:100%' cellspacing='0'>
+                            <thead class='thead'>
+                                <tr class='tr'>
+                                    <td class='th defaltfont' colspan='3' width='10%'>আদায়ের বিবরণ</td>
+                                </tr>
+
+                                <tr class='tr'>
+                                    <td class='td defaltfont' width='5%'>ক্র. নং</td>
+                                    <td class='td defaltfont' width='25%'>খাত</td>
+                                    <td class='td defaltfont' width='15%'>মোট টাকার পরিমাণ</td>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody class='tbody'>";
+
+
+
+                            $khat = [
+                                   'Admission_fee'=>'ভর্তি ফি',
+                                   'monthly_fee'=>'মাসিক বেতন',
+                                   'session_fee'=>'সেশন ফি',
+                                   'exam_fee'=>'পরীক্ষার ফি',
+                            ];
+
+                            $kahts = json_decode(json_encode($khat));
+                            print_r($kahts);
+
+
+                                    // $totalpay = $orders->pay;
+                                    // $totaldue = $orders->due;
+                                    $index = 1;
+                                foreach ($khat as $key=>$value) {
+
+                                  $html .="  <tr class='tr items'>
+                                        <td class='td  defaltfont'>".int_en_to_bn($index)."</td>
+                                        <td class='td  defaltfont'>$value</td>";
+
+                                        if($key==$payment->type){
+                                            $html .=" <td class='td  defaltfont'>".int_en_to_bn($amount)."</td>";
+                                        }else{
+                                            $html .=" <td class='td  defaltfont'>".int_en_to_bn(0)."</td>";
+
+                                        };
+
+
+
+                                  $html.="  </tr>";
+
+                                        $index++;
+
+
+                                    }
+
+
+
+
+
+
+
+                                $html .=" </tbody>
+                            <tfoot class='tfoot'>";
+
+
+
+
+
+                            $html .="
+                            <tr class='tr'>
+                            <td colspan='2' class='defalttext td defaltfont'style='text-align:right;    padding: 0 13px;'><p> মোট </p></td>
+                            <td class='td defaltfont'>".int_en_to_bn($amount)."</td>
+                    </tr>
+
+
+                      ";
+
+
+
+
+
+
+
+
+                                $html .=" </tfoot>
+                        </table>
+                        <p style='margin-top:15px;padding:0 15px;' class='defaltfont'>কথায় : $amountText মাত্র</p>
+
+                    </div>
+                </div>
+                <div class='memofooter' style='margin-top:25px'>
+
+                    <p style='float:left;width:30%;padding:10px 15px' class='defaltfont'>$qrcode</p>
+
+                    <p style='float:right;width:30%;text-align:right;padding:15px;margin-top:25px' class='defaltfont'>আদায়কারীর স্বাক্ষর <br/> তারিখ: ".int_en_to_bn($created_at)."</p>
+                </div>
+                <p style='background:#727272;text-align:center'><span style='color:white'> QR code স্ক্যান করে রশিদ যাচাই করুন </span> <br/></p>
+            </div>
+        </div>
+        </div>
+
+
+        </div>
+
+
+
+        ";
+
+
+        return $html;
+    }
+
+
+
+
+
+
+
+
         public function applicant_copy($applicant_id)
         {
     // return $this->applicant_copy_html($applicant_id);

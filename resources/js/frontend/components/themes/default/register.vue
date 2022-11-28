@@ -69,7 +69,7 @@
                                 <option value="">
                                     নির্বাচন করুন
                                 </option>
-                                <option v-for="classlist in classess">{{ classlist }}</option>
+                                <option v-for="(classlist,classindex) in classess" :key="'class'+classindex">{{ classlist }}</option>
                             </select>
                          <p class="help is-danger" v-show="errors.has('step1.যে শ্রেণিতে ভর্তি হতে ইচ্ছুক')">
                              {{ errors.first('step1.যে শ্রেণিতে ভর্তি হতে ইচ্ছুক') }}
@@ -282,7 +282,7 @@
                                     নির্বাচন করুন
                                 </option>
                                 <option>Five</option>
-                                <option v-for="classlist in classess">{{ classlist }}</option>
+                                <option v-for="(classlist,clIn) in classess" :key="'cls'+clIn">{{ classlist }}</option>
                             </select>
                          <p class="help is-danger" v-show="errors.has('step1.পূর্বে অধ্যয়নরত শ্রেণি')">
                              {{ errors.first('step1.পূর্বে অধ্যয়নরত শ্রেণি') }}
@@ -711,10 +711,7 @@
 
         <div class="headerSection">
 
-            <div class="topHeadSection" style="text-align: center;position:relative;display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 200px;">
+            <div class="topHeadSection" style="text-align: center;position:relative;display: flex;justify-content: space-evenly;align-items: center;height: 200px;">
 			   <div class="titleHead"  style="text-align: center;">
                 <h3>টেপ্রীগঞ্জ আদর্শ দ্বি-মুখী উচ্চ বিদ্যালয়</h3>
                 <p>টেপ্রীগঞ্জ, দেবীগঞ্জ, পঞ্চগড়</p>

@@ -7071,8 +7071,10 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                    নির্বাচন করুন\n                                ")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist) {
-    return _c("option", [_vm._v(_vm._s(classlist))]);
+  }, [_vm._v("\n                                    নির্বাচন করুন\n                                ")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist, classindex) {
+    return _c("option", {
+      key: "class" + classindex
+    }, [_vm._v(_vm._s(classlist))]);
   })], 2), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
@@ -7573,8 +7575,10 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                    নির্বাচন করুন\n                                ")]), _vm._v(" "), _c("option", [_vm._v("Five")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist) {
-    return _c("option", [_vm._v(_vm._s(classlist))]);
+  }, [_vm._v("\n                                    নির্বাচন করুন\n                                ")]), _vm._v(" "), _c("option", [_vm._v("Five")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist, clIn) {
+    return _c("option", {
+      key: "cls" + clIn
+    }, [_vm._v(_vm._s(classlist))]);
   })], 2), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
