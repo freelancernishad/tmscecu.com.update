@@ -106,6 +106,7 @@ class PaymentController extends Controller
                 'status' => 'Failed',
             ];
         }
+
         $Insertdata['ipnResponse'] = json_encode($data);
         // return $Insertdata;
         Log::info(json_encode($data));

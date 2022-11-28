@@ -66,7 +66,7 @@ return redirect("/student/applicant/invoice/$trx");
 
 Route::get('/payment/success', function (Request $request) {
 
-    return $request->all();
+    // return $request->all();
     $transId = $request->transId;
 
     echo "
