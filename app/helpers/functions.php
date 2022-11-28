@@ -109,7 +109,7 @@ function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='paymen
       "ipn_info" => [
          "ipn_channel" => "1",
          "ipn_email" => "freelancernishad123@gmail.com",
-         "ipn_uri" => "https://tepriganjhighschool.edu.bd/api/ipn"
+         "ipn_uri" => "$url/api/ipn"
       ],
       "mac_addr" => "1.1.1.1"
    ];
