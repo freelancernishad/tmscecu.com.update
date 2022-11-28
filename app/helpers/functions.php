@@ -107,7 +107,7 @@ function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='paymen
       "cust_info" => $cust_info,
       "trns_info" =>$trns_info,
       "ipn_info" => [
-         "ipn_channel" => "1",
+         "ipn_channel" => "3",
          "ipn_email" => "freelancernishad123@gmail.com",
          "ipn_uri" => "$url/api/ipn"
       ],
