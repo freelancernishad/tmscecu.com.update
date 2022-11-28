@@ -68,23 +68,45 @@ Route::get('/payment/success', function (Request $request) {
 
     // return $request->all();
     $transId = $request->transId;
-     $payment = payment::where(['trxid'=>$transId,'status'=>'Paid'])->first();
 
-     $AdmissionID = $payment->admissionId;
+    echo "
+    <h3 style='text-align:center'>Please wait 5 seconds.This page is auto redirect you</h3>
 
-     $student = student::where(['AdmissionID'=>$AdmissionID])->first();
+    <script>
+
+    setTimeout(() => {
+    window.location.href='/payment/success/confirm?transId=$transId'
+    }, 5000);
+
+    </script>
+
+    ";
+    // return redirect("/payment/success/confirm?transId=$transId");
 
 
-    return view('applicationSuccess',compact('payment','student'));
-
-
-
-
-    return redirect("/student/applicant/copy/$payment->admissionId");
 
 
 
 });
+
+Route::get('/payment/success/confirm', function (Request $request) {
+
+    // return $request->all();
+    $transId = $request->transId;
+
+     $payment = payment::where(['trxid'=>$transId,'status'=>'Paid'])->first();
+     $AdmissionID = $payment->admissionId;
+     $student = student::where(['AdmissionID'=>$AdmissionID])->first();
+    return view('applicationSuccess',compact('payment','student'));
+    return redirect("/student/applicant/copy/$payment->admissionId");
+
+});
+
+
+
+
+
+
 
 Route::get('/payment/fail', function (Request $request) {
 echo "payment fail";
