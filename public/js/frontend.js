@@ -10851,7 +10851,7 @@ var routes = [{
     layout: layout
   }
 }, {
-  path: "".concat(prefix, "student_list/"),
+  path: "".concat(prefix, "student_list"),
   component: frontstudent_list,
   name: 'frontstudent_list',
   meta: {

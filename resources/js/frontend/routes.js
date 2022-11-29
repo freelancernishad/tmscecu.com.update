@@ -36,7 +36,7 @@ export const routes = [
 
     { path: `${prefix}teachers`, component: frontteachers, name:'frontteachers' ,meta: { layout: layout } },
     { path: `${prefix}student_at_a_glance`, component: frontstudent_at_a_glance, name:'frontstudent_at_a_glance' ,meta: { layout: layout } },
-    { path: `${prefix}student_list/`, component: frontstudent_list, name:'frontstudent_list' ,meta: { layout: layout } },
+    { path: `${prefix}student_list`, component: frontstudent_list, name:'frontstudent_list' ,meta: { layout: layout } },
     { path: `${prefix}student_list/:classname`, component: frontstudent_list, name:'frontstudent_listsearch' ,meta: { layout: layout } },
     { path: `${prefix}routine`, component: frontroutine, name:'frontroutine' ,meta: { layout: layout } },
     { path: `${prefix}result`, component: frontresult, name:'frontresult' ,meta: { layout: layout } },

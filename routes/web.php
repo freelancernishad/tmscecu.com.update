@@ -2,23 +2,25 @@
 use App\Models\Role;
 use App\Models\payment;
 
+use App\Models\student;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\frontendController;
 
+use App\Http\Controllers\frontendController;
 use App\Http\Controllers\api\resultController;
 use App\Http\Controllers\Auth\LoginController;
-
 use App\Http\Controllers\api\PaymentController;
 use App\Http\Controllers\api\RoutineController;
 use App\Http\Controllers\api\studentsController;
 use App\Http\Controllers\NotificationsController;
-use App\Models\student;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,49 @@ use App\Models\student;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('genrate-sitemap', function(){
+
+    // create new sitemap object
+    $sitemap = App::make("sitemap");
+
+    // add items to the sitemap (url, date, priority, freq)
+    $sitemap->add(URL::to('teachers'), '2012-08-25T20:10:00+02:00', '1.0', 'daily');
+    $sitemap->add(URL::to('student_at_a_glance'), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
+    $sitemap->add(URL::to('student_list'), '2012-08-26T12:30:00+02:00', '0.9', 'daily');
+    $sitemap->add(URL::to('routine'), '2012-08-26T12:30:00+02:00', '0.9', 'monthly');
+    $sitemap->add(URL::to('result'), '2012-08-26T12:30:00+02:00', '0.9', 'monthly');
+    $sitemap->add(URL::to('weakly_result'), '2012-08-26T12:30:00+02:00', '0.9', 'monthly');
+    $sitemap->add(URL::to('web/notice'), '2012-08-26T12:30:00+02:00', '0.9', 'monthly');
+    $sitemap->add(URL::to('blogs'), '2012-08-26T12:30:00+02:00', '0.9', 'monthly');
+    $sitemap->add(URL::to('contact-us'), '2012-08-26T12:30:00+02:00', '0.9', 'monthly');
+    $sitemap->add(URL::to('student/register'), '2012-08-26T12:30:00+02:00', '1.0', 'daily');
+    $sitemap->add(URL::to('student/payment'), '2012-08-26T12:30:00+02:00', '0.9', 'monthly');
+
+    // // get all posts from db
+    // $categories = Category::all();
+
+    // // add every post to the sitemap
+    // foreach ($categories as $category)
+    // {
+    //     $sitemap->add(URL::to('categories/'.$category->id.'/edit'), $category->updated_at, '1.0', 'daily');
+    // }
+
+    // generate your sitemap (format, filename)
+    $sitemap->store('xml', 'sitemap');
+    // this will generate file mysitemap.xml to your public folder
+
+    return redirect(url('sitemap.xml'));
+});
+
+
+
+
+
+
+
+
 Route::get('/smstest', function () {
 
     $details = [
