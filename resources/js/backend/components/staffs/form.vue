@@ -130,7 +130,7 @@
 
 <select v-model="form.TeacherPosition" id="TeacherPosition" class="form-control">
 
-<option>Assistent</option>
+<option>Assistent Teacher</option>
 <option>Head Teacher</option>
 
 </select>
@@ -215,9 +215,17 @@
 
         </div>
 
-<input type="hidden" v-model="form.ProfilePicture">
-<input type="hidden" v-model="form.created_at">
-<input type="hidden" v-model="form.updated_at">
+        <div class="col-md-12">
+				<div class="fileUpload" style="    position: relative !important;">
+				<label for="fileupload" id="fileChoiceLable">
+					<img width="100%" height="100%" :src="form.ProfilePicture" v-if="form.ProfilePicture" alt="" />
+                    <span style="text-align: center;" v-else >Click Here to Upload Staff Image <br> 300x300</span>
+
+				</label>
+					<input type="file" id="fileupload" style="display:none"  @change="FileSelected($event, 'ProfilePicture')" />
+
+				</div>
+            </div>
 
 
         <div class="col-md-12">
@@ -289,6 +297,56 @@ export default {
 	methods: {
 
 
+        FileSelected($event, parent_index) {
+            let file = $event.target.files[0];
+            // console.log(file)
+            if (file.size > 5048576) {
+                Notification.image_validation();
+            } else {
+                let reader = new FileReader;
+                reader.onload = event => {
+
+
+
+
+                //Initiate the JavaScript Image object.
+                var image = new Image();
+
+                //Set the Base64 string return from FileReader as source.
+                image.src = event.target.result;
+
+                //Validate the File Height and Width.
+
+                var formThis = this;
+
+                image.onload = function () {
+                    var height = this.height;
+                    var width = this.width;
+                    //  console.log( width,height)
+                    if (height===width) {
+                        formThis.form[parent_index] = event.target.result
+                        return false;
+                    }
+                    alert("Uploaded image has valid Height and Width.");
+                    return true;
+                };
+
+
+
+
+
+
+
+
+
+
+
+                };
+                reader.readAsDataURL(file)
+            }
+            //   console.log($event.target.result);
+        },
+
 
         getstaffs(){
                 axios.get(`/api/staffs/single?filter[id]=${this.editid}`)
@@ -304,6 +362,9 @@ export default {
 
 
         formsubmit(){
+            if(this.form.ProfilePicture){
+
+
                           this.preloader = true;
                 axios.post(`/api/staffs/form/submit`,this.form)
                                 .then(({data}) => {
@@ -315,7 +376,17 @@ export default {
                                 .catch(() => {
                                     // this.$router.push({name: 'supplier'})
                                 })
+
+
+                            }else{
+                        Notification.customError2('Staffs image is required!');
+                          this.preloader = false;
+                    }
+
         }
+
+
+
 
 
 	},
@@ -343,5 +414,25 @@ export default {
 <style lang="css" scoped>
 #img_size{
 	width: 40px;
+}
+
+
+
+
+.fileUpload {
+    width: 195px;
+    height: 195px;
+    border: 1px solid;
+	position: absolute;
+    top: 0;
+    right: 0;
+}
+#fileChoiceLable{
+	width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 </style>

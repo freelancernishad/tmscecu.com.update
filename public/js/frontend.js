@@ -2550,9 +2550,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this2 = this;
 
     this.schoolDetial();
-    this.curentdate = User.dateformat(new Date())[0];
+    this.curentdate = User.dateformat(new Date())[3];
     setInterval(function () {
-      _this2.curenttime = User.dateformat(new Date())[8];
+      _this2.curenttime = User.dateformat(new Date())[3];
     }, 1000);
   }
 });
@@ -3462,32 +3462,37 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
       var _this4 = this;
 
       //Validate input
-      this.$root.$validator.validate('step' + (this.currentActive + 1) + '.*').then(function (valid) {
-        // console.log(valid)
-        if (_this4.currentActive == 0) {
-          // if (valid && this.studentEmailstatus){
-          if (valid) {
-            _this4.currentActive++;
+      if (this.form.StudentPicture) {
+        this.$root.$validator.validate('step' + (this.currentActive + 1) + '.*').then(function (valid) {
+          // console.log(valid)
+          if (_this4.currentActive == 0) {
+            // if (valid && this.studentEmailstatus){
+            if (valid) {
+              _this4.currentActive++;
 
-            _this4.tabs.forEach(function (tab) {
-              tab.isActive = false;
-            });
+              _this4.tabs.forEach(function (tab) {
+                tab.isActive = false;
+              });
 
-            _this4.tabs[_this4.currentActive].isActive = true;
+              _this4.tabs[_this4.currentActive].isActive = true;
+            }
+          } else if (_this4.currentActive == 1) {
+            // if (valid && this.parentEmailstatus){
+            if (valid) {
+              _this4.currentActive++;
+
+              _this4.tabs.forEach(function (tab) {
+                tab.isActive = false;
+              });
+
+              _this4.tabs[_this4.currentActive].isActive = true;
+            }
           }
-        } else if (_this4.currentActive == 1) {
-          // if (valid && this.parentEmailstatus){
-          if (valid) {
-            _this4.currentActive++;
-
-            _this4.tabs.forEach(function (tab) {
-              tab.isActive = false;
-            });
-
-            _this4.tabs[_this4.currentActive].isActive = true;
-          }
-        }
-      });
+        });
+      } else {
+        Notification.customError2('Student image is required!');
+        this.preloader = false;
+      }
     },
     getdivisionFun: function getdivisionFun() {
       var _this5 = this;
@@ -3956,9 +3961,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  created: function created() {
-    this.ASSETURL = ASSETURL;
-  },
+  created: function created() {},
   data: function data() {
     return {
       staffs: {},
@@ -6397,19 +6400,19 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("পেমেন্ট করার মাধ্যম নির্বাচন করুন")]), _vm._v(" "), _c("option", {
+  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "AdmissionID"
     }
-  }, [_vm._v("এডমিশন আইডি এর মাধমে")]), _vm._v(" "), _c("option", {
+  }, [_vm._v("এডমিশন আইডি এর মাধ্যমে")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "StudentID"
     }
-  }, [_vm._v("স্টুডেন্ট আইডি এর মাথমে")]), _vm._v(" "), _c("option", {
+  }, [_vm._v(" স্টুডেন্ট আইডি এর মাধ্যমে")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "other"
     }
-  }, [_vm._v("শ্রেণি,রোল,গ্রপ এর মাথমে")])])]), _vm._v(" "), _vm.form.type == "monthly_fee" ? _c("div", {
+  }, [_vm._v("শ্রেণি, রোল, গ্রুপ এর মাধ্যমে")])])]), _vm._v(" "), _vm.form.type == "monthly_fee" ? _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {
@@ -8169,7 +8172,43 @@ var render = function render() {
       expression: "errors.has('step1.পোস্টাল কোড / পোস্ট কোড')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পোস্টাল কোড / পোস্ট কোড")) + "\n                          ")])])])])]), _vm._v(" "), _c("tab", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.পোস্টাল কোড / পোস্ট কোড")) + "\n                          ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_c("div", {
+    staticClass: "fileUpload",
+    staticStyle: {
+      position: "relative !important"
+    }
+  }, [_c("label", {
+    attrs: {
+      "for": "fileupload",
+      id: "fileChoiceLable"
+    }
+  }, [_vm.form.StudentPicture ? _c("img", {
+    attrs: {
+      width: "100%",
+      height: "100%",
+      src: _vm.form.StudentPicture,
+      alt: ""
+    }
+  }) : _c("span", {
+    staticStyle: {
+      "text-align": "center"
+    }
+  }, [_vm._v("Click Here to Upload Student Image "), _c("br"), _vm._v(" 300x300")])]), _vm._v(" "), _c("input", {
+    staticStyle: {
+      display: "none"
+    },
+    attrs: {
+      type: "file",
+      id: "fileupload"
+    },
+    on: {
+      change: function change($event) {
+        return _vm.FileSelected($event, "StudentPicture");
+      }
+    }
+  })])])])]), _vm._v(" "), _c("tab", {
     attrs: {
       name: "Parent Details",
       "data-vv-scope": "step2"
@@ -10004,13 +10043,13 @@ var render = function render() {
     }, [_c("img", {
       staticClass: "avatar img-responsive",
       attrs: {
-        src: _vm.ASSETURL + staff.ProfilePicture,
+        src: _vm.$asseturl + staff.ProfilePicture,
         width: "100%",
         alt: "avatar"
       }
     })]), _vm._v(" "), _c("div", {
       staticClass: "details"
-    }, [_c("h5", [_vm._v(_vm._s(staff.TeacherName))]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", [_vm._v("মূলপদ : " + _vm._s(staff.TeacherPosition) + " ")]), _vm._v(" "), _c("div", [_vm._v("পদবী : " + _vm._s(staff.TeacherQualification))]), _vm._v(" "), _c("div", [_vm._v("ঠিকানা : " + _vm._s(staff.TeacherAddress))]), _vm._v(" "), _c("div", [_vm._v("মোবাইল : " + _vm._s(staff.TeacherPhoneNumber))])])])])])]);
+    }, [_c("h5", [_vm._v(_vm._s(staff.TeacherName))]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", [_vm._v("পদবী : " + _vm._s(staff.TeacherPosition) + " ")]), _vm._v(" "), _c("div", [_vm._v("যোগ্যতা : " + _vm._s(staff.TeacherQualification))]), _vm._v(" "), _c("div", [_vm._v("ঠিকানা : " + _vm._s(staff.TeacherAddress))]), _vm._v(" "), _c("div", [_vm._v("মোবাইল : " + _vm._s(staff.TeacherPhoneNumber))])])])])])]);
   }), 0)])]), _vm._v(" "), _c("side-bar", {
     attrs: {
       "class-name": "col-md-3"
@@ -28684,7 +28723,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.mini-profile-widget .image-container .avatar {\n    width: 180px;\n    height: 180px;\n    display: block;\n    margin: 0 auto;\n    border-radius: 50%;\n    background: white;\n    padding: 4px;\n    border: 1px solid #dddddd;\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.mini-profile-widget .image-container .avatar {\n    width: 180px;\n    height: 180px;\n    display: block;\n    margin: 0 auto;\n    border-radius: 50%;\n    background: white;\n    padding: 4px;\n    border: 1px solid #dddddd;\n}\nhr {\n    background-color: hsl(0deg 0% 89%) !important;\n    border: none !important;\n    display: block !important;\n    height: 2px !important;\n    margin: 0.5rem 0 !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

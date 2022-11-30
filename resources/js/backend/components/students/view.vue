@@ -39,7 +39,7 @@
 
                     <div class="form-input" style="width: 100%;">
                         <div class="preview">
-                        <img :src="form.StudentPicture" id="file-ip-1-preview">
+                        <img :src="$asseturl+form.StudentPicture" id="file-ip-1-preview">
                         </div>
                         <label for="file-ip-1">Choose File</label>
                         <input type="file" id="file-ip-1"  @change="studentimage">
@@ -155,7 +155,7 @@ export default {
 	data () {
 		return {
             form:{},
-       
+
             editid:'',
             ASSETURL: '',
             classdisable:false,
@@ -212,7 +212,6 @@ export default {
                                 .then(({data}) => {
                                     //  console.log(data)
                                     this.form = data[0]
-                                    this.form.StudentPicture = ASSETURL+this.form.StudentPicture;
                                     this.preloader = false;
                                 })
                                 .catch(() => {

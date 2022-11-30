@@ -34,13 +34,13 @@
                             <div class="card-body">
                             <div class="well well-white mini-profile-widget">
                                 <div class="image-container">
-                                    <img :src="ASSETURL+staff.ProfilePicture" class="avatar img-responsive" width="100%" alt="avatar">
+                                    <img :src="$asseturl+staff.ProfilePicture" class="avatar img-responsive" width="100%" alt="avatar">
                                 </div>
                                     <div class="details">
                                         <h5>{{ staff.TeacherName }}</h5>
                                         <hr>
-                                        <div>মূলপদ : {{ staff.TeacherPosition }} </div>
-                                        <div>পদবী : {{ staff.TeacherQualification }}</div>
+                                        <div>পদবী : {{ staff.TeacherPosition }} </div>
+                                        <div>যোগ্যতা : {{ staff.TeacherQualification }}</div>
                                         <div>ঠিকানা : {{ staff.TeacherAddress }}</div>
                                         <div>মোবাইল : {{ staff.TeacherPhoneNumber }}</div>
 
@@ -74,7 +74,7 @@ export default {
 
 	created(){
 
-  this.ASSETURL = ASSETURL
+
 	},
 
 	data () {
@@ -151,6 +151,11 @@ this.allstaffs()
     padding: 4px;
     border: 1px solid #dddddd;
 }
-
-
+hr {
+    background-color: hsl(0deg 0% 89%) !important;
+    border: none !important;
+    display: block !important;
+    height: 2px !important;
+    margin: 0.5rem 0 !important;
+}
 </style>

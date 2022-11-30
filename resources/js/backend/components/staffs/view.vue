@@ -39,7 +39,7 @@
 
 <div class="form-input" style="width: 100%;">
     <div class="preview">
-    <img :src="form.ProfilePicture" id="file-ip-1-preview">
+    <img :src="$asseturl+form.ProfilePicture" id="file-ip-1-preview">
     </div>
     <label for="file-ip-1">Choose File</label>
     <input type="file" id="file-ip-1"  @change="studentimage">
@@ -181,7 +181,7 @@ this.preloader = true;
             // this.preloader = false;
             // return this.$router.go(-1)
             this.getstaff();
-       
+
 
 
     })

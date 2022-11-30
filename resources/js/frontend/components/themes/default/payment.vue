@@ -51,10 +51,10 @@
                             <div class="form-group">
                                 <label for="">পেমেন্ট করার মাধ্যম</label>
                                 <select class="form-control" v-model="form.paymenttype">
-                                    <option value="">পেমেন্ট করার মাধ্যম নির্বাচন করুন</option>
-                                    <option value="AdmissionID">এডমিশন আইডি এর মাধমে</option>
-                                    <option value="StudentID">স্টুডেন্ট আইডি এর মাথমে</option>
-                                    <option value="other">শ্রেণি,রোল,গ্রপ এর মাথমে</option>
+                                    <option value="">নির্বাচন করুন</option>
+                                    <option value="AdmissionID">এডমিশন আইডি এর মাধ্যমে</option>
+                                    <option value="StudentID"> স্টুডেন্ট আইডি এর মাধ্যমে</option>
+                                    <option value="other">শ্রেণি, রোল, গ্রুপ এর মাধ্যমে</option>
                                 </select>
                             </div>
 

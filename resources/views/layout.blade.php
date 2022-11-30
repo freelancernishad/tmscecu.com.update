@@ -141,7 +141,9 @@ li.page-item.active button {
         .minheight{
             height: 150px;
         }
-
+        input.btn-fill-lg.btn-gradient-yellow.btn-hover-bluedark {
+            background: var(--bgColor2) !important;
+        }
     </style>
 
     {{-- <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.8/semantic.min.css">
@@ -167,7 +169,7 @@ li.page-item.active button {
 
 
 
-<script src="{{ asset('js/backend.js?ver=1.0.4') }}"></script>
+<script src="{{ asset('js/backend.js?ver=1.0.5') }}"></script>
 
 
 

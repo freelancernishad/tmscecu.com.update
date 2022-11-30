@@ -460,6 +460,18 @@
                 </div>
 
 
+                <div class="col-md-12">
+				<div class="fileUpload" style="    position: relative !important;">
+				<label for="fileupload" id="fileChoiceLable">
+					<img width="100%" height="100%" :src="form.StudentPicture" v-if="form.StudentPicture" alt="" />
+                    <span style="text-align: center;" v-else >Click Here to Upload Student Image <br> 300x300</span>
+
+				</label>
+					<input type="file" id="fileupload" style="display:none"  @change="FileSelected($event, 'StudentPicture')" />
+
+				</div>
+            </div>
+
 
                 </div>
 
@@ -1176,32 +1188,33 @@ console.log(event.target.result)
 
         nextTab(){
             //Validate input
+
+            if(this.form.StudentPicture){
             this.$root.$validator.validate('step'+(this.currentActive+ 1)+'.*').then(valid => {
 
                 // console.log(valid)
 
 
-    if(this.currentActive==0){
-                // if (valid && this.studentEmailstatus){
-                if (valid){
-                    this.currentActive++;
-                    this.tabs.forEach(tab => {
-                        tab.isActive = false;
-                    });
+                if(this.currentActive==0){
+                    // if (valid && this.studentEmailstatus){
+                    if (valid){
+                        this.currentActive++;
+                        this.tabs.forEach(tab => {
+                            tab.isActive = false;
+                        });
 
-                    this.tabs[this.currentActive].isActive = true;
+                        this.tabs[this.currentActive].isActive = true;
+                    }
+                }else if(this.currentActive==1){
+                    // if (valid && this.parentEmailstatus){
+                    if (valid){
+                        this.currentActive++;
+                        this.tabs.forEach(tab => {
+                            tab.isActive = false;
+                        });
+                        this.tabs[this.currentActive].isActive = true;
+                    }
                 }
-         }else if(this.currentActive==1){
-                // if (valid && this.parentEmailstatus){
-                if (valid){
-                    this.currentActive++;
-                    this.tabs.forEach(tab => {
-                        tab.isActive = false;
-                    });
-
-                    this.tabs[this.currentActive].isActive = true;
-                }
-    }
 
 
 
@@ -1209,7 +1222,10 @@ console.log(event.target.result)
 
 
             });
-
+        }else{
+                        Notification.customError2('Student image is required!');
+                          this.preloader = false;
+                    }
 
 
 

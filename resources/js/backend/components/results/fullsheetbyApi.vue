@@ -35,8 +35,8 @@
                         </div>
                         <div class="col-md-6">
 
-                            <button class="btn-fill-md text-light bg-dark-pastel-green mt-3 float-right" v-if="status=='Draft'">Publish Now</button>
-                            <button class="btn-fill-lmd text-light bg-gradient-gplus mt-3 float-right" v-else>Draft Now</button>
+                            <!-- <button class="btn-fill-md text-light bg-dark-pastel-green mt-3 float-right" v-if="status=='Draft'">Publish Now</button>
+                            <button class="btn-fill-lmd text-light bg-gradient-gplus mt-3 float-right" v-else>Draft Now</button> -->
 
                         </div>
                     </div>

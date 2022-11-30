@@ -171,7 +171,7 @@ class staffsController extends Controller
         if(File::exists($staff->ProfilePicture)){
             unlink($staff->ProfilePicture);
         }
-      $ProfilePicture=  fileupload($request->ProfilePicture,'backend/staff/',250,300,$staff->StudentID);
+      $ProfilePicture=  fileupload($request->ProfilePicture,'backend/staff/',300,300,$staff->StudentID);
 
         return $staff->update(['ProfilePicture'=>$ProfilePicture]);
 
@@ -216,14 +216,14 @@ class staffsController extends Controller
     {
         $id = $r->id;
         $status = $r->status;
-        $data = [];
-        $inputData = $r->all();
-        foreach ($inputData as $key => $value) {
-            if ($key == 'id' || $key == '_token' || $key == 'status' || $key == 'TeacherSubmit') {
-            } else {
-                $data[$key] = $value;
-            }
+
+        $data = $r->except('_token','status','ProfilePicture');
+
+        $imageCount =  count(explode(';', $r->ProfilePicture));
+        if ($imageCount > 1) {
+            $data['ProfilePicture'] =  fileupload($r->ProfilePicture, 'backend/staffs/',300,300);
         }
+
         if ($id == '') {
             $result =   staff::create($data);
             $results['result'] = $result;

@@ -336,7 +336,7 @@
 
 
 
-                <div class="col-md-4">
+                <div class="col-md-4 mt-3">
                         <div class="form-group">
                             <label for=""  class="form_label">বিভাগ</label>
 
@@ -348,7 +348,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label for=""  class="form_label">জেলা</label>
 
@@ -362,7 +362,7 @@
 
 
 
-                <div class="col-md-4">
+                <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label for=""  class="form_label">উপজেলা/থানা</label>
 
@@ -375,7 +375,7 @@
                 </div>
 
 
-                <div class="col-md-4">
+                <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label for=""  class="form_label">ইউনিয়ন</label>
 
@@ -388,7 +388,7 @@
                 </div>
 
 
-                <div class="col-md-4">
+                <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label for=""  class="form_label">পোষ্ট অফিস</label>
                         <input type="text" class="form-control" name="পোষ্ট অফিস" v-model="form.post_office" required  >
@@ -397,7 +397,7 @@
                 </div>
 
 
-                <div class="col-md-4">
+                <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">গ্রাম</label>
                         <input class="form-control" type="text"  placeholder="গ্রাম" v-model="form.StudentAddress" name="গ্রাম" required  />
@@ -423,6 +423,21 @@
 
                     </div>
                 </div>
+
+                <div class="col-md-12 mb-3">
+				<div class="fileUpload" style="    position: relative !important;">
+				<label for="fileupload" id="fileChoiceLable">
+					<img width="100%" height="100%" :src="form.StudentPicture" v-if="form.StudentPicture" alt="" />
+                    <span style="text-align: center;" v-else >Click Here to Upload Student Image <br> 300x300</span>
+
+				</label>
+					<input type="file" id="fileupload" style="display:none"  @change="FileSelected($event, 'StudentPicture')" />
+
+				</div>
+            </div>
+
+
+
 
                 </div>
 
@@ -718,6 +733,57 @@ export default {
 
 
 
+
+        FileSelected($event, parent_index) {
+            let file = $event.target.files[0];
+            // console.log(file)
+            if (file.size > 5048576) {
+                Notification.image_validation();
+            } else {
+                let reader = new FileReader;
+                reader.onload = event => {
+
+
+console.log(event.target.result)
+
+   //Initiate the JavaScript Image object.
+   var image = new Image();
+
+ //Set the Base64 string return from FileReader as source.
+ image.src = event.target.result;
+
+ //Validate the File Height and Width.
+
+ var formThis = this;
+
+ image.onload = function () {
+    var height = this.height;
+     var width = this.width;
+    //  console.log( width,height)
+     if (height===width) {
+        formThis.form[parent_index] = event.target.result
+         return false;
+     }
+     alert("Uploaded image has valid Height and Width.");
+     return true;
+ };
+
+
+
+
+
+
+
+
+
+
+
+                };
+                reader.readAsDataURL(file)
+            }
+            //   console.log($event.target.result);
+        },
+
       async checkRoll(){
         if(this.form.StudentClass=='Nine' || this.form.StudentClass=='Ten'){
         }else{
@@ -787,7 +853,7 @@ export default {
 
        async formsubmit(){
 
-
+        if(this.form.StudentPicture){
             if(this.alredyhave){
                 Notification.customError(`${this.form.StudentClass} Already Have Roll ${this.form.StudentRoll}`);
             }else{
@@ -797,12 +863,11 @@ export default {
                 Notification.success();
 
             }
-
-
-
-
-
-                    this.preloader = false;
+        }else{
+                        Notification.customError2('Student image is required!');
+                          this.preloader = false;
+                    }
+            this.preloader = false;
 
         }
 
@@ -857,4 +922,24 @@ export default {
 #img_size{
 	width: 40px;
 }
+
+
+
+.fileUpload {
+    width: 195px;
+    height: 195px;
+    border: 1px solid;
+	position: absolute;
+    top: 0;
+    right: 0;
+}
+#fileChoiceLable{
+	width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
 </style>

@@ -199,9 +199,9 @@ export default {
     },
     mounted() {
         this.schoolDetial();
-        this.curentdate = User.dateformat(new Date())[0]
+        this.curentdate = User.dateformat(new Date())[3]
         setInterval(() => {
-            this.curenttime = User.dateformat(new Date())[8]
+            this.curenttime = User.dateformat(new Date())[3]
         }, 1000);
     }
 }
