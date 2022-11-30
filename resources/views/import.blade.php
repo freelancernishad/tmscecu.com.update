@@ -108,12 +108,12 @@ body {
 </style>
 
 <div class="container">
-    <form class="form" action="/import" method="POST" enctype="multipart/form-data">
+    <form class="form" action="/dashboard/import" method="POST" enctype="multipart/form-data">
         @csrf
       {{-- <div class="file-upload-wrapper" data-text="Select your file!">
         <input name="ecelfile" type="file" class="file-upload-field" >
       </div> --}}
-      <input name="ecelfile" type="file"  >
+      <input name="ecelfile" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"  >
 
       <button type="submit" class="btn btn-success" style="    background: #ff5200;
       padding: 12px;

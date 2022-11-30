@@ -94,12 +94,6 @@ Route::get('details',[NotificationsController::class,'details']);
 
 
 
-Route::get('/import', function () {
-return view('import');
-
-
-});
-Route::post('import',[studentsController::class,'import']);
 
 
 
@@ -226,6 +220,15 @@ Route::get('/allow/application/notification', function () {
 
 
 Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
+
+
+    Route::get('/import', function () {
+        return view('import');
+
+
+        });
+        Route::post('import',[studentsController::class,'import']);
+
 
 
         // Route::get('students/card',[studentsController::class , 'card_form']);
