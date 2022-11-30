@@ -88,6 +88,7 @@ function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='paymen
 
     $Apiurl = env('AKPAY_API_URL');
     $url = env('AKPAY_IPN_URL');
+    $whitelistip = env('WHITE_LIST_IP');
    $req_timestamp = date('Y-m-d H:i:s');
 
 
@@ -111,7 +112,7 @@ function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='paymen
          "ipn_email" => "freelancernishad123@gmail.com",
          "ipn_uri" => "$url/api/ipn"
       ],
-      "mac_addr" => "1.1.1.1"
+      "mac_addr" => "$whitelistip"
    ];
 
    // 148.163.122.80
