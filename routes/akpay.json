@@ -1,0 +1,83 @@
+{
+    "mer_info": {
+        "mer_reg_id": "tepriganj_test",
+        "mer_pas_key": "Tep@Tst#98f727"
+    },
+    "req_timestamp": "2022-11-29 13:08:28 GMT+6",
+    "feed_uri": {
+        "c_uri": "https:\/\/tepriganjhighschool.edu.bd\/payment\/cancel",
+        "f_uri": "https:\/\/tepriganjhighschool.edu.bd\/payment\/fail",
+        "s_uri": "https:\/\/tepriganjhighschool.edu.bd\/payment\/success"
+    },
+    "cust_info": {
+        "cust_email": "",
+        "cust_id": "2",
+        "cust_mail_addr": "Address",
+        "cust_mobo_no": "01909756552",
+        "cust_name": "Customer Name"
+    },
+    "trns_info": {
+        "ord_det": "Admission_fee",
+        "ord_id": "1259832911220010",
+        "trnx_amt": "50",
+        "trnx_currency": "BDT",
+        "trnx_id": "1669705708"
+    },
+    "ipn_info": {
+        "ipn_channel": "3",
+        "ipn_email": "freelancernishad123@gmail.com",
+        "ipn_uri": "https:\/\/tepriganjhighschool.edu.bd\/api\/ipn"
+    },
+    "mac_addr": "1.1.1.1"
+}
+{
+    "secure_token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXByaWdhbmpfdGVzdCIsImF1dGgiOiJST0xFX01FUkNIQU5UIiwiZXhwIjoxNjY5NzM1NzA5fQ.AFjfrmSS2ZvyNklncGYAoq7_Jifg_okYlJBV08NPyonZlPMd56NQXY-u92_Gs68ZeC5gHbnJwwd0RIC8cay0Zw",
+    "token_exp_time": "30000s",
+    "msg_code": "1000",
+    "msg_det": "Secure token generated successfully",
+    "ack_tstamp": "2022-11-29 13:08:29 GMT+06:00"
+}
+{
+    "secure_token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXByaWdhbmpfdGVzdCIsImF1dGgiOiJST0xFX01FUkNIQU5UIiwiZXhwIjoxNjY5NzM1NzA5fQ.AFjfrmSS2ZvyNklncGYAoq7_Jifg_okYlJBV08NPyonZlPMd56NQXY-u92_Gs68ZeC5gHbnJwwd0RIC8cay0Zw",
+    "msg_code": "1020",
+    "msg_det": "Transaction completed successfully",
+    "req_timestamp": "2022-11-29 13:08:45 GMT+06:00",
+    "basic_Info": {
+        "mer_reg_id": "tepriganj_test",
+        "ipn_info": "3,freelancernishad123@gmail.com,https:\/\/tepriganjhighschool.edu.bd\/api\/ipn",
+        "redirect_to": "https:\/\/tepriganjhighschool.edu.bd\/payment\/success",
+        "dgtl_sign": "WEB",
+        "ord_desc": "Admission_fee",
+        "remarks": null
+    },
+    "cust_info": {
+        "cust_id": "2",
+        "cust_name": "Customer Name",
+        "cust_mobo_no": "+8801909756552",
+        "cust_email": null,
+        "cust_mail_addr": "Address"
+    },
+    "scroll_no": null,
+    "trnx_info": {
+        "trnx_amt": "50.00",
+        "trnx_id": "22112913082940070",
+        "mer_trnx_id": "1669705708",
+        "curr": "BDT",
+        "pi_trnx_id": "testpg-xxxx",
+        "pi_charge": "0.50",
+        "ekpay_charge": "0.00",
+        "pi_discount": "0.0",
+        "discount": "0.00",
+        "promo_discount": "0.0",
+        "total_ser_chrg": "0.5",
+        "total_pabl_amt": "50.50"
+    },
+    "pi_det_info": {
+        "pay_timestamp": "29-11-2022 01:08:45 PM",
+        "pi_name": "SIT-PG",
+        "pi_type": "sitpg",
+        "pi_number": "NOTHING PROVIDED",
+        "pi_gateway": "sitpg-sitpg",
+        "card_holder_name": "NOTHING PROVIDED"
+    }
+}
