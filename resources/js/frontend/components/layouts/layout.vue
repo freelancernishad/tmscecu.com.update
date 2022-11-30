@@ -5,7 +5,7 @@
             <!-- Top header -->
             <div class="topHeader">
                     <div class="row">
-                        <div class="topheaderItem col-md-6 col-6"><span>ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমে
+                        <div class="topheaderItem col-md-6 col-6"><span>{{ schoolinfo.SCHOLL_NAME }} এ
                                 স্বাগতম</span></div>
                         <div class="topheaderItem col-md-6 col-6 text-right"><span
                                 style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{

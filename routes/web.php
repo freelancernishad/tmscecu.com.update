@@ -94,6 +94,15 @@ Route::get('details',[NotificationsController::class,'details']);
 
 
 
+Route::get('/import', function () {
+return view('import');
+
+
+});
+Route::post('import',[studentsController::class,'import']);
+
+
+
 
 Route::get('/unioncreate', function () {
 

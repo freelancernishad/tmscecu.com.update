@@ -5069,7 +5069,9 @@ var render = function render() {
     staticClass: "topHeader"
   }, [_c("div", {
     staticClass: "row"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
+  }, [_c("div", {
+    staticClass: "topheaderItem col-md-6 col-6"
+  }, [_c("span", [_vm._v(_vm._s(_vm.schoolinfo.SCHOLL_NAME) + " এ\n                              স্বাগতম")])]), _vm._v(" "), _c("div", {
     staticClass: "topheaderItem col-md-6 col-6 text-right"
   }, [_c("span", {
     staticStyle: {
@@ -5101,7 +5103,7 @@ var render = function render() {
     staticClass: "navbar navbar-expand-lg navbar-light bg-primary text-light"
   }, [_c("div", {
     staticClass: "container-fluid"
-  }, [_vm._m(1), _vm._v(" "), _c("div", {
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "collapse navbar-collapse",
     attrs: {
       id: "navbarSupportedContent"
@@ -5210,17 +5212,10 @@ var render = function render() {
         name: "login"
       }
     }
-  }, [_vm._v("লগইন")])], 1)])])])])]), _vm._v(" "), _vm._t("default"), _vm._v(" "), _vm._m(2)], 2);
+  }, [_vm._v("লগইন")])], 1)])])])])]), _vm._v(" "), _vm._t("default"), _vm._v(" "), _vm._m(1)], 2);
 };
 
 var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "topheaderItem col-md-6 col-6"
-  }, [_c("span", [_vm._v("ইউনিয়ন পরিষদ ডিজিটাল সেবা সিস্টেমে\n                              স্বাগতম")])]);
-}, function () {
   var _vm = this,
       _c = _vm._self._c;
 
@@ -8065,7 +8060,7 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      placeholder: "ঠিকানা",
+      placeholder: "গ্রাম",
       name: "গ্রাম",
       "data-vv-scope": "step1"
     },
@@ -8603,7 +8598,7 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("অভিভাবকের জাতীয় পরিচয় পত্র নং")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",

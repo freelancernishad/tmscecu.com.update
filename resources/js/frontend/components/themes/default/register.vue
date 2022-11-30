@@ -426,7 +426,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">গ্রাম</label>
-                        <input class="form-control" type="text"  placeholder="ঠিকানা" v-model="form.StudentAddress" name="গ্রাম" v-validate="'required'" data-vv-scope="step1" />
+                        <input class="form-control" type="text"  placeholder="গ্রাম" v-model="form.StudentAddress" name="গ্রাম" v-validate="'required'" data-vv-scope="step1" />
                          <p class="help is-danger" v-show="errors.has('step1.গ্রাম')">
                              {{ errors.first('step1.গ্রাম') }}
                           </p>
@@ -580,6 +580,7 @@
                           </p>
                     </div>
                 </div>
+
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের নাম (English)</label>
@@ -593,7 +594,7 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং</label>
+                        <label class="form_label">অভিভাবকের জাতীয় পরিচয় পত্র নং</label>
                         <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardNid" name="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং"  data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং')">
                              {{ errors.first('step2.পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং') }}
@@ -1011,6 +1012,7 @@ export default {
 
     mounted(){
         this.totalTabs = this.tabs.length;
+
         this.getdivisionFun();
         this.Pdivision = 7
         this.applicant_present_district = 53

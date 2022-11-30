@@ -218,9 +218,9 @@
 
                 <div class="col-md-4 mt-3"  >
                     <div class="form-group">
-                        <label class="form_label">Student category</label>
+                        <label class="form_label">শিক্ষার্থীর ধরন</label>
                         <select class="form-control" style="width: 100%;" v-model="form.StudentCategory" required >
-                            <option value="">Select Student category</option>
+                            <option value="">নির্বাচন করুন</option>
                             <option>কর্মজীবী শিক্ষার্থী</option>
                             <option>ভূমিহীন অভিভাবকের সন্তান</option>
                             <option>মুক্তিযোদ্ধা পোষা/নাতি-নাতনি</option>
@@ -241,7 +241,7 @@
                             <option value="">
                                 নির্বাচন করুন
                             </option>
-                            <option>মুক্তিযোদ্ধার সন্তান, নাতী নাতনী</option>
+                            <option>মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী</option>
                             <option>অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান</option>
                             <option>প্রতিবন্ধী</option>
                             <option>সাধারণ কোটা</option>
@@ -250,6 +250,19 @@
 
                     </div>
                     </div>
+
+
+
+                    <div class="col-md-4 mt-3" v-if="form.StudentKota=='মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী'">
+                    <div class="form-group">
+                        <label class="form_label">মুক্তিযোদ্ধার সনদ নং </label>
+                        <input class="form-control" type="text"  placeholder="মুক্তিযোদ্ধা কোটা সনদ নং" v-model="form.StudentKotaSonodNo" name="মুক্তিযোদ্ধা কোটা সনদ নং" required />
+                    </div>
+                </div>
+
+
+
+
 
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
@@ -323,19 +336,77 @@
 
 
 
+                <div class="col-md-4">
+                        <div class="form-group">
+                            <label for=""  class="form_label">বিভাগ</label>
 
+                            <select class='form-control' name="বিভাগ" id="division" v-model="Pdivision" @change="getdistrictFun" required  >
+                                <option value="">বিভাগ নির্বাচন করুন</option>
+                                <option v-for="div in getdivisions" :key="div.id" :value="div.id">{{ div.bn_name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
 
-
-
-
-
-                <div class="col-md-4 mt-3">
+                    <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form_label">ঠিকানা</label>
-                        <input class="form-control" type="text"  placeholder="ঠিকানা" v-model="form.StudentAddress" required/>
+                        <label for=""  class="form_label">জেলা</label>
 
+                        <select class='form-control' name="জেলা" id="district" v-model="applicant_present_district" @change="getthanaFun" required  >
+                            <option value="">জেলা নির্বাচন করুন</option>
+                            <option v-for="dist in getdistricts" :key="dist.id" :value="dist.id">{{ dist.bn_name }}
+                            </option>
+                        </select>
                     </div>
                 </div>
+
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for=""  class="form_label">উপজেলা/থানা</label>
+
+                        <select class='form-control' name="উপজেলা/থানা" id="thana" v-model="thana" @change="getuniounFun" required  >
+                            <option value="">উপজেলা নির্বাচন করুন</option>
+                            <option v-for="thana in getthanas" :key="thana.id" :value="thana.id">{{ thana.bn_name
+                            }}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for=""  class="form_label">ইউনিয়ন</label>
+
+                        <select class='form-control' name="ইউনিয়ন" id="thana" v-model="form.union"  required  >
+                            <option value="">ইউনিয়ন নির্বাচন করুন</option>
+                            <option v-for="union in getuniouns" :key="union.id" :value="union.bn_name">{{ union.bn_name
+                            }}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for=""  class="form_label">পোষ্ট অফিস</label>
+                        <input type="text" class="form-control" name="পোষ্ট অফিস" v-model="form.post_office" required  >
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">গ্রাম</label>
+                        <input class="form-control" type="text"  placeholder="গ্রাম" v-model="form.StudentAddress" name="গ্রাম" required  />
+                    </div>
+                </div>
+
+
+
+
 
 
                 <div class="col-md-4 mt-3">
@@ -347,8 +418,8 @@
                 </div>
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
-                        <label class="form_label">পোস্টাল কোড</label>
-                        <input class="form-control" type="text"  placeholder="পোস্টাল কোড" v-model="form.AreaPostalCode"  required/>
+                        <label class="form_label">পোস্টাল কোড / পোস্ট কোড</label>
+                        <input class="form-control" type="text"  placeholder="পোস্টাল কোড / পোস্ট কোড" v-model="form.AreaPostalCode"  required/>
 
                     </div>
                 </div>
@@ -441,8 +512,24 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের নাম</label>
-                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম" v-model="form.guardName"  required/>
+                        <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের নাম (বাংলা)</label>
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম (বাংলা)" v-model="form.guardName"  required/>
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের নাম (English)</label>
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম (English)" v-model="form.guardName" name="পিতা/মাতা না থাকলে অভিভাবকের নাম (English)" />
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">অভিভাবকের জাতীয় পরিচয় পত্র</label>
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardNid" required />
 
                     </div>
                 </div>
@@ -450,13 +537,11 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র</label>
-                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardNid" required />
+                        <label class="form_label">অভিভাবকের সাথে শিক্ষার্থীর সম্পর্ক</label>
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardRalation" name="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" />
 
                     </div>
                 </div>
-
-
 
 
 
@@ -549,60 +634,83 @@ export default {
 		return {
             form:{
                 id:null,
-                school_id:null,
-                Year:new Date().getFullYear(),
-                AdmissionID:null,
-                StudentID:null,
-                StudentRoll:null,
-                StudentClass:null,
-                StudentGender:null,
-                StudentReligion:null,
-                StudentName:null,
-                StudentNameEn:null,
-                StudentFatherNameBn:null,
-                StudentFatherName:null,
-                StudentMotherNameBn:null,
-                StudentMotherName:null,
-                StudentFatherNid:null,
-                StudentMotherNid:null,
-                StudentFatherBCN:null,
-                StudentMotherBCN:null,
-                guardName:null,
-                guardNid:null,
-                StudentFatherOccupation:null,
-                parentEarn:null,
-                StudentMotherOccupation:null,
-                ParentEmail:null,
-                ParentPassword:null,
-                StudentEmail:null,
-                StudentPassword:null,
-                StudentDateOfBirth:null,
-                StudentBirthCertificateNo:null,
-                StudentCategory:null,
-                StudentKota:null,
-                preSchool:null,
-                preClass:null,
-                bigBroSis:"No",
-                bigBroSisName:null,
-                bigBroSisClass:null,
-                bigBroSisRoll:null,
-                StudentGroup:'',
-                StudentAddress:null,
-                StudentPhoneNumber:null,
-                AreaPostalCode:null,
-                StudentStatus:'Pending',
-                StudentTranferFrom:null,
-                StudentPicture:null,
-                JoiningDate:null,
-                StudentTranferStatus:null,
-                AplicationStatus:null,
-                ThisMonthPaymentStatus:null,
+            school_id:null,
+            Year:new Date().getFullYear(),
+            AdmissionID:null,
+            StudentID:null,
+            StudentRoll:null,
+            StudentClass:null,
+            StudentGender:null,
+            StudentReligion:null,
+            StudentName:null,
+            StudentNameEn:null,
+            StudentFatherNameBn:null,
+            StudentFatherName:null,
+            StudentMotherNameBn:null,
+            StudentMotherName:null,
+            StudentFatherNid:null,
+            StudentMotherNid:null,
+            StudentFatherBCN:null,
+            StudentMotherBCN:null,
+            guardNameBn:null,
+            guardName:null,
+            guardNid:null,
+            guardRalation:null,
+            StudentFatherOccupation:null,
+            parentEarn:null,
+            StudentMotherOccupation:null,
+            ParentEmail:null,
+            ParentPassword:null,
+            StudentEmail:null,
+            StudentPassword:null,
+            StudentDateOfBirth:null,
+            StudentBirthCertificateNo:null,
+            StudentCategory:null,
+            StudentKota:null,
+            StudentKotaSonodNo:null,
+            preSchool:null,
+            preClass:null,
+            bigBroSis:"No",
+            bigBroSisName:null,
+            bigBroSisClass:null,
+            bigBroSisRoll:null,
+            StudentGroup:null,
+            StudentAddress:null,
+            division:null,
+            district:null,
+            upazila:null,
+            union:null,
+            post_office:null,
+            StudentPhoneNumber:null,
+            AreaPostalCode:null,
+            StudentStatus:'Pending',
+            StudentTranferFrom:null,
+            StudentPicture:null,
+            JoiningDate:null,
+            StudentTranferStatus:null,
+            AplicationStatus:null,
+            ThisMonthPaymentStatus:null,
             },
 
             editid:'',
             classdisable:false,
             alredyhave:false,
-               preloader: true,
+            preloader: true,
+
+
+            getdivisions: {},
+            getdistricts: {},
+            getthanas: {},
+            getuniouns: {},
+
+            Pdivision: '',
+            Perdivision: '',
+            applicant_present_district: '',
+            thana: '',
+            applicant_permanent_district: '',
+
+
+
 		}
 	},
 
@@ -611,24 +719,13 @@ export default {
 
 
       async checkRoll(){
-
-
         if(this.form.StudentClass=='Nine' || this.form.StudentClass=='Ten'){
-
         }else{
             this.form.StudentGroup = '';
         }
-
         var res = await this.callApi('get',`/api/check/student/roll?StudentRoll=${this.form.StudentRoll}&StudentClass=${this.form.StudentClass}&StudentGroup=${this.form.StudentGroup}`,[]);
         this.alredyhave = res.data;
         },
-
-
-
-
-
-
-
 
         getstudent(){
                 axios.get(`/api/students/single?filter[id]=${this.editid}`)
@@ -641,6 +738,51 @@ export default {
                                     // this.$router.push({name: 'supplier'})
                                 })
         },
+
+
+
+
+        async getdivisionFun() {
+            var res = await this.callApi('get', `/api/getdivisions`, []);
+            this.getdivisions = res.data;
+        },
+
+        async getdistrictFun() {
+            var resdiv = await this.callApi('get', `/api/getdivisions?id=${this.Pdivision}`, []);
+            // console.log(resdiv)
+            this.form.division= resdiv.data.bn_name
+            var res = await this.callApi('get', `/api/getdistrict?id=${this.Pdivision}`, []);
+            this.getdistricts = res.data;
+
+
+
+
+        },
+
+        async getthanaFun() {
+            var res = await this.callApi('get', `/api/getthana?id=${this.applicant_present_district}`, []);
+            this.getthanas = res.data;
+            var resOwn = await this.callApi('get', `/api/getdistrict?ownid=${this.applicant_present_district}`, []);
+            this.form.district = resOwn.data.bn_name
+
+        },
+
+        async getuniounFun() {
+
+
+            var ress = await this.callApi('get', `/api/getthana?ownid=${this.thana}`, []);
+            // console.log(ress.data.bn_name);
+            this.form.upazila = ress.data.bn_name;
+            // this.getuniouns = ress.data;
+
+            var res = await this.callApi('get', `/api/getunioun?id=${this.thana}`, []);
+            this.getuniouns = res.data;
+
+
+        },
+
+
+
 
 
        async formsubmit(){
@@ -684,6 +826,27 @@ export default {
            this.getstudent();
            this.classdisable  = true
        }
+
+
+       this.getdivisionFun();
+        this.Pdivision = 7
+        this.applicant_present_district = 53
+        this.thana = 400
+        this.form.union = 'টেপ্রীগঞ্জ'
+        setTimeout(() => {
+            this.getdistrictFun()
+            setTimeout(() => {
+                this.getthanaFun();
+                setTimeout(() => {
+                this.getuniounFun();
+            }, 500);
+            }, 500);
+
+        }, 500);
+
+
+
+
 
 
 	}

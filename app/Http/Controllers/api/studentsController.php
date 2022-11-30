@@ -9,10 +9,12 @@ use App\Models\Attendance;
 use Illuminate\Http\Request;
 use App\Models\school_detail;
 use App\Models\StudentResult;
+use App\Imports\studentsImport;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Intervention\Image\Facades\Image;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -21,6 +23,87 @@ use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 
 class studentsController extends Controller
 {
+
+    public function import(Request $request)
+    {
+
+
+        // return $request->file('ecelfile');
+
+
+        $rows = Excel::toArray(new studentsImport, $request->file('ecelfile'));
+        foreach ($rows[0] as $key => $row) {
+
+
+            $school_id = '125983';
+            // $student =  student::where(['school_id'=>'125983'])->latest()->first();
+            // $admition_id = $student->AdmissionID;
+
+
+
+            $studentCount =  student::where(['school_id'=>$school_id])->count();
+            if($studentCount>0){
+            $student =  student::where(['school_id'=>$school_id])->orderBy('id','desc')->latest()->first();
+            $admition_id = $student->AdmissionID;
+            // $mutiple = (rand(1, 9));
+            $mutiple = 1;
+                if($admition_id=='' || $admition_id==null){
+                        $one = "0001";
+                        $year = date("dmy");
+                        $admition_ID = $school_id . $year . $one;
+                     }
+                     $admition_ID =  $admition_id;
+                      $admition_ID += $mutiple;
+                }else{
+                    $one = "0001";
+                    $year = date("dmy");
+                    $admition_ID = $school_id . $year . $one;
+                }
+
+
+
+
+            $AdmissionID = (string)$admition_ID;
+
+
+            $StudentID = (string)StudentId($row[1],$row[0],$school_id,$row[2]);
+
+
+            student::create([
+                'school_id'=>$school_id,
+                'StudentID'=>$StudentID,
+                'AdmissionID'=>$AdmissionID,
+                'Year'=>date('Y'),
+                'StudentStatus'=>'Active',
+                'StudentRoll'=>$row[0],
+                'StudentClass'=>$row[1],
+                'StudentGroup'=>$row[2],
+                'StudentNameEn'=>$row[3],
+                'StudentName'=>$row[4],
+            ]);
+            print_r($AdmissionID.'<br/>');
+        }
+
+
+die();
+
+        Excel::import(new studentsImport, 'students.xlsx');
+
+        // return redirect('/')->with('success', 'All good!');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function list(Request $r)
     {
         $datatype = $r->datatype;
@@ -132,88 +215,9 @@ class studentsController extends Controller
                return $admition_ID = $school_id . $year . $one;
             }
     }
-    public function StudentAdmissionId($admition_id='',$school_id)
-    {
-        $studentCount =  student::where(['school_id'=>$school_id])->count();
-        if($studentCount>0){
-        $student =  student::where(['school_id'=>$school_id])->latest()->first();
-        $admition_id = $student->AdmissionID;
-        $mutiple = (rand(1, 9));
-            if($admition_id=='' || $admition_id==null){
-                    $one = "0001";
-                    $year = date("dmy");
-                  return  $admition_ID = $school_id . $year . $one;
-                 }
-                 $admition_ID =  $admition_id;
-                 return $admition_ID += $mutiple;
-            }else{
-                $one = "0001";
-                $year = date("dmy");
-               return $admition_ID = $school_id . $year . $one;
-            }
-    }
-    public function word_digit($word)
-    {
-        $warr = explode(';', $word);
-        $result = '';
-        foreach ($warr as $value) {
-            switch (trim($value)) {
-                case 'Play':
-                    $result .= '0';
-                    break;
-                case 'Nursery':
-                    $result .= '11';
-                    break;
-                case 'One':
-                    $result .= '1';
-                    break;
-                case 'Two':
-                    $result .= '2';
-                    break;
-                case 'Three':
-                    $result .= '3';
-                    break;
-                case 'Four':
-                    $result .= '4';
-                    break;
-                case 'Five':
-                    $result .= '5';
-                    break;
-                case 'Six':
-                    $result .= '6';
-                    break;
-                case 'Seven':
-                    $result .= '7';
-                    break;
-                case 'Eight':
-                    $result .= '8';
-                    break;
-                case 'Nine':
-                    $result .= '9';
-                    break;
-                case 'Ten':
-                    $result .= '10';
-                    break;
-            }
-        }
-        return $result;
-    }
-    public function StudentId($class, $roll,$school_id,$StudentGroup='Humanities')
-    {
-        $groupcode = 2;
-        if($StudentGroup=='Science'){
-            $groupcode=1;
-        }elseif($StudentGroup=='Humanities'){
-            $groupcode=2;
-        }elseif($StudentGroup=='Commerce'){
-            $groupcode=3;
-        }
-        $classidd = $this->word_digit($class);
-        $classid = str_pad($classidd, 2, '0', STR_PAD_LEFT);
-        $yearid = date("y");
-        $rollid = str_pad($roll, 3, '0', STR_PAD_LEFT);
-        return $school_id . $yearid . $classid.$groupcode . $rollid;
-    }
+
+
+
     public function student_check(Request $r)
     {
         $school_id = $r->school_id;
@@ -233,15 +237,15 @@ class studentsController extends Controller
             $row = DB::table('students')->where($wheredata)->orderBy('StudentRoll', 'DESC')->get();
             $admition_id = $row[0]->AdmissionID;
             $roll = $row[0]->StudentRoll + 1;
-            $admition_ID = (string)$this->StudentAdmissionId($admition_id,$school_id);
-            $StudentID = $this->StudentId($class, $roll,$school_id);
+            $admition_ID = (string)StudentAdmissionId($admition_id,$school_id);
+            $StudentID = StudentId($class, $roll,$school_id);
             $data = ['admition_ID' => $admition_ID, 'StudentID' => $StudentID, 'StudentRoll' => $row[0]->StudentRoll + 1];
         } else {
             $one = "0001";
             $year = date("dmy");
             $admition_ID = $school_id . $year . $one;
             ////////////////////////////////
-            $StudentID = $this->StudentId($class, "1",$school_id);
+            $StudentID = StudentId($class, "1",$school_id);
             $data = ['admition_ID' => $admition_ID, 'StudentID' => $StudentID, 'StudentRoll' => '1'];
         }
         return response()->json($data);
@@ -278,7 +282,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             $StudentRoll = $r->StudentRoll;
             $year = date('Y');
             $StudentGroup = $r->StudentGroup;
-// return $this->StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
+// return StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
             $studentcount =  student::where(['StudentRoll'=>$StudentRoll,'StudentClass'=>$StudentClass,'StudentGroup'=>$StudentGroup,'year'=>$year])->count();
             if($studentcount>0){
                 $resp = [
@@ -287,9 +291,9 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                 ];
                 return $resp;
             }
-             $data['StudentID'] = (string)$this->StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
+             $data['StudentID'] = (string)StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
         }
-        $data['AdmissionID'] = (string)$this->StudentAdmissionId('',$school_id);
+        $data['AdmissionID'] = (string)StudentAdmissionId('',$school_id);
 
 
         $imageCount =  count(explode(';', $r->StudentPicture));

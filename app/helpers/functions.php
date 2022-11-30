@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Sonod;
+use App\Models\student;
 use App\Models\Visitor;
 use App\Models\Uniouninfo;
 use App\Models\Sonodnamelist;
@@ -1308,4 +1309,87 @@ function characterCount($string)
 
 
 }
+ function word_digit($word)
+{
+    $warr = explode(';', $word);
+    $result = '';
+    foreach ($warr as $value) {
+        switch (trim($value)) {
+            case 'Play':
+                $result .= '0';
+                break;
+            case 'Nursery':
+                $result .= '11';
+                break;
+            case 'One':
+                $result .= '1';
+                break;
+            case 'Two':
+                $result .= '2';
+                break;
+            case 'Three':
+                $result .= '3';
+                break;
+            case 'Four':
+                $result .= '4';
+                break;
+            case 'Five':
+                $result .= '5';
+                break;
+            case 'Six':
+                $result .= '6';
+                break;
+            case 'Seven':
+                $result .= '7';
+                break;
+            case 'Eight':
+                $result .= '8';
+                break;
+            case 'Nine':
+                $result .= '9';
+                break;
+            case 'Ten':
+                $result .= '10';
+                break;
+        }
+    }
+    return $result;
+}
 
+ function StudentAdmissionId($admition_id='',$school_id)
+{
+    $studentCount =  student::where(['school_id'=>$school_id])->count();
+    if($studentCount>0){
+    $student =  student::where(['school_id'=>$school_id])->latest()->first();
+    $admition_id = $student->AdmissionID;
+    $mutiple = (rand(1, 9));
+        if($admition_id=='' || $admition_id==null){
+                $one = "0001";
+                $year = date("dmy");
+              return  $admition_ID = $school_id . $year . $one;
+             }
+             $admition_ID =  $admition_id;
+             return $admition_ID += $mutiple;
+        }else{
+            $one = "0001";
+            $year = date("dmy");
+           return $admition_ID = $school_id . $year . $one;
+        }
+}
+
+ function StudentId($class, $roll,$school_id,$StudentGroup='Humanities')
+{
+    $groupcode = 2;
+    if($StudentGroup=='Science'){
+        $groupcode=1;
+    }elseif($StudentGroup=='Humanities'){
+        $groupcode=2;
+    }elseif($StudentGroup=='Commerce'){
+        $groupcode=3;
+    }
+    $classidd = word_digit($class);
+    $classid = str_pad($classidd, 2, '0', STR_PAD_LEFT);
+    $yearid = date("y");
+    $rollid = str_pad($roll, 3, '0', STR_PAD_LEFT);
+    return $school_id . $yearid . $classid.$groupcode . $rollid;
+}
