@@ -4757,11 +4757,11 @@ var render = function render() {
     staticClass: "col-md-6"
   }, [_c("h6", {
     staticClass: "serviceTitle position-relative defaltColor"
-  }, [_vm._v("\n                                অধ্যক্ষের বাণী\n                            ")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.schoolinfo.PRINCIPALS_WORDS))])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                প্রধান শিক্ষকের বাণী\n                            ")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.schoolinfo.PRINCIPALS_WORDS))])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("h6", {
     staticClass: "serviceTitle position-relative defaltColor"
-  }, [_vm._v("\n                                উপ অধ্যক্ষের বাণী\n                            ")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.schoolinfo.VICE_PRINCIPALS_STATEMENT))])])])])]), _vm._v(" "), _c("side-bar", {
+  }, [_vm._v("\n                               সহকারি প্রধান শিক্ষকের বাণী\n                            ")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.schoolinfo.VICE_PRINCIPALS_STATEMENT))])])])])]), _vm._v(" "), _c("side-bar", {
     attrs: {
       "class-name": "col-md-3"
     }

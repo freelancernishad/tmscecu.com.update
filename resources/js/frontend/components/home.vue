@@ -36,7 +36,7 @@
 
                         <div class="col-md-6">
                             <h6 class="serviceTitle position-relative defaltColor">
-                                অধ্যক্ষের বাণী
+                                প্রধান শিক্ষকের বাণী
                             </h6>
 
                             <p>{{  schoolinfo.PRINCIPALS_WORDS }}</p>
@@ -45,7 +45,7 @@
 
                         <div class="col-md-6">
                             <h6 class="serviceTitle position-relative defaltColor">
-                                উপ অধ্যক্ষের বাণী
+                               সহকারি প্রধান শিক্ষকের বাণী
                             </h6>
 
                             <p>{{  schoolinfo.VICE_PRINCIPALS_STATEMENT }}</p>
