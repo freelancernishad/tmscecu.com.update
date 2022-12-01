@@ -62,7 +62,7 @@
  <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">নাম (বাংলা)</label>
-                        <input class="form-control" type="text"  placeholder="নাম (বাংলা)" v-model="form.StudentName" required  />
+                        <input class="form-control" type="text"  placeholder="নাম (বাংলা)" v-model="form.StudentName"   />
 
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">নাম (English)</label>
-                        <input class="form-control" style="text-transform:uppercase"  type="text"  placeholder="নাম (English)" v-model="form.StudentNameEn" required />
+                        <input class="form-control" style="text-transform:uppercase"  type="text"  placeholder="নাম (English)" v-model="form.StudentNameEn"  />
 
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                         <label class="form_label">শ্রেণি</label>
 
 
-                            <select  class="form-control"  style="width: 100%;" v-model="form.StudentClass" @change="checkRoll" required >
+                            <select  class="form-control"  style="width: 100%;" v-model="form.StudentClass" @change="checkRoll"  >
                                 <option value="">
                                     নির্বাচন করুন
                                 </option>
@@ -98,7 +98,7 @@
                 <div class="col-md-4 mt-3" v-if="form.StudentClass=='Nine' || form.StudentClass=='Ten'" id="Sgroup" >
                     <div class="form-group">
                         <label class="form_label">গ্রুপ</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentGroup" @change="checkRoll"  required>
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentGroup" @change="checkRoll"  >
                             <option value="">
                                 নির্বাচন করুন
                             </option>
@@ -118,7 +118,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">রোল</label>
-                        <input class="form-control" style="text-transform:uppercase"  type="text" @keyup="checkRoll"  placeholder="রোল" v-model="form.StudentRoll"  required />
+                        <input class="form-control" style="text-transform:uppercase"  type="text" @keyup="checkRoll"  placeholder="রোল" v-model="form.StudentRoll"   />
                     </div>
                     <span v-if="alredyhave" style="color:red">{{ form.StudentClass }} Already Have Roll {{ form.StudentRoll }}</span>
                 </div>
@@ -127,7 +127,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">লিঙ্গ</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentGender" required>
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentGender" >
                             <option value="">
                                 নির্বাচন করুন
                             </option>
@@ -146,7 +146,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">ধর্ম</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentReligion" required>
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentReligion" >
                             <option value="">
                                 নির্বাচন করুন
                             </option>
@@ -199,7 +199,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">জন্ম নিবন্ধন নং</label>
-                        <input class="form-control" type="text"  placeholder="জন্ম নিবন্ধন নং" v-model="form.StudentBirthCertificateNo" required />
+                        <input class="form-control" type="text"  placeholder="জন্ম নিবন্ধন নং" v-model="form.StudentBirthCertificateNo"  />
 
                     </div>
                 </div>
@@ -208,7 +208,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">জন্ম তারিখ</label>
-                        <input class="form-control" type="date"  placeholder="জন্ম তারিখ" v-model="form.StudentDateOfBirth" required />
+                        <input class="form-control" type="date"  placeholder="জন্ম তারিখ" v-model="form.StudentDateOfBirth"  />
 
                     </div>
                 </div>
@@ -219,7 +219,7 @@
                 <div class="col-md-4 mt-3"  >
                     <div class="form-group">
                         <label class="form_label">শিক্ষার্থীর ধরন</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentCategory" required >
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentCategory"  >
                             <option value="">নির্বাচন করুন</option>
                             <option>কর্মজীবী শিক্ষার্থী</option>
                             <option>ভূমিহীন অভিভাবকের সন্তান</option>
@@ -237,7 +237,7 @@
                 <div class="col-md-4 mt-3"  >
                     <div class="form-group">
                         <label class="form_label">কোটা</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentKota" required >
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentKota"  >
                             <option value="">
                                 নির্বাচন করুন
                             </option>
@@ -256,7 +256,7 @@
                     <div class="col-md-4 mt-3" v-if="form.StudentKota=='মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী'">
                     <div class="form-group">
                         <label class="form_label">মুক্তিযোদ্ধার সনদ নং </label>
-                        <input class="form-control" type="text"  placeholder="মুক্তিযোদ্ধা কোটা সনদ নং" v-model="form.StudentKotaSonodNo" name="মুক্তিযোদ্ধা কোটা সনদ নং" required />
+                        <input class="form-control" type="text"  placeholder="মুক্তিযোদ্ধা কোটা সনদ নং" v-model="form.StudentKotaSonodNo" name="মুক্তিযোদ্ধা কোটা সনদ নং"  />
                     </div>
                 </div>
 
@@ -267,7 +267,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">পূর্বে অধ্যায়নরত স্কুল এর নাম </label>
-                        <input class="form-control" type="text"  placeholder="পূর্বে অধ্যায়নরত স্কুল এর নাম" required/>
+                        <input class="form-control" type="text"  placeholder="পূর্বে অধ্যায়নরত স্কুল এর নাম" />
 
                     </div>
                 </div>
@@ -275,7 +275,7 @@
                     <div class="form-group">
                         <label class="form_label">পূর্বে অধ্যায়নরত শ্রেণি</label>
 
-                        <select  class="form-control"  style="width: 100%;" v-model="form.preClass" required>
+                        <select  class="form-control"  style="width: 100%;" v-model="form.preClass" >
                                 <option value="">
                                     নির্বাচন করুন
                                 </option>
@@ -290,7 +290,7 @@
                 <div class="col-md-4 mt-3"  >
                     <div class="form-group">
                         <label class="form_label">কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যায়নরত কি না</label>
-                        <select class="form-control" style="width: 100%;" v-model="form.bigBroSis"  required>
+                        <select class="form-control" style="width: 100%;" v-model="form.bigBroSis"  >
                             <option value="No">না</option>
                             <option value="Yes">হ্যাঁ</option>
 
@@ -304,7 +304,7 @@
                 <div class="col-md-4 mt-3" v-if="form.bigBroSis=='Yes'" >
                     <div class="form-group">
                         <label class="form_label">অধ্যয়নরত ভাই/বোনের নাম</label>
-                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের নাম" v-model="form.bigBroSisName" required/>
+                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের নাম" v-model="form.bigBroSisName" />
 
                     </div>
                 </div>
@@ -313,7 +313,7 @@
                 <div class="col-md-4 mt-3"  v-if="form.bigBroSis=='Yes'"  >
                     <div class="form-group">
                         <label class="form_label">অধ্যয়নরত ভাই/বোনের শ্রেণি</label>
-                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-model="form.bigBroSisClass" required />
+                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-model="form.bigBroSisClass"  />
 
                     </div>
                 </div>
@@ -322,7 +322,7 @@
                 <div class="col-md-4 mt-3"  v-if="form.bigBroSis=='Yes'"  >
                     <div class="form-group">
                         <label class="form_label">অধ্যয়নরত ভাই/বোনের রোল</label>
-                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের রোল" v-model="form.bigBroSisRoll" required />
+                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের রোল" v-model="form.bigBroSisRoll"  />
 
                     </div>
                 </div>
@@ -340,7 +340,7 @@
                         <div class="form-group">
                             <label for=""  class="form_label">বিভাগ</label>
 
-                            <select class='form-control' name="বিভাগ" id="division" v-model="Pdivision" @change="getdistrictFun" required  >
+                            <select class='form-control' name="বিভাগ" id="division" v-model="Pdivision" @change="getdistrictFun"   >
                                 <option value="">বিভাগ নির্বাচন করুন</option>
                                 <option v-for="div in getdivisions" :key="div.id" :value="div.id">{{ div.bn_name }}
                                 </option>
@@ -352,7 +352,7 @@
                     <div class="form-group">
                         <label for=""  class="form_label">জেলা</label>
 
-                        <select class='form-control' name="জেলা" id="district" v-model="applicant_present_district" @change="getthanaFun" required  >
+                        <select class='form-control' name="জেলা" id="district" v-model="applicant_present_district" @change="getthanaFun"   >
                             <option value="">জেলা নির্বাচন করুন</option>
                             <option v-for="dist in getdistricts" :key="dist.id" :value="dist.id">{{ dist.bn_name }}
                             </option>
@@ -366,7 +366,7 @@
                     <div class="form-group">
                         <label for=""  class="form_label">উপজেলা/থানা</label>
 
-                        <select class='form-control' name="উপজেলা/থানা" id="thana" v-model="thana" @change="getuniounFun" required  >
+                        <select class='form-control' name="উপজেলা/থানা" id="thana" v-model="thana" @change="getuniounFun"   >
                             <option value="">উপজেলা নির্বাচন করুন</option>
                             <option v-for="thana in getthanas" :key="thana.id" :value="thana.id">{{ thana.bn_name
                             }}</option>
@@ -379,7 +379,7 @@
                     <div class="form-group">
                         <label for=""  class="form_label">ইউনিয়ন</label>
 
-                        <select class='form-control' name="ইউনিয়ন" id="thana" v-model="form.union"  required  >
+                        <select class='form-control' name="ইউনিয়ন" id="thana" v-model="form.union"    >
                             <option value="">ইউনিয়ন নির্বাচন করুন</option>
                             <option v-for="union in getuniouns" :key="union.id" :value="union.bn_name">{{ union.bn_name
                             }}</option>
@@ -391,7 +391,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label for=""  class="form_label">পোষ্ট অফিস</label>
-                        <input type="text" class="form-control" name="পোষ্ট অফিস" v-model="form.post_office" required  >
+                        <input type="text" class="form-control" name="পোষ্ট অফিস" v-model="form.post_office"   >
                     </div>
 
                 </div>
@@ -400,7 +400,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">গ্রাম</label>
-                        <input class="form-control" type="text"  placeholder="গ্রাম" v-model="form.StudentAddress" name="গ্রাম" required  />
+                        <input class="form-control" type="text"  placeholder="গ্রাম" v-model="form.StudentAddress" name="গ্রাম"   />
                     </div>
                 </div>
 
@@ -412,14 +412,14 @@
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">মোবাইল নাম্বার</label>
-                        <input class="form-control" type="text"  placeholder="মোবাইল নাম্বার" v-model="form.StudentPhoneNumber" maxlength="11" required/>
+                        <input class="form-control" type="text"  placeholder="মোবাইল নাম্বার" v-model="form.StudentPhoneNumber" maxlength="11" />
 
                     </div>
                 </div>
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">পোস্টাল কোড / পোস্ট কোড</label>
-                        <input class="form-control" type="text"  placeholder="পোস্টাল কোড / পোস্ট কোড" v-model="form.AreaPostalCode"  required/>
+                        <input class="form-control" type="text"  placeholder="পোস্টাল কোড / পোস্ট কোড" v-model="form.AreaPostalCode"  />
 
                     </div>
                 </div>
@@ -454,7 +454,7 @@
     <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতার নাম (বাংলা)</label>
-                        <input class="form-control" type="text"  placeholder="পিতার নাম (বাংলা)" v-model="form.StudentFatherNameBn" required/>
+                        <input class="form-control" type="text"  placeholder="পিতার নাম (বাংলা)" v-model="form.StudentFatherNameBn" />
 
                     </div>
                 </div>
@@ -463,7 +463,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতার নাম (English)</label>
-                        <input class="form-control" type="text"  placeholder="পিতার নাম (English)" v-model="form.StudentFatherName" style="text-transform:uppercase" required />
+                        <input class="form-control" type="text"  placeholder="পিতার নাম (English)" v-model="form.StudentFatherName" style="text-transform:uppercase"  />
 
                     </div>
                 </div>
@@ -471,7 +471,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতার জাতীয় পরিচয় পত্র নং</label>
-                        <input class="form-control" type="text"  placeholder="পিতার জাতীয় পরিচয় পত্র নং" v-model="form.StudentFatherNid" required />
+                        <input class="form-control" type="text"  placeholder="পিতার জাতীয় পরিচয় পত্র নং" v-model="form.StudentFatherNid"  />
 
                     </div>
                 </div>
@@ -480,7 +480,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মাতার নাম (বাংলা)</label>
-                        <input class="form-control" type="text"  placeholder="মাতার নাম (বাংলা)" v-model="form.StudentMotherNameBn"  required />
+                        <input class="form-control" type="text"  placeholder="মাতার নাম (বাংলা)" v-model="form.StudentMotherNameBn"   />
 
                     </div>
                 </div>
@@ -489,7 +489,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মাতার নাম (English)</label>
-                        <input class="form-control" type="text"  placeholder="মাতার নাম (English)" v-model="form.StudentMotherName"  style="text-transform:uppercase" required  />
+                        <input class="form-control" type="text"  placeholder="মাতার নাম (English)" v-model="form.StudentMotherName"  style="text-transform:uppercase"   />
 
                     </div>
                 </div>
@@ -498,7 +498,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মাতার জাতীয় পরিচয় পত্র নং</label>
-                        <input class="form-control" type="text"  placeholder="মাতার জাতীয় পরিচয় পত্র নং" v-model="form.StudentMotherNid"  required/>
+                        <input class="form-control" type="text"  placeholder="মাতার জাতীয় পরিচয় পত্র নং" v-model="form.StudentMotherNid"  />
 
                     </div>
                 </div>
@@ -506,7 +506,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতার জন্ম নিবন্ধন নং</label>
-                        <input class="form-control" type="text"  placeholder="পিতার জন্ম নিবন্ধন নং" v-model="form.StudentFatherBCN" required />
+                        <input class="form-control" type="text"  placeholder="পিতার জন্ম নিবন্ধন নং" v-model="form.StudentFatherBCN"  />
 
                     </div>
                 </div>
@@ -518,7 +518,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মাতার জন্ম নিবন্ধন নং</label>
-                        <input class="form-control" type="text"  placeholder="মাতার জন্ম নিবন্ধন নং" v-model="form.StudentMotherBCN" required />
+                        <input class="form-control" type="text"  placeholder="মাতার জন্ম নিবন্ধন নং" v-model="form.StudentMotherBCN"  />
 
                     </div>
                 </div>
@@ -528,7 +528,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতা/মাতা না থাকলে অভিভাবকের নাম (বাংলা)</label>
-                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম (বাংলা)" v-model="form.guardName"  required/>
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের নাম (বাংলা)" v-model="form.guardName"  />
 
                     </div>
                 </div>
@@ -544,7 +544,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">অভিভাবকের জাতীয় পরিচয় পত্র</label>
-                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardNid" required />
+                        <input class="form-control" type="text"  placeholder="পিতা/মাতা না থাকলে অভিভাবকের জাতীয় পরিচয় পত্র নং" v-model="form.guardNid"  />
 
                     </div>
                 </div>
@@ -565,7 +565,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">অভিভাবকের মাসিক আয়</label>
-                        <input class="form-control" type="text"  placeholder="অভিভাবকের মাসিক আয়" v-model="form.parentEarn"  required/>
+                        <input class="form-control" type="text"  placeholder="অভিভাবকের মাসিক আয়" v-model="form.parentEarn"  />
 
                     </div>
                 </div>
@@ -577,7 +577,7 @@
                         <label class="form_label">অভিভাবকের পেশা</label>
 
 
-                        <select class="form-control" style="width: 100%;" v-model="form.StudentFatherOccupation" name="অভিভাবকের পেশা" required >
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentFatherOccupation" name="অভিভাবকের পেশা"  >
                             <option value="">
                                 নির্বাচন করুন
                             </option>
