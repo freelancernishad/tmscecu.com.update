@@ -267,7 +267,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">পূর্বে অধ্যায়নরত স্কুল এর নাম </label>
-                        <input class="form-control" type="text"  placeholder="পূর্বে অধ্যায়নরত স্কুল এর নাম" />
+                        <input class="form-control" type="text" name="পূর্বে অধ্যায়নরত স্কুল এর নাম"  placeholder="পূর্বে অধ্যায়নরত স্কুল এর নাম" />
 
                     </div>
                 </div>
