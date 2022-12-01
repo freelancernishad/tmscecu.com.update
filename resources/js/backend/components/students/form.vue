@@ -785,12 +785,17 @@ console.log(event.target.result)
         },
 
       async checkRoll(){
+
+        if(!this.$route.params.id){
+
         if(this.form.StudentClass=='Nine' || this.form.StudentClass=='Ten'){
         }else{
             this.form.StudentGroup = '';
         }
         var res = await this.callApi('get',`/api/check/student/roll?StudentRoll=${this.form.StudentRoll}&StudentClass=${this.form.StudentClass}&StudentGroup=${this.form.StudentGroup}`,[]);
         this.alredyhave = res.data;
+
+    }
         },
 
         getstudent(){
