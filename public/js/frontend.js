@@ -4768,7 +4768,7 @@ var render = function render() {
     staticClass: "col-md-6"
   }, [_c("h6", {
     staticClass: "serviceTitle position-relative defaltColor"
-  }, [_vm._v("\n                               সহকারি প্রধান শিক্ষকের বাণী\n                            ")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.schoolinfo.VICE_PRINCIPALS_STATEMENT))])])])])]), _vm._v(" "), _c("side-bar", {
+  }, [_vm._v("\n                               সভাপতির বাণী\n                            ")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.schoolinfo.VICE_PRINCIPALS_STATEMENT))])])])])]), _vm._v(" "), _c("side-bar", {
     attrs: {
       "class-name": "col-md-3"
     }

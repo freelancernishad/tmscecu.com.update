@@ -45,7 +45,7 @@
 
                         <div class="col-md-6">
                             <h6 class="serviceTitle position-relative defaltColor">
-                               সহকারি প্রধান শিক্ষকের বাণী
+                               সভাপতির বাণী
                             </h6>
 
                             <p>{{  schoolinfo.VICE_PRINCIPALS_STATEMENT }}</p>
