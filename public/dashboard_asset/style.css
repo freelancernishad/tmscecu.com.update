@@ -250,9 +250,10 @@ h6 {
   padding: 5px 15px;
 }
 .form-group .form-control:focus {
-  outline: none;
-  box-shadow: none;
-  border: none;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border: 1px solid red !important;
 }
 .form-check {
   position: relative;
