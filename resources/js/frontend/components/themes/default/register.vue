@@ -330,7 +330,7 @@
                                 <option v-for="(classlist,classindex) in classess" :key="'class'+classindex">{{ classlist }}</option>
                             </select>
 
-<!-- 
+<!--
                         <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-model="form.bigBroSisClass" name="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-validate="'required'"   data-vv-scope="step1" /> -->
                          <p class="help is-danger" v-show="errors.has('step1.অধ্যয়নরত ভাই/বোনের শ্রেণি')">
                              {{ errors.first('step1.অধ্যয়নরত ভাই/বোনের শ্রেণি') }}
@@ -1384,7 +1384,7 @@ label.form_label {
 .form-control:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #007bff !important;
+    border-color: #ff0000 !important;
     outline: 0;
     box-shadow: 0 0 0 black !important;
 }
