@@ -61,6 +61,13 @@ let resultfilter = require('./components/results/list.vue').default;
 let resultview = require('./components/results/fullsheetbyApi.vue').default;
 // let resultview = require('./components/results/fullsheet.vue').default;
 
+// results Components
+let resultsoparetor = require('./components/resultsoparetor/index.vue').default;
+let resultsoparetormarksheet = require('./components/resultsoparetor/marksheet.vue').default;
+let resultsoparetorresultfilter = require('./components/resultsoparetor/list.vue').default;
+let resultsoparetorresultview = require('./components/resultsoparetor/fullsheetbyApi.vue').default;
+// let resultview = require('./components/resultsoparetor/fullsheet.vue').default;
+
 
 
 // gallerys Components
@@ -190,6 +197,16 @@ export const routes = [
   { path: `${prefix}/results/marksheet`, component: marksheet, name:'marksheet',meta: { layout: adminlayout } },
   { path: `${prefix}/results/:school_id/:student_class/:group/:religion/:subject/:examType/:date`, component: resultfilter, name:'resultfilter',meta: { layout: adminlayout } },
   { path: `${prefix}/results/view/:school_id/:student_class/:group/:religion/:subject/:examType/:date`, component: resultview, name:'resultview',meta: { layout: blanklayout } },
+
+
+
+  // result Routes
+
+
+  { path: `${prefix}/only/result`, component: resultsoparetor, name:'resultsoparetor',meta: { layout: blanklayout } },
+  { path: `${prefix}/only/results/marksheet`, component: resultsoparetormarksheet, name:'resultsoparetormarksheet',meta: { layout: blanklayout } },
+  { path: `${prefix}/only/results/:school_id/:student_class/:group/:religion/:subject/:examType/:date`, component: resultsoparetorresultfilter, name:'resultsoparetorresultfilter',meta: { layout: blanklayout } },
+  { path: `${prefix}/only/results/view/:school_id/:student_class/:group/:religion/:subject/:examType/:date`, component: resultsoparetorresultview, name:'resultsoparetorresultview',meta: { layout: blanklayout } },
 
 
 

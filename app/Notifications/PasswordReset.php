@@ -51,8 +51,8 @@ class PasswordReset extends Notification
 
         return (new MailMessage)
         ->subject('পাসওয়ার্ড রিসেট')
-        ->greeting("ওহে, $notifiable->names",url('/'))
-        ->from('info@uniontax.gov.bd','Uniontax.gov.bd')
+        ->greeting("ওহে, $notifiable->name",url('/'))
+        ->from('info@uniontax.gov.bd','Tepriganj High BL School')
         ->line('আপনি এই ইমেলটি পাচ্ছেন কারণ আমরা আপনার অ্যাকাউন্টের জন্য একটি পাসওয়ার্ড পুনরায় সেট করার অনুরোধ পেয়েছি৷.') // Here are the lines you can safely override
         ->action('পাসওয়ার্ড রিসেট', url('password/reset', $this->token))
         ->success()

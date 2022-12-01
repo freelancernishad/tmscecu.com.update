@@ -144,8 +144,8 @@
                                 </ul>
                             </transition>
                         </li>
-
-                        <li class="nav-item"  v-if="$localStorage.getItem('role')=='teacher'"><router-link   :to="{name:'events'}" class="nav-link"><i class="flaticon-script"></i><span>Profile</span></router-link></li>
+<!-- 
+                        <li class="nav-item"  v-if="$localStorage.getItem('role')=='teacher'"><router-link   :to="{name:'events'}" class="nav-link"><i class="flaticon-script"></i><span>Profile</span></router-link></li> -->
 
 
 <!-- <li class="nav-item"  @click="submenu(0)"><router-link   :to="{name:'homeworks'}" class="nav-link"><i class="flaticon-script"></i><span>Home Work</span></router-link></li> -->
@@ -324,9 +324,14 @@
 export default {
     props: ['user','classesList'],
     async created() {
-        console.log(this.classesList)
+        // console.log(this.classesList)
         if (!User.loggedIn()) {
             window.location.href = '/login'
+        }else{
+            // console.log(this.user.role);
+            if(this.user.role=='data_entry_oparetor'){
+                this.$router.push({name:'resultsoparetor'});
+            }
         }
         this.$store.commit('setUpdateUser', this.user)
         this.$store.commit('setUpdateClasses', this.classesList)

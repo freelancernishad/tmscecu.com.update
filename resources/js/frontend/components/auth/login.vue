@@ -142,7 +142,15 @@ export default {
                                 window.location.href = this.$route.query.redirect;
                             }else{
 
-                                window.location.href = "/dashboard";
+                                if(res.role=='data_entry_oparetor'){
+
+                                    window.location.href = "/dashboard/only/result";
+                                }else{
+
+                                    window.location.href = "/dashboard";
+                                }
+
+
                             }
                         }
 

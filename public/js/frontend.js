@@ -2205,7 +2205,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       if (_this.$route.query.redirect) {
                         window.location.href = _this.$route.query.redirect;
                       } else {
-                        window.location.href = "/dashboard";
+                        if (res.role == 'data_entry_oparetor') {
+                          window.location.href = "/dashboard/only/result";
+                        } else {
+                          window.location.href = "/dashboard";
+                        }
                       }
                     }
                   })["catch"](function (error) {
@@ -10049,7 +10053,7 @@ var render = function render() {
       }
     })]), _vm._v(" "), _c("div", {
       staticClass: "details"
-    }, [_c("h5", [_vm._v(_vm._s(staff.TeacherName))]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", [_vm._v("পদবী : " + _vm._s(staff.TeacherPosition) + " ")]), _vm._v(" "), _c("div", [_vm._v("যোগ্যতা : " + _vm._s(staff.TeacherQualification))]), _vm._v(" "), _c("div", [_vm._v("ঠিকানা : " + _vm._s(staff.TeacherAddress))]), _vm._v(" "), _c("div", [_vm._v("মোবাইল : " + _vm._s(staff.TeacherPhoneNumber))])])])])])]);
+    }, [_c("h5", [_vm._v(_vm._s(staff.TeacherName))]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", [_vm._v("পদবী : " + _vm._s(staff.TeacherPosition) + " ")]), _vm._v(" "), _c("div", [_vm._v("শিক্ষাগত যোগ্যতা : " + _vm._s(staff.TeacherQualification))]), _vm._v(" "), _c("div", [_vm._v("ঠিকানা : " + _vm._s(staff.TeacherAddress))]), _vm._v(" "), _c("div", [_vm._v("মোবাইল : " + _vm._s(staff.TeacherPhoneNumber))])])])])])]);
   }), 0)])]), _vm._v(" "), _c("side-bar", {
     attrs: {
       "class-name": "col-md-3"

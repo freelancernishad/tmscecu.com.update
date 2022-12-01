@@ -170,7 +170,9 @@ Route::get('/payment/cancel', function (Request $request) {
 });
 
 
-
+Auth::routes([
+    'login'=>false,
+]);
 Route::post('login',[LoginController::class,'login']);
 Route::post('logout',[LoginController::class,'logout']);
 // Route::group(['middleware' => ['is_admin']], function() {

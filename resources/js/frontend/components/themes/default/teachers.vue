@@ -40,7 +40,7 @@
                                         <h5>{{ staff.TeacherName }}</h5>
                                         <hr>
                                         <div>পদবী : {{ staff.TeacherPosition }} </div>
-                                        <div>যোগ্যতা : {{ staff.TeacherQualification }}</div>
+                                        <div>শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }}</div>
                                         <div>ঠিকানা : {{ staff.TeacherAddress }}</div>
                                         <div>মোবাইল : {{ staff.TeacherPhoneNumber }}</div>
 
