@@ -104,6 +104,9 @@ $students[class_en_to_bn($class[$i])]['totalStudent'] = $totalStudentcount;
             $students[class_en_to_bn($class[$i])]['FemaleStudent'] =$FemaleStudentcount;
             $FemaleStudent += $FemaleStudentcount;
             //science
+            if($class[$i]=='Nine' || $class[$i]=='Ten'){
+
+
             $wherescience = [
                 'school_id'=>$school_id,
                 'StudentGroup' => 'Science',
@@ -112,6 +115,7 @@ $students[class_en_to_bn($class[$i])]['totalStudent'] = $totalStudentcount;
             ];
             // $scienceStudent[$class[$i]] = DB::table('students')->where($wherescience)->count();
             $scienceStudentcount = DB::table('students')->where($wherescience)->count();
+
             $students[class_en_to_bn($class[$i])]['scienceStudent'] = $scienceStudentcount;
             $scienceStudent += $scienceStudentcount;
             //HumanitiesStudent
@@ -122,9 +126,9 @@ $students[class_en_to_bn($class[$i])]['totalStudent'] = $totalStudentcount;
                 'StudentClass' => $class[$i],
             ];
             // $HumanitiesStudent[$class[$i]] = DB::table('students')->where($whereHumanities)->count();
-            $maleStudentcount = DB::table('students')->where($whereHumanities)->count();
-            $students[class_en_to_bn($class[$i])]['HumanitiesStudent'] = $maleStudentcount;
-            $HumanitiesStudent += $maleStudentcount;
+            $HumanitiesStudentcount = DB::table('students')->where($whereHumanities)->count();
+            $students[class_en_to_bn($class[$i])]['HumanitiesStudent'] = $HumanitiesStudentcount;
+            $HumanitiesStudent += $HumanitiesStudentcount;
             //CommerceStudent
             $whereCommerce = [
                 'school_id'=>$school_id,
@@ -133,9 +137,11 @@ $students[class_en_to_bn($class[$i])]['totalStudent'] = $totalStudentcount;
                 'StudentClass' => $class[$i],
             ];
             // $CommerceStudent[$class[$i]] = DB::table('students')->where($whereCommerce)->count();
-            $maleStudentcount = DB::table('students')->where($whereCommerce)->count();
-            $students[class_en_to_bn($class[$i])]['CommerceStudent'] = $maleStudentcount;
-            $CommerceStudent += $maleStudentcount;
+            $CommerceStudentcount = DB::table('students')->where($whereCommerce)->count();
+            $students[class_en_to_bn($class[$i])]['CommerceStudent'] = $CommerceStudentcount;
+            $CommerceStudent += $CommerceStudentcount;
+        }
+
         }
 
 
@@ -144,8 +150,8 @@ $data['countdata']['মোট শিক্ষার্থীর সংখ্য�
 $data['countdata']['ছেলে'] = $maleStudent;
 $data['countdata']['মেয়ে'] = $FemaleStudent;
 $data['countdata']['বিজ্ঞান বিভাগ'] = $scienceStudent;
-$data['countdata']['ব্যবসায় শিক্ষা বিভাগ'] = $HumanitiesStudent;
-$data['countdata']['মানবিক বিভাগ'] = $CommerceStudent;
+$data['countdata']['মানবিক বিভাগ'] = $HumanitiesStudent;
+$data['countdata']['ব্যবসায় শিক্ষা বিভাগ'] = $CommerceStudent;
 
        return response()->json($data);
         // return view(sitedetails()->theme.'.student_at_a_glance', $data);

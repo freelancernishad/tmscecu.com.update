@@ -9612,6 +9612,7 @@ var render = function render() {
     }, [_vm._v(_vm._s(student.HumanitiesStudent))])])]);
   })], 2)]), _vm._v(" "), _c("div", [_c("table", {
     staticStyle: {
+      width: "250px",
       "border-collapse": "collapse",
       margin: "0 auto"
     },
@@ -9622,6 +9623,7 @@ var render = function render() {
     }
   }, [_vm._m(3), _vm._v(" "), _c("tr", [_c("td", [_c("table", {
     attrs: {
+      width: "100%",
       cellpadding: "2",
       cellspacing: "0"
     }
@@ -9702,7 +9704,8 @@ var staticRenderFns = [function () {
       "border-color": "#CCCCCC",
       "border-width": "1px",
       "border-style": "Solid",
-      "font-weight": "bold"
+      "font-weight": "bold",
+      "text-align": "center"
     },
     attrs: {
       colspan: "3"
@@ -9712,7 +9715,8 @@ var staticRenderFns = [function () {
       "border-color": "#CCCCCC",
       "border-width": "1px",
       "border-style": "Solid",
-      "font-weight": "bold"
+      "font-weight": "bold",
+      "text-align": "center"
     },
     attrs: {
       colspan: "3"
