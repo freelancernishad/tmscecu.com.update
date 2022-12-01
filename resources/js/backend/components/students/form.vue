@@ -313,7 +313,16 @@
                 <div class="col-md-4 mt-3"  v-if="form.bigBroSis=='Yes'"  >
                     <div class="form-group">
                         <label class="form_label">অধ্যয়নরত ভাই/বোনের শ্রেণি</label>
-                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-model="form.bigBroSisClass"  />
+
+
+                        <select  class="form-control"  style="width: 100%;" v-model="form.bigBroSisClass" >
+                                <option value="">
+                                    নির্বাচন করুন
+                                </option>
+                                <option v-for="classlist in classess">{{ classlist }}</option>
+                            </select>
+
+                        <!-- <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-model="form.bigBroSisClass"  /> -->
 
                     </div>
                 </div>
