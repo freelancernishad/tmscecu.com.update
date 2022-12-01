@@ -7441,7 +7441,7 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী")]), _vm._v(" "), _c("option", [_vm._v("অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান")]), _vm._v(" "), _c("option", [_vm._v("প্রতিবন্ধী")]), _vm._v(" "), _c("option", [_vm._v("সাধারণ কোটা")])]), _vm._v(" "), _c("p", {
+  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী")]), _vm._v(" "), _c("option", [_vm._v("অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান")]), _vm._v(" "), _c("option", [_vm._v("প্রতিবন্ধী")]), _vm._v(" "), _c("option", [_vm._v("সাধারণ কোটা")]), _vm._v(" "), _c("option", [_vm._v("কোনো কোটা নেই")])]), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -7692,7 +7692,7 @@ var render = function render() {
     staticClass: "form-group"
   }, [_c("label", {
     staticClass: "form_label"
-  }, [_vm._v("অধ্যয়নরত ভাই/বোনের শ্রেণি")]), _vm._v(" "), _c("input", {
+  }, [_vm._v("অধ্যয়নরত ভাই/বোনের শ্রেণি")]), _vm._v(" "), _c("select", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -7705,23 +7705,34 @@ var render = function render() {
       expression: "'required'"
     }],
     staticClass: "form-control",
+    staticStyle: {
+      width: "100%"
+    },
     attrs: {
-      type: "text",
-      placeholder: "অধ্যয়নরত ভাই/বোনের শ্রেণি",
       name: "অধ্যয়নরত ভাই/বোনের শ্রেণি",
       "data-vv-scope": "step1"
     },
-    domProps: {
-      value: _vm.form.bigBroSisClass
-    },
     on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
 
-        _vm.$set(_vm.form, "bigBroSisClass", $event.target.value);
+        _vm.$set(_vm.form, "bigBroSisClass", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
       }
     }
-  }), _vm._v(" "), _c("p", {
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("\n                                    নির্বাচন করুন\n                                ")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist, classindex) {
+    return _c("option", {
+      key: "class" + classindex
+    }, [_vm._v(_vm._s(classlist))]);
+  })], 2), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",

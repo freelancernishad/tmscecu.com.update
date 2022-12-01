@@ -853,7 +853,7 @@ console.log(event.target.result)
 
        async formsubmit(){
 
-        if(this.form.StudentPicture){
+        // if(this.form.StudentPicture){
             if(this.alredyhave){
                 Notification.customError(`${this.form.StudentClass} Already Have Roll ${this.form.StudentRoll}`);
             }else{
@@ -863,10 +863,10 @@ console.log(event.target.result)
                 Notification.success();
 
             }
-        }else{
-                        Notification.customError2('Student image is required!');
-                          this.preloader = false;
-                    }
+        // }else{
+        //    Notification.customError2('Student image is required!');
+        //    this.preloader = false;
+        // }
             this.preloader = false;
 
         }

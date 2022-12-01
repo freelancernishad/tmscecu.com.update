@@ -1410,7 +1410,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             </table>
             <table class='tableTag' width='100%' style='margin-top:20px ;margin-bottom:20px ;'>
                 <tr>
-                    <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px' >Student</td>
+                    <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px' >Student Info</td>
                 </tr>
                 <tr>
                     <td class='tableRowHead'  width='20%'>Name (বাংলা)</td>
@@ -1441,7 +1441,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
 
                 <tr>
-                <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px'  >Father</td>
+                <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px'  >Father Info</td>
             </tr>
                 <tr>
                     <td class='tableRowHead' >Father Name (বাংলা)</td>
@@ -1458,7 +1458,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                     <td>$student->StudentFatherBCN</td>
                 </tr>
                 <tr>
-                <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px'  >Mother</td>
+                <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px'  >Mother Info</td>
             </tr>
                 <tr>
                     <td class='tableRowHead' >Mother Name (বাংলা)</td>
@@ -1478,7 +1478,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
 
                 <tr>
-                <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px'  >Guardian</td>
+                <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px'  >Guardian Info</td>
             </tr>
 
 
@@ -1500,14 +1500,21 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                 </tr>
 
                 <tr>
-                <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px'  >Others</td>
+                <td colspan='4' class='tableRowHead' style='text-align:center;font-size:16px'  >Others Info</td>
             </tr>
+
+
                 <tr>
                     <td class='tableRowHead' >Student Quota</td>
                     <td>$student->StudentKota</td>
                     <td class='tableRowHead' >Sonod No</td>
                     <td >$student->StudentKotaSonodNo</td>
+
+
                 </tr>
+
+
+
                 <tr>
                     <td class='tableRowHead' >Student Category</td>
                     <td colspan='3'>$student->StudentCategory</td>

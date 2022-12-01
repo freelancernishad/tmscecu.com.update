@@ -239,6 +239,7 @@
                             <option>অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান</option>
                             <option>প্রতিবন্ধী</option>
                             <option>সাধারণ কোটা</option>
+                            <option>কোনো কোটা নেই</option>
                         </select>
                          <p class="help is-danger" v-show="errors.has('step1.কোটা')">
                              {{ errors.first('step1.কোটা') }}
@@ -321,7 +322,16 @@
                 <div class="col-md-4"  v-if="form.bigBroSis=='Yes'"  >
                     <div class="form-group">
                         <label class="form_label">অধ্যয়নরত ভাই/বোনের শ্রেণি</label>
-                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-model="form.bigBroSisClass" name="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-validate="'required'"   data-vv-scope="step1" />
+
+                        <select  class="form-control"  style="width: 100%;" v-model="form.bigBroSisClass" name="অধ্যয়নরত ভাই/বোনের শ্রেণি"  v-validate="'required'" data-vv-scope="step1">
+                                <option value="">
+                                    নির্বাচন করুন
+                                </option>
+                                <option v-for="(classlist,classindex) in classess" :key="'class'+classindex">{{ classlist }}</option>
+                            </select>
+
+<!-- 
+                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-model="form.bigBroSisClass" name="অধ্যয়নরত ভাই/বোনের শ্রেণি" v-validate="'required'"   data-vv-scope="step1" /> -->
                          <p class="help is-danger" v-show="errors.has('step1.অধ্যয়নরত ভাই/বোনের শ্রেণি')">
                              {{ errors.first('step1.অধ্যয়নরত ভাই/বোনের শ্রেণি') }}
                           </p>
