@@ -48,11 +48,35 @@
                             <li class="nav-item ">
                                 <router-link class="text-light px-3 nav-link " aria-current="page" to="/">প্রচ্ছদ</router-link>
                             </li>
+
+
                             <li class="nav-item">
                                 <router-link class="text-light px-3 nav-link " aria-current="page" to="/teachers">জনবল</router-link>
                             </li>
 
 
+
+                            <li class="nav-item">
+                                <router-link class="text-light px-3 nav-link " aria-current="page" to="/student_at_a_glance">শিক্ষার্থীদের তথ্য</router-link>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <router-link class="text-light px-3 nav-link" to="/result" id="navbarDropdown" >
+                                    ফলাফল
+                                </router-link>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <router-link class="text-light px-3 nav-link " aria-current="page" :to="{name:'payment'}">পেমেন্ট</router-link>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <router-link class="text-light px-3 nav-link " aria-current="page" to="/student/register">আবেদন</router-link>
+                            </li>
+
+
+<!--
                             <li class="nav-item dropdown">
                                 <a class="text-light px-3 nav-link dropdown-toggle" href="javascript:voil(0)" id="navbarDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -63,7 +87,7 @@
                                     <li><router-link class="dropdown-item" to="/student_list">অধ্যয়নরত শিক্ষার্থীর তালিকা</router-link></li>
 
                                 </ul>
-                            </li>
+                            </li> -->
 
 
 
@@ -73,12 +97,6 @@
                                 <router-link class="text-light px-3 nav-link" aria-current="page" to="/routine">রুটিন</router-link>
                             </li>
 
-
-                            <li class="nav-item dropdown">
-                                <router-link class="text-light px-3 nav-link" to="/result" id="navbarDropdown" >
-                                    ফলাফল
-                                </router-link>
-                            </li>
 
 
                             <li class="nav-item">
@@ -91,12 +109,7 @@
                             </li>
 
 
-                            <li class="nav-item">
-                                <router-link class="text-light px-3 nav-link " aria-current="page" to="/student/register">আবেদন</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link class="text-light px-3 nav-link " aria-current="page" :to="{name:'payment'}">পেমেন্ট</router-link>
-                            </li>
+
 
                             <li class="nav-item">
                                 <router-link class="text-light px-3 nav-link " aria-current="page" :to="{name:'login' }">লগইন</router-link>

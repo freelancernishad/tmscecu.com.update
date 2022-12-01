@@ -284,6 +284,8 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             $StudentGroup = $r->StudentGroup;
 // return StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
             $studentcount =  student::where(['StudentRoll'=>$StudentRoll,'StudentClass'=>$StudentClass,'StudentGroup'=>$StudentGroup,'year'=>$year])->count();
+
+            if ($id) {
             if($studentcount>0){
                 $resp = [
                     'code'=>403,
@@ -291,6 +293,10 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                 ];
                 return $resp;
             }
+            }
+
+
+
              $data['StudentID'] = (string)StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
         }
         $data['AdmissionID'] = (string)StudentAdmissionId('',$school_id);

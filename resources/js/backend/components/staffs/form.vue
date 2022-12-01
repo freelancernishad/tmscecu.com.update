@@ -128,15 +128,15 @@
             <div class="form-group">
                 <label>Teacher Position:</label>
 
-<select v-model="form.TeacherPosition" id="TeacherPosition" class="form-control">
-
-<option>Assistent Teacher</option>
-<option>Head Teacher</option>
-
-</select>
+                <select v-model="form.TeacherPosition" id="TeacherPosition" class="form-control">
+                    <option>Head Master</option>
+                    <option>Assistent Head Master</option>
+                    <option>Assistent Teacher</option>
+                    <option>Office Assistent Cum-Accountent</option>
+                    <option>M.L.S.S.</option>
+                </select>
 
             </div>
-
 
         </div>
         <div class="col-md-4">

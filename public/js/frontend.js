@@ -5078,7 +5078,7 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "topheaderItem col-md-6 col-6"
-  }, [_c("span", [_vm._v(_vm._s(_vm.schoolinfo.SCHOLL_NAME) + " এ\n                              স্বাগতম")])]), _vm._v(" "), _c("div", {
+  }, [_c("span", [_vm._v(_vm._s(_vm.schoolinfo.SCHOLL_NAME) + " এ\n                                স্বাগতম")])]), _vm._v(" "), _c("div", {
     staticClass: "topheaderItem col-md-6 col-6 text-right"
   }, [_c("span", {
     staticStyle: {
@@ -5086,7 +5086,7 @@ var render = function render() {
       padding: "8px 10px",
       "margin-right": "9px"
     }
-  }, [_vm._v(_vm._s(_vm.curentdate) + "\n                          ")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.curentdate) + "\n                            ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "top_header"
   }, [_c("div", {
     staticClass: "container-fluid"
@@ -5134,32 +5134,40 @@ var render = function render() {
       to: "/teachers"
     }
   }, [_vm._v("জনবল")])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item dropdown"
-  }, [_c("a", {
-    staticClass: "text-light px-3 nav-link dropdown-toggle",
+    staticClass: "nav-item"
+  }, [_c("router-link", {
+    staticClass: "text-light px-3 nav-link",
     attrs: {
-      href: "javascript:voil(0)",
-      id: "navbarDropdown",
-      role: "button",
-      "data-bs-toggle": "dropdown",
-      "aria-expanded": "false"
-    }
-  }, [_vm._v("\n                                  শিক্ষার্থীদের তথ্য\n                              ")]), _vm._v(" "), _c("ul", {
-    staticClass: "dropdown-menu",
-    attrs: {
-      "aria-labelledby": "navbarDropdown"
-    }
-  }, [_c("li", [_c("router-link", {
-    staticClass: "dropdown-item",
-    attrs: {
+      "aria-current": "page",
       to: "/student_at_a_glance"
     }
-  }, [_vm._v("অধ্যয়নরত শিক্ষার্থীর সংখ্যা")])], 1), _vm._v(" "), _c("li", [_c("router-link", {
-    staticClass: "dropdown-item",
+  }, [_vm._v("শিক্ষার্থীদের তথ্য")])], 1), _vm._v(" "), _c("li", {
+    staticClass: "nav-item dropdown"
+  }, [_c("router-link", {
+    staticClass: "text-light px-3 nav-link",
     attrs: {
-      to: "/student_list"
+      to: "/result",
+      id: "navbarDropdown"
     }
-  }, [_vm._v("অধ্যয়নরত শিক্ষার্থীর তালিকা")])], 1)])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                                    ফলাফল\n                                ")])], 1), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("router-link", {
+    staticClass: "text-light px-3 nav-link",
+    attrs: {
+      "aria-current": "page",
+      to: {
+        name: "payment"
+      }
+    }
+  }, [_vm._v("পেমেন্ট")])], 1), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("router-link", {
+    staticClass: "text-light px-3 nav-link",
+    attrs: {
+      "aria-current": "page",
+      to: "/student/register"
+    }
+  }, [_vm._v("আবেদন")])], 1), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("router-link", {
     staticClass: "text-light px-3 nav-link",
@@ -5168,14 +5176,6 @@ var render = function render() {
       to: "/routine"
     }
   }, [_vm._v("রুটিন")])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item dropdown"
-  }, [_c("router-link", {
-    staticClass: "text-light px-3 nav-link",
-    attrs: {
-      to: "/result",
-      id: "navbarDropdown"
-    }
-  }, [_vm._v("\n                                  ফলাফল\n                              ")])], 1), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("router-link", {
     staticClass: "text-light px-3 nav-link",
@@ -5192,24 +5192,6 @@ var render = function render() {
       to: "/contact-us"
     }
   }, [_vm._v("যোগাযোগ")])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("router-link", {
-    staticClass: "text-light px-3 nav-link",
-    attrs: {
-      "aria-current": "page",
-      to: "/student/register"
-    }
-  }, [_vm._v("আবেদন")])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("router-link", {
-    staticClass: "text-light px-3 nav-link",
-    attrs: {
-      "aria-current": "page",
-      to: {
-        name: "payment"
-      }
-    }
-  }, [_vm._v("পেমেন্ট")])], 1), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("router-link", {
     staticClass: "text-light px-3 nav-link",
@@ -5263,7 +5245,7 @@ var staticRenderFns = [function () {
     staticStyle: {
       "font-size": "font-size:15px"
     }
-  }, [_c("b", [_vm._v(" পরিকল্পনা ও বাস্তবায়নে:")]), _vm._v(" "), _c("br"), _vm._v("\n                                  Md Nishad Hossain\n\n                              ")])])]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v(" পরিকল্পনা ও বাস্তবায়নে:")]), _vm._v(" "), _c("br"), _vm._v("\n                                    Md Nishad Hossain\n\n                                ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
@@ -8879,7 +8861,7 @@ var render = function render() {
     attrs: {
       width: "100%"
     }
-  }, [_c("tr", [_c("th", [_vm._v("শ্রেণিঃ " + _vm._s(_vm.form.StudentClass))]), _vm._v(" "), _c("th", [_vm._v("ধর্মঃ " + _vm._s(_vm.form.StudentReligion))]), _vm._v(" "), _c("th", [_vm._v("লিঙ্গঃ " + _vm._s(_vm.form.StudentGender))]), _vm._v(" "), _c("th", [_vm._v("গ্রুপঃ " + _vm._s(_vm.form.StudentGroup))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("শিক্ষার্থীর নাম (বাংলা) ")]), _vm._v(" "), _c("th", [_vm._v("শিক্ষার্থীর নাম (English) ")]), _vm._v(" "), _c("th", [_vm._v("শিক্ষার্থীর জন্ম তারিখ ")]), _vm._v(" "), _c("th", [_vm._v("শিক্ষার্থীর জন্ম নিবন্ধন নং ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v(" " + _vm._s(_vm.form.StudentName))]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(_vm.form.StudentNameEn))]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(_vm.form.StudentDateOfBirth))]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(_vm.form.StudentBirthCertificateNo))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("পিতার নাম (বাংলা) ")]), _vm._v(" "), _c("th", [_vm._v("পিতার নাম (English) ")]), _vm._v(" "), _c("th", [_vm._v("পিতার জাতীয় পরিচয়পত্র নং ")]), _vm._v(" "), _c("th", [_vm._v("পিতার জন্ম নিবন্ধন নং ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v(_vm._s(_vm.form.StudentFatherNameBn))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.StudentFatherName))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.StudentFatherNid))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.StudentFatherBCN))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("মাতার নাম (বাংলা) ")]), _vm._v(" "), _c("th", [_vm._v("মাতার নাম (English) ")]), _vm._v(" "), _c("th", [_vm._v("মাতার জাতীয় পরিচয়পত্র নং ")]), _vm._v(" "), _c("th", [_vm._v("মাতার জন্ম নিবন্ধন নং ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v(_vm._s(_vm.form.StudentMotherNameBn))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.StudentMotherName))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.StudentMotherNid))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.StudentMotherBCN))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("পিতা/মাতা জীবিত না থাকলে অভিভাবকের নাম (বাংলা)")]), _vm._v(" "), _c("th", [_vm._v("অভিভাবকের নাম (English) ")]), _vm._v(" "), _c("th", [_vm._v("অভিভাবকের জাতীয় পরিচয়পত্র নং ")]), _vm._v(" "), _c("th", [_vm._v("অভিভাবকের সাথে শিক্ষার্থীর সম্পর্ক ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v(_vm._s(_vm.form.guardNameBn))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.guardName))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.guardNid))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.guardRalation))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("অভিভাবকের পেশা")]), _vm._v(" "), _c("td", {
+  }, [_c("tr", [_c("th", [_vm._v("শ্রেণিঃ " + _vm._s(_vm.form.StudentClass))]), _vm._v(" "), _c("th", [_vm._v("ধর্মঃ " + _vm._s(_vm.form.StudentReligion))]), _vm._v(" "), _c("th", [_vm._v("লিঙ্গঃ " + _vm._s(_vm.form.StudentGender))]), _vm._v(" "), _c("th", [_vm._v("গ্রুপঃ " + _vm._s(_vm.form.StudentGroup))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("শিক্ষার্থীর নাম (বাংলা) ")]), _vm._v(" "), _c("th", [_vm._v("শিক্ষার্থীর নাম (English) ")]), _vm._v(" "), _c("th", [_vm._v("শিক্ষার্থীর জন্ম তারিখ ")]), _vm._v(" "), _c("th", [_vm._v("শিক্ষার্থীর জন্ম নিবন্ধন নং ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v(" " + _vm._s(_vm.form.StudentName))]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(_vm.form.StudentNameEn))]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(_vm.dateformatGlobal(_vm.form.StudentDateOfBirth)[3]))]), _vm._v(" "), _c("td", [_vm._v(" " + _vm._s(_vm.form.StudentBirthCertificateNo))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("পিতার নাম (বাংলা) ")]), _vm._v(" "), _c("th", [_vm._v("পিতার নাম (English) ")]), _vm._v(" "), _c("th", [_vm._v("পিতার জাতীয় পরিচয়পত্র নং ")]), _vm._v(" "), _c("th", [_vm._v("পিতার জন্ম নিবন্ধন নং ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v(_vm._s(_vm.form.StudentFatherNameBn))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.StudentFatherName))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.StudentFatherNid))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.StudentFatherBCN))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("মাতার নাম (বাংলা) ")]), _vm._v(" "), _c("th", [_vm._v("মাতার নাম (English) ")]), _vm._v(" "), _c("th", [_vm._v("মাতার জাতীয় পরিচয়পত্র নং ")]), _vm._v(" "), _c("th", [_vm._v("মাতার জন্ম নিবন্ধন নং ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v(_vm._s(_vm.form.StudentMotherNameBn))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.StudentMotherName))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.StudentMotherNid))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.StudentMotherBCN))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("পিতা/মাতা জীবিত না থাকলে অভিভাবকের নাম (বাংলা)")]), _vm._v(" "), _c("th", [_vm._v("অভিভাবকের নাম (English) ")]), _vm._v(" "), _c("th", [_vm._v("অভিভাবকের জাতীয় পরিচয়পত্র নং ")]), _vm._v(" "), _c("th", [_vm._v("অভিভাবকের সাথে শিক্ষার্থীর সম্পর্ক ")])]), _vm._v(" "), _c("tr", [_c("td", [_vm._v(_vm._s(_vm.form.guardNameBn))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.guardName))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.guardNid))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.form.guardRalation))])]), _vm._v(" "), _c("tr", [_c("th", [_vm._v("অভিভাবকের পেশা")]), _vm._v(" "), _c("td", {
     attrs: {
       colspan: "3"
     }
@@ -10068,7 +10050,11 @@ var render = function render() {
       }
     })]), _vm._v(" "), _c("div", {
       staticClass: "details"
-    }, [_c("h5", [_vm._v(_vm._s(staff.TeacherName))]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", [_vm._v("পদবী : " + _vm._s(staff.TeacherPosition) + " ")]), _vm._v(" "), _c("div", [_vm._v("শিক্ষাগত যোগ্যতা : " + _vm._s(staff.TeacherQualification))]), _vm._v(" "), _c("div", [_vm._v("ঠিকানা : " + _vm._s(staff.TeacherAddress))]), _vm._v(" "), _c("div", [_vm._v("মোবাইল : " + _vm._s(staff.TeacherPhoneNumber))])])])])])]);
+    }, [_c("h5", [_vm._v(_vm._s(staff.TeacherName))]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", [_vm._v("পদবী : " + _vm._s(staff.TeacherPosition) + " ")]), _vm._v(" "), _c("div", [_vm._v("শিক্ষাগত যোগ্যতা : " + _vm._s(staff.TeacherQualification))]), _vm._v(" "), _c("div", [_vm._v("ঠিকানা : " + _vm._s(staff.TeacherAddress))]), _vm._v(" "), _c("div", [_vm._v("মোবাইল : " + _vm._s(staff.TeacherPhoneNumber))]), _vm._v(" "), _c("div", [_vm._v("ইমেইল : "), _c("a", {
+      attrs: {
+        href: "mailto:" + staff.TeacherEmail
+      }
+    }, [_vm._v(_vm._s(staff.TeacherEmail))])])])])])])]);
   }), 0)])]), _vm._v(" "), _c("side-bar", {
     attrs: {
       "class-name": "col-md-3"
@@ -10092,7 +10078,7 @@ var staticRenderFns = [function () {
     staticClass: "col-md-6"
   }, [_c("h1", {
     staticClass: "text-theme-colored2 font-36"
-  }, [_vm._v("কর্মরত শিক্ষক-শিক্ষিকা")]), _vm._v(" "), _c("ol", {
+  }, [_vm._v("কর্মরত শিক্ষক-কর্মচারী")]), _vm._v(" "), _c("ol", {
     staticClass: "breadcrumb text-left mt-10 white"
   }, [_c("li", [_c("a", {
     attrs: {

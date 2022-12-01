@@ -8,7 +8,7 @@
     <div class="section-content">
         <div class="row">
             <div class="col-md-6">
-                <h1 class="text-theme-colored2 font-36">কর্মরত শিক্ষক-শিক্ষিকা</h1>
+                <h1 class="text-theme-colored2 font-36">কর্মরত শিক্ষক-কর্মচারী</h1>
                 <ol class="breadcrumb text-left mt-10 white">
                     <li><a href="">Home</a></li>
                     <li class="active">Teachers</li>
@@ -43,6 +43,7 @@
                                         <div>শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }}</div>
                                         <div>ঠিকানা : {{ staff.TeacherAddress }}</div>
                                         <div>মোবাইল : {{ staff.TeacherPhoneNumber }}</div>
+                                        <div>ইমেইল : <a :href="'mailto:'+staff.TeacherEmail">{{ staff.TeacherEmail }}</a></div>
 
                                     </div>
                                 </div>

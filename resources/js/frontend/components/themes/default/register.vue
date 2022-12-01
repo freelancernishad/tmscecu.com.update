@@ -773,7 +773,7 @@
                 <tr>
                     <td> {{ form.StudentName }}</td>
                     <td> {{ form.StudentNameEn }}</td>
-                    <td> {{ form.StudentDateOfBirth }}</td>
+                    <td> {{ dateformatGlobal(form.StudentDateOfBirth)[3] }}</td>
                     <td> {{ form.StudentBirthCertificateNo }}</td>
 
                 </tr>

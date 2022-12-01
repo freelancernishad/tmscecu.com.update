@@ -77,7 +77,7 @@
                                 </tr>
                                 <tr>
                                     <td>Date of Birth:</td>
-                                    <td class="font-medium text-dark-medium">{{ form.TeacherDateOfBirth }}</td>
+                                    <td class="font-medium text-dark-medium">{{ dateformatGlobal(form.TeacherDateOfBirth)[3] }}</td>
                                 </tr>
 
                                 <tr>
@@ -88,7 +88,7 @@
 
                                 <tr>
                                     <td>Joining Date:</td>
-                                    <td class="font-medium text-dark-medium">{{ form.TeacherJoiningDate }}</td>
+                                    <td class="font-medium text-dark-medium">{{ dateformatGlobal(form.TeacherJoiningDate)[3] }}</td>
                                 </tr>
                                 <tr>
                                     <td>E-mail:</td>
