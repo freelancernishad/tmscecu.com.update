@@ -279,7 +279,7 @@
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">পূর্বে অধ্যায়নরত স্কুল এর নাম </label>
-                        <input class="form-control" type="text" name="পূর্বে অধ্যায়নরত স্কুল এর নাম"  placeholder="পূর্বে অধ্যায়নরত স্কুল এর নাম" />
+                        <input class="form-control" type="text" name="পূর্বে অধ্যায়নরত স্কুল এর নাম" v-model="form.preSchool"  placeholder="পূর্বে অধ্যায়নরত স্কুল এর নাম" />
 
                     </div>
                 </div>
@@ -850,10 +850,9 @@ console.log(event.target.result)
 
       async checkStudent(){
 
-        if(this.form.bigBroSisClass=='Nine' || this.form.bigBroSisClass=='Ten'){
-        }else{
+ 
             this.form.bigBroSisGroup = 'Humanities';
-        }
+     
         var res = await this.callApi('get',`/api/check/student/roll?StudentRoll=${this.form.bigBroSisRoll}&StudentClass=${this.form.bigBroSisClass}&StudentGroup=${this.form.bigBroSisGroup}&bigsis=1`,[]);
         // this.bissisBroDetails = res.data;
         this.form.bigBroSisName = res.data.StudentName
