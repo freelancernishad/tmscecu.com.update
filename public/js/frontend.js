@@ -6601,28 +6601,18 @@ var render = function render() {
       click: _vm.PaymentSearch
     }
   }, [_vm._v("খুঁজুন")]), _vm._v(" "), _vm.searched == 1 ? _c("div", {
-    staticClass: "rootContainer"
+    staticClass: "card"
   }, [_c("div", {
-    staticClass: "headerSection"
-  }, [_c("table", {
-    attrs: {
-      width: "100%"
-    }
-  }, [_c("tr", [_vm._m(1), _vm._v(" "), _c("td", {
+    staticClass: "card-header",
     staticStyle: {
-      "text-align": "right"
+      display: "flex",
+      "justify-content": "end"
     }
   }, [_vm.paymentStatus == "Paid" ? _c("div", {
     staticClass: "paiddiv"
   }, [_c("button", {
     staticClass: "btn btn-success"
-  }, [_vm._v("Paid")]), _vm._v(" "), _c("a", {
-    staticClass: "btn btn-info",
-    attrs: {
-      target: "_blank",
-      href: "/student/applicant/copy/" + _vm.student.AdmissionID
-    }
-  }, [_vm._v("Print\n                                                Applicant Copy")])]) : _vm.paymentStatus == "Pending" ? _c("a", {
+  }, [_vm._v("Paid")])]) : _vm.paymentStatus == "Pending" ? _c("a", {
     staticClass: "btn btn-info",
     attrs: {
       href: _vm.paymentUrl
@@ -6637,117 +6627,29 @@ var render = function render() {
     attrs: {
       href: "/payment?studentId=" + _vm.student.id + "&type=" + _vm.form.type + "&month=" + _vm.form.month
     }
-  }, [_vm._v("Pay Now")])])])]), _vm._v(" "), _c("p", {
-    staticStyle: {
-      "border-bottom": "3px solid #808080",
-      "margin-top": "10px",
-      "margin-bottom": "20px"
-    }
-  }), _vm._v(" "), _c("h3", {
-    staticClass: "copyTitle",
-    staticStyle: {
-      "text-align": "center"
-    }
-  }), _vm._v(" "), _c("table", {
-    staticClass: "tableTag",
-    staticStyle: {
-      "margin-top": "20px",
-      "margin-bottom": "20px"
-    },
-    attrs: {
-      width: "100%"
-    }
-  }, [_c("tr", [_c("td", {
-    staticClass: "tableRowHead",
-    attrs: {
-      width: "15%"
-    }
-  }, [_vm._v("Admssion Id")]), _vm._v(" "), _c("td", {
-    attrs: {
-      colspan: "3"
-    }
-  }, [_vm._v(_vm._s(_vm.student.AdmissionID))])]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Class")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentClass))]), _vm._v(" "), _c("td", {
-    staticClass: "tableRowHead",
-    attrs: {
-      width: "10%"
-    }
-  }, [_vm._v("Group")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentGroup))])])]), _vm._v(" "), _c("table", {
-    staticClass: "tableTag",
-    staticStyle: {
-      "margin-top": "20px",
-      "margin-bottom": "20px"
-    },
-    attrs: {
-      width: "100%"
-    }
-  }, [_c("tr", [_c("td", {
-    staticClass: "tableRowHead",
-    attrs: {
-      width: "20%"
-    }
-  }, [_vm._v("Name")]), _vm._v(" "), _c("td", {
-    attrs: {
-      colspan: "3"
-    }
-  }, [_vm._v(_vm._s(_vm.student.StudentName))]), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Father Name")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentFatherNameBn))]), _vm._v(" "), _c("td", {
-    staticClass: "tableRowHead",
-    attrs: {
-      width: "13%"
-    }
-  }, [_vm._v("Nid")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentFatherNid))])]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Mother Name")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentMotherNameBn))]), _vm._v(" "), _c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Nid")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentMotherNid))])]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Date of Birth")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentDateOfBirth))]), _vm._v(" "), _c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Birth Reg.")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentBirthCertificateNo))])]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Mobile No.")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.StudentPhoneNumber))]), _vm._v(" "), _c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Nationality")]), _vm._v(" "), _c("td", [_vm._v("Banglideshi")])]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Gender")]), _vm._v(" "), _c("td", {
-    attrs: {
-      colspan: "3"
-    }
-  }, [_vm._v(_vm._s(_vm.student.StudentGender))])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Present Address")]), _vm._v(" "), _c("td", {
-    attrs: {
-      colspan: "4"
-    }
-  }, [_vm._v(_vm._s(_vm.student.StudentAddress))])]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Permanent Address")]), _vm._v(" "), _c("td", {
-    attrs: {
-      colspan: "4"
-    }
-  }, [_vm._v(_vm._s(_vm.student.StudentAddress))])])]), _vm._v(" "), _c("table", {
-    staticClass: "tableTag",
-    staticStyle: {
-      "margin-top": "20px",
-      "margin-bottom": "20px"
-    },
-    attrs: {
-      width: "100%"
-    }
-  }, [_c("tr", [_c("td", {
-    staticClass: "tableRowHead",
-    attrs: {
-      width: "15%"
-    }
-  }, [_vm._v("Applied On")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.student.JoiningDate))]), _vm._v(" "), _c("td", {
-    staticClass: "tableRowHead",
-    attrs: {
-      width: "15%"
-    }
-  }, [_vm._v("Printed On")]), _vm._v(" "), _c("td", [_vm._v("\".date('Y-m-d').\"")])]), _vm._v(" "), _vm._m(6)])])]) : _vm._e(), _vm._v(" "), _vm.searched == 2 ? _c("h2", {
+  }, [_vm._v("Pay Now")])]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v(" Admission Id:")]), _vm._v(" " + _vm._s(_vm.student.AdmissionID) + "\n                                ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Student Id:")]), _vm._v(" " + _vm._s(_vm.student.StudentID) + "\n                                ")]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Name:")]), _vm._v(" " + _vm._s(_vm.student.StudentName) + "\n                                ")]), _vm._v(" "), _vm.student.StudentClass == "Nine" || _vm.student.StudentClass == "Ten" ? _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Group:")]), _vm._v(" " + _vm._s(_vm.student.StudentGroup) + "\n                                ")]) : _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Group:")]), _vm._v(" N/A\n                                ")]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Class:")]), _vm._v(" " + _vm._s(_vm.student.StudentClass) + "\n                                ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Roll:")]), _vm._v(" " + _vm._s(_vm.student.StudentID) + "\n                                ")]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Father Name:")]), _vm._v(" " + _vm._s(_vm.student.StudentFatherNameBn) + "\n                                ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Mother Name:")]), _vm._v(" " + _vm._s(_vm.student.StudentMotherNameBn) + "\n                                ")]), _vm._v(" "), _c("hr")])])]) : _vm._e(), _vm._v(" "), _vm.searched == 2 ? _c("h2", {
     staticStyle: {
       color: "red",
       "text-align": "center",
@@ -6785,83 +6687,6 @@ var staticRenderFns = [function () {
   }, [_vm._v("Home")])]), _vm._v(" "), _c("li", {
     staticClass: "active"
   }, [_vm._v("পেমেন্ট")])])])])])])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("td", [_c("p", {
-    staticClass: "fontsize1"
-  }, [_vm._v("গণপ্রজাতন্ত্রী বাংলাদেশ সরকার ")]), _vm._v(" "), _c("p", {
-    staticClass: "fontsize2"
-  }, [_vm._v("মাধ্যমিক ও উচ্চমাধ্যমিক শিক্ষা অধিদপ্তর")])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("td", {
-    staticStyle: {
-      padding: "0 !important"
-    },
-    attrs: {
-      width: "20%",
-      rowspan: "6"
-    }
-  }, [_c("img", {
-    staticStyle: {
-      overflow: "hidden"
-    },
-    attrs: {
-      width: "180px",
-      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfOcr1OHnhhPCnQZrdBTc4kaopGN_phjZ8QQ&usqp=CAU",
-      alt: ""
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("tr", [_c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Guard. Name")]), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Guard. Nid")]), _vm._v(" "), _c("td", {
-    attrs: {
-      colspan: "2"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("tr", [_c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Prev School")]), _vm._v(" "), _c("td", {
-    attrs: {
-      colspan: "4"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("tr", [_c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Prev Class")]), _vm._v(" "), _c("td", {
-    attrs: {
-      colspan: "4"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("tr", [_c("td", {
-    staticClass: "tableRowHead"
-  }, [_vm._v("Declaration")]), _vm._v(" "), _c("td", {
-    attrs: {
-      colspan: "3"
-    }
-  }, [_vm._v("sdfghj")])]);
 }];
 render._withStripped = true;
 
@@ -28708,7 +28533,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.rootContainer[data-v-bd499866] {\n    margin-top: 25px;\n    border: 1px solid;\n    padding: 5px 21px;\n}\n.tableTag[data-v-bd499866],\n.tableTag td[data-v-bd499866],\n.tableTag th[data-v-bd499866] {\n    border: 1px solid #6c6c6c;\n    border-collapse: collapse;\n    padding: 3px 7px;\n    font-size: 10px;\n}\ntd.tableRowHead[data-v-bd499866] {\n    background: #e9e9e9;\n    color: black !important;\n}\n.fontsize1[data-v-bd499866] {\n    font-size: 16px;\n}\n.fontsize2[data-v-bd499866] {\n    font-size: 25px;\n}\n.copyTitle[data-v-bd499866] {\n    font-size: 23px;\n    color: #3E4D5B;\n}\n.mini-profile-widget .image-container .avatar[data-v-bd499866] {\n    width: 180px;\n    height: 180px;\n    display: block;\n    margin: 0 auto;\n    border-radius: 50%;\n    background: white;\n    padding: 4px;\n    border: 1px solid #dddddd;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nhr[data-v-bd499866] {\n    background-color: hsl(0deg 0% 89%) !important;\n    border: 0px solid black !important;\n    display: block !important;\n    height: 2px !important;\n    margin: 0.5rem 0 !important;\n    width: 100%;\n}\n.rootContainer[data-v-bd499866] {\n    margin-top: 25px;\n    border: 1px solid;\n    padding: 5px 21px;\n}\n.tableTag[data-v-bd499866],\n.tableTag td[data-v-bd499866],\n.tableTag th[data-v-bd499866] {\n    border: 1px solid #6c6c6c;\n    border-collapse: collapse;\n    padding: 3px 7px;\n    font-size: 10px;\n}\ntd.tableRowHead[data-v-bd499866] {\n    background: #e9e9e9;\n    color: black !important;\n}\n.fontsize1[data-v-bd499866] {\n    font-size: 16px;\n}\n.fontsize2[data-v-bd499866] {\n    font-size: 25px;\n}\n.copyTitle[data-v-bd499866] {\n    font-size: 23px;\n    color: #3E4D5B;\n}\n.mini-profile-widget .image-container .avatar[data-v-bd499866] {\n    width: 180px;\n    height: 180px;\n    display: block;\n    margin: 0 auto;\n    border-radius: 50%;\n    background: white;\n    padding: 4px;\n    border: 1px solid #dddddd;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

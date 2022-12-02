@@ -115,20 +115,16 @@
                         <button type="button" class="btn btn-info" @click="PaymentSearch">খুঁজুন</button>
 
 
-                        <div class='rootContainer' v-if="searched == 1">
-                            <div class='headerSection'>
-                                <table width='100%'>
-                                    <tr>
-                                        <td>
-                                            <p class='fontsize1'>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার </p>
-                                            <p class='fontsize2'>মাধ্যমিক ও উচ্চমাধ্যমিক শিক্ষা অধিদপ্তর</p>
-                                        </td>
-                                        <td style='text-align: right'>
-                                            <div v-if="paymentStatus == 'Paid'" class="paiddiv">
+
+
+
+                        <div class="card" v-if="searched == 1">
+                            <div class="card-header" style="display: flex;justify-content: end;">
+                                <div v-if="paymentStatus == 'Paid'" class="paiddiv">
                                                 <button class="btn btn-success">Paid</button>
-                                                <a class="btn btn-info" target="_blank"
+                                                <!-- <a class="btn btn-info" target="_blank"
                                                     :href="'/student/applicant/copy/' + student.AdmissionID">Print
-                                                    Applicant Copy</a>
+                                                    Applicant Copy</a> -->
                                             </div>
 
                                             <a class="btn btn-info" v-else-if="paymentStatus == 'Pending'"
@@ -138,99 +134,50 @@
                                                 :href="paymentUrl">Pay Failed Payment</a>
 
                                             <a class="btn btn-info" v-else :href="'/payment?studentId='+student.id+'&type='+form.type+'&month='+form.month">Pay Now</a>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <p
-                                    style='    border-bottom: 3px solid #808080;    margin-top: 10px; margin-bottom: 20px;'>
-                                </p>
-                                <h3 style='text-align:center' class='copyTitle'></h3>
-                                <table class='tableTag' width='100%' style='margin-top:20px ;margin-bottom:20px ;'>
-                                    <tr>
-                                        <td width='15%' class='tableRowHead'>Admssion Id</td>
-                                        <td colspan='3'>{{ student.AdmissionID }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class='tableRowHead'>Class</td>
-                                        <td>{{ student.StudentClass }}</td>
-                                        <td class='tableRowHead' width='10%'>Group</td>
-                                        <td>{{ student.StudentGroup }}</td>
-                                    </tr>
-                                </table>
-                                <table class='tableTag' width='100%' style='margin-top:20px ;margin-bottom:20px ;'>
-                                    <tr>
-                                        <td class='tableRowHead' width='20%'>Name</td>
-                                        <td colspan='3'>{{ student.StudentName }}</td>
-                                        <td width='20%' style='padding:0 !important;' rowspan='6'><img width='180px'
-                                                style='overflow:hidden'
-                                                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfOcr1OHnhhPCnQZrdBTc4kaopGN_phjZ8QQ&usqp=CAU'
-                                                alt=''></td>
-                                    </tr>
-                                    <tr>
-                                        <td class='tableRowHead'>Father Name</td>
-                                        <td>{{ student.StudentFatherNameBn }}</td>
-                                        <td class='tableRowHead' width='13%'>Nid</td>
-                                        <td>{{ student.StudentFatherNid }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class='tableRowHead'>Mother Name</td>
-                                        <td>{{ student.StudentMotherNameBn }}</td>
-                                        <td class='tableRowHead'>Nid</td>
-                                        <td>{{ student.StudentMotherNid }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class='tableRowHead'>Date of Birth</td>
-                                        <td>{{ student.StudentDateOfBirth }}</td>
-                                        <td class='tableRowHead'>Birth Reg.</td>
-                                        <td>{{ student.StudentBirthCertificateNo }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class='tableRowHead'>Mobile No.</td>
-                                        <td>{{ student.StudentPhoneNumber }}</td>
-                                        <td class='tableRowHead'>Nationality</td>
-                                        <td>Banglideshi</td>
-                                    </tr>
-                                    <tr>
-                                        <td class='tableRowHead'>Gender</td>
-                                        <td colspan='3'>{{ student.StudentGender }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class='tableRowHead'>Guard. Name</td>
-                                        <td></td>
-                                        <td class='tableRowHead'>Guard. Nid</td>
-                                        <td colspan='2'></td>
-                                    </tr>
-                                    <tr>
-                                        <td class='tableRowHead'>Prev School</td>
-                                        <td colspan='4'></td>
-                                    </tr>
-                                    <tr>
-                                        <td class='tableRowHead'>Prev Class</td>
-                                        <td colspan='4'></td>
-                                    </tr>
-                                    <tr>
-                                        <td class='tableRowHead'>Present Address</td>
-                                        <td colspan='4'>{{ student.StudentAddress }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class='tableRowHead'>Permanent Address</td>
-                                        <td colspan='4'>{{ student.StudentAddress }}</td>
-                                    </tr>
-                                </table>
-                                <table class='tableTag' width='100%' style='margin-top:20px ;margin-bottom:20px ;'>
-                                    <tr>
-                                        <td class='tableRowHead' width='15%'>Applied On</td>
-                                        <td>{{ student.JoiningDate }}</td>
-                                        <td class='tableRowHead' width='15%'>Printed On</td>
-                                        <td>".date('Y-m-d')."</td>
-                                    </tr>
-                                    <tr>
-                                        <td class='tableRowHead'>Declaration</td>
-                                        <td colspan='3'>sdfghj</td>
-                                    </tr>
-                                </table>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                       <b> Admission Id:</b> {{  student.AdmissionID }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Student Id:</b> {{  student.StudentID }}
+                                    </div>
+                                    <hr>
+                                    <div class="col-md-6">
+                                        <b>Name:</b> {{  student.StudentName }}
+                                    </div>
+
+                                    <div class="col-md-6" v-if="student.StudentClass=='Nine' || student.StudentClass=='Ten'">
+                                        <b>Group:</b> {{  student.StudentGroup }}
+                                    </div>
+                                    <div class="col-md-6" v-else>
+                                        <b>Group:</b> N/A
+                                    </div>
+
+                                    <hr>
+                                    <div class="col-md-6">
+                                        <b>Class:</b> {{  student.StudentClass }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Roll:</b> {{  student.StudentID }}
+                                    </div>
+                                    <hr>
+                                    <div class="col-md-6">
+                                        <b>Father Name:</b> {{  student.StudentFatherNameBn }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Mother Name:</b> {{  student.StudentMotherNameBn }}
+                                    </div>
+                                    <hr>
+
+                                </div>
                             </div>
                         </div>
+
+
+
 
                         <h2 v-if="searched==2" style="color:red;text-align:center;font-size: 33px;"> No Data Found! </h2>
 
@@ -298,6 +245,14 @@ export default {
 }
 </script>
 <style scoped>
+hr {
+    background-color: hsl(0deg 0% 89%) !important;
+    border: 0px solid black !important;
+    display: block !important;
+    height: 2px !important;
+    margin: 0.5rem 0 !important;
+    width: 100%;
+}
 .rootContainer {
     margin-top: 25px;
     border: 1px solid;
