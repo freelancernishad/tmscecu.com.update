@@ -273,4 +273,4 @@ Route::get('/{vue_capture?}', function () {
 
      return view('frontlayout',compact('uniounDetials','classess'));
 
-})->where('vue_capture', '[\/\w\.-]*')->name('frontend');
+})->where('vue_capture', '.*')->name('frontend');

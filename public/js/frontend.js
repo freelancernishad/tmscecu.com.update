@@ -4807,7 +4807,8 @@ var render = function render() {
         to: {
           name: "noticesingle",
           params: {
-            id: notice.id
+            id: notice.id,
+            title: notice.title
           }
         }
       }
@@ -4960,7 +4961,8 @@ var render = function render() {
         to: {
           name: "noticesingle",
           params: {
-            id: notice.id
+            id: notice.id,
+            title: notice.title
           }
         }
       }
@@ -10985,7 +10987,7 @@ var routes = [{
     layout: layout
   }
 }, {
-  path: "".concat(prefix, "web/notice/:id/"),
+  path: "".concat(prefix, "web/notice/:id/:title"),
   component: noticesingle,
   name: 'noticesingle',
   meta: {

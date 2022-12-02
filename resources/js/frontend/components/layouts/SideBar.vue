@@ -39,7 +39,7 @@
                         <div class="custom_bg py-2">
                             <ul style="padding-left:0">
 
-                                <li class="ps-3 pb-3" v-for="notice in notices"><router-link class="text-black"  :to="{name:'noticesingle',params:{id:notice.id}}"> <i class="fas fa-angle-double-right"></i> {{ notice.title.slice(0, 30)+'...' }}</router-link></li>
+                                <li class="ps-3 pb-3" v-for="notice in notices"><router-link class="text-black"  :to="{name:'noticesingle',params:{id:notice.id,title:notice.title}}"> <i class="fas fa-angle-double-right"></i> {{ notice.title.slice(0, 30)+'...' }}</router-link></li>
 
                             </ul>
                             <router-link style="    padding: 2px 9px;float: right;background: #545454;margin-bottom: 8px;color: white;border-radius: 3px;" :to="{name:'frontnotice'}">সকল নোটিশ দেখুন</router-link>

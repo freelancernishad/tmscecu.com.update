@@ -53,8 +53,9 @@ Vue.use(loader);
 
 
 const router = new VueRouter({
+
   routes,
-  mode: 'history'
+  mode: 'history',
 })
 const app = new Vue({
     el: '#app',
@@ -71,6 +72,7 @@ const app = new Vue({
 
     },
     base: process.env.APP_URL,
+
     router,
     store
 });

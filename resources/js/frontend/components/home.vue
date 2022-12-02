@@ -21,7 +21,7 @@
                         <h1>নোটিশ বোর্ড</h1>
                         <ul style="padding-left:0;margin-left: 55px;margin-top: 13px;">
 
-<li class="ps-3 pb-1" v-for="notice in noticesIN"><router-link class="text-dark noticeitems"  :to="{name:'noticesingle',params:{id:notice.id}}"> <i class="fas fa-angle-double-right"></i> {{ notice.title.slice(0, 80)+'...' }}</router-link></li>
+<li class="ps-3 pb-1" v-for="notice in noticesIN"><router-link class="text-dark noticeitems"  :to="{name:'noticesingle',params:{id:notice.id,title:notice.title}}"> <i class="fas fa-angle-double-right"></i> {{ notice.title.slice(0, 80)+'...' }}</router-link></li>
 
 </ul>
 <router-link style="    padding: 2px 9px;float: right;background: #545454;margin-bottom: 8px;color: white;border-radius: 3px;" :to="{name:'frontnotice'}">সকল নোটিশ দেখুন</router-link>
