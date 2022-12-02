@@ -694,7 +694,7 @@ function fileupload($Image, $path, $width = '', $height = '', $customname = '')
 }
 
 
-function fileupload2($file, $path,)
+function fileupload2($file, $path)
 {
 
 
