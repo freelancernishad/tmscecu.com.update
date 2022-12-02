@@ -163,7 +163,7 @@
                 <input class="form-control air-datepicker" type="date" placeholder="Enter Teacher Date Of Birth" v-model="form.TeacherDateOfBirth" id="TeacherDateOfBirth" required />
             </div>
         </div>
-        <div class="col-md-4 d-none">
+        <div class="col-md-4">
             <div class="form-group">
                 <label>Teacher Joining Date:</label>
                 <input class="form-control air-datepicker" type="date" placeholder="Enter Teacher Joining Date" v-model="form.TeacherJoiningDate" id="TeacherJoiningDate"  />
