@@ -252,11 +252,20 @@ die();
     }
     public function student_roll_check(Request $request)
     {
+
+       $bigsis = $request->bigsis;
+
        $StudentRoll = $request->StudentRoll;
        $StudentClass = $request->StudentClass;
        $StudentGroup = $request->StudentGroup;
        $year = date('Y');
+       if($bigsis){
+
+           return student::where(['StudentRoll'=>$StudentRoll,'StudentClass'=>$StudentClass,'StudentGroup'=>$StudentGroup,'year'=>$year])->first();
+       }
        return student::where(['StudentRoll'=>$StudentRoll,'StudentClass'=>$StudentClass,'StudentGroup'=>$StudentGroup,'year'=>$year])->count();
+
+
     }
 public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 {
