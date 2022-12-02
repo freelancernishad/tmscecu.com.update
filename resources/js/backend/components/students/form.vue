@@ -736,7 +736,7 @@ export default {
             bigBroSisClass:'',
             bigBroSisGroup:'Humanities',
             bigBroSisRoll:null,
-            StudentGroup:null,
+            StudentGroup:'Humanities',
             StudentAddress:null,
             division:null,
             district:null,
@@ -837,10 +837,10 @@ console.log(event.target.result)
 
         if(!this.$route.params.id){
 
-        if(this.form.StudentClass=='Nine' || this.form.StudentClass=='Ten'){
-        }else{
-            this.form.StudentGroup = '';
-        }
+        // if(this.form.StudentClass=='Nine' || this.form.StudentClass=='Ten'){
+        // }else{
+        //     this.form.StudentGroup = '';
+        // }
         var res = await this.callApi('get',`/api/check/student/roll?StudentRoll=${this.form.StudentRoll}&StudentClass=${this.form.StudentClass}&StudentGroup=${this.form.StudentGroup}`,[]);
         this.alredyhave = res.data;
 
@@ -850,9 +850,9 @@ console.log(event.target.result)
 
       async checkStudent(){
 
- 
+
             this.form.bigBroSisGroup = 'Humanities';
-     
+
         var res = await this.callApi('get',`/api/check/student/roll?StudentRoll=${this.form.bigBroSisRoll}&StudentClass=${this.form.bigBroSisClass}&StudentGroup=${this.form.bigBroSisGroup}&bigsis=1`,[]);
         // this.bissisBroDetails = res.data;
         this.form.bigBroSisName = res.data.StudentName
