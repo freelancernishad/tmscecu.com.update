@@ -29,28 +29,135 @@
                     <div class="row">
 
 
-                        <div class="col-12 col-sm-6 col-md-4 mt-3" v-for="staff in staffs.data">
-                        <div class="card">
-                            <div class="card-body">
-                            <div class="well well-white mini-profile-widget">
-                                <div class="image-container">
-                                    <img :src="$asseturl+staff.ProfilePicture" class="avatar img-responsive" width="100%" alt="avatar">
-                                </div>
-                                    <div class="details">
-                                        <h5>{{ staff.TeacherName }}</h5>
-                                        <hr>
-                                        <div>পদবী : {{ staff.TeacherPosition }} </div>
-                                        <div>শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }}</div>
-                                        <div>ঠিকানা : {{ staff.TeacherAddress }}</div>
-                                        <div>মোবাইল : {{ staff.TeacherPhoneNumber }}</div>
-                                        <div>ইমেইল : <a :href="'mailto:'+staff.TeacherEmail">{{ staff.TeacherEmail }}</a></div>
 
+
+
+                        <div class="col-12 col-sm-6 col-md-4 mt-3"  v-if="staff.TeacherPosition=='Head Master'"  v-for="staff in staffs.data">
+
+
+                            <div class="card">
+                                <div class="card-body">
+                                <div class="well well-white mini-profile-widget">
+                                    <div class="image-container">
+                                        <img :src="$asseturl+staff.ProfilePicture" class="avatar img-responsive" width="100%" alt="avatar">
+                                    </div>
+                                        <div class="details">
+                                            <h5>{{ staff.TeacherName }}</h5>
+                                            <hr>
+                                            <div>পদবী : {{ staff.TeacherPosition }} </div>
+                                            <div>শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }}</div>
+                                            <div>ঠিকানা : {{ staff.TeacherAddress }}</div>
+                                            <div>মোবাইল : {{ staff.TeacherPhoneNumber }}</div>
+                                            <div>ইমেইল : <a :href="'mailto:'+staff.TeacherEmail">{{ staff.TeacherEmail }}</a></div>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+
+
+                        <div class="col-12 col-sm-6 col-md-4 mt-3"  v-if="staff.TeacherPosition=='Assistent Head Master'"  v-for="staff in staffs.data">
+
+
+                            <div class="card">
+                                <div class="card-body">
+                                <div class="well well-white mini-profile-widget">
+                                    <div class="image-container">
+                                        <img :src="$asseturl+staff.ProfilePicture" class="avatar img-responsive" width="100%" alt="avatar">
+                                    </div>
+                                        <div class="details">
+                                            <h5>{{ staff.TeacherName }}</h5>
+                                            <hr>
+                                            <div>পদবী : {{ staff.TeacherPosition }} </div>
+                                            <div>শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }}</div>
+                                            <div>ঠিকানা : {{ staff.TeacherAddress }}</div>
+                                            <div>মোবাইল : {{ staff.TeacherPhoneNumber }}</div>
+                                            <div>ইমেইল : <a :href="'mailto:'+staff.TeacherEmail">{{ staff.TeacherEmail }}</a></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+
+                        <div class="col-12 col-sm-6 col-md-4 mt-3"  v-if="staff.TeacherPosition==='Assistent Teacher'"  v-for="staff in staffs.data">
+
+
+                            <div class="card">
+                                <div class="card-body">
+                                <div class="well well-white mini-profile-widget">
+                                    <div class="image-container">
+                                        <img :src="$asseturl+staff.ProfilePicture" class="avatar img-responsive" width="100%" alt="avatar">
+                                    </div>
+                                        <div class="details">
+                                            <h5>{{ staff.TeacherName }}</h5>
+                                            <hr>
+                                            <div>পদবী : {{ staff.TeacherPosition }} </div>
+                                            <div>শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }}</div>
+                                            <div>ঠিকানা : {{ staff.TeacherAddress }}</div>
+                                            <div>মোবাইল : {{ staff.TeacherPhoneNumber }}</div>
+                                            <div>ইমেইল : <a :href="'mailto:'+staff.TeacherEmail">{{ staff.TeacherEmail }}</a></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 col-sm-6 col-md-4 mt-3"  v-if="staff.TeacherPosition==='Office Assistent Cum-Accountent'"  v-for="staff in staffs.data">
+
+
+                            <div class="card">
+                                <div class="card-body">
+                                <div class="well well-white mini-profile-widget">
+                                    <div class="image-container">
+                                        <img :src="$asseturl+staff.ProfilePicture" class="avatar img-responsive" width="100%" alt="avatar">
+                                    </div>
+                                        <div class="details">
+                                            <h5>{{ staff.TeacherName }}</h5>
+                                            <hr>
+                                            <div>পদবী : {{ staff.TeacherPosition }} </div>
+                                            <div>শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }}</div>
+                                            <div>ঠিকানা : {{ staff.TeacherAddress }}</div>
+                                            <div>মোবাইল : {{ staff.TeacherPhoneNumber }}</div>
+                                            <div>ইমেইল : <a :href="'mailto:'+staff.TeacherEmail">{{ staff.TeacherEmail }}</a></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-4 mt-3"  v-if="staff.TeacherPosition==='M.L.S.S.'"  v-for="staff in staffs.data">
+
+
+                            <div class="card">
+                                <div class="card-body">
+                                <div class="well well-white mini-profile-widget">
+                                    <div class="image-container">
+                                        <img :src="$asseturl+staff.ProfilePicture" class="avatar img-responsive" width="100%" alt="avatar">
+                                    </div>
+                                        <div class="details">
+                                            <h5>{{ staff.TeacherName }}</h5>
+                                            <hr>
+                                            <div>পদবী : {{ staff.TeacherPosition }} </div>
+                                            <div>শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }}</div>
+                                            <div>ঠিকানা : {{ staff.TeacherAddress }}</div>
+                                            <div>মোবাইল : {{ staff.TeacherPhoneNumber }}</div>
+                                            <div>ইমেইল : <a :href="'mailto:'+staff.TeacherEmail">{{ staff.TeacherEmail }}</a></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
 
 
                     </div>
@@ -84,7 +191,7 @@ export default {
 
             ASSETURL: '',
             searchtype: '',
-            field: 'id',
+            field: 'TeacherJoiningDate',
             sorttype: '',
             preloader: true,
 

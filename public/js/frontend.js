@@ -3971,7 +3971,7 @@ __webpack_require__.r(__webpack_exports__);
       staffs: {},
       ASSETURL: '',
       searchtype: '',
-      field: 'id',
+      field: 'TeacherJoiningDate',
       sorttype: '',
       preloader: true
     };
@@ -10030,8 +10030,8 @@ var render = function render() {
     staticClass: "container bootdey"
   }, [_c("div", {
     staticClass: "row"
-  }, _vm._l(_vm.staffs.data, function (staff) {
-    return _c("div", {
+  }, [_vm._l(_vm.staffs.data, function (staff) {
+    return staff.TeacherPosition == "Head Master" ? _c("div", {
       staticClass: "col-12 col-sm-6 col-md-4 mt-3"
     }, [_c("div", {
       staticClass: "card"
@@ -10054,8 +10054,108 @@ var render = function render() {
       attrs: {
         href: "mailto:" + staff.TeacherEmail
       }
-    }, [_vm._v(_vm._s(staff.TeacherEmail))])])])])])])]);
-  }), 0)])]), _vm._v(" "), _c("side-bar", {
+    }, [_vm._v(_vm._s(staff.TeacherEmail))])])])])])])]) : _vm._e();
+  }), _vm._v(" "), _vm._l(_vm.staffs.data, function (staff) {
+    return staff.TeacherPosition == "Assistent Head Master" ? _c("div", {
+      staticClass: "col-12 col-sm-6 col-md-4 mt-3"
+    }, [_c("div", {
+      staticClass: "card"
+    }, [_c("div", {
+      staticClass: "card-body"
+    }, [_c("div", {
+      staticClass: "well well-white mini-profile-widget"
+    }, [_c("div", {
+      staticClass: "image-container"
+    }, [_c("img", {
+      staticClass: "avatar img-responsive",
+      attrs: {
+        src: _vm.$asseturl + staff.ProfilePicture,
+        width: "100%",
+        alt: "avatar"
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "details"
+    }, [_c("h5", [_vm._v(_vm._s(staff.TeacherName))]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", [_vm._v("পদবী : " + _vm._s(staff.TeacherPosition) + " ")]), _vm._v(" "), _c("div", [_vm._v("শিক্ষাগত যোগ্যতা : " + _vm._s(staff.TeacherQualification))]), _vm._v(" "), _c("div", [_vm._v("ঠিকানা : " + _vm._s(staff.TeacherAddress))]), _vm._v(" "), _c("div", [_vm._v("মোবাইল : " + _vm._s(staff.TeacherPhoneNumber))]), _vm._v(" "), _c("div", [_vm._v("ইমেইল : "), _c("a", {
+      attrs: {
+        href: "mailto:" + staff.TeacherEmail
+      }
+    }, [_vm._v(_vm._s(staff.TeacherEmail))])])])])])])]) : _vm._e();
+  }), _vm._v(" "), _vm._l(_vm.staffs.data, function (staff) {
+    return staff.TeacherPosition === "Assistent Teacher" ? _c("div", {
+      staticClass: "col-12 col-sm-6 col-md-4 mt-3"
+    }, [_c("div", {
+      staticClass: "card"
+    }, [_c("div", {
+      staticClass: "card-body"
+    }, [_c("div", {
+      staticClass: "well well-white mini-profile-widget"
+    }, [_c("div", {
+      staticClass: "image-container"
+    }, [_c("img", {
+      staticClass: "avatar img-responsive",
+      attrs: {
+        src: _vm.$asseturl + staff.ProfilePicture,
+        width: "100%",
+        alt: "avatar"
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "details"
+    }, [_c("h5", [_vm._v(_vm._s(staff.TeacherName))]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", [_vm._v("পদবী : " + _vm._s(staff.TeacherPosition) + " ")]), _vm._v(" "), _c("div", [_vm._v("শিক্ষাগত যোগ্যতা : " + _vm._s(staff.TeacherQualification))]), _vm._v(" "), _c("div", [_vm._v("ঠিকানা : " + _vm._s(staff.TeacherAddress))]), _vm._v(" "), _c("div", [_vm._v("মোবাইল : " + _vm._s(staff.TeacherPhoneNumber))]), _vm._v(" "), _c("div", [_vm._v("ইমেইল : "), _c("a", {
+      attrs: {
+        href: "mailto:" + staff.TeacherEmail
+      }
+    }, [_vm._v(_vm._s(staff.TeacherEmail))])])])])])])]) : _vm._e();
+  }), _vm._v(" "), _vm._l(_vm.staffs.data, function (staff) {
+    return staff.TeacherPosition === "Office Assistent Cum-Accountent" ? _c("div", {
+      staticClass: "col-12 col-sm-6 col-md-4 mt-3"
+    }, [_c("div", {
+      staticClass: "card"
+    }, [_c("div", {
+      staticClass: "card-body"
+    }, [_c("div", {
+      staticClass: "well well-white mini-profile-widget"
+    }, [_c("div", {
+      staticClass: "image-container"
+    }, [_c("img", {
+      staticClass: "avatar img-responsive",
+      attrs: {
+        src: _vm.$asseturl + staff.ProfilePicture,
+        width: "100%",
+        alt: "avatar"
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "details"
+    }, [_c("h5", [_vm._v(_vm._s(staff.TeacherName))]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", [_vm._v("পদবী : " + _vm._s(staff.TeacherPosition) + " ")]), _vm._v(" "), _c("div", [_vm._v("শিক্ষাগত যোগ্যতা : " + _vm._s(staff.TeacherQualification))]), _vm._v(" "), _c("div", [_vm._v("ঠিকানা : " + _vm._s(staff.TeacherAddress))]), _vm._v(" "), _c("div", [_vm._v("মোবাইল : " + _vm._s(staff.TeacherPhoneNumber))]), _vm._v(" "), _c("div", [_vm._v("ইমেইল : "), _c("a", {
+      attrs: {
+        href: "mailto:" + staff.TeacherEmail
+      }
+    }, [_vm._v(_vm._s(staff.TeacherEmail))])])])])])])]) : _vm._e();
+  }), _vm._v(" "), _vm._l(_vm.staffs.data, function (staff) {
+    return staff.TeacherPosition === "M.L.S.S." ? _c("div", {
+      staticClass: "col-12 col-sm-6 col-md-4 mt-3"
+    }, [_c("div", {
+      staticClass: "card"
+    }, [_c("div", {
+      staticClass: "card-body"
+    }, [_c("div", {
+      staticClass: "well well-white mini-profile-widget"
+    }, [_c("div", {
+      staticClass: "image-container"
+    }, [_c("img", {
+      staticClass: "avatar img-responsive",
+      attrs: {
+        src: _vm.$asseturl + staff.ProfilePicture,
+        width: "100%",
+        alt: "avatar"
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "details"
+    }, [_c("h5", [_vm._v(_vm._s(staff.TeacherName))]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", [_vm._v("পদবী : " + _vm._s(staff.TeacherPosition) + " ")]), _vm._v(" "), _c("div", [_vm._v("শিক্ষাগত যোগ্যতা : " + _vm._s(staff.TeacherQualification))]), _vm._v(" "), _c("div", [_vm._v("ঠিকানা : " + _vm._s(staff.TeacherAddress))]), _vm._v(" "), _c("div", [_vm._v("মোবাইল : " + _vm._s(staff.TeacherPhoneNumber))]), _vm._v(" "), _c("div", [_vm._v("ইমেইল : "), _c("a", {
+      attrs: {
+        href: "mailto:" + staff.TeacherEmail
+      }
+    }, [_vm._v(_vm._s(staff.TeacherEmail))])])])])])])]) : _vm._e();
+  })], 2)])]), _vm._v(" "), _c("side-bar", {
     attrs: {
       "class-name": "col-md-3"
     }
