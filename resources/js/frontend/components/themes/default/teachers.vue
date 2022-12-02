@@ -1,23 +1,24 @@
 <template>
     <div>
-            <loader v-if="preloader==true" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" disableScrolling="false" name="circular"></loader>
 
-<section class="inner-header divider layer-overlay overlay-theme-colored-7" >
-<div class="container">
-    <!-- Section Content -->
-    <div class="section-content">
-        <div class="row">
-            <div class="col-md-6">
-                <h1 class="text-theme-colored2 font-36">কর্মরত শিক্ষক-কর্মচারী</h1>
-                <ol class="breadcrumb text-left mt-10 white">
-                    <li><a href="">Home</a></li>
-                    <li class="active">Teachers</li>
-                </ol>
+    <loader v-if="preloader==true" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" disableScrolling="false" name="circular"></loader>
+
+    <section class="inner-header divider layer-overlay overlay-theme-colored-7" >
+    <div class="container">
+        <!-- Section Content -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="text-theme-colored2 font-36">কর্মরত শিক্ষক-কর্মচারী</h1>
+                    <ol class="breadcrumb text-left mt-10 white">
+                        <li><a href="">Home</a></li>
+                        <li class="active">Teachers</li>
+                    </ol>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</section>
+    </section>
 
 
  <!-- Main Start -->
@@ -176,8 +177,6 @@
 </template>
 
 <script>
-
-
 export default {
 
 	created(){
