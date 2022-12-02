@@ -317,7 +317,7 @@
                 <div class="col-md-4 mt-3" v-if="form.bigBroSis=='Yes'" >
                     <div class="form-group">
                         <label class="form_label">অধ্যয়নরত ভাই/বোনের নাম</label>
-                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের নাম" name="অধ্যয়নরত ভাই/বোনের নাম" v-model="form.bigBroSisName"  readonly required/>
+                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের নাম" name="অধ্যয়নরত ভাই/বোনের নাম" v-model="form.bigBroSisName"  required/>
 
                     </div>
                 </div>
@@ -852,7 +852,7 @@ console.log(event.target.result)
 
         if(this.form.bigBroSisClass=='Nine' || this.form.bigBroSisClass=='Ten'){
         }else{
-            this.form.StudentGroup = '';
+            this.form.bigBroSisGroup = 'Humanities';
         }
         var res = await this.callApi('get',`/api/check/student/roll?StudentRoll=${this.form.bigBroSisRoll}&StudentClass=${this.form.bigBroSisClass}&StudentGroup=${this.form.bigBroSisGroup}&bigsis=1`,[]);
         // this.bissisBroDetails = res.data;
