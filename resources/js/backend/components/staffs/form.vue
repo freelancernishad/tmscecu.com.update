@@ -353,6 +353,8 @@ export default {
                                 .then(({data}) => {
                                     //  console.log(data)
                                     this.form = data
+                                    this.form['ProfilePicture'] = this.$asseturl+data.ProfilePicture
+
                                                   this.preloader = false;
                                 })
                                 .catch(() => {
