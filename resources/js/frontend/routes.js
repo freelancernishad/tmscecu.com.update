@@ -43,7 +43,7 @@ export const routes = [
     { path: `${prefix}result/:studentclass/:group/:examType/:subject/:religion/:year/:roll/:school_id`, component: frontresult, name:'frontresultsearch' ,meta: { layout: layout } },
     { path: `${prefix}weakly_result`, component: frontweakly_result, name:'frontweakly_result' ,meta: { layout: layout } },
     { path: `${prefix}web/notice`, component: frontnotice, name:'frontnotice' ,meta: { layout: layout } },
-    { path: `${prefix}web/notice/:id`, component: noticesingle, name:'noticesingle' ,meta: { layout: layout } },
+    { path: `${prefix}web/notice/:id/`, component: noticesingle, name:'noticesingle' ,meta: { layout: layout } },
     { path: `${prefix}blogs`, component: frontblogs, name:'frontblogs' ,meta: { layout: layout } },
     { path: `${prefix}blogs/:slug`, component: frontblogsingle, name:'frontblogsingle' ,meta: { layout: layout } },
     { path: `${prefix}contact-us`, component: frontcontact_us, name:'frontcontact_us' ,meta: { layout: layout } },

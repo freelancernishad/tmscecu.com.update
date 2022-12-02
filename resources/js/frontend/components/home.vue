@@ -16,6 +16,20 @@
 
 
 
+                <div class="card">
+                    <div class="card-body">
+                        <h1>নোটিশ বোর্ড</h1>
+                        <ul style="padding-left:0;margin-left: 55px;margin-top: 13px;">
+
+<li class="ps-3 pb-1" v-for="notice in noticesIN"><router-link class="text-dark noticeitems"  :to="{name:'noticesingle',params:{id:notice.id}}"> <i class="fas fa-angle-double-right"></i> {{ notice.title.slice(0, 80)+'...' }}</router-link></li>
+
+</ul>
+<router-link style="    padding: 2px 9px;float: right;background: #545454;margin-bottom: 8px;color: white;border-radius: 3px;" :to="{name:'frontnotice'}">সকল নোটিশ দেখুন</router-link>
+                    </div>
+                </div>
+
+
+
 
                 <div class="services mt-3">
 
@@ -128,8 +142,10 @@ export default {
                 title: '',
                 status: '',
                 content: {},
+
                 content_id: '',
-            }
+            },
+            noticesIN: {},
             //   vfCaptions: [],
         };
     },
@@ -139,8 +155,15 @@ export default {
 
             this.sliderimage();
         }, 2000);
+        this.noticeFunIn();
     },
     methods: {
+
+        async noticeFunIn(){
+        var res = await this.callApi('get',`/api/notice?sidebar=5`,[]);
+        this.noticesIN = res.data.data
+    },
+
 
         sliderimage(){
 
@@ -171,5 +194,8 @@ a.prev {
 
 a.next {
     display: none !important;
+}
+.noticeitems:hover {
+    border-bottom: 1px solid black;
 }
 </style>

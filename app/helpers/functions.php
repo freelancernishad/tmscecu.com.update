@@ -694,6 +694,25 @@ function fileupload($Image, $path, $width = '', $height = '', $customname = '')
 }
 
 
+function fileupload2($file, $path,)
+{
+
+
+    $bases = explode('base64,',explode(';', $file)[1])[1];
+    $base64_decode = base64_decode($bases);
+    $base64 = time().'.' . explode('/', explode(':', substr($file, 0, strpos($file, ';')))[1])[1];
+
+    $path = "backend/notice/";
+    if (!file_exists(env('FILE_PATH') . $path)) {
+        File::makeDirectory(env('FILE_PATH') . $path, 0777, true, true);
+    }
+    $destinationPath =$path. $base64;
+    file_put_contents($destinationPath, $base64_decode);
+    return env('FILE_PATH').$destinationPath;
+
+}
+
+
 function class_list()
 {
     $result = ['Six', 'Seven', 'Eight', 'Nine', 'Ten'];

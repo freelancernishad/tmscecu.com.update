@@ -30,10 +30,10 @@
 						<textarea class='form-control' v-model="form.description" id="description" cols="30" rows="10" style="resize:none;height: auto;" required ></textarea>
                     </div>
 
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label> File</label>
 						<input type="file"  class="form-control" @change="FileSelected($event, 'file')" id="file" >
-                    </div> -->
+                    </div>
 
 					<button class="btn-fill-md text-light bg-orange-peel" id="send_sms" v-html="button"></button>
 				</form>

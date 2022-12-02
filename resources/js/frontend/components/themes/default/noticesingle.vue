@@ -8,7 +8,7 @@
     <!-- Section Content -->
     <div class="section-content">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <h1 class="text-theme-colored2 font-36">{{ Notices.title }}</h1>
                 <ol class="breadcrumb text-left mt-10 white">
                     <li><a href="">Home</a></li>
@@ -39,16 +39,22 @@
             <div class="card theme_shadow h-100">
 
                 <div class="card-footer py-3">
-                    <small class="text-muted"><i class="theme_color2 fas fa-calendar-alt"></i><span class="date"> {{ Notices.created_at }} </span> </small>
+                    <small class="text-muted"><i class="theme_color2 fas fa-calendar-alt"></i><span class="date"> {{ dateformatGlobal(Notices.created_at)[3] }} </span> </small>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title theme_color">{{ Notices.title }}</h5>
+                    <h5 class="card-title theme_color" style="font-size: 35px !important;">{{ Notices.title }}</h5>
 
 
 
     <hr>
   <h5 class="card-title theme_color">Description</h5>
-    <p>{{ Notices.description }}</p>
+    <p style="margin-bottom:30px">{{ Notices.description }}</p>
+
+
+        <a  v-if="Notices.file" :href="($asseturl+Notices.file)" style="margin-top: 25px;"><img :src="$asseturl+'assets/img/png-pdf.png'" style="width: 18px;margin-right: 9px;" alt="">{{ Notices.title }}</a>
+    <iframe v-if="Notices.file" width="100%"  style="height:100vh;margin-top: 15px;" :src="$asseturl+Notices.file" frameborder="0"></iframe>
+
+
 
                 </div>
 

@@ -188,7 +188,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">জন্ম নিবন্ধন নং</label>
-                        <input class="form-control" type="text"  placeholder="জন্ম নিবন্ধন নং" v-model="form.StudentBirthCertificateNo" name="জন্ম নিবন্ধন নং" maxlength="17" v-validate="'required'" data-vv-scope="step1" />
+                        <input class="form-control" type="text"  placeholder="জন্ম নিবন্ধন নং" v-model="form.StudentBirthCertificateNo" name="জন্ম নিবন্ধন নং" maxlength="17" v-validate="'required|length:17|max:17'" data-vv-scope="step1" />
                          <p class="help is-danger" v-show="errors.has('step1.জন্ম নিবন্ধন নং')">
                              {{ errors.first('step1.জন্ম নিবন্ধন নং') }}
                           </p>
@@ -453,7 +453,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মোবাইল নাম্বার</label>
-                        <input class="form-control" type="text"  placeholder="মোবাইল নাম্বার" v-model="form.StudentPhoneNumber" name="মোবাইল নাম্বার" maxlength="11" v-validate="'required'" data-vv-scope="step1" />
+                        <input class="form-control" type="text"  placeholder="মোবাইল নাম্বার" v-model="form.StudentPhoneNumber" name="মোবাইল নাম্বার" maxlength="11" v-validate="'required|length:11|max:11'" data-vv-scope="step1" />
                          <p class="help is-danger" v-show="errors.has('step1.মোবাইল নাম্বার')">
                              {{ errors.first('step1.মোবাইল নাম্বার') }}
                           </p>
@@ -527,7 +527,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতার জাতীয় পরিচয় পত্র নং</label>
-                        <input class="form-control" type="text"  placeholder="পিতার জাতীয় পরিচয় পত্র নং" v-model="form.StudentFatherNid" name="পিতার জাতীয় পরিচয় পত্র নং"  v-validate="'required'" data-vv-scope="step2" />
+                        <input class="form-control" type="text"  placeholder="পিতার জাতীয় পরিচয় পত্র নং" v-model="form.StudentFatherNid" name="পিতার জাতীয় পরিচয় পত্র নং"  v-validate="'required|length:10,17'" maxlength="17" data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.পিতার জাতীয় পরিচয় পত্র নং')">
                              {{ errors.first('step2.পিতার জাতীয় পরিচয় পত্র নং') }}
                           </p>
@@ -560,7 +560,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মাতার জাতীয় পরিচয় পত্র নং</label>
-                        <input class="form-control" type="text"  placeholder="মাতার জাতীয় পরিচয় পত্র নং" v-model="form.StudentMotherNid" name="মাতার জাতীয় পরিচয় পত্র নং"  v-validate="'required'" data-vv-scope="step2" />
+                        <input class="form-control" type="text"  placeholder="মাতার জাতীয় পরিচয় পত্র নং" v-model="form.StudentMotherNid" name="মাতার জাতীয় পরিচয় পত্র নং"  v-validate="'required|length:10,17'" maxlength="17" data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.মাতার জাতীয় পরিচয় পত্র নং')">
                              {{ errors.first('step2.মাতার জাতীয় পরিচয় পত্র নং') }}
                           </p>
@@ -570,7 +570,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পিতার জন্ম নিবন্ধন নং</label>
-                        <input class="form-control" type="text"  placeholder="পিতার জন্ম নিবন্ধন নং" v-model="form.StudentFatherBCN" name="পিতার জন্ম নিবন্ধন নং"  data-vv-scope="step2" />
+                        <input class="form-control" type="text" v-validate="'length:17|max:17'"  placeholder="পিতার জন্ম নিবন্ধন নং" v-model="form.StudentFatherBCN" name="পিতার জন্ম নিবন্ধন নং" maxlength="17"  data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.পিতার জন্ম নিবন্ধন নং')">
                              {{ errors.first('step2.পিতার জন্ম নিবন্ধন নং') }}
                           </p>
@@ -584,7 +584,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">মাতার জন্ম নিবন্ধন নং</label>
-                        <input class="form-control" type="text"  placeholder="মাতার জন্ম নিবন্ধন নং" v-model="form.StudentMotherBCN" name="মাতার জন্ম নিবন্ধন নং" data-vv-scope="step2" />
+                        <input class="form-control" type="text" v-validate="'length:17|max:17'" placeholder="মাতার জন্ম নিবন্ধন নং" v-model="form.StudentMotherBCN" name="মাতার জন্ম নিবন্ধন নং" maxlength="17" data-vv-scope="step2" />
                          <p class="help is-danger" v-show="errors.has('step2.মাতার জন্ম নিবন্ধন নং')">
                              {{ errors.first('step2.মাতার জন্ম নিবন্ধন নং') }}
                           </p>
@@ -945,63 +945,63 @@ export default {
         classes: [],
         preloader:false,
         form:{
-            id:null,
-            school_id:null,
+            id:'',
+            school_id:'',
             Year:new Date().getFullYear(),
-            AdmissionID:null,
-            StudentID:null,
-            StudentRoll:null,
-            StudentClass:null,
-            StudentGender:null,
-            StudentReligion:null,
-            StudentName:null,
-            StudentNameEn:null,
-            StudentFatherNameBn:null,
-            StudentFatherName:null,
-            StudentMotherNameBn:null,
-            StudentMotherName:null,
-            StudentFatherNid:null,
-            StudentMotherNid:null,
-            StudentFatherBCN:null,
-            StudentMotherBCN:null,
-            guardNameBn:null,
-            guardName:null,
-            guardNid:null,
-            guardRalation:null,
-            StudentFatherOccupation:null,
-            parentEarn:null,
-            StudentMotherOccupation:null,
-            ParentEmail:null,
-            ParentPassword:null,
-            StudentEmail:null,
-            StudentPassword:null,
-            StudentDateOfBirth:null,
-            StudentBirthCertificateNo:null,
-            StudentCategory:null,
-            StudentKota:null,
-            StudentKotaSonodNo:null,
-            preSchool:null,
-            preClass:null,
+            AdmissionID:'',
+            StudentID:'',
+            StudentRoll:'',
+            StudentClass:'',
+            StudentGender:'',
+            StudentReligion:'',
+            StudentName:'',
+            StudentNameEn:'',
+            StudentFatherNameBn:'',
+            StudentFatherName:'',
+            StudentMotherNameBn:'',
+            StudentMotherName:'',
+            StudentFatherNid:'',
+            StudentMotherNid:'',
+            StudentFatherBCN:'',
+            StudentMotherBCN:'',
+            guardNameBn:'',
+            guardName:'',
+            guardNid:'',
+            guardRalation:'',
+            StudentFatherOccupation:'',
+            parentEarn:'',
+            StudentMotherOccupation:'',
+            ParentEmail:'',
+            ParentPassword:'',
+            StudentEmail:'',
+            StudentPassword:'',
+            StudentDateOfBirth:'',
+            StudentBirthCertificateNo:'',
+            StudentCategory:'',
+            StudentKota:'',
+            StudentKotaSonodNo:'',
+            preSchool:'',
+            preClass:'',
             bigBroSis:"No",
-            bigBroSisName:null,
-            bigBroSisClass:null,
-            bigBroSisRoll:null,
-            StudentGroup:null,
-            StudentAddress:null,
-            division:null,
-            district:null,
-            upazila:null,
-            union:null,
-            post_office:null,
-            StudentPhoneNumber:null,
-            AreaPostalCode:null,
+            bigBroSisName:'',
+            bigBroSisClass:'',
+            bigBroSisRoll:'',
+            StudentGroup:'',
+            StudentAddress:'',
+            division:'',
+            district:'',
+            upazila:'',
+            union:'',
+            post_office:'',
+            StudentPhoneNumber:'',
+            AreaPostalCode:'',
             StudentStatus:'Pending',
-            StudentTranferFrom:null,
-            StudentPicture:null,
-            JoiningDate:null,
-            StudentTranferStatus:null,
-            AplicationStatus:null,
-            ThisMonthPaymentStatus:null,
+            StudentTranferFrom:'',
+            StudentPicture:'',
+            JoiningDate:'',
+            StudentTranferStatus:'',
+            AplicationStatus:'',
+            ThisMonthPaymentStatus:'',
 
         },
 

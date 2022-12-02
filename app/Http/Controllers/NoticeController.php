@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\notice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class NoticeController extends Controller
 {
@@ -53,11 +54,17 @@ $rows = json_decode(json_encode($edit_data));
     {
          $data = request()->except(['file']);
 
-    //   $fileCount =  count(explode(';', $request->file));
+      $fileCount =  count(explode(';', $request->file));
 
-    //   if ($fileCount > 1) {
-    //       $data['file'] =  fileupload($request->file, "notice/file");
-    //   }
+      if ($fileCount > 1) {
+
+        $data['file'] =  fileupload2($request->file,"backend/notice/");
+
+      }
+
+
+
+
         if($request->id){
             $id = $request->id;
             $notice = notice::find($id);
