@@ -5210,7 +5210,7 @@ var render = function render() {
       "font-size": "15px",
       color: "#570abd",
       "font-weight": "600",
-      "letter-spacing": "3px"
+      "letter-spacing": "2px"
     }
   }, [_vm._v("TEPRIGANJ ADARSHA B.L HIGH SCHOOL")])])])])])]), _vm._v(" "), _c("nav", {
     staticClass: "navbar navbar-expand-lg navbar-light bg-primary text-light"
@@ -5231,7 +5231,7 @@ var render = function render() {
       "aria-current": "page",
       to: "/"
     }
-  }, [_vm._v("প্রচ্ছদ")])], 1), _vm._v(" "), _c("li", {
+  }, [_vm._v("মূলপাতা")])], 1), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("router-link", {
     staticClass: "text-light px-3 nav-link",
@@ -6885,7 +6885,7 @@ var render = function render() {
     staticClass: "tab-details"
   }, [_c("tab", {
     attrs: {
-      name: "Student Details",
+      name: "ছাত্র-ছাত্রীর তথ্য",
       selected: true
     }
   }, [_c("div", {
@@ -8173,7 +8173,7 @@ var render = function render() {
     }
   })])])])]), _vm._v(" "), _c("tab", {
     attrs: {
-      name: "Parent Details",
+      name: "অভিভাবকের তথ্য",
       "data-vv-scope": "step2"
     }
   }, [_c("div", {
@@ -8779,8 +8779,7 @@ var render = function render() {
     staticClass: "help is-danger"
   }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step2.অভিভাবকের পেশা")) + "\n                          ")])])])])]), _vm._v(" "), _c("tab", {
     attrs: {
-      name: "Preview",
-      info: "Finishing Up"
+      name: "তথ্য যাচাই"
     }
   }, [_c("div", {
     staticClass: "rootContainer"

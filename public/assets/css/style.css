@@ -2,9 +2,10 @@
 
 
 section.inner-header.divider.layer-overlay.overlay-theme-colored-7 {
-    background: linear-gradient(0deg, rgb(0 0 0 / 61%),rgb(13 110 253 / 68%)), url('/bg.jpg');
+    background: linear-gradient(0deg, rgb(0 0 0 / 61%),rgb(13 110 253 / 68%)), url(https://tepriganjhighschool.edu.bd/public/backend/slider/1669877362____50345.jpeg);
     background-size: cover;
-    }
+    background-position: center;
+}
 
     h1.text-theme-colored2.font-36 {
         color: white;

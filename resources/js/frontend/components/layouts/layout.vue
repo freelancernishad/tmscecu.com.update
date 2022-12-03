@@ -27,7 +27,7 @@
                                 <img class="img-fluid" width="75px" :src="schoolinfo.logo" alt="">
                                 <span class="text-dark" style="font-size:20px;display: flex;flex-direction: column;justify-content: center;margin-left: 15px;">
                                     <span style="font-size: 25px;border-bottom: 1px solid #6db5ae;">{{ schoolinfo.SCHOLL_NAME }}</span>
-                                    <span style="font-size: 15px;color: #570abd;font-weight: 600;letter-spacing: 3px;">TEPRIGANJ ADARSHA B.L HIGH SCHOOL</span>
+                                    <span style="font-size: 15px;color: #570abd;font-weight: 600;letter-spacing: 2px;">TEPRIGANJ ADARSHA B.L HIGH SCHOOL</span>
                                 </span>
 
 
@@ -49,7 +49,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto mb-2 mb-lg-0">
                             <li class="nav-item ">
-                                <router-link class="text-light px-3 nav-link " aria-current="page" to="/">প্রচ্ছদ</router-link>
+                                <router-link class="text-light px-3 nav-link " aria-current="page" to="/">মূলপাতা</router-link>
                             </li>
 
 

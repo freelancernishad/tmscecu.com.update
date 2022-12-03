@@ -14,7 +14,7 @@
         <div class="tab-details">
 
 
- <tab name="Student Details"  :selected="true">
+ <tab name="ছাত্র-ছাত্রীর তথ্য"  :selected="true">
 
 
 
@@ -496,7 +496,7 @@
 
 
           </tab>
-          <tab name="Parent Details" data-vv-scope="step2">
+          <tab name="অভিভাবকের তথ্য" data-vv-scope="step2">
            <div class="row">
 
 
@@ -725,7 +725,8 @@
 
                 </div>
           </tab>
-          <tab name="Preview" info="Finishing Up" >
+          <tab name="তথ্য যাচাই" >
+          <!-- <tab name="তথ্য যাচাই" info="Finishing Up" > -->
 
 
 
