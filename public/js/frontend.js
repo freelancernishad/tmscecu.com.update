@@ -9535,7 +9535,7 @@ var render = function render() {
         width: "75px"
       },
       attrs: {
-        align: "left"
+        align: "center"
       }
     }, [_vm._v(_vm._s(key))]), _vm._v(" "), _c("td", {
       staticStyle: {
@@ -9781,7 +9781,7 @@ var staticRenderFns = [function () {
       valign: "middle",
       scope: "col"
     }
-  }, [_vm._v("ছেলে")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("ছাত্র")]), _vm._v(" "), _c("th", {
     staticStyle: {
       "border-color": "#CCCCCC",
       "border-width": "1px",
@@ -9792,7 +9792,7 @@ var staticRenderFns = [function () {
       valign: "middle",
       scope: "col"
     }
-  }, [_vm._v("মেয়ে")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("ছাত্রী")]), _vm._v(" "), _c("th", {
     staticStyle: {
       "border-color": "#CCCCCC",
       "border-width": "1px",

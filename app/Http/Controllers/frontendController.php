@@ -147,8 +147,8 @@ $students[class_en_to_bn($class[$i])]['totalStudent'] = $totalStudentcount;
 
 $data['data'] = $students;
 $data['countdata']['মোট শিক্ষার্থীর সংখ্যা'] = $totalStudent;
-$data['countdata']['ছেলে'] = $maleStudent;
-$data['countdata']['মেয়ে'] = $FemaleStudent;
+$data['countdata']['ছাত্র'] = $maleStudent;
+$data['countdata']['ছাত্রী'] = $FemaleStudent;
 $data['countdata']['বিজ্ঞান বিভাগ'] = $scienceStudent;
 $data['countdata']['মানবিক বিভাগ'] = $HumanitiesStudent;
 $data['countdata']['ব্যবসায় শিক্ষা বিভাগ'] = $CommerceStudent;

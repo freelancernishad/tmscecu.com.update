@@ -41,8 +41,8 @@
                         </tr>
                         <tr align="center" valign="middle" style="color:#0C090A;background-color:#F2F2F2;border-color:#CCCCCC;border-width:1px;border-style:Solid;font-family:Noto Sans Bengali;font-size:9pt;">
                             <th align="left" valign="middle" scope="col">শ্রেণি</th>
-                            <th align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">ছেলে</th>
-                            <th align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">মেয়ে</th>
+                            <th align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">ছাত্র</th>
+                            <th align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">ছাত্রী</th>
                             <th align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">মোট</th>
                             <th align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">বিজ্ঞান</th>
                             <th align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">ব্যব.শি</th>
@@ -50,7 +50,7 @@
                         </tr>
 
                         <tr v-for="(student,key) in students.data">
-                            <td align="left" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;font-family:Century Gothic;font-size:9pt;font-weight:bold;width:75px;">{{ key }}</td>
+                            <td align="center" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;font-family:Century Gothic;font-size:9pt;font-weight:bold;width:75px;">{{ key }}</td>
                             <td align="center" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;font-size:9pt;font-weight:bold;width:30px;">
                                 <span id="ContentPlaceHolder1_grdvTeachers_txtmale_0">{{ student.maleStudent }}</span>
                             </td>
