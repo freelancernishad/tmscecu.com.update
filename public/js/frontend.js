@@ -5169,7 +5169,10 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row py-2 for_mobile"
   }, [_c("div", {
-    staticClass: "col-lg-12 col-md-12 col-sm-12 logo school_logo"
+    staticClass: "col-lg-12 col-md-12 col-sm-12 logo school_logo",
+    staticStyle: {
+      display: "flex"
+    }
   }, [_c("img", {
     staticClass: "img-fluid",
     attrs: {
@@ -5180,9 +5183,25 @@ var render = function render() {
   }), _vm._v(" "), _c("span", {
     staticClass: "text-dark",
     staticStyle: {
-      "font-size": "20px"
+      "font-size": "20px",
+      display: "flex",
+      "flex-direction": "column",
+      "justify-content": "center",
+      "margin-left": "15px"
     }
-  }, [_vm._v(_vm._s(_vm.schoolinfo.SCHOLL_NAME))])])])])]), _vm._v(" "), _c("nav", {
+  }, [_c("span", {
+    staticStyle: {
+      "font-size": "25px",
+      "border-bottom": "1px solid #6db5ae"
+    }
+  }, [_vm._v(_vm._s(_vm.schoolinfo.SCHOLL_NAME))]), _vm._v(" "), _c("span", {
+    staticStyle: {
+      "font-size": "15px",
+      color: "#570abd",
+      "font-weight": "600",
+      "letter-spacing": "5px"
+    }
+  }, [_vm._v("TEPRIGANJ BL HIGH SCHOOL")])])])])])]), _vm._v(" "), _c("nav", {
     staticClass: "navbar navbar-expand-lg navbar-light bg-primary text-light"
   }, [_c("div", {
     staticClass: "container-fluid"
