@@ -2570,7 +2570,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      curentdate: ''
+      curentdate: '',
+      schooldetails: {}
     };
   },
   watch: {
@@ -2583,14 +2584,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       deep: true
     }
   },
-  methods: {},
-  mounted: function mounted() {
-    var _this2 = this;
+  methods: {
+    getSchoolData: function getSchoolData() {
+      var _this2 = this;
 
+      axios.get("/api/school/settings?school_id=".concat(this.school_id, "&front=front")).then(function (_ref) {
+        var data = _ref.data;
+        _this2.schooldetails = data;
+      })["catch"]();
+    }
+  },
+  mounted: function mounted() {
+    var _this3 = this;
+
+    this.getSchoolData();
     this.schoolDetial();
     this.curentdate = User.dateformat(new Date())[3];
     setInterval(function () {
-      _this2.curenttime = User.dateformat(new Date())[3];
+      _this3.curenttime = User.dateformat(new Date())[3];
     }, 1000);
   }
 });
@@ -5199,9 +5210,9 @@ var render = function render() {
       "font-size": "15px",
       color: "#570abd",
       "font-weight": "600",
-      "letter-spacing": "5px"
+      "letter-spacing": "3px"
     }
-  }, [_vm._v("TEPRIGANJ BL HIGH SCHOOL")])])])])])]), _vm._v(" "), _c("nav", {
+  }, [_vm._v("TEPRIGANJ ADARSHA B.L HIGH SCHOOL")])])])])])]), _vm._v(" "), _c("nav", {
     staticClass: "navbar navbar-expand-lg navbar-light bg-primary text-light"
   }, [_c("div", {
     staticClass: "container-fluid"
@@ -5296,7 +5307,31 @@ var render = function render() {
         name: "login"
       }
     }
-  }, [_vm._v("লগইন")])], 1)])])])])]), _vm._v(" "), _vm._t("default"), _vm._v(" "), _vm._m(1)], 2);
+  }, [_vm._v("লগইন")])], 1)])])])])]), _vm._v(" "), _vm._t("default"), _vm._v(" "), _c("footer", [_c("div", {
+    staticClass: "footer_top_bg",
+    staticStyle: {
+      background: "url('/public/assets/img/footer_top_bg.png')",
+      height: "93px",
+      "background-repeat": "no-repeat",
+      "background-size": "cover"
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "footerBottom"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-4"
+  }, [_c("ul", {
+    staticClass: "footerList"
+  }, [_c("li", {
+    staticStyle: {
+      "font-size": "font-size:15px"
+    }
+  }, [_c("b", [_vm._v(" পরিকল্পনা ও বাস্তবায়নে:")]), _vm._v(" "), _c("h3", {
+    staticClass: "mt-1"
+  }, [_vm._v(_vm._s(_vm.schooldetails.Principals_name))]), _vm._v(" "), _c("h3", {}, [_vm._v("প্রধান শিক্ষক")]), _vm._v(" "), _c("h3", {}, [_vm._v(_vm._s(_vm.schooldetails.SCHOLL_NAME))])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }), _vm._v(" "), _vm._m(1)])])])], 2);
 };
 
 var staticRenderFns = [function () {
@@ -5320,29 +5355,7 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("footer", [_c("div", {
-    staticClass: "footer_top_bg",
-    staticStyle: {
-      background: "url('/public/assets/img/footer_top_bg.png')",
-      height: "93px",
-      "background-repeat": "no-repeat",
-      "background-size": "cover"
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "footerBottom"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-4"
-  }, [_c("ul", {
-    staticClass: "footerList"
-  }, [_c("li", {
-    staticStyle: {
-      "font-size": "font-size:15px"
-    }
-  }, [_c("b", [_vm._v(" পরিকল্পনা ও বাস্তবায়নে:")]), _vm._v(" "), _c("br"), _vm._v("\n                                    Md Nishad Hossain\n\n                                ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }), _vm._v(" "), _c("div", {
+  return _c("div", {
     staticClass: "col-md-4"
   }, [_c("ul", {
     staticClass: "footerList"
@@ -5361,7 +5374,7 @@ var staticRenderFns = [function () {
     staticStyle: {
       padding: "0 15px"
     }
-  }, [_c("b", [_vm._v(" কারিগরি সহায়তায়:")]), _vm._v(" "), _c("br"), _vm._v("Softweb")])])])])])])]);
+  }, [_c("b", [_vm._v(" কারিগরি সহায়তায়:")]), _vm._v(" "), _c("br"), _vm._v("Softweb")])])])]);
 }];
 render._withStripped = true;
 
@@ -7326,7 +7339,7 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("কর্মজীবী শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("ভূমিহীন অভিভাবকের সন্তান")]), _vm._v(" "), _c("option", [_vm._v("ক্ষুদ্র নৃ-গোষ্ঠী শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("বিশেষ চাহিদা সম্পন্ন শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("অনাথ/এতিম শিক্ষা")]), _vm._v(" "), _c("option", [_vm._v("অন্যান্য")])]), _vm._v(" "), _c("p", {
+  }, [_vm._v("নির্বাচন করুন")]), _vm._v(" "), _c("option", [_vm._v("কর্মজীবী শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("ভূমিহীন অভিভাবকের সন্তান")]), _vm._v(" "), _c("option", [_vm._v("ক্ষুদ্র নৃ-গোষ্ঠী শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("বিশেষ চাহিদা সম্পন্ন শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("অনাথ/এতিম শিক্ষার্থী")]), _vm._v(" "), _c("option", [_vm._v("অন্যান্য")])]), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -7376,7 +7389,7 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী")]), _vm._v(" "), _c("option", [_vm._v("অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান")]), _vm._v(" "), _c("option", [_vm._v("প্রতিবন্ধী")]), _vm._v(" "), _c("option", [_vm._v("সাধারণ কোটা")]), _vm._v(" "), _c("option", [_vm._v("কোনো কোটা নেই")])]), _vm._v(" "), _c("p", {
+  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী")]), _vm._v(" "), _c("option", [_vm._v("অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান")]), _vm._v(" "), _c("option", [_vm._v("প্রতিবন্ধী")]), _vm._v(" "), _c("option", [_vm._v("কোনো কোটা নেই")])]), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",

@@ -218,7 +218,7 @@
                             <option>ভূমিহীন অভিভাবকের সন্তান</option>
                             <option>ক্ষুদ্র নৃ-গোষ্ঠী শিক্ষার্থী</option>
                             <option>বিশেষ চাহিদা সম্পন্ন শিক্ষার্থী</option>
-                            <option>অনাথ/এতিম শিক্ষা</option>
+                            <option>অনাথ/এতিম শিক্ষার্থী</option>
                             <option>অন্যান্য</option>
                         </select>
                          <p class="help is-danger" v-show="errors.has('step1.শিক্ষার্থীর-ধরন')">
@@ -238,7 +238,7 @@
                             <option>মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী</option>
                             <option>অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান</option>
                             <option>প্রতিবন্ধী</option>
-                            <option>সাধারণ কোটা</option>
+                            <!-- <option>সাধারণ কোটা</option> -->
                             <option>কোনো কোটা নেই</option>
                         </select>
                          <p class="help is-danger" v-show="errors.has('step1.কোটা')">

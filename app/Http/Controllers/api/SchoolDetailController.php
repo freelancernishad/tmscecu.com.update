@@ -595,7 +595,10 @@ class SchoolDetailController extends Controller
         } else if ($type == 'groups') {
             $data = ["Science", "Humanities", "Commerce"];
         } else if ($type == 'exams') {
-            $data = ["Weakly Examination", "ADMITION TEST RESULT", "First Terminals Examination", "Second Terminals Examination", "Annual Examination", "Test Examination"];
+
+            // $data = ["Weakly Examination", "ADMITION TEST RESULT", "First Terminals Examination", "Second Terminals Examination", "Annual Examination", "Test Examination"];
+
+            $data = ["Admition Result", "Half Yearly", "Pre Test","Annual Examination","Model Test","Test"];
         } else if ($type == 'religions') {
             $data = ["Islam", "Hindu", "Other"];
         }

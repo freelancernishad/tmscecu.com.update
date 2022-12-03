@@ -27,7 +27,7 @@
                                 <img class="img-fluid" width="75px" :src="schoolinfo.logo" alt="">
                                 <span class="text-dark" style="font-size:20px;display: flex;flex-direction: column;justify-content: center;margin-left: 15px;">
                                     <span style="font-size: 25px;border-bottom: 1px solid #6db5ae;">{{ schoolinfo.SCHOLL_NAME }}</span>
-                                    <span style="font-size: 15px;color: #570abd;font-weight: 600;letter-spacing: 5px;">TEPRIGANJ BL HIGH SCHOOL</span>
+                                    <span style="font-size: 15px;color: #570abd;font-weight: 600;letter-spacing: 3px;">TEPRIGANJ ADARSHA B.L HIGH SCHOOL</span>
                                 </span>
 
 
@@ -142,8 +142,11 @@
                     <div class="row">
                         <div class="col-md-4">
                             <ul class="footerList">
-                                <li style="font-size:font-size:15px"> <b> পরিকল্পনা ও বাস্তবায়নে:</b> <br />
-                                    Md Nishad Hossain
+                                <li style="font-size:font-size:15px"> <b> পরিকল্পনা ও বাস্তবায়নে:</b>
+                                    <h3 class="mt-1">{{ schooldetails.Principals_name }}</h3>
+                                    <h3 class="">প্রধান শিক্ষক</h3>
+                                    <h3 class="">{{ schooldetails.SCHOLL_NAME }}</h3>
+
 
                                 </li>
 
@@ -195,7 +198,8 @@ export default {
     },
     data() {
         return {
-            curentdate:''
+            curentdate:'',
+            schooldetails:{},
         }
     },
     watch: {
@@ -211,9 +215,17 @@ export default {
     methods: {
 
 
+        getSchoolData(){
+            axios.get(`/api/school/settings?school_id=${this.school_id}&front=front`)
+            .then(({ data }) => {
+                this.schooldetails = data;
+            })
+            .catch()
+        },
 
     },
     mounted() {
+        this.getSchoolData();
         this.schoolDetial();
         this.curentdate = User.dateformat(new Date())[3]
         setInterval(() => {
