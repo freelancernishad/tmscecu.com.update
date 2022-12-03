@@ -308,7 +308,10 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
              $data['StudentID'] = (string)StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
         }
-        $data['AdmissionID'] = (string)StudentAdmissionId('',$school_id);
+
+$AdmissionID = (string)StudentAdmissionId('',$school_id);
+
+        $data['AdmissionID'] = $AdmissionID;
 
 
         $imageCount =  count(explode(';', $r->StudentPicture));
@@ -325,6 +328,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             if($submit_type=='data_entry'){
                 $data['StudentStatus'] = 'Active';
             }
+            smsSend("Dear $r->StudentNameEn,Your Admission Apply has been Submit.Please Payment Your Application Fee.Your Application Id- $AdmissionID",$r->StudentPhoneNumber);
             $result =   student::create($data);
         } else {
             $student = student::find($r->id);

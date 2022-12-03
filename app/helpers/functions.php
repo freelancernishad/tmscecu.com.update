@@ -1209,20 +1209,20 @@ try {
 function smsSend($deccription = '', $applicant_mobile = '01909756552')
 {
 
-    // $messages = array();
-    // array_push(
-    //     $messages,
-    //     [
-    //         "number" => '88' . int_bn_to_en($applicant_mobile),
-    //         "message" => "$deccription"
-    //     ]
-    // );
-    // ///sms functions
-    // try {
-    //     $msgs = sendMessages($messages,1);
-    // } catch (Exception $e) {
-    //     array_push($responsemessege, $e->getMessage());
-    // }
+    $messages = array();
+    array_push(
+        $messages,
+        [
+            "number" => '88' . int_bn_to_en($applicant_mobile),
+            "message" => "$deccription"
+        ]
+    );
+    ///sms functions
+    try {
+        $msgs = sendMessages($messages,1);
+    } catch (Exception $e) {
+        array_push($responsemessege, $e->getMessage());
+    }
 
 
 }
@@ -1384,14 +1384,14 @@ function characterCount($string)
     $mutiple = (rand(1, 9));
         if($admition_id=='' || $admition_id==null){
                 $one = "0001";
-                $year = date("dmy");
+                $year = date("y");
               return  $admition_ID = $school_id . $year . $one;
              }
              $admition_ID =  $admition_id;
              return $admition_ID += $mutiple;
         }else{
             $one = "0001";
-            $year = date("dmy");
+            $year = date("y");
            return $admition_ID = $school_id . $year . $one;
         }
 }
