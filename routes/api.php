@@ -22,6 +22,8 @@ use App\Http\Controllers\api\studentsController;
 use App\Http\Controllers\QuestionbankController;
 use App\Http\Controllers\api\SchoolDetailController;
 
+use App\Http\Controllers\VisitorController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -226,6 +228,11 @@ Route::post('/onlineexam/start',[OnlineexamController::class , 'examstart']);
 Route::get('/onlineexam/edit',[OnlineexamController::class , 'onlineexamsedit']);
 Route::get('/onlineexam/delete/{id}',[OnlineexamController::class , 'onlineexamsDelete']);
 Route::post('/onlineexam/submit',[OnlineexamController::class , 'onlineexams_submit']);
+
+
+Route::post('visitorcreate',[VisitorController::class, 'visitorcreate']);
+Route::get('visitorcount',[VisitorController::class, 'visitorCount']);
+
 
 
 

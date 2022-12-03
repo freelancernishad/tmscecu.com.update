@@ -156,18 +156,22 @@ export default {
             this.sliderimage();
         }, 2000);
         this.noticeFunIn();
+        this.visitorcount();
     },
     methods: {
 
+        async visitorcount(){
+            var res = await this.callApi('post',`/api/visitorcreate`,[]);
+        },
+
         async noticeFunIn(){
-        var res = await this.callApi('get',`/api/notice?sidebar=5`,[]);
-        this.noticesIN = res.data.data
-    },
+            var res = await this.callApi('get',`/api/notice?sidebar=5`,[]);
+            this.noticesIN = res.data.data
+        },
 
 
         sliderimage(){
-
-            console.log(this.schoolinfo.slider)
+            // console.log(this.schoolinfo.slider)
             this.schoolinfo.slider.forEach(element => {
                 this.vfImages.push(this.$asseturl + element)
             });
@@ -176,13 +180,11 @@ export default {
 
 
         sendInfo(item, button) {
-
-
             this.actionModalhome.title = item;
             this.selectedUser = item;
             this.$root.$emit('bv::show::modal', this.actionModalhome.id, button)
 
-            console.log(item)
+            // console.log(item)
         },
     },
 };

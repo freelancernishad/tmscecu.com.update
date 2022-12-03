@@ -65,6 +65,9 @@
                         </div>
                     </div>
 
+
+
+
                     <div class="col-xl-3 col-sm-6 col-12">
                         <div class="dashboard-summery-one mg-b-20">
                             <div class="row align-items-center">
@@ -82,6 +85,28 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="dashboard-summery-one mg-b-20">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <div class="item-icon bg-light-yellow">
+                                        <i class="flaticon-couple text-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="item-content">
+                                        <div class="item-title">Visitor</div>
+                                        <div class="item-number"><span  >{{visitorcount}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
 
 
 
@@ -129,7 +154,9 @@
 
 
                 </div>
-                <!-- Dashboard summery End Here -->
+
+
+<!--
 <div class="row" v-show="$localStorage.getItem('role')=='admin' || $localStorage.getItem('role')=='teacher' ? true : false " style="display:none">
     <div class="col-md-12">
     <div class="form-group" >
@@ -148,7 +175,7 @@
                     :dataset-id-key="datasetIdKey" :plugins="plugins" :css-classes="cssClasses" :styles="styles"
                     :width="width" :height="height" />
     </div>
-</div>
+</div> -->
 
 
 
@@ -169,6 +196,7 @@ export default {
          this.totalstudent();
          this.totalteacher();
          this.totalearn();
+         this.visitors();
          this.attendacereport();
     },
 
@@ -240,6 +268,7 @@ export default {
             totalearns:0,
             totalpresent:0,
             totalabsent:0,
+            visitorcount:0,
             month:'',
             year:new Date().getFullYear(),
 
@@ -287,6 +316,13 @@ export default {
             axios
                 .get(`/api/students/payments?filter[year]=${this.year}&filter[school_id]=${this.school_id}&datatype=count`)
                 .then(({ data }) => (this.totalearns = data))
+                .catch();
+        },
+
+        visitors() {
+            axios
+                .get(`/api/visitorcount`)
+                .then(({ data }) => (this.visitorcount = data))
                 .catch();
         },
 

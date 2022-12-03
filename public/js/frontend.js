@@ -2360,9 +2360,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       _this.sliderimage();
     }, 2000);
     this.noticeFunIn();
+    this.visitorcount();
   },
   methods: {
-    noticeFunIn: function noticeFunIn() {
+    visitorcount: function visitorcount() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -2372,13 +2373,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this2.callApi('get', "/api/notice?sidebar=5", []);
+                return _this2.callApi('post', "/api/visitorcreate", []);
 
               case 2:
                 res = _context.sent;
-                _this2.noticesIN = res.data.data;
 
-              case 4:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -2386,19 +2386,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    sliderimage: function sliderimage() {
+    noticeFunIn: function noticeFunIn() {
       var _this3 = this;
 
-      console.log(this.schoolinfo.slider);
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var res;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this3.callApi('get', "/api/notice?sidebar=5", []);
+
+              case 2:
+                res = _context2.sent;
+                _this3.noticesIN = res.data.data;
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    sliderimage: function sliderimage() {
+      var _this4 = this;
+
+      // console.log(this.schoolinfo.slider)
       this.schoolinfo.slider.forEach(function (element) {
-        _this3.vfImages.push(_this3.$asseturl + element);
+        _this4.vfImages.push(_this4.$asseturl + element);
       });
     },
     sendInfo: function sendInfo(item, button) {
       this.actionModalhome.title = item;
       this.selectedUser = item;
-      this.$root.$emit('bv::show::modal', this.actionModalhome.id, button);
-      console.log(item);
+      this.$root.$emit('bv::show::modal', this.actionModalhome.id, button); // console.log(item)
     }
   }
 });
@@ -5060,7 +5083,7 @@ var staticRenderFns = [function () {
       "padding-left": "0"
     }
   }, [_c("li", {
-    staticClass: "ps-3 pb-3"
+    staticClass: "ps-3 pb-1"
   }, [_c("a", {
     staticClass: "text-black",
     attrs: {
@@ -5070,7 +5093,7 @@ var staticRenderFns = [function () {
   }, [_c("i", {
     staticClass: "fas fa-angle-double-right"
   }), _vm._v(" শিক্ষা মন্ত্রণালয়")])]), _vm._v(" "), _c("li", {
-    staticClass: "ps-3 pb-3"
+    staticClass: "ps-3 pb-1"
   }, [_c("a", {
     staticClass: "text-black",
     attrs: {
@@ -5080,7 +5103,7 @@ var staticRenderFns = [function () {
   }, [_c("i", {
     staticClass: "fas fa-angle-double-right"
   }), _vm._v(" মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর")])]), _vm._v(" "), _c("li", {
-    staticClass: "ps-3 pb-3"
+    staticClass: "ps-3 pb-1"
   }, [_c("a", {
     staticClass: "text-black",
     attrs: {
@@ -5090,7 +5113,7 @@ var staticRenderFns = [function () {
   }, [_c("i", {
     staticClass: "fas fa-angle-double-right"
   }), _vm._v(" ব্যানবেইজ")])]), _vm._v(" "), _c("li", {
-    staticClass: "ps-3 pb-3"
+    staticClass: "ps-3 pb-1"
   }, [_c("a", {
     staticClass: "text-black",
     attrs: {
@@ -5100,7 +5123,7 @@ var staticRenderFns = [function () {
   }, [_c("i", {
     staticClass: "fas fa-angle-double-right"
   }), _vm._v(" এনসিটিবি")])]), _vm._v(" "), _c("li", {
-    staticClass: "ps-3"
+    staticClass: "ps-3 pb-1"
   }, [_c("a", {
     staticClass: "text-black",
     attrs: {
@@ -5109,7 +5132,37 @@ var staticRenderFns = [function () {
     }
   }, [_c("i", {
     staticClass: "fas fa-angle-double-right"
-  }), _vm._v(" শিক্ষক বাতায়ন")])])])])])])])]);
+  }), _vm._v(" শিক্ষক বাতায়ন")])]), _vm._v(" "), _c("li", {
+    staticClass: "ps-3 pb-1"
+  }, [_c("a", {
+    staticClass: "text-black",
+    attrs: {
+      href: "http://www.panchagarh.gov.bd/",
+      target: "_blank"
+    }
+  }, [_c("i", {
+    staticClass: "fas fa-angle-double-right"
+  }), _vm._v(" পঞ্চগড় জেলা")])]), _vm._v(" "), _c("li", {
+    staticClass: "ps-3 pb-1"
+  }, [_c("a", {
+    staticClass: "text-black",
+    attrs: {
+      href: "http://debiganj.panchagarh.gov.bd/",
+      target: "_blank"
+    }
+  }, [_c("i", {
+    staticClass: "fas fa-angle-double-right"
+  }), _vm._v(" দেবীগঞ্জ উপজেলা")])]), _vm._v(" "), _c("li", {
+    staticClass: "ps-3 pb-1"
+  }, [_c("a", {
+    staticClass: "text-black",
+    attrs: {
+      href: "http://tepriganjup.panchagarh.gov.bd/",
+      target: "_blank"
+    }
+  }, [_c("i", {
+    staticClass: "fas fa-angle-double-right"
+  }), _vm._v(" টেপ্রীগঞ্জ ইউনিয়ন")])])])])])])])]);
 }];
 render._withStripped = true;
 
@@ -5164,12 +5217,17 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "topheaderItem col-md-6 col-6"
+    staticClass: "topheaderItem col-md-6 col-6",
+    staticStyle: {
+      "font-size": "14px"
+    }
   }, [_c("span", [_vm._v(_vm._s(_vm.schoolinfo.SCHOLL_NAME) + " এ\n                                স্বাগতম")])]), _vm._v(" "), _c("div", {
-    staticClass: "topheaderItem col-md-6 col-6 text-right"
+    staticClass: "topheaderItem col-md-6 col-6 text-right",
+    staticStyle: {
+      "font-size": "14px"
+    }
   }, [_c("span", {
     staticStyle: {
-      "border-right": "1px solid #ffffff85",
       padding: "8px 10px",
       "margin-right": "9px"
     }
@@ -5248,14 +5306,14 @@ var render = function render() {
       to: "/student_at_a_glance"
     }
   }, [_vm._v("শিক্ষার্থীদের তথ্য")])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item dropdown"
+    staticClass: "nav-item"
   }, [_c("router-link", {
     staticClass: "text-light px-3 nav-link",
     attrs: {
-      to: "/result",
-      id: "navbarDropdown"
+      "aria-current": "page",
+      to: "/student/register"
     }
-  }, [_vm._v("\n                                    ফলাফল\n                                ")])], 1), _vm._v(" "), _c("li", {
+  }, [_vm._v("আবেদন")])], 1), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("router-link", {
     staticClass: "text-light px-3 nav-link",
@@ -5266,14 +5324,14 @@ var render = function render() {
       }
     }
   }, [_vm._v("পেমেন্ট")])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
+    staticClass: "nav-item dropdown"
   }, [_c("router-link", {
     staticClass: "text-light px-3 nav-link",
     attrs: {
-      "aria-current": "page",
-      to: "/student/register"
+      to: "/result",
+      id: "navbarDropdown"
     }
-  }, [_vm._v("আবেদন")])], 1), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                                    ফলাফল\n                                ")])], 1), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("router-link", {
     staticClass: "text-light px-3 nav-link",
@@ -5374,7 +5432,12 @@ var staticRenderFns = [function () {
     staticStyle: {
       padding: "0 15px"
     }
-  }, [_c("b", [_vm._v(" কারিগরি সহায়তায়:")]), _vm._v(" "), _c("br"), _vm._v("Softweb")])])])]);
+  }, [_c("b", [_vm._v(" কারিগরি সহায়তায়:")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("a", {
+    attrs: {
+      target: "_blank",
+      href: "https://api.whatsapp.com/send?phone=8801909756552&text=I%27m%20interested%20in%20your%20services"
+    }
+  }, [_vm._v("Md Nishad Hossain")]), _vm._v("\n                                        Director of Softweb\n                                    ")])])])]);
 }];
 render._withStripped = true;
 

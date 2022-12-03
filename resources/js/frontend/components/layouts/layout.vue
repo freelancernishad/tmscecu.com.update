@@ -5,10 +5,10 @@
             <!-- Top header -->
             <div class="topHeader">
                     <div class="row">
-                        <div class="topheaderItem col-md-6 col-6"><span>{{ schoolinfo.SCHOLL_NAME }} এ
+                        <div class="topheaderItem col-md-6 col-6" style="font-size: 14px;"><span>{{ schoolinfo.SCHOLL_NAME }} এ
                                 স্বাগতম</span></div>
-                        <div class="topheaderItem col-md-6 col-6 text-right"><span
-                                style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{
+                        <div class="topheaderItem col-md-6 col-6 text-right" style="font-size: 14px;"><span
+                                style="padding: 8px 10px;margin-right: 9px;">{{
                                         curentdate
                                 }}
                             </span>
@@ -22,12 +22,10 @@
                 <div class="container-fluid">
                     <div class="row py-2 for_mobile">
                         <div class="col-lg-12 col-md-12 col-sm-12 logo school_logo" style="display: flex;">
-
-
                                 <img class="img-fluid" width="75px" :src="schoolinfo.logo" alt="">
                                 <span class="text-dark" style="font-size:20px;display: flex;flex-direction: column;justify-content: center;margin-left: 15px;">
-                                    <span style="font-size: 25px;border-bottom: 1px solid #6db5ae;">{{ schoolinfo.SCHOLL_NAME }}</span>
-                                    <span style="font-size: 15px;color: #570abd;font-weight: 600;letter-spacing: 2px;">TEPRIGANJ ADARSHA B.L HIGH SCHOOL</span>
+                                <span style="font-size: 25px;border-bottom: 1px solid #6db5ae;">{{ schoolinfo.SCHOLL_NAME }}</span>
+                                <span style="font-size: 15px;color: #570abd;font-weight: 600;letter-spacing: 2px;">TEPRIGANJ ADARSHA B.L HIGH SCHOOL</span>
                                 </span>
 
 
@@ -63,21 +61,22 @@
                                 <router-link class="text-light px-3 nav-link " aria-current="page" to="/student_at_a_glance">শিক্ষার্থীদের তথ্য</router-link>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                <router-link class="text-light px-3 nav-link" to="/result" id="navbarDropdown" >
-                                    ফলাফল
-                                </router-link>
+
+
+                            <li class="nav-item">
+                                <router-link class="text-light px-3 nav-link " aria-current="page" to="/student/register">আবেদন</router-link>
                             </li>
 
 
                             <li class="nav-item">
                                 <router-link class="text-light px-3 nav-link " aria-current="page" :to="{name:'payment'}">পেমেন্ট</router-link>
                             </li>
-
-                            <li class="nav-item">
-                                <router-link class="text-light px-3 nav-link " aria-current="page" to="/student/register">আবেদন</router-link>
+                            
+                            <li class="nav-item dropdown">
+                                <router-link class="text-light px-3 nav-link" to="/result" id="navbarDropdown" >
+                                    ফলাফল
+                                </router-link>
                             </li>
-
 
 <!--
                             <li class="nav-item dropdown">
@@ -173,7 +172,10 @@
                                 <li
                                     style="font-size:font-size:15px;    display: flex;justify-content: center;align-items: center;">
                                     <!-- <img style="width:40px !important" :src="$asseturl + 'assets/img/bd-logo.png'"alt=""> -->
-                                    <span style="padding: 0 15px;"> <b> কারিগরি সহায়তায়:</b> <br>Softweb</span>
+                                    <span style="padding: 0 15px;"> <b> কারিগরি সহায়তায়:</b> <br/>
+                                        <a target="_blank" href="https://api.whatsapp.com/send?phone=8801909756552&text=I%27m%20interested%20in%20your%20services">Md Nishad Hossain</a>
+                                        Director of Softweb
+                                    </span>
                                 </li>
                             </ul>
                         </div>
