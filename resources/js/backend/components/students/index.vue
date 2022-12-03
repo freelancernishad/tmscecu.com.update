@@ -92,11 +92,11 @@
                     <div v-else class="col-md-6"></div>
 
 
-                    <div class="form-group col-md-6" style="display: flex;justify-content: space-between;">
+                    <form @submit.stop.prevent="searchname" class="form-group col-md-6" style="display: flex;justify-content: space-between;">
                         <!-- <label for="">Search :</label> -->
                         <input type="text" v-model="name"  placeholder="Search By Name" class="form-control" style="    border-right: 0px !important;border-top-right-radius: 0;border-bottom-right-radius: 0;">
-                            <button type="button" class="fw-btn-fill btn-gradient-yellow" style="width: 84px;border-top-left-radius: 0;border-bottom-left-radius: 0;" @click="searchname">Search</button>
-                    </div>
+                            <button type="button" class="fw-btn-fill btn-gradient-yellow" style="width: 84px;border-top-left-radius: 0;border-bottom-left-radius: 0;" >Search</button>
+                    </form>
 
 
                 </div>

@@ -76,6 +76,12 @@ class PaymentController extends Controller
                 }else{
                     $student = student::where(['StudentClass' => $student_class,'StudentRoll' => $StudentRoll,'StudentStatus'=>'active'])->latest()->first();
                 }
+            }else{
+                if($student_class=='Nine' || $student_class=='Ten'){
+                    $student = student::where(['StudentClass' => $student_class,'StudentGroup' => $StudentGroup,'StudentRoll' => $StudentRoll,'StudentStatus'=>'active'])->latest()->first();
+                }else{
+                    $student = student::where(['StudentClass' => $student_class,'StudentRoll' => $StudentRoll,'StudentStatus'=>'active'])->latest()->first();
+                }
             }
         }
 

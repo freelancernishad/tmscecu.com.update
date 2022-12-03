@@ -139,7 +139,7 @@ export const routes = [
 
   { path: `${prefix}/logout`, component: logout, name:'logout',meta: { layout: adminlayout } },
 
-  { path: `${prefix}/sutudent/img`, component: fileupload, name:'fileupload',meta: { layout: blanklayout } },
+  { path: `${prefix}/student/img`, component: fileupload, name:'fileupload',meta: { layout: blanklayout } },
 
   { path: `${prefix}`, component: home, name:'home',meta: { layout: adminlayout } },
 
