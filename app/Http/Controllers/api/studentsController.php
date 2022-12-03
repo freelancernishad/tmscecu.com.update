@@ -334,6 +334,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     }
     public function imageupload(Request $request)
     {
+        return $request->all();
         $id =  $request->id;
         $student = student::find($id);
         if(File::exists($student->StudentPicture)){
