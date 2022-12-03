@@ -35,12 +35,12 @@
                 <div>
                     <table cellspacing="0" cellpadding="3" id="ContentPlaceHolder1_grdvTeachers" style="font-family:Noto Sans Bengali;font-size:11pt;border-collapse:collapse;margin: 0 auto;width:100%">
                         <tr align="center" valign="middle" style="color:#0C090A;background-color:#F2F2F2;border-color:#CCCCCC;border-width:1px;border-style:Solid;font-family:Noto Sans Bengali;font-size:9pt;">
-                            <td colspan="1" style="border-width:0px;"></td>
+                            <td colspan="1" style="border-width:0px;text-align: center;">শ্রেণী</td>
                             <td colspan="3" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;font-weight:bold;text-align: center;">শিক্ষার্থী</td>
                             <td colspan="3" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;font-weight:bold;text-align: center;">বিভাগ</td>
                         </tr>
                         <tr align="center" valign="middle" style="color:#0C090A;background-color:#F2F2F2;border-color:#CCCCCC;border-width:1px;border-style:Solid;font-family:Noto Sans Bengali;font-size:9pt;">
-                            <th align="left" valign="middle" scope="col">শ্রেণি</th>
+                            <th align="left" valign="middle" scope="col"></th>
                             <th align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">ছাত্র</th>
                             <th align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">ছাত্রী</th>
                             <th align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">মোট</th>

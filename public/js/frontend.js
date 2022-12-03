@@ -9718,12 +9718,13 @@ var staticRenderFns = [function () {
     }
   }, [_c("td", {
     staticStyle: {
-      "border-width": "0px"
+      "border-width": "0px",
+      "text-align": "center"
     },
     attrs: {
       colspan: "1"
     }
-  }), _vm._v(" "), _c("td", {
+  }, [_vm._v("শ্রেণী")]), _vm._v(" "), _c("td", {
     staticStyle: {
       "border-color": "#CCCCCC",
       "border-width": "1px",
@@ -9770,7 +9771,7 @@ var staticRenderFns = [function () {
       valign: "middle",
       scope: "col"
     }
-  }, [_vm._v("শ্রেণি")]), _vm._v(" "), _c("th", {
+  }), _vm._v(" "), _c("th", {
     staticStyle: {
       "border-color": "#CCCCCC",
       "border-width": "1px",
