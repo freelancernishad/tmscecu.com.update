@@ -76,7 +76,7 @@
                                 <div class="col-6">
                                     <div class="item-content">
                                         <div class="item-title">Earnings</div>
-                                        <div class="item-number"><span>$</span><span  >{{totalearns}}</span></div>
+                                        <div class="item-number"><span>৳</span><span  >{{totalearns}}</span></div>
                                     </div>
                                 </div>
                             </div>

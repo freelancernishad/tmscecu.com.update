@@ -196,7 +196,7 @@ class PaymentController extends Controller
                 'bokeya',
             ]);
         if ($datatype == 'count') {
-            $result = $datas->sum('amount');
+            $result = $datas->where('status','Paid')->sum('amount');
         } else {
             $result = $datas->get();
         }
