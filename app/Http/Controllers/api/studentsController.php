@@ -1050,6 +1050,8 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
                                    'monthly_fee'=>'মাসিক বেতন',
                                    'session_fee'=>'সেশন ফি',
                                    'exam_fee'=>'পরীক্ষার ফি',
+                                   'registration_fee'=>'রেজিস্ট্রেশন ফি',
+                                   'form_filup_fee'=>'ফর্ম ফিলআপ',
                             ];
 
                             $kahts = json_decode(json_encode($khat));

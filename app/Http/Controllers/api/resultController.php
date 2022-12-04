@@ -236,15 +236,18 @@ class resultController extends Controller
                     $great = Greeting($subMark,$SUBJECT_TOTAL,'greed');
 
 
+
                     array_push($greating,$great);
 
 
 
-
+                    // print_r($sub.',');
+                    // print_r($subMark.',');
 
                     $GPA += Greeting($subMark,$SUBJECT_TOTAL,'point');
                     $i++;
                 }
+
 
             //    return $greating;
 
@@ -315,9 +318,25 @@ class resultController extends Controller
                 </tr>";
 
                 foreach ($subjects as $sub) {
-                $html.= "<tr class='table-primar' v-for='subject in subjects'>
-                    <td class='pl-5 pr-5'> <b>$sub</b></td>
-                    <td class='pl-5'> <b class='ml-5'>:</b></td>
+
+                $html.= "<tr class='table-primar' v-for='subject in subjects'>";
+
+                if($sub=='বাংলা ১ম'){
+
+                    $html.= " <td class='pl-5 pr-5'> <b>বাংলা</b></td>";
+
+                }elseif( $sub=='বাংলা ২য়'){
+
+                    // $html.= " <td class='pl-5 pr-5'> <b>বাংলা</b></td>";
+
+                }else{
+                    $html.= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
+
+                }
+
+
+
+                    $html.= " <td class='pl-5'> <b class='ml-5'>:</b></td>
 
                    ";
 

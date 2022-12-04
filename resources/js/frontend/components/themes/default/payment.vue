@@ -33,6 +33,8 @@
                                 <option value="monthly_fee">মাসিক বেতন</option>
                                 <option value="session_fee">সেশন ফি</option>
                                 <option value="exam_fee">পরীক্ষার ফি</option>
+                                <option value="registration_fee">রেজিস্ট্রেশন ফি</option>
+                                <option value="form_filup_fee">ফর্ম ফিলআপ</option>
                             </select>
                         </div>
 
@@ -47,7 +49,7 @@
 
 
 
-                        <div class="monthly_fee" v-if="form.type == 'monthly_fee' || form.type == 'session_fee'">
+                        <div class="monthly_fee" v-if="form.type == 'monthly_fee' || form.type == 'session_fee' || form.type == 'exam_fee' || form.type == 'registration_fee' || form.type == 'form_filup_fee'">
                             <div class="form-group">
                                 <label for="">পেমেন্ট করার মাধ্যম</label>
                                 <select class="form-control" v-model="form.paymenttype">

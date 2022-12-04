@@ -501,8 +501,23 @@ else if ($class == "Six" || $class == "Seven" || $class == "Eight") {
             $religionh_d = json_decode($row->ReligionHindu_d);
 			$Agriculture = $row->Agriculture;
             $Agriculture_d = json_decode($row->Agriculture_d);
+
 			$ICT = $row->ICT;
             $ICT_d = json_decode($row->ICT_d);
+            // "Physical_Education_and_Health","Arts_and_Crafts","Work_and_life_oriented_education","Career_Education"
+
+			$Physical_Education_and_Health = $row->Physical_Education_and_Health;
+            $Physical_Education_and_Health_d = json_decode($row->Physical_Education_and_Health_d);
+
+			$Arts_and_Crafts = $row->Arts_and_Crafts;
+            $Arts_and_Crafts_d = json_decode($row->Arts_and_Crafts_d);
+
+			$Work_and_life_oriented_education = $row->Work_and_life_oriented_education;
+            $Work_and_life_oriented_education_d = json_decode($row->Work_and_life_oriented_education_d);
+
+
+
+
 			$total = $row->total;
 
 			//$total = $Bangla_1st+$Bangla_2nd+$English_1st+$English_2nd+$math+$science+$B_and_B+$religion+$Agriculture+$ICT;
@@ -654,6 +669,8 @@ if($row->StudentReligion=='Islam'){
 @endif
 
 
+
+
 						<tr class="table-primar">
 							<td class="pl-5 pr-5"> <b>তথ্য ও যোগাযোগ প্রযোক্তি</b></td>
 							<td class="pl-5"> <b class="ml-5">{{ $ICT_d->CQ }}</b></td>
@@ -661,6 +678,38 @@ if($row->StudentReligion=='Islam'){
 							<td class="pl-5"> <b class="ml-5">{{ $ICT_d->EXTRA }}</b></td>
 							<td> <?php echo $ICT ?></td>
 						</tr>
+
+
+						<tr class="table-primar">
+							<td class="pl-5 pr-5"> <b>শারীরিক শিক্ষা ও স্বাস্থ্য</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Physical_Education_and_Health_d->CQ }}</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Physical_Education_and_Health_d->MCQ }}</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Physical_Education_and_Health_d->EXTRA }}</b></td>
+							<td> <?php echo $Physical_Education_and_Health ?></td>
+						</tr>
+
+
+						<tr class="table-primar">
+							<td class="pl-5 pr-5"> <b>চারু ও কারুকলা</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Arts_and_Crafts_d->CQ }}</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Arts_and_Crafts_d->MCQ }}</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Arts_and_Crafts_d->EXTRA }}</b></td>
+							<td> <?php echo $Arts_and_Crafts ?></td>
+						</tr>
+
+
+						<tr class="table-primar">
+							<td class="pl-5 pr-5"> <b>কর্ম ও জীবনমুখী শিক্ষা</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Work_and_life_oriented_education_d->CQ }}</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Work_and_life_oriented_education_d->MCQ }}</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Work_and_life_oriented_education_d->EXTRA }}</b></td>
+							<td> <?php echo $Work_and_life_oriented_education ?></td>
+						</tr>
+
+
+
+
+
 
 						<tr class="table-primar">
 
@@ -737,6 +786,21 @@ if($row->StudentReligion=='Islam'){
             $Agriculture_d = json_decode($row->Agriculture_d);
 			$ICT = $row->ICT;
             $ICT_d = json_decode($row->ICT_d);
+
+
+			$Physical_Education_and_Health = $row->Physical_Education_and_Health;
+            $Physical_Education_and_Health_d = json_decode($row->Physical_Education_and_Health_d);
+
+			$Arts_and_Crafts = $row->Arts_and_Crafts;
+            $Arts_and_Crafts_d = json_decode($row->Arts_and_Crafts_d);
+
+
+
+            $Career_Education = $row->Career_Education;
+            $Career_Education_d = json_decode($row->Career_Education_d);
+
+
+
                 $total = $row->total;
 				//$total = $Bangla_1st + $Bangla_2nd + $English_1st + $English_2nd + $math + $Chemistry + $physics + $Biology + $B_and_B + $religion + $Agriculture + $ICT;
 			?>
@@ -939,6 +1003,38 @@ if($row->StudentReligion=='Islam'){
 							<td class="pl-5"> <b class="ml-5">{{ $ICT_d->EXTRA }}</b></td>
 							<td> <?php echo $ICT ?></td>
 						</tr>
+
+
+
+						<tr class="table-primar">
+							<td class="pl-5 pr-5"> <b>শারীরিক শিক্ষা ও স্বাস্থ্য</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Physical_Education_and_Health_d->CQ }}</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Physical_Education_and_Health_d->MCQ }}</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Physical_Education_and_Health_d->EXTRA }}</b></td>
+							<td> <?php echo $Physical_Education_and_Health ?></td>
+						</tr>
+
+
+						<tr class="table-primar">
+							<td class="pl-5 pr-5"> <b>চারু ও কারুকলা</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Arts_and_Crafts_d->CQ }}</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Arts_and_Crafts_d->MCQ }}</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Arts_and_Crafts_d->EXTRA }}</b></td>
+							<td> <?php echo $Arts_and_Crafts ?></td>
+						</tr>
+
+
+
+
+						<tr class="table-primar">
+							<td class="pl-5 pr-5"> <b>ক্যারিয়ার শিক্ষা</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Career_Education_d->CQ }}</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Career_Education_d->MCQ }}</b></td>
+							<td class="pl-5"> <b class="ml-5">{{ $Career_Education_d->EXTRA }}</b></td>
+							<td> <?php echo $Career_Education ?></td>
+						</tr>
+
+
 
 						<tr class="table-primar">
 

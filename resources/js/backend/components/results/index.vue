@@ -142,7 +142,7 @@
             </div>
             <div class="card-footer">
 
-        <Pagination :total-rows="TotalRows" route-name="results" :total-page="Totalpage"></Pagination>
+        <Pagination :total-rows="TotalRows" route-name="results" :total-page="Totalpage" :route-params="RouteParams"></Pagination>
 
             </div>
         </div>
@@ -194,6 +194,7 @@ export default {
             PerPageData: '20',
             TotalRows: '1',
             Totalpage: [],
+            RouteParams: {},
 
 		}
 	},
@@ -243,10 +244,13 @@ export default {
 
            var res =  await this.callApi('get',`/api/all/results/list?page=${page}`,[]);
             this.results = res.data.data
-
             this.TotalRows = `${res.data.total}`;
             this.PerPageData = `${res.data.per_page}`;
+            if(res.data.links){
             this.Totalpage = res.data.links
+        }
+
+
             this.preloader=false
         },
 

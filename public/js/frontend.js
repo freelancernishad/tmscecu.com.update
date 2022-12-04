@@ -6531,7 +6531,15 @@ var render = function render() {
     attrs: {
       value: "exam_fee"
     }
-  }, [_vm._v("পরীক্ষার ফি")])])]), _vm._v(" "), _vm.form.type == "Admission_fee" ? _c("div", {
+  }, [_vm._v("পরীক্ষার ফি")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "registration_fee"
+    }
+  }, [_vm._v("রেজিস্ট্রেশন ফি")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "form_filup_fee"
+    }
+  }, [_vm._v("ফর্ম ফিলআপ")])])]), _vm._v(" "), _vm.form.type == "Admission_fee" ? _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {
@@ -6558,7 +6566,7 @@ var render = function render() {
         _vm.$set(_vm.form, "adminssionId", $event.target.value);
       }
     }
-  })]) : _vm._e(), _vm._v(" "), _vm.form.type == "monthly_fee" || _vm.form.type == "session_fee" ? _c("div", {
+  })]) : _vm._e(), _vm._v(" "), _vm.form.type == "monthly_fee" || _vm.form.type == "session_fee" || _vm.form.type == "exam_fee" || _vm.form.type == "registration_fee" || _vm.form.type == "form_filup_fee" ? _c("div", {
     staticClass: "monthly_fee"
   }, [_c("div", {
     staticClass: "form-group"
