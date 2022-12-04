@@ -1377,9 +1377,10 @@ function characterCount($string)
 
  function StudentAdmissionId($admition_id='',$school_id)
 {
-    $studentCount =  student::where(['school_id'=>$school_id])->count();
+    $regYear = date("Y");
+    $studentCount =  student::where(['school_id'=>$school_id,'Year'=>$regYear])->count();
     if($studentCount>0){
-    $student =  student::where(['school_id'=>$school_id])->latest()->first();
+    $student =  student::where(['school_id'=>$school_id,'Year'=>$regYear])->latest()->first();
     $admition_id = $student->AdmissionID;
     $mutiple = (rand(1, 9));
         if($admition_id=='' || $admition_id==null){
