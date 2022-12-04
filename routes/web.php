@@ -259,7 +259,7 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
 
 
         return view('layout',compact('roles','classess'));
-    })->where('vue_capture', '[\/\w\.-]*')->name('dashboard');
+    })->where('vue_capture', '.*')->name('dashboard');
 });
 Route::get('/{vue_capture?}', function () {
 

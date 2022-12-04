@@ -178,7 +178,7 @@ export default {
                         this.preloader = false;
                         // console.log('edit run')
                         data.forEach(value => {
-                            this.form.number[value.StudentRoll] = { 'CQ': null, 'MCQ': null, 'EXTRA': null, 'TOTAL': null, 'SUBJECT_TOTAL': null };
+                            this.form.number[value.StudentRoll] = { 'CQ': 0, 'MCQ': 0, 'EXTRA': 0, 'TOTAL': 0, 'SUBJECT_TOTAL': null };
                         });
                     }
                 })

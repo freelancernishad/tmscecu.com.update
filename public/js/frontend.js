@@ -10713,27 +10713,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         str = "Bangla_1st";
       } else if (str == 'বাংলা ২য়') {
         str = "Bangla_2nd";
-      } else if (str == 'ইংলিশ') {
+      } else if (str == 'ইংরেজি') {
         str = "English";
-      } else if (str == 'ইংলিশ ১ম') {
+      } else if (str == 'ইংরেজি ১ম') {
         str = "English_1st";
-      } else if (str == 'ইংলিশ ২য়') {
+      } else if (str == 'ইংরেজি ২য়') {
         str = "English_2nd";
-      } else if (str == 'গনিত') {
+      } else if (str == 'গণিত') {
         str = "Math";
-      } else if (str == 'জীব-বিজ্ঞান') {
+      } else if (str == 'জীব বিজ্ঞান') {
         str = "Biology";
       } else if (str == 'বিজ্ঞান') {
         str = "Science";
-      } else if (str == 'পদার্থ') {
+      } else if (str == 'পদার্থবিজ্ঞান') {
         str = "physics";
       } else if (str == 'রসায়ন') {
         str = "Chemistry";
-      } else if (str == 'ভূগোল') {
+      } else if (str == 'ভূগোল ও পরিবেশ') {
         str = "vugol";
       } else if (str == 'অর্থনীতি') {
         str = "orthoniti";
-      } else if (str == 'ইতিহাস') {
+      } else if (str == 'বাংলাদেশ ও বিশ্ব সভ্যতার ইতিহাস') {
         str = "itihas";
       } else if (str == 'বাংলাদেশ ও বিশ্ব পরিচয়') {
         str = "B_and_B";
@@ -10743,10 +10743,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         str = "ReligionIslam";
       } else if (str == 'হিন্দু-ধর্ম') {
         str = "ReligionHindu";
-      } else if (str == 'কৃষি') {
+      } else if (str == 'কৃষি শিক্ষা') {
         str = "Agriculture";
       } else if (str == 'তথ্য ও যোগাযোগ প্রযোক্তি') {
         str = "ICT";
+      } else if (str == 'শারীরিক শিক্ষা ও স্বাস্থ্য') {
+        str = "Physical_Education_and_Health";
+      } else if (str == 'চারু ও কারুকলা') {
+        str = "Arts_and_Crafts";
+      } else if (str == 'কর্ম ও জীবনমুখী শিক্ষা') {
+        str = "Work_and_life_oriented_education";
+      } else if (str == 'ক্যারিয়ার শিক্ষা') {
+        str = "Career_Education";
       } //         let banglaNumber=
       //         {
       //         "বাংলা":"Bangla",
@@ -10779,12 +10787,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     exam_comvert: function exam_comvert(str) {
       var banglaNumber = {
-        "Weakly Examination": "Weakly_Examination",
-        "ADMITION TEST RESULT": "ADMITION_TEST_RESULT",
-        "First Terminals Examination": "First_Terminals_Examination",
-        "Second Terminals Examination": "Second_Terminals_Examination",
+        "Admition Result": "Admition_Result",
+        "Half Yearly": "Half_Yearly",
+        "Pre-Test": "Pre_Test",
         "Annual Examination": "Annual_Examination",
-        "Test Examination": "Test_Examination"
+        "Model Test": "Model_Test",
+        "Test": "Test" // "Weakly Examination": "Weakly_Examination",
+        // "ADMITION TEST RESULT": "ADMITION_TEST_RESULT",
+        // "First Terminals Examination": "First_Terminals_Examination",
+        // "Second Terminals Examination": "Second_Terminals_Examination",
+        // "Annual Examination": "Annual_Examination",
+        // "Test Examination": "Test_Examination",
+
       };
 
       for (var x in banglaNumber) {
@@ -10801,39 +10815,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else if (str == 'Bangla_2nd') {
         str = "বাংলা ২য়";
       } else if (str == 'English') {
-        str = "ইংলিশ";
+        str = "ইংরেজি";
       } else if (str == 'English_1st') {
-        str = "ইংলিশ ১ম";
+        str = "ইংরেজি ১ম";
       } else if (str == 'English_2nd') {
-        str = "ইংলিশ ২য়";
+        str = "ইংরেজি ২য়";
       } else if (str == 'Math') {
-        str = "গনিত";
+        str = "গণিত";
       } else if (str == 'Science') {
         str = "বিজ্ঞান";
       } else if (str == 'physics') {
-        str = "পদার্থ";
+        str = "পদার্থবিজ্ঞান";
       } else if (str == 'Chemistry') {
         str = "রসায়ন";
       } else if (str == 'Biology') {
-        str = "জীব-বিজ্ঞান";
+        str = "জীব বিজ্ঞান";
       } else if (str == 'vugol') {
-        str = "ভূগোল";
+        str = "ভূগোল ও পরিবেশ";
       } else if (str == 'orthoniti') {
         str = "অর্থনীতি";
       } else if (str == 'itihas') {
-        str = "ইতিহাস";
+        str = "বাংলাদেশ ও বিশ্ব সভ্যতার ইতিহাস";
       } else if (str == 'B_and_B') {
         str = "বাংলাদেশ ও বিশ্ব পরিচয়";
       } else if (str == 'Religion') {
-        str = "ধর্ম";
+        str = "ধর্ম ও নৈতিক শিক্ষা";
       } else if (str == 'ReligionIslam') {
         str = "ইসলাম-ধর্ম";
       } else if (str == 'ReligionHindu') {
         str = "হিন্দু-ধর্ম";
       } else if (str == 'Agriculture') {
-        str = "কৃষি";
+        str = "কৃষি শিক্ষা";
       } else if (str == 'ICT') {
         str = "তথ্য ও যোগাযোগ প্রযোক্তি";
+      } else if (str == 'Physical_Education_and_Health') {
+        str = "শারীরিক শিক্ষা ও স্বাস্থ্য";
+      } else if (str == 'Arts_and_Crafts') {
+        str = "চারু ও কারুকলা";
+      } else if (str == 'Work_and_life_oriented_education') {
+        str = "কর্ম ও জীবনমুখী শিক্ষা";
+      } else if (str == 'Career_Education') {
+        str = "ক্যারিয়ার শিক্ষা";
       } // let banglaNumber =
       // {
       //     "Bangla": "বাংলা",
