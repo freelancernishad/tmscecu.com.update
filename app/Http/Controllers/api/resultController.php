@@ -41,9 +41,13 @@ class resultController extends Controller
     {
 
 
+        $group = $request->group;
+        if($group=='All'){
+            $group ='Humanities';
+        }
 
 
-        $oldresult =  $this->checkResultall($request->school_id, $request->classname, $request->year, $request->exam_name, $request->subject, $request->group);
+        $oldresult =  $this->checkResultall($request->school_id, $request->classname, $request->year, $request->exam_name, $request->subject, $group);
         $oldresultid = [];
         foreach ($oldresult as $value) {
             // print_r($value);
@@ -64,7 +68,7 @@ class resultController extends Controller
 
         $i = 0;
         foreach ($request->number as $roll => $value) {
-            $students = student::where(['StudentRoll' => $roll, 'StudentClass' => $request->classname, 'StudentGroup' => $request->group, 'Year' => $request->year])->get();
+            $students = student::where(['StudentRoll' => $roll, 'StudentClass' => $request->classname, 'StudentGroup' => $group, 'Year' => $request->year])->get();
             $data = [
                 'school_id' => $students[0]->school_id,
                 'stu_id' => $students[0]->StudentID,
@@ -76,7 +80,7 @@ class resultController extends Controller
                 'subject' => $request->subject,
                 'exam_name' => $request->exam_name,
                 'class' => $request->classname,
-                'class_group' => $request->group,
+                'class_group' => $group,
                 'StudentReligion' => $students[0]->StudentReligion,
                 'status' => 'Draft',
 

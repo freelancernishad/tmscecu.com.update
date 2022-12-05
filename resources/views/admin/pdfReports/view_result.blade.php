@@ -564,8 +564,16 @@ else if ($class == "Six" || $class == "Seven" || $class == "Eight") {
                                 <h5>মোট</h5>
                             </b></td>
 						</tr>
+
+
+
 						<tr class="table-primar">
+                            @if ($class == "Eight")
+
+							<td class="pl-5 pr-5"> <b>বাংলা</b></td>
+                            @else
 							<td class="pl-5 pr-5"> <b>বাংলা ১ম</b></td>
+                            @endif
 							<td class="pl-5"> <b class="ml-5">{{ $Bangla_1st_d->CQ }}</b></td>
 							<td class="pl-5"> <b class="ml-5">{{ $Bangla_1st_d->MCQ }}</b></td>
 							<td class="pl-5"> <b class="ml-5">{{ $Bangla_1st_d->EXTRA }}</b></td>
@@ -584,7 +592,13 @@ else if ($class == "Six" || $class == "Seven" || $class == "Eight") {
 
 
 						<tr class="table-primar">
-							<td class="pl-5 pr-5"> <b>ইংলিশ ১ম</b></td>
+                            @if ($class == "Eight")
+
+                            <td class="pl-5 pr-5"> <b>ইংলিশ</b></td>
+                            @else
+                            <td class="pl-5 pr-5"> <b>ইংলিশ ১ম</b></td>
+                            @endif
+						
 							<td class="pl-5"> <b class="ml-5">{{ $English_1st_d->CQ }}</b></td>
 							<td class="pl-5"> <b class="ml-5">{{ $English_1st_d->MCQ }}</b></td>
 							<td class="pl-5"> <b class="ml-5">{{ $English_1st_d->EXTRA }}</b></td>
@@ -599,6 +613,11 @@ else if ($class == "Six" || $class == "Seven" || $class == "Eight") {
 							<td> <?php echo $English_2nd ?></td>
 						</tr>
 						@endif
+
+
+
+
+
 						<tr class="table-primar">
 							<td class="pl-5 pr-5"> <b>গনিত</b></td>
 							<td class="pl-5"> <b class="ml-5">{{ $math_d->CQ }}</b></td>
