@@ -211,6 +211,21 @@ class resultController extends Controller
                 $i = 0;
                 foreach ($subjects as $sub) {
 
+
+                    if($request->filter['class']=="Six" || $request->filter['class']=="Six" || $request->filter['class']=="Six"){
+                       echo $sub;
+                       echo subjectCol($sub);
+                       echo "<br/>";
+
+
+                    }elseif($request->filter['class']=="Nine" || $request->filter['class']=="Ten"){
+
+                    }else{
+
+                    }
+
+
+
                     if(subjectCol($sub)=='Religion' && $results->StudentReligion == 'Islam'){
                         if(json_decode($results['ReligionIslam_d'])){
                             $SUBJECT_TOTAL = json_decode($results['ReligionIslam_d'])->SUBJECT_TOTAL;
@@ -244,12 +259,17 @@ class resultController extends Controller
                     // print_r($sub.',');
                     // print_r($subMark.',');
 
+
+
                     $GPA += Greeting($subMark,$SUBJECT_TOTAL,'point');
+
+
+
                     $i++;
                 }
 
 
-            //    return $greating;
+               return;
 
                 if(in_array('F',$greating)) {
                     $GpaResult = 'F';

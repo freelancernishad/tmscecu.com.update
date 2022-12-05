@@ -6539,7 +6539,7 @@ var render = function render() {
     attrs: {
       value: "form_filup_fee"
     }
-  }, [_vm._v("ফর্ম ফিলআপ")])])]), _vm._v(" "), _vm.form.type == "Admission_fee" ? _c("div", {
+  }, [_vm._v("ফরম পূরণ ফি")])])]), _vm._v(" "), _vm.form.type == "Admission_fee" ? _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {

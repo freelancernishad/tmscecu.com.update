@@ -34,7 +34,7 @@
                                 <option value="session_fee">সেশন ফি</option>
                                 <option value="exam_fee">পরীক্ষার ফি</option>
                                 <option value="registration_fee">রেজিস্ট্রেশন ফি</option>
-                                <option value="form_filup_fee">ফর্ম ফিলআপ</option>
+                                <option value="form_filup_fee">ফরম পূরণ ফি</option>
                             </select>
                         </div>
 
