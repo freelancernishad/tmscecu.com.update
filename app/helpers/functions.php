@@ -754,7 +754,7 @@ function fileupload2($file, $path)
     if (!file_exists(env('FILE_PATH') . $path)) {
         File::makeDirectory(env('FILE_PATH') . $path, 0777, true, true);
     }
-    $destinationPath =$path. $base64;
+    $destinationPath =env('FILE_PATH').$path. $base64;
     file_put_contents($destinationPath, $base64_decode);
     return env('FILE_PATH').$destinationPath;
 
