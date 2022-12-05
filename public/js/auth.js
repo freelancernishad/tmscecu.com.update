@@ -2392,7 +2392,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         str = "itihas";
       } else if (str == 'বাংলাদেশ ও বিশ্ব পরিচয়') {
         str = "B_and_B";
-      } else if (str == 'ধর্ম') {
+      } else if (str == 'ধর্ম ও নৈতিক শিক্ষা') {
         str = "Religion";
       } else if (str == 'ইসলাম-ধর্ম') {
         str = "ReligionIslam";
@@ -2400,6 +2400,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         str = "ReligionHindu";
       } else if (str == 'কৃষি শিক্ষা') {
         str = "Agriculture";
+      } else if (str == 'উচ্চতর গণিত') {
+        str = "Higher_Mathematics";
       } else if (str == 'তথ্য ও যোগাযোগ প্রযোক্তি') {
         str = "ICT";
       } else if (str == 'শারীরিক শিক্ষা ও স্বাস্থ্য') {

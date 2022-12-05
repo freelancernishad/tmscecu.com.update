@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>:: {{ sitedetails()->SCHOLL_NAME }} :: {{ sitedetails()->SCHOLL_ADDRESS }}</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/bangladesh-govt.png') }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(sitedetails()->logo) }}" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -169,7 +169,7 @@ li.page-item.active button {
 
 
 
-<script src="{{ asset('js/backend.js?ver=1.1.19') }}"></script>
+<script src="{{ asset('js/backend.js?ver=1.1.20') }}"></script>
 
 
 

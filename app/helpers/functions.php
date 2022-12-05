@@ -157,11 +157,15 @@ function subjectCol($subject)
             return 'Bangla_1st';
         }else if($subject=='জীব বিজ্ঞান'){
             return 'Biology';
+        }else if($subject=='পদার্থবিজ্ঞান'){
+            return 'physics';
+        }else if($subject=='উচ্চতর গণিত'){
+            return 'Higher_Mathematics';
         }else{
 
-            $orginal = array("বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান","পদার্থবিজ্ঞান", "রসায়ন", "জীব বিজ্ঞান", "বাংলাদেশ ও বিশ্ব পরিচয়","ভূগোল ও পরিবেশ", "অর্থনীতি", "বাংলাদেশ ও বিশ্ব সভ্যতার ইতিহাস", "ধর্ম ও নৈতিক শিক্ষা","ইসলাম-ধর্ম","হিন্দু-ধর্ম", "কৃষি শিক্ষা", "তথ্য ও যোগাযোগ প্রযুক্তি", "শারীরিক শিক্ষা ও স্বাস্থ্য", "চারু ও কারুকলা", "কর্ম ও জীবনমুখী শিক্ষা","ক্যারিয়ার শিক্ষা");
+            $orginal = array("বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান","পদার্থবিজ্ঞান", "রসায়ন", "জীব বিজ্ঞান", "বাংলাদেশ ও বিশ্ব পরিচয়","ভূগোল ও পরিবেশ", "অর্থনীতি", "বাংলাদেশ ও বিশ্ব সভ্যতার ইতিহাস", "ধর্ম ও নৈতিক শিক্ষা","ইসলাম-ধর্ম","হিন্দু-ধর্ম", "কৃষি শিক্ষা", "উচ্চতর গণিত", "তথ্য ও যোগাযোগ প্রযুক্তি");
 
-            $colname = array("Bangla_1st","Bangla_2nd","English_1st","English_2nd","Math","Science","physics","Chemistry","Biology","B_and_B","vugol","orthoniti","itihas","Religion","ReligionIslam","ReligionHindu","Agriculture","ICT","Physical_Education_and_Health","Arts_and_Crafts","Work_and_life_oriented_education","Career_Education");
+            $colname = array("Bangla_1st","Bangla_2nd","English_1st","English_2nd","Math","Science","physics","Chemistry","Biology","B_and_B","vugol","orthoniti","itihas","Religion","ReligionIslam","ReligionHindu","Agriculture","Higher_Mathematics","ICT","Physical_Education_and_Health","Arts_and_Crafts","Work_and_life_oriented_education","Career_Education");
 
 
             // $orginal = array("বাংলা ১ম","বাংলা ২য়","ইংলিশ ১ম","ইংলিশ ২য়","গনিত","বিজ্ঞান","পদার্থ","রসায়ন","ভূগোল","অর্থনীতি","ইতিহাস","বাংলাদেশ ও বিশ্ব পরিচয়","ধর্ম","ইসলাম-ধর্ম","হিন্দু-ধর্ম","কৃষি","তথ্য ও যোগাযোগ প্রযোক্তি");
@@ -586,13 +590,17 @@ function allList($type = '', $class = '', $group = '')
             $data = ["বাংলা", "ইংরেজি", "গণিত"];
         } elseif ($class == 'three' || $class == 'four' || $class == 'five') {
             $data = ["বাংলা", "ইংরেজি", "গণিত", "বাংলাদেশ ও বিশ্ব পরিচয়", "বিজ্ঞান", "ধর্ম"];
-        } elseif ($class == 'six' || $class == 'seven' || $class == 'eight') {
-            $data = ["বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান", "বাংলাদেশ ও বিশ্ব পরিচয়", "ধর্ম ও নৈতিক শিক্ষা", "কৃষি শিক্ষা", "তথ্য ও যোগাযোগ প্রযুক্তি", "শারীরিক শিক্ষা ও স্বাস্থ্য", "চারু ও কারুকলা", "কর্ম ও জীবনমুখী শিক্ষা"];
-        } elseif ($class == 'nine' || $class == 'ten') {
+        } elseif ($class == 'three' || $class == 'four' || $class == 'five') {
+            $data = ["বাংলা", "ইংরেজি", "গণিত", "বাংলাদেশ ও বিশ্ব পরিচয়", "বিজ্ঞান", "ধর্ম"];
+        } elseif ($class == 'six' || $class == 'seven' ) {
+            $data = ["বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান", "বাংলাদেশ ও বিশ্ব পরিচয়", "ধর্ম ও নৈতিক শিক্ষা", "কৃষি শিক্ষা", "তথ্য ও যোগাযোগ প্রযুক্তি"];
+        } elseif ($class == 'eight') {
+            $data = ["বাংলা", "ইংরেজি", "গণিত", "বিজ্ঞান", "বাংলাদেশ ও বিশ্ব পরিচয়", "ধর্ম ও নৈতিক শিক্ষা", "কৃষি শিক্ষা", "তথ্য ও যোগাযোগ প্রযুক্তি"];
+        }elseif ($class == 'nine' || $class == 'ten') {
             if ($group == 'science') {
-                $data = ["বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "পদার্থবিজ্ঞান", "রসায়ন", "জীব বিজ্ঞান", "বাংলাদেশ ও বিশ্ব পরিচয়", "ধর্ম ও নৈতিক শিক্ষা", "কৃষি শিক্ষা", "উচ্চতর গণিত", "তথ্য ও যোগাযোগ প্রযুক্তি","শারীরিক শিক্ষা ও স্বাস্থ্য","চারু ও কারুকলা","ক্যারিয়ার শিক্ষা"];
+                $data = ["বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "পদার্থবিজ্ঞান", "রসায়ন", "জীব বিজ্ঞান", "বাংলাদেশ ও বিশ্ব পরিচয়", "ধর্ম ও নৈতিক শিক্ষা", "কৃষি শিক্ষা", "উচ্চতর গণিত", "তথ্য ও যোগাযোগ প্রযুক্তি"];
             } elseif ($group == 'humanities') {
-                $data = ["বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান", "ভূগোল ও পরিবেশ", "অর্থনীতি", "বাংলাদেশ ও বিশ্ব সভ্যতার ইতিহাস", "ধর্ম ও নৈতিক শিক্ষা", "কৃষি শিক্ষা", "তথ্য ও যোগাযোগ প্রযুক্তি","শারীরিক শিক্ষা ও স্বাস্থ্য","চারু ও কারুকলা","ক্যারিয়ার শিক্ষা"];
+                $data = ["বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান", "ভূগোল ও পরিবেশ", "অর্থনীতি", "বাংলাদেশ ও বিশ্ব সভ্যতার ইতিহাস", "ধর্ম ও নৈতিক শিক্ষা", "কৃষি শিক্ষা", "তথ্য ও যোগাযোগ প্রযুক্তি"];
             } elseif ($group == 'commerce') {
 
                 $data = ["বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান", "পদার্থ", "রসায়ন", "জীব-বিজ্ঞান", "ভূগোল", "অর্থনীতি", "ইতিহাস", "বাংলাদেশ ও বিশ্ব পরিচয়", "ধর্ম", "কৃষি", "তথ্য ও যোগাযোগ প্রযুক্তি"];
@@ -756,7 +764,7 @@ function fileupload2($file, $path)
     }
     $destinationPath =env('FILE_PATH').$path. $base64;
     file_put_contents($destinationPath, $base64_decode);
-    return env('FILE_PATH').$destinationPath;
+    return $destinationPath;
 
 }
 
@@ -1323,31 +1331,42 @@ function characterCount($string)
 {
     $greed = 'F';
     $point = '0.00';
-    if($total==100){
-        if($mark<33){
+
+
+    $Persent_33 = (33*$total)/100;
+    $Persent_40 = (40*$total)/100;
+    $Persent_50 = (50*$total)/100;
+    $Persent_60 = (60*$total)/100;
+    $Persent_70 = (70*$total)/100;
+    $Persent_80 = (80*$total)/100;
+    $Persent_101 = (101*$total)/100;
+
+
+
+        if($mark<$Persent_33){
             $greed ='F';
             $point ='0.00';
-        }elseif($mark<40){
+        }elseif($mark<$Persent_40){
             $greed ='D';
             $point ='1.00';
         }
-        elseif($mark<50){
+        elseif($mark<$Persent_50){
             $greed ='C';
             $point ='2.00';
         }
-        elseif($mark<60){
+        elseif($mark<$Persent_60){
             $greed ='B';
             $point ='3.00';
         }
-        elseif($mark<70){
+        elseif($mark<$Persent_70){
             $greed ='A-';
             $point ='3.50';
         }
-        elseif($mark<80){
+        elseif($mark<$Persent_80){
             $greed ='A';
             $point ='4.00';
         }
-        elseif($mark<101){
+        elseif($mark<$Persent_101){
             $greed ='A+';
             $point ='5.00';
         }
@@ -1355,17 +1374,6 @@ function characterCount($string)
 
 
 
-
-    }elseif($total==75){
-        $greed = 'F';
-        $point = '0.00';
-    }elseif($total==50){
-        $greed = 'F';
-        $point = '0.00';
-    }elseif($total==25){
-        $greed = 'F';
-        $point = '0.00';
-    }
 
     if($type=='greed'){
         return $greed;

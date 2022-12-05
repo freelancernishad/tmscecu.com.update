@@ -148,7 +148,7 @@
 
             <td class="pl-5 pr-5">
 	<div style="overflow: hidden;">
-<a  class="btn btn-info" target="_blank" style="float: right;" :href="'/pdf/'+school_id+'/'+resultrow.class+'/'+resultrow.roll+'/'+resultrow.year+'/'+resultrow.exam_name">সম্পূর্ণ ফলাফল দেখুন</a>
+<a  class="btn btn-info" target="_blank" style="float: right;" :href="('/pdf/'+school_id+'/'+resultrow.class+'/'+resultrow.roll+'/'+resultrow.year+'/'+resultrow.exam_name+'/'+resultrow.class_group)">সম্পূর্ণ ফলাফল দেখুন</a>
 </div>
 			</td>
 	</tr>

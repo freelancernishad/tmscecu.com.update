@@ -55,6 +55,8 @@ class StudentResult extends Model
         'ReligionHindu_d',
         'Agriculture',
         'Agriculture_d',
+        'Higher_Mathematics',
+        'Higher_Mathematics_d',
         'ICT',
         'ICT_d',
         'Physical_Education_and_Health',

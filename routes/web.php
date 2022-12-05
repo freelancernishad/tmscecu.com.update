@@ -214,7 +214,7 @@ Route::get('/allow/application/notification', function () {
 
 
 
-        Route::get('/pdf/{school_id}/{class}/{roll}/{year}/{exam}',[frontendController::class ,'view_result_pdf']);
+        Route::get('/pdf/{school_id}/{class}/{roll}/{year}/{exam}/{group}',[frontendController::class ,'view_result_pdf']);
 
         Route::get('/routines/{school_id}/{class}/{year}/download',[RoutineController::class , 'routine_download'])->name('routines.routine_download');
 

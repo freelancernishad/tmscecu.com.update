@@ -146,23 +146,6 @@ export default {
                 religion = this.$route.params.religion;
             }
 
-
-            // if (this.$route.params.group == 'Science') {
-            //     if (this.$route.params.subject == 'physics' || this.$route.params.subject == 'Chemistry' || this.$route.params.subject == 'Biology' || this.$route.params.subject == 'B_and_B') {
-            //         group = this.$route.params.group;
-            //     } else {
-            //         group = '';
-            //     }
-            // } else if (this.$route.params.group == 'Humanities') {
-            //     if (this.$route.params.subject == 'vugol' || this.$route.params.subject == 'orthoniti' || this.$route.params.subject == 'itihas' || this.$route.params.subject == 'Science') {
-            //         group = this.$route.params.group;
-            //     } else {
-            //         group = '';
-            //     }
-            // } else if (this.$route.params.group == 'Commerce') {
-            //     group = this.$route.params.group;
-            // }
-
             if(this.$route.params.student_class=='Nine' || this.$route.params.student_class=='Ten'){
                 group = this.$route.params.group;
             }else{
@@ -189,6 +172,7 @@ export default {
             // this.form.editid = {};
             var url = '';
             var subject = '';
+            var group = 'Humanities';
             if (this.$route.params.subject == 'Religion') {
                 if (this.$route.params.religion == 'Islam') {
                     subject = 'ইসলামধর্ম';
@@ -201,9 +185,13 @@ export default {
                 subject = this.subjectconvertbn(this.$route.params.subject)
             }
 
+            if(this.$route.params.student_class=='Nine' || this.$route.params.student_class=='Ten'){
+                group = this.$route.params.group;
+            }else{
+                group = 'Humanities';
+            }
 
-
-            url = `/api/results/check?filter[school_id]=${this.$route.params.school_id}&filter[class]=${this.$route.params.student_class}&filter[year]=${this.year}&filter[exam_name]=${this.examcomvert(this.$route.params.examType)}&subject=${subject}`;
+            url = `/api/results/check?filter[school_id]=${this.$route.params.school_id}&filter[class]=${this.$route.params.student_class}&filter[year]=${this.year}&filter[exam_name]=${this.examcomvert(this.$route.params.examType)}&filter[class_group]=${group}&subject=${subject}`;
             axios.get(url)
                 .then(({ data }) => {
                     // console.log(this.subjectconverten(this.filterdata.subject));

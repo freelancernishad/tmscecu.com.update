@@ -275,20 +275,26 @@ $data['year'] = $year;
 
 
     }
-    public function view_result_pdf(Request $r,$school_id, $class, $roll, $year, $exam_name)
+    public function view_result_pdf(Request $r,$school_id, $class, $roll, $year, $exam_name,$group)
     {
+
+
+
+
 
         $data['types'] = 'pdf';
         $data['class'] = $class;
         $data['roll'] = $roll;
         $data['year'] = $year;
         $data['exam_name'] = $exam_name;
+        $data['class_group'] = $group;
         $wd = [
             'school_id'=>$school_id,
             'class' => $class,
             'roll' => $roll,
             'year' => $year,
             'exam_name' => $exam_name,
+            'class_group' => $group,
         ];
         $data['check'] = DB::table('student_results')->where($wd)->count();
         if ($data['check'] > 0) {

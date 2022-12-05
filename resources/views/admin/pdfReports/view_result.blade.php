@@ -679,7 +679,7 @@ if($row->StudentReligion=='Islam'){
 							<td> <?php echo $ICT ?></td>
 						</tr>
 
-
+{{--
 						<tr class="table-primar">
 							<td class="pl-5 pr-5"> <b>শারীরিক শিক্ষা ও স্বাস্থ্য</b></td>
 							<td class="pl-5"> <b class="ml-5">{{ $Physical_Education_and_Health_d->CQ }}</b></td>
@@ -705,7 +705,7 @@ if($row->StudentReligion=='Islam'){
 							<td class="pl-5"> <b class="ml-5">{{ $Work_and_life_oriented_education_d->EXTRA }}</b></td>
 							<td> <?php echo $Work_and_life_oriented_education ?></td>
 						</tr>
-
+ --}}
 
 
 
@@ -782,8 +782,15 @@ if($row->StudentReligion=='Islam'){
 
 		    $religionh = $row->ReligionHindu;
             $religionh_d = json_decode($row->ReligionHindu_d);
+
 			$Agriculture = $row->Agriculture;
             $Agriculture_d = json_decode($row->Agriculture_d);
+
+
+			$Higher_Mathematics = $row->Higher_Mathematics;
+            $Higher_Mathematics_d = json_decode($row->Higher_Mathematics_d);
+
+
 			$ICT = $row->ICT;
             $ICT_d = json_decode($row->ICT_d);
 
@@ -989,13 +996,29 @@ if($row->StudentReligion=='Islam'){
 
 	}
 	?>
-						<tr class="table-primar" style="display:none">
-							<td class="pl-5 pr-5"> <b>কৃষি</b></td>
-							<td class="pl-5"> <b class="ml-5">{{ $Agriculture_d->CQ }}</b></td>
-							<td class="pl-5"> <b class="ml-5">{{ $Agriculture_d->MCQ }}</b></td>
-							<td class="pl-5"> <b class="ml-5">{{ $Agriculture_d->EXTRA }}</b></td>
-							<td> <?php echo $Agriculture ?></td>
-						</tr>
+
+
+@if($Higher_Mathematics)
+<tr class="table-primar" style="display:none">
+    <td class="pl-5 pr-5"> <b>উচ্চতর গণিত</b></td>
+    <td class="pl-5"> <b class="ml-5">{{ $Higher_Mathematics_d->CQ }}</b></td>
+    <td class="pl-5"> <b class="ml-5">{{ $Higher_Mathematics_d->MCQ }}</b></td>
+    <td class="pl-5"> <b class="ml-5">{{ $Higher_Mathematics_d->EXTRA }}</b></td>
+    <td> <?php echo $Higher_Mathematics ?></td>
+</tr>
+@else
+<tr class="table-primar" style="display:none">
+    <td class="pl-5 pr-5"> <b>কৃষি</b></td>
+    <td class="pl-5"> <b class="ml-5">{{ $Agriculture_d->CQ }}</b></td>
+    <td class="pl-5"> <b class="ml-5">{{ $Agriculture_d->MCQ }}</b></td>
+    <td class="pl-5"> <b class="ml-5">{{ $Agriculture_d->EXTRA }}</b></td>
+    <td> <?php echo $Agriculture ?></td>
+</tr>
+@endif
+
+
+
+
 						<tr class="table-primar">
 							<td class="pl-5 pr-5"> <b>তথ্য ও যোগাযোগ প্রযোক্তি</b></td>
 							<td class="pl-5"> <b class="ml-5">{{ $ICT_d->CQ }}</b></td>
@@ -1004,7 +1027,7 @@ if($row->StudentReligion=='Islam'){
 							<td> <?php echo $ICT ?></td>
 						</tr>
 
-
+{{--
 
 						<tr class="table-primar">
 							<td class="pl-5 pr-5"> <b>শারীরিক শিক্ষা ও স্বাস্থ্য</b></td>
@@ -1032,7 +1055,7 @@ if($row->StudentReligion=='Islam'){
 							<td class="pl-5"> <b class="ml-5">{{ $Career_Education_d->MCQ }}</b></td>
 							<td class="pl-5"> <b class="ml-5">{{ $Career_Education_d->EXTRA }}</b></td>
 							<td> <?php echo $Career_Education ?></td>
-						</tr>
+						</tr> --}}
 
 
 

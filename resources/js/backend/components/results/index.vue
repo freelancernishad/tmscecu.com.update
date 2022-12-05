@@ -70,7 +70,7 @@
 
                                 </div>
 
-                                <div class="col-md-3" v-if="filterdata.subject=='ধর্ম'">
+                                <div class="col-md-3" v-if="filterdata.subject=='ধর্ম ও নৈতিক শিক্ষা'">
                                       <div class='form-group' >
                                           <label>Religion:</label>
                                       <select  class='form-control' style='width: 100%;' v-model="filterdata.religion" id='Subject'  required >
