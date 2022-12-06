@@ -32,7 +32,7 @@
 </div>
 <div class="form-group">
     <label for="">রোল</label>
-    <input type="text" v-model="data.StudentRoll" class="form-control">
+    <input type="tel" v-model="data.StudentRoll" class="form-control">
 </div>
 </div>
 <button type="button" class="btn btn-info" @click="PaymentSearch">খুঁজুন</button>
