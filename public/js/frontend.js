@@ -2353,7 +2353,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         autoplay: true
       },
       vfImages: [// this.$asseturl + "assets/img/padmabanner.jpeg",
-      ],
+      "https://tepriganjhighschool.edu.bd/public/backend/slider/1670087505____66768.jpeg"],
       vfTransitions: ["fade", "blinds2d", "blinds3d", "blocks1", "blocks2", "book", "camera", "concentric", "cube", "explode", "fall", "kenburn", "round1", "round2", "slide", "swipe", "warp", "waterfall", "wave", "zip"],
       actionModalhome: {
         id: 'action-modal-home',
