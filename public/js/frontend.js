@@ -2207,6 +2207,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       } else {
                         if (res.role == 'data_entry_oparetor') {
                           window.location.href = "/dashboard/only/result";
+                        } else if (res.role == 'camera_man') {
+                          window.location.href = "/dashboard/student/img";
                         } else {
                           window.location.href = "/dashboard";
                         }
@@ -6857,7 +6859,7 @@ var render = function render() {
     staticClass: "col-md-6"
   }, [_c("b", [_vm._v("Class:")]), _vm._v(" " + _vm._s(_vm.student.StudentClass) + "\n                                ")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
-  }, [_c("b", [_vm._v("Roll:")]), _vm._v(" " + _vm._s(_vm.student.StudentID) + "\n                                ")]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("Roll:")]), _vm._v(" " + _vm._s(_vm.student.StudentRoll) + "\n                                ")]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("b", [_vm._v("Father Name:")]), _vm._v(" " + _vm._s(_vm.student.StudentFatherNameBn) + "\n                                ")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"

@@ -145,6 +145,9 @@ export default {
                                 if(res.role=='data_entry_oparetor'){
 
                                     window.location.href = "/dashboard/only/result";
+                                }else if(res.role=='camera_man'){
+
+                                    window.location.href = "/dashboard/student/img";
                                 }else{
 
                                     window.location.href = "/dashboard";

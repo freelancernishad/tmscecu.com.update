@@ -163,7 +163,7 @@
                                         <b>Class:</b> {{  student.StudentClass }}
                                     </div>
                                     <div class="col-md-6">
-                                        <b>Roll:</b> {{  student.StudentID }}
+                                        <b>Roll:</b> {{  student.StudentRoll }}
                                     </div>
                                     <hr>
                                     <div class="col-md-6">

@@ -144,7 +144,7 @@
                                 </ul>
                             </transition>
                         </li>
-<!-- 
+<!--
                         <li class="nav-item"  v-if="$localStorage.getItem('role')=='teacher'"><router-link   :to="{name:'events'}" class="nav-link"><i class="flaticon-script"></i><span>Profile</span></router-link></li> -->
 
 
@@ -331,6 +331,8 @@ export default {
             // console.log(this.user.role);
             if(this.user.role=='data_entry_oparetor'){
                 this.$router.push({name:'resultsoparetor'});
+            }else if(this.user.role=='camera_man'){
+                this.$router.push({name:'fileupload'});
             }
         }
         this.$store.commit('setUpdateUser', this.user)
