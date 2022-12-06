@@ -1229,10 +1229,12 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
 
                             $khat = [
-                                   'Admission_fee'=>'ভর্তি ফি',
-                                   'monthly_fee'=>'মাসিক বেতন',
-                                   'session_fee'=>'সেশন ফি',
-                                   'exam_fee'=>'পরীক্ষার ফি',
+                                'Admission_fee'=>'ভর্তি ফি',
+                                'monthly_fee'=>'মাসিক বেতন',
+                                'session_fee'=>'সেশন ফি',
+                                'exam_fee'=>'পরীক্ষার ফি',
+                                'registration_fee'=>'রেজিস্ট্রেশন ফি',
+                                'form_filup_fee'=>'ফরম পূরণ ফি',
                             ];
 
                             $kahts = json_decode(json_encode($khat));
@@ -1437,8 +1439,8 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
                 <tr>
                     <td class='tableRowHead'  width='20%'>Name (বাংলা)</td>
                     <td>$student->StudentName</td>
-                    <td class='tableRowHead' style='text-transform:uppercase'  width='20%'>Name (English)</td>
-                    <td>$student->StudentNameEn</td>
+                    <td class='tableRowHead' width='20%'>Name (English)</td>
+                    <td  style='text-transform:uppercase' >$student->StudentNameEn</td>
 
                 </tr>
                 <tr>
