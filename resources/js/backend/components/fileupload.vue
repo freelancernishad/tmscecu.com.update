@@ -225,6 +225,9 @@
         }
       },
     },
+    mounted() {
+        this.all_list('groups');
+    },
   };
   </script>
 
