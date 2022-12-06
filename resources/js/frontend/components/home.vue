@@ -112,10 +112,11 @@ export default {
                 autoplay: true,
             },
             vfImages: [
-                this.$asseturl + "assets/img/padmabanner.jpeg",
+                // this.$asseturl + "assets/img/padmabanner.jpeg",
 
             ],
             vfTransitions: [
+                "fade",
                 "blinds2d",
                 "blinds3d",
                 "blocks1",
@@ -125,7 +126,7 @@ export default {
                 "concentric",
                 "cube",
                 "explode",
-                "fade",
+
                 "fall",
                 "kenburn",
                 "round1",

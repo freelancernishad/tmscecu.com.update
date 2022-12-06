@@ -2142,6 +2142,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.form = JSON.parse(localStorage.getItem("login"));
       this.rememberme = true;
     }
+
+    this.getSchoolData();
   },
   data: function data() {
     return {
@@ -2157,25 +2159,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         email: "",
         password: ""
       },
+      schooldetails: {},
       errorss: {}
     };
   },
   methods: {
-    login: function login() {
+    getSchoolData: function getSchoolData() {
       var _this = this;
+
+      axios.get("/api/school/settings?school_id=".concat(this.school_id, "&front=front")).then(function (_ref) {
+        var data = _ref.data;
+        _this.schooldetails = data;
+      })["catch"]();
+    },
+    login: function login() {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.loadLogin = true;
+                _this2.loadLogin = true;
 
-                if (_this.form.email == "" || _this.form.password == "") {
-                  _this.emptyFields = true;
+                if (_this2.form.email == "" || _this2.form.password == "") {
+                  _this2.emptyFields = true;
                 } else {
-                  if (_this.rememberme) {
-                    localStorage.setItem("login", JSON.stringify(_this.form));
+                  if (_this2.rememberme) {
+                    localStorage.setItem("login", JSON.stringify(_this2.form));
                   } else {
                     localStorage.removeItem("login");
                   } // var res = await this.callApi('post','/login',this.form);
@@ -2191,19 +2202,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   //     }
 
 
-                  axios.post("/login", _this.form).then(function (res) {
+                  axios.post("/login", _this2.form).then(function (res) {
                     console.log(res);
 
                     if (res.data == 0) {
                       Notification.customError("Please Enter Valid Email and Password");
-                      _this.loadLogin = false;
+                      _this2.loadLogin = false;
                     } else {
                       User.responseAfterLogin(res);
                       Notification.customSuccess("Signed in successfully Complete");
-                      _this.loadLogin = false;
+                      _this2.loadLogin = false;
 
-                      if (_this.$route.query.redirect) {
-                        window.location.href = _this.$route.query.redirect;
+                      if (_this2.$route.query.redirect) {
+                        window.location.href = _this2.$route.query.redirect;
                       } else {
                         if (res.role == 'data_entry_oparetor') {
                           window.location.href = "/dashboard/only/result";
@@ -2215,7 +2226,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       }
                     }
                   })["catch"](function (error) {
-                    return _this.errorss = error.response.data.errors;
+                    return _this2.errorss = error.response.data.errors;
                   });
                 }
 
@@ -2341,8 +2352,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       vfOptions: {
         autoplay: true
       },
-      vfImages: [this.$asseturl + "assets/img/padmabanner.jpeg"],
-      vfTransitions: ["blinds2d", "blinds3d", "blocks1", "blocks2", "book", "camera", "concentric", "cube", "explode", "fade", "fall", "kenburn", "round1", "round2", "slide", "swipe", "warp", "waterfall", "wave", "zip"],
+      vfImages: [// this.$asseturl + "assets/img/padmabanner.jpeg",
+      ],
+      vfTransitions: ["fade", "blinds2d", "blinds3d", "blocks1", "blocks2", "book", "camera", "concentric", "cube", "explode", "fall", "kenburn", "round1", "round2", "slide", "swipe", "warp", "waterfall", "wave", "zip"],
       actionModalhome: {
         id: 'action-modal-home',
         title: '',
@@ -4581,7 +4593,7 @@ var render = function render() {
   }, [_c("img", {
     attrs: {
       width: "50px",
-      src: _vm.$asseturl + "assets/img/bangladesh-govt.png",
+      src: _vm.schooldetails.logo,
       alt: ""
     }
   }), _vm._v(" "), _c("h4", {
@@ -4589,7 +4601,7 @@ var render = function render() {
       margin: "0",
       "margin-top": "10px"
     }
-  }, [_vm._v(" টেপ্রীগঞ্জ আদর্শ দ্বি-মুখী উচ্চ বিদ্যালয়")]), _vm._v("\n                                    টেপ্রীগঞ্জ, দেবীগঞ্জ, পঞ্চগড়\n\t\t\t\t\t\t\t\t")])])])])])]);
+  }, [_vm._v(" " + _vm._s(_vm.schooldetails.SCHOLL_NAME))]), _vm._v("\n                                    " + _vm._s(_vm.schooldetails.SCHOLL_ADDRESS) + "\n\t\t\t\t\t\t\t\t")])])])])])]);
 };
 
 var staticRenderFns = [];
