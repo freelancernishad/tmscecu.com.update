@@ -1,11 +1,11 @@
 <template>
-    <div class="container">
+    <div class="container m-5">
 
         <loader v-if="preloader" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2"
             bg="#343a40" objectbg="#999793" opacity="80" disableScrolling="false" name="circular"></loader>
 
 
-            <div class="other">
+            <form @submit.stop.prevent="PaymentSearch" class="other">
 
 
 <div class="form-group">
@@ -32,10 +32,10 @@
 </div>
 <div class="form-group">
     <label for="">রোল</label>
-    <input type="tel" v-model="data.StudentRoll" class="form-control">
+    <input type="tel" v-model="data.StudentRoll" class="form-control" required>
 </div>
-</div>
-<button type="button" class="btn btn-info" @click="PaymentSearch">খুঁজুন</button>
+<button type="submit" class="btn btn-info p-3" style="font-size: 20px;" >খুঁজুন</button>
+</form>
 
 
 
