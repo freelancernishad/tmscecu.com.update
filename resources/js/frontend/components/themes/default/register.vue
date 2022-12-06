@@ -664,6 +664,7 @@
                                 নির্বাচন করুন
                             </option>
                             <option>ব্যবসায়ি</option>
+                            <option>কৃষক</option>
                             <option>কৃষি শ্রমিক</option>
                             <option>ডাক্তার</option>
                             <option>জেলে</option>

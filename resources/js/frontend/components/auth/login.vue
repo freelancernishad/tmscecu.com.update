@@ -47,7 +47,7 @@
 
 
                         <div class="text-center mt-3">
-                                    <img width="50px" :src="schooldetails.logo" alt="">
+                                    <img width="50px" :src="$asseturl+schooldetails.logo" alt="">
                                     <h4 style="margin: 0;    margin-top: 10px;"> {{ schooldetails.SCHOLL_NAME }}</h4>
                                     {{ schooldetails.SCHOLL_ADDRESS }}
 								</div>

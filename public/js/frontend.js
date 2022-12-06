@@ -4593,7 +4593,7 @@ var render = function render() {
   }, [_c("img", {
     attrs: {
       width: "50px",
-      src: _vm.schooldetails.logo,
+      src: _vm.$asseturl + _vm.schooldetails.logo,
       alt: ""
     }
   }), _vm._v(" "), _c("h4", {
@@ -8854,7 +8854,7 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("ব্যবসায়ি")]), _vm._v(" "), _c("option", [_vm._v("কৃষি শ্রমিক")]), _vm._v(" "), _c("option", [_vm._v("ডাক্তার")]), _vm._v(" "), _c("option", [_vm._v("জেলে")]), _vm._v(" "), _c("option", [_vm._v("সরকারি চাকুরি")]), _vm._v(" "), _c("option", [_vm._v("কামার/কুমোর")]), _vm._v(" "), _c("option", [_vm._v("প্রবাসি")]), _vm._v(" "), _c("option", [_vm._v("ক্ষুদ্র ব্যবসায়ি")]), _vm._v(" "), _c("option", [_vm._v("শিক্ষক")]), _vm._v(" "), _c("option", [_vm._v("অকৃষি শ্রমিক")]), _vm._v(" "), _c("option", [_vm._v("অন্যান্য")])]), _vm._v(" "), _c("p", {
+  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("ব্যবসায়ি")]), _vm._v(" "), _c("option", [_vm._v("কৃষক")]), _vm._v(" "), _c("option", [_vm._v("কৃষি শ্রমিক")]), _vm._v(" "), _c("option", [_vm._v("ডাক্তার")]), _vm._v(" "), _c("option", [_vm._v("জেলে")]), _vm._v(" "), _c("option", [_vm._v("সরকারি চাকুরি")]), _vm._v(" "), _c("option", [_vm._v("কামার/কুমোর")]), _vm._v(" "), _c("option", [_vm._v("প্রবাসি")]), _vm._v(" "), _c("option", [_vm._v("ক্ষুদ্র ব্যবসায়ি")]), _vm._v(" "), _c("option", [_vm._v("শিক্ষক")]), _vm._v(" "), _c("option", [_vm._v("অকৃষি শ্রমিক")]), _vm._v(" "), _c("option", [_vm._v("অন্যান্য")])]), _vm._v(" "), _c("p", {
     directives: [{
       name: "show",
       rawName: "v-show",

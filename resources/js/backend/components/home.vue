@@ -13,23 +13,8 @@
                 <!-- Breadcubs Area End Here -->
                 <!-- Dashboard summery Start Here -->
                 <div class="row gutters-20"  v-show="$localStorage.getItem('role')=='admin' || $localStorage.getItem('role')=='teacher' ? true : false " style="display:none">
-                    <div class="col-xl-3 col-sm-6 col-12">
-                        <div class="dashboard-summery-one mg-b-20">
-                            <div class="row align-items-center">
-                                <div class="col-6">
-                                    <div class="item-icon bg-light-green ">
-                                        <i class="flaticon-classmates text-green"></i>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="item-content">
-                                        <div class="item-title">Students</div>
-                                        <div class="item-number"><span  >{{ totalstudents }}</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
                     <div class="col-xl-3 col-sm-6 col-12">
                         <div class="dashboard-summery-one mg-b-20">
                             <div class="row align-items-center">
@@ -47,6 +32,26 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="dashboard-summery-one mg-b-20">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <div class="item-icon bg-light-green ">
+                                        <i class="flaticon-classmates text-green"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="item-content">
+                                        <div class="item-title">Students</div>
+                                        <div class="item-number"><span  >{{ totalstudents }}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-xl-3 col-sm-6 col-12">
                         <div class="dashboard-summery-one mg-b-20">
                             <div class="row align-items-center">
@@ -57,8 +62,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="item-content">
-                                        <div class="item-title">Parents</div>
-                                        <div class="item-number"><span  >{{totalstudents}}</span></div>
+                                        <div class="item-title">New Applications</div>
+                                        <div class="item-number"><span  >{{newstudents}}</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -194,6 +199,7 @@ export default {
     async created() {
         this.getmonth();
          this.totalstudent();
+         this.newstudent();
          this.totalteacher();
          this.totalearn();
          this.visitors();
@@ -264,6 +270,7 @@ export default {
 
             year:new Date().getFullYear(),
             totalstudents:0,
+            newstudents:0,
             totalteachers:0,
             totalearns:0,
             totalpresent:0,
@@ -298,10 +305,17 @@ export default {
             const d = new Date();
             this.month = month[d.getMonth()];
             },
+
         totalstudent() {
             axios
                 .get(`/api/students/list?filter[school_id]=${this.school_id}&filter[StudentStatus]=Active&datatype=count`)
                 .then(({ data }) => (this.totalstudents = data))
+                .catch();
+        },
+        newstudent() {
+            axios
+                .get(`/api/students/list?filter[school_id]=${this.school_id}&filter[StudentStatus]=Pending&datatype=count`)
+                .then(({ data }) => (this.newstudents = data))
                 .catch();
         },
 
