@@ -852,7 +852,7 @@ console.log(event.target.result)
       async checkStudent(){
 
 
-            this.form.bigBroSisGroup = 'Humanities';
+            // this.form.bigBroSisGroup = 'Humanities';
 
         var res = await this.callApi('get',`/api/check/student/roll?StudentRoll=${this.form.bigBroSisRoll}&StudentClass=${this.form.bigBroSisClass}&StudentGroup=${this.form.bigBroSisGroup}&bigsis=1`,[]);
         // this.bissisBroDetails = res.data;
