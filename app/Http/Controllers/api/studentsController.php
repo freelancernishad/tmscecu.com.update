@@ -311,7 +311,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
 $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
-        $data['AdmissionID'] = $AdmissionID;
+
 
 
         $imageCount =  count(explode(';', $r->StudentPicture));
@@ -323,6 +323,7 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
 
         if ($id == '') {
+            $data['AdmissionID'] = $AdmissionID;
             $data['JoiningDate'] = date("Y-m-d");
             $data['StudentStatus'] = 'Applied';
             if($submit_type=='data_entry'){
