@@ -44,7 +44,7 @@
                             </h6>
                         </div>
                         <div class="col-md-12">
-                            <p>{{  schoolinfo.HISTORY_OF_THE_ORGANIZATION }}</p>
+                            <p  style="text-align: justify;">{{  schoolinfo.HISTORY_OF_THE_ORGANIZATION }}</p>
                         </div>
 
 
@@ -53,7 +53,7 @@
                                 প্রধান শিক্ষকের বাণী
                             </h6>
 
-                            <p>{{  schoolinfo.PRINCIPALS_WORDS }}</p>
+                            <p style="text-align: justify;">{{  schoolinfo.PRINCIPALS_WORDS }}</p>
                         </div>
 
 

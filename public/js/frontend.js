@@ -4883,11 +4883,19 @@ var render = function render() {
     staticClass: "row"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
-  }, [_c("p", [_vm._v(_vm._s(_vm.schoolinfo.HISTORY_OF_THE_ORGANIZATION))])]), _vm._v(" "), _c("div", {
+  }, [_c("p", {
+    staticStyle: {
+      "text-align": "justify"
+    }
+  }, [_vm._v(_vm._s(_vm.schoolinfo.HISTORY_OF_THE_ORGANIZATION))])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("h6", {
     staticClass: "serviceTitle position-relative defaltColor"
-  }, [_vm._v("\n                                প্রধান শিক্ষকের বাণী\n                            ")]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.schoolinfo.PRINCIPALS_WORDS))])])])])]), _vm._v(" "), _c("side-bar", {
+  }, [_vm._v("\n                                প্রধান শিক্ষকের বাণী\n                            ")]), _vm._v(" "), _c("p", {
+    staticStyle: {
+      "text-align": "justify"
+    }
+  }, [_vm._v(_vm._s(_vm.schoolinfo.PRINCIPALS_WORDS))])])])])]), _vm._v(" "), _c("side-bar", {
     attrs: {
       "class-name": "col-md-3"
     }
