@@ -48,7 +48,7 @@
                         </div>
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <h6 class="serviceTitle position-relative defaltColor">
                                 প্রধান শিক্ষকের বাণী
                             </h6>
@@ -57,13 +57,13 @@
                         </div>
 
 
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <h6 class="serviceTitle position-relative defaltColor">
                                সভাপতির বাণী
                             </h6>
 
                             <p>{{  schoolinfo.VICE_PRINCIPALS_STATEMENT }}</p>
-                        </div>
+                        </div> -->
 
 
 

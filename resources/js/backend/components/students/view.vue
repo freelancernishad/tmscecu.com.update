@@ -72,7 +72,7 @@
                                 <td class="font-medium text-dark-medium">{{ form.StudentGender }}</td>
                             </tr>
                             <tr>
-                                <td>Admission Date:</td>
+                                <td>Application Date:</td>
                                 <td class="font-medium text-dark-medium">{{ dateformatGlobal(form.created_at)[3]	 }}</td>
                             </tr>
                             <tr>
