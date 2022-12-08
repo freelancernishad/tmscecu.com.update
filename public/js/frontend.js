@@ -3398,6 +3398,7 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
         bigBroSis: "No",
         bigBroSisName: '',
         bigBroSisClass: '',
+        bigBroSisGroup: 'Humanities',
         bigBroSisRoll: '',
         StudentGroup: '',
         StudentAddress: '',
@@ -3531,14 +3532,30 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
       } //   console.log($event.target.result);
 
     },
-    checkstudent: function checkstudent() {
+    checkStudent: function checkStudent() {
       var _this3 = this;
 
-      if (this.form.StudentClass != 'Nine' || this.form.StudentClass != 'Ten') this.form.StudentGroup = '';
-      axios.get("/api/student/admissionid/genarate?school_id=".concat(this.form.school_id)).then(function (_ref) {
-        var data = _ref.data;
-        _this3.form.AdmissionID = data;
-      })["catch"]();
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var res;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this3.callApi('get', "/api/check/student/roll?StudentRoll=".concat(_this3.form.bigBroSisRoll, "&StudentClass=").concat(_this3.form.bigBroSisClass, "&StudentGroup=").concat(_this3.form.bigBroSisGroup, "&bigsis=1"), []);
+
+              case 2:
+                res = _context.sent;
+                // this.bissisBroDetails = res.data;
+                _this3.form.bigBroSisName = res.data.StudentName;
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     },
     previousTab: function previousTab() {
       this.currentActive--;
@@ -3586,51 +3603,20 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
     getdivisionFun: function getdivisionFun() {
       var _this5 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var res;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _this5.callApi('get', "/api/getdivisions", []);
-
-              case 2:
-                res = _context.sent;
-                _this5.getdivisions = res.data;
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    getdistrictFun: function getdistrictFun() {
-      var _this6 = this;
-
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var resdiv, res;
+        var res;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this6.callApi('get', "/api/getdivisions?id=".concat(_this6.Pdivision), []);
+                return _this5.callApi('get', "/api/getdivisions", []);
 
               case 2:
-                resdiv = _context2.sent;
-                // console.log(resdiv)
-                _this6.form.division = resdiv.data.bn_name;
-                _context2.next = 6;
-                return _this6.callApi('get', "/api/getdistrict?id=".concat(_this6.Pdivision), []);
-
-              case 6:
                 res = _context2.sent;
-                _this6.getdistricts = res.data;
+                _this5.getdivisions = res.data;
 
-              case 8:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -3638,27 +3624,28 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
         }, _callee2);
       }))();
     },
-    getthanaFun: function getthanaFun() {
-      var _this7 = this;
+    getdistrictFun: function getdistrictFun() {
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-        var res, resOwn;
+        var resdiv, res;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return _this7.callApi('get', "/api/getthana?id=".concat(_this7.applicant_present_district), []);
+                return _this6.callApi('get', "/api/getdivisions?id=".concat(_this6.Pdivision), []);
 
               case 2:
-                res = _context3.sent;
-                _this7.getthanas = res.data;
+                resdiv = _context3.sent;
+                // console.log(resdiv)
+                _this6.form.division = resdiv.data.bn_name;
                 _context3.next = 6;
-                return _this7.callApi('get', "/api/getdistrict?ownid=".concat(_this7.applicant_present_district), []);
+                return _this6.callApi('get', "/api/getdistrict?id=".concat(_this6.Pdivision), []);
 
               case 6:
-                resOwn = _context3.sent;
-                _this7.form.district = resOwn.data.bn_name;
+                res = _context3.sent;
+                _this6.getdistricts = res.data;
 
               case 8:
               case "end":
@@ -3668,29 +3655,27 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
         }, _callee3);
       }))();
     },
-    getuniounFun: function getuniounFun() {
-      var _this8 = this;
+    getthanaFun: function getthanaFun() {
+      var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-        var ress, res;
+        var res, resOwn;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return _this8.callApi('get', "/api/getthana?ownid=".concat(_this8.thana), []);
+                return _this7.callApi('get', "/api/getthana?id=".concat(_this7.applicant_present_district), []);
 
               case 2:
-                ress = _context4.sent;
-                // console.log(ress.data.bn_name);
-                _this8.form.upazila = ress.data.bn_name; // this.getuniouns = ress.data;
-
+                res = _context4.sent;
+                _this7.getthanas = res.data;
                 _context4.next = 6;
-                return _this8.callApi('get', "/api/getunioun?id=".concat(_this8.thana), []);
+                return _this7.callApi('get', "/api/getdistrict?ownid=".concat(_this7.applicant_present_district), []);
 
               case 6:
-                res = _context4.sent;
-                _this8.getuniouns = res.data;
+                resOwn = _context4.sent;
+                _this7.form.district = resOwn.data.bn_name;
 
               case 8:
               case "end":
@@ -3700,27 +3685,59 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
         }, _callee4);
       }))();
     },
-    submit: function submit() {
-      var _this9 = this;
+    getuniounFun: function getuniounFun() {
+      var _this8 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-        var res;
+        var ress, res;
         return _regeneratorRuntime().wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
+                _context5.next = 2;
+                return _this8.callApi('get', "/api/getthana?ownid=".concat(_this8.thana), []);
+
+              case 2:
+                ress = _context5.sent;
+                // console.log(ress.data.bn_name);
+                _this8.form.upazila = ress.data.bn_name; // this.getuniouns = ress.data;
+
+                _context5.next = 6;
+                return _this8.callApi('get', "/api/getunioun?id=".concat(_this8.thana), []);
+
+              case 6:
+                res = _context5.sent;
+                _this8.getuniouns = res.data;
+
+              case 8:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    submit: function submit() {
+      var _this9 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+        var res;
+        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
                 _this9.preloader = true;
 
                 if (!_this9.form.StudentPicture) {
-                  _context5.next = 8;
+                  _context6.next = 8;
                   break;
                 }
 
-                _context5.next = 4;
+                _context6.next = 4;
                 return _this9.callApi('post', "/api/students/form/submit", _this9.form);
 
               case 4:
-                res = _context5.sent;
+                res = _context6.sent;
 
                 //    console.log(res.status)
                 if (res.status == 201) {
@@ -3735,7 +3752,7 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
                 } // window.location.href=`/payment?studentId=${res.data.id}&type=Admission_fee`;
 
 
-                _context5.next = 10;
+                _context6.next = 10;
                 break;
 
               case 8:
@@ -3744,10 +3761,10 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vee_validate__WEBPACK_IMPORTED_M
 
               case 10:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5);
+        }, _callee6);
       }))();
     } // submit(){
     //     this.$root.$validator.validate('step'+this.totalTabs+'.*').then(valid => {
@@ -5334,7 +5351,7 @@ var render = function render() {
       "aria-current": "page",
       to: "/student/register"
     }
-  }, [_vm._v("আবেদন")])], 1), _vm._v(" "), _c("li", {
+  }, [_vm._v("ভর্তি আবেদন")])], 1), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("router-link", {
     staticClass: "text-light px-3 nav-link",
@@ -6540,7 +6557,7 @@ var render = function render() {
     attrs: {
       value: "Admission_fee"
     }
-  }, [_vm._v("ভর্তি ফি")]), _vm._v(" "), _c("option", {
+  }, [_vm._v("ভর্তি ফর্ম ফি")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "monthly_fee"
     }
@@ -7753,7 +7770,7 @@ var render = function render() {
       "data-vv-scope": "step1"
     },
     on: {
-      change: function change($event) {
+      change: [function ($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
           return o.selected;
         }).map(function (o) {
@@ -7762,7 +7779,7 @@ var render = function render() {
         });
 
         _vm.$set(_vm.form, "bigBroSisClass", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
+      }, _vm.checkStudent]
     }
   }, [_c("option", {
     attrs: {
@@ -7780,7 +7797,60 @@ var render = function render() {
       expression: "errors.has('step1.অধ্যয়নরত ভাই/বোনের শ্রেণি')"
     }],
     staticClass: "help is-danger"
-  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.অধ্যয়নরত ভাই/বোনের শ্রেণি")) + "\n                          ")])])]) : _vm._e(), _vm._v(" "), _vm.form.bigBroSis == "Yes" ? _c("div", {
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.অধ্যয়নরত ভাই/বোনের শ্রেণি")) + "\n                          ")])])]) : _vm._e(), _vm._v(" "), _vm.form.bigBroSisClass == "Nine" || _vm.form.bigBroSisClass == "Ten" ? _c("div", {
+    staticClass: "col-md-4",
+    attrs: {
+      id: "Spgroup"
+    }
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label"
+  }, [_vm._v("গ্রুপ")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.bigBroSisGroup,
+      expression: "form.bigBroSisGroup"
+    }, {
+      name: "validate",
+      rawName: "v-validate",
+      value: "required",
+      expression: "'required'"
+    }],
+    staticClass: "form-control",
+    staticStyle: {
+      width: "100%"
+    },
+    attrs: {
+      name: "ভাই/বোনের গ্রুপ",
+      "data-vv-scope": "step1"
+    },
+    on: {
+      change: [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+
+        _vm.$set(_vm.form, "bigBroSisGroup", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }, _vm.checkStudent]
+    }
+  }, [_c("option", {
+    attrs: {
+      value: ""
+    }
+  }, [_vm._v("\n                                নির্বাচন করুন\n                            ")]), _vm._v(" "), _c("option", [_vm._v("Science")]), _vm._v(" "), _c("option", [_vm._v("Humanities")])]), _vm._v(" "), _c("p", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.errors.has("step1.ভাই/বোনের গ্রুপ"),
+      expression: "errors.has('step1.ভাই/বোনের গ্রুপ')"
+    }],
+    staticClass: "help is-danger"
+  }, [_vm._v("\n                             " + _vm._s(_vm.errors.first("step1.ভাই/বোনের গ্রুপ")) + "\n                          ")])])]) : _vm._e(), _vm._v(" "), _vm.form.bigBroSis == "Yes" ? _c("div", {
     staticClass: "col-md-4"
   }, [_c("div", {
     staticClass: "form-group"
@@ -7809,6 +7879,7 @@ var render = function render() {
       value: _vm.form.bigBroSisRoll
     },
     on: {
+      keyup: _vm.checkStudent,
       input: function input($event) {
         if ($event.target.composing) return;
 

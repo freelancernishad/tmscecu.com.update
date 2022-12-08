@@ -323,7 +323,7 @@
                     <div class="form-group">
                         <label class="form_label">অধ্যয়নরত ভাই/বোনের শ্রেণি</label>
 
-                        <select  class="form-control"  style="width: 100%;" v-model="form.bigBroSisClass" name="অধ্যয়নরত ভাই/বোনের শ্রেণি"  v-validate="'required'" data-vv-scope="step1">
+                        <select  class="form-control"  style="width: 100%;" v-model="form.bigBroSisClass" name="অধ্যয়নরত ভাই/বোনের শ্রেণি" @change="checkStudent"  v-validate="'required'" data-vv-scope="step1">
                                 <option value="">
                                     নির্বাচন করুন
                                 </option>
@@ -339,10 +339,31 @@
                 </div>
 
 
+
+
+                <div class="col-md-4" v-if="form.bigBroSisClass=='Nine' || form.bigBroSisClass=='Ten'" id="Spgroup" >
+                    <div class="form-group">
+                        <label class="form_label">গ্রুপ</label>
+                        <select class="form-control" style="width: 100%;" v-model="form.bigBroSisGroup" name="ভাই/বোনের গ্রুপ" @change="checkStudent" v-validate="'required'" data-vv-scope="step1"  >
+                            <option value="">
+                                নির্বাচন করুন
+                            </option>
+                            <option>Science</option>
+                            <option>Humanities</option>
+                        </select>
+                        <p class="help is-danger" v-show="errors.has('step1.ভাই/বোনের গ্রুপ')">
+                             {{ errors.first('step1.ভাই/বোনের গ্রুপ') }}
+                          </p>
+                    </div>
+                    </div>
+
+
+
+
                 <div class="col-md-4"  v-if="form.bigBroSis=='Yes'"  >
                     <div class="form-group">
                         <label class="form_label">অধ্যয়নরত ভাই/বোনের রোল</label>
-                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের রোল" v-model="form.bigBroSisRoll" name="অধ্যয়নরত ভাই/বোনের রোল" v-validate="'required'"   data-vv-scope="step1" />
+                        <input class="form-control" type="text"  placeholder="অধ্যয়নরত ভাই/বোনের রোল" v-model="form.bigBroSisRoll" name="অধ্যয়নরত ভাই/বোনের রোল" @keyup="checkStudent" v-validate="'required'"   data-vv-scope="step1" />
                          <p class="help is-danger" v-show="errors.has('step1.অধ্যয়নরত ভাই/বোনের রোল')">
                              {{ errors.first('step1.অধ্যয়নরত ভাই/বোনের রোল') }}
                           </p>
@@ -987,6 +1008,7 @@ export default {
             bigBroSis:"No",
             bigBroSisName:'',
             bigBroSisClass:'',
+            bigBroSisGroup:'Humanities',
             bigBroSisRoll:'',
             StudentGroup:'',
             StudentAddress:'',
@@ -1174,18 +1196,17 @@ console.log(event.target.result)
         },
 
 
-            checkstudent(){
-
-            if(this.form.StudentClass!='Nine' || this.form.StudentClass!='Ten') this.form.StudentGroup=''
+        async checkStudent(){
 
 
-		axios.get(`/api/student/admissionid/genarate?school_id=${this.form.school_id}`)
-			.then(({data}) => {
-                this.form.AdmissionID = data;
+                // this.form.bigBroSisGroup = 'Humanities';
 
-            })
-			.catch()
-        },
+                var res = await this.callApi('get',`/api/check/student/roll?StudentRoll=${this.form.bigBroSisRoll}&StudentClass=${this.form.bigBroSisClass}&StudentGroup=${this.form.bigBroSisGroup}&bigsis=1`,[]);
+                // this.bissisBroDetails = res.data;
+                this.form.bigBroSisName = res.data.StudentName
+
+
+            },
 
 
 

@@ -116,7 +116,7 @@ class PaymentController extends Controller
                 'method' => $data['pi_det_info']['pi_name'],
             ];
 
-            smsSend("Dear $student->StudentNameEn,Your Admission Fee has been Paid.Please Wait for Admission Result.Your Application Id- $student->AdmissionID",$student->StudentPhoneNumber);
+            smsSend("Dear ".strtoupper($student->StudentNameEn).",Your Admission Fee has been Paid.Please Wait for Admission Result.Your Application Id- $student->AdmissionID",$student->StudentPhoneNumber);
 
 
         } else {

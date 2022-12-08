@@ -329,7 +329,7 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
             if($submit_type=='data_entry'){
                 $data['StudentStatus'] = 'Active';
             }
-            smsSend("Dear $r->StudentNameEn,Your Admission Apply has been Submit.Please Payment Your Application Fee.Your Application Id- $AdmissionID",$r->StudentPhoneNumber);
+            smsSend("Dear ".strtoupper($r->StudentNameEn).",Your Admission Apply has been Submit.Please Payment Your Application Fee.Your Application Id- $AdmissionID",$r->StudentPhoneNumber);
             $result =   student::create($data);
         } else {
             $student = student::find($r->id);
