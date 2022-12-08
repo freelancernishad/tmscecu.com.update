@@ -38,24 +38,7 @@ class PaymentController extends Controller
         $paymentStatus = 'none';
 
 
-        $paymentfilter = [
-            'type' => $type,
-            'admissionId' => $adminssionId,
-            'status' => 'Paid',
-        ];
-        if($type=='monthly_fee'){
 
-            $paymentfilter['month'] = $month;
-        }
-
-        $paidPaymentCount = payment::where($paymentfilter)->count();
-        if ($paidPaymentCount > 0) {
-
-            $paidPayment = payment::where($paymentfilter)->latest()->first();
-
-                 $paymentStatus = $paidPayment->status;
-
-        }
 
 
 
@@ -84,6 +67,31 @@ class PaymentController extends Controller
                 }
             }
         }
+
+
+        $paymentfilter = [
+            'type' => $type,
+            'admissionId' => $student->AdmissionID,
+            'status' => 'Paid',
+        ];
+        if($type=='monthly_fee'){
+
+            $paymentfilter['month'] = $month;
+        }
+
+
+         $paidPaymentCount = payment::where($paymentfilter)->count();
+        if ($paidPaymentCount > 0) {
+
+            $paidPayment = payment::where($paymentfilter)->latest()->first();
+
+                 $paymentStatus = $paidPayment->status;
+
+        }
+
+
+
+
 
 
 
@@ -120,7 +128,12 @@ class PaymentController extends Controller
         $Insertdata['ipnResponse'] = json_encode($data);
         // return $Insertdata;
         Log::info(json_encode($data));
-        $student->update(['StudentStatus' => 'Pending']);
+
+        $paymentType = $payment->type;
+        if($paymentType=='Admission_fee'){
+            $student->update(['StudentStatus' => 'Pending']);
+        }
+
         return $payment->update($Insertdata);
     }
     public function paymentCreate(Request $request)

@@ -145,10 +145,19 @@ Route::get('/payment/success/confirm', function (Request $request) {
     $transId = $request->transId;
 
      $payment = payment::where(['trxid'=>$transId,'status'=>'Paid'])->first();
-     $AdmissionID = $payment->admissionId;
-     $student = student::where(['AdmissionID'=>$AdmissionID])->first();
-    return view('applicationSuccess',compact('payment','student'));
-    return redirect("/student/applicant/copy/$payment->admissionId");
+
+   $paymentType = $payment->type;
+   if($paymentType=='Admission_fee'){
+    $AdmissionID = $payment->admissionId;
+    $student = student::where(['AdmissionID'=>$AdmissionID])->first();
+   return view('applicationSuccess',compact('payment','student'));
+   }else{
+ return redirect(url('/student/applicant/invoice/'.$transId));
+   }
+
+
+
+    // return redirect("/student/applicant/copy/$payment->admissionId");
 
 });
 
@@ -159,8 +168,11 @@ Route::get('/payment/success/confirm', function (Request $request) {
 
 
 Route::get('/payment/fail', function (Request $request) {
-echo "payment fail";
-return $request->all();
+    $transId = $request->transId;
+    $payment = payment::where('trxid',$transId)->first();
+
+
+    return redirect("/student/payment?adminssionId=$payment->admissionId&type=$payment->type");
 });
 
 Route::get('/payment/cancel', function (Request $request) {
