@@ -35,7 +35,11 @@ class countryApiController extends Controller
 
     public function getthana(Request $r)
     {
+        $ownid =  $r->ownid;
         $id =  $r->id;
+        if($ownid){
+            return Thana::find($ownid);
+        }
 
         if($id){
             return  Thana::where('district_id',$id)->get();
