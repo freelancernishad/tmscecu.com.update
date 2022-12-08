@@ -113,7 +113,7 @@ export default {
             },
             vfImages: [
                 // this.$asseturl + "assets/img/padmabanner.jpeg",
-               "https://tepriganjhighschool.edu.bd/public/backend/slider/1670087505____66768.jpeg",
+            //    "https://tepriganjhighschool.edu.bd/public/backend/slider/1670087505____66768.jpeg",
 
             ],
             vfTransitions: [
