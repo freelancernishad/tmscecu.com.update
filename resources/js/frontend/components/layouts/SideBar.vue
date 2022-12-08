@@ -17,11 +17,11 @@
                         </div>
                         <div class="py-2 text-center">
 
-                      <img :src="$asseturl+schooldetails.PRINCIPALS_IMGAGE" alt="">
+                      <img :src="$asseturl+schoolSettings.PRINCIPALS_IMGAGE" alt="">
 <br>
-                      <h3 class="mt-3">{{ schooldetails.Principals_name }}</h3>
+                      <h3 class="mt-3">{{ schoolSettings.Principals_name }}</h3>
                       <h3>প্রধান শিক্ষক</h3>
-                      <h3>{{ schooldetails.SCHOLL_NAME }}</h3>
+                      <h3>{{ schoolSettings.SCHOLL_NAME }}</h3>
 
 
                         </div>
@@ -56,7 +56,7 @@
                         <div class="py-2 text-center">
 
                             <div class="fb-page"
-                            :data-href="schooldetails.facebook_page"
+                            :data-href="schoolSettings.facebook_page"
                             data-width="380"
                             data-hide-cover="false"
                             data-show-facepile="true"></div>
@@ -167,7 +167,8 @@ getSchoolData(){
 
 },
 mounted(){
-this.getSchoolData()
+// this.getSchoolData()
+// this.schoolDetial('front');
 this.noticeFun()
 
 

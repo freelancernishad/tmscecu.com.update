@@ -11,6 +11,7 @@ const store = new Vuex.Store({
         userPermission:{},
         userRoles:{},
         Classes:{},
+        schooldd:{},
 
     },// as like data(){return:{}}
     mutations:{
@@ -27,6 +28,11 @@ const store = new Vuex.Store({
 
        async setUpdateUser(state,data){
             state.Users = data
+
+        },
+       async setschoolinfo(state,data){
+
+            state.schooldd = data
 
         },
        async setUpdateClasses(state,data){
@@ -52,6 +58,10 @@ const store = new Vuex.Store({
 
         getUpdateUser(state){
             return state.Users
+        },
+
+        getschoolinfo(state){
+            return state.schooldd
         },
 
         getUpdateClasses(state){

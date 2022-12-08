@@ -2369,7 +2369,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     var _this = this;
 
-    this.schoolDetial('front');
+    // this.schoolDetial('front');
     setTimeout(function () {
       _this.sliderimage();
     }, 2000);
@@ -2427,8 +2427,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     sliderimage: function sliderimage() {
       var _this4 = this;
 
-      // console.log(this.schoolinfo.slider)
-      this.schoolinfo.slider.forEach(function (element) {
+      // console.log(this.schoolSettings.slider)
+      this.schoolSettings.slider.forEach(function (element) {
         _this4.vfImages.push(_this4.$asseturl + element);
       });
     },
@@ -2534,7 +2534,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   mounted: function mounted() {
-    this.getSchoolData();
+    // this.getSchoolData()
+    // this.schoolDetial('front');
     this.noticeFun();
   }
 });
@@ -2586,7 +2587,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['classesList'],
+  props: ['classesList', 'school_detials'],
   created: function created() {
     var _this = this;
 
@@ -2595,9 +2596,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              // console.log(this.school_detials)
+              _this.$store.commit('setschoolinfo', _this.school_detials);
+
               _this.$store.commit('setUpdateClasses', _this.classesList);
 
-            case 1:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -2607,8 +2611,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      curentdate: '',
-      schooldetails: {}
+      curentdate: '' // schooldetails:{},
+
     };
   },
   watch: {
@@ -2621,24 +2625,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       deep: true
     }
   },
-  methods: {
-    getSchoolData: function getSchoolData() {
-      var _this2 = this;
-
-      axios.get("/api/school/settings?school_id=".concat(this.school_id, "&front=front")).then(function (_ref) {
-        var data = _ref.data;
-        _this2.schooldetails = data;
-      })["catch"]();
-    }
+  methods: {// getSchoolData(){
+    //     axios.get(`/api/school/settings?school_id=${this.school_id}&front=front`)
+    //     .then(({ data }) => {
+    //         this.schooldetails = data;
+    //     })
+    //     .catch()
+    // },
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this2 = this;
 
-    this.getSchoolData();
-    this.schoolDetial();
+    // this.getSchoolData();
+    // this.schoolDetial('front');
     this.curentdate = User.dateformat(new Date())[3];
     setInterval(function () {
-      _this3.curenttime = User.dateformat(new Date())[3];
+      _this2.curenttime = User.dateformat(new Date())[3];
     }, 1000);
   }
 });
@@ -4887,7 +4889,7 @@ var render = function render() {
     staticStyle: {
       "text-align": "justify"
     }
-  }, [_vm._v(_vm._s(_vm.schoolinfo.HISTORY_OF_THE_ORGANIZATION))])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.schoolSettings.HISTORY_OF_THE_ORGANIZATION))])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("h6", {
     staticClass: "serviceTitle position-relative defaltColor"
@@ -4895,7 +4897,7 @@ var render = function render() {
     staticStyle: {
       "text-align": "justify"
     }
-  }, [_vm._v(_vm._s(_vm.schoolinfo.PRINCIPALS_WORDS))])])])])]), _vm._v(" "), _c("side-bar", {
+  }, [_vm._v(_vm._s(_vm.schoolSettings.PRINCIPALS_WORDS))])])])])]), _vm._v(" "), _c("side-bar", {
     attrs: {
       "class-name": "col-md-3"
     }
@@ -4989,12 +4991,12 @@ var render = function render() {
     staticClass: "py-2 text-center"
   }, [_c("img", {
     attrs: {
-      src: _vm.$asseturl + _vm.schooldetails.PRINCIPALS_IMGAGE,
+      src: _vm.$asseturl + _vm.schoolSettings.PRINCIPALS_IMGAGE,
       alt: ""
     }
   }), _vm._v(" "), _c("br"), _vm._v(" "), _c("h3", {
     staticClass: "mt-3"
-  }, [_vm._v(_vm._s(_vm.schooldetails.Principals_name))]), _vm._v(" "), _c("h3", [_vm._v("প্রধান শিক্ষক")]), _vm._v(" "), _c("h3", [_vm._v(_vm._s(_vm.schooldetails.SCHOLL_NAME))])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.schoolSettings.Principals_name))]), _vm._v(" "), _c("h3", [_vm._v("প্রধান শিক্ষক")]), _vm._v(" "), _c("h3", [_vm._v(_vm._s(_vm.schoolSettings.SCHOLL_NAME))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-12 col-md-6 col-sm-12"
   }, [_c("div", {
     staticClass: "pb-2"
@@ -5044,7 +5046,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "fb-page",
     attrs: {
-      "data-href": _vm.schooldetails.facebook_page,
+      "data-href": _vm.schoolSettings.facebook_page,
       "data-width": "380",
       "data-hide-cover": "false",
       "data-show-facepile": "true"
@@ -5239,7 +5241,7 @@ var render = function render() {
     staticStyle: {
       "font-size": "14px"
     }
-  }, [_c("span", [_vm._v(_vm._s(_vm.schoolinfo.SCHOLL_NAME) + " এ\n                                স্বাগতম")])]), _vm._v(" "), _c("div", {
+  }, [_c("span", [_vm._v(_vm._s(_vm.schoolSettings.SCHOLL_NAME) + " এ\n                                স্বাগতম")])]), _vm._v(" "), _c("div", {
     staticClass: "topheaderItem col-md-6 col-6 text-right",
     staticStyle: {
       "font-size": "14px"
@@ -5264,7 +5266,7 @@ var render = function render() {
     staticClass: "img-fluid",
     attrs: {
       width: "75px",
-      src: _vm.schoolinfo.logo,
+      src: _vm.$asseturl + _vm.schoolSettings.logo,
       alt: ""
     }
   }), _vm._v(" "), _c("span", {
@@ -5281,7 +5283,7 @@ var render = function render() {
       "font-size": "25px",
       "border-bottom": "1px solid #6db5ae"
     }
-  }, [_vm._v(_vm._s(_vm.schoolinfo.SCHOLL_NAME))]), _vm._v(" "), _c("span", {
+  }, [_vm._v(_vm._s(_vm.schoolSettings.SCHOLL_NAME))]), _vm._v(" "), _c("span", {
     staticStyle: {
       "font-size": "15px",
       color: "#570abd",
@@ -5405,7 +5407,7 @@ var render = function render() {
     }
   }, [_c("b", [_vm._v(" পরিকল্পনা ও বাস্তবায়নে:")]), _vm._v(" "), _c("h3", {
     staticClass: "mt-1"
-  }, [_vm._v(_vm._s(_vm.schooldetails.Principals_name))]), _vm._v(" "), _c("h3", {}, [_vm._v("প্রধান শিক্ষক")]), _vm._v(" "), _c("h3", {}, [_vm._v(_vm._s(_vm.schooldetails.SCHOLL_NAME))])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.schoolSettings.Principals_name))]), _vm._v(" "), _c("h3", {}, [_vm._v("প্রধান শিক্ষক")]), _vm._v(" "), _c("h3", {}, [_vm._v(_vm._s(_vm.schoolSettings.SCHOLL_NAME))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }), _vm._v(" "), _vm._m(1)])])])], 2);
 };
@@ -10789,7 +10791,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         str = "Agriculture";
       } else if (str == 'উচ্চতর গণিত') {
         str = "Higher_Mathematics";
-      } else if (str == 'তথ্য ও যোগাযোগ প্রযোক্তি') {
+      } else if (str == 'তথ্য ও যোগাযোগ প্রযুক্তি') {
         str = "ICT";
       } else if (str == 'শারীরিক শিক্ষা ও স্বাস্থ্য') {
         str = "Physical_Education_and_Health";
@@ -10820,7 +10822,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       //         "ইসলাম-ধর্ম":"ReligionIslam",
       //         "হিন্দু-ধর্ম":"ReligionHindu",
       //         "কৃষি":"Agriculture",
-      //         "তথ্য ও যোগাযোগ প্রযোক্তি":"ICT",
+      //         "তথ্য ও যোগাযোগ প্রযুক্তি":"ICT",
       // }
       //     for (var x in banglaNumber) {
       //         str = str.replace(new RegExp(x, 'g'), banglaNumber[x]);
@@ -10891,7 +10893,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else if (str == 'Agriculture') {
         str = "কৃষি শিক্ষা";
       } else if (str == 'ICT') {
-        str = "তথ্য ও যোগাযোগ প্রযোক্তি";
+        str = "তথ্য ও যোগাযোগ প্রযুক্তি";
       } else if (str == 'Physical_Education_and_Health') {
         str = "শারীরিক শিক্ষা ও স্বাস্থ্য";
       } else if (str == 'Arts_and_Crafts') {
@@ -10921,7 +10923,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       //     "ReligionIslam": "ইসলাম-ধর্ম",
       //     "ReligionHindu": "হিন্দু-ধর্ম",
       //     "Agriculture": "কৃষি",
-      //     "ICT": "তথ্য ও যোগাযোগ প্রযোক্তি"
+      //     "ICT": "তথ্য ও যোগাযোগ প্রযুক্তি"
       // }
       // for (var x in banglaNumber) {
       //     str = str.replace(new RegExp(x, 'g'), banglaNumber[x]);
@@ -10995,7 +10997,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
     'Users': 'getUpdateUser',
-    'classess': 'getUpdateClasses'
+    'classess': 'getUpdateClasses',
+    'schoolSettings': 'getschoolinfo'
   })),
   mounted: function mounted() {}
 });
@@ -11737,7 +11740,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     Users: {},
     userPermission: {},
     userRoles: {},
-    Classes: {}
+    Classes: {},
+    schooldd: {}
   },
   // as like data(){return:{}}
   mutations: {
@@ -11764,13 +11768,13 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
         }, _callee);
       }))();
     },
-    setUpdateClasses: function setUpdateClasses(state, data) {
+    setschoolinfo: function setschoolinfo(state, data) {
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                state.Classes = data;
+                state.schooldd = data;
 
               case 1:
               case "end":
@@ -11778,6 +11782,22 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
             }
           }
         }, _callee2);
+      }))();
+    },
+    setUpdateClasses: function setUpdateClasses(state, data) {
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                state.Classes = data;
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     },
     setUserPermission: function setUserPermission(state, data) {
@@ -11790,6 +11810,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   getters: {
     getUpdateUser: function getUpdateUser(state) {
       return state.Users;
+    },
+    getschoolinfo: function getschoolinfo(state) {
+      return state.schooldd;
     },
     getUpdateClasses: function getUpdateClasses(state) {
       return state.Classes;

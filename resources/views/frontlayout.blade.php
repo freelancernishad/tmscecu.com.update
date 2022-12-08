@@ -112,7 +112,7 @@ h5 {
 
 
 
-        <component :is="$route.meta.layout || 'div'" :classes-list="{{ $classess }}">
+        <component :is="$route.meta.layout || 'div'" :classes-list="{{ $classess }}" :school_detials="{{ $school_detials }}">
             <router-view />
           </component>
 

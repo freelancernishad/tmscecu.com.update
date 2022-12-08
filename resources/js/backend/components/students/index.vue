@@ -218,7 +218,7 @@ export default {
             ASSETURL: '',
             searchtype: "",
             name: "",
-            student_class: "",
+            student_class: "All",
             status: "Active",
 
             year: new Date().getFullYear(),

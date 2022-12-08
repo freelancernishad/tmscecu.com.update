@@ -94,7 +94,7 @@
                                     <div class="form-group student_class">
                                         <label></label>
                                         <br>
-                                        <input type="submit"  class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"  @click="filter" />
+                                        <input type="submit"  value="Search"   class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"  @click="filter" />
                                     </div>
                                 </div>
                             </div>

@@ -2402,7 +2402,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         str = "Agriculture";
       } else if (str == 'উচ্চতর গণিত') {
         str = "Higher_Mathematics";
-      } else if (str == 'তথ্য ও যোগাযোগ প্রযোক্তি') {
+      } else if (str == 'তথ্য ও যোগাযোগ প্রযুক্তি') {
         str = "ICT";
       } else if (str == 'শারীরিক শিক্ষা ও স্বাস্থ্য') {
         str = "Physical_Education_and_Health";
@@ -2433,7 +2433,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       //         "ইসলাম-ধর্ম":"ReligionIslam",
       //         "হিন্দু-ধর্ম":"ReligionHindu",
       //         "কৃষি":"Agriculture",
-      //         "তথ্য ও যোগাযোগ প্রযোক্তি":"ICT",
+      //         "তথ্য ও যোগাযোগ প্রযুক্তি":"ICT",
       // }
       //     for (var x in banglaNumber) {
       //         str = str.replace(new RegExp(x, 'g'), banglaNumber[x]);
@@ -2504,7 +2504,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else if (str == 'Agriculture') {
         str = "কৃষি শিক্ষা";
       } else if (str == 'ICT') {
-        str = "তথ্য ও যোগাযোগ প্রযোক্তি";
+        str = "তথ্য ও যোগাযোগ প্রযুক্তি";
       } else if (str == 'Physical_Education_and_Health') {
         str = "শারীরিক শিক্ষা ও স্বাস্থ্য";
       } else if (str == 'Arts_and_Crafts') {
@@ -2534,7 +2534,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       //     "ReligionIslam": "ইসলাম-ধর্ম",
       //     "ReligionHindu": "হিন্দু-ধর্ম",
       //     "Agriculture": "কৃষি",
-      //     "ICT": "তথ্য ও যোগাযোগ প্রযোক্তি"
+      //     "ICT": "তথ্য ও যোগাযোগ প্রযুক্তি"
       // }
       // for (var x in banglaNumber) {
       //     str = str.replace(new RegExp(x, 'g'), banglaNumber[x]);
@@ -2608,7 +2608,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
     'Users': 'getUpdateUser',
-    'classess': 'getUpdateClasses'
+    'classess': 'getUpdateClasses',
+    'schoolSettings': 'getschoolinfo'
   })),
   mounted: function mounted() {}
 });

@@ -156,7 +156,7 @@ export default {
                 str = "Agriculture";
             } else if (str == 'উচ্চতর গণিত') {
                 str = "Higher_Mathematics";
-            } else if (str == 'তথ্য ও যোগাযোগ প্রযোক্তি') {
+            } else if (str == 'তথ্য ও যোগাযোগ প্রযুক্তি') {
                 str = "ICT";
             } else if (str == 'শারীরিক শিক্ষা ও স্বাস্থ্য') {
                 str = "Physical_Education_and_Health";
@@ -188,7 +188,7 @@ export default {
             //         "ইসলাম-ধর্ম":"ReligionIslam",
             //         "হিন্দু-ধর্ম":"ReligionHindu",
             //         "কৃষি":"Agriculture",
-            //         "তথ্য ও যোগাযোগ প্রযোক্তি":"ICT",
+            //         "তথ্য ও যোগাযোগ প্রযুক্তি":"ICT",
             // }
             //     for (var x in banglaNumber) {
             //         str = str.replace(new RegExp(x, 'g'), banglaNumber[x]);
@@ -264,7 +264,7 @@ export default {
             } else if (str == 'Agriculture') {
                 str = "কৃষি শিক্ষা";
             } else if (str == 'ICT') {
-                str = "তথ্য ও যোগাযোগ প্রযোক্তি";
+                str = "তথ্য ও যোগাযোগ প্রযুক্তি";
             } else if (str == 'Physical_Education_and_Health') {
                 str = "শারীরিক শিক্ষা ও স্বাস্থ্য";
             } else if (str == 'Arts_and_Crafts') {
@@ -297,7 +297,7 @@ export default {
             //     "ReligionIslam": "ইসলাম-ধর্ম",
             //     "ReligionHindu": "হিন্দু-ধর্ম",
             //     "Agriculture": "কৃষি",
-            //     "ICT": "তথ্য ও যোগাযোগ প্রযোক্তি"
+            //     "ICT": "তথ্য ও যোগাযোগ প্রযুক্তি"
             // }
             // for (var x in banglaNumber) {
             //     str = str.replace(new RegExp(x, 'g'), banglaNumber[x]);
@@ -378,6 +378,7 @@ export default {
 
             'Users' : 'getUpdateUser',
             'classess' : 'getUpdateClasses',
+            'schoolSettings' : 'getschoolinfo',
         }),
 
 

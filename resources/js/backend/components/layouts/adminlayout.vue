@@ -285,8 +285,9 @@
         <li class="nav-item">
             <router-link    :to="{name:'settings'}" class="nav-link"><i class="fas fa-angle-right"></i> School Profile</router-link>
         </li>
-        <li class="nav-item"><router-link    :to="{name:'sliderSettings'}" class="nav-link"><i class="fas fa-angle-right"></i> Seo Settings</router-link></li>
-        <li class="nav-item"><router-link    :to="{name:'seoSettings'}" class="nav-link"><i class="fas fa-angle-right"></i> Slider</router-link></li>
+        <li class="nav-item"><router-link    :to="{name:'seoSettings'}" class="nav-link"><i class="fas fa-angle-right"></i> Seo Settings</router-link></li>
+        <li class="nav-item"><router-link    :to="{name:'sliderSettings'}" class="nav-link"><i class="fas fa-angle-right"></i> Slider</router-link></li>
+
 
 
     </ul>

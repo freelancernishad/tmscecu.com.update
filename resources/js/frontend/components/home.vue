@@ -44,7 +44,7 @@
                             </h6>
                         </div>
                         <div class="col-md-12">
-                            <p  style="text-align: justify;">{{  schoolinfo.HISTORY_OF_THE_ORGANIZATION }}</p>
+                            <p  style="text-align: justify;">{{  schoolSettings.HISTORY_OF_THE_ORGANIZATION }}</p>
                         </div>
 
 
@@ -53,7 +53,7 @@
                                 প্রধান শিক্ষকের বাণী
                             </h6>
 
-                            <p style="text-align: justify;">{{  schoolinfo.PRINCIPALS_WORDS }}</p>
+                            <p style="text-align: justify;">{{  schoolSettings.PRINCIPALS_WORDS }}</p>
                         </div>
 
 
@@ -62,7 +62,7 @@
                                সভাপতির বাণী
                             </h6>
 
-                            <p>{{  schoolinfo.VICE_PRINCIPALS_STATEMENT }}</p>
+                            <p>{{  schoolSettings.VICE_PRINCIPALS_STATEMENT }}</p>
                         </div> -->
 
 
@@ -152,7 +152,7 @@ export default {
         };
     },
     mounted() {
-        this.schoolDetial('front');
+        // this.schoolDetial('front');
         setTimeout(() => {
 
             this.sliderimage();
@@ -173,8 +173,8 @@ export default {
 
 
         sliderimage(){
-            // console.log(this.schoolinfo.slider)
-            this.schoolinfo.slider.forEach(element => {
+            // console.log(this.schoolSettings.slider)
+            this.schoolSettings.slider.forEach(element => {
                 this.vfImages.push(this.$asseturl + element)
             });
         },

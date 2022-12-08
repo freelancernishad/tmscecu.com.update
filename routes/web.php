@@ -5,15 +5,17 @@ use App\Models\payment;
 use App\Models\student;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use App\Models\school_detail;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-
 use App\Http\Controllers\frontendController;
 use App\Http\Controllers\api\resultController;
 use App\Http\Controllers\Auth\LoginController;
@@ -263,6 +265,34 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
 });
 Route::get('/{vue_capture?}', function () {
 
+    echo "
+    <script>
+            function setCookie(name,value,days) {
+            var expires = '';
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = '; expires=' + date.toUTCString();
+            }
+            document.cookie = name + '=' + (value || '')  + expires + '; path=/';
+            }
+            var myItem = localStorage.getItem('getschoolid');
+
+            setCookie('getschoolid', myItem, 7);
+
+    </script>
+
+
+
+    ";
+
+    $school_id = '125983';
+    if(isset($_COOKIE["getschoolid"])){
+        $school_id = htmlspecialchars($_COOKIE["getschoolid"]);
+    }
+
+
+
 
 
         // return  Uniouninfo::find(1);
@@ -270,7 +300,10 @@ Route::get('/{vue_capture?}', function () {
       $uniounDetials = json_decode(json_encode($uniounDetials));
       $classess = json_encode(['Six', 'Seven', 'Eight', 'Nine', 'Ten']);
 
+    //    $school_id = (string)"<script>document.write(localStorage.getItem('getschoolid'))</script>";
 
-     return view('frontlayout',compact('uniounDetials','classess'));
+      $school_detials = school_detail::where("school_id","$school_id")->first();
+      $school_detials['slider'] =  json_decode($school_detials->slider);
+     return view('frontlayout',compact('uniounDetials','classess','school_detials'));
 
 })->where('vue_capture', '.*')->name('frontend');

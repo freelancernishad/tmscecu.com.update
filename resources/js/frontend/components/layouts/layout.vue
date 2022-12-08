@@ -5,7 +5,7 @@
             <!-- Top header -->
             <div class="topHeader">
                     <div class="row">
-                        <div class="topheaderItem col-md-6 col-6" style="font-size: 14px;"><span>{{ schoolinfo.SCHOLL_NAME }} এ
+                        <div class="topheaderItem col-md-6 col-6" style="font-size: 14px;"><span>{{ schoolSettings.SCHOLL_NAME }} এ
                                 স্বাগতম</span></div>
                         <div class="topheaderItem col-md-6 col-6 text-right" style="font-size: 14px;"><span
                                 style="padding: 8px 10px;margin-right: 9px;">{{
@@ -22,9 +22,9 @@
                 <div class="container-fluid">
                     <div class="row py-2 for_mobile">
                         <div class="col-lg-12 col-md-12 col-sm-12 logo school_logo" style="display: flex;">
-                                <img class="img-fluid" width="75px" :src="schoolinfo.logo" alt="">
+                                <img class="img-fluid" width="75px" :src="$asseturl+schoolSettings.logo" alt="">
                                 <span class="text-dark" style="font-size:20px;display: flex;flex-direction: column;justify-content: center;margin-left: 15px;">
-                                <span style="font-size: 25px;border-bottom: 1px solid #6db5ae;">{{ schoolinfo.SCHOLL_NAME }}</span>
+                                <span style="font-size: 25px;border-bottom: 1px solid #6db5ae;">{{ schoolSettings.SCHOLL_NAME }}</span>
                                 <span style="font-size: 15px;color: #570abd;font-weight: 600;letter-spacing: 2px;">TEPRIGANJ ADARSHA B.L HIGH SCHOOL</span>
                                 </span>
 
@@ -71,7 +71,7 @@
                             <li class="nav-item">
                                 <router-link class="text-light px-3 nav-link " aria-current="page" :to="{name:'payment'}">পেমেন্ট</router-link>
                             </li>
-                            
+
                             <li class="nav-item dropdown">
                                 <router-link class="text-light px-3 nav-link" to="/result" id="navbarDropdown" >
                                     ফলাফল
@@ -142,9 +142,9 @@
                         <div class="col-md-4">
                             <ul class="footerList">
                                 <li style="font-size:font-size:15px"> <b> পরিকল্পনা ও বাস্তবায়নে:</b>
-                                    <h3 class="mt-1">{{ schooldetails.Principals_name }}</h3>
+                                    <h3 class="mt-1">{{ schoolSettings.Principals_name }}</h3>
                                     <h3 class="">প্রধান শিক্ষক</h3>
-                                    <h3 class="">{{ schooldetails.SCHOLL_NAME }}</h3>
+                                    <h3 class="">{{ schoolSettings.SCHOLL_NAME }}</h3>
 
 
                                 </li>
@@ -193,15 +193,17 @@
 </template>
 <script>
 export default {
-    props: ['classesList'],
+    props: ['classesList','school_detials'],
     async created() {
+        // console.log(this.school_detials)
+        this.$store.commit('setschoolinfo', this.school_detials)
         this.$store.commit('setUpdateClasses', this.classesList)
 
     },
     data() {
         return {
             curentdate:'',
-            schooldetails:{},
+            // schooldetails:{},
         }
     },
     watch: {
@@ -217,18 +219,18 @@ export default {
     methods: {
 
 
-        getSchoolData(){
-            axios.get(`/api/school/settings?school_id=${this.school_id}&front=front`)
-            .then(({ data }) => {
-                this.schooldetails = data;
-            })
-            .catch()
-        },
+        // getSchoolData(){
+        //     axios.get(`/api/school/settings?school_id=${this.school_id}&front=front`)
+        //     .then(({ data }) => {
+        //         this.schooldetails = data;
+        //     })
+        //     .catch()
+        // },
 
     },
     mounted() {
-        this.getSchoolData();
-        this.schoolDetial();
+        // this.getSchoolData();
+        // this.schoolDetial('front');
         this.curentdate = User.dateformat(new Date())[3]
         setInterval(() => {
             this.curenttime = User.dateformat(new Date())[3]

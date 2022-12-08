@@ -73,12 +73,12 @@ class SchoolDetailController extends Controller
         } else {
 
 
-            $data['logo'] = base64($result->logo);
-            $data['PRINCIPALS_IMGAGE'] = base64($result->PRINCIPALS_IMGAGE);
-            $data['PRINCIPALS_Signature'] = base64($result->PRINCIPALS_Signature);
-            $data['HISTORY_OF_THE_ORGANIZATION_IMAGE'] = base64($result->HISTORY_OF_THE_ORGANIZATION_IMAGE);
-            $data['VICE_PRINCIPALS_IMGAGE'] = base64($result->VICE_PRINCIPALS_IMGAGE);
-            $data['VICE_PRINCIPALS_Signature'] = base64($result->VICE_PRINCIPALS_Signature);
+            $data['logo'] = asset($result->logo);
+            $data['PRINCIPALS_IMGAGE'] = asset($result->PRINCIPALS_IMGAGE);
+            $data['PRINCIPALS_Signature'] = asset($result->PRINCIPALS_Signature);
+            $data['HISTORY_OF_THE_ORGANIZATION_IMAGE'] = asset($result->HISTORY_OF_THE_ORGANIZATION_IMAGE);
+            $data['VICE_PRINCIPALS_IMGAGE'] = asset($result->VICE_PRINCIPALS_IMGAGE);
+            $data['VICE_PRINCIPALS_Signature'] = asset($result->VICE_PRINCIPALS_Signature);
 
 
 
@@ -124,6 +124,7 @@ class SchoolDetailController extends Controller
     public function school_update(Request $request)
     {
 
+
         $id = $request->id;
         $school_detail = school_detail::find($id);
 
@@ -162,23 +163,23 @@ class SchoolDetailController extends Controller
 
         // return $school_detail->slider;
 
-        foreach (json_decode($school_detail->slider) as $value) {
 
-            if (File::exists($value)) {
-                unlink($value);
-            }
-        }
-
-        //  return $request->slider;
 
 
         $images = [];
         foreach ($request->slider as $key => $value) {
-            $Image = $value['path'];
 
-            $image_url =  fileupload($Image, 'backend/slider/', 960, 500);
 
-            array_push($images, $image_url);
+           $Image = $value['path'];
+
+
+                $image_url =  fileupload($Image, 'backend/slider/', 960, 500);
+
+                array_push($images, $image_url);
+
+
+
+
         }
         $slider =  json_encode($images);
 
@@ -189,45 +190,86 @@ class SchoolDetailController extends Controller
 
 
 
-        if (File::exists($school_detail->logo)) {
-            unlink($school_detail->logo);
-        }
-        $imgsize_arr = getimagesize($request->logo);
-        $logo_width = $imgsize_arr[0];
-        $logo_height = $imgsize_arr[1];
-        $data['logo'] = fileupload($request->logo, 'backend/logo/', $logo_width, $logo_height);
 
 
-        if (File::exists($school_detail->PRINCIPALS_IMGAGE)) {
-            unlink($school_detail->PRINCIPALS_IMGAGE);
-        }
-        $data['PRINCIPALS_IMGAGE'] = fileupload($request->PRINCIPALS_IMGAGE, 'backend/PRINCIPALS_IMGAGE/', 300, 300);
 
-        $imgPRINCIPALS_Signature = getimagesize($request->PRINCIPALS_Signature);
-        $PRINCIPALS_Signature_width = $imgPRINCIPALS_Signature[0];
-        $PRINCIPALS_Signature_height = $imgPRINCIPALS_Signature[1];
-        if (File::exists($school_detail->PRINCIPALS_Signature)) {
-            unlink($school_detail->PRINCIPALS_Signature);
-        }
-        $data['PRINCIPALS_Signature'] = fileupload($request->PRINCIPALS_Signature, 'backend/PRINCIPALS_Signature/', $PRINCIPALS_Signature_width, $PRINCIPALS_Signature_height);
 
-        if (File::exists($school_detail->HISTORY_OF_THE_ORGANIZATION_IMAGE)) {
-            unlink($school_detail->HISTORY_OF_THE_ORGANIZATION_IMAGE);
-        }
-        $data['HISTORY_OF_THE_ORGANIZATION_IMAGE'] = fileupload($request->HISTORY_OF_THE_ORGANIZATION_IMAGE, 'backend/HISTORY_OF_THE_ORGANIZATION_IMAGE/', 500, 300);
+        $logoCount =  count(explode(';', $request->logo));
+        if ($logoCount > 1) {
 
-        if (File::exists($school_detail->VICE_PRINCIPALS_IMGAGE)) {
-            unlink($school_detail->VICE_PRINCIPALS_IMGAGE);
-        }
-        $data['VICE_PRINCIPALS_IMGAGE'] = fileupload($request->VICE_PRINCIPALS_IMGAGE, 'backend/VICE_PRINCIPALS_IMGAGE/', 500, 300);
+            $imgsize_arr = getimagesize($request->logo);
+            $logo_width = $imgsize_arr[0];
+            $logo_height = $imgsize_arr[1];
 
-        $imgVICE_PRINCIPALS_Signature = getimagesize($request->VICE_PRINCIPALS_Signature);
-        $VICE_PRINCIPALS_Signature_width = $imgVICE_PRINCIPALS_Signature[0];
-        $VICE_PRINCIPALS_Signature_height = $imgVICE_PRINCIPALS_Signature[1];
-        if (File::exists($school_detail->VICE_PRINCIPALS_Signature)) {
-            unlink($school_detail->VICE_PRINCIPALS_Signature);
+
+            $data['logo'] = fileupload($request->logo, 'backend/logo/', $logo_width, $logo_height);
         }
-        $data['VICE_PRINCIPALS_Signature'] = fileupload($request->VICE_PRINCIPALS_Signature, 'backend/VICE_PRINCIPALS_Signature/', $VICE_PRINCIPALS_Signature_width, $VICE_PRINCIPALS_Signature_height);
+
+
+
+
+        $PRINCIPALS_IMGAGECount =  count(explode(';', $request->PRINCIPALS_IMGAGE));
+        if ($PRINCIPALS_IMGAGECount > 1) {
+
+            $data['PRINCIPALS_IMGAGE'] = fileupload($request->PRINCIPALS_IMGAGE, 'backend/PRINCIPALS_IMGAGE/', 300, 300);
+        }
+
+
+
+
+
+        $PRINCIPALS_SignatureCount =  count(explode(';', $request->PRINCIPALS_Signature));
+        if ($PRINCIPALS_SignatureCount > 1) {
+
+            $imgPRINCIPALS_Signature = getimagesize($request->PRINCIPALS_Signature);
+            $PRINCIPALS_Signature_width = $imgPRINCIPALS_Signature[0];
+            $PRINCIPALS_Signature_height = $imgPRINCIPALS_Signature[1];
+
+
+            $data['PRINCIPALS_Signature'] = fileupload($request->PRINCIPALS_Signature, 'backend/PRINCIPALS_Signature/', $PRINCIPALS_Signature_width, $PRINCIPALS_Signature_height);
+        }
+
+
+
+
+
+
+
+
+        $HISTORY_OF_THE_ORGANIZATION_IMAGECount =  count(explode(';', $request->HISTORY_OF_THE_ORGANIZATION_IMAGE));
+        if ($HISTORY_OF_THE_ORGANIZATION_IMAGECount > 1) {
+
+            $data['HISTORY_OF_THE_ORGANIZATION_IMAGE'] = fileupload($request->HISTORY_OF_THE_ORGANIZATION_IMAGE, 'backend/HISTORY_OF_THE_ORGANIZATION_IMAGE/', 500, 300);
+        }
+
+
+
+
+
+
+        $VICE_PRINCIPALS_IMGAGECount =  count(explode(';', $request->VICE_PRINCIPALS_IMGAGE));
+        if ($VICE_PRINCIPALS_IMGAGECount > 1) {
+
+            $data['VICE_PRINCIPALS_IMGAGE'] = fileupload($request->VICE_PRINCIPALS_IMGAGE, 'backend/VICE_PRINCIPALS_IMGAGE/', 500, 300);
+
+        }
+
+
+
+
+
+
+        $VICE_PRINCIPALS_SignatureCount =  count(explode(';', $request->VICE_PRINCIPALS_Signature));
+        if ($VICE_PRINCIPALS_SignatureCount > 1) {
+
+            $imgVICE_PRINCIPALS_Signature = getimagesize($request->VICE_PRINCIPALS_Signature);
+            $VICE_PRINCIPALS_Signature_width = $imgVICE_PRINCIPALS_Signature[0];
+            $VICE_PRINCIPALS_Signature_height = $imgVICE_PRINCIPALS_Signature[1];
+
+
+            $data['VICE_PRINCIPALS_Signature'] = fileupload($request->VICE_PRINCIPALS_Signature, 'backend/VICE_PRINCIPALS_Signature/', $VICE_PRINCIPALS_Signature_width, $VICE_PRINCIPALS_Signature_height);
+        }
+
 
 
 
