@@ -143,7 +143,13 @@ class PaymentController extends Controller
         $studentId = $request->studentId;
         $month = $request->month;
         $student = student::find($studentId);
+
         $studentMobile = '01909756552';
+        if($student->StudentPhoneNumber){
+
+            $studentMobile =$student->StudentPhoneNumber;
+        }
+
         $class = $student->StudentClass;
         $type = $request->type;
         $schoolFee = SchoolFee::where(['class' => $class, 'type' => $type])->latest()->first();
