@@ -118,6 +118,11 @@ class PaymentController extends Controller
 
             smsSend("Dear ".strtoupper($student->StudentNameEn).",Your Admission Fee has been Paid.Please Wait for Admission Result.Your Application Id- $student->AdmissionID",$student->StudentPhoneNumber);
 
+            $paymentType = $payment->type;
+            if($paymentType=='Admission_fee'){
+                $student->update(['StudentStatus' => 'Pending']);
+            }
+
 
         } else {
             $Insertdata = [
@@ -129,10 +134,7 @@ class PaymentController extends Controller
         // return $Insertdata;
         Log::info(json_encode($data));
 
-        $paymentType = $payment->type;
-        if($paymentType=='Admission_fee'){
-            $student->update(['StudentStatus' => 'Pending']);
-        }
+
 
         return $payment->update($Insertdata);
     }
