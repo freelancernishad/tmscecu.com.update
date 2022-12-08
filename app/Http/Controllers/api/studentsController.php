@@ -953,6 +953,7 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
             <div class='memoHead'>
 
 
+            <p style='text-align:right;font-size:16px'>অফিস কপি</p>
 
             <h2 style='font-weight: 500;' class='companiname'>$full_name</h2>
             <p class='defalttext'>$address</p>";
@@ -987,7 +988,7 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
         <table style='width:100%'>
         <tr>
-            <td colspan='2'>এডমিশন আইডিঃ- ".int_en_to_bn($AdmissionID)." </td>
+            <td >এডমিশন আইডিঃ- ".int_en_to_bn($AdmissionID)." </td>
             <td class='defaltfont' style='text-align:right'>রশিদ নং- ".int_en_to_bn($invoiceId)."</td>
         <tr>
 
@@ -995,25 +996,25 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
         <tr>
             <td class='defaltfont' >নাম: $StudentName </td>
-            <td class='defaltfont' colspan='2'>পিতার নাম- $StudentFatherName</td>
+            <td class='defaltfont' >পিতার নাম- $StudentFatherName</td>
 
         <tr>
 
         <tr>
-            <td class='defaltfont' >শ্রেণিঃ- $studentClass </td>";
+            <td class='defaltfont' >শ্রেণিঃ- ".class_en_to_bn($studentClass)." </td>";
 
             if($payment->type=='Admission_fee'){
 
-                $html .=" <td class='defaltfont' colspan='2'></td>";
+                $html .=" <td class='defaltfont' ></td>";
             }else{
 
-                $html .=" <td class='defaltfont' colspan='2'> রোলঃ- $studentRoll </td>";
+                $html .=" <td class='defaltfont' > রোলঃ- ".int_en_to_bn($studentRoll)." </td>";
             }
 
 
        $html .=" <tr>
         <tr>
-            <td class='defaltfont' >ঠিকানা: $studentAddress</td>
+            <td class='defaltfont'   >ঠিকানা: $studentAddress</td>
             <td class='defaltfont' >মোবাইল: ".int_en_to_bn($mobile_no)."</td>
 
         <tr>
@@ -1136,7 +1137,7 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
             <div class='memoHead'>
 
 
-
+            <p style='text-align:right;font-size:16px'>শিক্ষার্থীর কপি</p>
             <h2 style='font-weight: 500;' class='companiname'>$full_name</h2>
             <p class='defalttext'>$address</p>";
 
@@ -1170,7 +1171,7 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
         <table style='width:100%'>
         <tr>
-            <td colspan='2'>এডমিশন আইডিঃ- ".int_en_to_bn($AdmissionID)." </td>
+            <td >এডমিশন আইডিঃ- ".int_en_to_bn($AdmissionID)." </td>
             <td class='defaltfont' style='text-align:right'>রশিদ নং- ".int_en_to_bn($invoiceId)."</td>
         <tr>
 
@@ -1178,25 +1179,25 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
         <tr>
             <td class='defaltfont' >নাম: $StudentName </td>
-            <td class='defaltfont' colspan='2'>পিতার নাম- $StudentFatherName</td>
+            <td class='defaltfont' >পিতার নাম- $StudentFatherName</td>
 
         <tr>
 
         <tr>
-            <td class='defaltfont' >শ্রেণিঃ- $studentClass </td>";
+            <td class='defaltfont' >শ্রেণিঃ- ".class_en_to_bn($studentClass)." </td>";
 
             if($payment->type=='Admission_fee'){
 
-                $html .=" <td class='defaltfont' colspan='2'></td>";
+                $html .=" <td class='defaltfont'></td>";
             }else{
 
-                $html .=" <td class='defaltfont' colspan='2'> রোলঃ- $studentRoll </td>";
+                $html .=" <td class='defaltfont'> রোলঃ- ".int_en_to_bn($studentRoll)." </td>";
             }
 
 
        $html .=" <tr>
         <tr>
-            <td class='defaltfont' >ঠিকানা: $studentAddress</td>
+            <td class='defaltfont'   >ঠিকানা: $studentAddress</td>
             <td class='defaltfont' >মোবাইল: ".int_en_to_bn($mobile_no)."</td>
 
         <tr>

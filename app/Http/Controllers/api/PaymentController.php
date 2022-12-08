@@ -139,7 +139,7 @@ class PaymentController extends Controller
     public function paymentCreate(Request $request)
     {
 
-        $trnx_id = 'tephs'.time().rand(1,50);
+        $trnx_id = time().rand(1,50);
         $studentId = $request->studentId;
         $month = $request->month;
         $student = student::find($studentId);
