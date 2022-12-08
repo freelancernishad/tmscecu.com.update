@@ -166,8 +166,13 @@
                                                 Action
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+<!--
                                                 <a class="btn btn-info dropdown-item" target="_blank"
                                                     :href="'/dashboard/student/card/single/' + student.id + '/' + student.school_id" ><i class="fas fa-card"></i> Card</a>
+ -->
+
+
                                                 <router-link class="btn btn-info dropdown-item"
                                                     :to="{ name: 'studentview', params: { id: student.id } }"><i
                                                         class="fas fa-eye"></i>
@@ -205,7 +210,7 @@ export default {
             this.searchtype = 'filterclass'
         }
 
-// console.log(getschoolid)
+
 
     },
     data() {
@@ -243,7 +248,23 @@ export default {
         '$route': {
             handler(newValue, oldValue) {
 
+
+
+                if(this.$route.params.classname && this.$route.params.status){
+                    this.student_class = this.$route.params.classname
+                    this.status = this.$route.params.status
+
+
+                }else{
+                    this.student_class = "All"
+                    this.status = "Active"
+
+                }
+
+
                 this.allstudents()
+
+
             },
             deep: true
         }
@@ -256,7 +277,6 @@ export default {
             this.actioncheck = [];
             if (!this.allSelected) {
                 this.studentsall.forEach(student => {
-                    //    console.log(student.id)
                     this.actioncheck.push(student.id);
                 })
             }
@@ -300,7 +320,7 @@ export default {
 
 
             var res = await this.callApi('get',`${url}`,[]);
-            console.log(res)
+
             this.students = res.data
             this.studentsall = res.data.data
 
@@ -323,7 +343,7 @@ export default {
 
             //     axios.get(url)
             //         .then(({ data }) => {
-            //             console.log(data)
+            //
             //             this.students = data
             //             this.studentsall = data.data
 
