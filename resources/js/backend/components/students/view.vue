@@ -94,11 +94,11 @@
                             </tr>
                             <tr>
                                 <td>Father Name:</td>
-                                <td class="font-medium text-dark-medium"  style="text-transform: capitalize;">{{ form.StudentFatherName }}</td>
+                                <td class="font-medium text-dark-medium"  style="text-transform: uppercase;">{{ form.StudentFatherName }}</td>
                             </tr>
                             <tr>
                                 <td>Mother Name:</td>
-                                <td class="font-medium text-dark-medium"  style="text-transform: capitalize;">{{ form.StudentMotherName }}</td>
+                                <td class="font-medium text-dark-medium"  style="text-transform: uppercase;">{{ form.StudentMotherName }}</td>
                             </tr>
                             <tr>
                                 <td>Date Of Birth:</td>
