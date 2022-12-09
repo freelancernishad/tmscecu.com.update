@@ -3274,10 +3274,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                _this.preloader = true;
+                _context.next = 3;
                 return _this.callApi('post', "/api/payment/data/search", _this.form);
 
-              case 2:
+              case 3:
                 res = _context.sent;
 
                 if (res.data.student) {
@@ -3291,7 +3292,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.paymentUrl = res.data.paymentUrl;
                 _this.paymentStatus = res.data.paymentStatus; // var res2 = await this.callApi('get',`/api/student/applicant/copy/${res.data.student.AdmissionID}`,[]);
 
-              case 6:
+                _this.preloader = false;
+
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -5695,18 +5698,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.preloader == true ? _c("loader", {
+  return _c("div", [_vm.preloader ? _c("loader", {
     attrs: {
       object: "#ff9633",
       color1: "#ffffff",
       color2: "#17fd3d",
-      size: "5",
+      size: "25",
       speed: "2",
       bg: "#343a40",
       objectbg: "#999793",
       opacity: "80",
       disableScrolling: "false",
-      name: "circular"
+      name: "loading"
     }
   }) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("main", {
     staticClass: "container-fluid"
@@ -5814,18 +5817,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.preloader == true ? _c("loader", {
+  return _c("div", [_vm.preloader ? _c("loader", {
     attrs: {
       object: "#ff9633",
       color1: "#ffffff",
       color2: "#17fd3d",
-      size: "5",
+      size: "25",
       speed: "2",
       bg: "#343a40",
       objectbg: "#999793",
       opacity: "80",
       disableScrolling: "false",
-      name: "circular"
+      name: "loading"
     }
   }) : _vm._e(), _vm._v(" "), _c("section", {
     staticClass: "inner-header divider layer-overlay overlay-theme-colored-7"
@@ -5926,18 +5929,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.preloader == true ? _c("loader", {
+  return _c("div", [_vm.preloader ? _c("loader", {
     attrs: {
       object: "#ff9633",
       color1: "#ffffff",
       color2: "#17fd3d",
-      size: "5",
+      size: "25",
       speed: "2",
       bg: "#343a40",
       objectbg: "#999793",
       opacity: "80",
       disableScrolling: "false",
-      name: "circular"
+      name: "loading"
     }
   }) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("main", {
     staticClass: "container-fluid"
@@ -6226,18 +6229,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.preloader == true ? _c("loader", {
+  return _c("div", [_vm.preloader ? _c("loader", {
     attrs: {
       object: "#ff9633",
       color1: "#ffffff",
       color2: "#17fd3d",
-      size: "5",
+      size: "25",
       speed: "2",
       bg: "#343a40",
       objectbg: "#999793",
       opacity: "80",
       disableScrolling: "false",
-      name: "circular"
+      name: "loading"
     }
   }) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("main", {
     staticClass: "container-fluid"
@@ -6365,18 +6368,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.preloader == true ? _c("loader", {
+  return _c("div", [_vm.preloader ? _c("loader", {
     attrs: {
       object: "#ff9633",
       color1: "#ffffff",
       color2: "#17fd3d",
-      size: "5",
+      size: "25",
       speed: "2",
       bg: "#343a40",
       objectbg: "#999793",
       opacity: "80",
       disableScrolling: "false",
-      name: "circular"
+      name: "loading"
     }
   }) : _vm._e(), _vm._v(" "), _c("section", {
     staticClass: "inner-header divider layer-overlay overlay-theme-colored-7"
@@ -6502,18 +6505,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.preloader == true ? _c("loader", {
+  return _c("div", [_vm.preloader ? _c("loader", {
     attrs: {
       object: "#ff9633",
       color1: "#ffffff",
       color2: "#17fd3d",
-      size: "5",
+      size: "25",
       speed: "2",
       bg: "#343a40",
       objectbg: "#999793",
       opacity: "80",
       disableScrolling: "false",
-      name: "circular"
+      name: "loading"
     }
   }) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("main", {
     staticClass: "container-fluid"
@@ -6961,18 +6964,18 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container my-5"
-  }, [_vm.preloader == true ? _c("loader", {
+  }, [_vm.preloader ? _c("loader", {
     attrs: {
       object: "#ff9633",
       color1: "#ffffff",
       color2: "#17fd3d",
-      size: "5",
+      size: "25",
       speed: "2",
       bg: "#343a40",
       objectbg: "#999793",
       opacity: "80",
       disableScrolling: "false",
-      name: "circular"
+      name: "loading"
     }
   }) : _vm._e(), _vm._v(" "), _c("ul", {
     staticClass: "steps has-content-centered"
@@ -9121,18 +9124,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.preloader == true ? _c("loader", {
+  return _c("div", [_vm.preloader ? _c("loader", {
     attrs: {
       object: "#ff9633",
       color1: "#ffffff",
       color2: "#17fd3d",
-      size: "5",
+      size: "25",
       speed: "2",
       bg: "#343a40",
       objectbg: "#999793",
       opacity: "80",
       disableScrolling: "false",
-      name: "circular"
+      name: "loading"
     }
   }) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("main", {
     staticClass: "container-fluid"
@@ -9145,7 +9148,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-md-6"
+    staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "form-group student_class"
   }, [_c("label", [_vm._v("Class:")]), _vm._v(" "), _c("select", {
@@ -9181,7 +9184,7 @@ var render = function render() {
   }, [_vm._v("\n                                        SELECT\n                                    ")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist) {
     return _c("option", [_vm._v(_vm._s(classlist))]);
   })], 2)])]), _vm._v(" "), _vm.filterdata.student_class == "Nine" || _vm.filterdata.student_class == "Ten" ? _c("div", {
-    staticClass: "col-md-6"
+    staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Group:")]), _vm._v(" "), _c("select", {
@@ -9218,7 +9221,7 @@ var render = function render() {
   }, [_vm._v("select")]), _vm._v(" "), _vm._l(_vm.groups, function (group) {
     return _c("option", [_vm._v(_vm._s(group))]);
   })], 2)])]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
+    staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Exam Type:")]), _vm._v(" "), _c("select", {
@@ -9255,7 +9258,7 @@ var render = function render() {
   }, [_vm._v("select")]), _vm._v(" "), _vm._l(_vm.exams, function (exam) {
     return _c("option", [_vm._v(_vm._s(exam))]);
   })], 2)])]), _vm._v(" "), _vm.filterdata.examType == "Weakly Examination" ? _c("div", {
-    staticClass: "col-md-6"
+    staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Subject:")]), _vm._v(" "), _c("select", {
@@ -9292,7 +9295,7 @@ var render = function render() {
   }, [_vm._v("SELECT")]), _vm._v(" "), _vm._l(_vm.subjects, function (subject) {
     return _c("option", [_vm._v(_vm._s(subject))]);
   })], 2)])]) : _vm._e(), _vm._v(" "), _vm.filterdata.subject == "ধর্ম" && _vm.filterdata.examType == "Weakly Examination" ? _c("div", {
-    staticClass: "col-md-6"
+    staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Religion:")]), _vm._v(" "), _c("select", {
@@ -9329,7 +9332,7 @@ var render = function render() {
   }, [_vm._v("SELECT")]), _vm._v(" "), _vm._l(_vm.religions, function (religion) {
     return _c("option", [_vm._v(_vm._s(religion))]);
   })], 2)])]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
+    staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Year:")]), _vm._v(" "), _c("select", {
@@ -9366,7 +9369,7 @@ var render = function render() {
   }, [_vm._v("SELECT")]), _vm._v(" "), _vm._l(_vm.years, function (year) {
     return _c("option", [_vm._v(_vm._s(year))]);
   })], 2)])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
+    staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "form-group student_class"
   }, [_c("label", [_vm._v("Roll:")]), _vm._v(" "), _c("input", {
@@ -9399,9 +9402,10 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group student_class"
   }, [_c("label"), _vm._v(" "), _c("br"), _vm._v(" "), _c("input", {
-    staticClass: "btn-fill-lg btn-gradient-yellow btn-hover-bluedark",
+    staticClass: "btn btn-info",
     attrs: {
-      type: "submit"
+      type: "submit",
+      value: "Search"
     },
     on: {
       click: _vm.search
@@ -9470,18 +9474,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.preloader == true ? _c("loader", {
+  return _c("div", [_vm.preloader ? _c("loader", {
     attrs: {
       object: "#ff9633",
       color1: "#ffffff",
       color2: "#17fd3d",
-      size: "5",
+      size: "25",
       speed: "2",
       bg: "#343a40",
       objectbg: "#999793",
       opacity: "80",
       disableScrolling: "false",
-      name: "circular"
+      name: "loading"
     }
   }) : _vm._e(), _vm._v(" "), _c("section", {
     staticClass: "inner-header divider layer-overlay overlay-theme-colored-7"
@@ -9593,18 +9597,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.preloader == true ? _c("loader", {
+  return _c("div", [_vm.preloader ? _c("loader", {
     attrs: {
       object: "#ff9633",
       color1: "#ffffff",
       color2: "#17fd3d",
-      size: "5",
+      size: "25",
       speed: "2",
       bg: "#343a40",
       objectbg: "#999793",
       opacity: "80",
       disableScrolling: "false",
-      name: "circular"
+      name: "loading"
     }
   }) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("main", {
     staticClass: "container-fluid"
@@ -9985,18 +9989,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.preloader == true ? _c("loader", {
+  return _c("div", [_vm.preloader ? _c("loader", {
     attrs: {
       object: "#ff9633",
       color1: "#ffffff",
       color2: "#17fd3d",
-      size: "5",
+      size: "25",
       speed: "2",
       bg: "#343a40",
       objectbg: "#999793",
       opacity: "80",
       disableScrolling: "false",
-      name: "circular"
+      name: "loading"
     }
   }) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("main", {
     staticClass: "container-fluid"
@@ -10166,18 +10170,18 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm.preloader == true ? _c("loader", {
+  return _c("div", [_vm.preloader ? _c("loader", {
     attrs: {
       object: "#ff9633",
       color1: "#ffffff",
       color2: "#17fd3d",
-      size: "5",
+      size: "25",
       speed: "2",
       bg: "#343a40",
       objectbg: "#999793",
       opacity: "80",
       disableScrolling: "false",
-      name: "circular"
+      name: "loading"
     }
   }) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("main", {
     staticClass: "container-fluid"

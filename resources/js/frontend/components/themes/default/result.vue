@@ -1,7 +1,7 @@
 <template>
     <div>
-        <loader v-if="preloader == true" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2"
-            bg="#343a40" objectbg="#999793" opacity="80" disableScrolling="false" name="circular"></loader>
+        <loader v-if="preloader" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="25" speed="2"
+            bg="#343a40" objectbg="#999793" opacity="80" disableScrolling="false" name="loading"></loader>
         <section class="inner-header divider layer-overlay overlay-theme-colored-7">
             <div class="container">
                 <!-- Section Content -->
@@ -25,7 +25,7 @@
                 <div class="col-lg-9 my-3">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group student_class">
                                     <label>Class:</label>
                                     <select class="form-control" style="width: 100%;" @change="callSubjects"
@@ -37,7 +37,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6"
+                            <div class="col-md-12"
                                 v-if="filterdata.student_class == 'Nine' || filterdata.student_class == 'Ten'">
                                 <div class='form-group'>
                                     <label>Group:</label>
@@ -48,7 +48,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Exam Type:</label>
                                     <select class="form-control" style="width: 100%;" v-model="filterdata.examType"
@@ -58,7 +58,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6" v-if="filterdata.examType == 'Weakly Examination'">
+                            <div class="col-md-12" v-if="filterdata.examType == 'Weakly Examination'">
                                 <div class='form-group'>
                                     <label>Subject:</label>
                                     <select class='form-control' style='width: 100%;' v-model="filterdata.subject"
@@ -68,7 +68,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6"
+                            <div class="col-md-12"
                                 v-if="filterdata.subject == 'ধর্ম' && filterdata.examType == 'Weakly Examination'">
                                 <div class='form-group'>
                                     <label>Religion:</label>
@@ -79,7 +79,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class='form-group'>
                                     <label>Year:</label>
                                     <select class='form-control' style='width: 100%;' v-model="filterdata.year"
@@ -89,7 +89,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group student_class">
                                     <label>Roll:</label>
                                     <input type="number" class="form-control" v-model="filterdata.roll" id="date">
@@ -99,7 +99,7 @@
                                 <div class="form-group student_class">
                                     <label></label>
                                     <br>
-                                    <input type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"
+                                    <input type="submit" value="Search" class="btn btn-info"
                                         @click="search" />
                                 </div>
                             </div>

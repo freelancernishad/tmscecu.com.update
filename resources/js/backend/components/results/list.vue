@@ -149,7 +149,16 @@ export default {
 
             if(this.$route.params.student_class=='Nine' || this.$route.params.student_class=='Ten'){
                 group = this.$route.params.group;
-                subject = this.$route.params.subject;
+
+                if(this.$route.params.subject=='Agriculture' || this.$route.params.subject=='Higher_Mathematics'){
+
+                    subject = this.$route.params.subject;
+                }else{
+
+                    subject = '';
+                }
+
+
             }else{
                 group = '';
                 subject = '';

@@ -132,37 +132,28 @@ export default {
             var url = '';
             var religion = '';
             var group = '';
+            var subject = '';
             if (this.$route.params.religion == 'All') {
                 religion = ''
             } else {
                 religion = this.$route.params.religion;
             }
 
-
-            // if (this.$route.params.group == 'Science') {
-            //     if (this.$route.params.subject == 'physics' || this.$route.params.subject == 'Chemistry' || this.$route.params.subject == 'Biology' || this.$route.params.subject == 'B_and_B') {
-            //         group = this.$route.params.group;
-            //     } else {
-            //         group = '';
-            //     }
-            // } else if (this.$route.params.group == 'Humanities') {
-            //     if (this.$route.params.subject == 'vugol' || this.$route.params.subject == 'orthoniti' || this.$route.params.subject == 'itihas' || this.$route.params.subject == 'Science') {
-            //         group = this.$route.params.group;
-            //     } else {
-            //         group = '';
-            //     }
-            // } else if (this.$route.params.group == 'Commerce') {
-            //     group = this.$route.params.group;
-            // }
-
             if(this.$route.params.student_class=='Nine' || this.$route.params.student_class=='Ten'){
                 group = this.$route.params.group;
+
+                if(this.$route.params.subject=='Agriculture' || this.$route.params.subject=='Higher_Mathematics'){
+                    subject = this.$route.params.subject;
+                }else{
+                    subject = '';
+                }
             }else{
                 group = '';
+                subject = '';
             }
 
 
-            url = `/api/students/single?filter[StudentClass]=${this.$route.params.student_class}&filter[Year]=${this.year}&filter[StudentReligion]=${religion}&filter[StudentGroup]=${group}&filter[school_id]=${this.$route.params.school_id}&filter[StudentStatus]=Active`;
+            url = `/api/students/single?filter[StudentClass]=${this.$route.params.student_class}&filter[Year]=${this.year}&filter[StudentReligion]=${religion}&filter[StudentGroup]=${group}&filter[school_id]=${this.$route.params.school_id}&filter[StudentStatus]=Active&filter[StudentSubject]=${subject}`;
             axios.get(url)
                 .then(({ data }) => {
                     this.students = data
@@ -170,7 +161,7 @@ export default {
                         this.preloader = false;
                         // console.log('edit run')
                         data.forEach(value => {
-                            this.form.number[value.StudentRoll] = { 'CQ': null, 'MCQ': null, 'EXTRA': null, 'TOTAL': null, 'SUBJECT_TOTAL': null };
+                            this.form.number[value.StudentRoll] = { 'CQ': 0, 'MCQ': 0, 'EXTRA': 0, 'TOTAL': 0, 'SUBJECT_TOTAL': null };
                         });
                     }
                 })
@@ -181,6 +172,7 @@ export default {
             // this.form.editid = {};
             var url = '';
             var subject = '';
+            var group = 'Humanities';
             if (this.$route.params.subject == 'Religion') {
                 if (this.$route.params.religion == 'Islam') {
                     subject = 'ইসলামধর্ম';
@@ -193,9 +185,13 @@ export default {
                 subject = this.subjectconvertbn(this.$route.params.subject)
             }
 
+            if(this.$route.params.student_class=='Nine' || this.$route.params.student_class=='Ten'){
+                group = this.$route.params.group;
+            }else{
+                group = 'Humanities';
+            }
 
-
-            url = `/api/results/check?filter[school_id]=${this.$route.params.school_id}&filter[class]=${this.$route.params.student_class}&filter[year]=${this.year}&filter[exam_name]=${this.examcomvert(this.$route.params.examType)}&subject=${subject}`;
+            url = `/api/results/check?filter[school_id]=${this.$route.params.school_id}&filter[class]=${this.$route.params.student_class}&filter[year]=${this.year}&filter[exam_name]=${this.examcomvert(this.$route.params.examType)}&filter[class_group]=${group}&subject=${subject}`;
             axios.get(url)
                 .then(({ data }) => {
                     // console.log(this.subjectconverten(this.filterdata.subject));

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <loader v-if="preloader == true" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2"
-            bg="#343a40" objectbg="#999793" opacity="80" disableScrolling="false" name="circular"></loader>
+        <loader v-if="preloader" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="25" speed="2"
+            bg="#343a40" objectbg="#999793" opacity="80" disableScrolling="false" name="loading"></loader>
         <section class="inner-header divider layer-overlay overlay-theme-colored-7">
             <div class="container">
                 <!-- Section Content -->
@@ -219,6 +219,7 @@ export default {
     },
     methods: {
         async PaymentSearch() {
+            this.preloader = true
             var res = await this.callApi('post', `/api/payment/data/search`, this.form);
             if (res.data.student) {
                 this.student = res.data.student
@@ -230,6 +231,7 @@ export default {
             this.paymentUrl = res.data.paymentUrl
             this.paymentStatus = res.data.paymentStatus
             // var res2 = await this.callApi('get',`/api/student/applicant/copy/${res.data.student.AdmissionID}`,[]);
+            this.preloader = false
         }
     },
     mounted() {
