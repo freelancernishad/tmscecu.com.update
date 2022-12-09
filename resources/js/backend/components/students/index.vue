@@ -155,7 +155,7 @@
                                     </td>
                                     <td>{{ student.StudentName }}</td>
                                     <td class="tablecolhide">{{ student.StudentClass }}</td>
-                                    <td class="tablecolhide">{{ student.StudentFatherName }}</td>
+                                    <td class="tablecolhide" style="text-transform: capitalize;">{{ student.StudentFatherName }}</td>
                                     <td class="tablecolhide">{{ student.StudentAddress }}</td>
                                     <td class="tablecolhide">{{ student.StudentPhoneNumber }}</td>
                                     <td>
