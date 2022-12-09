@@ -356,6 +356,10 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
     }
     public function singlestudent(Request $request)
     {
+
+
+        // return $request->all();
+
         // return student::with(['Payments'])->get();
         $result = QueryBuilder::for(student::class)
             ->allowedFilters([
@@ -379,6 +383,7 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
                 'StudentPicture',
                 'JoiningDate',
                 AllowedFilter::exact('StudentGroup'),
+                AllowedFilter::exact('StudentSubject'),
                 AllowedFilter::exact('StudentReligion'),
                 AllowedFilter::exact('Year'),
                 AllowedFilter::exact('StudentStatus'),

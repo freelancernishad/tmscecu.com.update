@@ -115,6 +115,21 @@
 
                     </div>
                     </div>
+
+                <div class="col-md-4 mt-3" v-if="form.StudentClass=='Nine' || form.StudentClass=='Ten'" id="Sgsroup" >
+                    <div class="form-group">
+                        <label class="form_label">চতুর্থ বিষয়</label>
+                        <select class="form-control" style="width: 100%;" v-model="form.StudentSubject" >
+                            <option value="Agriculture">কৃষি শিক্ষা</option>
+                            <option value="Higher_Mathematics">উচ্চতর গণিত</option>
+
+                        </select>
+
+                    </div>
+                    </div>
+
+
+
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
                         <label class="form_label">রোল</label>
@@ -736,6 +751,7 @@ export default {
             bigBroSisName:null,
             bigBroSisClass:'',
             bigBroSisGroup:'Humanities',
+            StudentSubject:'Agriculture',
             bigBroSisRoll:null,
             StudentGroup:'Humanities',
             StudentAddress:null,

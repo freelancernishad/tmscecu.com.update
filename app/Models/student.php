@@ -53,6 +53,7 @@ class student extends Model
         'bigBroSisGroup',
         'bigBroSisRoll',
         'StudentGroup',
+        'StudentSubject',
         'StudentAddress',
         'division',
         'district',
