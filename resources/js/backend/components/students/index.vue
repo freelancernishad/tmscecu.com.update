@@ -125,9 +125,11 @@
                                     <th>ছবি</th>
                                     <th @click="sortby('StudentName')">নাম</th>
                                     <th class="tablecolhide" @click="sortby('StudentClass')">শ্রেণী</th>
-                                    <th class="tablecolhide" @click="sortby('StudentFatherName')">অভিভাবক</th>
-                                    <th class="tablecolhide" @click="sortby('StudentAddress')">ঠিকানা</th>
-                                    <th class="tablecolhide" @click="sortby('StudentPhoneNumber')">ফোন</th>
+                                    <th class="tablecolhide" @click="sortby('StudentFatherNameBn')">পিতার নাম</th>
+                                    <th class="tablecolhide" @click="sortby('StudentMotherNameBn')">মাতার নাম</th>
+
+                                  <th class="tablecolhide" @click="sortby('StudentAddress')">ঠিকানা</th>
+                                    <!-- <th class="tablecolhide" @click="sortby('StudentPhoneNumber')">ফোন</th>  -->
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -155,9 +157,10 @@
                                     </td>
                                     <td>{{ student.StudentName }}</td>
                                     <td class="tablecolhide">{{ student.StudentClass }}</td>
-                                    <td class="tablecolhide" style="text-transform: uppercase;">{{ student.StudentFatherName }}</td>
+                                    <td class="tablecolhide" style="text-transform: uppercase;">{{ student.StudentFatherNameBn }}</td>
+                                    <td class="tablecolhide" style="text-transform: uppercase;">{{ student.StudentMotherNameBn }}</td>
                                     <td class="tablecolhide">{{ student.StudentAddress }}</td>
-                                    <td class="tablecolhide">{{ student.StudentPhoneNumber }}</td>
+                                    <!-- <td class="tablecolhide">{{ student.StudentPhoneNumber }}</td> -->
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-info dropdown-toggle" type="button"
