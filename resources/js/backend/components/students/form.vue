@@ -882,6 +882,9 @@ console.log(event.target.result)
                                 .then(({data}) => {
                                     //  console.log(data)
                                     this.form = data[0]
+
+                                    this.form.StudentPicture = this.$asseturl+data[0].StudentPicture
+
                                               this.preloader = false;
                                 })
                                 .catch(() => {
