@@ -62,7 +62,7 @@
 
                                 </div>
 
-                                <div class="col-md-3" v-if="filterdata.subject=='ধর্ম'">
+                                <div class="col-md-3" v-if="filterdata.subject=='ধর্ম ও নৈতিক শিক্ষা'">
                                       <div class='form-group' >
                                           <label>Religion:</label>
                                       <select  class='form-control' style='width: 100%;' v-model="filterdata.religion" id='Subject'  required >
@@ -86,7 +86,7 @@
                                     <div class="form-group student_class">
                                         <label></label>
                                         <br>
-                                        <input type="submit" value="Search" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"  @click="filter" />
+                                        <input type="submit"  value="Search"   class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"  @click="filter" />
                                     </div>
                                 </div>
                             </div>
@@ -97,8 +97,6 @@
             </div>
 
         </div>
-    </div>
-
 
 
 
@@ -141,6 +139,7 @@ export default {
             PerPageData: '20',
             TotalRows: '1',
             Totalpage: [],
+            RouteParams: {},
 
 		}
 	},
@@ -190,10 +189,13 @@ export default {
 
            var res =  await this.callApi('get',`/api/all/results/list?page=${page}`,[]);
             this.results = res.data.data
-
             this.TotalRows = `${res.data.total}`;
             this.PerPageData = `${res.data.per_page}`;
+            if(res.data.links){
             this.Totalpage = res.data.links
+        }
+
+
             this.preloader=false
         },
 

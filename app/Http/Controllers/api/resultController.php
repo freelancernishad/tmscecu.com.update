@@ -156,344 +156,9 @@ class resultController extends Controller
                     </tr>
                 </tbody>";
             } else {
+                // return SubjectDetailsMark($results);
                 $subjects =  allList('subjects', $request->filter['class'], $request->filter['class_group']);
-                $greating = [];
-                $GPA = 0.00;
-                $i = 0;
-                foreach ($subjects as $sub) {
-                    if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
-                        $sub_d = json_decode($results['ReligionIslam_d']);
-                        if ($sub_d) {
-                            $SUBJECT_TOTAL = $sub_d->SUBJECT_TOTAL;
-                            $CQ = $sub_d->CQ;
-                            $MCQ = $sub_d->MCQ;
-                            $EXTRA = $sub_d->EXTRA;
-                        } else {
-                            $SUBJECT_TOTAL = 100;
-                            $CQ = 0;
-                            $MCQ = 0;
-                            $EXTRA = 0;
-                        }
-                        $subMark = $results['ReligionIslam'];
-                    } elseif (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Hindu') {
-                        $sub_d = json_decode($results['ReligionHindu_d']);
-                        if ($sub_d) {
-                            $SUBJECT_TOTAL = $sub_d->SUBJECT_TOTAL;
-                            $CQ = $sub_d->CQ;
-                            $MCQ = $sub_d->MCQ;
-                            $EXTRA = $sub_d->EXTRA;
-                        } else {
-                            $SUBJECT_TOTAL = 100;
-                            $CQ = 0;
-                            $MCQ = 0;
-                            $EXTRA = 0;
-                        }
-                        $subMark = $results['ReligionHindu'];
-                    } else {
-                        $sub_d = json_decode($results[subjectCol($sub) . '_d']);
-                        //  print_r($sub_d);
-                        if ($sub_d) {
-                            $SUBJECT_TOTAL = $sub_d->SUBJECT_TOTAL;
-                            $CQ = $sub_d->CQ;
-                            $MCQ = $sub_d->MCQ;
-                            $EXTRA = $sub_d->EXTRA;
-                        } else {
-                            $SUBJECT_TOTAL = 100;
-                            $CQ = 0;
-                            $MCQ = 0;
-                            $EXTRA = 0;
-                        }
-                        $subMark = $results[subjectCol($sub)];
-                    }
-                    // print_r($sub.',');
-                    // print_r(Greeting($subMark,$SUBJECT_TOTAL,'point'));
-                    if ($request->filter['class'] == "Six" || $request->filter['class'] == "Seven") {
-                        if (subjectCol($sub) == 'Bangla_1st') {
-                            $sub_d1 = json_decode($results['Bangla_1st_d']);
-                            if ($sub_d) {
-                                $SUBJECT_TOTAL1 = $sub_d1->SUBJECT_TOTAL;
-                                $CQ1 = $sub_d1->CQ;
-                                $MCQ1 = $sub_d1->MCQ;
-                                $EXTRA1 = $sub_d1->EXTRA;
-                            } else {
-                                $SUBJECT_TOTAL1 = 100;
-                                $CQ1 = 0;
-                                $MCQ1 = 0;
-                                $EXTRA1 = 0;
-                            }
-                            $subMark1 = $results['Bangla_1st'];
-                            $sub_d2 = json_decode($results['Bangla_2nd_d']);
-                            if ($sub_d) {
-                                $SUBJECT_TOTAL2 = $sub_d2->SUBJECT_TOTAL;
-                                $CQ2 = $sub_d2->CQ;
-                                $MCQ2 = $sub_d2->MCQ;
-                                $EXTRA2 = $sub_d2->EXTRA;
-                            } else {
-                                $SUBJECT_TOTAL2 = 100;
-                                $CQ2 = 0;
-                                $MCQ2 = 0;
-                                $EXTRA2 = 0;
-                            }
-                            $subMark2 = $results['Bangla_2nd'];
-                            //   return  $gg1 = Greeting($subMark1,$SUBJECT_TOTAL1,'point');
-                            //     $gg2 = Greeting($subMark2,$SUBJECT_TOTAL2,'point');
-                            $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                            $gg1 =  ($subMark1 + $subMark2) / 2;
-                            $gg = Greeting($gg1, $ggTo, 'point');
-                            $CQ1great = Greeting($CQ1, 70, 'greed');
-                            $MCQ1great = Greeting($MCQ1, 30, 'greed');
-                            $CQ2great = Greeting($CQ2, 70, 'greed');
-                            $MCQ2great = Greeting($MCQ2, 30, 'greed');
-                            // array_push($greating,['Bangla_1stcq'=>$CQ1great]);
-                            // array_push($greating,['Bangla_1stmcq'=>$MCQ1great]);
-                            // array_push($greating,['Bangla_2ndcq'=>$CQ2great]);
-                            // array_push($greating,['Bangla_2ndmcq'=>$MCQ2great]);
-                            array_push($greating, $CQ1great);
-                            array_push($greating, $MCQ1great);
-                            array_push($greating, $CQ2great);
-                            array_push($greating, $MCQ2great);
-                        } elseif (subjectCol($sub) == 'Bangla_2nd') {
-                            $gg = 0;
-                        } elseif (subjectCol($sub) == 'English_1st') {
-                            $sub_d1 = json_decode($results['English_1st_d']);
-                            if ($sub_d) {
-                                $SUBJECT_TOTAL1 = $sub_d1->SUBJECT_TOTAL;
-                                $CQ1 = $sub_d1->CQ;
-                                $MCQ1 = $sub_d1->MCQ;
-                                $EXTRA1 = $sub_d1->EXTRA;
-                            } else {
-                                $SUBJECT_TOTAL1 = 100;
-                                $CQ1 = 0;
-                                $MCQ1 = 0;
-                                $EXTRA1 = 0;
-                            }
-                            $subMark1 = $results['English_1st'];
-                            $sub_d2 = json_decode($results['English_2nd_d']);
-                            if ($sub_d) {
-                                $SUBJECT_TOTAL2 = $sub_d2->SUBJECT_TOTAL;
-                                $CQ2 = $sub_d2->CQ;
-                                $MCQ2 = $sub_d2->MCQ;
-                                $EXTRA2 = $sub_d2->EXTRA;
-                            } else {
-                                $SUBJECT_TOTAL2 = 100;
-                                $CQ2 = 0;
-                                $MCQ2 = 0;
-                                $EXTRA2 = 0;
-                            }
-                            $subMark2 = $results['English_2nd'];
-                            $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                            $gg1 =  ($subMark1 + $subMark2) / 2;
-                            $gg = Greeting($gg1, $ggTo, 'point');
-                            $CQ1great = Greeting($CQ1, 100, 'greed');
-                            // $MCQ1great = Greeting($MCQ1,30,'greed');
-                            $CQ2great = Greeting($CQ2, 100, 'greed');
-                            // $MCQ2great = Greeting($MCQ2,20,'greed');
-                            // array_push($greating,[subjectCol($sub).'cq'=>$CQ1great]);
-                            // array_push($greating,[subjectCol($sub).'cq'=>$CQ2great]);
-                            array_push($greating, $CQ1great);
-                            array_push($greating, $CQ2great);
-                            // array_push($greating,$MCQ1great);
-                            // array_push($greating,$MCQ2great);
-                        } elseif (subjectCol($sub) == 'English_2nd') {
-                            $gg = 0;
-                        } else {
-                            $gg = Greeting($subMark, $SUBJECT_TOTAL, 'point');
-                        }
-                        $GPA += $gg;
-                        $great = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
-                        array_push($greating, $great);
-                    } elseif ($request->filter['class'] == "Eight") {
-                        if (subjectCol($sub) == 'Bangla_1st') {
-                            if (json_decode($results['Bangla_1st_d'])) {
-                                $SUBJECT_TOTAL1 = json_decode($results['Bangla_1st_d'])->SUBJECT_TOTAL;
-                            } else {
-                                $SUBJECT_TOTAL1 = 100;
-                            }
-                            $subMark1 = $results['Bangla_1st'];
-                            $gg1 = Greeting($subMark1, $SUBJECT_TOTAL1, 'point');
-                            $gg = $gg1;
-                            $great = Greeting($subMark1, $SUBJECT_TOTAL1, 'greed');
-                        } elseif (subjectCol($sub) == 'Bangla_2nd') {
-                            $gg = 0;
-                        } elseif (subjectCol($sub) == 'English_1st') {
-                            if (json_decode($results['English_1st_d'])) {
-                                $SUBJECT_TOTAL1 = json_decode($results['English_1st_d'])->SUBJECT_TOTAL;
-                            } else {
-                                $SUBJECT_TOTAL1 = 100;
-                            }
-                            $subMark1 = $results['English_1st'];
-                            $gg1 = Greeting($subMark1, $SUBJECT_TOTAL1, 'point');
-                            $gg = $gg1;
-                            // return  $greating;
-                        } elseif (subjectCol($sub) == 'English_2nd') {
-                            $gg = 0;
-                        } else {
-                            $gg = Greeting($subMark, $SUBJECT_TOTAL, 'point');
-                        }
-                        $GPA += $gg;
-                        $great = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
-
-                        array_push($greating, $great);
-                        // $great = Greeting($subMark,$SUBJECT_TOTAL,'greed');
-                        // array_push($greating,[subjectCol($sub).'cq'=>$great]);
-                    } elseif ($request->filter['class'] == "Nine" || $request->filter['class'] == "Ten") {
-                        if (subjectCol($sub) == 'Bangla_1st') {
-                            $sub_d1 = json_decode($results['Bangla_1st_d']);
-                            if ($sub_d) {
-                                $SUBJECT_TOTAL1 = $sub_d1->SUBJECT_TOTAL;
-                                $CQ1 = $sub_d1->CQ;
-                                $MCQ1 = $sub_d1->MCQ;
-                                $EXTRA1 = $sub_d1->EXTRA;
-                            } else {
-                                $SUBJECT_TOTAL1 = 100;
-                                $CQ1 = 0;
-                                $MCQ1 = 0;
-                                $EXTRA1 = 0;
-                            }
-                            $subMark1 = $results['Bangla_1st'];
-                            $sub_d2 = json_decode($results['Bangla_2nd_d']);
-                            if ($sub_d) {
-                                $SUBJECT_TOTAL2 = $sub_d2->SUBJECT_TOTAL;
-                                $CQ2 = $sub_d2->CQ;
-                                $MCQ2 = $sub_d2->MCQ;
-                                $EXTRA2 = $sub_d2->EXTRA;
-                            } else {
-                                $SUBJECT_TOTAL2 = 100;
-                                $CQ2 = 0;
-                                $MCQ2 = 0;
-                                $EXTRA2 = 0;
-                            }
-                            $subMark2 = $results['Bangla_2nd'];
-                            //   return  $gg1 = Greeting($subMark1,$SUBJECT_TOTAL1,'point');
-                            //     $gg2 = Greeting($subMark2,$SUBJECT_TOTAL2,'point');
-                            $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                            $gg1 =  ($subMark1 + $subMark2) / 2;
-                            $gg = Greeting($gg1, $ggTo, 'point');
-                            $CQ1great = Greeting($CQ1, 70, 'greed');
-                            $MCQ1great = Greeting($MCQ1, 30, 'greed');
-                            $CQ2great = Greeting($CQ2, 70, 'greed');
-                            $MCQ2great = Greeting($MCQ2, 30, 'greed');
-                            // array_push($greating,['Bangla_1stcq'=>$CQ1great]);
-                            // array_push($greating,['Bangla_1stmcq'=>$MCQ1great]);
-                            // array_push($greating,['Bangla_2ndcq'=>$CQ2great]);
-                            // array_push($greating,['Bangla_2ndmcq'=>$MCQ2great]);
-                            array_push($greating, $CQ1great);
-                            array_push($greating, $MCQ1great);
-                            array_push($greating, $CQ2great);
-                            array_push($greating, $MCQ2great);
-                        } elseif (subjectCol($sub) == 'Bangla_2nd') {
-                            $gg = 0;
-                        } elseif (subjectCol($sub) == 'English_1st') {
-                            $sub_d1 = json_decode($results['English_1st_d']);
-                            if ($sub_d) {
-                                $SUBJECT_TOTAL1 = $sub_d1->SUBJECT_TOTAL;
-                                $CQ1 = $sub_d1->CQ;
-                                $MCQ1 = $sub_d1->MCQ;
-                                $EXTRA1 = $sub_d1->EXTRA;
-                            } else {
-                                $SUBJECT_TOTAL1 = 100;
-                                $CQ1 = 0;
-                                $MCQ1 = 0;
-                                $EXTRA1 = 0;
-                            }
-                            $subMark1 = $results['English_1st'];
-                            $sub_d2 = json_decode($results['English_2nd_d']);
-                            if ($sub_d) {
-                                $SUBJECT_TOTAL2 = $sub_d2->SUBJECT_TOTAL;
-                                $CQ2 = $sub_d2->CQ;
-                                $MCQ2 = $sub_d2->MCQ;
-                                $EXTRA2 = $sub_d2->EXTRA;
-                            } else {
-                                $SUBJECT_TOTAL2 = 100;
-                                $CQ2 = 0;
-                                $MCQ2 = 0;
-                                $EXTRA2 = 0;
-                            }
-                            $subMark2 = $results['English_2nd'];
-                            $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                            $gg1 =  ($subMark1 + $subMark2) / 2;
-                            $gg = Greeting($gg1, $ggTo, 'point');
-                            $CQ1great = Greeting($CQ1, 100, 'greed');
-                            // $MCQ1great = Greeting($MCQ1,30,'greed');
-                            $CQ2great = Greeting($CQ2, 100, 'greed');
-                            // $MCQ2great = Greeting($MCQ2,20,'greed');
-                            // array_push($greating,[subjectCol($sub).'cq'=>$CQ1great]);
-                            // array_push($greating,[subjectCol($sub).'cq'=>$CQ2great]);
-                            array_push($greating, $CQ1great);
-                            array_push($greating, $CQ2great);
-                            // array_push($greating,$MCQ1great);
-                            // array_push($greating,$MCQ2great);
-                        } elseif (subjectCol($sub) == 'English_2nd') {
-                            $gg = 0;
-                        } elseif (subjectCol($sub) == 'Agriculture') {
-                            if ($results[subjectCol($sub)]) {
-                                $Fgg += Greeting($subMark, $SUBJECT_TOTAL, 'point');
-                                $gg = 0;
-                            } else {
-                                $Fgg += 0;
-                                $gg = 0;
-                            }
-                            array_push($greating, [subjectCol($sub) . 'cq' => 'Agree']);
-                            array_push($greating, [subjectCol($sub) . 'mcq' => 'Agree']);
-                        } elseif (subjectCol($sub) == 'Higher_Mathematics') {
-                            if ($results[subjectCol($sub)]) {
-                                $Fgg += Greeting($subMark, $SUBJECT_TOTAL, 'point');
-                                $gg = 0;
-                            } else {
-                                $Fgg += 0;
-                            }
-                            array_push($greating, [subjectCol($sub) . 'cq' => 'higher']);
-                            array_push($greating, [subjectCol($sub) . 'mcq' => 'higher']);
-                        } else {
-                            $gg = Greeting($subMark, $SUBJECT_TOTAL, 'point');
-                            if ($SUBJECT_TOTAL == 100) {
-                                $CQTotal = 70;
-                                $MCQTotal = 30;
-                            } elseif ($SUBJECT_TOTAL == 50) {
-                                $CQTotal = 30;
-                                $MCQTotal = 20;
-                            } else {
-                                $CQTotal = 70;
-                                $MCQTotal = 30;
-                            }
-                            $CQgreat = Greeting($CQ, $CQTotal, 'greed');
-                            $MCQgreat = Greeting($MCQ, $MCQTotal, 'greed');
-                            // array_push($greating,[subjectCol($sub).'cq'=>$CQgreat]);
-                            // array_push($greating,[subjectCol($sub).'mcq'=>$MCQgreat]);
-                            array_push($greating, $CQgreat);
-                            array_push($greating, $MCQgreat);
-                        }
-                        $GPA += $gg;
-                        $great = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
-                    }
-                    //  array_push($greating,$great);
-                    $i++;
-                }
-                //   return $Fgg;
-                if ($Fgg > 2) {
-                    $fourthSub = $Fgg - 2;
-                } else {
-                    $fourthSub = 0;
-                }
-                $finalTotalGpa =  $GPA + $fourthSub;
-                $subDe = 0;
-                if ($request->filter['class'] == "Six" || $request->filter['class'] == "Seven") {
-                    $subDe = $i - 2;
-                } elseif ($request->filter['class'] == "Eight") {
-                    $subDe = $i;
-                } elseif ($request->filter['class'] == "Nine" || $request->filter['class'] == "Ten") {
-                    $subDe = $i - 4;
-                }
-                //    return $subDe;
-                // return $greating;
-                if (in_array('F', $greating)) {
-                    $GpaResult = 'F';
-                } else {
-                    $GpaResult =  number_format((float)$finalTotalGpa / $subDe, 2, '.', '');
-                    if ($GpaResult > 5) {
-                        $GpaResult = number_format((float)5.00, 2, '.', '');
-                    }
-                }
+                $GpaResult = StudentFailedCount($results);
                 // return $GpaResult;
                 $html  .= "
             <tbody v-else>
@@ -567,202 +232,57 @@ class resultController extends Controller
                             $html .= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
                             $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
                         }
-                        if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
-                            if (json_decode($results['ReligionIslam_d'])) {
-                                $SUBJECT_TOTAL = json_decode($results['ReligionIslam_d'])->SUBJECT_TOTAL;
-                            } else {
-                                $SUBJECT_TOTAL = 100;
-                            }
-                            $html .= "  <td><span> " . Greeting($results['ReligionIslam'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                        } elseif (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Hindu') {
-                            if (json_decode($results['ReligionHindu_d'])) {
-                                $SUBJECT_TOTAL = json_decode($results['ReligionHindu_d'])->SUBJECT_TOTAL;
-                            } else {
-                                $SUBJECT_TOTAL = 100;
-                            }
-                            $html .= " <td><span>" . Greeting($results['ReligionHindu'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
+                        if (subjectCol($sub) == 'Bangla_1st') {
+                            $mark1 =  SubjectDetailsMark($results, 'Bangla_1st', 'all');
+                            $SUBJECT_TOTAL1 = $mark1['SUBJECT_TOTAL'];
+                            $subMark1 = $mark1['subMark'];
+                            $mark2 =  SubjectDetailsMark($results, 'Bangla_2nd', 'all');
+                            $SUBJECT_TOTAL2 = $mark2['SUBJECT_TOTAL'];
+                            $subMark2 = $mark2['subMark'];
+                            $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
+                            $gg1 =  ($subMark1 + $subMark2) / 2;
+                            $gg = Greeting($gg1, $ggTo, 'greed');
+                            $html .= "<td><span> " . $gg . "</span></td>";
+                        } elseif (subjectCol($sub) == 'Bangla_2nd') {
+                            $html .= '';
+                        } elseif (subjectCol($sub) == 'English_1st') {
+                            $mark1 =  SubjectDetailsMark($results, 'English_1st', 'all');
+                            $SUBJECT_TOTAL1 = $mark1['SUBJECT_TOTAL'];
+                            $subMark1 = $mark1['subMark'];
+                            $mark2 =  SubjectDetailsMark($results, 'English_2nd', 'all');
+                            $SUBJECT_TOTAL2 = $mark2['SUBJECT_TOTAL'];
+                            $subMark2 = $mark2['subMark'];
+                            $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
+                            $gg1 =  ($subMark1 + $subMark2) / 2;
+                            $gg = Greeting($gg1, $ggTo, 'greed');
+                            $html .= "<td><span> " . $gg . "</span></td>";
+                        } elseif (subjectCol($sub) == 'English_2nd') {
+                            $html .= '';
                         } else {
-                            if (subjectCol($sub) == 'Bangla_1st') {
-                                $sub_d1 = json_decode($results['Bangla_1st_d']);
-                                if ($sub_d) {
-                                    $SUBJECT_TOTAL1 = $sub_d1->SUBJECT_TOTAL;
-                                    $CQ1 = $sub_d1->CQ;
-                                    $MCQ1 = $sub_d1->MCQ;
-                                    $EXTRA1 = $sub_d1->EXTRA;
-                                } else {
-                                    $SUBJECT_TOTAL1 = 100;
-                                    $CQ1 = 0;
-                                    $MCQ1 = 0;
-                                    $EXTRA1 = 0;
-                                }
-                                $subMark1 = $results['Bangla_1st'];
-                                $sub_d2 = json_decode($results['Bangla_2nd_d']);
-                                if ($sub_d) {
-                                    $SUBJECT_TOTAL2 = $sub_d2->SUBJECT_TOTAL;
-                                    $CQ2 = $sub_d2->CQ;
-                                    $MCQ2 = $sub_d2->MCQ;
-                                    $EXTRA2 = $sub_d2->EXTRA;
-                                } else {
-                                    $SUBJECT_TOTAL2 = 100;
-                                    $CQ2 = 0;
-                                    $MCQ2 = 0;
-                                    $EXTRA2 = 0;
-                                }
-                                $subMark2 = $results['Bangla_2nd'];
-                                //   return  $gg1 = Greeting($subMark1,$SUBJECT_TOTAL1,'point');
-                                //     $gg2 = Greeting($subMark2,$SUBJECT_TOTAL2,'point');
-                                $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                                $gg1 =  ($subMark1 + $subMark2) / 2;
-                                $gg = Greeting($gg1, $ggTo, 'greed');
-                                $html .= "<td><span> " . $gg . "</span></td>";
-                            } elseif (subjectCol($sub) == 'Bangla_2nd') {
-                                $html .= '';
-                            } elseif (subjectCol($sub) == 'English_1st') {
-                                $sub_d1 = json_decode($results['English_1st_d']);
-                                if ($sub_d) {
-                                    $SUBJECT_TOTAL1 = $sub_d1->SUBJECT_TOTAL;
-                                    $CQ1 = $sub_d1->CQ;
-                                    $MCQ1 = $sub_d1->MCQ;
-                                    $EXTRA1 = $sub_d1->EXTRA;
-                                } else {
-                                    $SUBJECT_TOTAL1 = 100;
-                                    $CQ1 = 0;
-                                    $MCQ1 = 0;
-                                    $EXTRA1 = 0;
-                                }
-                                $subMark1 = $results['English_1st'];
-                                $sub_d2 = json_decode($results['English_2nd_d']);
-                                if ($sub_d) {
-                                    $SUBJECT_TOTAL2 = $sub_d2->SUBJECT_TOTAL;
-                                    $CQ2 = $sub_d2->CQ;
-                                    $MCQ2 = $sub_d2->MCQ;
-                                    $EXTRA2 = $sub_d2->EXTRA;
-                                } else {
-                                    $SUBJECT_TOTAL2 = 100;
-                                    $CQ2 = 0;
-                                    $MCQ2 = 0;
-                                    $EXTRA2 = 0;
-                                }
-                                $subMark2 = $results['English_2nd'];
-                                $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                                $gg1 =  ($subMark1 + $subMark2) / 2;
-                                $gg = Greeting($gg1, $ggTo, 'greed');
-                                $html .= "<td><span> " . $gg . "</span></td>";
-                            } elseif (subjectCol($sub) == 'English_2nd') {
-                                $html .= '';
+                            if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
+                                $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionIslam', 'total');
+                                $html .= "<td><span> " . Greeting($results['ReligionIslam'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
+                            } elseif (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Hindu') {
+                                $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionHindu', 'total');
+                                $html .= "<td><span> " . Greeting($results['ReligionHindu'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
                             } else {
-
-
-
-                                if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
-                                    $sub_d = json_decode($results['ReligionIslam_d']);
-                                    if ($sub_d) {
-                                        $SUBJECT_TOTAL = $sub_d->SUBJECT_TOTAL;
-                                        $CQ = $sub_d->CQ;
-                                        $MCQ = $sub_d->MCQ;
-                                        $EXTRA = $sub_d->EXTRA;
-                                    } else {
-                                        $SUBJECT_TOTAL = 100;
-                                        $CQ = 0;
-                                        $MCQ = 0;
-                                        $EXTRA = 0;
-                                    }
-                                    $html .= "<td><span> " . Greeting($results['ReligionIslam'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                                } elseif (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Hindu') {
-                                    $sub_d = json_decode($results['ReligionHindu_d']);
-                                    if ($sub_d) {
-                                        $SUBJECT_TOTAL = $sub_d->SUBJECT_TOTAL;
-                                        $CQ = $sub_d->CQ;
-                                        $MCQ = $sub_d->MCQ;
-                                        $EXTRA = $sub_d->EXTRA;
-                                    } else {
-                                        $SUBJECT_TOTAL = 100;
-                                        $CQ = 0;
-                                        $MCQ = 0;
-                                        $EXTRA = 0;
-                                    }
-
-                                    $html .= "<td><span> " . Greeting($results['ReligionHindu'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                                }else{
-
-                                    if (json_decode($results[subjectCol($sub . '_d')])) {
-                                        $SUBJECT_TOTAL = json_decode($results[subjectCol($sub . '_d')])->SUBJECT_TOTAL;
-                                    } else {
-                                        $SUBJECT_TOTAL = 100;
-                                    }
-                                    $html .= "<td><span> " . Greeting($results[subjectCol($sub)], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                                }
-
-
-
-                                // if (json_decode($results[subjectCol($sub . '_d')])) {
-                                //     $SUBJECT_TOTAL = json_decode($results[subjectCol($sub . '_d')])->SUBJECT_TOTAL;
-                                // } else {
-                                //     $SUBJECT_TOTAL = 100;
-                                // }
-                                // $html .= "<td><span> " . Greeting($results[subjectCol($sub)], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-
-
-
-
-
+                                $SUBJECT_TOTAL =  SubjectDetailsMark($results, subjectCol($sub), 'total');
+                                $html .= "<td><span> " . Greeting($results[subjectCol($sub)], $SUBJECT_TOTAL, 'greed') . "</span></td>";
                             }
                         }
                     } elseif ($request->filter['class'] == "Eight") {
                         $html .= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
                         $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
-
-
                         if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
-                            $sub_d = json_decode($results['ReligionIslam_d']);
-                            if ($sub_d) {
-                                $SUBJECT_TOTAL = $sub_d->SUBJECT_TOTAL;
-                                $CQ = $sub_d->CQ;
-                                $MCQ = $sub_d->MCQ;
-                                $EXTRA = $sub_d->EXTRA;
-                            } else {
-                                $SUBJECT_TOTAL = 100;
-                                $CQ = 0;
-                                $MCQ = 0;
-                                $EXTRA = 0;
-                            }
+                            $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionIslam', 'total');
                             $html .= "<td><span> " . Greeting($results['ReligionIslam'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
                         } elseif (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Hindu') {
-                            $sub_d = json_decode($results['ReligionHindu_d']);
-                            if ($sub_d) {
-                                $SUBJECT_TOTAL = $sub_d->SUBJECT_TOTAL;
-                                $CQ = $sub_d->CQ;
-                                $MCQ = $sub_d->MCQ;
-                                $EXTRA = $sub_d->EXTRA;
-                            } else {
-                                $SUBJECT_TOTAL = 100;
-                                $CQ = 0;
-                                $MCQ = 0;
-                                $EXTRA = 0;
-                            }
-
+                            $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionHindu', 'total');
                             $html .= "<td><span> " . Greeting($results['ReligionHindu'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                        }else{
-
-                            if (json_decode($results[subjectCol($sub . '_d')])) {
-                                $SUBJECT_TOTAL = json_decode($results[subjectCol($sub . '_d')])->SUBJECT_TOTAL;
-                            } else {
-                                $SUBJECT_TOTAL = 100;
-                            }
+                        } else {
+                            $SUBJECT_TOTAL =  SubjectDetailsMark($results, subjectCol($sub), 'total');
                             $html .= "<td><span> " . Greeting($results[subjectCol($sub)], $SUBJECT_TOTAL, 'greed') . "</span></td>";
                         }
-
-
-
-
-
-
-
-
-
-
-
-
                     } elseif ($request->filter['class'] == "Nine" || $request->filter['class'] == "Ten") {
                         if (subjectCol($sub) == 'Bangla_1st') {
                             $html .= " <td class='pl-5 pr-5'> <b>বাংলা</b></td>";
@@ -778,134 +298,42 @@ class resultController extends Controller
                             $html .= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
                             $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
                         }
-                        if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
-                            if (json_decode($results['ReligionIslam_d'])) {
-                                $SUBJECT_TOTAL = json_decode($results['ReligionIslam_d'])->SUBJECT_TOTAL;
-                            } else {
-                                $SUBJECT_TOTAL = 100;
-                            }
-                            $html .= "  <td><span> " . Greeting($results['ReligionIslam'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                        } elseif (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Hindu') {
-                            if (json_decode($results['ReligionHindu_d'])) {
-                                $SUBJECT_TOTAL = json_decode($results['ReligionHindu_d'])->SUBJECT_TOTAL;
-                            } else {
-                                $SUBJECT_TOTAL = 100;
-                            }
-                            $html .= " <td><span>" . Greeting($results['ReligionHindu'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
+                        if (subjectCol($sub) == 'Bangla_1st') {
+                            $mark1 =  SubjectDetailsMark($results, 'Bangla_1st', 'all');
+                            $SUBJECT_TOTAL1 = $mark1['SUBJECT_TOTAL'];
+                            $subMark1 = $mark1['subMark'];
+                            $mark2 =  SubjectDetailsMark($results, 'Bangla_2nd', 'all');
+                            $SUBJECT_TOTAL2 = $mark2['SUBJECT_TOTAL'];
+                            $subMark2 = $mark2['subMark'];
+                            $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
+                            $gg1 =  ($subMark1 + $subMark2) / 2;
+                            $gg = Greeting($gg1, $ggTo, 'greed');
+                            $html .= "<td><span> " . $gg . "</span></td>";
+                        } elseif (subjectCol($sub) == 'Bangla_2nd') {
+                            $html .= '';
+                        } elseif (subjectCol($sub) == 'English_1st') {
+                            $mark1 =  SubjectDetailsMark($results, 'English_1st', 'all');
+                            $SUBJECT_TOTAL1 = $mark1['SUBJECT_TOTAL'];
+                            $subMark1 = $mark1['subMark'];
+                            $mark2 =  SubjectDetailsMark($results, 'English_2nd', 'all');
+                            $SUBJECT_TOTAL2 = $mark2['SUBJECT_TOTAL'];
+                            $subMark2 = $mark2['subMark'];
+                            $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
+                            $gg1 =  ($subMark1 + $subMark2) / 2;
+                            $gg = Greeting($gg1, $ggTo, 'greed');
+                            $html .= "<td><span> " . $gg . "</span></td>";
+                        } elseif (subjectCol($sub) == 'English_2nd') {
+                            $html .= '';
                         } else {
-                            if (subjectCol($sub) == 'Bangla_1st') {
-                                $sub_d1 = json_decode($results['Bangla_1st_d']);
-                                if ($sub_d) {
-                                    $SUBJECT_TOTAL1 = $sub_d1->SUBJECT_TOTAL;
-                                    $CQ1 = $sub_d1->CQ;
-                                    $MCQ1 = $sub_d1->MCQ;
-                                    $EXTRA1 = $sub_d1->EXTRA;
-                                } else {
-                                    $SUBJECT_TOTAL1 = 100;
-                                    $CQ1 = 0;
-                                    $MCQ1 = 0;
-                                    $EXTRA1 = 0;
-                                }
-                                $subMark1 = $results['Bangla_1st'];
-                                $sub_d2 = json_decode($results['Bangla_2nd_d']);
-                                if ($sub_d) {
-                                    $SUBJECT_TOTAL2 = $sub_d2->SUBJECT_TOTAL;
-                                    $CQ2 = $sub_d2->CQ;
-                                    $MCQ2 = $sub_d2->MCQ;
-                                    $EXTRA2 = $sub_d2->EXTRA;
-                                } else {
-                                    $SUBJECT_TOTAL2 = 100;
-                                    $CQ2 = 0;
-                                    $MCQ2 = 0;
-                                    $EXTRA2 = 0;
-                                }
-                                $subMark2 = $results['Bangla_2nd'];
-                                //   return  $gg1 = Greeting($subMark1,$SUBJECT_TOTAL1,'point');
-                                //     $gg2 = Greeting($subMark2,$SUBJECT_TOTAL2,'point');
-                                $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                                $gg1 =  ($subMark1 + $subMark2) / 2;
-                                $gg = Greeting($gg1, $ggTo, 'greed');
-                                $html .= "<td><span> " . $gg . "</span></td>";
-                            } elseif (subjectCol($sub) == 'Bangla_2nd') {
-                                $html .= '';
-                            } elseif (subjectCol($sub) == 'English_1st') {
-                                $sub_d1 = json_decode($results['English_1st_d']);
-                                if ($sub_d) {
-                                    $SUBJECT_TOTAL1 = $sub_d1->SUBJECT_TOTAL;
-                                    $CQ1 = $sub_d1->CQ;
-                                    $MCQ1 = $sub_d1->MCQ;
-                                    $EXTRA1 = $sub_d1->EXTRA;
-                                } else {
-                                    $SUBJECT_TOTAL1 = 100;
-                                    $CQ1 = 0;
-                                    $MCQ1 = 0;
-                                    $EXTRA1 = 0;
-                                }
-                                $subMark1 = $results['English_1st'];
-                                $sub_d2 = json_decode($results['English_2nd_d']);
-                                if ($sub_d) {
-                                    $SUBJECT_TOTAL2 = $sub_d2->SUBJECT_TOTAL;
-                                    $CQ2 = $sub_d2->CQ;
-                                    $MCQ2 = $sub_d2->MCQ;
-                                    $EXTRA2 = $sub_d2->EXTRA;
-                                } else {
-                                    $SUBJECT_TOTAL2 = 100;
-                                    $CQ2 = 0;
-                                    $MCQ2 = 0;
-                                    $EXTRA2 = 0;
-                                }
-                                $subMark2 = $results['English_2nd'];
-                                $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                                $gg1 =  ($subMark1 + $subMark2) / 2;
-                                $gg = Greeting($gg1, $ggTo, 'greed');
-                                $html .= "<td><span> " . $gg . "</span></td>";
-                            } elseif (subjectCol($sub) == 'English_2nd') {
-                                $html .= '';
+                            if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
+                                $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionIslam', 'total');
+                                $html .= "<td><span> " . Greeting($results['ReligionIslam'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
+                            } elseif (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Hindu') {
+                                $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionHindu', 'total');
+                                $html .= "<td><span> " . Greeting($results['ReligionHindu'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
                             } else {
-
-
-                                if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
-                                    $sub_d = json_decode($results['ReligionIslam_d']);
-                                    if ($sub_d) {
-                                        $SUBJECT_TOTAL = $sub_d->SUBJECT_TOTAL;
-                                        $CQ = $sub_d->CQ;
-                                        $MCQ = $sub_d->MCQ;
-                                        $EXTRA = $sub_d->EXTRA;
-                                    } else {
-                                        $SUBJECT_TOTAL = 100;
-                                        $CQ = 0;
-                                        $MCQ = 0;
-                                        $EXTRA = 0;
-                                    }
-                                    $html .= "<td><span> " . Greeting($results['ReligionIslam'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                                } elseif (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Hindu') {
-                                    $sub_d = json_decode($results['ReligionHindu_d']);
-                                    if ($sub_d) {
-                                        $SUBJECT_TOTAL = $sub_d->SUBJECT_TOTAL;
-                                        $CQ = $sub_d->CQ;
-                                        $MCQ = $sub_d->MCQ;
-                                        $EXTRA = $sub_d->EXTRA;
-                                    } else {
-                                        $SUBJECT_TOTAL = 100;
-                                        $CQ = 0;
-                                        $MCQ = 0;
-                                        $EXTRA = 0;
-                                    }
-
-                                    $html .= "<td><span> " . Greeting($results['ReligionHindu'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                                }else{
-
-                                    if (json_decode($results[subjectCol($sub . '_d')])) {
-                                        $SUBJECT_TOTAL = json_decode($results[subjectCol($sub . '_d')])->SUBJECT_TOTAL;
-                                    } else {
-                                        $SUBJECT_TOTAL = 100;
-                                    }
-                                    $html .= "<td><span> " . Greeting($results[subjectCol($sub)], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                                }
-
-
-
-
+                                $SUBJECT_TOTAL =  SubjectDetailsMark($results, subjectCol($sub), 'total');
+                                $html .= "<td><span> " . Greeting($results[subjectCol($sub)], $SUBJECT_TOTAL, 'greed') . "</span></td>";
                             }
                         }
                     }
@@ -1074,7 +502,7 @@ class resultController extends Controller
             'margin_top' => 6,
             'margin_bottom' => 6,
         ]);
-        $mpdf->WriteHTML($this->fullResultPdf($school_id, $student_class, date("Y", strtotime($date)), $exam));
+        $mpdf->WriteHTML($this->fullResultPdf($school_id, $student_class, date("Y", strtotime($date)), $exam,$group));
         $mpdf->Output('document.pdf', 'I');
         // return $pdf->stream('document.pdf');
         // return view('admin/pdfReports.full_result_pdf',$data);
@@ -1786,8 +1214,10 @@ class resultController extends Controller
             'class' => $request->class,
             'year' => $request->year,
             'exam_name' => $request->exam_name,
+            'class_group' => $request->group,
         ];
-        $subjects = $this->GetSubject($request->class);
+        // $subjects = $this->GetSubject($request->class);
+        $subjects =  allList('subjects', $request->class, $request->group);
         $resultlast = StudentResult::where($filter)->latest('id')->first();
         $status = $resultlast->status;
         $result = StudentResult::where($filter)->get();
@@ -1819,6 +1249,7 @@ class resultController extends Controller
         }
         $html .= "
             <td  rowspan='2'>ব্যর্থ হয়েছে</td>
+            <td  rowspan='2'>GPA</td>
             <td  rowspan='2'>মোট</td>
         </tr>
         ";
@@ -1843,33 +1274,100 @@ class resultController extends Controller
                 <td>$resValue->roll</td>
                 <td>$resValue->name</td>
             ";
-            $subjectsGroup = $this->GetSubject($request->class, $resValue->class_group);
-            $failed = 0;
-            foreach ($subjectsGroup as $value) {
-                $failed +=  $this->subjectFails($resValue[subjectCol($value)], subjectCol($value));
-            }
+            // $subjectsGroup = $this->GetSubject($request->class, $resValue->class_group);
+            $subjectsGroup =  allList('subjects', $request->class, $resValue->class_group);
+            $failed = StudentFailedCount($resValue, 'failed');
+            $Gpa = StudentFailedCount($resValue, 'result');
             $total = 0;
             foreach ($subjects as $value) {
-                $total += $resValue[subjectCol($value)];
-                $subMark = json_decode($resValue[subjectCol($value . "_d")]);
-                if ($subMark) {
-                    $html .= "
-                    <td>$subMark->CQ</td>
-                    <td>$subMark->MCQ</td>
-                    <td>$subMark->EXTRA</td>
-                    <td>" . $resValue[subjectCol($value)] . "</td>
-                ";
+                // print_r($value);
+                // return subjectCol($value);
+                if ($value == 'ধর্ম ও নৈতিক শিক্ষা') {
+                    if ($resValue->StudentReligion == 'Islam') {
+                        $total += $resValue['ReligionIslam'];
+                        $subMark = json_decode($resValue["ReligionIslam_d"]);
+                        if ($subMark) {
+                            $html .= "
+                        <td>$subMark->CQ</td>
+                        <td>$subMark->MCQ</td>
+                        <td>$subMark->EXTRA</td>
+                        <td>" . $resValue['ReligionIslam'] . "</td>";
+                        } else {
+                            $html .= "
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    ";
+                        }
+                    } else if ($resValue->StudentReligion == 'Hindu') {
+                        $total += $resValue['ReligionHindu'];
+                        $subMark = json_decode($resValue["ReligionHindu_d"]);
+                        if ($subMark) {
+                            $html .= "
+                        <td>$subMark->CQ</td>
+                        <td>$subMark->MCQ</td>
+                        <td>$subMark->EXTRA</td>
+                        <td>" . $resValue['ReligionHindu'] . "</td>";
+                        } else {
+                            $html .= "
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    ";
+                        }
+                    } else {
+                        $total += $resValue['ReligionIslam'];
+                        $total += $resValue[subjectCol($value)];
+                        $subMark = json_decode($resValue[subjectCol($value) . "_d"]);
+                        if ($subMark) {
+                            $html .= "
+                        <td>$subMark->CQ</td>
+                        <td>$subMark->MCQ</td>
+                        <td>$subMark->EXTRA</td>
+                        <td>" . $resValue[subjectCol($value)] . "</td>";
+                        } else {
+                            $html .= "
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    ";
+                        }
+                    }
                 } else {
-                    $html .= "
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                ";
+
+
+
+
+
+                    $total += $resValue[subjectCol($value)];
+                    $subMark = json_decode($resValue[subjectCol($value). "_d"]);
+                    if ($subMark) {
+                        $html .= "
+                            <td>$subMark->CQ</td>
+                            <td>$subMark->MCQ</td>
+                            <td>$subMark->EXTRA</td>
+                            <td>" . $resValue[subjectCol($value)] . "</td>";
+                    } else {
+                        $html .= "
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    ";
+                    }
+
+
+
+
+
                 }
             }
             $html .= "
             <td>$failed</td>
+            <td>$Gpa</td>
             <td>$total</td>
         </tr>
         ";
@@ -1878,7 +1376,7 @@ class resultController extends Controller
         // return '11';
         return ['html' => $html, 'status' => $status, 'publishids' => $publishids];
     }
-    public function fullResultPdf($school_id, $class, $year, $exam_name)
+    public function fullResultPdf($school_id, $class, $year, $exam_name,$group)
     {
         $publishids = [];
         $filter = [
@@ -1886,8 +1384,10 @@ class resultController extends Controller
             'class' => $class,
             'year' => $year,
             'exam_name' => $exam_name,
+            'class_group' => $group,
         ];
-        $subjects = $this->GetSubject($class);
+        // $subjects = $this->GetSubject($class);
+        $subjects =  allList('subjects', $class, $group);
         $resultlast = StudentResult::where($filter)->latest('id')->first();
         $status = $resultlast->status;
         $result = StudentResult::where($filter)->get();
@@ -1926,6 +1426,7 @@ class resultController extends Controller
         }
         $html .= "
             <td  rowspan='2'>ব্যর্থ হয়েছে</td>
+            <td  rowspan='2'>GPA</td>
             <td  rowspan='2'>মোট</td>
         </tr>
         ";
@@ -1933,6 +1434,7 @@ class resultController extends Controller
         <tr>
         ";
         foreach ($subjects as $value) {
+
             $html .= "
             <td style='    height: 58px;    font-size: 10px;'><p  style='transform: rotate(-50deg);border: 0;padding: 0;'>CQ</p></td>
             <td style='    height: 58px;    font-size: 10px;'><p  style='transform: rotate(-50deg);border: 0;padding: 0;'>MCQ</p></td>
@@ -1946,21 +1448,79 @@ class resultController extends Controller
         <tbody>
         ";
         foreach ($result as $resValue) {
-            array_push($publishids, $resValue->id);
+
             $html .= "
             <tr>
                 <td>$resValue->roll</td>
                 <td>$resValue->name</td>
             ";
             $subjectsGroup = $this->GetSubject($class, $resValue->class_group);
-            $failed = 0;
-            foreach ($subjectsGroup as $value) {
-                $failed +=  $this->subjectFails($resValue[subjectCol($value)], subjectCol($value));
-            }
+            $failed = StudentFailedCount($resValue, 'failed');
+            $Gpa = StudentFailedCount($resValue, 'result');
             $total = 0;
             foreach ($subjects as $value) {
+
+
+
+                if ($value == 'ধর্ম ও নৈতিক শিক্ষা') {
+                    if ($resValue->StudentReligion == 'Islam') {
+                        $total += $resValue['ReligionIslam'];
+                        $subMark = json_decode($resValue["ReligionIslam_d"]);
+                        if ($subMark) {
+                            $html .= "
+                        <td>$subMark->CQ</td>
+                        <td>$subMark->MCQ</td>
+                        <td>$subMark->EXTRA</td>
+                        <td>" . $resValue['ReligionIslam'] . "</td>";
+                        } else {
+                            $html .= "
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    ";
+                        }
+                    } else if ($resValue->StudentReligion == 'Hindu') {
+                        $total += $resValue['ReligionHindu'];
+                        $subMark = json_decode($resValue["ReligionHindu_d"]);
+                        if ($subMark) {
+                            $html .= "
+                        <td>$subMark->CQ</td>
+                        <td>$subMark->MCQ</td>
+                        <td>$subMark->EXTRA</td>
+                        <td>" . $resValue['ReligionHindu'] . "</td>";
+                        } else {
+                            $html .= "
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    ";
+                        }
+                    } else {
+                        $total += $resValue['ReligionIslam'];
+                        $total += $resValue[subjectCol($value)];
+                        $subMark = json_decode($resValue[subjectCol($value) . "_d"]);
+                        if ($subMark) {
+                            $html .= "
+                        <td>$subMark->CQ</td>
+                        <td>$subMark->MCQ</td>
+                        <td>$subMark->EXTRA</td>
+                        <td>" . $resValue[subjectCol($value)] . "</td>";
+                        } else {
+                            $html .= "
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    ";
+                        }
+                    }
+                } else {
+
+
                 $total += $resValue[subjectCol($value)];
-                $subMark = json_decode($resValue[subjectCol($value . "_d")]);
+                $subMark = json_decode($resValue[subjectCol($value) . "_d"]);
                 if ($subMark) {
                     $html .= "
                     <td>$subMark->CQ</td>
@@ -1976,9 +1536,19 @@ class resultController extends Controller
                     <td>0</td>
                 ";
                 }
+
+                }
+
+
+
+
+
+
             }
             $html .= "
             <td>$failed</td>
+            <td>$Gpa</td>
+
             <td>$total</td>
         </tr>
         ";
@@ -1989,7 +1559,7 @@ class resultController extends Controller
     }
     public function AllResultList(Request $request)
     {
-        return $result = StudentResult::select('year', 'exam_name', 'class', 'status')->distinct()->orderBy('created_at', 'desc')->simplePaginate(20, ['year.*']);
+        return $result = StudentResult::select('year', 'exam_name', 'class', 'class_group', 'status')->distinct()->orderBy('created_at', 'desc')->simplePaginate(20, ['year.*']);
         return $request->all();
     }
 }

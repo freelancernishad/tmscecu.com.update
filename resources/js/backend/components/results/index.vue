@@ -114,6 +114,7 @@
                         <tr>
                             <th>ক্রমিক নং</th>
                             <th>শ্রেণি</th>
+                            <th>গ্রুপ</th>
                             <th>পরীক্ষার নাম</th>
                             <th>সাল</th>
                             <th>Action</th>
@@ -123,6 +124,10 @@
                         <tr v-for="(result,index) in results" :key="index">
                             <td>{{ index+1 }}</td>
                             <td>{{ result.class }}</td>
+
+                            <td v-if="result.class=='Nine' || result.class=='Ten'">{{ result.class_group, }}</td>
+                            <td v-else ></td>
+
                             <td>{{ result.exam_name }}</td>
                             <td>{{ result.year }}</td>
                             <td>
@@ -130,7 +135,7 @@
                             <button class="btn btn-success btn-sm" v-if="result.status=='Draft'" @click="publishNow(result.class,result.year,result.exam_name,'Published')">Publish Now</button>
                             <button class="btn btn-danger btn-sm"  v-if="result.status=='Published'"  @click="publishNow(result.class,result.year,result.exam_name,'Draft')">Draft Now</button>
 
-                            <router-link  class="btn btn-info btn-sm mb-3" :to="{ name: 'resultview', params: { school_id: school_id, student_class: result.class, group: 'All', religion: 'All', subject: 'All', examType: result.exam_name, date: result.year } }">View</router-link>
+                            <router-link  class="btn btn-info btn-sm mb-3" :to="{ name: 'resultview', params: { school_id: school_id, student_class: result.class, group: result.class_group, religion: 'All', subject: 'All', examType: result.exam_name, date: result.year } }">View</router-link>
 
 
 

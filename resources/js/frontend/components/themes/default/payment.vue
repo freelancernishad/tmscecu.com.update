@@ -29,7 +29,7 @@
                             <label for="">পেমেন্ট ক্যাটাগরি</label>
                             <select class="form-control" v-model="form.type">
                                 <option value="">পেমেন্ট ক্যাটাগরি নির্বাচন করুন</option>
-                                <option value="Admission_fee">ভর্তি ফর্ম ফি</option>
+                                <option value="Admission_fee">ভর্তি ফরম ফি</option>
                                 <option value="monthly_fee">মাসিক বেতন</option>
                                 <option value="session_fee">সেশন ফি</option>
                                 <option value="exam_fee">পরীক্ষার ফি</option>

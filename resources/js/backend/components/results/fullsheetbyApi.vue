@@ -98,7 +98,7 @@ export default {
             // this.form.number = {};
 
             var url = '';
-            var url = `/api/full/results?school_id=${this.$route.params.school_id}&class=${this.$route.params.student_class}&year=${this.year}&exam_name=${this.examcomvert(this.$route.params.examType)}`;
+            var url = `/api/full/results?school_id=${this.$route.params.school_id}&class=${this.$route.params.student_class}&year=${this.year}&exam_name=${this.examcomvert(this.$route.params.examType)}&group=${this.$route.params.group}`;
 
             var res = await this.callApi('get',`${url}`,[])
             this.resTable = res.data.html
