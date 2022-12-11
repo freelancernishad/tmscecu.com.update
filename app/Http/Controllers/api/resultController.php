@@ -233,15 +233,23 @@ class resultController extends Controller
                             $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
                         }
                         if (subjectCol($sub) == 'Bangla_1st') {
+
                             $mark1 =  SubjectDetailsMark($results, 'Bangla_1st', 'all');
                             $SUBJECT_TOTAL1 = $mark1['SUBJECT_TOTAL'];
                             $subMark1 = $mark1['subMark'];
+
                             $mark2 =  SubjectDetailsMark($results, 'Bangla_2nd', 'all');
                             $SUBJECT_TOTAL2 = $mark2['SUBJECT_TOTAL'];
                             $subMark2 = $mark2['subMark'];
+
+
+
                             $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
                             $gg1 =  ($subMark1 + $subMark2) / 2;
-                            $gg = Greeting($gg1, $ggTo, 'greed');
+                             $gg = Greeting($gg1, $ggTo, 'greed');
+
+
+
                             $html .= "<td><span> " . $gg . "</span></td>";
                         } elseif (subjectCol($sub) == 'Bangla_2nd') {
                             $html .= '';
@@ -254,6 +262,7 @@ class resultController extends Controller
                             $subMark2 = $mark2['subMark'];
                             $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
                             $gg1 =  ($subMark1 + $subMark2) / 2;
+                            //   return   $gg = Greeting($gg1, $ggTo, 'point');
                             $gg = Greeting($gg1, $ggTo, 'greed');
                             $html .= "<td><span> " . $gg . "</span></td>";
                         } elseif (subjectCol($sub) == 'English_2nd') {
@@ -295,45 +304,205 @@ class resultController extends Controller
                         } elseif (subjectCol($sub) == 'English_2nd') {
                             $html .= '';
                         } else {
-                            $html .= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
-                            $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
+
+
+                            if(subjectCol($sub) == 'Agriculture'){
+                                if($results->Agriculture){
+                                    $html .= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
+                                    $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
+                                }else{
+                                    $html .='';
+                                }
+                            }elseif(subjectCol($sub) == 'Higher_Mathematics'){
+                                if($results->Higher_Mathematics){
+                                    $html .= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
+                                    $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
+                                }else{
+                                    $html .='';
+                                }
+                            }else{
+                                $html .= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
+                                $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
+                            }
+
+
+
+
                         }
+
+
                         if (subjectCol($sub) == 'Bangla_1st') {
                             $mark1 =  SubjectDetailsMark($results, 'Bangla_1st', 'all');
                             $SUBJECT_TOTAL1 = $mark1['SUBJECT_TOTAL'];
                             $subMark1 = $mark1['subMark'];
+                            $CQ1 = $mark1['CQ'];
+                            $MCQ1 = $mark1['MCQ'];
                             $mark2 =  SubjectDetailsMark($results, 'Bangla_2nd', 'all');
                             $SUBJECT_TOTAL2 = $mark2['SUBJECT_TOTAL'];
                             $subMark2 = $mark2['subMark'];
-                            $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                            $gg1 =  ($subMark1 + $subMark2) / 2;
-                            $gg = Greeting($gg1, $ggTo, 'greed');
+                            $CQ2 = $mark2['CQ'];
+                            $MCQ2 = $mark2['MCQ'];
+
+
+                            $CQ1Grade = Greeting($CQ1, 70, 'greed');
+                            $MCQ1Grade = Greeting($MCQ1, 30, 'greed');
+
+                            $CQ2Grade = Greeting($CQ2, 70, 'greed');
+                            $MCQ2Grade = Greeting($MCQ2, 30, 'greed');
+
+                            $grade = [$CQ1Grade,$MCQ1Grade,$CQ2Grade,$MCQ2Grade];
+
+
+                            if (in_array('F', $grade)) {
+                                $gg = 'F';
+                            } else {
+                                $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
+                                $gg1 =  ($subMark1 + $subMark2) / 2;
+                                $gg = Greeting($gg1, $ggTo, 'greed');
+                            }
+
+
+
+
+
+
+
+
                             $html .= "<td><span> " . $gg . "</span></td>";
                         } elseif (subjectCol($sub) == 'Bangla_2nd') {
                             $html .= '';
                         } elseif (subjectCol($sub) == 'English_1st') {
-                            $mark1 =  SubjectDetailsMark($results, 'English_1st', 'all');
+                             $mark1 =  SubjectDetailsMark($results, 'English_1st', 'all');
                             $SUBJECT_TOTAL1 = $mark1['SUBJECT_TOTAL'];
                             $subMark1 = $mark1['subMark'];
+                            $CQ1 = $mark1['CQ'];
+
                             $mark2 =  SubjectDetailsMark($results, 'English_2nd', 'all');
                             $SUBJECT_TOTAL2 = $mark2['SUBJECT_TOTAL'];
                             $subMark2 = $mark2['subMark'];
-                            $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                            $gg1 =  ($subMark1 + $subMark2) / 2;
-                            $gg = Greeting($gg1, $ggTo, 'greed');
+                            $CQ2 = $mark2['CQ'];
+
+
+
+                            $CQ1Grade = Greeting($CQ1, $SUBJECT_TOTAL1, 'greed');
+
+
+                            $CQ2Grade = Greeting($CQ2, $SUBJECT_TOTAL2, 'greed');
+
+
+                            $grade = [$CQ1Grade,$CQ2Grade];
+
+
+                            if (in_array('F', $grade)) {
+                                $gg = 'F';
+                            } else {
+                                $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
+                                $gg1 =  ($subMark1 + $subMark2) / 2;
+                                $gg = Greeting($gg1, $ggTo, 'greed');
+                            }
+
+
                             $html .= "<td><span> " . $gg . "</span></td>";
                         } elseif (subjectCol($sub) == 'English_2nd') {
                             $html .= '';
                         } else {
                             if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
                                 $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionIslam', 'total');
-                                $html .= "<td><span> " . Greeting($results['ReligionIslam'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
+
+
+                                $mark =  SubjectDetailsMark($results, 'ReligionIslam', 'all');
+                                $CQ = $mark['CQ'];
+                                $MCQ = $mark['MCQ'];
+                                $subMark = $mark['subMark'];
+                                $CQGrade = Greeting($CQ, 70, 'greed');
+                                $MCQGrade = Greeting($MCQ, 30, 'greed');
+                                $grade = [$CQGrade,$MCQGrade];
+                                if (in_array('F', $grade)) {
+                                    $gg = 'F';
+                                } else {
+                                    $gg = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
+                                }
+                                $html .= "<td><span> " . $gg . "</span></td>";
+
+
+
                             } elseif (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Hindu') {
+
+
+
                                 $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionHindu', 'total');
-                                $html .= "<td><span> " . Greeting($results['ReligionHindu'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
+                                $mark =  SubjectDetailsMark($results, 'ReligionHindu', 'all');
+                                $CQ = $mark['CQ'];
+                                $MCQ = $mark['MCQ'];
+                                $subMark = $mark['subMark'];
+                                $CQGrade = Greeting($CQ, 70, 'greed');
+                                $MCQGrade = Greeting($MCQ, 30, 'greed');
+                                $grade = [$CQGrade,$MCQGrade];
+                                if (in_array('F', $grade)) {
+                                    $gg = 'F';
+                                } else {
+                                    $gg = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
+                                }
+                                $html .= "<td><span> " . $gg . "</span></td>";
+
+
+
+
                             } else {
+
+
+
+
+
+
+
+
                                 $SUBJECT_TOTAL =  SubjectDetailsMark($results, subjectCol($sub), 'total');
-                                $html .= "<td><span> " . Greeting($results[subjectCol($sub)], $SUBJECT_TOTAL, 'greed') . "</span></td>";
+                                $CqTotal = 70;
+                                $MCqTotal = 30;
+                                if($SUBJECT_TOTAL==100){
+                                    if(subjectCol($sub)=='Biology' || subjectCol($sub)=='physics' || subjectCol($sub)=='Higher_Mathematics' || subjectCol($sub)=='Agriculture' || subjectCol($sub)=='Chemistry'){
+                                        $CqTotal = 50;
+                                        $MCqTotal = 25;
+                                    }else{
+                                        $CqTotal = 70;
+                                        $MCqTotal = 30;
+                                    }
+                                }elseif($SUBJECT_TOTAL==50){
+                                    $CqTotal = 30;
+                                    $MCqTotal = 20;
+                                }
+
+
+                                $mark =  SubjectDetailsMark($results, subjectCol($sub), 'all');
+                                $CQ = $mark['CQ'];
+                                $MCQ = $mark['MCQ'];
+                                $subMark = $mark['subMark'];
+                                $CQGrade = Greeting($CQ, $CqTotal, 'greed');
+                                $MCQGrade = Greeting($MCQ, $MCqTotal, 'greed');
+                                $grade = [$CQGrade,$MCQGrade];
+                                if (in_array('F', $grade)) {
+                                    $gg = 'F';
+                                } else {
+                                    $gg = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
+                                }
+
+                                if(subjectCol($sub) == 'Agriculture'){
+                                    if($results->Agriculture){
+                                        $html .= "<td><span> " . $gg . "</span></td>";
+                                    }else{
+                                        $html .='';
+                                    }
+                                }elseif(subjectCol($sub) == 'Higher_Mathematics'){
+                                    if($results->Higher_Mathematics){
+                                        $html .= "<td><span> " . $gg . "</span></td>";
+                                    }else{
+                                        $html .='';
+                                    }
+                                }else{
+                                    $html .= "<td><span> " . $gg . "</span></td>";
+                                }
+
                             }
                         }
                     }

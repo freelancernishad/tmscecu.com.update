@@ -170,9 +170,9 @@
                             <ul class="footerList">
                                 <li style="font-size:font-size:15px"> </li>
                                 <li
-                                    style="font-size:font-size:15px;    display: flex;justify-content: center;align-items: center;">
+                                    style="font-size:font-size:15px;    display: flex;justify-content: end;align-items: center;">
                                     <!-- <img style="width:40px !important" :src="$asseturl + 'assets/img/bd-logo.png'"alt=""> -->
-                                    <span style="padding: 0 15px;"> <b> কারিগরি সহায়তায়:</b> <br/>
+                                    <span style="padding: 0 0px;text-align:right"> <b> কারিগরি সহায়তায়:</b> <br/>
                                         <a target="_blank" href="https://api.whatsapp.com/send?phone=8801909756552&text=I%27m%20interested%20in%20your%20services">Md Nishad Hossain</a>
                                         Director of Softweb
                                     </span>

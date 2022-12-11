@@ -151,7 +151,7 @@ $data['countdata']['ছাত্র'] = $maleStudent;
 $data['countdata']['ছাত্রী'] = $FemaleStudent;
 $data['countdata']['বিজ্ঞান বিভাগ'] = $scienceStudent;
 $data['countdata']['মানবিক বিভাগ'] = $HumanitiesStudent;
-$data['countdata']['ব্যবসায় শিক্ষা বিভাগ'] = $CommerceStudent;
+// $data['countdata']['ব্যবসায় শিক্ষা বিভাগ'] = $CommerceStudent;
 
        return response()->json($data);
         // return view(sitedetails()->theme.'.student_at_a_glance', $data);
