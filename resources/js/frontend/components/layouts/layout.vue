@@ -74,7 +74,7 @@
 
                             <li class="nav-item dropdown">
                                 <router-link class="text-light px-3 nav-link" to="/result" id="navbarDropdown" >
-                                    ফলাফল
+                                   পরীক্ষার ফলাফল
                                 </router-link>
                             </li>
 

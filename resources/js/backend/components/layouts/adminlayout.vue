@@ -68,7 +68,7 @@
                             <div class="item-content">
                                 <ul class="settings-list">
                                     <li>
-                                        <router-link class="dropdown-item" to="">
+                                        <router-link class="dropdown-item" :to="{name:'profile'}">
                                             <img :src="$asseturl + 'dashboard_asset/img/figure/admin.jpg'" alt="Admin">
                                             Profile
                                         </router-link>

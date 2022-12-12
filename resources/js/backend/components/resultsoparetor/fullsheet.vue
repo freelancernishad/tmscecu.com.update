@@ -24,7 +24,7 @@
                     <div class="dropdown">
 
                         <!-- {{ url('school/result_sheet/pdf/' . $group . '/' . $class . '/' . $exam_name . '/All/' . $date) }} -->
-                     <a  v-if="status=='Published'"  :href="'/dashboard/result_sheet/pdf/' + form.school_id +'/'+ filterdata.group + '/' + filterdata.student_class + '/' + filterdata.examType + '/All/' + filterdata.date"  class="btn-fill-lmd radius-4 text-light bg-violet-blue float-left" style="float:right" @click="preloader = true">Download</a>
+                     <!-- <a  v-if="status=='Published'"  :href="'/dashboard/result_sheet/pdf/' + form.school_id +'/'+ filterdata.group + '/' + filterdata.student_class + '/' + filterdata.examType + '/All/' + filterdata.date"  class="btn-fill-lmd radius-4 text-light bg-violet-blue float-left" style="float:right" @click="preloader = true">Download</a> -->
 
                     </div>
                 </div>

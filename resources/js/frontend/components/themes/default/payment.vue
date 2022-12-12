@@ -124,9 +124,8 @@
                             <div class="card-header" style="display: flex;justify-content: end;">
                                 <div v-if="paymentStatus == 'Paid'" class="paiddiv">
                                                 <button class="btn btn-success">Paid</button>
-                                                <!-- <a class="btn btn-info" target="_blank"
-                                                    :href="'/student/applicant/copy/' + student.AdmissionID">Print
-                                                    Applicant Copy</a> -->
+                                                 <a class="btn btn-info" target="_blank"
+                                                    :href="'/student/applicant/invoice/' + trxid">Download Invoice</a>
                                             </div>
 
                                             <a class="btn btn-info" v-else-if="paymentStatus == 'Pending'"
@@ -214,6 +213,7 @@ export default {
             student: {},
             paymentStatus: 'Paid',
             paymentUrl: '#',
+            trxid: '',
             searched: 0,
         }
     },
@@ -229,6 +229,7 @@ export default {
                 this.searched = 2
             }
             this.paymentUrl = res.data.paymentUrl
+            this.trxid = res.data.trxid
             this.paymentStatus = res.data.paymentStatus
             // var res2 = await this.callApi('get',`/api/student/applicant/copy/${res.data.student.AdmissionID}`,[]);
             this.preloader = false

@@ -79,12 +79,13 @@ class PaymentController extends Controller
             $paymentfilter['month'] = $month;
         }
 
+        $trxid = '';
 
          $paidPaymentCount = payment::where($paymentfilter)->count();
         if ($paidPaymentCount > 0) {
 
             $paidPayment = payment::where($paymentfilter)->latest()->first();
-
+$trxid = $paidPayment->trxid;
                  $paymentStatus = $paidPayment->status;
 
         }
@@ -97,6 +98,7 @@ class PaymentController extends Controller
 
         $data = [
             'paymentUrl' => $paymentUrl,
+            'trxid' => $trxid,
             'student' => $student,
             'paymentStatus' => $paymentStatus,
             'searched' => 1,

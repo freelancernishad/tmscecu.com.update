@@ -840,7 +840,7 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
         <style>
         @page {
-            margin: 10px;
+            margin: 25px;
            }
 
         .memoborder{
@@ -1367,12 +1367,16 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 	<meta charset='UTF-8'>
 	<title>applicant-copy-$student->AdmissionID.pdf</title>
     <style>
+    @page {
+        margin: 25px;
+        margin-top:30px;
+       }
         *{
             margin: 0;
             padding: 0;
         }
         .rootContainer {
-            margin: 25px;
+            margin: 5px;
             border: 1px solid;
             padding: 5px 21px;
         }

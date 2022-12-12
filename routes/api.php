@@ -2,9 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\api\smsController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\api\BlogController;
 use App\Http\Controllers\frontendController;
 use  App\Http\Controllers\api\authController;
@@ -19,10 +21,9 @@ use App\Http\Controllers\api\PaymentController;
 use App\Http\Controllers\api\RoutineController;
 use App\Http\Controllers\api\HomeworkController;
 use App\Http\Controllers\api\studentsController;
+
 use App\Http\Controllers\QuestionbankController;
 use App\Http\Controllers\api\SchoolDetailController;
-
-use App\Http\Controllers\VisitorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +73,7 @@ Route::get('/gotoUnion', [countryApiController::class,'gotoUnion']);
 
 
 
-
+Route::post('update/users',[RoleController::class,'updateuser']);
 
 Route::post('/ipn',[PaymentController::class ,'ipn']);
 
