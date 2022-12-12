@@ -6585,13 +6585,13 @@ var render = function render() {
     }
   }, [_vm._v("ভর্তি ফরম ফি")]), _vm._v(" "), _c("option", {
     attrs: {
-      value: "monthly_fee"
-    }
-  }, [_vm._v("মাসিক বেতন")]), _vm._v(" "), _c("option", {
-    attrs: {
       value: "session_fee"
     }
   }, [_vm._v("ভর্তি/সেশন ফি")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "monthly_fee"
+    }
+  }, [_vm._v("মাসিক বেতন")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "exam_fee"
     }

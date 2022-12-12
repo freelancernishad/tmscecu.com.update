@@ -1054,8 +1054,8 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
                             $khat = [
                                    'Admission_fee'=>'ভর্তি ফরম ফি',
-                                   'monthly_fee'=>'মাসিক বেতন',
                                    'session_fee'=>'ভর্তি/সেশন ফি',
+                                   'monthly_fee'=>'মাসিক বেতন',
                                    'exam_fee'=>'পরীক্ষার ফি',
                                    'registration_fee'=>'রেজিস্ট্রেশন ফি',
                                    'form_filup_fee'=>'ফরম পূরণ ফি',
@@ -1237,8 +1237,8 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
                             $khat = [
                                 'Admission_fee'=>'ফরম ফর্ম ফি',
-                                'monthly_fee'=>'মাসিক বেতন',
                                 'session_fee'=>'ভর্তি/সেশন ফি',
+                                'monthly_fee'=>'মাসিক বেতন',
                                 'exam_fee'=>'পরীক্ষার ফি',
                                 'registration_fee'=>'রেজিস্ট্রেশন ফি',
                                 'form_filup_fee'=>'ফরম পূরণ ফি',
@@ -1263,8 +1263,6 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
                                             $html .=" <td class='td  defaltfont'>".int_en_to_bn(0)."</td>";
 
                                         };
-
-
 
                                   $html.="  </tr>";
 
