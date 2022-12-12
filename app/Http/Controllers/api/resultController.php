@@ -143,12 +143,12 @@ class resultController extends Controller
         $html  = "";
         if ($count > 0) {
             $Fgg = 0;
-            $html  .= "     <table class='width-50 table table-sm mt-3' width='100%' v-for='resultrow in result'>";
+            $html  .= "     <table class='width-50 table table-sm mt-3' width='100%' >";
             if ($results->status == 'Draft') {
                 $html  .= "
                 <tbody>
                     <tr class='table-danger'>
-                        <td class='pl-5 pr-5' colspan='3'> <b>
+                        <td class='pl-5 pr-5' colspan='4'> <b>
                                 <center>
                                     <h4>Result Cannot Published Yet!</h4>
                                 </center>
@@ -163,7 +163,7 @@ class resultController extends Controller
                 $html  .= "
             <tbody v-else>
                 <tr class='table-success'>
-                    <td class='pl-5 pr-5' colspan='2'> <b>
+                    <td class='pl-5 pr-5' colspan='4'> <b>
                             <center>
                                 <h4>STUDENT DETAILS</h4>
                             </center>
@@ -200,23 +200,28 @@ class resultController extends Controller
                     <td class='pl-5'> <b class='ml-5'>:</b></td>
                     <td> $GpaResult </td>
                 </tr>
-                <tr class='table-success'>
+                </tbody>
+                </table>
+
+                <table class='width-50 table table-sm mt-3' width='100%'   style='display:none' >
+                <tr class='table-success'   style='display:none'>
                     <td class='pl-5 pr-5' colspan='3'> <b>
                             <center>
                                 <h4>SUBJECT DETAILS</h4>
                             </center>
                         </b></td>
                 </tr>
-                <tr class='table-primary'>
+                <tr class='table-primary' style='display:none'>
                     <td class='pl-5 pr-5' colspan='2'> <b>
                             <h5>SUBJECT</h5>
                         </b></td>
                     <td class='pl-5 pr-5' colspan='1'> <b>
                             <h5>MARK</h5>
                         </b></td>
-                </tr>";
+                </tr>
+                ";
                 foreach ($subjects as $sub) {
-                    $html .= "<tr class='table-primar'>";
+                    $html .= "<tr class='table-primar'  style='display:none'>";
                     if ($request->filter['class'] == "Six" || $request->filter['class'] == "Seven") {
                         if (subjectCol($sub) == 'Bangla_1st') {
                             $html .= " <td class='pl-5 pr-5'> <b>বাংলা</b></td>";

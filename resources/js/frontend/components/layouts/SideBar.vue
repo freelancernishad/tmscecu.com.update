@@ -81,12 +81,26 @@
                         <div class="custom_bg py-2">
                             <ul class="list-unstyled" style="padding-left:0">
                                 <li class="ps-3 pb-1"><a class="text-black"  href="http://www.moedu.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> শিক্ষা মন্ত্রণালয়</a></li>
+
                                 <li class="ps-3 pb-1"><a class="text-black"  href="http://www.dshe.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর</a></li>
+
+                                <li class="ps-3 pb-1"><a class="text-black"  href="https://dhakaeducationboard.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i>ঢাকা শিক্ষাবোর্ড</a></li>
+
+
+                                <li class="ps-3 pb-1"><a class="text-black"  href="http://www.dinajpureducationboard.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i>দিনাজপুর শিক্ষাবোর্ড</a></li>
+
+
+                                <li class="ps-3 pb-1"><a class="text-black"  href="https://dinajpurboard.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i>শিক্ষাবোর্ড,দিনাজপুর</a></li>
+
+
+                                <li class="ps-3 pb-1"><a class="text-black"  href="http://www.educationboardresults.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i>বোর্ড রেজাল্ট</a></li>
+
+
                                 <li class="ps-3 pb-1"><a class="text-black"  href="http://www.banbeis.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> ব্যানবেইজ</a></li>
-                                <li class="ps-3 pb-1"><a class="text-black"  href="http://www.nctb.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> এনসিটিবি</a></li>
+                                <!-- <li class="ps-3 pb-1"><a class="text-black"  href="http://www.nctb.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> এনসিটিবি</a></li> -->
 
 
-                                <li class="ps-3 pb-1"><a class="text-black"  href="https://www.teachers.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> শিক্ষক বাতায়ন</a></li>
+                                <!-- <li class="ps-3 pb-1"><a class="text-black"  href="https://www.teachers.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> শিক্ষক বাতায়ন</a></li> -->
 
                                 <li class="ps-3 pb-1"><a class="text-black"  href="http://www.panchagarh.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> পঞ্চগড় জেলা</a></li>
 

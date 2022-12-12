@@ -48,7 +48,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12" v-if="filterdata.student_class">
                                 <div class="form-group">
                                     <label>Exam Type:</label>
                                     <select class="form-control" style="width: 100%;" v-model="filterdata.examType"
@@ -79,7 +79,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12" v-if="filterdata.examType">
                                 <div class='form-group'>
                                     <label>Year:</label>
                                     <select class='form-control' style='width: 100%;' v-model="filterdata.year"
@@ -89,7 +89,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12" v-if="filterdata.year">
                                 <div class="form-group student_class">
                                     <label>Roll:</label>
                                     <input type="number" class="form-control" v-model="filterdata.roll" id="date">

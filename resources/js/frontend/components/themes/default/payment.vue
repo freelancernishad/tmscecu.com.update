@@ -31,7 +31,7 @@
                                 <option value="">পেমেন্ট ক্যাটাগরি নির্বাচন করুন</option>
                                 <option value="Admission_fee">ভর্তি ফরম ফি</option>
                                 <option value="monthly_fee">মাসিক বেতন</option>
-                                <option value="session_fee">সেশন ফি</option>
+                                <option value="session_fee">ভর্তি/সেশন ফি</option>
                                 <option value="exam_fee">পরীক্ষার ফি</option>
                                 <option value="registration_fee">রেজিস্ট্রেশন ফি</option>
                                 <option value="form_filup_fee">ফরম পূরণ ফি</option>
@@ -54,9 +54,9 @@
                                 <label for="">পেমেন্ট করার মাধ্যম</label>
                                 <select class="form-control" v-model="form.paymenttype">
                                     <option value="">নির্বাচন করুন</option>
+                                    <option value="other">শ্রেণি, রোল এর মাধ্যমে</option>
                                     <option value="AdmissionID">এডমিশন আইডি এর মাধ্যমে</option>
                                     <option value="StudentID"> স্টুডেন্ট আইডি এর মাধ্যমে</option>
-                                    <option value="other">শ্রেণি, রোল, গ্রুপ এর মাধ্যমে</option>
                                 </select>
                             </div>
 
