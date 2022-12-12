@@ -1463,7 +1463,7 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
                 <tr>
 
                     <td class='tableRowHead' >Nationality</td>
-                    <td colspan='3'>Banglideshi</td>
+                    <td colspan='3'>Bangladeshi</td>
                 </tr>
                 <tr>
                     <td class='tableRowHead' >Gender</td>
