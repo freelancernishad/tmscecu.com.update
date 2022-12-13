@@ -2031,8 +2031,8 @@ function resultDetails($results)
         <tr>
             <td>Result</td>
             <td>GPA=$GpaResult</td>
-            <td>Total Mark</td>
-            <td>$MarkResult</td>
+            <td></td>
+            <td></td>
         </tr>
 
         <tr>
