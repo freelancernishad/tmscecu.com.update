@@ -6666,7 +6666,7 @@ var render = function render() {
     attrs: {
       value: "other"
     }
-  }, [_vm._v("শ্রেণি, রোল এর মাধ্যমে")]), _vm._v(" "), _c("option", {
+  }, [_vm._v("শ্রেণি রোল এর মাধ্যমে")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "AdmissionID"
     }
@@ -6884,6 +6884,34 @@ var render = function render() {
       display: "flex",
       "justify-content": "end"
     }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Name:")]), _vm._v(" " + _vm._s(_vm.student.StudentName) + "\n                                ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-3"
+  }, [_c("b", [_vm._v("Roll:")]), _vm._v(" " + _vm._s(_vm.student.StudentRoll) + "\n                                ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-3"
+  }, [_c("b", [_vm._v("Class:")]), _vm._v(" " + _vm._s(_vm.student.StudentClass) + "\n                                ")]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Father Name:")]), _vm._v(" " + _vm._s(_vm.student.StudentFatherNameBn) + "\n                                ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Mother Name:")]), _vm._v(" " + _vm._s(_vm.student.StudentMotherNameBn) + "\n                                ")]), _vm._v(" "), _c("hr"), _vm._v(" "), _vm.student.StudentClass == "Nine" || _vm.student.StudentClass == "Ten" ? _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Group:")]), _vm._v(" " + _vm._s(_vm.student.StudentGroup) + "\n                                ")]) : _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Group:")]), _vm._v(" N/A\n                                ")]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v(" Admission Id:")]), _vm._v(" " + _vm._s(_vm.student.AdmissionID) + "\n                                ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("b", [_vm._v("Student Id:")]), _vm._v(" " + _vm._s(_vm.student.StudentID) + "\n                                ")]), _vm._v(" "), _c("hr")])]), _vm._v(" "), _c("div", {
+    staticClass: "card-footer",
+    staticStyle: {
+      display: "flex",
+      "justify-content": "center"
+    }
   }, [_vm.paymentStatus == "Paid" ? _c("div", {
     staticClass: "paiddiv"
   }, [_c("button", {
@@ -6906,32 +6934,13 @@ var render = function render() {
     }
   }, [_vm._v("Pay Failed Payment")]) : _c("a", {
     staticClass: "btn btn-info",
+    staticStyle: {
+      "font-size": "30px"
+    },
     attrs: {
       href: "/payment?studentId=" + _vm.student.id + "&type=" + _vm.form.type + "&month=" + _vm.form.month
     }
-  }, [_vm._v("Pay Now")])]), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-6"
-  }, [_c("b", [_vm._v(" Admission Id:")]), _vm._v(" " + _vm._s(_vm.student.AdmissionID) + "\n                                ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("b", [_vm._v("Student Id:")]), _vm._v(" " + _vm._s(_vm.student.StudentID) + "\n                                ")]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("b", [_vm._v("Name:")]), _vm._v(" " + _vm._s(_vm.student.StudentName) + "\n                                ")]), _vm._v(" "), _vm.student.StudentClass == "Nine" || _vm.student.StudentClass == "Ten" ? _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("b", [_vm._v("Group:")]), _vm._v(" " + _vm._s(_vm.student.StudentGroup) + "\n                                ")]) : _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("b", [_vm._v("Group:")]), _vm._v(" N/A\n                                ")]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("b", [_vm._v("Class:")]), _vm._v(" " + _vm._s(_vm.student.StudentClass) + "\n                                ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("b", [_vm._v("Roll:")]), _vm._v(" " + _vm._s(_vm.student.StudentRoll) + "\n                                ")]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("b", [_vm._v("Father Name:")]), _vm._v(" " + _vm._s(_vm.student.StudentFatherNameBn) + "\n                                ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("b", [_vm._v("Mother Name:")]), _vm._v(" " + _vm._s(_vm.student.StudentMotherNameBn) + "\n                                ")]), _vm._v(" "), _c("hr")])])]) : _vm._e(), _vm._v(" "), _vm.searched == 2 ? _c("h2", {
+  }, [_vm._v("Pay Now")])])]) : _vm._e(), _vm._v(" "), _vm.searched == 2 ? _c("h2", {
     staticStyle: {
       color: "red",
       "text-align": "center",

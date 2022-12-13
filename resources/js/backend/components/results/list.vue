@@ -59,7 +59,7 @@
                                     <th scope="col" class="textwrap" width="15%">নাম</th>
                                     <th scope="col">লিখিত</th>
                                     <th scope="col">বহুনির্বাচনী</th>
-                                    <th scope="col">অতিরিক্ত</th>
+                                    <th scope="col">ব্যাবহারিক</th>
                                     <th scope="col" width="20%">মোট</th>
                                 </tr>
                             </thead>
@@ -67,15 +67,15 @@
                                 <tr v-for="student in students">
                                     <td scope="col">{{ student.StudentRoll }}</td>
                                     <td scope="col" class="textwrap">{{ student.StudentName }}</td>
-                                    <td scope="col"><input type="number" min="0" max="100" class="form-control"
+                                    <td scope="col"><input type="number" min="0" max="100" onClick="this.select();" class="form-control"
                                             v-model="form.number[student.StudentRoll]['CQ']" required></td>
-                                    <td scope="col"><input type="number" min="0" max="100"
+                                    <td scope="col"><input type="number" min="0" max="100"  onClick="this.select();"
                                             v-model="form.number[student.StudentRoll]['MCQ']" class="form-control"
                                             required></td>
-                                    <td scope="col"><input type="number" min="0" max="100" vl
+                                    <td scope="col"><input type="number" min="0" max="100"  onClick="this.select();"
                                             v-model="form.number[student.StudentRoll]['EXTRA']" class="form-control"
                                             required></td>
-                                    <td scope="col"><input type="text"
+                                    <td scope="col"><input type="text"  onClick="this.select();"
                                             :value="Number(form.number[student.StudentRoll]['CQ']) + Number(form.number[student.StudentRoll]['MCQ']) + Number(form.number[student.StudentRoll]['EXTRA'])"
                                             class="form-control" readonly></td>
                                 </tr>

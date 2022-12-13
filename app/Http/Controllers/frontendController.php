@@ -8,7 +8,8 @@ use App\Models\routine;
 use App\Models\staff;
 use App\Models\Event;
 use App\Models\blog;
-
+use App\Models\school_detail;
+use App\Models\StudentResult;
 use Mail;
 
 
@@ -278,16 +279,6 @@ $data['year'] = $year;
     public function view_result_pdf(Request $r,$school_id, $class, $roll, $year, $exam_name,$group)
     {
 
-
-
-
-
-        $data['types'] = 'pdf';
-        $data['class'] = $class;
-        $data['roll'] = $roll;
-        $data['year'] = $year;
-        $data['exam_name'] = $exam_name;
-        $data['class_group'] = $group;
         $wd = [
             'school_id'=>$school_id,
             'class' => $class,
@@ -296,27 +287,145 @@ $data['year'] = $year;
             'exam_name' => $exam_name,
             'class_group' => $group,
         ];
-        $data['check'] = DB::table('student_results')->where($wd)->count();
-        if ($data['check'] > 0) {
-            $data['rows'] = DB::table('student_results')->where($wd)->get();
-            $StudentID = $data['rows'][0]->stu_id;
-            $wds = [
-                'StudentID' => $StudentID,
-            ];
-            $data['stdata'] = DB::table('students')->where($wds)->get();
+        $check = DB::table('student_results')->where($wd)->count();
+        if ($check > 0) {
+            $results = StudentResult::where($wd)->first();
+
+
+            $mpdf = new \Mpdf\Mpdf([
+                'mode' => 'utf-8', 'format' => 'A4', 'default_font' => 'bangla', 'margin_left' => 5,
+                'margin_right' => 5,
+                'margin_top' => 6,
+                'margin_bottom' => 6,
+            ]);
+            $mpdf->WriteHTML($this->pdfmarksheet($results));
+            $mpdf->Output('markSheet.pdf', 'I');
+
+
+
+            // return view('admin/pdfReports.view_result', compact('results'));
+            // $pdf = LaravelMpdf::loadView('admin/pdfReports.view_result', compact('results'));
+            // return $pdf->stream('document.pdf');
         }
-        //in Controller
-        $paths = env('FILE_PATH').'frontend/sing.png';
-        $types = pathinfo($paths, PATHINFO_EXTENSION);
-        $datais = file_get_contents($paths);
-        $logos = 'data:image/' . $types . ';base64,' . base64_encode($datais);
-        $data['sign'] = $logos;
 
 
-        $pdf = LaravelMpdf::loadView('admin/pdfReports.view_result', $data);
-        return $pdf->stream('document.pdf');
-        // return view('view_result', $data);
+
+
     }
+
+    function pdfmarksheet($results)
+    {
+
+
+
+        $schoolDetails = school_detail::where('school_id',$results->school_id)->first();
+        $html="
+
+        <style>
+        @page{
+            margin: 60px 80px;
+        }
+        .m-0{
+            margin: 0;
+        }    .text-center{
+            text-align:center;
+        }
+    td{
+        border: 1px dotted black;
+        padding:4px 10px;
+        font-size: 16px;
+    }    th{
+        border: 1px dotted black;
+        padding:4px 10px;
+        font-size: 12px;
+    }
+
+    .li{
+        font-size: 10px;
+    }
+
+
+
+	table{
+		border-collapse: collapse;
+		width:100%
+	}
+    section.view.about--part1 {
+    margin: 15px 0 50px 0;
+}
+    </style>
+
+
+    <table width='100%' style='margin-bottom:20px' border='0'>
+    <tr>
+        <td width='110px' style='border:0 !important'>
+            <img width='75px'  style='overflow:hidden;float:right' src='".base64($schoolDetails->logo)."' alt=''>
+        </td>
+        <td style='border:0 !important'>
+            <p class='fontsize2' style='font-size:30px'>$schoolDetails->SCHOLL_NAME</p>
+            <p class='fontsize1' style='font-size:20px'>$schoolDetails->SCHOLL_ADDRESS </p>
+            <p class='fontsize1' style='font-size:12px'>website: www.tepriganjhighschool.edu.bd </p>
+        </td>
+
+
+    </tr>
+</table>
+
+
+    <div>
+
+        <p style='width:220px;border:1px solid #4a4a4a;background:#4a4a4a;color:white;font-size:25px;text-align:center;margin:5px auto;border-radius: 50px;padding:5px;font-family: cursive;'>Result sheet</p>
+
+    </div>
+
+
+
+        ";
+
+        $html .= resultDetails($results);
+        $html .= ResultGradeList($results);
+
+//         $html .="
+
+
+// <table width='100%' style='margin-top:50px'>
+
+// <tr>
+
+// <td style='  border: 0px dotted black;
+// padding:20px 10px 10px 10px;
+// font-size: 12px;'></td>
+// <td style='  border: 0px dotted black;
+// padding:20px 10px 10px 10px;
+// font-size: 12px;'></td>
+// <td style='  border: 0px dotted black;
+// padding:20px 10px 10px 10px;
+// font-size: 12px;text-align:center;font-size:20px' width='35%'>
+
+
+
+//     <h3 style='margin:0;text-align:center;font-weight: 500;'>স্বাক্ষর</h3>
+//     <h4 style='margin:0;text-align:center;font-size:16px;    font-weight: 500;'>প্রধান শিক্ষক</h4>
+//     <h4 style='margin:0;text-align:center;font-size:16px;    font-weight: 500;'>$schoolDetails->Principals_name</h4>
+//     <h4 style='margin:0;text-align:center;font-size:16px;    font-weight: 500;'>$schoolDetails->SCHOLL_NAME</h4>
+// </td>
+
+// </tr>
+
+// </table>
+//         ";
+
+
+        return $html;
+
+    }
+
+
+
+
+
+
+
     public function weakly_result(Request $r)
     {
         $school_id = sitedetails()->school_id;

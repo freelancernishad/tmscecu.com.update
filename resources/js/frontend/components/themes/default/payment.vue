@@ -54,7 +54,7 @@
                                 <label for="">পেমেন্ট করার মাধ্যম</label>
                                 <select class="form-control" v-model="form.paymenttype">
                                     <option value="">নির্বাচন করুন</option>
-                                    <option value="other">শ্রেণি, রোল এর মাধ্যমে</option>
+                                    <option value="other">শ্রেণি রোল এর মাধ্যমে</option>
                                     <option value="AdmissionID">এডমিশন আইডি এর মাধ্যমে</option>
                                     <option value="StudentID"> স্টুডেন্ট আইডি এর মাধ্যমে</option>
                                 </select>
@@ -122,6 +122,62 @@
 
                         <div class="card" v-if="searched == 1">
                             <div class="card-header" style="display: flex;justify-content: end;">
+
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+
+
+                                    <div class="col-md-6">
+                                        <b>Name:</b> {{  student.StudentName }}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <b>Roll:</b> {{  student.StudentRoll }}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <b>Class:</b> {{  student.StudentClass }}
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="col-md-6">
+                                        <b>Father Name:</b> {{  student.StudentFatherNameBn }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Mother Name:</b> {{  student.StudentMotherNameBn }}
+                                    </div>
+                                    <hr>
+
+
+
+
+
+
+
+
+                                    <div class="col-md-6" v-if="student.StudentClass=='Nine' || student.StudentClass=='Ten'">
+                                        <b>Group:</b> {{  student.StudentGroup }}
+                                    </div>
+                                    <div class="col-md-6" v-else>
+                                        <b>Group:</b> N/A
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="col-md-6">
+                                       <b> Admission Id:</b> {{  student.AdmissionID }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Student Id:</b> {{  student.StudentID }}
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+
+
+                            <div class="card-footer" style="    display: flex;justify-content: center;">
+
                                 <div v-if="paymentStatus == 'Paid'" class="paiddiv">
                                                 <button class="btn btn-success">Paid</button>
                                                  <a class="btn btn-info" target="_blank"
@@ -134,48 +190,13 @@
                                             <a class="btn btn-info" v-else-if="paymentStatus == 'Failed'"
                                                 :href="paymentUrl">Pay Failed Payment</a>
 
-                                            <a class="btn btn-info" v-else :href="'/payment?studentId='+student.id+'&type='+form.type+'&month='+form.month">Pay Now</a>
+                                            <a class="btn btn-info" style="font-size: 30px;" v-else :href="'/payment?studentId='+student.id+'&type='+form.type+'&month='+form.month">Pay Now</a>
+
+
                             </div>
-                            <div class="card-body">
-                                <div class="row">
 
-                                    <div class="col-md-6">
-                                       <b> Admission Id:</b> {{  student.AdmissionID }}
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Student Id:</b> {{  student.StudentID }}
-                                    </div>
-                                    <hr>
-                                    <div class="col-md-6">
-                                        <b>Name:</b> {{  student.StudentName }}
-                                    </div>
-
-                                    <div class="col-md-6" v-if="student.StudentClass=='Nine' || student.StudentClass=='Ten'">
-                                        <b>Group:</b> {{  student.StudentGroup }}
-                                    </div>
-                                    <div class="col-md-6" v-else>
-                                        <b>Group:</b> N/A
-                                    </div>
-
-                                    <hr>
-                                    <div class="col-md-6">
-                                        <b>Class:</b> {{  student.StudentClass }}
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Roll:</b> {{  student.StudentRoll }}
-                                    </div>
-                                    <hr>
-                                    <div class="col-md-6">
-                                        <b>Father Name:</b> {{  student.StudentFatherNameBn }}
-                                    </div>
-                                    <div class="col-md-6">
-                                        <b>Mother Name:</b> {{  student.StudentMotherNameBn }}
-                                    </div>
-                                    <hr>
-
-                                </div>
-                            </div>
                         </div>
+
 
 
 

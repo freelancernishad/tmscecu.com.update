@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\api;
+
 use PDF;
 use App\Models\student;
 use Illuminate\Http\Request;
@@ -8,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+
 class resultController extends Controller
 {
     public function checkResultall($school_id, $class, $year, $exam_name, $subject = '', $group = '')
@@ -112,8 +115,23 @@ class resultController extends Controller
                 AllowedFilter::exact('Bangla_1st'),
                 AllowedFilter::exact('id')
             ])
-            ->get();
+            ->first();
+
+
+            $html="<a  class='btn btn-info' target='_blank' style='float: right;padding:15px;font-size:18px' href='/pdf/$result->school_id/$result->class/$result->roll/$result->year/$result->exam_name/$result->class_group'>Download</a>";
+
+
+            $html.= resultDetails($result);
+            $html.= ResultGradeList($result);
+                return $html;
+
+
         return response()->json($result);
+
+
+
+
+
     }
     public function searchResult(Request $request)
     {
@@ -143,387 +161,36 @@ class resultController extends Controller
         $html  = "";
         if ($count > 0) {
             $Fgg = 0;
-            $html  .= "     <table class='width-50 table table-sm mt-3' width='100%' >";
             if ($results->status == 'Draft') {
+                $html  .= "     <table class='width-50 table table-sm mt-3' width='100%' >";
                 $html  .= "
                 <tbody>
                     <tr class='table-danger'>
-                        <td class='pl-5 pr-5' colspan='4'> <b>
+                        <td class='pl-5 pr-5'> <b>
                                 <center>
                                     <h4>Result Cannot Published Yet!</h4>
                                 </center>
                             </b></td>
                     </tr>
-                </tbody>";
-            } else {
-                // return SubjectDetailsMark($results);
-                $subjects =  allList('subjects', $request->filter['class'], $request->filter['class_group']);
-                $GpaResult = StudentFailedCount($results);
-                // return $GpaResult;
-                $html  .= "
-            <tbody v-else>
-                <tr class='table-success'>
-                    <td class='pl-5 pr-5' colspan='4'> <b>
-                            <center>
-                                <h4>STUDENT DETAILS</h4>
-                            </center>
-                        </b></td>
-                    <td class='pl-5 pr-5'></td>
-                </tr>
-                <tr class='table-primar'>
-                    <td class='pl-5 pr-5'> <b>নাম</b></td>
-                    <td class='pl-5'> <b class='ml-5'>:</b></td>
-                    <td> $results->name</td>
-                </tr>
-                <tr class='table-primar'>
-                    <td class='pl-5 pr-5'> <b>রোল</b></td>
-                    <td class='pl-5'> <b class='ml-5'>:</b></td>
-                    <td> $results->roll </td>
-                </tr>
-                <tr class='table-primar'>
-                    <td class='pl-5 pr-5'> <b>শ্রেণী</b></td>
-                    <td class='pl-5'> <b class='ml-5'>:</b></td>
-                    <td> $results->class </td>
-                </tr>
-                <tr class='table-primar'>
-                    <td class='pl-5 pr-5'> <b>সাল</b></td>
-                    <td class='pl-5'> <b class='ml-5'>:</b></td>
-                    <td> $results->year </td>
-                </tr>
-                <tr class='table-primar'>
-                    <td class='pl-5 pr-5'> <b>পরীক্ষার নাম</b></td>
-                    <td class='pl-5'> <b class='ml-5'>:</b></td>
-                    <td> $results->exam_name </td>
-                </tr>
-                <tr class='table-primar'>
-                    <td class='pl-5 pr-5'> <b>GPA</b></td>
-                    <td class='pl-5'> <b class='ml-5'>:</b></td>
-                    <td> $GpaResult </td>
-                </tr>
                 </tbody>
                 </table>
-
-                <table class='width-50 table table-sm mt-3' width='100%'   style='display:none' >
-                <tr class='table-success'   style='display:none'>
-                    <td class='pl-5 pr-5' colspan='3'> <b>
-                            <center>
-                                <h4>SUBJECT DETAILS</h4>
-                            </center>
-                        </b></td>
-                </tr>
-                <tr class='table-primary' style='display:none'>
-                    <td class='pl-5 pr-5' colspan='2'> <b>
-                            <h5>SUBJECT</h5>
-                        </b></td>
-                    <td class='pl-5 pr-5' colspan='1'> <b>
-                            <h5>MARK</h5>
-                        </b></td>
-                </tr>
                 ";
-                foreach ($subjects as $sub) {
-                    $html .= "<tr class='table-primar'  style='display:none'>";
-                    if ($request->filter['class'] == "Six" || $request->filter['class'] == "Seven") {
-                        if (subjectCol($sub) == 'Bangla_1st') {
-                            $html .= " <td class='pl-5 pr-5'> <b>বাংলা</b></td>";
-                            $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
-                        } elseif (subjectCol($sub) == 'Bangla_2nd') {
-                            $html .= '';
-                        } elseif (subjectCol($sub) == 'English_1st') {
-                            $html .= " <td class='pl-5 pr-5'> <b>ইংরেজি</b></td>";
-                            $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
-                        } elseif (subjectCol($sub) == 'English_2nd') {
-                            $html .= '';
-                        } else {
-                            $html .= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
-                            $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
-                        }
-                        if (subjectCol($sub) == 'Bangla_1st') {
+            } else {
 
-                            $mark1 =  SubjectDetailsMark($results, 'Bangla_1st', 'all');
-                            $SUBJECT_TOTAL1 = $mark1['SUBJECT_TOTAL'];
-                            $subMark1 = $mark1['subMark'];
+                $html .= resultDetails($results);
 
-                            $mark2 =  SubjectDetailsMark($results, 'Bangla_2nd', 'all');
-                            $SUBJECT_TOTAL2 = $mark2['SUBJECT_TOTAL'];
-                            $subMark2 = $mark2['subMark'];
+                $html  .= "
+            <h2 style='text-align:center;font-size:20px;color:red'>বিঃদ্রঃ মার্কশীট সংগ্রহ করতে বিদ্যালয়ে যোগাযোগ করুন </h2>
+            ";
+                //    $html .= ResultGradeList($results);
 
-
-
-                            $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                            $gg1 =  ($subMark1 + $subMark2) / 2;
-                             $gg = Greeting($gg1, $ggTo, 'greed');
-
-
-
-                            $html .= "<td><span> " . $gg . "</span></td>";
-                        } elseif (subjectCol($sub) == 'Bangla_2nd') {
-                            $html .= '';
-                        } elseif (subjectCol($sub) == 'English_1st') {
-                            $mark1 =  SubjectDetailsMark($results, 'English_1st', 'all');
-                            $SUBJECT_TOTAL1 = $mark1['SUBJECT_TOTAL'];
-                            $subMark1 = $mark1['subMark'];
-                            $mark2 =  SubjectDetailsMark($results, 'English_2nd', 'all');
-                            $SUBJECT_TOTAL2 = $mark2['SUBJECT_TOTAL'];
-                            $subMark2 = $mark2['subMark'];
-                            $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                            $gg1 =  ($subMark1 + $subMark2) / 2;
-                            //   return   $gg = Greeting($gg1, $ggTo, 'point');
-                            $gg = Greeting($gg1, $ggTo, 'greed');
-                            $html .= "<td><span> " . $gg . "</span></td>";
-                        } elseif (subjectCol($sub) == 'English_2nd') {
-                            $html .= '';
-                        } else {
-                            if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
-                                $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionIslam', 'total');
-                                $html .= "<td><span> " . Greeting($results['ReligionIslam'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                            } elseif (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Hindu') {
-                                $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionHindu', 'total');
-                                $html .= "<td><span> " . Greeting($results['ReligionHindu'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                            } else {
-                                $SUBJECT_TOTAL =  SubjectDetailsMark($results, subjectCol($sub), 'total');
-                                $html .= "<td><span> " . Greeting($results[subjectCol($sub)], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                            }
-                        }
-                    } elseif ($request->filter['class'] == "Eight") {
-                        $html .= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
-                        $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
-                        if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
-                            $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionIslam', 'total');
-                            $html .= "<td><span> " . Greeting($results['ReligionIslam'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                        } elseif (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Hindu') {
-                            $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionHindu', 'total');
-                            $html .= "<td><span> " . Greeting($results['ReligionHindu'], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                        } else {
-                            $SUBJECT_TOTAL =  SubjectDetailsMark($results, subjectCol($sub), 'total');
-                            $html .= "<td><span> " . Greeting($results[subjectCol($sub)], $SUBJECT_TOTAL, 'greed') . "</span></td>";
-                        }
-                    } elseif ($request->filter['class'] == "Nine" || $request->filter['class'] == "Ten") {
-                        if (subjectCol($sub) == 'Bangla_1st') {
-                            $html .= " <td class='pl-5 pr-5'> <b>বাংলা</b></td>";
-                            $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
-                        } elseif (subjectCol($sub) == 'Bangla_2nd') {
-                            $html .= '';
-                        } elseif (subjectCol($sub) == 'English_1st') {
-                            $html .= " <td class='pl-5 pr-5'> <b>ইংরেজি</b></td>";
-                            $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
-                        } elseif (subjectCol($sub) == 'English_2nd') {
-                            $html .= '';
-                        } else {
-
-
-                            if(subjectCol($sub) == 'Agriculture'){
-                                if($results->Agriculture){
-                                    $html .= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
-                                    $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
-                                }else{
-                                    $html .='';
-                                }
-                            }elseif(subjectCol($sub) == 'Higher_Mathematics'){
-                                if($results->Higher_Mathematics){
-                                    $html .= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
-                                    $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
-                                }else{
-                                    $html .='';
-                                }
-                            }else{
-                                $html .= " <td class='pl-5 pr-5'> <b>$sub</b></td>";
-                                $html .= " <td class='pl-5'> <b class='ml-5'>:</b></td>";
-                            }
-
-
-
-
-                        }
-
-
-                        if (subjectCol($sub) == 'Bangla_1st') {
-                            $mark1 =  SubjectDetailsMark($results, 'Bangla_1st', 'all');
-                            $SUBJECT_TOTAL1 = $mark1['SUBJECT_TOTAL'];
-                            $subMark1 = $mark1['subMark'];
-                            $CQ1 = $mark1['CQ'];
-                            $MCQ1 = $mark1['MCQ'];
-                            $mark2 =  SubjectDetailsMark($results, 'Bangla_2nd', 'all');
-                            $SUBJECT_TOTAL2 = $mark2['SUBJECT_TOTAL'];
-                            $subMark2 = $mark2['subMark'];
-                            $CQ2 = $mark2['CQ'];
-                            $MCQ2 = $mark2['MCQ'];
-
-
-                            $CQ1Grade = Greeting($CQ1, 70, 'greed');
-                            $MCQ1Grade = Greeting($MCQ1, 30, 'greed');
-
-                            $CQ2Grade = Greeting($CQ2, 70, 'greed');
-                            $MCQ2Grade = Greeting($MCQ2, 30, 'greed');
-
-                            $grade = [$CQ1Grade,$MCQ1Grade,$CQ2Grade,$MCQ2Grade];
-
-
-                            if (in_array('F', $grade)) {
-                                $gg = 'F';
-                            } else {
-                                $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                                $gg1 =  ($subMark1 + $subMark2) / 2;
-                                $gg = Greeting($gg1, $ggTo, 'greed');
-                            }
-
-
-
-
-
-
-
-
-                            $html .= "<td><span> " . $gg . "</span></td>";
-                        } elseif (subjectCol($sub) == 'Bangla_2nd') {
-                            $html .= '';
-                        } elseif (subjectCol($sub) == 'English_1st') {
-                             $mark1 =  SubjectDetailsMark($results, 'English_1st', 'all');
-                            $SUBJECT_TOTAL1 = $mark1['SUBJECT_TOTAL'];
-                            $subMark1 = $mark1['subMark'];
-                            $CQ1 = $mark1['CQ'];
-
-                            $mark2 =  SubjectDetailsMark($results, 'English_2nd', 'all');
-                            $SUBJECT_TOTAL2 = $mark2['SUBJECT_TOTAL'];
-                            $subMark2 = $mark2['subMark'];
-                            $CQ2 = $mark2['CQ'];
-
-
-
-                            $CQ1Grade = Greeting($CQ1, $SUBJECT_TOTAL1, 'greed');
-
-
-                            $CQ2Grade = Greeting($CQ2, $SUBJECT_TOTAL2, 'greed');
-
-
-                            $grade = [$CQ1Grade,$CQ2Grade];
-
-
-                            if (in_array('F', $grade)) {
-                                $gg = 'F';
-                            } else {
-                                $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                                $gg1 =  ($subMark1 + $subMark2) / 2;
-                                $gg = Greeting($gg1, $ggTo, 'greed');
-                            }
-
-
-                            $html .= "<td><span> " . $gg . "</span></td>";
-                        } elseif (subjectCol($sub) == 'English_2nd') {
-                            $html .= '';
-                        } else {
-                            if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
-                                $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionIslam', 'total');
-
-
-                                $mark =  SubjectDetailsMark($results, 'ReligionIslam', 'all');
-                                $CQ = $mark['CQ'];
-                                $MCQ = $mark['MCQ'];
-                                $subMark = $mark['subMark'];
-                                $CQGrade = Greeting($CQ, 70, 'greed');
-                                $MCQGrade = Greeting($MCQ, 30, 'greed');
-                                $grade = [$CQGrade,$MCQGrade];
-                                if (in_array('F', $grade)) {
-                                    $gg = 'F';
-                                } else {
-                                    $gg = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
-                                }
-                                $html .= "<td><span> " . $gg . "</span></td>";
-
-
-
-                            } elseif (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Hindu') {
-
-
-
-                                $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionHindu', 'total');
-                                $mark =  SubjectDetailsMark($results, 'ReligionHindu', 'all');
-                                $CQ = $mark['CQ'];
-                                $MCQ = $mark['MCQ'];
-                                $subMark = $mark['subMark'];
-                                $CQGrade = Greeting($CQ, 70, 'greed');
-                                $MCQGrade = Greeting($MCQ, 30, 'greed');
-                                $grade = [$CQGrade,$MCQGrade];
-                                if (in_array('F', $grade)) {
-                                    $gg = 'F';
-                                } else {
-                                    $gg = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
-                                }
-                                $html .= "<td><span> " . $gg . "</span></td>";
-
-
-
-
-                            } else {
-
-
-
-
-
-
-
-
-                                $SUBJECT_TOTAL =  SubjectDetailsMark($results, subjectCol($sub), 'total');
-                                $CqTotal = 70;
-                                $MCqTotal = 30;
-                                if($SUBJECT_TOTAL==100){
-                                    if(subjectCol($sub)=='Biology' || subjectCol($sub)=='physics' || subjectCol($sub)=='Higher_Mathematics' || subjectCol($sub)=='Agriculture' || subjectCol($sub)=='Chemistry'){
-                                        $CqTotal = 50;
-                                        $MCqTotal = 25;
-                                    }else{
-                                        $CqTotal = 70;
-                                        $MCqTotal = 30;
-                                    }
-                                }elseif($SUBJECT_TOTAL==50){
-                                    $CqTotal = 30;
-                                    $MCqTotal = 20;
-                                }
-
-
-                                $mark =  SubjectDetailsMark($results, subjectCol($sub), 'all');
-                                $CQ = $mark['CQ'];
-                                $MCQ = $mark['MCQ'];
-                                $subMark = $mark['subMark'];
-                                $CQGrade = Greeting($CQ, $CqTotal, 'greed');
-                                $MCQGrade = Greeting($MCQ, $MCqTotal, 'greed');
-                                $grade = [$CQGrade,$MCQGrade];
-                                if (in_array('F', $grade)) {
-                                    $gg = 'F';
-                                } else {
-                                    $gg = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
-                                }
-
-                                if(subjectCol($sub) == 'Agriculture'){
-                                    if($results->Agriculture){
-                                        $html .= "<td><span> " . $gg . "</span></td>";
-                                    }else{
-                                        $html .='';
-                                    }
-                                }elseif(subjectCol($sub) == 'Higher_Mathematics'){
-                                    if($results->Higher_Mathematics){
-                                        $html .= "<td><span> " . $gg . "</span></td>";
-                                    }else{
-                                        $html .='';
-                                    }
-                                }else{
-                                    $html .= "<td><span> " . $gg . "</span></td>";
-                                }
-
-                            }
-                        }
-                    }
-                    $html .= "</tr>";
-                }
-                $html .= "
-            </tbody>
-        </table>
-";
             }
         } else {
             $html  .= "
             <table class='width-50 table table-sm mt-3' width='100%' v-if='count == 'not found''>
                 <tbody>
                     <tr class='table-danger'>
-                        <td class='pl-5 pr-5' colspan='3'> <b>
+                        <td class='pl-5 pr-5' > <b>
                                 <center>
                                     <h4>Result Cannot Find!</h4>
                                 </center>
@@ -534,6 +201,18 @@ class resultController extends Controller
         }
         return $html;
     }
+
+
+
+
+
+
+
+
+
+
+
+
     public function checkResult(Request $request)
     {
         // return $request->all();
@@ -676,7 +355,7 @@ class resultController extends Controller
             'margin_top' => 6,
             'margin_bottom' => 6,
         ]);
-        $mpdf->WriteHTML($this->fullResultPdf($school_id, $student_class, date("Y", strtotime($date)), $exam,$group));
+        $mpdf->WriteHTML($this->fullResultPdf($school_id, $student_class, date("Y", strtotime($date)), $exam, $group));
         $mpdf->Output('document.pdf', 'I');
         // return $pdf->stream('document.pdf');
         // return view('admin/pdfReports.full_result_pdf',$data);
@@ -1432,9 +1111,9 @@ class resultController extends Controller
         ";
         foreach ($subjects as $value) {
             $html .= "
-            <td style='    height: 58px;    font-size: 10px;'><p  style='transform: rotate(-50deg);border: 0;padding: 0;'>CQ</p></td>
+            <td style='    height: 58px;    font-size: 10px;'><p  style='transform: rotate(-50deg);border: 0;padding: 0;'>THEORY</p></td>
             <td style='    height: 58px;    font-size: 10px;'><p  style='transform: rotate(-50deg);border: 0;padding: 0;'>MCQ</p></td>
-            <td style='    height: 58px;    font-size: 10px;'><p  style='transform: rotate(-50deg);border: 0;padding: 0;'>EX</p></td>
+            <td style='    height: 58px;    font-size: 10px;'><p  style='transform: rotate(-50deg);border: 0;padding: 0;'>PRAC/CA</p></td>
             <td style='    height: 58px;    font-size: 10px;'><p  style='transform: rotate(-50deg);border: 0;padding: 0;'>TOTAL</p></td>
         ";
         }
@@ -1517,7 +1196,7 @@ class resultController extends Controller
 
 
                     $total += $resValue[subjectCol($value)];
-                    $subMark = json_decode($resValue[subjectCol($value). "_d"]);
+                    $subMark = json_decode($resValue[subjectCol($value) . "_d"]);
                     if ($subMark) {
                         $html .= "
                             <td>$subMark->CQ</td>
@@ -1532,11 +1211,6 @@ class resultController extends Controller
                         <td>0</td>
                     ";
                     }
-
-
-
-
-
                 }
             }
             $html .= "
@@ -1550,7 +1224,7 @@ class resultController extends Controller
         // return '11';
         return ['html' => $html, 'status' => $status, 'publishids' => $publishids];
     }
-    public function fullResultPdf($school_id, $class, $year, $exam_name,$group)
+    public function fullResultPdf($school_id, $class, $year, $exam_name, $group)
     {
         $publishids = [];
         $filter = [
@@ -1693,31 +1367,24 @@ class resultController extends Controller
                 } else {
 
 
-                $total += $resValue[subjectCol($value)];
-                $subMark = json_decode($resValue[subjectCol($value) . "_d"]);
-                if ($subMark) {
-                    $html .= "
+                    $total += $resValue[subjectCol($value)];
+                    $subMark = json_decode($resValue[subjectCol($value) . "_d"]);
+                    if ($subMark) {
+                        $html .= "
                     <td>$subMark->CQ</td>
                     <td>$subMark->MCQ</td>
                     <td>$subMark->EXTRA</td>
                     <td>" . $resValue[subjectCol($value)] . "</td>
                 ";
-                } else {
-                    $html .= "
+                    } else {
+                        $html .= "
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
                 ";
+                    }
                 }
-
-                }
-
-
-
-
-
-
             }
             $html .= "
             <td>$failed</td>

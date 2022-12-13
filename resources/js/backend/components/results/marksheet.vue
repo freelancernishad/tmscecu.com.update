@@ -105,7 +105,7 @@
                                     <div class="form-group student_class">
                                         <label></label>
                                         <br>
-                                        <input type="submit"  class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"  @click="search" />
+                                        <input type="submit" value="Search"  class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"  @click="search" />
                                     </div>
                                 </div>
                             </div>
@@ -113,122 +113,9 @@
 
 
 			<section class="view about--part1">
-				<div class="view_display" style="overflow:hidden">
-
-<table class="width-50 table table-sm mt-3" width="100%" v-if="count=='not found'">
-<tbody>
-<tr class="table-danger">
-		<td class="pl-5 pr-5" colspan="3"> <b>
-				<center>
-					<h4>Result Cannot Find!</h4>
-				</center>
-			</b></td>
-</tr>
-</tbody>
-</table>
-
-<table class="width-50 table table-sm mt-3" width="100%" v-for="resultrow in result" v-else>
-<tbody v-if="resultrow.status=='Draft'">
-<tr class="table-danger">
-		<td class="pl-5 pr-5" colspan="3"> <b>
-				<center>
-					<h4>Result Cannot Published Yet!</h4>
-				</center>
-			</b></td>
-</tr>
-</tbody>
-
-<tbody v-else>
-<tr class="table-success">
-		<td class="pl-5 pr-5" colspan="2"> <b>
-				<center>
-					<h4>STUDENT DETAILS</h4>
-				</center>
-			</b></td>
-
-            <td class="pl-5 pr-5">
-	<div style="overflow: hidden;">
-<a  class="btn btn-info" target="_blank" style="float: right;" :href="('/pdf/'+school_id+'/'+resultrow.class+'/'+resultrow.roll+'/'+resultrow.year+'/'+resultrow.exam_name+'/'+resultrow.class_group)">সম্পূর্ণ ফলাফল দেখুন</a>
-</div>
-			</td>
-	</tr>
-	<tr class="table-primar">
-		<td class="pl-5 pr-5"> <b>নাম</b></td>
-		<td class="pl-5"> <b class="ml-5">:</b></td>
-		<td>{{ resultrow.name }}</td>
-	</tr>
-	<tr class="table-primar">
-		<td class="pl-5 pr-5"> <b>রোল</b></td>
-		<td class="pl-5"> <b class="ml-5">:</b></td>
-		<td>{{ resultrow.roll }}</td>
-	</tr>
-	<tr class="table-primar">
-		<td class="pl-5 pr-5"> <b>শ্রেণী</b></td>
-		<td class="pl-5"> <b class="ml-5">:</b></td>
-		<td>{{ resultrow.class }}</td>
-	</tr>
-	<tr class="table-primar">
-		<td class="pl-5 pr-5"> <b>সাল</b></td>
-		<td class="pl-5"> <b class="ml-5">:</b></td>
-		<td>{{ resultrow.year }}</td>
-	</tr>
-	<tr class="table-primar">
-		<td class="pl-5 pr-5"> <b>পরীক্ষার নাম</b></td>
-		<td class="pl-5"> <b class="ml-5">:</b></td>
-		<td>{{ resultrow.exam_name }}</td>
-	</tr>
+				<div class="view_display" style="overflow:hidden" v-html="result">
 
 
-
-
-
-
-						<tr class="table-success">
-							<td class="pl-5 pr-5" colspan="3"> <b>
-									<center>
-										<h4>SUBJECT DETAILS</h4>
-									</center>
-								</b></td>
-						</tr>
-						<tr class="table-primary">
-							<td class="pl-5 pr-5" colspan="2"> <b>
-									<h5>SUBJECT</h5>
-								</b></td>
-							<td class="pl-5 pr-5" colspan="1"> <b>
-									<h5>MARK</h5>
-								</b></td>
-						</tr>
-
-
-
-						<tr class="table-primar"  v-for="subject in subjects">
-							<td class="pl-5 pr-5"> <b>{{ subject }}</b></td>
-							<td class="pl-5"> <b class="ml-5">:</b></td>
-
-
-							<td>
-
-
-                                        <span v-if="changesubName(subject)=='Religion' && resultrow.StudentReligion=='Islam'">{{ resultrow['ReligionIslam'] }}</span>
-                                        <span v-else-if="changesubName(subject)=='Religion' &&  resultrow.StudentReligion=='Hindu'">{{ resultrow['ReligionHindu'] }}</span>
-                                        <span v-else>{{ resultrow[changesubName(subject)] }}</span>
-
-                                        <!-- {{ JSON.parse(resultrow[changesubName(subject)+'_d']) }} -->
-                                        <!-- {{  JSON.stringify(resultrow[changesubName(subject)+'_d']).CQ }} -->
-                                </td>
-
-
-
-						</tr>
-
-
-						<tr class="table-primar">
-							<td class="pl-5 pr-5"> <b>Total</b></td>
-							<td class="pl-5"> <b class="ml-5">:</b></td>
-							<td></td>
-						</tr>
-</tbody>
-					</table>
 
 				</div>
 			</section>
@@ -282,7 +169,7 @@ export default {
             roll: '',
             count: '',
             years: [],
-            result: {},
+            result: '',
             preloader: false,
             filterdata:{
                 student_class:null,

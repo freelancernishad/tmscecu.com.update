@@ -303,8 +303,16 @@ export default {
 
             clearTimeout(this.timeout);
             var url = '';
-            var sort = '';
+            var sort = 'id';
+
             var classsearch = '';
+
+            if(this.$route.params.status=='Pending'){
+                this.sorttype = '-';
+                this.field = 'id';
+            }
+
+
             if (this.field != '') {
                 sort = `sort=${this.sorttype}${this.field}`;
             }
