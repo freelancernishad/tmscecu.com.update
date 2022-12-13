@@ -129,6 +129,7 @@
                                     <th class="tablecolhide" @click="sortby('StudentMotherNameBn')">মাতার নাম</th>
 
                                   <th class="tablecolhide" @click="sortby('StudentAddress')">ঠিকানা</th>
+                                  <th class="tablecolhide" v-if="$route.params.status=='Pending'" @click="sortby('JoiningDate')">আবেদনের তারিখ</th>
                                     <!-- <th class="tablecolhide" @click="sortby('StudentPhoneNumber')">ফোন</th>  -->
                                     <th>Action</th>
                                 </tr>
@@ -160,6 +161,7 @@
                                     <td class="tablecolhide" style="text-transform: uppercase;">{{ student.StudentFatherNameBn }}</td>
                                     <td class="tablecolhide" style="text-transform: uppercase;">{{ student.StudentMotherNameBn }}</td>
                                     <td class="tablecolhide">{{ student.StudentAddress }}</td>
+                                    <td class="tablecolhide" v-if="$route.params.status=='Pending'">{{ student.JoiningDate }}</td>
                                     <!-- <td class="tablecolhide">{{ student.StudentPhoneNumber }}</td> -->
                                     <td>
                                         <div class="dropdown">
