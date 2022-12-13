@@ -140,14 +140,26 @@
         background: #042954;
         color: wheat;">Looding...</td>
                                 </tr>
-                                <tr v-else v-for="student in students.data" :key="student.id">
-                                    <td>
+                                <tr v-else v-for="(student,index) in students.data" :key="student.id">
+
+
+                                    <td v-if="$route.params.status=='Pending'">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" v-model="actioncheck"
+                                                :value="student.id">
+                                            <label class="form-check-label">{{ index+1 }}</label>
+                                        </div>
+                                    </td>
+
+                                    <td v-else>
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" v-model="actioncheck"
                                                 :value="student.id">
                                             <label class="form-check-label">{{ student.StudentRoll }}</label>
                                         </div>
                                     </td>
+
+
                                     <td class="text-center">
                                         <router-link :to="{ name: 'studentImage', params: { id: student.id } }">
                                             <img :id="'student_image' + student.id" class='student_image'
