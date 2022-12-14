@@ -382,8 +382,8 @@ $data['year'] = $year;
 
         ";
 
-        $html .= resultDetails($results);
-        $html .= ResultGradeList($results);
+        $html .= resultDetails($results,'pdf');
+        $html .= ResultGradeList($results,'pdf');
 
 //         $html .="
 

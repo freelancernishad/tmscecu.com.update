@@ -1973,7 +1973,30 @@ function resultDetails($results,$type='ragular')
 {
 
     $GpaResult = StudentFailedCount($results);
+
+
     $MarkResult = StudentFailedCount($results,'mark');
+
+
+
+    if($type=='pdf'){
+       $totalMark = "
+        <tr>
+            <td>Result</td>
+            <td>GPA=$GpaResult</td>
+            <td>Total Mark</td>
+            <td>$MarkResult</td>
+        </tr>";
+    }else{
+        $totalMark = "
+        <tr>
+            <td>Result</td>
+            <td colspan='3'>GPA=$GpaResult</td>
+
+        </tr>";
+    }
+
+
 
     $stu_id = $results->stu_id;
     $student = student::where('StudentID',$stu_id)->first();
@@ -2035,12 +2058,7 @@ function resultDetails($results,$type='ragular')
             <td>Type: REGULAR</td>
             <td>Gender: $student->StudentGender</td>
         </tr>
-        <tr>
-            <td>Result</td>
-            <td>GPA=$GpaResult</td>
-            <td></td>
-            <td></td>
-        </tr>
+        $totalMark
 
         <tr>
             <td>Next Class Roll</td>
