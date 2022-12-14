@@ -868,7 +868,7 @@
 
                 </tr>
                 <tr>
-                    <td colspan="2">{{ form.StudentName }}</td>
+                    <td colspan="2">{{ form.StudentCategory }}</td>
                     <td colspan="2">{{ form.StudentKota }}</td>
 
 

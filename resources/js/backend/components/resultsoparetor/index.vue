@@ -75,7 +75,7 @@
                                 </div>
 
 
-                                <div class="col-md-3">
+                                <div class="col-md-3 d-none">
                                     <div class="form-group student_class">
                                         <label>Date:</label>
                                         <input  type="date" class="form-control" v-model="filterdata.date" id="date">

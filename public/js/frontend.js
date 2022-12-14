@@ -3869,6 +3869,10 @@ __webpack_require__.r(__webpack_exports__);
       return subject;
     },
     callSubjects: function callSubjects() {
+      if (this.filterdata.student_class == 'SSC Result') {
+        window.location.href = 'http://www.educationboardresults.gov.bd/';
+      }
+
       if (this.filterdata.student_class == 'Nine' || this.filterdata.student_class == 'Ten') {} else {
         this.filterdata.group = 'All';
       }
@@ -9084,7 +9088,7 @@ var render = function render() {
     attrs: {
       colspan: "2"
     }
-  }, [_vm._v(_vm._s(_vm.form.StudentName))]), _vm._v(" "), _c("td", {
+  }, [_vm._v(_vm._s(_vm.form.StudentCategory))]), _vm._v(" "), _c("td", {
     attrs: {
       colspan: "2"
     }
@@ -9219,9 +9223,9 @@ var render = function render() {
     attrs: {
       value: ""
     }
-  }, [_vm._v("\n                                        SELECT\n                                    ")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist) {
+  }, [_vm._v("\n                                        SELECT\n                                    ")]), _vm._v(" "), _c("option", [_vm._v("Admission Result")]), _vm._v(" "), _vm._l(_vm.classess, function (classlist) {
     return _c("option", [_vm._v(_vm._s(classlist))]);
-  })], 2)])]), _vm._v(" "), _vm.filterdata.student_class == "Nine" || _vm.filterdata.student_class == "Ten" ? _c("div", {
+  }), _vm._v(" "), _c("option", [_vm._v("SSC Result")])], 2)])]), _vm._v(" "), _vm.filterdata.student_class == "Nine" || _vm.filterdata.student_class == "Ten" ? _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "form-group"
@@ -9258,7 +9262,7 @@ var render = function render() {
     }
   }, [_vm._v("select")]), _vm._v(" "), _vm._l(_vm.groups, function (group) {
     return _c("option", [_vm._v(_vm._s(group))]);
-  })], 2)])]) : _vm._e(), _vm._v(" "), _vm.filterdata.student_class ? _c("div", {
+  })], 2)])]) : _vm._e(), _vm._v(" "), _vm.filterdata.student_class && _vm.filterdata.student_class != "Admission Result" ? _c("div", {
     staticClass: "col-md-12"
   }, [_c("div", {
     staticClass: "form-group"
@@ -9411,6 +9415,32 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "form-group student_class"
   }, [_c("label", [_vm._v("Roll:")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.filterdata.roll,
+      expression: "filterdata.roll"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "number",
+      id: "date"
+    },
+    domProps: {
+      value: _vm.filterdata.roll
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.filterdata, "roll", $event.target.value);
+      }
+    }
+  })])]) : _vm._e(), _vm._v(" "), _vm.filterdata.student_class == "Admission Result" ? _c("div", {
+    staticClass: "col-md-12"
+  }, [_c("div", {
+    staticClass: "form-group student_class"
+  }, [_c("label", [_vm._v("Admission Id:")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",

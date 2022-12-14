@@ -149,6 +149,9 @@ Route::post('/routines/submit',[RoutineController::class , 'submit']);
 
 
 //result routes
+Route::get('/results',[resultController::class , 'Result']);
+
+
 Route::post('/results/submit',[resultController::class , 'submit']);
 
 Route::get('/all/results/list',[resultController::class , 'AllResultList']);
@@ -159,6 +162,7 @@ Route::get('/results/check',[resultController::class , 'checkResult']);
 Route::get('/public/result/search',[resultController::class , 'searchResult']);
 Route::get('/results/single',[resultController::class , 'checkSingleResult']);
 Route::post('/results/publish',[resultController::class , 'publishResult']);
+Route::post('/results/publish/list',[resultController::class , 'ResultPublish']);
 
 
 

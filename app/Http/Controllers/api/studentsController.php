@@ -1236,13 +1236,13 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
 
                             $khat = [
-                                'Admission_fee'=>'ফরম ফর্ম ফি',
+                                'Admission_fee'=>'ভর্তি ফরম ফি',
                                 'session_fee'=>'ভর্তি/সেশন ফি',
                                 'monthly_fee'=>'মাসিক বেতন',
                                 'exam_fee'=>'পরীক্ষার ফি',
                                 'registration_fee'=>'রেজিস্ট্রেশন ফি',
                                 'form_filup_fee'=>'ফরম পূরণ ফি',
-                            ];
+                         ];
 
                             $kahts = json_decode(json_encode($khat));
                             print_r($kahts);

@@ -7,13 +7,14 @@ use App\Models\Visitor;
 use Illuminate\Http\Request;
 use App\Models\school_detail;
 
+use App\Models\StudentResult;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
+
 use Illuminate\Support\Facades\URL;
-
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\frontendController;
@@ -238,11 +239,39 @@ Route::get('/allow/application/notification', function () {
 Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
 
 
+
+    Route::get('/results/publish/{school_id}/{student_class}/{group}/{examType}/{year}', function ($school_id,$student_class,$group,$examType,$year) {
+
+        $filter = [
+            'school_id' => $school_id,
+            'class' => $student_class,
+            'year' => $year,
+            'exam_name' => $examType,
+            'class_group' => $group,
+        ];
+
+        $results = StudentResult::where($filter)->orderBy('failed','asc')->orderBy('total','desc')->get();
+
+
+        return view('resultpublish',compact('results'));
+
+
+        });
+        Route::post('/results/publish/list',[resultController::class , 'ResultPublish']);
+
+
+
+
+
     Route::get('/import', function () {
         return view('import');
 
 
         });
+
+
+
+
         Route::post('import',[studentsController::class,'import']);
 
 

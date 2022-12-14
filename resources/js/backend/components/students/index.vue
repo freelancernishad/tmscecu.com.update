@@ -173,7 +173,7 @@
                                     <td class="tablecolhide" style="text-transform: uppercase;">{{ student.StudentFatherNameBn }}</td>
                                     <td class="tablecolhide" style="text-transform: uppercase;">{{ student.StudentMotherNameBn }}</td>
                                     <td class="tablecolhide">{{ student.StudentAddress }}</td>
-                                    <td class="tablecolhide" v-if="$route.params.status=='Pending'">{{ student.JoiningDate }}</td>
+                                    <td class="tablecolhide" v-if="$route.params.status=='Pending'">{{ dateformatGlobal(student.JoiningDate)[3] }}</td>
                                     <!-- <td class="tablecolhide">{{ student.StudentPhoneNumber }}</td> -->
                                     <td>
                                         <div class="dropdown">

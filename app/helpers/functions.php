@@ -151,10 +151,15 @@ function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='paymen
     function BanglaSubToEnglish($banglaSubject)
     {
         $data = '';
+        if($banglaSubject=='বাংলা'){
+            $data = 'Bangla';
+        }
         if($banglaSubject=='বাংলা ১ম'){
             $data = 'Bangla-I';
         }elseif($banglaSubject=='বাংলা ২য়'){
             $data = 'Bangla-II';
+        }elseif($banglaSubject=='ইংরেজি'){
+            $data = 'English';
         }elseif($banglaSubject=='ইংরেজি ১ম'){
             $data = 'English-I';
         }elseif($banglaSubject=='ইংরেজি ২য়'){
@@ -1987,13 +1992,51 @@ function resultDetails($results,$type='ragular')
             <td>Total Mark</td>
             <td>$MarkResult</td>
         </tr>";
-    }else{
-        $totalMark = "
-        <tr>
-            <td>Result</td>
-            <td colspan='3'>GPA=$GpaResult</td>
 
-        </tr>";
+        if($results->failed>0){
+            $totalMark .="";
+        }else{
+            $totalMark .="<tr>
+                <td>Next Class Roll</td>
+                <td colspan='3'><span id='i_name'>$results->nextroll</span></td>
+            </tr>";
+        }
+
+
+    }else{
+
+
+        if($results->FinalResultStutus=='inhaled'){
+
+            $totalMark = "
+            <tr>
+                <td>Result</td>
+                <td colspan='3' style='color:red'>ফলাফল জানার জন্য বিদ্যালয়ে যোগাযোগ করুন</td>
+
+            </tr>";
+        }else{
+
+            $totalMark = "
+            <tr>
+                <td>Result</td>
+                <td colspan='3'>GPA=$GpaResult</td>
+            </tr>";
+
+            if($results->failed>0){
+                $totalMark .="";
+            }else{
+                $totalMark .="<tr>
+                    <td>Next Class Roll</td>
+                    <td colspan='3'><span id='i_name'>$results->nextroll</span></td>
+                </tr>";
+            }
+
+        }
+
+
+
+
+
     }
 
 
@@ -2022,7 +2065,7 @@ function resultDetails($results,$type='ragular')
             <td>Roll No</td>
             <td>$results->roll</td>
             <td>Class</td>
-            <td style='text-transform: uppercase;'>$class</td>
+            <td>$class</td>
 
         </tr>
 
@@ -2055,15 +2098,12 @@ function resultDetails($results,$type='ragular')
         <tr>
             <td>Group</td>
             <td>$class_group</td>
-            <td>Type: REGULAR</td>
+            <td>Type: Regular</td>
             <td>Gender: $student->StudentGender</td>
         </tr>
         $totalMark
 
-        <tr>
-            <td>Next Class Roll</td>
-            <td colspan='3'><span id='i_name'>1</span></td>
-        </tr>
+
 
     </tbody>
 </table>";
@@ -2231,7 +2271,7 @@ function ResultGradeList($results,$type='ragular')
 
             }
         } elseif ($class == "Eight") {
-            $html .= " <td class='pl-5 pr-5'> $sub</td>";
+            $html .= " <td class='pl-5 pr-5'>". BanglaSubToEnglish($sub)."</td>";
 
             if (subjectCol($sub) == 'Religion' && $results->StudentReligion == 'Islam') {
                 $SUBJECT_TOTAL =  SubjectDetailsMark($results, 'ReligionIslam', 'total');

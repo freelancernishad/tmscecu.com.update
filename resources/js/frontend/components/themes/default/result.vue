@@ -33,7 +33,9 @@
                                         <option value="">
                                             SELECT
                                         </option>
+                                        <option>Admission Result</option>
                                         <option v-for="classlist in classess">{{ classlist }}</option>
+                                        <option>SSC Result</option>
                                     </select>
                                 </div>
                             </div>
@@ -48,7 +50,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12" v-if="filterdata.student_class">
+                            <div class="col-md-12" v-if="filterdata.student_class && filterdata.student_class!='Admission Result'">
                                 <div class="form-group">
                                     <label>Exam Type:</label>
                                     <select class="form-control" style="width: 100%;" v-model="filterdata.examType"
@@ -89,12 +91,27 @@
                                     </select>
                                 </div>
                             </div>
+
+
+
                             <div class="col-md-12" v-if="filterdata.year">
                                 <div class="form-group student_class">
                                     <label>Roll:</label>
                                     <input type="number" class="form-control" v-model="filterdata.roll" id="date">
                                 </div>
                             </div>
+
+
+
+                            <div class="col-md-12" v-if=" filterdata.student_class=='Admission Result'">
+                                <div class="form-group student_class">
+                                    <label>Admission Id:</label>
+                                    <input type="number" class="form-control" v-model="filterdata.roll" id="date">
+                                </div>
+                            </div>
+
+
+
                             <div class="col-md-3 customFlex" style="margin-top:11px">
                                 <div class="form-group student_class">
                                     <label></label>
@@ -187,6 +204,13 @@ export default {
             return subject
         },
         callSubjects() {
+
+            if(this.filterdata.student_class=='SSC Result'){
+                window.location.href='http://www.educationboardresults.gov.bd/';
+            }
+
+
+
             if (this.filterdata.student_class == 'Nine' || this.filterdata.student_class == 'Ten') {
             } else {
                 this.filterdata.group = 'All'

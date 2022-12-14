@@ -13,6 +13,26 @@ use Spatie\QueryBuilder\AllowedFilter;
 
 class resultController extends Controller
 {
+
+    public function Result(Request $request)
+    {
+        $filter = [
+            'school_id' => $request->school_id,
+            'class' => $request->class,
+            'year' => $request->year,
+            'exam_name' => $request->exam_name,
+            'class_group' => $request->group,
+        ];
+
+      return  $result = StudentResult::where($filter)->orderBy('failed','asc')->orderBy('total','desc')->get();
+    }
+
+
+
+
+
+
+
     public function checkResultall($school_id, $class, $year, $exam_name, $subject = '', $group = '')
     {
         // return $request->subject;
@@ -180,7 +200,7 @@ class resultController extends Controller
                 $html .= resultDetails($results);
 
                 $html  .= "
-            <h2 style='text-align:center;font-size:20px;color:red'>বিঃদ্রঃ মার্কশীট সংগ্রহ করতে বিদ্যালয়ে যোগাযোগ করুন </h2>
+            <h2 style='text-align:center;font-size:20px;color:black'>বিঃদ্রঃ মার্কশীট সংগ্রহ করতে বিদ্যালয়ে যোগাযোগ করুন </h2>
             ";
                 //    $html .= ResultGradeList($results);
 
@@ -249,6 +269,114 @@ class resultController extends Controller
             ->get();
         return response()->json($result);
     }
+
+    public function ResultPublish(Request $request)
+    {
+
+        $filter = [
+            'school_id' => $request->school_id,
+            'class' => $request->class,
+            'year' => $request->year,
+            'exam_name' => $request->exam_name,
+            'class_group' => $request->class_group,
+        ];
+
+        $results = StudentResult::where($filter)->orderBy('failed','asc')->orderBy('total','desc')->get();
+
+
+
+     $statuses = $request->status;
+    //  print_r(array_keys((array)$status).'<br/>');
+
+     $res = [];
+
+     foreach ($results as  $key=>$value) {
+
+        $studentresult = StudentResult::find($value->id);
+        $stu_id =  $studentresult->stu_id;
+        $StudentGroup = student::where('StudentID', $stu_id)->first()->StudentGroup;
+        $studentresult->update(['class_group' => $StudentGroup]);
+        if(isset($statuses[$value->id])){
+            $status = 'Published';
+            $FinalResultStutus = '';
+        }else{
+            $status = 'Published';
+            $FinalResultStutus = 'inhaled';
+
+        }
+        // $status = $request->status;
+        $subjects =  allList('subjects', $studentresult->class, $studentresult->class_group);
+        $failed = 0;
+        $totalmark = [];
+        $totalfailed = [];
+        $i = 0;
+        foreach ($subjects as $subject) {
+            // print_r(subjectCol($subject));
+            // if="changesubName(subject)=='Religion' && student.StudentReligion=='Islam'">{{ student['ReligionIslam'] }}</span>
+            // <span v-else-if="changesubName(subject)=='Religion' &&  student.StudentReligion=='Hindu'">{{ student['ReligionHindu'] }}</span>
+            // <span v-else>{{ student[changesubName(subject)] }}</span>
+            $colname = '';
+            if (subjectCol($subject) == 'Religion' && $studentresult->StudentReligion == 'Islam') {
+                $colname = 'ReligionIslam';
+            } elseif (subjectCol($subject) == 'Religion' && $studentresult->StudentReligion == 'Hindu') {
+                $colname = 'ReligionHindu';
+            } else {
+                $colname = subjectCol($subject);
+            }
+            // print_r($colname.' ::: ');
+            $totalmark[$studentresult->roll][$colname] = $studentresult[$colname];
+            $totalfailed[$studentresult->roll][$colname] = $studentresult[$colname];
+            $failed += $this->failedNumber($studentresult[$colname], $colname);
+            //   print_r($studentresult[$colname].'   <br>');
+            // $failed+= 1;
+        }
+        $total =  $this->sumNumber($totalmark[$studentresult->roll]);
+        // $failed =  $this->failedNumber($totalfailed[$studentresult->roll]);
+        // echo $failed.'<br/>';
+        $data = [
+            'total' => $total,
+            'status' => $status,
+            'failed' => $failed,
+            'FinalResultStutus' => $FinalResultStutus,
+            'nextroll' => $key+1,
+        ];
+        $result =  $studentresult->update($data);
+
+
+
+
+
+
+
+
+
+
+
+            $i++;
+     }
+return redirect()->back();
+die();
+
+        $filter = [
+            'school_id' => $request->school_id,
+            'class' => $request->class,
+            'year' => $request->year,
+            'exam_name' => $request->exam_name,
+            'class_group' => $request->group,
+        ];
+
+       return $result = StudentResult::where($filter)->get();
+
+
+
+
+
+
+
+
+    }
+
+
     public function publishResult(Request $request)
     {
         $filter = [

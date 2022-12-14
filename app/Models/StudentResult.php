@@ -72,6 +72,7 @@ class StudentResult extends Model
         'status',
         'message_status',
         'FinalResultStutus',
+        'nextroll',
         'date',
 
 

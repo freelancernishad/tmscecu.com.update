@@ -132,10 +132,15 @@
                             <td>{{ result.year }}</td>
                             <td>
 
-                            <button class="btn btn-success btn-sm" v-if="result.status=='Draft'" @click="publishNow(result.class,result.year,result.exam_name,'Published')">Publish Now</button>
-                            <button class="btn btn-danger btn-sm"  v-if="result.status=='Published'"  @click="publishNow(result.class,result.year,result.exam_name,'Draft')">Draft Now</button>
+                            <!-- <button class="btn btn-success btn-sm" v-if="result.status=='Draft'" @click="publishNow(result.class,result.year,result.exam_name,'Published')">Publish Now</button> -->
+
+                            <!-- <button class="btn btn-danger btn-sm"  v-if="result.status=='Published'"  @click="publishNow(result.class,result.year,result.exam_name,'Draft')">Draft Now</button> -->
+
+                            <button class="btn btn-danger btn-sm"  @click="publishNow(result.class,result.year,result.exam_name,'Draft')">Calculate</button>
 
                             <router-link  class="btn btn-info btn-sm mb-3" :to="{ name: 'resultview', params: { school_id: school_id, student_class: result.class, group: result.class_group, religion: 'All', subject: 'All', examType: result.exam_name, date: result.year } }">View</router-link>
+
+                            <a class="btn btn-info btn-sm mb-3" :href="'/dashboard/results/publish/'+school_id+'/'+result.class+'/'+result.class_group+'/'+result.exam_name+'/'+result.year">Publish Now</a>
 
 
 
@@ -272,7 +277,7 @@ export default {
 
                 Notification.customSuccess(`Class ${className} এর ফলাফল সফল ভাবে পাবলিশ হয়েছে`);
             }else{
-                Notification.customSuccess(`Class ${className} এর ফলাফল সফল ভাবে পাবলিশ বাতিল হয়েছে`);
+                Notification.customSuccess(`Success`);
 
             }
 

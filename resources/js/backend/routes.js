@@ -58,6 +58,7 @@ let noticeForm = require('./components/notice/form.vue').default;
 
 // results Components
 let results = require('./components/results/index.vue').default;
+let resultpublish = require('./components/results/resultpublish.vue').default;
 let marksheet = require('./components/results/marksheet.vue').default;
 let resultfilter = require('./components/results/list.vue').default;
 let resultview = require('./components/results/fullsheetbyApi.vue').default;
@@ -202,6 +203,9 @@ export const routes = [
 
   // result Routes
   { path: `${prefix}/results`, component: results, name:'results',meta: { layout: adminlayout } },
+
+//   { path: `${prefix}/results/publish/:school_id/:student_class/:group/:religion/:subject/:examType/:date`, component: resultpublish, name:'resultpublish',meta: { layout: adminlayout } },
+
   { path: `${prefix}/results/marksheet`, component: marksheet, name:'marksheet',meta: { layout: adminlayout } },
   { path: `${prefix}/results/:school_id/:student_class/:group/:religion/:subject/:examType/:date`, component: resultfilter, name:'resultfilter',meta: { layout: adminlayout } },
   { path: `${prefix}/results/view/:school_id/:student_class/:group/:religion/:subject/:examType/:date`, component: resultview, name:'resultview',meta: { layout: blanklayout } },
