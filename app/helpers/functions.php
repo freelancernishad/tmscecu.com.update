@@ -1969,7 +1969,7 @@ function SubjectDetailsMark($results,$subjextName ='Bangla_1st',$type='all')
 
 
 
-function resultDetails($results)
+function resultDetails($results,$type='ragular')
 {
 
     $GpaResult = StudentFailedCount($results);
@@ -1983,9 +1983,16 @@ function resultDetails($results)
         $class_group='N/A';
     }
 
+
+    $fontfammily = '';
+    if($type=='pdf'){
+        $fontfammily = 'font-family: cursive;';
+    }
+
+
     $html  = "
 
-    <table class='table table-striped table-bordered' style='font-family: cursive;' width='100%'>
+    <table class='table table-striped table-bordered' style='$fontfammily' width='100%'>
 
     <tbody>
         <tr>
@@ -2048,13 +2055,16 @@ return $html;
 }
 
 
-function ResultGradeList($results)
+function ResultGradeList($results,$type='ragular')
 {
-
+    $fontfammily = '';
+    if($type=='pdf'){
+        $fontfammily = 'font-family: cursive;';
+    }
     $class = $results->class;
     $class_group = $results->class_group;
     $subjects =  allList('subjects', $class, $class_group);
-    $html = " <table class='table table-striped table-bordered' style='margin-top:20px;font-family: cursive;' width='100%'    >
+    $html = " <table class='table table-striped table-bordered' style='margin-top:20px;$fontfammily' width='100%'    >
 
     <thead  class='btn-success' style='background-color: #28a745 !important;'>
     <tr >
@@ -2121,7 +2131,7 @@ function ResultGradeList($results)
                 $html .= "<td  style='text-align:center'><span>  $MCQ1 <br/> $MCQ2 </span></td>";
                 $html .= "<td  style='text-align:center'><span>  $EXTRA1 <br/> $EXTRA2 </span></td>";
 
-                $html .= "<td  style='text-align:center'><span> " . $subMark1 + $subMark2 . "</span></td>";
+                $html .= "<td  style='text-align:center'><span> " . (int)$subMark1 + (int)$subMark2 . "</span></td>";
                 $html .= "<td  style='text-align:center'><span> " . $gg . "</span></td>";
             } elseif (subjectCol($sub) == 'Bangla_2nd') {
                 $html .= '';
@@ -2147,7 +2157,7 @@ function ResultGradeList($results)
                 $html .= "<td style='text-align:center'><span>  $MCQ1 <br/> $MCQ2 </span></td>";
                 $html .= "<td style='text-align:center'><span>  $EXTRA1 <br/> $EXTRA2 </span></td>";
 
-                $html .= "<td style='text-align:center'><span> " . $subMark1 + $subMark2 . "</span></td>";
+                $html .= "<td style='text-align:center'><span> " . (int)$subMark1 + (int)$subMark2 . "</span></td>";
                 $html .= "<td style='text-align:center'><span> " . $gg . "</span></td>";
             } elseif (subjectCol($sub) == 'English_2nd') {
                 $html .= '';
@@ -2328,7 +2338,7 @@ function ResultGradeList($results)
                 $html .= "<td style='text-align:center'><span>  $MCQ1 <br/> $MCQ2 </span></td>";
                 $html .= "<td style='text-align:center'><span>  $EXTRA1 <br/> $EXTRA2 </span></td>";
 
-                $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . $subMark1 + $subMark2 . "</span></td>";
+                $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . (int)$subMark1 + (int)$subMark2 . "</span></td>";
                 $html .= "<td style='text-align:center' class='pl-5 pr-5'><span>" . $gg . "</span></td>";
             } elseif (subjectCol($sub) == 'Bangla_2nd') {
                 $html .= '';
@@ -2369,7 +2379,7 @@ function ResultGradeList($results)
                 $html .= "<td style='text-align:center'><span>$CQ1 <br/> $CQ2 </span></td>";
                 $html .= "<td style='text-align:center'><span> $MCQ1 <br/> $MCQ2 </span></td>";
                 $html .= "<td style='text-align:center'><span> $EXTRA1 <br/> $EXTRA2 </span></td>";
-                $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . $subMark1 + $subMark2 . "</span></td>";
+                $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . (int)$subMark1 + (int)$subMark2 . "</span></td>";
                 $html .= "<td style='text-align:center' class='pl-5 pr-5'><span>" . $gg . "</span></td>";
             } elseif (subjectCol($sub) == 'English_2nd') {
                 $html .= '';
