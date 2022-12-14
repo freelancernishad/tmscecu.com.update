@@ -2131,7 +2131,7 @@ function ResultGradeList($results,$type='ragular')
                 $html .= "<td  style='text-align:center'><span>  $MCQ1 <br/> $MCQ2 </span></td>";
                 $html .= "<td  style='text-align:center'><span>  $EXTRA1 <br/> $EXTRA2 </span></td>";
 
-                $html .= "<td  style='text-align:center'><span> " . (int)$subMark1 + (int)$subMark2 . "</span></td>";
+                $html .= "<td  style='text-align:center'><span> " . ((int)$subMark1 + (int)$subMark2) . "</span></td>";
                 $html .= "<td  style='text-align:center'><span> " . $gg . "</span></td>";
             } elseif (subjectCol($sub) == 'Bangla_2nd') {
                 $html .= '';
@@ -2157,7 +2157,7 @@ function ResultGradeList($results,$type='ragular')
                 $html .= "<td style='text-align:center'><span>  $MCQ1 <br/> $MCQ2 </span></td>";
                 $html .= "<td style='text-align:center'><span>  $EXTRA1 <br/> $EXTRA2 </span></td>";
 
-                $html .= "<td style='text-align:center'><span> " . (int)$subMark1 + (int)$subMark2 . "</span></td>";
+                $html .= "<td style='text-align:center'><span> " . ((int)$subMark1 + (int)$subMark2) . "</span></td>";
                 $html .= "<td style='text-align:center'><span> " . $gg . "</span></td>";
             } elseif (subjectCol($sub) == 'English_2nd') {
                 $html .= '';
@@ -2338,7 +2338,7 @@ function ResultGradeList($results,$type='ragular')
                 $html .= "<td style='text-align:center'><span>  $MCQ1 <br/> $MCQ2 </span></td>";
                 $html .= "<td style='text-align:center'><span>  $EXTRA1 <br/> $EXTRA2 </span></td>";
 
-                $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . (int)$subMark1 + (int)$subMark2 . "</span></td>";
+                $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . ((int)$subMark1 + (int)$subMark2) . "</span></td>";
                 $html .= "<td style='text-align:center' class='pl-5 pr-5'><span>" . $gg . "</span></td>";
             } elseif (subjectCol($sub) == 'Bangla_2nd') {
                 $html .= '';
@@ -2379,7 +2379,7 @@ function ResultGradeList($results,$type='ragular')
                 $html .= "<td style='text-align:center'><span>$CQ1 <br/> $CQ2 </span></td>";
                 $html .= "<td style='text-align:center'><span> $MCQ1 <br/> $MCQ2 </span></td>";
                 $html .= "<td style='text-align:center'><span> $EXTRA1 <br/> $EXTRA2 </span></td>";
-                $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . (int)$subMark1 + (int)$subMark2 . "</span></td>";
+                $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . ((int)$subMark1 + (int)$subMark2) . "</span></td>";
                 $html .= "<td style='text-align:center' class='pl-5 pr-5'><span>" . $gg . "</span></td>";
             } elseif (subjectCol($sub) == 'English_2nd') {
                 $html .= '';
