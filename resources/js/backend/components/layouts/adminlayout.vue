@@ -224,6 +224,10 @@
             <router-link   :to="{name:'marksheet'}" class="nav-link"><i class="fas fa-angle-right"></i> Mark Sheet</router-link>
         </li>
 
+        <li class="nav-item">
+            <router-link   :to="{name:'resultlog'}" class="nav-link"><i class="fas fa-angle-right"></i> Result Log</router-link>
+        </li>
+
     </ul>
 </transition>
 </li>

@@ -241,6 +241,8 @@ Route::get('visitorcount',[VisitorController::class, 'visitorCount']);
 
 
 Route::post('resultlogCount',[ResultLogController::class,'index']);
+Route::post('result/edit/mode',[ResultLogController::class,'editmode']);
+Route::get('result/log',[ResultLogController::class,'indexlist']);
 
 
 Route::get('/answeres',[OnlineexamController::class , 'answeres']);

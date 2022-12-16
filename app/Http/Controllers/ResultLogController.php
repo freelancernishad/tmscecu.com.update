@@ -30,6 +30,18 @@ class ResultLogController extends Controller
 
 
     }
+    public function indexlist(Request $request)
+    {
+        return ResultLog::orderBy('id','desc')->paginate(20);
+    }
+    public function editmode(Request $request)
+    {
+
+        $id = $request->id;
+        $ResultLog = ResultLog::find($id);
+        $ResultLog->update(['status'=>'0']);
+
+    }
 
     /**
      * Show the form for creating a new resource.

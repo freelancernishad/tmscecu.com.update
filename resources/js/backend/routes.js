@@ -58,6 +58,7 @@ let noticeForm = require('./components/notice/form.vue').default;
 
 // results Components
 let results = require('./components/results/index.vue').default;
+let resultlog = require('./components/results/log.vue').default;
 let resultpublish = require('./components/results/resultpublish.vue').default;
 let marksheet = require('./components/results/marksheet.vue').default;
 let resultfilter = require('./components/results/list.vue').default;
@@ -203,6 +204,7 @@ export const routes = [
 
   // result Routes
   { path: `${prefix}/results`, component: results, name:'results',meta: { layout: adminlayout } },
+  { path: `${prefix}/results/log`, component: resultlog, name:'resultlog',meta: { layout: adminlayout } },
 
 //   { path: `${prefix}/results/publish/:school_id/:student_class/:group/:religion/:subject/:examType/:date`, component: resultpublish, name:'resultpublish',meta: { layout: adminlayout } },
 
