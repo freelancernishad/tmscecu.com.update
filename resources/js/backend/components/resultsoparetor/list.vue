@@ -59,7 +59,7 @@
                                 <tr v-for="student in students">
                                     <td scope="col">{{ student.StudentRoll }}</td>
                                     <td scope="col" class="textwrap">{{ student.StudentName }}</td>
-                                    <td scope="col"><input type="number" min="0" max="100" onClick="this.select();"  @change="formsubmit" class="form-control"
+                                    <td scope="col"><input type="number" min="0" max="100" onClick="this.select();"   class="form-control"
                                             v-model="form.number[student.StudentRoll]['CQ']" required></td>
                                     <td scope="col"><input type="number" min="0" max="100" onClick="this.select();"
                                             v-model="form.number[student.StudentRoll]['MCQ']" class="form-control"
@@ -234,6 +234,15 @@ export default {
                         this.allstudents();
                       this.checkResult();
                         this.getformdata()
+
+
+
+
+
+                        window.open(`/download/mark?class=${this.form.classname}&year=${this.form.year}&exam_name=${this.form.exam_name}&subject=${this.form.subject}&group=${this.form.group}&religion=${this.form.religion}`, "_blank");
+
+
+                    this.$router.push({name: 'resultsoparetor'})
                     Notification.success();
                     this.preloader = false;
                 })

@@ -794,7 +794,7 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
 // return $this->invoice($payment,$student);
 
-        $fileName = 'Invoice-'.date('Y-m-d H:m:s');
+        $fileName = 'Invoice-'.date('Y-m-d H:m:s').'.pdf';
         $data['fileName'] = $fileName;
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L','default_font' => 'bangla',]);
         $mpdf->WriteHTML( $this->invoice($payment,$student));

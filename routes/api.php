@@ -24,6 +24,7 @@ use App\Http\Controllers\api\studentsController;
 
 use App\Http\Controllers\QuestionbankController;
 use App\Http\Controllers\api\SchoolDetailController;
+use App\Http\Controllers\ResultLogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -239,6 +240,7 @@ Route::post('visitorcreate',[VisitorController::class, 'visitorcreate']);
 Route::get('visitorcount',[VisitorController::class, 'visitorCount']);
 
 
+Route::post('resultlogCount',[ResultLogController::class,'index']);
 
 
 Route::get('/answeres',[OnlineexamController::class , 'answeres']);

@@ -153,7 +153,22 @@ export default {
         }
     },
 	methods: {
-            filter(){
+          async filter(){
+
+            var res = await this.callApi('post',`/api/resultlogCount`,this.filterdata);
+
+            if(res.data){
+
+                if(this.filterdata.student_class=='Nine' || this.filterdata.student_class=='Ten'){
+
+                    Notification.customError2(`${this.filterdata.examType} পরীক্ষার  ক্লাস ${this.filterdata.student_class} ${this.filterdata.group} এর ${this.filterdata.subject} এর নাম্বার একবার এন্ট্রি করা হয়েছে। যদি ভুল হয়ে থাকে বা এডিট করার প্রয়োজন হলে এডমিন এর সাথে যোগাযোগ করুন`);
+                }else{
+
+                    Notification.customError2(`${this.filterdata.examType} পরীক্ষার ক্লাস ${this.filterdata.student_class} এর ${this.filterdata.subject} এর নাম্বার একবার এন্ট্রি করা হয়েছে। যদি ভুল হয়ে থাকে বা এডিট করার প্রয়োজন হলে এডমিন এর সাথে যোগাযোগ করুন`);
+                }
+
+            }else{
+
                 if(this.$router.currentRoute.path==`/school/results/${this.school_id}/${this.filterdata.student_class}/${this.filterdata.group}/${this.filterdata.religion}/${this.filterdata.subject}/${this.filterdata.examType}/${this.filterdata.date}`){
 
                 }else{
@@ -162,7 +177,12 @@ export default {
 
                 }
 
-//  this.getdata();
+
+            }
+
+
+
+
             },
 
 

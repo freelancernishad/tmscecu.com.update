@@ -8,11 +8,48 @@ use Illuminate\Http\Request;
 use App\Models\StudentResult;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\ResultLog;
+use App\Models\school_detail;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 
 class resultController extends Controller
 {
+
+
+    public function marksheet(Request $request)
+    {
+        // return $request->all();
+        $group = 'Humanities';
+        if($request->class=="Nine" || $request->class=="Ten"){
+            $group = $request->group;
+        }
+
+        $subject = $request->subject;
+
+        $filter = [
+            'class' => $request->class,
+            'year' => $request->year,
+            'exam_name' => $request->exam_name,
+            'class_group' => $group,
+        ];
+
+         $results = StudentResult::where($filter)->orderBy('roll','asc')->get();
+
+    //   return view('resultReport',compact('results','subject'));
+    $schoolDetails = school_detail::where('school_id',$results[0]->school_id)->first();
+
+            $pdf = LaravelMpdf::loadView('resultReport',compact('results','subject','schoolDetails'));
+            return $pdf->stream('document.pdf');
+
+
+    }
+
+
+
+
+
 
     public function Result(Request $request)
     {
@@ -108,10 +145,34 @@ class resultController extends Controller
                 }
                 // print_r($result);
             } else {
+
                 $result =  StudentResult::create($data);
             }
             $i++;
         }
+
+        $logData = [
+            'class'=>$request->classname,
+            'group'=> $request->group,
+            'subject'=>$request->subject,
+            'examName'=>$request->exam_name,
+            'month'=>date('F', strtotime($request->date)),
+            'year'=>$request->year
+        ];
+
+
+        $checkResultLog = ResultLog::where($logData)->count();
+        if($checkResultLog>0){
+            $ResultLogUp = ResultLog::where($logData)->first();
+            $logData['status'] = '1';
+            $ResultLogUp->update($logData);
+        }else{
+            $logData['status'] = '1';
+            ResultLog::create($logData);
+        }
+
+
+
         return $result;
     }
     public function checkSingleResult(Request $request)

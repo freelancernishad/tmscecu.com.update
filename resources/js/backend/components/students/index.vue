@@ -150,7 +150,7 @@
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" v-model="actioncheck"
                                                 :value="student.id">
-                                            <label class="form-check-label">{{ index+1 }}</label>
+                                            <label class="form-check-label">{{ index+pageNO }}</label>
                                         </div>
                                     </td>
 
@@ -261,6 +261,7 @@ export default {
             Totalpage: [],
             RouteName:'',
             RouteParams:{},
+            pageNO: 1,
 
         }
     },
@@ -363,6 +364,14 @@ export default {
 
                 this.RouteName = 'students'
             }
+
+            if(page==1){
+
+                this.pageNO = 1;
+                }else{
+                this.pageNO = (page-1)*this.PerPageData+1;
+
+                }
 
             this.looding = false
              this.preloader = false;
