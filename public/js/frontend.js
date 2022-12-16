@@ -6920,13 +6920,13 @@ var render = function render() {
     staticClass: "paiddiv"
   }, [_c("button", {
     staticClass: "btn btn-success"
-  }, [_vm._v("Paid")]), _vm._v(" "), _c("a", {
+  }, [_vm._v("পরিশোধিত")]), _vm._v(" "), _c("a", {
     staticClass: "btn btn-info",
     attrs: {
       target: "_blank",
       href: "/student/applicant/invoice/" + _vm.trxid
     }
-  }, [_vm._v("Download Invoice")])]) : _vm.paymentStatus == "Pending" ? _c("a", {
+  }, [_vm._v("রশিদ ডাউনলোড")])]) : _vm.paymentStatus == "Pending" ? _c("a", {
     staticClass: "btn btn-info",
     attrs: {
       href: _vm.paymentUrl
@@ -6944,7 +6944,7 @@ var render = function render() {
     attrs: {
       href: "/payment?studentId=" + _vm.student.id + "&type=" + _vm.form.type + "&month=" + _vm.form.month
     }
-  }, [_vm._v("Pay Now")])])]) : _vm._e(), _vm._v(" "), _vm.searched == 2 ? _c("h2", {
+  }, [_vm._v("পেমেন্ট করুন")])])]) : _vm._e(), _vm._v(" "), _vm.searched == 2 ? _c("h2", {
     staticStyle: {
       color: "red",
       "text-align": "center",

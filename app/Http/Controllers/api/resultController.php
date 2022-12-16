@@ -38,9 +38,8 @@ class resultController extends Controller
          $results = StudentResult::where($filter)->orderBy('roll','asc')->get();
 
     //   return view('resultReport',compact('results','subject'));
-    $schoolDetails = school_detail::where('school_id',$results[0]->school_id)->first();
 
-            $pdf = LaravelMpdf::loadView('resultReport',compact('results','subject','schoolDetails'));
+            $pdf = LaravelMpdf::loadView('resultReport',compact('results','subject'));
             return $pdf->stream('document.pdf');
 
 

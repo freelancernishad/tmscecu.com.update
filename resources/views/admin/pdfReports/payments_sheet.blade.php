@@ -46,12 +46,10 @@
 
 
 
-    <div class="deleted"></div>
-    <div class="db-student-list mt-5" id="search">
-        <div class="pt-3 pb-3 pl-3 pr-3">
 
-            <h2 style="text-align:center;margin:0" >{{ sitedetails()->SCHOLL_NAME}} </h3>
-            <h3 style="text-align:center; margin:0;" >{{ sitedetails()->SCHOLL_ADDRESS}} </h3>
+    {!! SchoolPad($rows[0]->school_id) !!}
+    <div class="db-student-list" id="search">
+        <div class="">
 
 
          <h3> শ্রেণী :  <?php echo class_en_to_bn($rows[0]->StudentClass)	?></h3>
@@ -79,6 +77,7 @@
                             <th scope="col" >{{ month_en_to_bn('October') }}</th>
                             <th scope="col" >{{ month_en_to_bn('November') }}</th>
                             <th scope="col" >{{ month_en_to_bn('December') }} </th>
+                            <th scope="col" >মোট </th>
 
 
 
@@ -259,7 +258,7 @@ if($December_count>0){
 }
 
 
-
+$totalAmount = $January_amount+$February_amount+$March_amount+$April_amount+$May_amount+$June_amount+$July_amount+$August_amount+$September_amount+$October_amount+$November_amount+$December_amount;
 
 @endphp
 
@@ -278,6 +277,7 @@ if($December_count>0){
                                 <th scope="col" >{{ int_en_to_bn($October_amount) }}</th>
                                 <th scope="col" >{{ int_en_to_bn($November_amount) }}</th>
                                 <th scope="col" > {{ int_en_to_bn($December_amount) }}</th>
+                                <th scope="col" > {{ int_en_to_bn($totalAmount) }}</th>
 
 
 

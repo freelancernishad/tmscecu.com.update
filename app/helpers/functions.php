@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\school_detail;
 use App\Models\Sonod;
 use App\Models\student;
 use App\Models\Visitor;
@@ -2671,3 +2672,32 @@ function promoteClass($oldclass)
     }
 }
 
+
+
+function SchoolPad($school_id)
+{
+    $schoolDetails = school_detail::where('school_id',$school_id)->first();
+
+
+    $html = "
+
+    <table width='100%' style='margin-bottom:20px' border='0'>
+        <tr>
+            <td width='110px' style='border:0 !important'>
+                <img width='75px'  style='overflow:hidden;float:right' src='".base64($schoolDetails->logo)."' alt=''>
+            </td>
+            <td style='border:0 !important'>
+                <p class='fontsize2' style='font-size:30px'> $schoolDetails->SCHOLL_NAME </p>
+                <p class='fontsize1' style='font-size:20px'> $schoolDetails->SCHOLL_ADDRESS  </p>
+                <p class='fontsize1' style='font-size:12px'>website: www.tepriganjhighschool.edu.bd </p>
+            </td>
+
+
+        </tr>
+    </table>
+
+
+    ";
+
+    return $html;
+}

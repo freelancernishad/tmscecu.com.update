@@ -179,9 +179,9 @@
                             <div class="card-footer" style="    display: flex;justify-content: center;">
 
                                 <div v-if="paymentStatus == 'Paid'" class="paiddiv">
-                                                <button class="btn btn-success">Paid</button>
+                                                <button class="btn btn-success">পরিশোধিত</button>
                                                  <a class="btn btn-info" target="_blank"
-                                                    :href="'/student/applicant/invoice/' + trxid">Download Invoice</a>
+                                                    :href="'/student/applicant/invoice/' + trxid">রশিদ ডাউনলোড</a>
                                             </div>
 
                                             <a class="btn btn-info" v-else-if="paymentStatus == 'Pending'"
@@ -190,7 +190,7 @@
                                             <a class="btn btn-info" v-else-if="paymentStatus == 'Failed'"
                                                 :href="paymentUrl">Pay Failed Payment</a>
 
-                                            <a class="btn btn-info" style="font-size: 30px;" v-else :href="'/payment?studentId='+student.id+'&type='+form.type+'&month='+form.month">Pay Now</a>
+                                            <a class="btn btn-info" style="font-size: 30px;" v-else :href="'/payment?studentId='+student.id+'&type='+form.type+'&month='+form.month">পেমেন্ট করুন</a>
 
 
                             </div>
