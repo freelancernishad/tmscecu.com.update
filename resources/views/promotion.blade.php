@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Result Published</title>
+    <title>Student Promote</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
@@ -16,9 +16,9 @@
 
 
 
-        <form action="/dashboard/results/publish/list" method="post">
+        <form action="/dashboard/results/promotion/list" method="post">
             @csrf
-            <button class="btn btn-info" type="submit">Publish Now</button>
+            <button class="btn btn-info" type="submit">promote Now</button>
         <table width="100%" class="table">
 
             <thead>
@@ -54,7 +54,7 @@
                 <tr>
                     <td>
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" @if($result->FinalResultStutus=='inhaled')  @else checked @endif  name="status[{{ $result->id }}]" id="checkbox{{ $key }}" value="Published">
+                            <input type="checkbox" class="form-check-input" @if($result->promote=='0')   @else checked @endif  name="status[{{ $result->id }}]" id="checkbox{{ $key }}" value="Published">
                             <label class="form-check-label d-block" for="checkbox{{ $key }}">{{ $key+1 }}</label>
                         </div>
                     </td>

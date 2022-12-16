@@ -1764,10 +1764,29 @@ $Fgg = 0;
                 // array_push($greating,['Bangla_1stmcq'=>$MCQ1great]);
                 // array_push($greating,['Bangla_2ndcq'=>$CQ2great]);
                 // array_push($greating,['Bangla_2ndmcq'=>$MCQ2great]);
-                array_push($greating, $CQ1great);
-                array_push($greating, $MCQ1great);
-                array_push($greating, $CQ2great);
-                array_push($greating, $MCQ2great);
+
+                $bang1Arr = [$CQ1great,$MCQ1great];
+                $bang2Arr = [$CQ2great,$MCQ2great];
+
+                if (in_array('F', $bang1Arr)) {
+                    $gread1 = 'F';
+                } else {
+                    $gread1 = 'pass';
+                }
+                if (in_array('F', $bang2Arr)) {
+                    $gread2 = 'F';
+                } else {
+                    $gread2 = 'pass';
+                }
+
+
+                array_push($greating, $gread1);
+                array_push($greating, $gread2);
+                // array_push($greating, $CQ2great);
+                // array_push($greating, $MCQ2great);
+
+
+
             } elseif (subjectCol($sub) == 'Bangla_2nd') {
                 $gg = 0;
             } elseif (subjectCol($sub) == 'English_1st') {
@@ -1864,8 +1883,23 @@ $Fgg = 0;
                 $MCQgreat = Greeting($MCQ, $MCQTotal, 'greed');
                 // array_push($greating,[subjectCol($sub).'cq'=>$CQgreat]);
                 // array_push($greating,[subjectCol($sub).'mcq'=>$MCQgreat]);
-                array_push($greating, $CQgreat);
-                array_push($greating, $MCQgreat);
+
+
+
+                $greedArr = [$CQgreat,$MCQgreat];
+
+
+                if (in_array('F', $greedArr)) {
+                    $gread = 'F';
+                } else {
+                    $gread = 'pass';
+                }
+
+
+
+
+                array_push($greating, $gread);
+                // array_push($greating, $MCQgreat);
             }
             $GPA += $gg;
             // $great = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
@@ -2592,4 +2626,48 @@ function ResultGradeList($results,$type='ragular')
 }
 
 
+
+function gpaToGreed($gpa)
+{
+    $gread = 'F';
+
+// return $gpa;
+if($gpa=='F'){
+    return $gread = 'F';
+}
+    if($gpa>=5){
+       return $gread = 'A+';
+    }elseif($gpa>=4){
+        return $gread = 'A';
+    }elseif($gpa>=3.5){
+        return $gread = 'A-';
+    }elseif($gpa>=3){
+        return $gread = 'B';
+    }elseif($gpa>=2){
+        $gread = 'C';
+    }elseif($gpa>=1){
+        return $gread = 'D';
+    }
+    return $gread;
+
+
+}
+
+
+function promoteClass($oldclass)
+{
+    if($oldclass=='Six'){
+        return 'Seven';
+    }elseif($oldclass=='Seven'){
+        return 'Eight';
+    }elseif($oldclass=='Eight'){
+        return 'Nine';
+    }elseif($oldclass=='Nine'){
+        return 'Ten';
+    }elseif($oldclass=='Ten'){
+        return 'Ten';
+    }else{
+        return "somethig wrong $oldclass";
+    }
+}
 

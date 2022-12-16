@@ -260,6 +260,26 @@ Route::group(['prefix' => 'dashboard','middleware' => ['auth']], function() {
         Route::post('/results/publish/list',[resultController::class , 'ResultPublish']);
 
 
+    Route::get('/results/promotion/{school_id}/{student_class}/{group}/{examType}/{year}', function ($school_id,$student_class,$group,$examType,$year) {
+
+        $filter = [
+            'school_id' => $school_id,
+            'class' => $student_class,
+            'year' => $year,
+            'exam_name' => $examType,
+            'class_group' => $group,
+        ];
+
+        $results = StudentResult::where($filter)->orderBy('failed','asc')->orderBy('total','desc')->get();
+
+
+        return view('promotion',compact('results'));
+
+
+        });
+        Route::post('/results/promotion/list',[resultController::class , 'Resultpromotion']);
+
+
 
 
 

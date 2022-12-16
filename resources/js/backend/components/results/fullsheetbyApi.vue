@@ -29,7 +29,7 @@
                                     Exam Name: {{ filterdata.examType }}
                                 </h5>
                                 <h5 class="mobilefonthead">
-                                    Subject: {{ filterdata.subject }}
+                                    Class: {{ filterdata.student_class }}
                                 </h5>
                             </div>
                         </div>
@@ -39,6 +39,17 @@
                             <button class="btn-fill-lmd text-light bg-gradient-gplus mt-3 float-right" v-else>Draft Now</button> -->
 
                         </div>
+
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="mobilefonthead">A+ : {{ resultCount.gpa5Count }} জন , A : {{ resultCount.gpa4Count }} জন , A- : {{ resultCount.gpa35Count }} জন , B : {{ resultCount.gpa3Count }} জন , C : {{ resultCount.gpa2Count }} জন , D : {{ resultCount.gpa1Count }}, F : {{ resultCount.gpa0Count }} জন </h5>
+                                </div>
+                            </div>
+
+                        </div>
+
+
                     </div>
                     <div class="table-responsive" v-html="resTable"></div>
 
@@ -89,7 +100,8 @@ export default {
                 total: null,
                 date: null,
                 number: {},
-            }
+            },
+            resultCount:{}
         }
     },
     methods: {
@@ -104,6 +116,7 @@ export default {
             this.resTable = res.data.html
             this.status = res.data.status
             this.publishids = res.data.publishids
+            this.resultCount = res.data.resultCount
             this.preloader = false;
 
         },

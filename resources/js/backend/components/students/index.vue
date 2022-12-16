@@ -55,6 +55,9 @@
                                 <option value="Pending">
                                     New Applications
                                 </option>
+                                <option value="Failed">
+                                    Failed
+                                </option>
                                 <option value="Reject">
                                     Reject
                                 </option>

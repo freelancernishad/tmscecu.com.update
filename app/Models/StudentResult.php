@@ -69,10 +69,13 @@ class StudentResult extends Model
         'Career_Education_d',
         'failed',
         'total',
+        'greed',
+        'GPA',
         'status',
         'message_status',
         'FinalResultStutus',
         'nextroll',
+        'promote',
         'date',
 
 

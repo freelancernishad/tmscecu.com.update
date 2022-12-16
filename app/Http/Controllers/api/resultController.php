@@ -270,6 +270,64 @@ class resultController extends Controller
         return response()->json($result);
     }
 
+    public function Resultpromotion(Request $request)
+    {
+
+        $filter = [
+            'school_id' => $request->school_id,
+            'class' => $request->class,
+            'year' => $request->year,
+            'exam_name' => $request->exam_name,
+            'class_group' => $request->class_group,
+        ];
+
+        $results = StudentResult::where($filter)->orderBy('failed','asc')->orderBy('total','desc')->get();
+     $statuses = $request->status;
+     foreach ($results as  $key=>$value) {
+
+        $studentresult = StudentResult::find($value->id);
+
+        if(isset($statuses[$value->id])){
+            $promote = '1';
+            $nextClass = promoteClass($value->class);
+            $nextRoll = $value->nextroll;
+            $nextYear = $value->year+1;
+            $StudentStatus = 'Active';
+        }else{
+            $promote = '0';
+            $nextClass = $value->class;
+            $nextRoll = $value->roll;
+            $nextYear = $value->year;
+            $StudentStatus = 'Failed';
+        }
+
+
+        $data = [
+            'promote' => $promote,
+        ];
+        $result =  $studentresult->update($data);
+
+        $promoteData = [
+
+
+            'StudentClass'=>$nextClass,
+            'StudentRoll'=>$nextRoll,
+            'Year'=>$nextYear,
+            'StudentStatus'=>$StudentStatus,
+        ];
+
+
+        $stu_id =  $studentresult->stu_id;
+        $StudentGroup = student::where('StudentID', $stu_id)->first();
+        $StudentGroup->update($promoteData);
+
+
+
+     }
+return redirect()->back();
+    }
+
+
     public function ResultPublish(Request $request)
     {
 
@@ -306,7 +364,7 @@ class resultController extends Controller
         }
         // $status = $request->status;
         $subjects =  allList('subjects', $studentresult->class, $studentresult->class_group);
-        $failed = 0;
+
         $totalmark = [];
         $totalfailed = [];
         $i = 0;
@@ -326,13 +384,13 @@ class resultController extends Controller
             // print_r($colname.' ::: ');
             $totalmark[$studentresult->roll][$colname] = $studentresult[$colname];
             $totalfailed[$studentresult->roll][$colname] = $studentresult[$colname];
-            $failed += $this->failedNumber($studentresult[$colname], $colname);
-            //   print_r($studentresult[$colname].'   <br>');
-            // $failed+= 1;
+
         }
         $total =  $this->sumNumber($totalmark[$studentresult->roll]);
-        // $failed =  $this->failedNumber($totalfailed[$studentresult->roll]);
-        // echo $failed.'<br/>';
+
+
+        $failed = StudentFailedCount($value, 'failed');
+
         $data = [
             'total' => $total,
             'status' => $status,
@@ -355,23 +413,6 @@ class resultController extends Controller
             $i++;
      }
 return redirect()->back();
-die();
-
-        $filter = [
-            'school_id' => $request->school_id,
-            'class' => $request->class,
-            'year' => $request->year,
-            'exam_name' => $request->exam_name,
-            'class_group' => $request->group,
-        ];
-
-       return $result = StudentResult::where($filter)->get();
-
-
-
-
-
-
 
 
     }
@@ -384,6 +425,7 @@ die();
             'class' => $request->class,
             'year' => $request->year,
             'exam_name' => $request->exam_name,
+            'class_group' => $request->class_group,
         ];
         $result = StudentResult::where($filter)->get();
         $totalmark = [];
@@ -396,7 +438,7 @@ die();
             $studentresult->update(['class_group' => $StudentGroup]);
             $status = $request->status;
             $subjects =  allList('subjects', $studentresult->class, $studentresult->class_group);
-            $failed = 0;
+
             foreach ($subjects as $subject) {
                 // print_r(subjectCol($subject));
                 // if="changesubName(subject)=='Religion' && student.StudentReligion=='Islam'">{{ student['ReligionIslam'] }}</span>
@@ -413,17 +455,22 @@ die();
                 // print_r($colname.' ::: ');
                 $totalmark[$studentresult->roll][$colname] = $studentresult[$colname];
                 $totalfailed[$studentresult->roll][$colname] = $studentresult[$colname];
-                $failed += $this->failedNumber($studentresult[$colname], $colname);
-                //   print_r($studentresult[$colname].'   <br>');
-                // $failed+= 1;
+
             }
             $total =  $this->sumNumber($totalmark[$studentresult->roll]);
-            // $failed =  $this->failedNumber($totalfailed[$studentresult->roll]);
-            // echo $failed.'<br/>';
+            $failed = StudentFailedCount($value, 'failed');
+             $Gparesult = StudentFailedCount($value, 'result');
+
+              $greedRes = gpaToGreed($Gparesult);
+
+
+
             $data = [
                 'total' => $total,
                 'status' => $status,
                 'failed' => $failed,
+                'greed' => $greedRes,
+                'GPA' => $Gparesult,
             ];
             $result =  $studentresult->update($data);
             $i++;
@@ -1202,6 +1249,26 @@ die();
         $resultlast = StudentResult::where($filter)->latest('id')->first();
         $status = $resultlast->status;
         $result = StudentResult::where($filter)->get();
+
+        $gpa5Count  = StudentResult::where($filter)->where('greed','A+')->count();
+        $gpa4Count  = StudentResult::where($filter)->where('greed','A')->count();
+        $gpa35Count  = StudentResult::where($filter)->where('greed','A-')->count();
+        $gpa3Count = StudentResult::where($filter)->where('greed','B')->count();
+        $gpa2Count  = StudentResult::where($filter)->where('greed','C')->count();
+        $gpa1Count  = StudentResult::where($filter)->where('greed','D')->count();
+        $gpa0Count = StudentResult::where($filter)->where('greed','F')->count();
+
+        $resultCount = [
+            'gpa5Count'=>$gpa5Count,
+            'gpa4Count'=>$gpa4Count,
+            'gpa35Count'=>$gpa35Count,
+            'gpa3Count'=>$gpa3Count,
+            'gpa2Count'=>$gpa2Count,
+            'gpa1Count'=>$gpa1Count,
+            'gpa0Count'=>$gpa0Count,
+        ];
+
+
         $html = "
         <style>
         table, th, td {
@@ -1350,7 +1417,7 @@ die();
         }
         $html .= "</table>";
         // return '11';
-        return ['html' => $html, 'status' => $status, 'publishids' => $publishids];
+        return ['html' => $html, 'status' => $status, 'publishids' => $publishids, 'resultCount' => $resultCount];
     }
     public function fullResultPdf($school_id, $class, $year, $exam_name, $group)
     {
