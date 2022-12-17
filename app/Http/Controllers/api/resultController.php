@@ -26,7 +26,18 @@ class resultController extends Controller
             $group = $request->group;
         }
 
+
         $subject = $request->subject;
+        if($subject=='ধর্ম ও নৈতিক শিক্ষা'){
+            if($request->religion=='Islam'){
+
+                $subject = 'ইসলাম-ধর্ম';
+            }elseif($request->religion=='Hindu'){
+                $subject = 'হিন্দু-ধর্ম';
+
+            }
+        }
+
 
         $filter = [
             'class' => $request->class,
@@ -35,6 +46,9 @@ class resultController extends Controller
             'class_group' => $group,
         ];
 
+        if($request->religion){
+            $filter['StudentReligion']=$request->religion;
+        }
          $results = StudentResult::where($filter)->orderBy('roll','asc')->get();
 
     //   return view('resultReport',compact('results','subject'));
@@ -150,11 +164,22 @@ class resultController extends Controller
             $i++;
         }
 
+
+        $logsubject = $request->subject;
+
+        if($request->religion=='Islam'){
+            $logsubject = 'ইসলাম-ধর্ম';
+        }elseif($request->religion=='Hindu'){
+            $logsubject = 'হিন্দু-ধর্ম';
+        }
+
+
         $logData = [
             'class'=>$request->classname,
             'group'=> $request->group,
-            'subject'=>$request->subject,
+            'subject'=>$logsubject,
             'examName'=>$request->exam_name,
+            'StudentReligion'=>$request->religion,
             'month'=>date('F', strtotime($request->date)),
             'year'=>$request->year
         ];
