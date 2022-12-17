@@ -46,9 +46,10 @@ class resultController extends Controller
             'class_group' => $group,
         ];
 
-        if($request->religion){
+        if($request->religion!='All'){
             $filter['StudentReligion']=$request->religion;
         }
+        // return $filter;
          $results = StudentResult::where($filter)->orderBy('roll','asc')->get();
 
     //   return view('resultReport',compact('results','subject'));
