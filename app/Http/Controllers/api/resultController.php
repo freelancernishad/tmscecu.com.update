@@ -46,7 +46,7 @@ class resultController extends Controller
             'class_group' => $group,
         ];
 
-        if($request->religion!='All'){
+        if($request->religion=='Islam' || $request->religion=='Hindu' ){
             $filter['StudentReligion']=$request->religion;
         }
         // return $filter;
