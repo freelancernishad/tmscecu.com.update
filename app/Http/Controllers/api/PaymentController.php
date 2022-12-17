@@ -15,6 +15,35 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 class PaymentController extends Controller
 {
+
+    public function reports(Request $request)
+    {
+
+        $class = $request->class;
+        $type = $request->type;
+
+
+
+
+        $from = $request->from;
+        $to = $request->to;
+
+        if($type=='all' && $class=='all'){
+            return payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','asc')->get();
+        }elseif($type=='all'){
+            return payment::where(['studentClass'=>$class,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','asc')->get();
+        }elseif($class=='all'){
+            return payment::where(['type'=>$type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','asc')->get();
+        }else{
+            return payment::where(['studentClass'=>$class,'type'=>$type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','asc')->get();
+        }
+
+
+
+
+    }
+
+
     public function Search(Request $request)
     {
          $type = $request->type;
@@ -333,6 +362,37 @@ $trxid = $paidPayment->trxid;
     public function index($class, $month, $year, $type)
     {
     }
+
+
+
+    public function paymentReport(Request $request)
+    {
+
+
+        $class = $request->class;
+        $type = $request->type;
+        $from = $request->from;
+        $to = $request->to;
+
+
+        if($type=='all' && $class=='all'){
+            $payments =  payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','asc')->get();
+        }elseif($type=='all'){
+            $payments =  payment::where(['studentClass'=>$class,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','asc')->get();
+        }elseif($class=='all'){
+            $payments =  payment::where(['type'=>$type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','asc')->get();
+        }else{
+            $payments =  payment::where(['studentClass'=>$class,'type'=>$type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','asc')->get();
+        }
+
+        $fileName = "Payments-report-$from-$to" ;
+        $pdf = LaravelMpdf::loadView('admin/pdfReports.payments_report', compact('payments','from','to','class','type'));
+        return $pdf->stream("$fileName.pdf");
+        // return view('dashboard/payments.payments_report', $payments);
+    }
+
+
+
     public function paymentsheet($school_id, $class, $year, $type)
     {
         $data['class'] = $class;
@@ -352,6 +412,10 @@ $trxid = $paidPayment->trxid;
         return $pdf->stream("$fileName.pdf");
         // return view('dashboard/payments.payments_sheet', $data);
     }
+
+
+
+
     /**
      * Show the form for creating a new resource.
      *

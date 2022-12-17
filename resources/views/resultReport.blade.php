@@ -13,11 +13,11 @@
             text-align:center;
         }
     td{
-        border: 1px dotted black;
+        border: 1px solid black;
         padding:4px 10px;
         font-size: 12px;
     }    th{
-        border: 1px dotted black;
+        border: 1px solid black;
         padding:4px 10px;
         font-size: 12px;
     }
@@ -56,7 +56,10 @@
 
             <td>রোল</td>
             <td>নাম</td>
-            <td>মার্ক</td>
+            <td>লিখিত</td>
+            <td>বহুনির্বাচনী</td>
+            <td>ব্যাবহারিক</td>
+            <td>মোট</td>
         </tr>
         @php
             $i = 1;
@@ -68,7 +71,14 @@
 
             <td>{{ $result->roll }}</td>
             <td>{{ $result->name }}</td>
+
+
+            <td>{{ json_decode($result[subjectCol($subject).'_d'])->CQ }}</td>
+            <td>{{ json_decode($result[subjectCol($subject).'_d'])->MCQ }}</td>
+            <td>{{ json_decode($result[subjectCol($subject).'_d'])->EXTRA }}</td>
             <td>{{ $result[subjectCol($subject)] }}</td>
+
+
         </tr>
         @php
             $i++;

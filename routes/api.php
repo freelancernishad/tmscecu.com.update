@@ -80,6 +80,7 @@ Route::post('/ipn',[PaymentController::class ,'ipn']);
 
 
 
+Route::post('/payment/report',[PaymentController::class ,'reports']);
 Route::post('/payment/data/search',[PaymentController::class ,'Search']);
 
 Route::get('student/applicant/copy/{applicant_id}',[studentsController::class , 'applicant_copy_html']);

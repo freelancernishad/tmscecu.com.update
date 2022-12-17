@@ -176,7 +176,13 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::post('students/card/submit', [studentsController::class, 'card_form_submit']);
     Route::get('student/card/{class}/{id}/{school_id}', [studentsController::class, 'card']);
     Route::get('/attendence_sheet/pdf/{school_id}/{class}/{view}/{date}', [studentsController::class, 'attendence_sheet_result_pdf']);
+
+
     Route::get('student/{school_id}/{class}/{year}/{type}/paymnetsheet', [PaymentController::class, 'paymentsheet']);
+
+    Route::get('payment/report', [PaymentController::class, 'paymentReport']);
+
+
     Route::get('/result_sheet/pdf/{school_id}/{group}/{class}/{exam}/All/{date}', [resultController::class, 'resultViewpdf']);
     Route::get('/student_list/pdf/{year}/{class}/{school_id}', [studentsController::class, 'student_list_pdf']);
     Route::get('/{vue_capture?}', function () {

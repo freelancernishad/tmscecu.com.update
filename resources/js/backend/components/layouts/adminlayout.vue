@@ -184,6 +184,11 @@
     <a href="javascript:void(0)" class="nav-link" @click="submenu(3)"><i class="flaticon-technological"></i><span>Acconunt</span></a>
     <transition name="slide">
     <ul class="nav sub-group-menu menu-open child" v-if="selected == 3" style="display:block">
+
+        <li class="nav-item">
+            <router-link   :to="{name:'payment_reports'}" class="nav-link"><i class="fas fa-angle-right"></i> Payment Reports</router-link>
+        </li>
+
         <li class="nav-item">
             <router-link   :to="{name:'payment'}" class="nav-link"><i class="fas fa-angle-right"></i> Payments</router-link>
         </li>

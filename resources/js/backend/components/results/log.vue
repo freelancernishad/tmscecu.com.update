@@ -46,6 +46,7 @@
 
                             <button class="btn btn-danger btn-sm" v-if="result.status=='1'"  @click="EditMode(result.id)">Enable Edit</button>
                             <button class="btn btn-success disabled btn-sm" v-else  >Edit Enabled</button>
+                            <a :href="'/download/mark?class='+result.class+'&year='+result.year+'&exam_name='+result.examName+'&subject='+result.subject+'&group='+result.class_group+'&religion='+result.StudentReligion" target="_blank" class="btn btn-info">View</a>
 
 
 
