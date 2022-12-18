@@ -210,9 +210,9 @@ Route::get('/{vue_capture?}', function () {
     </script>
     ";
     $school_id = '125983';
-    if (isset($_COOKIE["getschoolid"])) {
-        $school_id = htmlspecialchars($_COOKIE["getschoolid"]);
-    }
+    // if (isset($_COOKIE["getschoolid"])) {
+        //     $school_id = htmlspecialchars($_COOKIE["getschoolid"]);
+        // }
     // return  Uniouninfo::find(1);
     $uniounDetials['defaultColor']  = 'green';
     $uniounDetials = json_decode(json_encode($uniounDetials));

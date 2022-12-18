@@ -14,6 +14,7 @@ let profile = require('./components/profile.vue').default;
 
 // Students Components
 let students = require('./components/students/index.vue').default;
+let studentsReports = require('./components/students/reports.vue').default;
 let studentimage = require('./components/students/studentimage.vue').default;
 let studentCard = require('./components/students/card.vue').default;
 let studentedit = require('./components/students/form.vue').default;
@@ -152,6 +153,7 @@ export const routes = [
 
   // students Routes
   { path: `${prefix}/students`, component: students, name:'students',meta: { layout: adminlayout } },
+  { path: `${prefix}/students/reports`, component: studentsReports, name:'studentsReports',meta: { layout: adminlayout } },
   { path: `${prefix}/students/image/:id`, component: studentimage, name:'studentImage',meta: { layout: adminlayout } },
   { path: `${prefix}/students/edit/:id`, component: studentedit, name:'studentedit',meta: { layout: adminlayout } },
   { path: `${prefix}/students/view/:id`, component: studentview, name:'studentview',meta: { layout: adminlayout } },

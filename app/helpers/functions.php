@@ -2087,13 +2087,13 @@ function resultDetails($results,$type='ragular')
 
     $fontfammily = '';
     if($type=='pdf'){
-        $fontfammily = 'font-family: cursive;';
+        // $fontfammily = 'font-family: cursive;';
     }
 
 
     $html  = "
 
-    <table class='table table-striped table-bordered' style='$fontfammily' width='100%'>
+    <table class='table table-striped table-bordered' style='$fontfammily;font-family: 'bangla', sans-serif;' width='100%' >
 
     <tbody>
         <tr>

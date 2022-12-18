@@ -232,7 +232,7 @@ class resultController extends Controller
                 return $html;
 
 
-        return response()->json($result);
+        // return response()->json($result);
 
 
 

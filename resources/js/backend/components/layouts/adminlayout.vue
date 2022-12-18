@@ -150,6 +150,10 @@
                                     <li class="nav-item">
                                         <router-link :to="{ name: 'studentsform' }" class="nav-link"><i class="fas fa-angle-right"></i> Admission Form </router-link>
                                     </li>
+
+                                    <li class="nav-item">
+                                        <router-link :to="{ name: 'studentsReports' }" class="nav-link"><i class="fas fa-angle-right"></i> Reports </router-link>
+                                    </li>
                                     <!-- <li class="nav-item">
                                         <router-link :to="{ name: 'students' }" class="nav-link"><i class="fas fa-angle-right"></i> Student Promotion </router-link>
                                     </li> -->

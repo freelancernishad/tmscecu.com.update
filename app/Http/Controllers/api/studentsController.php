@@ -24,6 +24,42 @@ use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 class studentsController extends Controller
 {
 
+
+
+    public function allReports(Request $request)
+    {
+        return 'hello';
+    }
+
+
+    public function reports(Request $request)
+    {
+        // return $request->all();
+
+        $class = $request->class;
+        $rowName = $request->type;
+        $rowData = $request->rowData;
+
+        $filter = [
+            $rowName=>$rowData,
+            'StudentStatus'=>'Active',
+        ];
+
+
+        if($class!='all'){
+            $filter['StudentClass'] = $class;
+        }
+
+
+
+        return student::where($filter)->orderBy('StudentRoll','asc')->get();
+
+    }
+
+
+
+
+
     public function import(Request $request)
     {
 
@@ -1406,23 +1442,12 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 <body>
     <div class='rootContainer'>
         <div class='headerSection'>
-            <table width='100%'>
-                <tr>
-                    <td width='110px'>
-                        <img width='75px'  style='overflow:hidden;float:right' src='".base64($schoolDetails->logo)."' alt=''>
-                    </td>
-                    <td>
-                        <p class='fontsize2'>$schoolDetails->SCHOLL_NAME</p>
-                        <p class='fontsize1'>$schoolDetails->SCHOLL_ADDRESS </p>
-                    </td>
 
-                    <td style='text-align: right'>
-                    <div class='imgdiv'>
-                    <img width='100px'  style='overflow:hidden;float:right' src='".base64($student->StudentPicture)."' alt=''>
-                    </div>
-                    </td>
-                </tr>
-            </table>
+       ".SchoolPad($student->school_id)."
+
+
+
+
             <p style='    border-bottom: 3px solid #808080;    margin-top: 10px; margin-bottom: 20px;'></p>
 
 

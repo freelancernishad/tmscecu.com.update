@@ -291,13 +291,17 @@ $data['year'] = $year;
         if ($check > 0) {
             $results = StudentResult::where($wd)->first();
 
+            $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4','default_font' => 'bangla','margin_left' => 5,
+            'margin_right' => 5,
+            'margin_top' => 6,
+            'margin_bottom' => 6,]);
 
-            $mpdf = new \Mpdf\Mpdf([
-                'mode' => 'utf-8', 'format' => 'A4', 'default_font' => 'bangla', 'margin_left' => 5,
-                'margin_right' => 5,
-                'margin_top' => 6,
-                'margin_bottom' => 6,
-            ]);
+            // $mpdf = new \Mpdf\Mpdf([
+            //     'mode' => 'utf-8', 'format' => 'A4', 'default_font' => 'bangla', 'margin_left' => 5,
+            //     'margin_right' => 5,
+            //     'margin_top' => 6,
+            //     'margin_bottom' => 6,
+            // ]);
             $mpdf->WriteHTML($this->pdfmarksheet($results));
             $mpdf->Output('markSheet.pdf', 'I');
 
@@ -321,55 +325,57 @@ $data['year'] = $year;
         $schoolDetails = school_detail::where('school_id',$results->school_id)->first();
         $html="
 
-        <style>
-        @page{
-            margin: 60px 80px;
+
+        <!DOCTYPE HTML>
+        <html lang='en-US'>
+        <head>
+            <meta charset='UTF-8'>
+            <title>markSheet.pdf</title>
+            <style>
+            @page{
+                margin: 60px 80px;
+            }
+            .m-0{
+                margin: 0;
+            }    .text-center{
+                text-align:center;
+            }
+        td{
+            border: 1px solid black;
+            padding:4px 10px;
+            font-size: 16px;
+        }    th{
+            border: 1px solid black;
+            padding:4px 10px;
+            font-size: 12px;
         }
-        .m-0{
-            margin: 0;
-        }    .text-center{
-            text-align:center;
+
+        .li{
+            font-size: 10px;
         }
-    td{
-        border: 1px dotted black;
-        padding:4px 10px;
-        font-size: 16px;
-    }    th{
-        border: 1px dotted black;
-        padding:4px 10px;
-        font-size: 12px;
+
+
+
+        table{
+            border-collapse: collapse;
+            width:100%
+        }
+        section.view.about--part1 {
+        margin: 15px 0 50px 0;
     }
+        </style>
 
-    .li{
-        font-size: 10px;
-    }
-
-
-
-	table{
-		border-collapse: collapse;
-		width:100%
-	}
-    section.view.about--part1 {
-    margin: 15px 0 50px 0;
-}
-    </style>
+        </head>
+        <body style='font-family: 'bangla', sans-serif;'>
+            <div class='rootContainer'>
+                <div class='headerSection'>
 
 
-    <table width='100%' style='margin-bottom:20px' border='0'>
-    <tr>
-        <td width='110px' style='border:0 !important'>
-            <img width='75px'  style='overflow:hidden;float:right' src='".base64($schoolDetails->logo)."' alt=''>
-        </td>
-        <td style='border:0 !important'>
-            <p class='fontsize2' style='font-size:30px'>$schoolDetails->SCHOLL_NAME</p>
-            <p class='fontsize1' style='font-size:20px'>$schoolDetails->SCHOLL_ADDRESS </p>
-            <p class='fontsize1' style='font-size:12px'>website: www.tepriganjhighschool.edu.bd </p>
-        </td>
 
 
-    </tr>
-</table>
+
+
+    ".SchoolPad($results->school_id)."
 
 
     <div>
@@ -380,11 +386,21 @@ $data['year'] = $year;
 
 
 
+
+
         ";
 
         $html .= resultDetails($results,'pdf');
         $html .= ResultGradeList($results,'pdf');
 
+        $html .="
+
+
+                </div>
+            </div>
+        </body>
+        </html>
+        ";
 //         $html .="
 
 
