@@ -36,7 +36,7 @@
                     <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
                         <select class="form-control" v-model="form.class" required>
                             <option value="">SELECT CLASS</option>
-                            <option value="all">সকল</option>
+                            <option value="all">All</option>
      <option v-for="classlist in classess">{{ classlist }}</option>
                         </select>
 
@@ -138,6 +138,11 @@
                 </div>
 
 
+
+                    <h4 v-if="search">Total : {{ studentsCount }}</h4>
+
+
+
                 <a v-if="search" :href="'/dashboard/payment/report?class='+form.class+'&type='+form.type+'&from='+form.from+'&to='+form.to" style="float: right;font-size: 20px;margin-bottom: 15px;" target="_blank" class="btn btn-info">Report Download</a>
 
 
@@ -191,6 +196,7 @@ created() {
                 rowData:'',
             },
             students:{},
+            studentsCount:0,
             search:false,
 
 		}
@@ -202,6 +208,7 @@ created() {
            async searchdata(){
                 var res = await this.callApi('post',`/api/students/reports`,this.form);
                 this.students = res.data;
+                this.studentsCount = res.data.length;
                 this.search = true
             },
 

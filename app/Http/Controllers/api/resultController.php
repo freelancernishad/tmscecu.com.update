@@ -203,7 +203,7 @@ class resultController extends Controller
     public function checkSingleResult(Request $request)
     {
         // return $class_group = $request->filter['class_group'];
-        $result = QueryBuilder::for(StudentResult::class)
+        $data = QueryBuilder::for(StudentResult::class)
             ->allowedFilters([
                 AllowedFilter::exact('school_id'),
                 AllowedFilter::exact('exam_name'),
@@ -220,15 +220,61 @@ class resultController extends Controller
                 AllowedFilter::exact('stu_id'),
                 AllowedFilter::exact('Bangla_1st'),
                 AllowedFilter::exact('id')
-            ])
-            ->first();
+            ]);
+            // ->first();
+            $result = $data->first();
+
+            $count = $data->count();
+
+            $html  = "";
+            if ($count > 0) {
+                $Fgg = 0;
+                if ($result->status == 'Draft') {
+                    $html  .= "     <table class='width-50 table table-sm mt-3' width='100%' >";
+                    $html  .= "
+                    <tbody>
+                        <tr class='table-danger'>
+                            <td class='pl-5 pr-5'> <b>
+                                    <center>
+                                        <h4>Result Cannot Published Yet!</h4>
+                                    </center>
+                                </b></td>
+                        </tr>
+                    </tbody>
+                    </table>
+                    ";
+                } else {
 
 
-            $html="<a  class='btn btn-info' target='_blank' style='float: right;padding:15px;font-size:18px' href='/pdf/$result->school_id/$result->class/$result->roll/$result->year/$result->exam_name/$result->class_group'>Download</a>";
+                    $html="<a  class='btn btn-info' target='_blank' style='float: right;padding:15px;font-size:18px' href='/pdf/$result->school_id/$result->class/$result->roll/$result->year/$result->exam_name/$result->class_group'>Download</a>";
 
 
-            $html.= resultDetails($result);
-            $html.= ResultGradeList($result);
+                    $html.= resultDetails($result);
+                    $html.= ResultGradeList($result);
+
+                }
+            } else {
+                $html  .= "
+                <table class='width-50 table table-sm mt-3' width='100%' v-if='count == 'not found''>
+                    <tbody>
+                        <tr class='table-danger'>
+                            <td class='pl-5 pr-5' > <b>
+                                    <center>
+                                        <h4>Result Cannot Find!</h4>
+                                    </center>
+                                </b></td>
+                        </tr>
+                    </tbody>
+                </table>";
+            }
+
+
+
+
+
+
+
+
                 return $html;
 
 

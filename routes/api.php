@@ -107,7 +107,7 @@ Route::post('/school/settings/submit',[SchoolDetailController::class , 'school_u
 
 //student routes
 Route::post('/students/reports',[studentsController::class , 'reports']);
-Route::post('/students/all/reports',[studentsController::class , 'allReports']);
+Route::get('/students/all/reports',[studentsController::class , 'allReports']);
 Route::get('/students/list',[studentsController::class , 'list']);
 Route::get('/students/image/get',[studentsController::class , 'imageget']);
 Route::post('/students/image/upload',[studentsController::class , 'imageupload']);

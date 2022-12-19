@@ -172,6 +172,38 @@
                 </div>
 
 
+                <table cellspacing="0" cellpadding="3" style="font-family:Noto Sans Bengali;font-size:11pt;border-collapse:collapse;margin: 0 auto;width:100%;margin-bottom: 30px;">
+
+                        <tr align="center" valign="middle" style="color:#0C090A;background-color:#F2F2F2;border-color:#CCCCCC;border-width:1px;border-style:Solid;font-family:Noto Sans Bengali;font-size:9pt;">
+                            <td align="center" valign="middle" scope="col">শ্রেণী</td>
+                            <td align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">ছাত্র</td>
+                            <td align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">ছাত্রী</td>
+                            <td align="center" valign="middle" scope="col" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;">মোট</td>
+                        </tr>
+
+                        <tr v-for="(report,key) in reports.data">
+                            <td align="center" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;font-family:Century Gothic;font-size:9pt;width:75px;">{{ key }}</td>
+                            <td align="center" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;font-size:9pt;width:30px;">
+                                <span id="ContentPlaceHolder1_grdvTeachers_txtmale_0">{{ report.maleStudent }}</span>
+                            </td>
+                            <td align="center" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;font-size:9pt;width:30px;">
+                                <span id="ContentPlaceHolder1_grdvTeachers_txtfemale_0">{{ report.FemaleStudent }}</span>
+                            </td>
+                            <td align="center" style="border-color:#CCCCCC;border-width:1px;border-style:Solid;font-size:9pt;width:30px;">
+                                <span id="ContentPlaceHolder1_grdvTeachers_txttotal_0">{{ report.totalStudent }}</span>
+                            </td>
+                        </tr>
+
+
+
+
+                    </table>
+
+
+
+
+
+
 <!--
 <div class="row" v-show="$localStorage.getItem('role')=='admin' || $localStorage.getItem('role')=='teacher' ? true : false " style="display:none">
     <div class="col-md-12">
@@ -208,6 +240,7 @@ export default {
 
     },
     async created() {
+        this.getReports();
         this.getmonth();
          this.totalstudent();
          this.newstudent();
@@ -289,17 +322,15 @@ export default {
             visitorcount:0,
             month:'',
             year:new Date().getFullYear(),
-
-
-
-      chartData: {
-        labels: [],
-        datasets: [ { data: [40, 20, 12] } ]
-      },
+            chartData: {
+                labels: [],
+                datasets: [ { data: [40, 20, 12] } ]
+            },
             chartOptions: {
                 responsive: true,
                 maintainAspectRatio: false,
             },
+            reports:{}
 
 
         };
@@ -378,6 +409,14 @@ this.totalabsent = data.absent.data.reduce((a, b) => a + b, 0);
                 })
                 .catch();
         },
+
+        async getReports(){
+            var res = await this.callApi('get',`/api/student_at_a_glance?school_id=${this.school_id}&front=front`,[]);
+            this.reports = res.data;
+        },
+
+
+
 
     },
 };

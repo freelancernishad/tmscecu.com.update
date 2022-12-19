@@ -28,7 +28,11 @@ class studentsController extends Controller
 
     public function allReports(Request $request)
     {
-        return 'hello';
+
+
+
+
+
     }
 
 
@@ -39,13 +43,10 @@ class studentsController extends Controller
         $class = $request->class;
         $rowName = $request->type;
         $rowData = $request->rowData;
-
         $filter = [
             $rowName=>$rowData,
             'StudentStatus'=>'Active',
         ];
-
-
         if($class!='all'){
             $filter['StudentClass'] = $class;
         }
@@ -53,6 +54,8 @@ class studentsController extends Controller
 
 
         return student::where($filter)->orderBy('StudentRoll','asc')->get();
+
+
 
     }
 
@@ -1443,7 +1446,23 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
     <div class='rootContainer'>
         <div class='headerSection'>
 
-       ".SchoolPad($student->school_id)."
+              <table width='100%'>
+                <tr>
+                    <td width='110px'>
+                        <img width='75px'  style='overflow:hidden;float:right' src='".base64($schoolDetails->logo)."' alt=''>
+                    </td>
+                    <td>
+                        <p class='fontsize2'>$schoolDetails->SCHOLL_NAME</p>
+                        <p class='fontsize1'>$schoolDetails->SCHOLL_ADDRESS </p>
+                        <p class='fontsize1' style='font-size:12px'>website: www.tepriganjhighschool.edu.bd </p>
+                    </td>
+                    <td style='text-align: right'>
+                    <div class='imgdiv'>
+                    <img width='100px'  style='overflow:hidden;float:right' src='".base64($student->StudentPicture)."' alt=''>
+                    </div>
+                    </td>
+                </tr>
+            </table>
 
 
 

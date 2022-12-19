@@ -36,7 +36,7 @@
                     <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
                         <select class="form-control" v-model="form.class" required>
                             <option value="">SELECT CLASS</option>
-                            <option value="all">সকল</option>
+                            <option value="all">All</option>
      <option v-for="classlist in classess">{{ classlist }}</option>
                         </select>
 
