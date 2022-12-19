@@ -24,6 +24,7 @@
                             <th>পরীক্ষার নাম</th>
                             <th>বিষয়</th>
                             <th>সাল</th>
+                            <th>তারিখ</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -38,6 +39,7 @@
                             <td>{{ result.examName }}</td>
                             <td>{{ result.subject }}</td>
                             <td>{{ result.year }}</td>
+                            <td>{{ dateformatGlobal(result.created_at)[3] }}</td>
                             <td>
 
                             <!-- <button class="btn btn-success btn-sm" v-if="result.status=='Draft'" @click="publishNow(result.class,result.year,result.exam_name,'Published')">Publish Now</button> -->

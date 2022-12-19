@@ -181,6 +181,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('student/{school_id}/{class}/{year}/{type}/paymnetsheet', [PaymentController::class, 'paymentsheet']);
 
     Route::get('payment/report', [PaymentController::class, 'paymentReport']);
+    Route::get('student/report', [studentsController::class, 'reports']);
+
+    Route::get('download/student/reports', [frontendController::class, 'student_at_a_glance']);
 
 
     Route::get('/result_sheet/pdf/{school_id}/{group}/{class}/{exam}/All/{date}', [resultController::class, 'resultViewpdf']);

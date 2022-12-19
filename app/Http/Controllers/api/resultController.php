@@ -52,9 +52,28 @@ class resultController extends Controller
         // return $filter;
          $results = StudentResult::where($filter)->orderBy('roll','asc')->get();
 
+
+
+         $group2 = 'All';
+         if($request->class=="Nine" || $request->class=="Ten"){
+             $group2 = $request->group;
+         }
+
+         $logData = [
+            'class'=>$request->class,
+            'group'=> $group2,
+            'subject'=>$subject,
+            'examName'=>$request->exam_name,
+            'month'=>date('F'),
+            'year'=>date('Y'),
+        ];
+
+
+
+         $resultLog = ResultLog::where($logData)->first();
     //   return view('resultReport',compact('results','subject'));
 
-            $pdf = LaravelMpdf::loadView('resultReport',compact('results','subject'));
+            $pdf = LaravelMpdf::loadView('resultReport',compact('results','subject','resultLog'));
             return $pdf->stream('document.pdf');
 
 

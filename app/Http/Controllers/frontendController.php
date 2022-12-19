@@ -97,7 +97,7 @@ class frontendController extends Controller
         $committeeStudent = 0;
         $disabledStudent = 0;
         $There_is_no_quotaStudent = 0;
-        
+
         $businessmanStudent = 0;
         $farmerStudent = 0;
         $agricultural_laborerStudent = 0;
@@ -317,6 +317,53 @@ class frontendController extends Controller
         $data['countdata']['ছাত্রী'] = $FemaleStudent;
         $data['countdata']['বিজ্ঞান বিভাগ'] = $scienceStudent;
         $data['countdata']['মানবিক বিভাগ'] = $HumanitiesStudent;
+
+
+
+        $data['totalStudent'] = $totalStudent;
+        $data['maleStudent'] = $maleStudent;
+        $data['FemaleStudent'] = $FemaleStudent;
+        $data['scienceStudent'] = $scienceStudent;
+        $data['HumanitiesStudent'] = $HumanitiesStudent;
+        $data['IslamStudent'] = $IslamStudent;
+        $data['HinduStudent'] = $HinduStudent;
+        $data['stipendStudent'] = $stipendStudent;
+        $data['WorkingStudent'] = $WorkingStudent;
+        $data['landless_guardiansStudent'] = $landless_guardiansStudent;
+        $data['MinorityStudent'] = $MinorityStudent;
+        $data['special_needsStudent'] = $special_needsStudent;
+        $data['OrphanStudent'] = $OrphanStudent;
+        $data['categoryOtherStudent'] = $categoryOtherStudent;
+        $data['freedom_fightersStudent'] = $freedom_fightersStudent;
+        $data['committeeStudent'] = $committeeStudent;
+        $data['disabledStudent'] = $disabledStudent;
+        $data['There_is_no_quotaStudent'] = $There_is_no_quotaStudent;
+        $data['businessmanStudent'] = $businessmanStudent;
+        $data['farmerStudent'] = $farmerStudent;
+        $data['agricultural_laborerStudent'] = $agricultural_laborerStudent;
+        $data['doctorStudent'] = $doctorStudent;
+        $data['fishermanStudent'] = $fishermanStudent;
+        $data['Government_jobStudent'] = $Government_jobStudent;
+        $data['blacksmith_potterStudent'] = $blacksmith_potterStudent;
+        $data['expatriateStudent'] = $expatriateStudent;
+        $data['small_businessStudent'] = $small_businessStudent;
+        $data['teacherStudent'] = $teacherStudent;
+        $data['Non_agricultural_workersStudent'] = $Non_agricultural_workersStudent;
+        $data['Occupation_of_guardian_otherStudent'] = $Occupation_of_guardian_otherStudent;
+
+
+        $type = $request->type;
+        if($type=='pdf'){
+            $fileName = 'students-'.date('Y-m-d H:m:s');
+
+            $data['fileName'] = $fileName;
+            $data['school_id'] = $school_id;
+
+            // return view('admin/pdfReports.studentAllReport', $data);
+            $pdf = LaravelMpdf::loadView('admin/pdfReports.studentAllReport', $data);
+            return $pdf->stream("$fileName.pdf");
+        }
+
         return response()->json($data);
 
     }

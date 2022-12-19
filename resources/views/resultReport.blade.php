@@ -44,6 +44,8 @@
         <span>Exam Name :- {{ $results[0]->exam_name }} </span> <br>
         <span>Subject :- {{ $subject }} </span> <br>
 
+        <span>Date :- {{ date('d-m-Y', strtotime($resultLog->created_at)) }} </span> <br>
+
 
     </div>
 

@@ -143,7 +143,7 @@
 
 
 
-                <a v-if="search" :href="'/dashboard/payment/report?class='+form.class+'&type='+form.type+'&from='+form.from+'&to='+form.to" style="float: right;font-size: 20px;margin-bottom: 15px;" target="_blank" class="btn btn-info">Report Download</a>
+                <a v-if="search" :href="'/dashboard/student/report?class='+form.class+'&type='+form.type+'&from='+form.from+'&to='+form.to+'&t=pdf'" style="float: right;font-size: 20px;margin-bottom: 15px;" target="_blank" class="btn btn-info">Report Download</a>
 
 
 
@@ -212,11 +212,6 @@ created() {
                 this.search = true
             },
 
-           async reportFun(){
-                var res = await this.callApi('post',`/api/students/all/reports`,this.form);
-                this.reports = res.data;
-                this.search = true
-            },
 
 
 	},

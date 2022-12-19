@@ -51,9 +51,31 @@ class studentsController extends Controller
             $filter['StudentClass'] = $class;
         }
 
+        if($rowName=='stipend'){
+            $filter2 = [
+                'stipend'=>'Yes',
+                'StudentStatus'=>'Active',
+            ];
+            if($class!='all'){
+                $filter2['StudentClass'] = $class;
+            }
+            $students =  student::where($filter2)->orderBy('StudentRoll','asc')->get();
+            $rowData = 'উপবৃত্তি';
+        }else{
+
+            $students = student::where($filter)->orderBy('StudentRoll','asc')->get();
+        }
 
 
-        return student::where($filter)->orderBy('StudentRoll','asc')->get();
+
+        if($request->t=='pdf'){
+            $fileName = "Studnents-report" ;
+            $pdf = LaravelMpdf::loadView('admin/pdfReports.students_report', compact('students','rowData','class'));
+            return $pdf->stream("$fileName.pdf");
+        }
+
+
+        return $students;
 
 
 
