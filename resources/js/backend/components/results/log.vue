@@ -30,7 +30,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="(result,index) in results" :key="index">
-                            <td>{{ index+1 }}</td>
+                            <td>{{ index+pageNO  }}</td>
                             <td>{{ result.class }}</td>
 
                             <td v-if="result.class=='Nine' || result.class=='Ten'">{{ result.group, }}</td>
@@ -62,7 +62,7 @@
             </div>
             <div class="card-footer">
 
-        <Pagination :total-rows="TotalRows" route-name="results" :total-page="Totalpage" :route-params="RouteParams"></Pagination>
+        <Pagination :total-rows="TotalRows" route-name="resultlog" :total-page="Totalpage" :route-params="RouteParams"></Pagination>
 
             </div>
         </div>
@@ -116,6 +116,7 @@ export default {
             TotalRows: '1',
             Totalpage: [],
             RouteParams: {},
+            pageNO: 1,
 
 		}
 	},
@@ -149,7 +150,14 @@ export default {
             this.PerPageData = `${res.data.per_page}`;
             if(res.data.links){
             this.Totalpage = res.data.links
-        }
+            }
+
+
+            if(page==1){
+                this.pageNO = 1;
+            }else{
+                this.pageNO = (page-1)*this.PerPageData+1;
+            }
 
 
             this.preloader=false
@@ -170,3 +178,8 @@ export default {
 	width: 40px;
 }
 </style>
+
+
+
+
+
