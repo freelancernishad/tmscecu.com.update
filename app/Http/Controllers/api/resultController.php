@@ -73,8 +73,10 @@ class resultController extends Controller
          $resultLog = ResultLog::where($logData)->first();
     //   return view('resultReport',compact('results','subject'));
 
-            $pdf = LaravelMpdf::loadView('resultReport',compact('results','subject','resultLog'));
-            return $pdf->stream('document.pdf');
+    $pdfFileName = date('d-m-Y').'_'.subjectCol($subject).'.pdf';
+
+            $pdf = LaravelMpdf::loadView('resultReport',compact('results','subject','resultLog','pdfFileName'));
+            return $pdf->stream($pdfFileName);
 
 
     }
