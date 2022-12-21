@@ -43,7 +43,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="mobilefonthead">A+ : {{ resultCount.gpa5Count }} জন , A : {{ resultCount.gpa4Count }} জন , A- : {{ resultCount.gpa35Count }} জন , B : {{ resultCount.gpa3Count }} জন , C : {{ resultCount.gpa2Count }} জন , D : {{ resultCount.gpa1Count }}, F : {{ resultCount.gpa0Count }} জন </h5>
+                                    <h5 class="mobilefonthead">A+ : {{ resultCount.gpa5Count }} জন , A : {{ resultCount.gpa4Count }} জন , A- : {{ resultCount.gpa35Count }} জন , B : {{ resultCount.gpa3Count }} জন , C : {{ resultCount.gpa2Count }} জন , D : {{ resultCount.gpa1Count }} জন , F : {{ resultCount.gpa0Count }} জন </h5>
                                 </div>
                             </div>
 
