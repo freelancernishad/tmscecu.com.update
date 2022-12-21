@@ -10999,6 +10999,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         str = "ইসলাম-ধর্ম";
       } else if (str == 'ReligionHindu') {
         str = "হিন্দু-ধর্ম";
+      } else if (str == 'Higher_Mathematics') {
+        str = "উচ্চতর গণিত";
       } else if (str == 'Agriculture') {
         str = "কৃষি শিক্ষা";
       } else if (str == 'ICT') {

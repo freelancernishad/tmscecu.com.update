@@ -20,6 +20,7 @@ use App\Http\Controllers\api\PaymentController;
 use App\Http\Controllers\api\RoutineController;
 use App\Http\Controllers\api\studentsController;
 use App\Http\Controllers\NotificationsController;
+use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -144,7 +145,7 @@ Route::get('school/payment/invoice/{id}', [PaymentController::class, 'invoice'])
 Route::get('/pdf/{school_id}/{class}/{roll}/{year}/{exam}/{group}', [frontendController::class, 'view_result_pdf']);
 Route::get('/routines/{school_id}/{class}/{year}/download', [RoutineController::class, 'routine_download'])->name('routines.routine_download');
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
-    Route::get('/results/publish/{school_id}/{student_class}/{group}/{examType}/{year}', function ($school_id, $student_class, $group, $examType, $year) {
+    Route::get('/results/publish/{school_id}/{student_class}/{group}/{examType}/{year}', function (Request $request,$school_id, $student_class, $group, $examType, $year) {
         $filter = [
             'school_id' => $school_id,
             'class' => $student_class,
@@ -153,7 +154,20 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
             'class_group' => $group,
         ];
         $results = StudentResult::where($filter)->orderBy('failed', 'asc')->orderBy('total', 'desc')->get();
-        return view('resultpublish', compact('results'));
+
+         $veiwType = $request->veiwType;
+
+         $schoolDetails = school_detail::where('school_id',$school_id)->first();
+         $pdfFileName = date('d-m-Y').'.pdf';
+         if($veiwType=='noticePdf'){
+            return PdfMaker('A4',$school_id,view('admin/pdfReports.promotionResult',compact('results','pdfFileName','veiwType','schoolDetails')),$pdfFileName);
+         }elseif($veiwType=='schoolPdf'){
+            return PdfMaker('A4',$school_id,view('admin/pdfReports.promotionResult',compact('results','pdfFileName','veiwType','schoolDetails')),$pdfFileName);
+         }else{
+             return view('resultpublish', compact('results','filter','schoolDetails'));
+
+         }
+
     });
     Route::post('/results/publish/list', [resultController::class, 'ResultPublish']);
     Route::get('/results/promotion/{school_id}/{student_class}/{group}/{examType}/{year}', function ($school_id, $student_class, $group, $examType, $year) {
@@ -165,7 +179,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
             'class_group' => $group,
         ];
         $results = StudentResult::where($filter)->orderBy('failed', 'asc')->orderBy('total', 'desc')->get();
-        return view('promotion', compact('results'));
+        $schoolDetails = school_detail::where('school_id',$school_id)->first();
+        return view('promotion', compact('results','filter','schoolDetails'));
     });
     Route::post('/results/promotion/list', [resultController::class, 'Resultpromotion']);
     Route::get('/import', function () {

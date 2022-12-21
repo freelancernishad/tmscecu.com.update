@@ -12,6 +12,29 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
 
+function PdfMaker($pageSize='A4',$school_id,$html,$Filename,$Watermark=true)
+{
+    $schoolDetails = school_detail::where('school_id',$school_id)->first();
+
+    $mpdf = new \Mpdf\Mpdf([
+        'mode' => 'utf-8', 'format' => $pageSize, 'default_font' => 'bangla', 'margin_left' => 5,
+        'margin_right' => 5,
+        'margin_top' => 6,
+        'margin_bottom' => 6,
+        'setAutoTopMargin' => 'stretch',
+    ]);
+    $mpdf->SetDisplayMode('fullpage');
+    // $mpdf->SetHTMLHeader(SchoolPad($school_id));
+    $mpdf->defaultheaderfontsize = 10;
+    $mpdf->defaultheaderfontstyle = 'B';
+    $mpdf->defaultheaderline = 0;
+    $mpdf->showWatermarkImage = $Watermark;
+    // $mpdf->WriteHTML('<watermarkimage src="'.base64($schoolDetails->logo).'" alpha="0.1" size="80,80" />');
+    $mpdf->SetWatermarkImage(base64($schoolDetails->logo),0.15);
+    // $mpdf->SetWatermarkImage(base64($schoolDetails->logo),0.15,array(130,130),array(155,50));
+    $mpdf->WriteHTML($html);
+    $mpdf->Output($Filename, 'I');
+}
 
 
 function sitedetails()

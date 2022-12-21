@@ -12,13 +12,27 @@
     <div class="container my-5">
 
 
+
+
+
+
         <a href="/dashboard/results" class="btn btn-danger mb-5">Back</a>
+
+
+        <h5>Class :- {{ $filter['class'] }}</h5>
+        <h5>Group :- {{ $filter['class_group'] }}</h5>
+        <h5>Exam Name :- {{ $filter['exam_name'] }}</h5>
 
 
 
         <form action="/dashboard/results/publish/list" method="post">
             @csrf
             <button class="btn btn-info" type="submit">Publish Now</button>
+
+            <a href="/dashboard/results/publish/{{ $filter['school_id'] }}/{{ $filter['class'] }}/{{ $filter['class_group'] }}/{{ $filter['exam_name'] }}/{{  $filter['year'] }}?veiwType=noticePdf" target="_blank" type="button" class="btn btn-success">Download for Notice</a>
+
+            <a href="/dashboard/results/publish/{{ $filter['school_id'] }}/{{ $filter['class'] }}/{{ $filter['class_group'] }}/{{ $filter['exam_name'] }}/{{  $filter['year'] }}?veiwType=schoolPdf" target="_blank" type="button" class="btn btn-success">Download for School</a>
+
         <table width="100%" class="table">
 
             <thead>

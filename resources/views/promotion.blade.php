@@ -14,7 +14,9 @@
 
         <a href="/dashboard/results" class="btn btn-danger mb-5">Back</a>
 
-
+        <h5>Class :- {{ $filter['class'] }}</h5>
+        <h5>Group :- {{ $filter['class_group'] }}</h5>
+        <h5>Exam Name :- {{ $filter['exam_name'] }}</h5>
 
         <form action="/dashboard/results/promotion/list" method="post">
             @csrf

@@ -676,17 +676,10 @@ return redirect()->back();
         ];
         $data['rows'] = StudentResult::where($resultW)->orderBy('roll', 'ASC')->get();
         $data['sign'] = base64(sitedetails()->PRINCIPALS_Signature);
-        // $pdf = PDF::loadView('admin/pdfReports.full_result_pdf', $data);
-        $mpdf = new \Mpdf\Mpdf([
-            'mode' => 'utf-8', 'format' => 'A4-L', 'default_font' => 'bangla', 'margin_left' => 5,
-            'margin_right' => 5,
-            'margin_top' => 6,
-            'margin_bottom' => 6,
-        ]);
-        $mpdf->WriteHTML($this->fullResultPdf($school_id, $student_class, date("Y", strtotime($date)), $exam, $group));
-        $mpdf->Output('document.pdf', 'I');
-        // return $pdf->stream('document.pdf');
-        // return view('admin/pdfReports.full_result_pdf',$data);
+
+        $pdfFileName = $student_class.'-'.$group.'-'.$exam.'.pdf';
+        return PdfMaker('Legal-L',$school_id,$this->fullResultPdf($school_id, $student_class, date("Y", strtotime($date)), $exam, $group),$pdfFileName);
+
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function result_sheet()
@@ -1428,11 +1421,11 @@ return redirect()->back();
             font-size:13px;
           }
           td{
-            border: 1px dotted black;
+            border: 1px solid black;
             padding: 2px 3px;
             font-size: 12px;
         }    th{
-            border: 1px dotted black;
+            border: 1px solid black;
             padding:4px 10px;
             font-size: 12px;
         }
@@ -1590,11 +1583,11 @@ return redirect()->back();
         $html = "
         <style>
           td{
-            border: 1px dotted black;
+            border: 1px solid black;
             padding: 2px 3px;
             font-size: 16px;
         }    th{
-            border: 1px dotted black;
+            border: 1px solid black;
             padding:4px 10px;
             font-size: 12px;
         }
@@ -1603,8 +1596,8 @@ return redirect()->back();
             width: 100%
         }
         </style>
-        <h3 style='text-align:center;margin:0; font-size:30px;font-weight: 500;' >" . sitedetails()->SCHOLL_NAME . "</h3>
-        <h4 style='text-align:center; margin:0; font-size:20px;font-weight: 500;' >" . sitedetails()->SCHOLL_ADDRESS . " </h4>
+        ".SchoolPad($school_id)."
+
      <span> তারিখ :  " . date('d-m-y') . "</span> <br>
      <span> পরিক্ষার নাম:  " . $exam_name . "</span> <br>
      <span> শ্রেণী :  " . $class . "</span>
@@ -1647,7 +1640,7 @@ return redirect()->back();
 
             $html .= "
             <tr>
-                <td>$resValue->roll</td>
+                <td>".int_en_to_bn($resValue->roll)."</td>
                 <td>$resValue->name</td>
             ";
             $subjectsGroup = $this->GetSubject($class, $resValue->class_group);
@@ -1664,10 +1657,10 @@ return redirect()->back();
                         $subMark = json_decode($resValue["ReligionIslam_d"]);
                         if ($subMark) {
                             $html .= "
-                        <td>$subMark->CQ</td>
-                        <td>$subMark->MCQ</td>
-                        <td>$subMark->EXTRA</td>
-                        <td>" . $resValue['ReligionIslam'] . "</td>";
+                            <td>".int_en_to_bn($subMark->CQ)."</td>
+                            <td>".int_en_to_bn($subMark->MCQ)."</td>
+                            <td>".int_en_to_bn($subMark->EXTRA)."</td>
+                        <td>" . int_en_to_bn($resValue['ReligionIslam']) . "</td>";
                         } else {
                             $html .= "
                         <td>0</td>
@@ -1681,10 +1674,10 @@ return redirect()->back();
                         $subMark = json_decode($resValue["ReligionHindu_d"]);
                         if ($subMark) {
                             $html .= "
-                        <td>$subMark->CQ</td>
-                        <td>$subMark->MCQ</td>
-                        <td>$subMark->EXTRA</td>
-                        <td>" . $resValue['ReligionHindu'] . "</td>";
+                            <td>".int_en_to_bn($subMark->CQ)."</td>
+                            <td>".int_en_to_bn($subMark->MCQ)."</td>
+                            <td>".int_en_to_bn($subMark->EXTRA)."</td>
+                        <td>" . int_en_to_bn($resValue['ReligionHindu']) . "</td>";
                         } else {
                             $html .= "
                         <td>0</td>
@@ -1699,10 +1692,10 @@ return redirect()->back();
                         $subMark = json_decode($resValue[subjectCol($value) . "_d"]);
                         if ($subMark) {
                             $html .= "
-                        <td>$subMark->CQ</td>
-                        <td>$subMark->MCQ</td>
-                        <td>$subMark->EXTRA</td>
-                        <td>" . $resValue[subjectCol($value)] . "</td>";
+                            <td>".int_en_to_bn($subMark->CQ)."</td>
+                            <td>".int_en_to_bn($subMark->MCQ)."</td>
+                            <td>".int_en_to_bn($subMark->EXTRA)."</td>
+                            <td>" . int_en_to_bn($resValue[subjectCol($value)]) . "</td>";
                         } else {
                             $html .= "
                         <td>0</td>
@@ -1719,10 +1712,10 @@ return redirect()->back();
                     $subMark = json_decode($resValue[subjectCol($value) . "_d"]);
                     if ($subMark) {
                         $html .= "
-                    <td>$subMark->CQ</td>
-                    <td>$subMark->MCQ</td>
-                    <td>$subMark->EXTRA</td>
-                    <td>" . $resValue[subjectCol($value)] . "</td>
+                    <td>".int_en_to_bn($subMark->CQ)."</td>
+                    <td>".int_en_to_bn($subMark->MCQ)."</td>
+                    <td>".int_en_to_bn($subMark->EXTRA)."</td>
+                    <td>" . int_en_to_bn($resValue[subjectCol($value)]) . "</td>
                 ";
                     } else {
                         $html .= "
@@ -1735,10 +1728,10 @@ return redirect()->back();
                 }
             }
             $html .= "
-            <td>$failed</td>
-            <td>$Gpa</td>
+            <td>".int_en_to_bn($failed)."</td>
+            <td>".int_en_to_bn($Gpa)."</td>
 
-            <td>$total</td>
+            <td>".int_en_to_bn($total)."</td>
         </tr>
         ";
         }

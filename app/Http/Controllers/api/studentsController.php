@@ -855,11 +855,12 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
 // return $this->invoice($payment,$student);
 
-        $fileName = 'Invoice-'.date('Y-m-d H:m:s').'.pdf';
-        $data['fileName'] = $fileName;
-        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-L','default_font' => 'bangla',]);
-        $mpdf->WriteHTML( $this->invoice($payment,$student));
-      return   $mpdf->Output($fileName,'I');
+        $pdfFileName = 'Invoice-'.date('Y-m-d H:m:s').'.pdf';
+
+        return PdfMaker('A4-L',$student->school_id,$this->invoice($payment,$student),$pdfFileName,false);
+
+
+
     }
 
 
@@ -1398,13 +1399,12 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
         public function applicant_copy($applicant_id)
         {
-    // return $this->applicant_copy_html($applicant_id);
-    $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4','default_font' => 'bangla','margin_left' => 5,
-    'margin_right' => 5,
-    'margin_top' => 6,
-    'margin_bottom' => 6,]);
-    $mpdf->WriteHTML($this->applicant_copy_html($applicant_id));
-    $mpdf->Output("applicant-copy-$applicant_id.pdf","I");
+            $student =  student::where('AdmissionID',$applicant_id)->latest()->first();
+
+            $Filename = "applicant-copy-$applicant_id.pdf";
+         return   PdfMaker('A4',$student->school_id,$this->applicant_copy_html($applicant_id),$Filename,false);
+
+
         }
 
 
