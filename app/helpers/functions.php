@@ -1406,7 +1406,7 @@ function characterCount($string)
     $point = '0.00';
 
 
-    $Persent_33 = (33*$total)/100;
+    $Persent_33 = (32*$total)/100;
     $Persent_40 = (40*$total)/100;
     $Persent_50 = (50*$total)/100;
     $Persent_60 = (60*$total)/100;
@@ -1660,6 +1660,17 @@ $Fgg = 0;
                 // array_push($greating,['Bangla_2ndcq'=>$CQ2great]);
                 // array_push($greating,['Bangla_2ndmcq'=>$MCQ2great]);
 
+
+                // $enArray = [$CQ1great,$CQ2great];
+
+                // if (in_array('F', $enArray)) {
+                //     $gread1 = 'F';
+                // } else {
+                //     $gread1 = 'pass';
+                // }
+                // array_push($greating, $gread1);
+
+
                 array_push($greating, $CQ1great);
                 array_push($greating, $CQ2great);
 
@@ -1695,14 +1706,28 @@ $Fgg = 0;
                 $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
                 $gg1 =  ($subMark1 + $subMark2) / 2;
                 $gg = Greeting($gg1, $ggTo, 'point');
-                $CQ1great = Greeting($CQ1, $SUBJECT_TOTAL1, 'greed');
+                $CQ1great = Greeting($subMark1, $SUBJECT_TOTAL1, 'greed');
                 // $MCQ1great = Greeting($MCQ1,30,'greed');
-                $CQ2great = Greeting($CQ2, $SUBJECT_TOTAL2, 'greed');
+                $CQ2great = Greeting($subMark2, $SUBJECT_TOTAL2, 'greed');
                 // $MCQ2great = Greeting($MCQ2,20,'greed');
                 // array_push($greating,[subjectCol($sub).'cq'=>$CQ1great]);
                 // array_push($greating,[subjectCol($sub).'cq'=>$CQ2great]);
+
+
+                // $enArray = [$CQ1great,$CQ2great];
+
+                // if (in_array('F', $enArray)) {
+                //     $gread1 = 'F';
+                // } else {
+                //     $gread1 = 'pass';
+                // }
+
+
                 array_push($greating, $CQ1great);
                 array_push($greating, $CQ2great);
+
+
+
                 // array_push($greating,$MCQ1great);
                 // array_push($greating,$MCQ2great);
             } elseif (subjectCol($sub) == 'English_2nd') {
@@ -1710,6 +1735,8 @@ $Fgg = 0;
             } else {
                 $gg = Greeting($subMark, $SUBJECT_TOTAL, 'point');
                 $great = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
+                        // array_push($greating,[subjectCol($sub).'cq'=>$great]);
+
                 array_push($greating, $great);
             }
             $GPA += $gg;
@@ -2035,7 +2062,7 @@ function SubjectDetailsMark($results,$subjextName ='Bangla_1st',$type='all')
 function resultDetails($results,$type='ragular')
 {
 
-  return  $GpaResult = StudentFailedCount($results);
+     $GpaResult = StudentFailedCount($results);
 
 
     $MarkResult = StudentFailedCount($results,'mark');
@@ -2234,9 +2261,25 @@ function ResultGradeList($results,$type='ragular')
 
 
 
-                $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
-                $gg1 =  ($subMark1 + $subMark2) / 2;
-                $gg = Greeting($gg1, $ggTo, 'greed');
+
+
+
+                $CQ1great = Greeting($subMark1, $SUBJECT_TOTAL1, 'greed');
+                $CQ2great = Greeting($subMark2, $SUBJECT_TOTAL2, 'greed');
+
+
+                $enArray = [$CQ1great,$CQ2great];
+
+                if (in_array('F', $enArray)) {
+                    $gg = 'F';
+                } else {
+                    $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
+                    $gg1 =  ($subMark1 + $subMark2) / 2;
+                    $gg = Greeting($gg1, $ggTo, 'greed');
+                }
+
+
+
 
 
 
@@ -2267,7 +2310,24 @@ function ResultGradeList($results,$type='ragular')
                 $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
                 $gg1 =  ($subMark1 + $subMark2) / 2;
                 //   return   $gg = Greeting($gg1, $ggTo, 'point');
-                $gg = Greeting($gg1, $ggTo, 'greed');
+
+
+
+                $CQ1great = Greeting($subMark1, $SUBJECT_TOTAL1, 'greed');
+                $CQ2great = Greeting($subMark2, $SUBJECT_TOTAL2, 'greed');
+
+
+                $enArray = [$CQ1great,$CQ2great];
+
+                if (in_array('F', $enArray)) {
+                    $gg = 'F';
+                } else {
+                    $gg = Greeting($gg1, $ggTo, 'greed');
+                    // $gg = Greeting($gg1, $ggTo, 'greed');
+                }
+
+
+
 
                 $html .= "<td style='text-align:center'><span>  $CQ1 <br/> $CQ2 </span></td>";
                 $html .= "<td style='text-align:center'><span>  $MCQ1 <br/> $MCQ2 </span></td>";
