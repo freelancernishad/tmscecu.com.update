@@ -35,6 +35,25 @@ class studentsController extends Controller
 
     }
 
+    public function getStudents(Request $request)
+    {
+        $StudentStatus = $request->StudentStatus;
+        $class = $request->class;
+        $filter = [
+            'StudentClass'=>$class,
+            'StudentStatus'=>$StudentStatus,
+        ];
+        return student::where($filter)->get();
+    }
+
+
+    // public function FunctionName()
+    // {
+    //     # code...
+    // }
+
+
+
 
     public function reports(Request $request)
     {

@@ -244,7 +244,7 @@ class resultController extends Controller
             ]);
             // ->first();
             $result = $data->first();
-
+        //    return resultDetails($result);
             $count = $data->count();
 
             $html  = "";

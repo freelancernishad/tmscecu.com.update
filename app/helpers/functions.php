@@ -1680,7 +1680,7 @@ $Fgg = 0;
                 }
                 $subMark1 = $results['English_1st'];
                 $sub_d2 = json_decode($results['English_2nd_d']);
-                if ($sub_d) {
+                if ($sub_d2) {
                     $SUBJECT_TOTAL2 = $sub_d2->SUBJECT_TOTAL;
                     $CQ2 = $sub_d2->CQ;
                     $MCQ2 = $sub_d2->MCQ;
@@ -1695,9 +1695,9 @@ $Fgg = 0;
                 $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
                 $gg1 =  ($subMark1 + $subMark2) / 2;
                 $gg = Greeting($gg1, $ggTo, 'point');
-                $CQ1great = Greeting($CQ1, 100, 'greed');
+                $CQ1great = Greeting($CQ1, $SUBJECT_TOTAL1, 'greed');
                 // $MCQ1great = Greeting($MCQ1,30,'greed');
-                $CQ2great = Greeting($CQ2, 100, 'greed');
+                $CQ2great = Greeting($CQ2, $SUBJECT_TOTAL2, 'greed');
                 // $MCQ2great = Greeting($MCQ2,20,'greed');
                 // array_push($greating,[subjectCol($sub).'cq'=>$CQ1great]);
                 // array_push($greating,[subjectCol($sub).'cq'=>$CQ2great]);
@@ -2035,7 +2035,7 @@ function SubjectDetailsMark($results,$subjextName ='Bangla_1st',$type='all')
 function resultDetails($results,$type='ragular')
 {
 
-    $GpaResult = StudentFailedCount($results);
+  return  $GpaResult = StudentFailedCount($results);
 
 
     $MarkResult = StudentFailedCount($results,'mark');
@@ -2328,6 +2328,10 @@ function ResultGradeList($results,$type='ragular')
 
 
             }
+
+
+
+
         } elseif ($class == "Eight") {
             $html .= " <td class='pl-5 pr-5'>". BanglaSubToEnglish($sub)."</td>";
 
