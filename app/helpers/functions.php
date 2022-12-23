@@ -2446,7 +2446,6 @@ function ResultGradeList($results,$type='ragular')
         } elseif ($class == "Nine" || $class == "Ten") {
             if (subjectCol($sub) == 'Bangla_1st') {
                 $html .= " <td class='pl-5 pr-5'>".BanglaSubToEnglish('বাংলা ১ম')." <br/>".BanglaSubToEnglish('বাংলা ২য়')."</td>";
-
             } elseif (subjectCol($sub) == 'Bangla_2nd') {
                 $html .= '';
             } elseif (subjectCol($sub) == 'English_1st') {
@@ -2455,18 +2454,15 @@ function ResultGradeList($results,$type='ragular')
             } elseif (subjectCol($sub) == 'English_2nd') {
                 $html .= '';
             } else {
-
-
                 if (subjectCol($sub) == 'Agriculture') {
                     if ($results->Agriculture) {
-                        $html .= " <td class='pl-5 pr-5'> ".BanglaSubToEnglish($sub)."</td>";
-
+                        $html .= " <td class='pl-5 pr-5'> ".BanglaSubToEnglish($sub)." (<b>4th Subject</b>)</td>";
                     } else {
                         $html .= '';
                     }
                 } elseif (subjectCol($sub) == 'Higher_Mathematics') {
                     if ($results->Higher_Mathematics) {
-                        $html .= " <td class='pl-5 pr-5'> ".BanglaSubToEnglish($sub)."</td>";
+                        $html .= " <td class='pl-5 pr-5'> ".BanglaSubToEnglish($sub)." (<b>4th Subject</b>)</td>";
 
                     } else {
                         $html .= '';
@@ -2476,8 +2472,6 @@ function ResultGradeList($results,$type='ragular')
 
                 }
             }
-
-
             if (subjectCol($sub) == 'Bangla_1st') {
                 $mark1 =  SubjectDetailsMark($results, 'Bangla_1st', 'all');
                 $SUBJECT_TOTAL1 = $mark1['SUBJECT_TOTAL'];
@@ -2677,6 +2671,9 @@ function ResultGradeList($results,$type='ragular')
 
                     if (subjectCol($sub) == 'Agriculture') {
                         if ($results->Agriculture) {
+
+
+
                             $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . $CQ . "</span></td>";
                             $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . $MCQ . "</span></td>";
                             $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . $EXTRA . "</span></td>";
@@ -2696,6 +2693,7 @@ function ResultGradeList($results,$type='ragular')
                             $html .= '';
                         }
                     } else {
+
                         $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . $CQ . "</span></td>";
                         $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . $MCQ . "</span></td>";
                         $html .= "<td style='text-align:center' class='pl-5 pr-5'><span> " . $EXTRA . "</span></td>";
