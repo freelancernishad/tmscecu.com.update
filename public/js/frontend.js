@@ -9832,7 +9832,18 @@ var render = function render() {
         colspan: "3"
       }
     }, [_vm._v("\n" + _vm._s(student) + "\n                                        ")])]);
-  }), 0)])])])])])])])])]), _vm._v(" "), _c("side-bar", {
+  }), 0)])])])])])])]), _vm._v(" "), _c("ins", {
+    staticClass: "adsbygoogle",
+    staticStyle: {
+      display: "block"
+    },
+    attrs: {
+      "data-ad-format": "fluid",
+      "data-ad-layout-key": "-fb+5w+4e-db+86",
+      "data-ad-client": "ca-pub-9489624253487221",
+      "data-ad-slot": "4940322175"
+    }
+  })])]), _vm._v(" "), _c("side-bar", {
     attrs: {
       "class-name": "col-md-3"
     }
