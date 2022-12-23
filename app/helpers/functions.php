@@ -2104,7 +2104,9 @@ function resultDetails($results,$type='ragular')
             $totalMark = "
             <tr>
                 <td>Result</td>
-                <td colspan='3'>GPA=$GpaResult</td>
+                <td>GPA=$GpaResult</td>
+                <td>Total Mark</td>
+                <td>$MarkResult</td>
             </tr>";
 
             if($results->failed>0){

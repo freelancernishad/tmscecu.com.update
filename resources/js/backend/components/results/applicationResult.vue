@@ -1,7 +1,9 @@
 <template>
     <div>
 
-        <button @click="Publish" class="btn btn-success">Approve</button>
+        <button @click="Publish" v-if="$route.query.status" class="btn btn-success">Pending</button>
+        <button @click="Publish" v-else class="btn btn-success">Approve</button>
+        <router-link :to="{name:'applicationResult',query:{status:'Approve'}}">Approved List</router-link>
             <table width="100%" class="table">
 
                 <thead>
@@ -55,9 +57,8 @@
 
             </table>
 
-
-            <button @click="Publish" class="btn btn-success">Approve</button>
-
+            <button @click="Publish" v-if="$route.query.status" class="btn btn-success">Pending</button>
+        <button @click="Publish" v-else class="btn btn-success">Approve</button>
 
 
 
@@ -76,6 +77,16 @@ export default {
             form:{
                 studentDatas:[]
             },
+        }
+    },
+    watch: {
+        '$route': {
+            handler(newValue, oldValue) {
+                console.log(this.$route.query.status)
+                this.getNewStudents();
+
+            },
+            deep: true
         }
     },
     methods: {
@@ -99,8 +110,10 @@ export default {
 
         },
         async getNewStudents(){
+            var status = 'Pending';
+            if(this.$route.query.status)status = 'Approve';
             var url = '';
-            url = `/api/get/pending/student?StudentStatus=Pending&class=Six`;
+            url = `/api/get/pending/student?StudentStatus=${status}&class=Six`;
             var res = await this.callApi('get',`${url}`,[]);
             this.students = res.data
         },
@@ -109,8 +122,12 @@ export default {
             this.form['school_id'] = this.school_id;
             this.form['year'] = this.year;
             this.form['actioncheck'] = this.actioncheck;
+            if(this.$route.query.status){
+                this.form['status'] = 'Pending';
+            }else{
+                this.form['status'] = 'Approve';
 
-
+            }
             var res = await this.callApi('post',`/api/approve/pending/student`,this.form);
 
             this.getNewStudents();

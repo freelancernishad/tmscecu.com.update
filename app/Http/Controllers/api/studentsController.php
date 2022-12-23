@@ -51,11 +51,12 @@ class studentsController extends Controller
     {
         $studentDatas = $request->studentDatas;
         $actioncheck = $request->actioncheck;
+        $status = $request->status;
         foreach ($studentDatas as $value) {
             $student = student::find($value);
 
             if (in_array($value, $actioncheck)){
-                $student->update(['StudentStatus'=>'Approve']);
+                $student->update(['StudentStatus'=>$status]);
             }else{
                 $student->update(['StudentStatus'=>'Reject']);
             }
