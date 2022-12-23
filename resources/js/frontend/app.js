@@ -21,10 +21,10 @@ Vue.prototype.$appUrl = window.location.origin
 import Notification from '../helpers/Notification';
 window.Notification = Notification
 
-import UnionSelect from './components/Adsense.vue'
+import UnionSelect from './components/layouts/unonselect.vue'
 Vue.component('UnionSelect', UnionSelect);
 
-import adsense from './components/layouts/unonselect.vue'
+import adsense from './components/Adsense.vue'
 Vue.component('adsense', adsense);
 
 

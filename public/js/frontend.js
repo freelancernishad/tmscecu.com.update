@@ -68158,8 +68158,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./routes */ "./resources/js/frontend/routes.js");
 /* harmony import */ var _helpers_User__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../helpers/User */ "./resources/js/helpers/User.js");
 /* harmony import */ var _helpers_Notification__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../helpers/Notification */ "./resources/js/helpers/Notification.js");
-/* harmony import */ var _components_Adsense_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Adsense.vue */ "./resources/js/frontend/components/Adsense.vue");
-/* harmony import */ var _components_layouts_unonselect_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/layouts/unonselect.vue */ "./resources/js/frontend/components/layouts/unonselect.vue");
+/* harmony import */ var _components_layouts_unonselect_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/layouts/unonselect.vue */ "./resources/js/frontend/components/layouts/unonselect.vue");
+/* harmony import */ var _components_Adsense_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Adsense.vue */ "./resources/js/frontend/components/Adsense.vue");
 /* harmony import */ var _components_layouts_SideBar_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/layouts/SideBar.vue */ "./resources/js/frontend/components/layouts/SideBar.vue");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
@@ -68184,9 +68184,9 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$appUrl = window.location.
 
 window.Notification = _helpers_Notification__WEBPACK_IMPORTED_MODULE_7__["default"];
 
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('UnionSelect', _components_Adsense_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('UnionSelect', _components_layouts_unonselect_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
 
-vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('adsense', _components_layouts_unonselect_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('adsense', _components_Adsense_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('SideBar', _components_layouts_SideBar_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
 
