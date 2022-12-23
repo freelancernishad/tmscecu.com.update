@@ -109,7 +109,11 @@ Route::post('/school/settings/submit',[SchoolDetailController::class , 'school_u
 Route::post('/students/reports',[studentsController::class , 'reports']);
 Route::get('/students/all/reports',[studentsController::class , 'allReports']);
 Route::get('/students/list',[studentsController::class , 'list']);
+
 Route::get('/get/pending/student',[studentsController::class , 'getStudents']);
+Route::post('/approve/pending/student',[studentsController::class , 'approveStudents']);
+
+
 Route::get('/students/image/get',[studentsController::class , 'imageget']);
 Route::post('/students/image/upload',[studentsController::class , 'imageupload']);
 Route::get('/students/single',[studentsController::class , 'singlestudent']);

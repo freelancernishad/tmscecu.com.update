@@ -353,7 +353,7 @@ class resultController extends Controller
                 $html .= resultDetails($results);
 
                 $html  .= "
-            <h2 style='text-align:center;font-size:20px;color:black'>বিঃদ্রঃ মার্কশীট সংগ্রহ করতে বিদ্যালয়ে যোগাযোগ করুন </h2>
+            <h2 style='text-align:center;font-size:20px;color:#007BFF'>বিঃদ্রঃ মার্কশীট সংগ্রহ করতে বিদ্যালয়ে যোগাযোগ করুন </h2>
             ";
                 //    $html .= ResultGradeList($results);
 

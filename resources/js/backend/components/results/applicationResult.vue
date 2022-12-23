@@ -31,6 +31,7 @@
                 <tbody>
                     <tr v-for="(student,index) in students" :key="index">
 
+                        <!-- <input type="text" v-model="form.studentDatas[student.id]"> -->
                         <td>
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" v-model="actioncheck"
@@ -72,17 +73,30 @@ export default {
             allSelected: false,
             year: new Date().getFullYear(),
             students:{},
-            form:{},
+            form:{
+                studentDatas:[]
+            },
         }
     },
     methods: {
         selectAll: function () {
             this.actioncheck = [];
+            this.form.studentDatas = [];
             if (!this.allSelected) {
                 this.students.forEach((student ,index)=> {
                     this.actioncheck.push(student.id);
+
+                    this.form.studentDatas.push(student.id);
+
+
+
+
                 })
             }
+
+
+            // console.log(this.form.studentDatas);
+
         },
         async getNewStudents(){
             var url = '';
@@ -92,21 +106,30 @@ export default {
         },
         async Publish(){
 
-            this.form['school_id'] = this.$route.params.school_id;
-            this.form['class'] = this.$route.params.student_class;
+            this.form['school_id'] = this.school_id;
             this.form['year'] = this.year;
-            this.form['exam_name'] = this.examcomvert(this.$route.params.examType);
-            this.form['group'] = this.$route.params.group;
             this.form['actioncheck'] = this.actioncheck;
 
 
-            var res = await this.callApi('post',`/api/results/publish/list`,this.form);
+            var res = await this.callApi('post',`/api/approve/pending/student`,this.form);
+
+            this.getNewStudents();
+
+            setTimeout(() => {
+                this.selectAll();
+            }, 2000);
+
         }
     },
 
 
     mounted() {
         this.getNewStudents();
+
+        setTimeout(() => {
+            this.selectAll();
+        }, 2000);
+
     },
 
 

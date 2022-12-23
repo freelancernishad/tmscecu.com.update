@@ -47,10 +47,23 @@ class studentsController extends Controller
     }
 
 
-    // public function FunctionName()
-    // {
-    //     # code...
-    // }
+    public function approveStudents(Request $request)
+    {
+        $studentDatas = $request->studentDatas;
+        $actioncheck = $request->actioncheck;
+        foreach ($studentDatas as $value) {
+            $student = student::find($value);
+
+            if (in_array($value, $actioncheck)){
+                $student->update(['StudentStatus'=>'Approve']);
+            }else{
+                $student->update(['StudentStatus'=>'Reject']);
+            }
+
+
+        }
+        return $request->all();
+    }
 
 
 
