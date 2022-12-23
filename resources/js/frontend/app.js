@@ -20,8 +20,14 @@ window.User = User
 Vue.prototype.$appUrl = window.location.origin
 import Notification from '../helpers/Notification';
 window.Notification = Notification
-import UnionSelect from './components/layouts/unonselect.vue'
+
+import UnionSelect from './components/Adsense.vue'
 Vue.component('UnionSelect', UnionSelect);
+
+import adsense from './components/layouts/unonselect.vue'
+Vue.component('adsense', adsense);
+
+
 
 import SideBar from './components/layouts/SideBar.vue'
 Vue.component('SideBar', SideBar);
