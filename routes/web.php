@@ -153,14 +153,27 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
             'exam_name' => $examType,
             'class_group' => $group,
         ];
-        $results = StudentResult::where($filter)->orderBy('failed', 'asc')->orderBy('total', 'desc')->get();
+        $veiwType = $request->veiwType;
+        // $filter['status'] = 'Published';
+        if($veiwType=='noticePdf'){
 
-         $veiwType = $request->veiwType;
+            $results = StudentResult::where($filter)->where('FinalResultStutus','!=','inhaled')->orderBy('failed', 'asc')->orderBy('total', 'desc')->get();
+        }else{
+            $results = StudentResult::where($filter)->orderBy('failed', 'asc')->orderBy('total', 'desc')->get();
+
+        }
+
+
+
 
          $schoolDetails = school_detail::where('school_id',$school_id)->first();
          $pdfFileName = date('d-m-Y').'.pdf';
          if($veiwType=='noticePdf'){
+
+
             return PdfMaker('A4',$school_id,view('admin/pdfReports.promotionResult',compact('results','pdfFileName','veiwType','schoolDetails')),$pdfFileName);
+
+
          }elseif($veiwType=='schoolPdf'){
             return PdfMaker('A4',$school_id,view('admin/pdfReports.promotionResult',compact('results','pdfFileName','veiwType','schoolDetails')),$pdfFileName);
          }else{
