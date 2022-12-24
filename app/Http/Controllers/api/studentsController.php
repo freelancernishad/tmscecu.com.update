@@ -39,10 +39,19 @@ class studentsController extends Controller
     {
         $StudentStatus = $request->StudentStatus;
         $class = $request->class;
+
+        $group = $request->group;
+
         $filter = [
             'StudentClass'=>$class,
             'StudentStatus'=>$StudentStatus,
         ];
+
+        if($class=='Nine' || $class=='Ten'){
+            $filter['StudentGroup'] = $group;
+        }
+
+
         return student::where($filter)->get();
     }
 

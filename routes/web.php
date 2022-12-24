@@ -157,7 +157,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         // $filter['status'] = 'Published';
         if($veiwType=='noticePdf'){
 
-            $results = StudentResult::where($filter)->where('FinalResultStutus','!=','inhaled')->orderBy('failed', 'asc')->orderBy('total', 'desc')->get();
+            $results = StudentResult::where($filter)->where('FinalResultStutus','!=','inhaled')->where('GPA','!=','F')->orderBy('failed', 'asc')->orderBy('total', 'desc')->get();
         }else{
             $results = StudentResult::where($filter)->orderBy('failed', 'asc')->orderBy('total', 'desc')->get();
 

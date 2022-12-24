@@ -20,7 +20,7 @@ let frontblogs = require('./components/themes/default/blogs.vue').default;
 let frontblogsingle = require('./components/themes/default/blogsingle.vue').default;
 let frontcontact_us = require('./components/themes/default/contact_us.vue').default;
 let student_register = require('./components/themes/default/register.vue').default;
-let payment = require('./components/themes/default/payment.vue').default;
+let payment = require('./components/themes/default/payment2.vue').default;
 
 
 let reject = require('./components/reject.vue').default;
