@@ -29,13 +29,13 @@ class PaymentController extends Controller
         $to = $request->to;
 
         if($type=='all' && $class=='all'){
-            return payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','desc')->get();
+            return payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
         }elseif($type=='all'){
-            return payment::where(['studentClass'=>$class,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','desc')->get();
+            return payment::where(['studentClass'=>$class,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
         }elseif($class=='all'){
-            return payment::where(['type'=>$type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','desc')->get();
+            return payment::where(['type'=>$type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
         }else{
-            return payment::where(['studentClass'=>$class,'type'=>$type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','desc')->get();
+            return payment::where(['studentClass'=>$class,'type'=>$type,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('id','desc')->get();
         }
 
 
