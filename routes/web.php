@@ -91,8 +91,20 @@ Route::get('/payment/success', function (Request $request) {
 Route::get('/payment/success/confirm', function (Request $request) {
     // return $request->all();
     $transId = $request->transId;
-    $payment = payment::where(['trxid' => $transId, 'status' => 'Paid'])->first();
+      $payment = payment::where(['trxid' => $transId, 'status' => 'Paid'])->first();
+
     $paymentType = $payment->type;
+    if($paymentType=='marksheet'){
+        $restult = StudentResult::find($payment->studentId);
+         $resultcode = $restult->class.$restult->roll.$restult->year.time();
+        $restult->update(['marksheetCode'=>$resultcode]);
+        return redirect("/marksheet/$restult->marksheetCode");
+
+    }
+
+
+
+
     if ($paymentType == 'Admission_fee') {
         $AdmissionID = $payment->admissionId;
         $student = student::where(['AdmissionID' => $AdmissionID])->first();
@@ -143,6 +155,9 @@ Route::get('download/mark', [resultController::class, 'marksheet']);
 
 Route::get('school/payment/invoice/{id}', [PaymentController::class, 'invoice']);
 Route::get('/pdf/{school_id}/{class}/{roll}/{year}/{exam}/{group}', [frontendController::class, 'view_result_pdf']);
+
+Route::get('/marksheet/{marksheetCode}', [frontendController::class, 'PublicMarkSheet']);
+
 Route::get('/routines/{school_id}/{class}/{year}/download', [RoutineController::class, 'routine_download'])->name('routines.routine_download');
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('/results/publish/{school_id}/{student_class}/{group}/{examType}/{year}', function (Request $request,$school_id, $student_class, $group, $examType, $year) {

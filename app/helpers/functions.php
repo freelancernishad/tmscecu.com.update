@@ -287,6 +287,16 @@ function month_en_to_bn($month)
 
     return str_replace($en_month, $bn_month, $month);
 }
+function exam_en_to_bn($month)
+{
+
+
+    $bn_exam = array("ভর্তির ফলাফল", "অর্ধ বার্ষিক", "বার্ষিক পরীক্ষা","মডেল টেস্ট","প্রি-টেস্ট","টেস্ট");
+    $en_exam = array("Admission Result", "Half Yearly", "Annual Examination","Model Test","Pre-Test","Test");
+
+
+    return str_replace($en_exam, $bn_exam, $month);
+}
 
 function month_to_number($month)
 {
@@ -687,7 +697,7 @@ function allList($type = '', $class = '', $group = '')
     } else if ($type == 'groups') {
         $data = ["Science", "Humanities", "Commerce"];
     } else if ($type == 'exams') {
-        $data = ["Weakly Examination", "ADMITION TEST RESULT", "First Terminals Examination", "Second Terminals Examination", "Annual Examination", "Test Examination"];
+        $data = ["Admission Result", "Half Yearly", "Annual Examination","Model Test","Pre-Test","Test"];
     } else if ($type == 'religions') {
         $data = ["Islam", "Hindu", "Other"];
     }

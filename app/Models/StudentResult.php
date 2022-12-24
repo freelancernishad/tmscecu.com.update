@@ -77,6 +77,7 @@ class StudentResult extends Model
         'nextroll',
         'promote',
         'date',
+        'marksheetCode',
 
 
 ];

@@ -173,6 +173,13 @@
                                     </div>
                                     <hr>
                                 </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-12" v-html="paymentHtml"></div>
+                                </div>
+
+
                             </div>
 
 
@@ -233,6 +240,7 @@ export default {
             },
             student: {},
             paymentStatus: 'Paid',
+            paymentHtml: '',
             paymentUrl: '#',
             trxid: '',
             searched: 0,
@@ -252,6 +260,7 @@ export default {
             this.paymentUrl = res.data.paymentUrl
             this.trxid = res.data.trxid
             this.paymentStatus = res.data.paymentStatus
+            this.paymentHtml = res.data.paymentHtml
             // var res2 = await this.callApi('get',`/api/student/applicant/copy/${res.data.student.AdmissionID}`,[]);
             this.preloader = false
         }

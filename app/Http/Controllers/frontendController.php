@@ -486,7 +486,53 @@ $data['year'] = $year;
 
 
     }
-    public function view_result_pdf(Request $r,$school_id, $class, $roll, $year, $exam_name,$group)
+
+    public function PublicMarkSheet($marksheetCode)
+    {
+        // return $marksheetCode;
+
+         $restultCount =  StudentResult::where('marksheetCode',$marksheetCode)->count();
+        if($restultCount>0){
+
+        $restult =  StudentResult::where('marksheetCode',$marksheetCode)->first();
+
+        // return $this->view_result_pdf($restult->school_id, $restult->class, $restult->roll, $restult->year, $restult->exam_name,$restult->group);
+
+        $wd = [
+            'school_id'=>$restult->school_id,
+            'class' => $restult->class,
+            'roll' => $restult->roll,
+            'year' => $restult->year,
+            'exam_name' => $restult->exam_name,
+            'class_group' => $restult->class_group,
+        ];
+        $check = DB::table('student_results')->where($wd)->count();
+        if ($check > 0) {
+            $results = StudentResult::where($wd)->first();
+
+            $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4','default_font' => 'bangla','margin_left' => 5,
+            'margin_right' => 5,
+            'margin_top' => 6,
+            'margin_bottom' => 6,]);
+
+            // $mpdf = new \Mpdf\Mpdf([
+            //     'mode' => 'utf-8', 'format' => 'A4', 'default_font' => 'bangla', 'margin_left' => 5,
+            //     'margin_right' => 5,
+            //     'margin_top' => 6,
+            //     'margin_bottom' => 6,
+            // ]);
+            $mpdf->WriteHTML($this->pdfmarksheet($results));
+           $mpdf->Output('markSheet.pdf', 'I');
+
+        }
+        }else{
+            echo "<h1 style='text-align:center'>পেমেন্ট করে মার্কশীট ডাউনলোড করুন</h1>";
+        }
+
+    }
+
+
+    public function view_result_pdf($school_id, $class, $roll, $year, $exam_name,$group)
     {
 
         $wd = [
@@ -513,7 +559,7 @@ $data['year'] = $year;
             //     'margin_bottom' => 6,
             // ]);
             $mpdf->WriteHTML($this->pdfmarksheet($results));
-            $mpdf->Output('markSheet.pdf', 'I');
+           $mpdf->Output('markSheet.pdf', 'I');
 
 
 

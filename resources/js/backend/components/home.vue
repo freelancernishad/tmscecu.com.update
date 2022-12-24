@@ -214,6 +214,7 @@
 </div>
 
 
+<!--
 <div class="table-responsive">
 <table class="table mb-5">
 <tr align="center">
@@ -339,7 +340,7 @@
 </tr>
 </table>
 
-</div>
+</div> -->
 
 
 </div>
