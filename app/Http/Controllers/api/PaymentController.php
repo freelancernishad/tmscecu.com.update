@@ -29,7 +29,7 @@ class PaymentController extends Controller
         $to = $request->to;
 
         if($type=='all' && $class=='all'){
-            return payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','asc')->get();
+            return payment::where(['status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','desc')->get();
         }elseif($type=='all'){
             return payment::where(['studentClass'=>$class,'status'=>'Paid'])->whereBetween('date', [$from, $to])->orderBy('date','desc')->get();
         }elseif($class=='all'){
