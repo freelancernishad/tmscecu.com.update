@@ -16,6 +16,16 @@ use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 class PaymentController extends Controller
 {
 
+
+    public function paymentCounting(Request $request)
+    {
+        $type=$request->type;
+        $status=$request->status;
+        return payment::where(['type'=>$type,'status'=>$status])->count();
+    }
+
+
+
     public function reports(Request $request)
     {
 

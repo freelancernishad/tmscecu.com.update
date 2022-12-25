@@ -85,7 +85,15 @@ class frontendController extends Controller
         $maleStudent = 0;
         $FemaleStudent = 0;
         $IslamStudent = 0;
+        $IslamStudentMale = 0;
+        $IslamStudentFemale = 0;
+
         $HinduStudent = 0;
+        $HinduStudentMale = 0;
+        $HinduStudentFemale = 0;
+
+
+
         $stipendStudent = 0;
         $WorkingStudent = 0;
         $landless_guardiansStudent = 0;
@@ -144,6 +152,68 @@ class frontendController extends Controller
             $IslamStudentcount = $this->studentCount($school_id,'StudentReligion','Islam',$class[$i]);
             $students[class_en_to_bn($class[$i])]['IslamStudent'] =$IslamStudentcount;
             $IslamStudent += $IslamStudentcount;
+
+
+            //IslamStudentMale
+            $whereIslamMale = [
+                'school_id'=>$school_id,
+                'StudentReligion' => 'Islam',
+                'StudentGender' => 'Male',
+                'StudentStatus' => 'Active',
+                'StudentClass' => $class[$i],
+            ];
+           $IslamStudentMalecount = DB::table('students')->where($whereIslamMale)->count();
+          $students[class_en_to_bn($class[$i])]['IslamStudentMale'] =$IslamStudentMalecount;
+          $IslamStudentMale += $IslamStudentMalecount;
+
+
+
+
+            //IslamStudentFemale
+            $whereIslamFemale = [
+                'school_id'=>$school_id,
+                'StudentReligion' => 'Islam',
+                'StudentGender' => 'Female',
+                'StudentStatus' => 'Active',
+                'StudentClass' => $class[$i],
+            ];
+           $IslamStudentFemalecount = DB::table('students')->where($whereIslamFemale)->count();
+          $students[class_en_to_bn($class[$i])]['IslamStudentFemale'] =$IslamStudentFemalecount;
+          $IslamStudentFemale += $IslamStudentMalecount;
+
+
+
+            //HinduStudentMale
+            $whereHinduMale = [
+                'school_id'=>$school_id,
+                'StudentReligion' => 'Hindu',
+                'StudentGender' => 'Male',
+                'StudentStatus' => 'Active',
+                'StudentClass' => $class[$i],
+            ];
+           $HinduStudentMalecount = DB::table('students')->where($whereHinduMale)->count();
+          $students[class_en_to_bn($class[$i])]['HinduStudentMale'] =$HinduStudentMalecount;
+          $HinduStudentMale += $HinduStudentMalecount;
+
+
+
+
+            //HinduStudentFemale
+            $whereHinduFemale = [
+                'school_id'=>$school_id,
+                'StudentReligion' => 'Hindu',
+                'StudentGender' => 'Female',
+                'StudentStatus' => 'Active',
+                'StudentClass' => $class[$i],
+            ];
+           $HinduStudentFemalecount = DB::table('students')->where($whereHinduFemale)->count();
+          $students[class_en_to_bn($class[$i])]['HinduStudentFemale'] =$HinduStudentFemalecount;
+          $HinduStudentFemale += $HinduStudentFemalecount;
+
+
+
+
+
             //HinduStudent
             $HinduStudentcount = $this->studentCount($school_id,'StudentReligion','Hindu',$class[$i]);
             $students[class_en_to_bn($class[$i])]['HinduStudent'] =$HinduStudentcount;
@@ -325,8 +395,15 @@ class frontendController extends Controller
         $data['FemaleStudent'] = $FemaleStudent;
         $data['scienceStudent'] = $scienceStudent;
         $data['HumanitiesStudent'] = $HumanitiesStudent;
+
+        $data['IslamStudentMale'] = $IslamStudentMale;
+        $data['IslamStudentFemale'] = $IslamStudentFemale;
         $data['IslamStudent'] = $IslamStudent;
+        $data['HinduStudentMale'] = $HinduStudentMale;
+        $data['HinduStudentFemale'] = $HinduStudentFemale;
         $data['HinduStudent'] = $HinduStudent;
+
+
         $data['stipendStudent'] = $stipendStudent;
         $data['WorkingStudent'] = $WorkingStudent;
         $data['landless_guardiansStudent'] = $landless_guardiansStudent;
@@ -558,6 +635,7 @@ $data['year'] = $year;
             //     'margin_top' => 6,
             //     'margin_bottom' => 6,
             // ]);
+            // return $this->pdfmarksheet($results);
             $mpdf->WriteHTML($this->pdfmarksheet($results));
            $mpdf->Output('markSheet.pdf', 'I');
 
@@ -654,38 +732,46 @@ $data['year'] = $year;
 
                 </div>
             </div>
-        </body>
-        </html>
+
         ";
-//         $html .="
 
 
-// <table width='100%' style='margin-top:50px'>
+        $customStyle = "color: #853ccb;font-weight: 600;";
 
-// <tr>
-
-// <td style='  border: 0px dotted black;
-// padding:20px 10px 10px 10px;
-// font-size: 12px;'></td>
-// <td style='  border: 0px dotted black;
-// padding:20px 10px 10px 10px;
-// font-size: 12px;'></td>
-// <td style='  border: 0px dotted black;
-// padding:20px 10px 10px 10px;
-// font-size: 12px;text-align:center;font-size:20px' width='35%'>
+        $html .="
 
 
+<table width='100%' style='margin-top:50px'>
 
-//     <h3 style='margin:0;text-align:center;font-weight: 500;'>স্বাক্ষর</h3>
-//     <h4 style='margin:0;text-align:center;font-size:16px;    font-weight: 500;'>প্রধান শিক্ষক</h4>
-//     <h4 style='margin:0;text-align:center;font-size:16px;    font-weight: 500;'>$schoolDetails->Principals_name</h4>
-//     <h4 style='margin:0;text-align:center;font-size:16px;    font-weight: 500;'>$schoolDetails->SCHOLL_NAME</h4>
-// </td>
+<tr>
 
-// </tr>
+<td style='  border: 0px dotted black;
+padding:20px 10px 10px 10px;
+font-size: 12px;'></td>
+<td style='  border: 0px dotted black;
+padding:20px 10px 10px 10px;
+font-size: 12px;'></td>
+<td style='  border: 0px dotted black;
+padding:20px 10px 10px 10px;
+font-size: 12px;text-align:center;font-size:20px' width='35%'>
 
-// </table>
-//         ";
+
+
+    <img style='width: 104px;' src='".base64($schoolDetails->PRINCIPALS_Signature)."'/>
+
+<h4 style='margin:0;text-align:center;font-size:16px;font-weight: 500;margin-bottom:-5px;$customStyle'>$schoolDetails->Principals_name</h4>
+<h4 style='margin:0;text-align:center;font-size:14px;font-weight: 500;margin-bottom:-5px;$customStyle'>প্রধান শিক্ষক</h4>
+<h4 style='margin:0;text-align:center;font-size:14px;font-weight: 500;margin-bottom:-5px;$customStyle'>$schoolDetails->SCHOLL_NAME</h4>
+<h4 style='margin:0;text-align:center;font-size:14px;font-weight: 500;margin-bottom:-5px;$customStyle'>$schoolDetails->SCHOLL_ADDRESS</h4>
+<h4 style='margin:0;text-align:center;font-size:14px;font-weight: 500;margin-bottom:-5px;$customStyle'>$schoolDetails->contact_number</h4>
+</td>
+
+</tr>
+
+</table>
+</body>
+</html>
+        ";
 
 
         return $html;

@@ -71,6 +71,25 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="item-content">
+                                        <div class="item-title">Marksheet Download</div>
+                                        <div class="item-number"><span  >{{marksheetDownload}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="dashboard-summery-one mg-b-20">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <div class="item-icon bg-light-yellow">
+                                        <i class="flaticon-couple text-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="item-content">
                                         <div class="item-title">New Applications</div>
                                         <div class="item-number"><span  >{{newstudents}}</span></div>
                                     </div>
@@ -183,20 +202,45 @@
 <div class="table-responsive">
 
 <table class="table mb-5">
+
+
 <tr align="center">
-    <td>শ্রেণী</td>
+    <td rowspan="2" style="vertical-align: middle;">শ্রেণী</td>
+    <td rowspan="2" style="vertical-align: middle;">ছাত্র</td>
+    <td rowspan="2" style="vertical-align: middle;">ছাত্রী</td>
+    <td colspan="3">ইসলাম</td>
+    <td colspan="3">হিন্দু</td>
+    <td rowspan="2" style="vertical-align: middle;">উপবৃত্তি</td>
+    <td rowspan="2" style="vertical-align: middle;">মোট</td>
+</tr>
+
+<tr align="center">
+
+
+
+
     <td>ছাত্র</td>
     <td>ছাত্রী</td>
-    <td>ইসলাম</td>
-    <td>হিন্দু</td>
-    <td>উপবৃত্তি</td>
     <td>মোট</td>
+
+    <td>ছাত্র</td>
+    <td>ছাত্রী</td>
+    <td>মোট</td>
+
 </tr>
+
+
+
+
 <tr align="center" v-for="(report,key) in reports.data">
     <td>{{ key }}</td>
     <td>{{ report.maleStudent }}</td>
     <td>{{ report.FemaleStudent }}</td>
+    <td>{{ report.IslamStudentMale }}</td>
+    <td>{{ report.IslamStudentFemale }}</td>
     <td>{{ report.IslamStudent }}</td>
+    <td>{{ report.HinduStudentMale }}</td>
+    <td>{{ report.HinduStudentFemale }}</td>
     <td>{{ report.HinduStudent }}</td>
     <td>{{ report.stipendStudent }}</td>
     <td>{{ report.totalStudent }}</td>
@@ -205,7 +249,11 @@
     <td>মোট</td>
     <td>{{ reports.maleStudent }}</td>
     <td>{{ reports.FemaleStudent }}</td>
+    <td>{{ reports.IslamStudentMale }}</td>
+    <td>{{ reports.IslamStudentFemale }}</td>
     <td>{{ reports.IslamStudent }}</td>
+    <td>{{ reports.HinduStudentMale }}</td>
+    <td>{{ reports.HinduStudentFemale }}</td>
     <td>{{ reports.HinduStudent }}</td>
     <td>{{ reports.stipendStudent }}</td>
     <td>{{ reports.totalStudent }}</td>
@@ -392,6 +440,7 @@ export default {
         this.getmonth();
          this.totalstudent();
          this.newstudent();
+         this.marksheet();
          this.totalteacher();
          this.totalearn();
          this.visitors();
@@ -462,6 +511,7 @@ export default {
 
             year:new Date().getFullYear(),
             totalstudents:0,
+            marksheetDownload:0,
             newstudents:0,
             totalteachers:0,
             totalearns:0,
@@ -506,6 +556,12 @@ export default {
             axios
                 .get(`/api/students/list?filter[school_id]=${this.school_id}&filter[StudentStatus]=Pending&datatype=count`)
                 .then(({ data }) => (this.newstudents = data))
+                .catch();
+        },
+        marksheet() {
+            axios
+                .get(`/api/payment/counting?type=marksheet&status=Paid`)
+                .then(({ data }) => (this.marksheetDownload = data))
                 .catch();
         },
 

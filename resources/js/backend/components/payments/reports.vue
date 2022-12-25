@@ -92,6 +92,7 @@
 
                             <th  class="tablecolhide" scope="col">Date</th>
                             <th scope="col">Transition Id</th>
+                            <th scope="col">Roll</th>
                             <th scope="col">Name</th>
                             <th scope="col">Class</th>
                             <th  class="tablecolhide" scope="col">Type</th>
@@ -106,6 +107,7 @@
                             <td>{{ dateformatGlobal(report.date)[3] }}</td>
 
                             <td>{{ report.trxid }}</td>
+                            <td>{{ report.studentRoll }}</td>
                             <td>{{ report.Name }}</td>
                             <td>{{ report.studentClass }}</td>
                             <td>{{ report.type }}</td>
