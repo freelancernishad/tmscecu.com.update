@@ -401,18 +401,19 @@ $student = '';
 
             if($student->StudentStatus=='Approve'){
 
-                 $previousStudentCount =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$payment->year,'StudentGroup'=>$student->StudentGroup])->count();
+                $paymentYear = $payment->year;
+                 $previousStudentCount =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->count();
 
                 if($previousStudentCount>0){
 
-                      $previousStudent =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$payment->year,'StudentGroup'=>$student->StudentGroup])->latest()->first();
+                      $previousStudent =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->latest()->first();
                       $newRoll = $previousStudent->StudentRoll+1;
                 }else{
                     $newRoll = '1';
                 }
 
-                $StudentID = StudentId($student->StudentClass, $newRoll,$student->school_id,$student->StudentGroup,$payment->year);
-                $student->update(['StudentRoll' => $newRoll,'StudentID' => $StudentID,'Year' => $payment->year,'StudentStatus' => 'active']);
+                $StudentID = StudentId($student->StudentClass, $newRoll,$student->school_id,$student->StudentGroup,$paymentYear);
+                $student->update(['StudentRoll' => $newRoll,'StudentID' => $StudentID,'Year' => $paymentYear,'StudentStatus' => 'active']);
             }
 
             if($paymentType=='Admission_fee'){
@@ -484,6 +485,13 @@ $student = '';
             $studentId = $student->StudentID;
         }
 
+        $amountYear = date("Y");
+        $paymentYear = $amountYear;
+
+        if($student->StudentStatus=='Approve'){
+            $paymentYear = $amountYear+1;
+        }
+
 
 
         $Insertdata = [
@@ -499,7 +507,7 @@ $student = '';
             'type' => $type,
             'paymentUrl' => $redirectutl,
             'date' => date("Y-m-d"),
-            'year' => date("Y"),
+            'year' => $paymentYear,
             'status' => 'Pending',
         ];
 
