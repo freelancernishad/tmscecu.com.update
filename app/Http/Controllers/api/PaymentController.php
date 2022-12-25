@@ -381,6 +381,7 @@ $student = '';
     public function ipn(Request $request)
     {
         $data = $request->all();
+        Log::info(json_encode($data));
         $student = student::find($data['cust_info']['cust_id']);
         $trnx_id = $data['trnx_info']['mer_trnx_id'];
         $payment = payment::where('trxid', $trnx_id)->first();
@@ -407,7 +408,7 @@ $student = '';
 
         $Insertdata['ipnResponse'] = json_encode($data);
         // return $Insertdata;
-        Log::info(json_encode($data));
+
 
 
 
