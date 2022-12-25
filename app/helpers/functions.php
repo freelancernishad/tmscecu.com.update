@@ -1567,8 +1567,14 @@ function characterCount($string)
         }
 }
 
- function StudentId($class, $roll,$school_id,$StudentGroup='Humanities')
+ function StudentId($class, $roll,$school_id,$StudentGroup='Humanities',$year='')
 {
+
+    if(!$year){
+        $year = date("y");
+    }
+
+
     $groupcode = 2;
     if($StudentGroup=='Science'){
         $groupcode=1;
@@ -1579,7 +1585,7 @@ function characterCount($string)
     }
     $classidd = word_digit($class);
     $classid = str_pad($classidd, 2, '0', STR_PAD_LEFT);
-    $yearid = date("y");
+    $yearid = $year;
     $rollid = str_pad($roll, 3, '0', STR_PAD_LEFT);
     return $school_id . $yearid . $classid.$groupcode . $rollid;
 }

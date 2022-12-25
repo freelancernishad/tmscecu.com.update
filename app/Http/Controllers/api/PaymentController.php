@@ -385,6 +385,9 @@ $student = '';
         $student = student::find($data['cust_info']['cust_id']);
         $trnx_id = $data['trnx_info']['mer_trnx_id'];
         $payment = payment::where('trxid', $trnx_id)->first();
+
+
+
         $Insertdata = [];
         if ($data['msg_code'] == '1020') {
             $Insertdata = [
@@ -392,9 +395,26 @@ $student = '';
                 'method' => $data['pi_det_info']['pi_name'],
             ];
 
-            smsSend("Dear ".strtoupper($student->StudentNameEn).",Your Admission Fee has been Paid.Please Wait for Admission Result.Your Application Id- $student->AdmissionID",$student->StudentPhoneNumber);
+            // smsSend("Dear ".strtoupper($student->StudentNameEn).",Your Admission Fee has been Paid.Please Wait for Admission Result.Your Application Id- $student->AdmissionID",$student->StudentPhoneNumber);
 
             $paymentType = $payment->type;
+
+            if($student->StudentStatus=='Approve'){
+
+                 $previousStudentCount =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$payment->year,'StudentGroup'=>$student->StudentGroup])->count();
+
+                if($previousStudentCount>0){
+
+                      $previousStudent =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$payment->year,'StudentGroup'=>$student->StudentGroup])->latest()->first();
+                      $newRoll = $previousStudent->StudentRoll+1;
+                }else{
+                    $newRoll = '1';
+                }
+
+                $StudentID = StudentId($student->StudentClass, $newRoll,$student->school_id,$student->StudentGroup,$payment->year);
+                $student->update(['StudentRoll' => $newRoll,'StudentID' => $StudentID,'Year' => $payment->year,'StudentStatus' => 'active']);
+            }
+
             if($paymentType=='Admission_fee'){
                 $student->update(['StudentStatus' => 'Pending']);
             }
