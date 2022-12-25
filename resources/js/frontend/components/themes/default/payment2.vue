@@ -25,31 +25,11 @@
                 <!-- Left Main -->
                 <div class="col-lg-9 my-3">
                     <div class="container">
-                        <div class="form-group">
-                            <label for="">পেমেন্ট ক্যাটাগরি</label>
-                            <select class="form-control" v-model="form.type">
-                                <option value="">পেমেন্ট ক্যাটাগরি নির্বাচন করুন</option>
-                                <option value="Admission_fee">ভর্তি ফরম ফি</option>
-                                <option value="session_fee">ভর্তি/সেশন ফি</option>
-                                <option value="monthly_fee">মাসিক বেতন</option>
-                                <option value="exam_fee">পরীক্ষার ফি</option>
-                                <option value="registration_fee">রেজিস্ট্রেশন ফি</option>
-                                <option value="form_filup_fee">ফরম পূরণ ফি</option>
-                            </select>
-                        </div>
-
-
-
-                        <div class="form-group" v-if="form.type == 'Admission_fee'">
-                            <label for="">এডমিশন আইডি</label>
-                            <input type="text" v-model="form.adminssionId" class="form-control">
-                        </div>
 
 
 
 
-
-                        <div class="monthly_fee" v-if="form.type == 'monthly_fee' || form.type == 'session_fee' || form.type == 'exam_fee' || form.type == 'registration_fee' || form.type == 'form_filup_fee'">
+                        <div class="monthly_fee">
                             <div class="form-group">
                                 <label for="">পেমেন্ট করার মাধ্যম</label>
                                 <select class="form-control" v-model="form.paymenttype">
@@ -59,18 +39,6 @@
                                     <option value="StudentID"> স্টুডেন্ট আইডি এর মাধ্যমে</option>
                                 </select>
                             </div>
-
-                            <div class="form-group" v-if="form.type == 'monthly_fee'">
-                            <label for="">মাসের নাম</label>
-                            <select class="form-control" v-model="form.month" id="month" required>
-                            <option value="">
-                                SELECT
-                            </option>
-                            <option v-for="(monthlist,indd) in months" :key="'mon'+indd">{{ monthlist }}</option>
-
-                        </select>
-                        </div>
-
 
 
 
@@ -183,24 +151,6 @@
                             </div>
 
 
-                            <div class="card-footer" style="    display: flex;justify-content: center;">
-
-                                <div v-if="paymentStatus == 'Paid'" class="paiddiv">
-                                                <button class="btn btn-success">পরিশোধিত</button>
-                                                 <a class="btn btn-info" target="_blank"
-                                                    :href="'/student/applicant/invoice/' + trxid">রশিদ ডাউনলোড</a>
-                                            </div>
-
-                                            <a class="btn btn-info" v-else-if="paymentStatus == 'Pending'"
-                                                :href="paymentUrl">Pay Pending Payment</a>
-
-                                            <a class="btn btn-info" v-else-if="paymentStatus == 'Failed'"
-                                                :href="paymentUrl">Pay Failed Payment</a>
-
-                                            <a class="btn btn-info" style="font-size: 30px;" v-else :href="'/payment?studentId='+student.id+'&type='+form.type+'&month='+form.month">পেমেন্ট করুন</a>
-
-
-                            </div>
 
                         </div>
 
@@ -208,7 +158,7 @@
 
 
 
-                        <h2 v-if="searched==2" style="color:red;text-align:center;font-size: 33px;"> No Data Found! </h2>
+                        <h2 v-if="searched==2" style="color:red;text-align:center;font-size: 33px;"> {{ message }}</h2>
 
 
 
@@ -240,6 +190,7 @@ export default {
             },
             student: {},
             paymentStatus: 'Paid',
+            message: '',
             paymentHtml: '',
             paymentUrl: '#',
             trxid: '',
@@ -255,6 +206,7 @@ export default {
                 this.searched = res.data.searched
             } else {
                 this.student = {}
+                this.message = res.data.messages
                 this.searched = 2
             }
             this.paymentUrl = res.data.paymentUrl

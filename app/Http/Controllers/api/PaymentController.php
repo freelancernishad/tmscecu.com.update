@@ -48,7 +48,7 @@ class PaymentController extends Controller
     {
          $type = $request->type;
         $paymenttype = $request->paymenttype;
-        $adminssionId = $request->adminssionId;
+       $adminssionId = $request->adminssionId;
 
         $StudentID = $request->StudentID;
 
@@ -66,45 +66,85 @@ class PaymentController extends Controller
         $paymentUrl = '';
         $paymentStatus = 'none';
 
+        $message = '';
 
 
 
-
-
-
+$AdmissionID = '';
+$StudentClass = 'Six';
+$studentid = '';
+$student = '';
 
         if($type=='Admission_fee'){
-            $student = student::where(['admissionId' => $adminssionId])->latest()->first();
+            $student = student::where(['AdmissionID' => $adminssionId])->latest()->first();
         }else{
 
 
             if($paymenttype=='AdmissionID'){
 
-                $ApliedStudent = student::where(['admissionId' => $adminssionId])->latest()->first();
-
-                if($ApliedStudent->StudentClass=='Six'){
-                    $StudentStatus = 'Approve';
+                $ApliedStudentCount = student::where(['AdmissionID' => $adminssionId])->count();
+                if($ApliedStudentCount>0){
+                    $ApliedStudent = student::where(['AdmissionID' => $adminssionId])->latest()->first();
+                    if($ApliedStudent->StudentStatus=='Approve'){
+                        $StudentStatus = 'Approve';
+                        $student = student::where(['AdmissionID' => $adminssionId,'StudentStatus'=>$StudentStatus])->latest()->first();
+                        $AdmissionID = $student->AdmissionID;
+                        $StudentClass = $student->StudentClass;
+                        $studentid = $student->id;
+                    }elseif($ApliedStudent->StudentStatus=='active'){
+                        $StudentStatus = 'active';
+                        $student = student::where(['AdmissionID' => $adminssionId,'StudentStatus'=>$StudentStatus])->latest()->first();
+                        $AdmissionID = $student->AdmissionID;
+                        $StudentClass = $student->StudentClass;
+                        $studentid = $student->id;
+                    }elseif($ApliedStudent->StudentStatus=='Reject'){
+                        $message = 'এপ্লিকেশনটি বাতিল করা হয়েছে';
+                    }elseif($ApliedStudent->StudentStatus=='Pending'){
+                        $message = 'এপ্লিকেশনটি এখনো অনুমোদন করা হয় নি ';
+                    }else{
+                        $student = [];
+                    }
                 }else{
-                    $StudentStatus = 'active';
-
+                    $message = 'কোনো তথ্য খুঁজে পাওয়া যায়নি ';
                 }
 
-                $student = student::where(['admissionId' => $adminssionId,'StudentStatus'=>$StudentStatus])->latest()->first();
+
+
+
+
+
+
+
 
             }elseif($paymenttype=='StudentID'){
 
                 $student = student::where(['StudentID' => $StudentID,'StudentStatus'=>'active'])->latest()->first();
+                $AdmissionID = $student->AdmissionID;
+                $StudentClass = $student->StudentClass;
+                $studentid = $student->id;
             }elseif($paymenttype=='other'){
                 if($student_class=='Nine' || $student_class=='Ten'){
                     $student = student::where(['StudentClass' => $student_class,'StudentGroup' => $StudentGroup,'StudentRoll' => $StudentRoll,'StudentStatus'=>'active'])->latest()->first();
+                    $AdmissionID = $student->AdmissionID;
+                    $StudentClass = $student->StudentClass;
+                    $studentid = $student->id;
                 }else{
                     $student = student::where(['StudentClass' => $student_class,'StudentRoll' => $StudentRoll,'StudentStatus'=>'active'])->latest()->first();
+                    $AdmissionID = $student->AdmissionID;
+                    $StudentClass = $student->StudentClass;
+                    $studentid = $student->id;
                 }
             }else{
                 if($student_class=='Nine' || $student_class=='Ten'){
                     $student = student::where(['StudentClass' => $student_class,'StudentGroup' => $StudentGroup,'StudentRoll' => $StudentRoll,'StudentStatus'=>'active'])->latest()->first();
+                    $AdmissionID = $student->AdmissionID;
+                    $StudentClass = $student->StudentClass;
+                    $studentid = $student->id;
                 }else{
                     $student = student::where(['StudentClass' => $student_class,'StudentRoll' => $StudentRoll,'StudentStatus'=>'active'])->latest()->first();
+                    $AdmissionID = $student->AdmissionID;
+                    $StudentClass = $student->StudentClass;
+                    $studentid = $student->id;
                 }
             }
 
@@ -114,7 +154,7 @@ class PaymentController extends Controller
 
         $paymentfilter = [
             'type' => $type,
-            'admissionId' => $student->AdmissionID,
+            'admissionId' => $AdmissionID,
             'status' => 'Paid',
         ];
         if($type=='monthly_fee'){
@@ -146,34 +186,46 @@ class PaymentController extends Controller
 
 
 
-        $session_fee = SchoolFee::where(['class'=>$student->StudentClass,'type'=>'session_fee'])->first()->fees;
-        $monthly_fee = SchoolFee::where(['class'=>$student->StudentClass,'type'=>'monthly_fee'])->first()->fees;
-        $exam_fee = SchoolFee::where(['class'=>$student->StudentClass,'type'=>'exam_fee'])->first()->fees;
-        $registration_fee = SchoolFee::where(['class'=>$student->StudentClass,'type'=>'registration_fee'])->first()->fees;
-        $form_filup_fee = SchoolFee::where(['class'=>$student->StudentClass,'type'=>'form_filup_fee'])->first()->fees;
+        $session_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'session_fee'])->first()->fees;
+        $monthly_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'monthly_fee'])->first()->fees;
+        $exam_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee'])->first()->fees;
+        $registration_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'registration_fee'])->first()->fees;
+        $form_filup_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'form_filup_fee'])->first()->fees;
 
 
         // $session_fee_payment = payment::where()->first();
 
-      $session_feeCount =    $this->PaymentCount(['type' => 'session_fee','admissionId' => $student->AdmissionID,'status' => 'Paid','year' => '2022'],'count');
+        $MonthName =  date('F');
+
+        $year = date('Y');
+        $yearSession = date('Y');
+        if($MonthName=='December'){
+            $yearSession = date('Y')+1;
+        }
+
+
+      $session_feeCount =    $this->PaymentCount(['type' => 'session_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession],'count');
         if($session_feeCount>0){
-            $session_feeButton = "<span class='btn btn-success'>Paid</span>";
+            $session_feeGet =    $this->PaymentCount(['type' => 'session_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession],'get');
+            $session_feeButton = "<span class='btn btn-success'>Paid</span> <a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$session_feeGet->trxid'>রশিদ ডাউনলোড</a>";
         }else{
-            $session_feeButton = "<a target='_blank' href='/payment?studentId=$student->id&type=session_fee' class='btn btn-info'>Pay Now</a>";
+            $session_feeButton = "<a target='_blank' href='/payment?studentId=$studentid&type=session_fee' class='btn btn-info'>Pay Now</a>";
         }
 
-      $registration_feeCount =    $this->PaymentCount(['type' => 'registration_fee','admissionId' => $student->AdmissionID,'status' => 'Paid','year' => '2022'],'count');
+      $registration_feeCount =    $this->PaymentCount(['type' => 'registration_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $year],'count');
         if($registration_feeCount>0){
-            $registration_feeButton = "<span class='btn btn-success'>Paid</span>";
+            $registration_feeGet =    $this->PaymentCount(['type' => 'registration_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $year],'get');
+            $registration_feeButton = "<span class='btn btn-success'>Paid</span> <a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$registration_feeGet->trxid'>রশিদ ডাউনলোড</a>";
         }else{
-            $registration_feeButton = "<a target='_blank' href='/payment?studentId=$student->id&type=registration_fee' class='btn btn-info'>Pay Now</a>";
+            $registration_feeButton = "<a target='_blank' href='/payment?studentId=$studentid&type=registration_fee' class='btn btn-info'>Pay Now</a>";
         }
 
-      $form_filup_feeCount =    $this->PaymentCount(['type' => 'form_filup_fee','admissionId' => $student->AdmissionID,'status' => 'Paid','year' => '2022'],'count');
+      $form_filup_feeCount =    $this->PaymentCount(['type' => 'form_filup_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $year],'count');
         if($form_filup_feeCount>0){
-            $form_filup_feeButton = "<span class='btn btn-success'>Paid</span>";
+            $form_filup_feeGet =    $this->PaymentCount(['type' => 'form_filup_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $year],'get');
+            $form_filup_feeButton = "<span class='btn btn-success'>Paid</span> <a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$form_filup_feeGet->trxid'>রশিদ ডাউনলোড</a>";
         }else{
-            $form_filup_feeButton = "<a target='_blank' href='/payment?studentId=$student->id&type=form_filup_fee' class='btn btn-info'>Pay Now</a>";
+            $form_filup_feeButton = "<a target='_blank' href='/payment?studentId=$studentid&type=form_filup_fee' class='btn btn-info'>Pay Now</a>";
         }
 
 
@@ -188,38 +240,59 @@ class PaymentController extends Controller
                 </tr>
             </thead>
             <tbody>
+
+
                 <tr style='text-align:center'>
                     <td>ভর্তি/সেশন ফি</td>
                     <td>$session_fee</td>
                     <td>$session_feeButton</td>
 
-                </tr>
+                </tr>";
 
 
-                <tr style='text-align:center'>
+
+                if($session_feeCount>0){
+
+
+                $paymentHtml .= " <tr style='text-align:center'>
                     <td colspan='3' style='text-align:center;font-size: 26px;'><h3>মাসিক বেতন</h3></td>
 
                 </tr>";
 
+                $monthSl = 1;
                 foreach ($allMonth as $value) {
+                    // echo number_to_month($monthSl);
 
 
-                    $monthly_feeCount =    $this->PaymentCount(['type' => 'monthly_fee','admissionId' => $student->AdmissionID,'status' => 'Paid','year' => '2022','month' => $value],'count');
-
-
+                    $monthly_feeCount =    $this->PaymentCount(['type' => 'monthly_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2022','month' => $value],'count');
                     if($monthly_feeCount>0){
-                        $monthly_feeButton = "<span class='btn btn-success'>Paid</span>";
-                    }else{
-                        $monthly_feeButton = "<a target='_blank' href='/payment?studentId=$student->id&type=monthly_fee&month=$value' class='btn btn-info'>Pay Now</a>";
-                    }
-
-
-                    $paymentHtml .="<tr style='text-align:center'>
+                        $monthly_feeGet =    $this->PaymentCount(['type' => 'monthly_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2022','month' => $value],'get');
+                        $monthly_feeButton = "<span class='btn btn-success'>Paid</span> <a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$monthly_feeGet->trxid'>রশিদ ডাউনলোড</a>";
+                        $paymentHtml .="<tr style='text-align:center'>
                         <td>".month_en_to_bn($value)."</td>
                         <td>$monthly_fee</td>
                         <td>$monthly_feeButton</td>
                     </tr>";
+                    $monthSl++;
+
+                    }
                 }
+
+
+                if($monthSl>12){
+
+                }else{
+                    $monthName = number_to_month($monthSl);
+                    $monthly_feeButton = "<a href='/payment?studentId=$studentid&type=monthly_fee&month=$monthName' class='btn btn-info'>Pay Now</a>";
+                    $paymentHtml .="<tr style='text-align:center'>
+                    <td>".month_en_to_bn($monthName)."</td>
+                    <td>$monthly_fee</td>
+                    <td>$monthly_feeButton</td>
+                    </tr>";
+                }
+
+
+
 
 
                 $paymentHtml .="<tr style='text-align:center'>
@@ -231,12 +304,17 @@ class PaymentController extends Controller
 
 
 
-                    $exam_feeCount =    $this->PaymentCount(['type' => 'exam_fee','admissionId' => $student->AdmissionID,'status' => 'Paid','year' => '2022','type_name' => $value],'count');
+                    $exam_feeCount =    $this->PaymentCount(['type' => 'exam_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2022','type_name' => $value],'count');
                     if($exam_feeCount>0){
-                        $exam_feeButton = "<span class='btn btn-success'>Paid</span>";
+                        $exam_feeGet =    $this->PaymentCount(['type' => 'exam_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2022','type_name' => $value],'get');
+                        $exam_feeButton = "<span class='btn btn-success'>Paid</span> <a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$exam_feeGet->trxid'>রশিদ ডাউনলোড</a>";
                     }else{
+
                         $exam_feeButton = "<a href='' class='btn btn-info'>Pay Now</a>";
+
                     }
+
+
 
                     $paymentHtml .="<tr style='text-align:center'>
                         <td>".exam_en_to_bn($value)."</td>
@@ -255,19 +333,20 @@ class PaymentController extends Controller
                     <td>ফরম পূরণ ফি</td>
                     <td>$form_filup_fee</td>
                     <td>$form_filup_feeButton</td>
-                </tr>
-            </tbody>
+                </tr>";
 
-        </table>
-
+            }
 
 
-        ";
+
+
+            $paymentHtml .= "</tbody>
+
+        </table> ";
+
+
+
         // echo $paymentHtml;
-
-
-
-
         // return;
 
 
@@ -278,6 +357,7 @@ class PaymentController extends Controller
             'student' => $student,
             'paymentStatus' => $paymentStatus,
             'paymentHtml' => $paymentHtml,
+            'messages' => $message,
             'searched' => 1,
         ];
         return $data;

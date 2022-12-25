@@ -63,7 +63,7 @@
         <thead>
         <tr>
             <td class="td">নতুন রোল</td>
-            <td class="td">বর্তমান রোল</td>
+            <td class="td">পূর্বের রোল</td>
             <td class="td">ছাত্র/ছাত্রীর নাম</td>
             @if($veiwType=='schoolPdf')
             <td class="td">ব্যর্থ হয়েছে</td>

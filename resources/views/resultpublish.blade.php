@@ -43,7 +43,7 @@
                             <label class="form-check-label" for="checkall">নতুন রোল</label>
                         </div>
                     </th>
-                    <th>বর্তমান রোল</th>
+                    <th>পূর্বের রোল</th>
                     <th>ছাত্র/ছাত্রীর নাম</th>
                     <th>ব্যর্থ হয়েছে</th>
                     <th>মোট নাম্বার</th>

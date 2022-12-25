@@ -919,6 +919,7 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
         $created_at  = $payment->date;
         $studentClass  = $payment->studentClass;
         $studentRoll  = $payment->studentRoll;
+        $studentRoll  = $payment->studentRoll;
         $StudentName  = $student->StudentName;
         $StudentFatherName  = $student->StudentFatherNameBn;
         $mobile_no  = $student->StudentPhoneNumber;
@@ -1174,9 +1175,18 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
                                     $index = 1;
                                 foreach ($khat as $key=>$value) {
 
-                                  $html .="  <tr class='tr items'>
+                                    if($value=='মাসিক বেতন'){
+                                        $html .="  <tr class='tr items'>
                                         <td class='td  defaltfont'>".int_en_to_bn($index)."</td>
                                         <td class='td  defaltfont'>$value</td>";
+                                    }else{
+                                        $html .="  <tr class='tr items'>
+                                        <td class='td  defaltfont'>".int_en_to_bn($index)."</td>
+                                        <td class='td  defaltfont'>$value</td>";
+                                    }
+
+
+
 
                                         if($key==$payment->type){
                                             $html .=" <td class='td  defaltfont'>".int_en_to_bn($amount)."</td>";

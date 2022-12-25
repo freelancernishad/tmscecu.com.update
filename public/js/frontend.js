@@ -3306,6 +3306,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       student: {},
       paymentStatus: 'Paid',
+      message: '',
       paymentHtml: '',
       paymentUrl: '#',
       trxid: '',
@@ -3334,6 +3335,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.searched = res.data.searched;
                 } else {
                   _this.student = {};
+                  _this.message = res.data.messages;
                   _this.searched = 2;
                 }
 
@@ -6636,87 +6638,6 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "container"
   }, [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("পেমেন্ট ক্যাটাগরি")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.type,
-      expression: "form.type"
-    }],
-    staticClass: "form-control",
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-
-        _vm.$set(_vm.form, "type", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
-    }
-  }, [_c("option", {
-    attrs: {
-      value: ""
-    }
-  }, [_vm._v("পেমেন্ট ক্যাটাগরি নির্বাচন করুন")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "Admission_fee"
-    }
-  }, [_vm._v("ভর্তি ফরম ফি")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "session_fee"
-    }
-  }, [_vm._v("ভর্তি/সেশন ফি")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "monthly_fee"
-    }
-  }, [_vm._v("মাসিক বেতন")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "exam_fee"
-    }
-  }, [_vm._v("পরীক্ষার ফি")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "registration_fee"
-    }
-  }, [_vm._v("রেজিস্ট্রেশন ফি")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "form_filup_fee"
-    }
-  }, [_vm._v("ফরম পূরণ ফি")])])]), _vm._v(" "), _vm.form.type == "Admission_fee" ? _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("এডমিশন আইডি")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.adminssionId,
-      expression: "form.adminssionId"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text"
-    },
-    domProps: {
-      value: _vm.form.adminssionId
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "adminssionId", $event.target.value);
-      }
-    }
-  })]) : _vm._e(), _vm._v(" "), _vm.form.type == "monthly_fee" || _vm.form.type == "session_fee" || _vm.form.type == "exam_fee" || _vm.form.type == "registration_fee" || _vm.form.type == "form_filup_fee" ? _c("div", {
     staticClass: "monthly_fee"
   }, [_c("div", {
     staticClass: "form-group"
@@ -6760,45 +6681,7 @@ var render = function render() {
     attrs: {
       value: "StudentID"
     }
-  }, [_vm._v(" স্টুডেন্ট আইডি এর মাধ্যমে")])])]), _vm._v(" "), _vm.form.type == "monthly_fee" ? _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": ""
-    }
-  }, [_vm._v("মাসের নাম")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.month,
-      expression: "form.month"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      id: "month",
-      required: ""
-    },
-    on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-
-        _vm.$set(_vm.form, "month", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
-    }
-  }, [_c("option", {
-    attrs: {
-      value: ""
-    }
-  }, [_vm._v("\n                            SELECT\n                        ")]), _vm._v(" "), _vm._l(_vm.months, function (monthlist, indd) {
-    return _c("option", {
-      key: "mon" + indd
-    }, [_vm._v(_vm._s(monthlist))]);
-  })], 2)]) : _vm._e(), _vm._v(" "), _vm.form.paymenttype == "AdmissionID" ? _c("div", {
+  }, [_vm._v(" স্টুডেন্ট আইডি এর মাধ্যমে")])])]), _vm._v(" "), _vm.form.paymenttype == "AdmissionID" ? _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {
@@ -6954,7 +6837,7 @@ var render = function render() {
         _vm.$set(_vm.form, "StudentRoll", $event.target.value);
       }
     }
-  })])]) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("button", {
+  })])]) : _vm._e()]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-info",
     attrs: {
       type: "button"
@@ -6999,47 +6882,13 @@ var render = function render() {
     domProps: {
       innerHTML: _vm._s(_vm.paymentHtml)
     }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "card-footer",
-    staticStyle: {
-      display: "flex",
-      "justify-content": "center"
-    }
-  }, [_vm.paymentStatus == "Paid" ? _c("div", {
-    staticClass: "paiddiv"
-  }, [_c("button", {
-    staticClass: "btn btn-success"
-  }, [_vm._v("পরিশোধিত")]), _vm._v(" "), _c("a", {
-    staticClass: "btn btn-info",
-    attrs: {
-      target: "_blank",
-      href: "/student/applicant/invoice/" + _vm.trxid
-    }
-  }, [_vm._v("রশিদ ডাউনলোড")])]) : _vm.paymentStatus == "Pending" ? _c("a", {
-    staticClass: "btn btn-info",
-    attrs: {
-      href: _vm.paymentUrl
-    }
-  }, [_vm._v("Pay Pending Payment")]) : _vm.paymentStatus == "Failed" ? _c("a", {
-    staticClass: "btn btn-info",
-    attrs: {
-      href: _vm.paymentUrl
-    }
-  }, [_vm._v("Pay Failed Payment")]) : _c("a", {
-    staticClass: "btn btn-info",
-    staticStyle: {
-      "font-size": "30px"
-    },
-    attrs: {
-      href: "/payment?studentId=" + _vm.student.id + "&type=" + _vm.form.type + "&month=" + _vm.form.month
-    }
-  }, [_vm._v("পেমেন্ট করুন")])])]) : _vm._e(), _vm._v(" "), _vm.searched == 2 ? _c("h2", {
+  })])])]) : _vm._e(), _vm._v(" "), _vm.searched == 2 ? _c("h2", {
     staticStyle: {
       color: "red",
       "text-align": "center",
       "font-size": "33px"
     }
-  }, [_vm._v(" No Data Found! ")]) : _vm._e()])]), _vm._v(" "), _c("side-bar", {
+  }, [_vm._v(" " + _vm._s(_vm.message))]) : _vm._e()])]), _vm._v(" "), _c("side-bar", {
     attrs: {
       "class-name": "col-md-3"
     }
