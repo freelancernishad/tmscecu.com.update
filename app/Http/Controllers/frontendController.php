@@ -94,7 +94,12 @@ class frontendController extends Controller
 
 
 
+        $stipendStudentMale = 0;
+        $stipendStudentFemale = 0;
         $stipendStudent = 0;
+
+
+
         $WorkingStudent = 0;
         $landless_guardiansStudent = 0;
         $MinorityStudent = 0;
@@ -225,6 +230,40 @@ class frontendController extends Controller
             $stipendStudentcount = $this->studentCount($school_id,'stipend','Yes',$class[$i]);
             $students[class_en_to_bn($class[$i])]['stipendStudent'] =$stipendStudentcount;
             $stipendStudent += $stipendStudentcount;
+
+
+            //stipendStudentMale
+            $wherestipendMale = [
+                'school_id'=>$school_id,
+                'stipend' => 'Yes',
+                'StudentGender' => 'Male',
+                'StudentStatus' => 'Active',
+                'StudentClass' => $class[$i],
+            ];
+           $stipendStudentMalecount = DB::table('students')->where($wherestipendMale)->count();
+          $students[class_en_to_bn($class[$i])]['stipendStudentMale'] =$stipendStudentMalecount;
+          $stipendStudentMale += $stipendStudentMalecount;
+
+
+            //stipendStudentFemale
+            $wherestipendFemale = [
+                'school_id'=>$school_id,
+                'stipend' => 'Yes',
+                'StudentGender' => 'Female',
+                'StudentStatus' => 'Active',
+                'StudentClass' => $class[$i],
+            ];
+           $stipendStudentFemalecount = DB::table('students')->where($wherestipendFemale)->count();
+          $students[class_en_to_bn($class[$i])]['stipendStudentFemale'] =$stipendStudentFemalecount;
+          $stipendStudentFemale += $stipendStudentFemalecount;
+
+
+
+
+
+
+
+
 
 
             // শিক্ষার্থীর ধরন

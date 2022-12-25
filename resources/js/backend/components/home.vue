@@ -201,7 +201,7 @@
 
 <div class="table-responsive">
 
-<table class="table mb-5">
+<table class="mb-5" width="100%" border="1">
 
 
 <tr align="center">
@@ -210,7 +210,7 @@
     <td rowspan="2" style="vertical-align: middle;">ছাত্রী</td>
     <td colspan="3">ইসলাম</td>
     <td colspan="3">হিন্দু</td>
-    <td rowspan="2" style="vertical-align: middle;">উপবৃত্তি</td>
+    <td colspan="3">উপবৃত্তি</td>
     <td rowspan="2" style="vertical-align: middle;">মোট</td>
 </tr>
 
@@ -218,6 +218,10 @@
 
 
 
+
+    <td>ছাত্র</td>
+    <td>ছাত্রী</td>
+    <td>মোট</td>
 
     <td>ছাত্র</td>
     <td>ছাত্রী</td>
@@ -242,6 +246,8 @@
     <td>{{ report.HinduStudentMale }}</td>
     <td>{{ report.HinduStudentFemale }}</td>
     <td>{{ report.HinduStudent }}</td>
+    <td>{{ report.stipendStudentMale }}</td>
+    <td>{{ report.stipendStudentFemale }}</td>
     <td>{{ report.stipendStudent }}</td>
     <td>{{ report.totalStudent }}</td>
 </tr>
@@ -255,6 +261,8 @@
     <td>{{ reports.HinduStudentMale }}</td>
     <td>{{ reports.HinduStudentFemale }}</td>
     <td>{{ reports.HinduStudent }}</td>
+    <td>{{ reports.stipendStudentMale }}</td>
+    <td>{{ reports.stipendStudentFemale }}</td>
     <td>{{ reports.stipendStudent }}</td>
     <td>{{ reports.totalStudent }}</td>
 </tr>
@@ -603,8 +611,8 @@ url =`api/student/attendance/count?month=${this.month}&year=${this.year}&student
                     this.chartData.labels = data.dates
                     this.chartData.datasets = [data.present,data.absent]
 
-this.totalpresent = data.present.data.reduce((a, b) => a + b, 0);
-this.totalabsent = data.absent.data.reduce((a, b) => a + b, 0);
+                    this.totalpresent = data.present.data.reduce((a, b) => a + b, 0);
+                    this.totalabsent = data.absent.data.reduce((a, b) => a + b, 0);
 
 
 
