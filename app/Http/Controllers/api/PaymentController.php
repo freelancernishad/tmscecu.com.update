@@ -407,7 +407,7 @@ $student = '';
 
                 if($previousStudentCount>0){
 
-                      $previousStudent =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->latest()->first();
+                      $previousStudent =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->orderBy('StudentRoll','desc')->latest()->first();
                       $newRoll = $previousStudent->StudentRoll+1;
                 }else{
                     $newRoll = '1';
