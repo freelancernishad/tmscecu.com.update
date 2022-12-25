@@ -389,6 +389,7 @@ $student = '';
 
 
         $Insertdata = [];
+
         if ($data['msg_code'] == '1020') {
             $Insertdata = [
                 'status' => 'Paid',
@@ -414,6 +415,10 @@ $student = '';
 
                 $StudentID = StudentId($student->StudentClass, $newRoll,$student->school_id,$student->StudentGroup,$paymentYear);
                 $student->update(['StudentRoll' => $newRoll,'StudentID' => $StudentID,'Year' => $paymentYear,'StudentStatus' => 'active']);
+
+                $Insertdata['studentRoll'] = $newRoll;
+                $Insertdata['studentId'] = $StudentID;
+
             }
 
             if($paymentType=='Admission_fee'){
@@ -422,9 +427,7 @@ $student = '';
 
 
         } else {
-            $Insertdata = [
-                'status' => 'Failed',
-            ];
+            $Insertdata = ['status' => 'Failed',];
         }
 
         $Insertdata['ipnResponse'] = json_encode($data);
