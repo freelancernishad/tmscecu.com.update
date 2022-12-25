@@ -413,7 +413,7 @@ $student = '';
                     $newRoll = '1';
                 }
 
-                $StudentID = StudentId($student->StudentClass, $newRoll,$student->school_id,$student->StudentGroup,$paymentYear);
+                $StudentID = StudentId($student->StudentClass, $newRoll,$student->school_id,$student->StudentGroup,date("y", strtotime($paymentYear)));
                 $student->update(['StudentRoll' => $newRoll,'StudentID' => $StudentID,'Year' => $paymentYear,'StudentStatus' => 'active']);
 
                 $Insertdata['studentRoll'] = $newRoll;
