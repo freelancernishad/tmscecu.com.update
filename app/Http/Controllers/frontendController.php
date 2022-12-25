@@ -443,6 +443,8 @@ class frontendController extends Controller
         $data['HinduStudent'] = $HinduStudent;
 
 
+        $data['stipendStudentMale'] = $stipendStudentMale;
+        $data['stipendStudentFemale'] = $stipendStudentFemale;
         $data['stipendStudent'] = $stipendStudent;
         $data['WorkingStudent'] = $WorkingStudent;
         $data['landless_guardiansStudent'] = $landless_guardiansStudent;
