@@ -1047,6 +1047,11 @@ export default {
    },
 
     created(){
+
+        Notification.customError2('আবেদনের সময় শেষ হয়ে গেছে');
+
+          this.$router.push({name: 'home'})
+
         this.tabs = this.$children;
 
 

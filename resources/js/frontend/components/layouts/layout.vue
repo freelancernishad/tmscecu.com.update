@@ -62,10 +62,10 @@
                             </li>
 
 
-
+<!-- 
                             <li class="nav-item">
                                 <router-link class="text-light px-3 nav-link " aria-current="page" to="/student/register">ভর্তি আবেদন</router-link>
-                            </li>
+                            </li> -->
 
 
                             <li class="nav-item">
