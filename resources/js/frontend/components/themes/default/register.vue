@@ -1048,9 +1048,12 @@ export default {
 
     created(){
 
-        Notification.customError2('আবেদনের সময় শেষ হয়ে গেছে');
+        if(this.schoolSettings.application=='Off'){
 
-          this.$router.push({name: 'home'})
+            Notification.customError2('আবেদনের সময় শেষ হয়ে গেছে');
+              this.$router.push({name: 'home'})
+        }
+
 
         this.tabs = this.$children;
 
@@ -1161,7 +1164,7 @@ export default {
                 reader.onload = event => {
 
 
-console.log(event.target.result)
+// console.log(event.target.result)
 
    //Initiate the JavaScript Image object.
    var image = new Image();
@@ -1327,6 +1330,14 @@ console.log(event.target.result)
                        var res = await this.callApi('post',`/api/students/form/submit`,this.form)
                     //    console.log(res.status)
 
+                    if(res.data==444){
+                        Notification.customError2('আবেদনের সময় শেষ হয়ে গেছে');
+                        this.$router.push({name: 'home'})
+                    }else{
+
+
+
+
                        if(res.status==201){
                             if(res.data){
                                 Notification.success();
@@ -1339,6 +1350,9 @@ console.log(event.target.result)
                        }else{
                         Notification.customError2('Something is wrong! please try again');
                        }
+
+                    }
+
 
                         // window.location.href=`/payment?studentId=${res.data.id}&type=Admission_fee`;
 

@@ -385,6 +385,14 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 }
     public function student_submit(Request $r)
     {
+
+
+        if(sitedetails()->application=='Off'){
+
+            return 444;
+        }
+
+
         $submit_type = $r->submit_type;
         $id = $r->id;
         $data = $r->except('AdmissionID','StudentID','StudentPicture');

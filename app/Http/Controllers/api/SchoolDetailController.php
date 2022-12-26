@@ -54,6 +54,7 @@ class SchoolDetailController extends Controller
             "contact_email" => $result->contact_email,
             "meta_author" => $result->meta_author,
             "theme" => $result->theme,
+            "application" => $result->application,
             "slider" => $result->slider
         ];
 
@@ -155,6 +156,7 @@ class SchoolDetailController extends Controller
             "contact_email" => $request->contact_email,
             "meta_author" => $request->meta_author,
             "theme" => $request->theme,
+            "application" => $request->application,
             "slider" => $request->slider
         ];
 

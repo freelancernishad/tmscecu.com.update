@@ -52,7 +52,7 @@
                 </div>
 
 
-                <div class="col-md-6">
+                <div class="col-md-6 d-none">
                     <div class="form-group">
                         <label>Theme:</label>
                         <select v-model="form.theme" id="theme" class="form-control">
@@ -62,6 +62,21 @@
                             <option value="theme1">Theme Two</option>
                             <option value="theme2">Theme Three</option>
                             <option value="theme3">Theme Four</option>
+                        </select>
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Application:</label>
+                        <select v-model="form.application" id="theme" class="form-control">
+                            <option value="">Select</option>
+                            <option value="On">On</option>
+                            <option value="Off">Off</option>
+
                         </select>
 
 
@@ -313,7 +328,7 @@ export default {
 
 	data () {
 		return {
-     
+
             form:{},
             preloader: true,
 

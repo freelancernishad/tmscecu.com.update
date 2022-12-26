@@ -34,6 +34,7 @@ class school_detail extends Model
         'meta_description',
         'meta_author',
         'theme',
+        'application',
         'slider',
     ];
 }
