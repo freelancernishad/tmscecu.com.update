@@ -309,6 +309,84 @@ class resultController extends Controller
     public function searchResult(Request $request)
     {
         // return $request->all();
+
+        $classForAdmition = $request->filter['class'];
+
+        if($classForAdmition=='Admission Result'){
+            $AdmissionID = $request->filter['roll'];
+             $studentcount = student::where('AdmissionID',$AdmissionID)->count();
+             if($studentcount>0){
+                $student = student::where('AdmissionID',$AdmissionID)->first();
+                if($student->StudentStatus=='active'){
+                    return "
+                    <h2 style='font-size: 30px;text-align: center;color: green;margin-bottom: 10px;'>অভিনন্দন</h2>
+                    <h2 style='font-size: 22px;text-align: center;color: green;margin-bottom: 22px;'>আপনি ইতিমধ্যে ভর্তি হয়েছেন</h2>
+                    ";
+                }elseif($student->StudentStatus=='Approve'){
+
+                    $html =  "
+                    <h2 style='font-size: 30px;text-align: center;color: green;margin-bottom: 10px;'>অভিনন্দন</h2>
+                    <h2 style='font-size: 22px;text-align: center;color: green;margin-bottom: 22px;'>আপনার আবেদনটি অনুমোদন করা হয়েছে।</h2>
+
+                    <h2 style='text-align:center;font-size: 20px'>ভর্তির নিয়ম</h2>
+
+                    <ul style='    list-style: circle !important;    padding: 0px 28px;'>
+                        <li>প্রথমে ওয়েবসাইট এ প্রবেশ করুন।</li>
+                        <li>তারপর মেনু অপশন থেকে পেমেন্ট মেনুতে চাপ দিন।</li>
+                        <li>'পেমেন্ট করার মাধ্যম' থেকে 'এডমিশন আইডি এর মাধ্যমে' সিলেক্ট করুন। সিলেক্ট করার পর 'এডমিশন আইডি' নামের একটা ইনপুট বক্স আসবে। </li>
+                        <li>'এডমিশন আইডি' নামের বক্স এ আপনার আবেদন কপি অথবা রশিদ থেকে Admssion Id টি বসিয়ে খুঁজুন বাটন এ চাপ দিন।</li>
+                        <li>কিছুক্ষণ অপেক্ষা করার পর নিচে আপনার তথ্য গুলো দেখতে পারবেন।</li>
+                        <li>তথ্য গুলোর নিচে ভর্তি/সেশন ফি এর ডানপাশে Pay Now বাটন দেখতে পারবেন।</li>
+                        <li>Pay Now বাটন এ চাপ দিয়ে ভর্তি ফি পরিশোধ করলেই আপনার ভর্তি সম্পূর্ণ হয়ে যাবে</li>
+
+
+                    </ul>
+
+
+                    <p style='color:red;margin-top:10px'>বিঃদ্রঃ ফি প্রদানের পর একটা রশিদ পাবেন। রশিদটি সংরক্ষণ করে রাক্ষুন</p>
+
+
+                    ";
+
+
+                    return $html;
+
+                }elseif($student->StudentStatus=='Reject'){
+
+                    return "
+
+                    <h2 style='font-size: 30px;text-align: center;color: red;margin-bottom: 10px;'>দুঃখিত</h2>
+                    <h2 style='font-size: 22px;text-align: center;color: red;margin-bottom: 22px;'>আপনার আবেদনটি বাতিল করা হয়েছে</h2>
+
+                    ";
+                }elseif($student->StudentStatus=='Pending'){
+
+                    return "
+
+                    <h2 style='font-size: 30px;text-align: center;color: #EA8E37;margin-bottom: 10px;'>অপেক্ষা করুন</h2>
+                    <h2 style='font-size: 22px;text-align: center;color: #EA8E37;margin-bottom: 22px;'>আপনার আবেদনটি এখনো অনুমোদন করা হয় নি</h2>
+
+                    ";
+                }else{
+                    $message = 'কোনো তথ্য খুঁজে পাওয়া যায়নি';
+                }
+             }else{
+               return "
+
+               <h2 style='font-size: 30px;text-align: center;color: red;margin-bottom: 10px;'>দুঃখিত</h2>
+               <h2 style='font-size: 22px;text-align: center;color: red;margin-bottom: 22px;'>কোনো তথ্য খুঁজে পাওয়া যায়নি</h2>
+
+               ";
+             }
+
+
+
+
+
+        }
+
+
+
         $result = QueryBuilder::for(StudentResult::class)
             ->allowedFilters([
                 AllowedFilter::exact('school_id'),

@@ -149,7 +149,7 @@ h5 {
 
 
 
-    <script src="{{ asset('js/frontend.js?ver=1.1.70') }}" async ></script>
+    <script src="{{ asset('js/frontend.js?ver=1.1.71') }}" async ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
@@ -294,7 +294,14 @@ if ("{{ Auth::user() }}") {
     IntitalizeFireBaseMessaging();
 </script>
  --}}
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1N11YCBZZX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-1N11YCBZZX');
+</script>
 
 </body>
 </html>
