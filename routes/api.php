@@ -128,8 +128,11 @@ Route::get('/student/admissionid/genarate',[studentsController::class , 'Admissi
 Route::get('/student/attendance',[studentsController::class , 'student_attendance']);
 Route::get('/student/attendance/count',[studentsController::class , 'student_attendance_count']);
 Route::post('/student/attendance/submit',[studentsController::class , 'student_attendance_submit']);
-
 Route::get('/student/attendance/row',[studentsController::class , 'student_attendance_row']);
+
+
+
+Route::post('/student/transferto/old',[studentsController::class , 'transertoOld']);
 
 
 

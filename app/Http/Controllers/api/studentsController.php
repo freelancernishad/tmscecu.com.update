@@ -26,6 +26,24 @@ class studentsController extends Controller
 
 
 
+    public function transertoOld(Request $request)
+    {
+
+        $Year = date('Y');
+        $student = student::where(['StudentClass'=>'Ten','Year'=>$Year,'StudentStatus'=>'active'])->get();
+
+        foreach ($student as $value) {
+            $upStudent = student::find($value->id);
+            $upStudent->update(['StudentStatus'=>'old']);
+        }
+
+
+
+
+
+    }
+
+
     public function allReports(Request $request)
     {
 
