@@ -253,7 +253,7 @@ class PaymentController extends Controller
             $session_feeGet =    $this->PaymentCount(['type' => 'session_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession],'get');
             $session_feeButton = "<span class='btn btn-success'>Paid</span> <a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$session_feeGet->trxid'>রশিদ ডাউনলোড</a>";
         }else{
-            $session_feeButton = "<a target='_blank' href='/payment?studentId=$studentid&type=session_fee' class='btn btn-info'>Pay Now</a>";
+            $session_feeButton = "<a href='/payment?studentId=$studentid&type=session_fee' class='btn btn-info'>Pay Now</a>";
         }
 
       $registration_feeCount =    $this->PaymentCount(['type' => 'registration_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $year],'count');
@@ -261,7 +261,7 @@ class PaymentController extends Controller
             $registration_feeGet =    $this->PaymentCount(['type' => 'registration_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $year],'get');
             $registration_feeButton = "<span class='btn btn-success'>Paid</span> <a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$registration_feeGet->trxid'>রশিদ ডাউনলোড</a>";
         }else{
-            $registration_feeButton = "<a target='_blank' href='/payment?studentId=$studentid&type=registration_fee' class='btn btn-info'>Pay Now</a>";
+            $registration_feeButton = "<a  href='/payment?studentId=$studentid&type=registration_fee' class='btn btn-info'>Pay Now</a>";
         }
 
       $form_filup_feeCount =    $this->PaymentCount(['type' => 'form_filup_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $year],'count');
@@ -269,7 +269,7 @@ class PaymentController extends Controller
             $form_filup_feeGet =    $this->PaymentCount(['type' => 'form_filup_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $year],'get');
             $form_filup_feeButton = "<span class='btn btn-success'>Paid</span> <a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$form_filup_feeGet->trxid'>রশিদ ডাউনলোড</a>";
         }else{
-            $form_filup_feeButton = "<a target='_blank' href='/payment?studentId=$studentid&type=form_filup_fee' class='btn btn-info'>Pay Now</a>";
+            $form_filup_feeButton = "<a  href='/payment?studentId=$studentid&type=form_filup_fee' class='btn btn-info'>Pay Now</a>";
         }
 
 

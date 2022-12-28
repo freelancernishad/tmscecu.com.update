@@ -40,8 +40,8 @@
                     <td>{{ student.StudentFatherNameBn }}</td>
                     <td>{{ student.StudentMotherNameBn }}</td>
                     <td>
-                        <button class="btn btn-info" v-if="student.StudentStatus=='permited'" @click="permission(student.id)">Promote this</button>
-                        <button class="btn btn-info" v-else disabled>Promoted</button>
+                        <button class="btn btn-info" style="font-size: 17px;" v-if="student.StudentStatus=='permited'" @click="permission(student.id)">ভর্তি নিশ্চিত করুন</button>
+                        <button class="btn btn-info" style="font-size: 17px;" v-else disabled>ভর্তি নিশ্চিত হয়েছে</button>
                     </td>
                 </tr>
             </tbody>
