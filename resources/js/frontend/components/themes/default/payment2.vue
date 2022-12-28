@@ -67,8 +67,7 @@
                                 </div>
 
 
-                                <div class='form-group'
-                                    v-if="form.student_class == 'Nine' || form.student_class == 'Ten'">
+                                <div class='form-group' v-if="form.student_class == 'Ten'">
                                     <label>গ্রুপ</label>
                                     <select class='form-control' style='width: 100%;' v-model='form.StudentGroup'
                                         id='group' required>
@@ -155,10 +154,12 @@
                         </div>
 
 
+                   
+
+                        <div v-if="searched==2" v-html="message"></div>
 
 
-
-                        <h2 v-if="searched==2" style="color:red;text-align:center;font-size: 33px;"> {{ message }}</h2>
+                        <!-- <h2 v-if="searched==2" style="color:red;text-align:center;font-size: 33px;"> {{ message }}</h2> -->
 
 
 
@@ -185,7 +186,7 @@ export default {
                 month: '',
                 paymenttype: '',
                 student_class: '',
-                StudentGroup: '',
+                StudentGroup: 'Humanities',
                 StudentRoll: '',
             },
             student: {},

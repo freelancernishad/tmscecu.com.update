@@ -10,6 +10,9 @@ let logout = require('./components/auth/logout.vue').default;
 let home = require('./components/home.vue').default;
 
 let fileupload = require('./components/fileupload.vue').default;
+let applicationPermission = require('./components/applicationPermission.vue').default;
+
+
 let profile = require('./components/profile.vue').default;
 
 // Students Components
@@ -145,6 +148,7 @@ export const routes = [
   { path: `${prefix}/logout`, component: logout, name:'logout',meta: { layout: adminlayout } },
 
   { path: `${prefix}/student/img`, component: fileupload, name:'fileupload',meta: { layout: blanklayout } },
+  { path: `${prefix}/application/permission`, component: applicationPermission, name:'applicationPermission',meta: { layout: blanklayout } },
 
   { path: `${prefix}`, component: home, name:'home',meta: { layout: adminlayout } },
 

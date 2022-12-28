@@ -80,10 +80,10 @@ class PaymentController extends Controller
 
 
 
-$AdmissionID = '';
-$StudentClass = 'Six';
-$studentid = '';
-$student = '';
+        $AdmissionID = '';
+        $StudentClass = 'Six';
+        $studentid = '';
+        $student = '';
 
         if($type=='Admission_fee'){
             $student = student::where(['AdmissionID' => $adminssionId])->latest()->first();
@@ -96,11 +96,45 @@ $student = '';
                 if($ApliedStudentCount>0){
                     $ApliedStudent = student::where(['AdmissionID' => $adminssionId])->latest()->first();
                     if($ApliedStudent->StudentStatus=='Approve'){
-                        $StudentStatus = 'Approve';
+                        $message = "
+                        <h2 style='color:green;text-align:center;font-size: 25px; green;margin-bottom: 22px;margin-top: 22px;'>আবেদনটি অনুমোদন করা হয়েছে। ভর্তির জন্য প্রয়োজনীয় কাগজপত্র বিদ্যালয়ে জমা দিন</h2>
+
+                        <h2 style='text-align:center;font-size: 23px'>প্রয়োজনীয় কাগজপত্র</h2>
+
+                        <h2 style='font-size: 20px'>৬ষ্ঠ শ্রেণির জন্য</h2>
+                        <ul style='    list-style: circle !important;    padding: 0px 28px;'>
+                            <li>জন্মনিবন্ধনের ফটোকপি</li>
+                            <li>৫ম শ্রেণি পাশের মূল প্রশংসা পত্র </li>
+                            <li>পিতা মাতার জাতীয় পরিচয় পত্রের ফটোকপি</li>
+                        </ul>
+
+                        <h2 style='font-size: 20px;margin-top: 22px;'>৭ম থেকে ৯ম শ্রেণির জন্য </h2>
+                        <ul style='    list-style: circle !important;    padding: 0px 28px;'>
+                            <li>জন্মনিবন্ধনের ফটোকপি</li>
+                            <li>৫ম শ্রেণি পাশের মূল প্রশংসা পত্র </li>
+                            <li>পিতা মাতার জাতীয় পরিচয় পত্রের ফটোকপি</li>
+                            <li>অবশ্যই TC বা ছাড়পত্র লাগবে</li>
+                        </ul>
+
+                        ";
+
+                        // $StudentStatus = 'Approve';
+                        // $student = student::where(['AdmissionID' => $adminssionId,'StudentStatus'=>$StudentStatus])->latest()->first();
+                        // $AdmissionID = $student->AdmissionID;
+                        // $StudentClass = $student->StudentClass;
+                        // $studentid = $student->id;
+
+
+                    }elseif($ApliedStudent->StudentStatus=='permited'){
+                        // $message = 'এপ্লিকেশনটি অনুমোদন করা হয়েছে ';
+
+                        $StudentStatus = 'permited';
                         $student = student::where(['AdmissionID' => $adminssionId,'StudentStatus'=>$StudentStatus])->latest()->first();
                         $AdmissionID = $student->AdmissionID;
                         $StudentClass = $student->StudentClass;
                         $studentid = $student->id;
+
+
                     }elseif($ApliedStudent->StudentStatus=='active'){
                         $StudentStatus = 'active';
                         $student = student::where(['AdmissionID' => $adminssionId,'StudentStatus'=>$StudentStatus])->latest()->first();

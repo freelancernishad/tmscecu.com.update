@@ -18,6 +18,23 @@ class resultController extends Controller
 {
 
 
+    public function addmissionResult()
+    {
+
+        $students = student::where(['StudentStatus'=>'Approve'])->get();
+        $studentsSix = student::where(['StudentStatus'=>'Approve','StudentClass'=>'Six'])->get();
+        $studentsSeven = student::where(['StudentStatus'=>'Approve','StudentClass'=>'Seven'])->get();
+        $studentsEight = student::where(['StudentStatus'=>'Approve','StudentClass'=>'Eight'])->get();
+        $studentsNine = student::where(['StudentStatus'=>'Approve','StudentClass'=>'Nine'])->get();
+        $pdfFileName = date('d-m-Y').'.pdf';
+
+        $pdf = LaravelMpdf::loadView('addmissionResult',compact('students','studentsSix','studentsSeven','studentsEight','studentsNine','pdfFileName'));
+        return $pdf->stream($pdfFileName);
+    }
+
+
+
+
     public function marksheet(Request $request)
     {
         // return $request->all();
@@ -41,7 +58,7 @@ class resultController extends Controller
 
         $filter = [
             'class' => $request->class,
-            'year' => $request->year,
+            'year' => $request->year,'studentsSix',
             'exam_name' => $request->exam_name,
             'class_group' => $group,
         ];
@@ -322,13 +339,33 @@ class resultController extends Controller
                     <h2 style='font-size: 30px;text-align: center;color: green;margin-bottom: 10px;'>অভিনন্দন</h2>
                     <h2 style='font-size: 22px;text-align: center;color: green;margin-bottom: 22px;'>আপনি ইতিমধ্যে ভর্তি হয়েছেন</h2>
                     ";
-                }elseif($student->StudentStatus=='Approve'){
+                }elseif($student->StudentStatus=='Approve' || $student->StudentStatus=='permited'){
 
                     $html =  "
                     <h2 style='font-size: 30px;text-align: center;color: green;margin-bottom: 10px;'>অভিনন্দন</h2>
                     <h2 style='font-size: 22px;text-align: center;color: green;margin-bottom: 22px;'>আপনার আবেদনটি অনুমোদন করা হয়েছে।</h2>
 
-                    <h2 style='text-align:center;font-size: 20px'>ভর্তির নিয়ম</h2>
+
+
+                    <h2 style='text-align:center;font-size: 23px;margin-top: 22px;'>প্রয়োজনীয় কাগজপত্র</h2>
+
+                    <h2 style='font-size: 20px'>৬ষ্ঠ শ্রেণির জন্য</h2>
+                    <ul style='    list-style: circle !important;    padding: 0px 28px;'>
+                        <li>জন্মনিবন্ধনের ফটোকপি</li>
+                        <li>৫ম শ্রেণি পাশের মূল প্রশংসা পত্র </li>
+                        <li>পিতা মাতার জাতীয় পরিচয় পত্রের ফটোকপি</li>
+                    </ul>
+
+                    <h2 style='font-size: 20px;margin-top: 22px;'>৭ম থেকে ৯ম শ্রেণির জন্য </h2>
+                    <ul style='    list-style: circle !important;    padding: 0px 28px;'>
+                        <li>জন্মনিবন্ধনের ফটোকপি</li>
+                        <li>৫ম শ্রেণি পাশের মূল প্রশংসা পত্র </li>
+                        <li>পিতা মাতার জাতীয় পরিচয় পত্রের ফটোকপি</li>
+                        <li>অবশ্যই TC বা ছাড়পত্র লাগবে</li>
+                    </ul>
+
+
+                    <h2 style='text-align:center;font-size: 20px;margin-top: 22px;'>ভর্তির নিয়ম</h2>
 
                     <ul style='    list-style: circle !important;    padding: 0px 28px;'>
                         <li>প্রথমে ওয়েবসাইট এ প্রবেশ করুন।</li>
@@ -341,10 +378,6 @@ class resultController extends Controller
 
 
                     </ul>
-
-
-                    <p style='color:red;margin-top:10px'>বিঃদ্রঃ ফি প্রদানের পর একটা রশিদ পাবেন। রশিদটি সংরক্ষণ করে রাক্ষুন</p>
-
 
                     ";
 

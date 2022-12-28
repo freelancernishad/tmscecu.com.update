@@ -112,7 +112,10 @@ Route::get('/students/all/reports',[studentsController::class , 'allReports']);
 Route::get('/students/list',[studentsController::class , 'list']);
 
 Route::get('/get/pending/student',[studentsController::class , 'getStudents']);
+
 Route::post('/approve/pending/student',[studentsController::class , 'approveStudents']);
+
+Route::post('/student/permission',[studentsController::class , 'permissionAction']);
 
 
 Route::get('/students/image/get',[studentsController::class , 'imageget']);

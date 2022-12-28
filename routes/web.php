@@ -151,6 +151,9 @@ Route::get('student/applicant/invoice/{trxid}', [studentsController::class, 'app
 Route::get('download/mark', [resultController::class, 'marksheet']);
 
 
+Route::get('addmission/approve/Result', [resultController::class, 'addmissionResult']);
+
+
 
 
 Route::get('school/payment/invoice/{id}', [PaymentController::class, 'invoice']);

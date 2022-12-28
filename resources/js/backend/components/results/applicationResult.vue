@@ -15,6 +15,7 @@
 
     <div class="card">
         <div class="card-header">
+            <a target="_blank" href="/addmission/approve/Result" class="btn btn-info">Pdf download</a>
 
             <form @submit.stop.prevent="getNewStudents" >
 

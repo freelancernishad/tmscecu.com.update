@@ -352,6 +352,8 @@ export default {
                 this.$router.push({name:'resultsoparetor'});
             }else if(this.user.role=='camera_man'){
                 this.$router.push({name:'fileupload'});
+            }else if(this.user.role=='application_permission'){
+                this.$router.push({name:'applicationPermission'});
             }
         }
         this.$store.commit('setUpdateUser', this.user)
