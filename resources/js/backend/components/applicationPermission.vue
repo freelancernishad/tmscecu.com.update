@@ -40,8 +40,8 @@
                     <td>{{ student.StudentFatherNameBn }}</td>
                     <td>{{ student.StudentMotherNameBn }}</td>
                     <td>
-                        <button class="btn btn-info" v-if="student.StudentStatus=='Approve'" @click="permission(student.id)">Permit this</button>
-                        <button class="btn btn-info" v-else disabled>Permited</button>
+                        <button class="btn btn-info" v-if="student.StudentStatus=='permited'" @click="permission(student.id)">Promote this</button>
+                        <button class="btn btn-info" v-else disabled>Promoted</button>
                     </td>
                 </tr>
             </tbody>
@@ -74,7 +74,7 @@ export default {
 
 
 
-            var res = await this.callApi('get',`/api/get/pending/student?StudentStatus=Approve&StudentStatus2=permited${search}`,[]);
+            var res = await this.callApi('get',`/api/get/pending/student?StudentStatus=permited${search}`,[]);
             this.students = res.data
         },
 
@@ -83,18 +83,34 @@ export default {
 
             Swal.fire({
                 title: 'Are you sure?',
-                text: "",
+                text: "ভর্তি করতে নিশ্চিত থাকলে Yes বাটন এ চাপ দিন",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: `Yes!`
+                customClass: 'swal-wide',
+                confirmButtonText: `Yes!`,
+                allowOutsideClick: false,
+                allowEscapeKey: false
             }).then(async (result) => {
                 if (result.isConfirmed) {
 
                     var res  = await this.callApi('post',`/api/student/permission?id=${id}`,[]);
+                    var gr = '';
+                    if(res.data.StudentClass=='Nine' || res.data.StudentClass=='Ten' ){
+                        gr = `Group ${res.data.StudentGroup}`;
+
+                    }
+                    Swal.fire({
+                        title: 'Success',
+                        text: `${res.data.StudentName} class ${res.data.StudentClass} ${gr} এ ${res.data.StudentRoll} নিয়ে ভর্তি সম্পূর্ণ করেছে।`,
+                        icon: 'success',
+                        customClass: 'swal-wide',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                    })
                     this.getStudent();
-                    Notification.customSuccess(`Successfully Done`);
+
 
                 }
             })
@@ -110,3 +126,12 @@ export default {
     }
 }
 </script>
+
+<style>
+.swal-wide{
+    width:400px !important;
+}
+div#swal2-content {
+    font-size: 19px;
+}
+</style>

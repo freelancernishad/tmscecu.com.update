@@ -37,8 +37,31 @@ class studentsController extends Controller
             $group = $student->StudentGroup;
 
         }
-        // return $group;
-        $student->update(['StudentStatus'=>'permited','StudentGroup'=>$group]);
+
+
+
+
+
+                $currentmonth = date("F");
+                $amountYear = date("Y");
+                $paymentYear = $amountYear;
+                if($currentmonth=='December'){
+                    $paymentYear = $amountYear+1;
+                }
+
+
+                 $previousStudentCount =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->count();
+
+                if($previousStudentCount>0){
+                      $previousStudent =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->orderBy('StudentRoll','desc')->latest()->first();
+                      $newRoll = $previousStudent->StudentRoll+1;
+                }else{
+                    $newRoll = '1';
+                }
+                $StudentID = StudentId($student->StudentClass, $newRoll,$student->school_id,$student->StudentGroup,date("y", strtotime('01-01-'.$paymentYear)));
+
+                $student->update(['StudentRoll' => $newRoll,'StudentID' => $StudentID,'Year' => $paymentYear,'StudentStatus' => 'active']);
+                return $student;
 
 
 
@@ -86,8 +109,7 @@ class studentsController extends Controller
         }
 
         if(!$class){
-
-            return student::where('StudentStatus',$StudentStatus)->orwhere('StudentStatus',$StudentStatus2)->get();
+            return student::where('StudentStatus',$StudentStatus)->get();
         }
 
         $group = $request->group;

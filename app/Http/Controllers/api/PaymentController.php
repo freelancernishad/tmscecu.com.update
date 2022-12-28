@@ -96,27 +96,27 @@ class PaymentController extends Controller
                 if($ApliedStudentCount>0){
                     $ApliedStudent = student::where(['AdmissionID' => $adminssionId])->latest()->first();
                     if($ApliedStudent->StudentStatus=='Approve'){
-                        $message = "
-                        <h2 style='color:green;text-align:center;font-size: 25px; green;margin-bottom: 22px;margin-top: 22px;'>আবেদনটি অনুমোদন করা হয়েছে। ভর্তির জন্য প্রয়োজনীয় কাগজপত্র বিদ্যালয়ে জমা দিন</h2>
+                        // $message = "
+                        // <h2 style='color:green;text-align:center;font-size: 25px; green;margin-bottom: 22px;margin-top: 22px;'>আবেদনটি অনুমোদন করা হয়েছে। ভর্তির জন্য প্রয়োজনীয় কাগজপত্র বিদ্যালয়ে জমা দিন</h2>
 
-                        <h2 style='text-align:center;font-size: 23px'>প্রয়োজনীয় কাগজপত্র</h2>
+                        // <h2 style='text-align:center;font-size: 23px'>প্রয়োজনীয় কাগজপত্র</h2>
 
-                        <h2 style='font-size: 20px'>৬ষ্ঠ শ্রেণির জন্য</h2>
-                        <ul style='    list-style: circle !important;    padding: 0px 28px;'>
-                            <li>জন্মনিবন্ধনের ফটোকপি</li>
-                            <li>৫ম শ্রেণি পাশের মূল প্রশংসা পত্র </li>
-                            <li>পিতা মাতার জাতীয় পরিচয় পত্রের ফটোকপি</li>
-                        </ul>
+                        // <h2 style='font-size: 20px'>৬ষ্ঠ শ্রেণির জন্য</h2>
+                        // <ul style='    list-style: circle !important;    padding: 0px 28px;'>
+                        //     <li>জন্মনিবন্ধনের ফটোকপি</li>
+                        //     <li>৫ম শ্রেণি পাশের মূল প্রশংসা পত্র </li>
+                        //     <li>পিতা মাতার জাতীয় পরিচয় পত্রের ফটোকপি</li>
+                        // </ul>
 
-                        <h2 style='font-size: 20px;margin-top: 22px;'>৭ম থেকে ৯ম শ্রেণির জন্য </h2>
-                        <ul style='    list-style: circle !important;    padding: 0px 28px;'>
-                            <li>জন্মনিবন্ধনের ফটোকপি</li>
-                            <li>৫ম শ্রেণি পাশের মূল প্রশংসা পত্র </li>
-                            <li>পিতা মাতার জাতীয় পরিচয় পত্রের ফটোকপি</li>
-                            <li>অবশ্যই TC বা ছাড়পত্র লাগবে</li>
-                        </ul>
+                        // <h2 style='font-size: 20px;margin-top: 22px;'>৭ম থেকে ৯ম শ্রেণির জন্য </h2>
+                        // <ul style='    list-style: circle !important;    padding: 0px 28px;'>
+                        //     <li>জন্মনিবন্ধনের ফটোকপি</li>
+                        //     <li>৫ম শ্রেণি পাশের মূল প্রশংসা পত্র </li>
+                        //     <li>পিতা মাতার জাতীয় পরিচয় পত্রের ফটোকপি</li>
+                        //     <li>অবশ্যই TC বা ছাড়পত্র লাগবে</li>
+                        // </ul>
 
-                        ";
+                        // ";
 
                         // $StudentStatus = 'Approve';
                         // $student = student::where(['AdmissionID' => $adminssionId,'StudentStatus'=>$StudentStatus])->latest()->first();
@@ -125,10 +125,10 @@ class PaymentController extends Controller
                         // $studentid = $student->id;
 
 
-                    }elseif($ApliedStudent->StudentStatus=='permited'){
+
                         // $message = 'এপ্লিকেশনটি অনুমোদন করা হয়েছে ';
 
-                        $StudentStatus = 'permited';
+                        $StudentStatus = 'Approve';
                         $student = student::where(['AdmissionID' => $adminssionId,'StudentStatus'=>$StudentStatus])->latest()->first();
                         $AdmissionID = $student->AdmissionID;
                         $StudentClass = $student->StudentClass;
@@ -444,23 +444,29 @@ class PaymentController extends Controller
 
             $paymentType = $payment->type;
 
-            if($student->StudentStatus=='permited'){
+            // if($student->StudentStatus=='permited'){
 
-                $paymentYear = $payment->year;
-                 $previousStudentCount =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->count();
+            //     $paymentYear = $payment->year;
+            //      $previousStudentCount =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->count();
 
-                if($previousStudentCount>0){
-                      $previousStudent =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->orderBy('StudentRoll','desc')->latest()->first();
-                      $newRoll = $previousStudent->StudentRoll+1;
-                }else{
-                    $newRoll = '1';
-                }
-                $StudentID = StudentId($student->StudentClass, $newRoll,$student->school_id,$student->StudentGroup,date("y", strtotime('01-01-'.$paymentYear)));
-                $student->update(['StudentRoll' => $newRoll,'StudentID' => $StudentID,'Year' => $paymentYear,'StudentStatus' => 'active']);
+            //     if($previousStudentCount>0){
+            //           $previousStudent =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->orderBy('StudentRoll','desc')->latest()->first();
+            //           $newRoll = $previousStudent->StudentRoll+1;
+            //     }else{
+            //         $newRoll = '1';
+            //     }
+            //     $StudentID = StudentId($student->StudentClass, $newRoll,$student->school_id,$student->StudentGroup,date("y", strtotime('01-01-'.$paymentYear)));
 
-                $Insertdata['studentRoll'] = $newRoll;
-                $Insertdata['studentId'] = $StudentID;
+            //     $student->update(['StudentRoll' => $newRoll,'StudentID' => $StudentID,'Year' => $paymentYear,'StudentStatus' => 'active']);
 
+            //     $Insertdata['studentRoll'] = $newRoll;
+            //     $Insertdata['studentId'] = $StudentID;
+
+            // }
+
+
+            if($student->StudentStatus=='Approve'){
+                $student->update(['StudentStatus' => 'permited']);
             }
 
             if($paymentType=='Admission_fee'){
@@ -521,7 +527,7 @@ class PaymentController extends Controller
             "trnx_currency" => "BDT",
             "trnx_id" => "$trnx_id"
         ];
-        $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info);
+        // $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info);
 
 
         if($type=='marksheet'){
@@ -530,12 +536,20 @@ class PaymentController extends Controller
             $studentId = $student->StudentID;
         }
 
+        $currentmonth = date("F");
+
+
         $amountYear = date("Y");
         $paymentYear = $amountYear;
 
-        if($student->StudentStatus=='permited'){
+        // if($student->StudentStatus=='Approve'){
+        //     $paymentYear = $amountYear+1;
+        // }
+
+        if($currentmonth=='December'){
             $paymentYear = $amountYear+1;
         }
+
 
 
 

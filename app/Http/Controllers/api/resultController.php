@@ -23,7 +23,7 @@ class resultController extends Controller
         ini_set('max_execution_time', '60000');
         ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
         ini_set('memory_limit', '12008M');
-        
+
         $students = student::where(['StudentStatus'=>'Approve'])->get();
         $studentsSix = student::where(['StudentStatus'=>'Approve','StudentClass'=>'Six'])->get();
         $studentsSeven = student::where(['StudentStatus'=>'Approve','StudentClass'=>'Seven'])->get();
@@ -342,30 +342,13 @@ class resultController extends Controller
                     <h2 style='font-size: 30px;text-align: center;color: green;margin-bottom: 10px;'>অভিনন্দন</h2>
                     <h2 style='font-size: 22px;text-align: center;color: green;margin-bottom: 22px;'>আপনি ইতিমধ্যে ভর্তি হয়েছেন</h2>
                     ";
-                }elseif($student->StudentStatus=='Approve' || $student->StudentStatus=='permited'){
+                }elseif($student->StudentStatus=='Approve'){
 
                     $html =  "
                     <h2 style='font-size: 30px;text-align: center;color: green;margin-bottom: 10px;'>অভিনন্দন</h2>
                     <h2 style='font-size: 22px;text-align: center;color: green;margin-bottom: 22px;'>আপনার আবেদনটি অনুমোদন করা হয়েছে।</h2>
 
 
-
-                    <h2 style='text-align:center;font-size: 23px;margin-top: 22px;'>প্রয়োজনীয় কাগজপত্র</h2>
-
-                    <h2 style='font-size: 20px'>৬ষ্ঠ শ্রেণির জন্য</h2>
-                    <ul style='    list-style: circle !important;    padding: 0px 28px;'>
-                        <li>জন্মনিবন্ধনের ফটোকপি</li>
-                        <li>৫ম শ্রেণি পাশের মূল প্রশংসা পত্র </li>
-                        <li>পিতা মাতার জাতীয় পরিচয় পত্রের ফটোকপি</li>
-                    </ul>
-
-                    <h2 style='font-size: 20px;margin-top: 22px;'>৭ম থেকে ৯ম শ্রেণির জন্য </h2>
-                    <ul style='    list-style: circle !important;    padding: 0px 28px;'>
-                        <li>জন্মনিবন্ধনের ফটোকপি</li>
-                        <li>৫ম শ্রেণি পাশের মূল প্রশংসা পত্র </li>
-                        <li>পিতা মাতার জাতীয় পরিচয় পত্রের ফটোকপি</li>
-                        <li>অবশ্যই TC বা ছাড়পত্র লাগবে</li>
-                    </ul>
 
 
                     <h2 style='text-align:center;font-size: 20px;margin-top: 22px;'>ভর্তির নিয়ম</h2>
@@ -387,10 +370,44 @@ class resultController extends Controller
 
                     return $html;
 
+                }elseif($student->StudentStatus=='permited'){
+
+                    $html =  "
+                    <h2 style='font-size: 30px;text-align: center;color: green;margin-bottom: 10px;'>অভিনন্দন</h2>
+                    <h2 style='font-size: 22px;text-align: center;color: green;margin-bottom: 22px;'>আপনার আবেদনটি অনুমোদন করা হয়েছে এবং ভর্তি/সেশন ফি জমা হয়েছে। ভর্তি সম্পূর্ণ করতে উল্লেখিত কাগজপত্র নিয়ে বিদ্যালয়ে যোগাযোগ করুন</h2>
+
+
+
+                    <h2 style='text-align:center;font-size: 23px;margin-top: 22px;'>প্রয়োজনীয় কাগজপত্র</h2>
+
+                    <h2 style='font-size: 20px'>৬ষ্ঠ শ্রেণির জন্য</h2>
+                    <ul style='    list-style: circle !important;    padding: 0px 28px;'>
+                        <li>জন্মনিবন্ধনের ফটোকপি</li>
+                        <li>৫ম শ্রেণি পাশের মূল প্রশংসা পত্র </li>
+                        <li>পিতা মাতার জাতীয় পরিচয় পত্রের ফটোকপি</li>
+                        <li>ভর্তি/সেশন ফি এর রশিদ </li>
+                    </ul>
+
+                    <h2 style='font-size: 20px;margin-top: 22px;'>৭ম থেকে ৯ম শ্রেণির জন্য </h2>
+                    <ul style='    list-style: circle !important;    padding: 0px 28px;'>
+                        <li>জন্মনিবন্ধনের ফটোকপি</li>
+                        <li>৫ম শ্রেণি পাশের মূল প্রশংসা পত্র </li>
+                        <li>পিতা মাতার জাতীয় পরিচয় পত্রের ফটোকপি</li>
+                        <li>অবশ্যই TC বা ছাড়পত্র লাগবে</li>
+                        <li>ভর্তি/সেশন ফি এর রশিদ </li>
+                    </ul>
+
+
+
+
+                    ";
+
+
+                    return $html;
+
                 }elseif($student->StudentStatus=='Reject'){
 
                     return "
-
                     <h2 style='font-size: 30px;text-align: center;color: red;margin-bottom: 10px;'>দুঃখিত</h2>
                     <h2 style='font-size: 22px;text-align: center;color: red;margin-bottom: 22px;'>আপনার আবেদনটি বাতিল করা হয়েছে</h2>
 
