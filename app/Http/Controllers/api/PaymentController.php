@@ -527,7 +527,7 @@ class PaymentController extends Controller
             "trnx_currency" => "BDT",
             "trnx_id" => "$trnx_id"
         ];
-        // $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info);
+        $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info);
 
 
         if($type=='marksheet'){
