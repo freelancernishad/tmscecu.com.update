@@ -20,7 +20,10 @@ class resultController extends Controller
 
     public function addmissionResult()
     {
-
+        ini_set('max_execution_time', '60000');
+        ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+        ini_set('memory_limit', '12008M');
+        
         $students = student::where(['StudentStatus'=>'Approve'])->get();
         $studentsSix = student::where(['StudentStatus'=>'Approve','StudentClass'=>'Six'])->get();
         $studentsSeven = student::where(['StudentStatus'=>'Approve','StudentClass'=>'Seven'])->get();
