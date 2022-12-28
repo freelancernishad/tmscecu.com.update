@@ -1,6 +1,6 @@
 <template>
     <div class="container mt-5 mb-5">
-
+        <router-link style="float: right;padding: 0 31px;" :to="{ name: 'logout' }"><i class="flaticon-turn-off"></i>Logout</router-link>
         <table class="table">
 
             <thead>
