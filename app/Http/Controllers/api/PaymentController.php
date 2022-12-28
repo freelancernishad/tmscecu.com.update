@@ -444,7 +444,7 @@ class PaymentController extends Controller
 
             $paymentType = $payment->type;
 
-            if($student->StudentStatus=='Approve'){
+            if($student->StudentStatus=='permited'){
 
                 $paymentYear = $payment->year;
                  $previousStudentCount =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->count();
