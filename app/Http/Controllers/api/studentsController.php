@@ -80,7 +80,7 @@ class studentsController extends Controller
 
         if(!$class){
             $StudentStatus2 = $request->StudentStatus2;
-            return student::where('StudentStatus',$StudentStatus)->where('StudentStatus',$StudentStatus2)->get();
+            return student::where('StudentStatus',$StudentStatus)->orwhere('StudentStatus',$StudentStatus2)->get();
         }
 
         $group = $request->group;
