@@ -535,7 +535,7 @@ class PaymentController extends Controller
         $amountYear = date("Y");
         $paymentYear = $amountYear;
 
-        if($student->StudentStatus=='Approve'){
+        if($student->StudentStatus=='permited'){
             $paymentYear = $amountYear+1;
         }
 
