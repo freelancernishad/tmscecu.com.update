@@ -73,13 +73,20 @@ class studentsController extends Controller
 
     public function getStudents(Request $request)
     {
-        $StudentStatus = $request->StudentStatus;
+        $AdmissionID = $request->search;
 
+
+        $StudentStatus = $request->StudentStatus;
+        $StudentStatus2 = $request->StudentStatus2;
 
         $class = $request->class;
 
+        if($AdmissionID){
+            return student::where(['StudentStatus'=>$StudentStatus,'AdmissionID'=>$AdmissionID])->get();
+        }
+
         if(!$class){
-            $StudentStatus2 = $request->StudentStatus2;
+
             return student::where('StudentStatus',$StudentStatus)->orwhere('StudentStatus',$StudentStatus2)->get();
         }
 

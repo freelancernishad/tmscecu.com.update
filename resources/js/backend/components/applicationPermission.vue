@@ -1,6 +1,20 @@
 <template>
     <div class="container mt-5 mb-5">
         <router-link style="float: right;padding: 0 31px;" :to="{ name: 'logout' }"><i class="flaticon-turn-off"></i>Logout</router-link>
+
+
+
+        <div class="form-group">
+            <label for="">Application Id</label>
+            <input type="text" class="form-control" v-model="form.AdmissionID">
+        </div>
+
+        <div class="form-group">
+            <label for=""></label>
+            <button class="btn btn-info" @click="getStudent">Search</button>
+        </div>
+
+
         <table class="table">
 
             <thead>
@@ -45,12 +59,22 @@ export default {
 
     data(){
         return {
-            students:{}
+            students:{},
+            form:{
+                AdmissionID:''
+            }
         }
     },
     methods: {
         async getStudent(){
-            var res = await this.callApi('get',`/api/get/pending/student?StudentStatus=Approve&StudentStatus2=permited`,[]);
+            var search  = '';
+            if(this.form.AdmissionID) {
+                search = `&search=${this.form.AdmissionID}`
+            }
+
+
+
+            var res = await this.callApi('get',`/api/get/pending/student?StudentStatus=Approve&StudentStatus2=permited${search}`,[]);
             this.students = res.data
         },
 
