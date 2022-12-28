@@ -47,6 +47,8 @@
                             </select>
                         </div>
                     </div>
+
+
                     <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
                         <div class="form-group student_class">
                             <select class="form-control" style="width: 100%;" v-model="status" id="getthis" required>
@@ -74,6 +76,22 @@
                             </select>
                         </div>
                     </div>
+
+
+                    <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
+                        <div class="form-group student_class">
+                            <select class="form-control" style="width: 100%;" v-model="year" id="getthis" required>
+                                <option value="">SELECT</option>
+                                <option>{{ Nextyear }}</option>
+                                <option>{{ Currenyear }}</option>
+                                <option>{{ Peviousyear }}</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
                     <div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
                         <button type="submit" class="fw-btn-fill btn-gradient-yellow" @click="search">SEARCH</button>
                     </div>
@@ -253,6 +271,10 @@ export default {
             student_class: "All",
             status: "Active",
 
+
+            Nextyear: new Date().getFullYear()+1,
+            Currenyear: new Date().getFullYear(),
+            Peviousyear: new Date().getFullYear()-1,
             year: new Date().getFullYear(),
             timeout: null,
             allSelected: false,

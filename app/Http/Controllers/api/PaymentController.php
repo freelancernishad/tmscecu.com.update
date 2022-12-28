@@ -450,13 +450,11 @@ class PaymentController extends Controller
                  $previousStudentCount =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->count();
 
                 if($previousStudentCount>0){
-
                       $previousStudent =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->orderBy('StudentRoll','desc')->latest()->first();
                       $newRoll = $previousStudent->StudentRoll+1;
                 }else{
                     $newRoll = '1';
                 }
-
                 $StudentID = StudentId($student->StudentClass, $newRoll,$student->school_id,$student->StudentGroup,date("y", strtotime('01-01-'.$paymentYear)));
                 $student->update(['StudentRoll' => $newRoll,'StudentID' => $StudentID,'Year' => $paymentYear,'StudentStatus' => 'active']);
 
