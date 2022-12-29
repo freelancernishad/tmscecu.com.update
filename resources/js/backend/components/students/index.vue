@@ -204,7 +204,11 @@
                                     <td class="tablecolhide" v-if="$route.params.status=='Pending'">{{ dateformatGlobal(student.JoiningDate)[3] }}</td>
                                     <!-- <td class="tablecolhide">{{ student.StudentPhoneNumber }}</td> -->
                                     <td>
-                                        <div class="dropdown">
+
+                                        <button @click="studentView(student, index, $event.target)" class="btn btn-info"><i class="fas fa-eye"></i> View</button>
+                                        <router-link class="btn btn-success" :to="{ name: 'studentedit', params: { id: student.id } }"><i class="fas fa-cogs"></i> Edit</router-link>
+
+                                        <!-- <div class="dropdown">
                                             <button class="btn btn-info dropdown-toggle" type="button"
                                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
@@ -212,21 +216,27 @@
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-<!--
+
                                                 <a class="btn btn-info dropdown-item" target="_blank"
                                                     :href="'/dashboard/student/card/single/' + student.id + '/' + student.school_id" ><i class="fas fa-card"></i> Card</a>
- -->
+
 
 
                                                 <router-link class="btn btn-info dropdown-item"
                                                     :to="{ name: 'studentview', params: { id: student.id } }"><i
                                                         class="fas fa-eye"></i>
                                                     View</router-link>
+
+
+
                                                 <router-link class="btn btn-success dropdown-item"
                                                     :to="{ name: 'studentedit', params: { id: student.id } }"><i
                                                         class="fas fa-cogs"></i> Edit</router-link>
                                             </div>
-                                        </div>
+                                        </div> -->
+
+
+
                                     </td>
                                 </tr>
                             </tbody>
@@ -242,6 +252,185 @@
     <modal name="imageupload">
         This is my first modal
     </modal> -->
+
+    <b-modal :id="infoModal.id" size="lg" :title="infoModal.title" >
+
+
+        <div class="rootContainer">
+
+<div class="headerSection">
+
+    <table width='100%' style='margin-bottom:20px' border='0'>
+        <tr>
+            <td width='110px' style='border:0 !important'>
+                <img width='75px'  style='overflow:hidden;float:right' :src='$asseturl+schoolSettings.logo' alt=''>
+            </td>
+            <td style='border:0 !important;padding-left: 15px;'>
+                <p class='fontsize2' style='font-size:30px;    margin-bottom: -10px;'> {{ schoolSettings.SCHOLL_NAME }} </p>
+                <p class='fontsize1' style='font-size:20px;margin-bottom: 2px;'> {{ schoolSettings.SCHOLL_ADDRESS }}  </p>
+                <p class='fontsize1' style='font-size:12px;margin-bottom: 2px;'>website: www.tepriganjhighschool.edu.bd </p>
+            </td>
+            <td style='border:0 !important'>
+                <label for="fileupload" id="fileChoiceLable">
+            <img style="    width: 150px;" :src="$asseturl+infoModal.content.StudentPicture"  alt="" />
+        </label>
+            </td>
+
+
+        </tr>
+    </table>
+
+
+
+
+    <a target="_blank" :href="'/dashboard/student/info/download/'+infoModal.content.id" class="btn btn-info">Download</a>
+
+
+    <table class="tableTag" width="100%" border="" style="margin-top:20px ;margin-bottom:20px ;">
+
+        <tr>
+            <th>শ্রেণিঃ {{ infoModal.content.StudentClass }}</th>
+            <th>ধর্মঃ {{ infoModal.content.StudentReligion }}</th>
+            <th>লিঙ্গঃ {{ infoModal.content.StudentGender }}</th>
+            <th>গ্রুপঃ  <span v-if="infoModal.content.StudentClass=='Nine' || infoModal.content.StudentClass=='Ten'">{{ infoModal.content.StudentGroup }}</span> <span v-else>N/A</span> </th>
+        </tr>
+
+        <tr>
+            <th>শিক্ষার্থীর নাম (বাংলা) </th>
+            <th>শিক্ষার্থীর নাম (English) </th>
+            <th>শিক্ষার্থীর জন্ম তারিখ </th>
+            <th>শিক্ষার্থীর জন্ম নিবন্ধন নং </th>
+
+        </tr>
+        <tr>
+            <td> {{ infoModal.content.StudentName }}</td>
+            <td style="text-transform:uppercase"> {{ infoModal.content.StudentNameEn }}</td>
+            <td> {{ dateformatGlobal(infoModal.content.StudentDateOfBirth)[3] }}</td>
+            <td> {{ infoModal.content.StudentBirthCertificateNo }}</td>
+
+        </tr>
+        <tr>
+            <th>পিতার নাম (বাংলা) </th>
+            <th>পিতার নাম (English) </th>
+            <th>পিতার জাতীয় পরিচয়পত্র নং </th>
+            <th>পিতার জন্ম নিবন্ধন নং </th>
+
+        </tr>
+        <tr>
+            <td>{{ infoModal.content.StudentFatherNameBn }}</td>
+            <td style="text-transform:uppercase">{{ infoModal.content.StudentFatherName }}</td>
+            <td>{{ infoModal.content.StudentFatherNid }}</td>
+            <td>{{ infoModal.content.StudentFatherBCN }}</td>
+
+        </tr>
+        <tr>
+            <th>মাতার নাম (বাংলা) </th>
+            <th>মাতার নাম (English) </th>
+            <th>মাতার জাতীয় পরিচয়পত্র নং </th>
+            <th>মাতার জন্ম নিবন্ধন নং </th>
+
+        </tr>
+        <tr>
+            <td>{{ infoModal.content.StudentMotherNameBn }}</td>
+            <td style="text-transform:uppercase">{{ infoModal.content.StudentMotherName }}</td>
+            <td>{{ infoModal.content.StudentMotherNid }}</td>
+            <td>{{ infoModal.content.StudentMotherBCN }}</td>
+
+        </tr>
+
+        <tr>
+            <th>পিতা/মাতা জীবিত না থাকলে অভিভাবকের নাম (বাংলা)</th>
+            <th>অভিভাবকের নাম (English) </th>
+            <th>অভিভাবকের জাতীয় পরিচয়পত্র নং </th>
+            <th>অভিভাবকের সাথে শিক্ষার্থীর সম্পর্ক </th>
+        </tr>
+        <tr>
+            <td>{{ infoModal.content.guardNameBn }}</td>
+            <td style="text-transform:uppercase">{{ infoModal.content.guardName }}</td>
+            <td>{{ infoModal.content.guardNid }}</td>
+            <td >{{ infoModal.content.guardRalation }}</td>
+
+        </tr>
+        <tr>
+            <th>অভিভাবকের পেশা</th>
+
+
+            <td colspan="3">{{ infoModal.content.StudentFatherOccupation }}</td>
+        </tr>
+        <tr>
+            <th>অভিভাবকের মাসিক আয়</th>
+
+
+            <td colspan="3">{{ infoModal.content.parentEarn }}</td>
+        </tr>
+        <tr>
+            <th>মোবাইল নাম্বার</th>
+
+
+            <td colspan="3">{{ infoModal.content.StudentPhoneNumber }}</td>
+        </tr>
+
+        <tr>
+            <th colspan="2">শিক্ষার্থীর ধরন</th>
+            <th colspan="2">শিক্ষার্থীর কোটা</th>
+
+        </tr>
+        <tr>
+            <td colspan="2">{{ infoModal.content.StudentCategory }}</td>
+            <td colspan="2">{{ infoModal.content.StudentKota }}</td>
+
+
+        </tr>
+
+        <tr>
+            <th colspan="2">পূর্বে অধ্যায়নরত স্কুল এর নাম</th>
+            <th colspan="2">পূর্বে অধ্যায়নরত শ্রেণি</th>
+
+        </tr>
+        <tr>
+            <td colspan="2">{{ infoModal.content.preSchool }}</td>
+            <td colspan="2">{{ infoModal.content.preClass }}</td>
+        </tr>
+
+
+
+        <tr>
+            <th>কোন ভাই/বোন অত্র প্রতিষ্ঠানে অধ্যয়নরত কি না</th>
+            <th>অধ্যয়নরত ভাই/বোনের নাম</th>
+            <th>অধ্যয়নরত ভাই/বোনের শ্রেণি</th>
+            <th>অধ্যয়নরত ভাই/বোনের রোল</th>
+        </tr>
+        <tr>
+            <td>{{ infoModal.content.bigBroSis }}</td>
+            <td>{{ infoModal.content.bigBroSisName }}</td>
+            <td>{{ infoModal.content.bigBroSisClass }}</td>
+            <td>{{ infoModal.content.bigBroSisRoll }}</td>
+
+        </tr>
+        <tr>
+            <th>ঠিকানা</th>
+            <td colspan="3">বিভাগঃ- {{ infoModal.content.division }}, জেলাঃ- {{ infoModal.content.district }}, উপজেলাঃ- {{ infoModal.content.upazila }}, ইউনিয়নঃ- {{ infoModal.content.union }}, পোস্ট অফিসঃ- {{ infoModal.content.post_office }}({{ infoModal.content.AreaPostalCode }}), গ্রামঃ- {{ infoModal.content.StudentAddress }}</td>
+        </tr>
+
+
+    </table>
+
+
+
+</div>
+
+</div>
+
+            <template #modal-footer>
+<div></div>
+      </template>
+        </b-modal>
+
+
+
+
+
+
     </div>
 </template>
 <script>
@@ -292,29 +481,28 @@ export default {
             RouteParams:{},
             pageNO: 1,
 
+            infoModal: {
+                id: 'info-modal',
+                title: '',
+                content: {},
+                content_id: '',
+            },
+
+
+
         }
     },
     watch: {
         '$route': {
             handler(newValue, oldValue) {
-
-
-
                 if(this.$route.params.classname && this.$route.params.status){
                     this.student_class = this.$route.params.classname
                     this.status = this.$route.params.status
-
-
                 }else{
                     this.student_class = "All"
                     this.status = "Active"
-
                 }
-
-
                 this.allstudents()
-
-
             },
             deep: true
         }
@@ -490,7 +678,25 @@ export default {
                         })
                 }
             })
+        },
+
+
+
+
+        studentView(item, index, button){
+
+            // this.infoModal.title = `${item.applicant_name}`
+            this.infoModal.content = item
+
+
+            // console.log(item)
+
+
+            this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+
+
         }
+
 
 
 
@@ -503,7 +709,7 @@ export default {
 }
 </script>
 </script>
-<style lang="css" scoped>
+<style lang="css" >
 #img_size {
     width: 40px;
 }
@@ -527,4 +733,52 @@ export default {
     width: 150px;
     height: 150px;
 }
+
+
+
+
+.fileUpload {
+    width: 195px;
+    height: 195px;
+    border: 1px solid;
+	position: absolute;
+    top: 0;
+    right: 0;
+}
+#fileChoiceLable{
+	width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
+
+        .rootContainer {
+            margin: 25px;
+            border: 1px solid;
+            padding: 5px 21px;
+        }
+        .tableTag, .tableTag td, .tableTag th {
+            border: 1px solid;
+            border-collapse: collapse;
+            padding: 3px 7px;
+        }
+        td.tableRowHead {
+            background: #d1d1d1;
+        }
+
+        td {
+            height: 20px;
+        }
+
+
+        .modal-backdrop {
+            background-color: #0000007d !important;
+        }
+
+
 </style>

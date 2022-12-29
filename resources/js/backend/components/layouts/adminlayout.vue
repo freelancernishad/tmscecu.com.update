@@ -341,8 +341,11 @@
 </template>
 <script>
 export default {
-    props: ['user','classesList'],
+    props: ['user','classesList','school_detials'],
     async created() {
+
+        this.$store.commit('setschoolinfo', this.school_detials)
+
         // console.log(this.classesList)
         if (!User.loggedIn()) {
             window.location.href = '/login'

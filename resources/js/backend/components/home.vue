@@ -582,7 +582,7 @@ export default {
 
         totalearn() {
             axios
-                .get(`/api/students/payments?filter[year]=${this.year}&filter[school_id]=${this.school_id}&datatype=count`)
+                .get(`/api/students/payments?filter[school_id]=${this.school_id}&datatype=count`)
                 .then(({ data }) => (this.totalearns = data))
                 .catch();
         },

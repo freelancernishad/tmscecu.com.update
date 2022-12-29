@@ -200,6 +200,22 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
          }
 
     });
+
+    Route::get('/student/info/download/{id}', function (Request $request,$id) {
+        $student = student::find($id);
+        $pdfFileName = $student->StudentNameEn.'.pdf';
+        $school_id = $student->school_id;
+        $schoolDetails = school_detail::where('school_id',$school_id)->first();
+        // return view('admin/pdfReports.studentInfo',compact('student','pdfFileName','schoolDetails'));
+        return PdfMaker('A4',$school_id,view('admin/pdfReports.studentInfo',compact('student','pdfFileName','schoolDetails')),$pdfFileName);
+
+    });
+
+
+
+
+
+
     Route::post('/results/publish/list', [resultController::class, 'ResultPublish']);
     Route::get('/results/promotion/{school_id}/{student_class}/{group}/{examType}/{year}', function ($school_id, $student_class, $group, $examType, $year) {
         $filter = [
@@ -239,7 +255,14 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         //   Auth::user()->roles;
         $roles = Role::all();
         $classess = json_encode(['Six', 'Seven', 'Eight', 'Nine', 'Ten']);
-        return view('layout', compact('roles', 'classess'));
+
+        $school_id = '125983';
+        $school_detials = school_detail::where("school_id", "$school_id")->first();
+        $school_detials['slider'] =  json_decode($school_detials->slider);
+
+
+
+        return view('layout', compact('roles', 'classess','school_detials'));
     })->where('vue_capture', '.*')->name('dashboard');
 });
 Route::get('/{vue_capture?}', function () {

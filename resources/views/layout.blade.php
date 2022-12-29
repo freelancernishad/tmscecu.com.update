@@ -160,7 +160,7 @@ li.page-item.active button {
     ?>
 
     <div id="app">
-        <component :is="$route.meta.layout || 'div'"   :user="{{Auth::user()}}"   :classes-list="{{ $classess }}">
+        <component :is="$route.meta.layout || 'div'"   :user="{{Auth::user()}}"   :classes-list="{{ $classess }}" :school_detials="{{ $school_detials }}">
             <router-view />
           </component>
 
@@ -169,7 +169,7 @@ li.page-item.active button {
 
 
 
-<script src="{{ asset('js/backend.js?ver=1.1.77') }}"></script>
+<script src="{{ asset('js/backend.js?ver=1.1.78') }}"></script>
 
 
 
