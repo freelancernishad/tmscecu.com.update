@@ -464,9 +464,14 @@ class PaymentController extends Controller
 
             // }
 
+            $group = 'Humanities';
+            if($student->StudentClass=='Nine' || $student->StudentClass=='Ten'){
+                $group = $student->StudentGroup;
+
+            }
 
             if($student->StudentStatus=='Approve'){
-                $student->update(['StudentStatus' => 'permited']);
+                $student->update(['StudentStatus' => 'permited','StudentGroup'=>$group]);
             }
 
             if($paymentType=='Admission_fee'){
