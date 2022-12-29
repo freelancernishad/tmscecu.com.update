@@ -38,7 +38,7 @@ class studentsController extends Controller
 
         }
 
-
+        $student->update(['StudentGroup' => $group]);
 
 
 
