@@ -61,7 +61,7 @@ class resultController extends Controller
 
         $filter = [
             'class' => $request->class,
-            'year' => $request->year,'studentsSix',
+            'year' => $request->year,
             'exam_name' => $request->exam_name,
             'class_group' => $group,
         ];
