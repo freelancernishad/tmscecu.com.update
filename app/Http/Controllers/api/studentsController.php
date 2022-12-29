@@ -114,7 +114,7 @@ class studentsController extends Controller
         }
 
         if(!$class){
-            return student::where('StudentStatus',$StudentStatus)->get();
+            return student::where('StudentStatus',$StudentStatus)->orderBy('updated_at','desc')->get();
         }
 
         $group = $request->group;
