@@ -141,6 +141,12 @@ class PaymentController extends Controller
                         $AdmissionID = $student->AdmissionID;
                         $StudentClass = $student->StudentClass;
                         $studentid = $student->id;
+                    }elseif($ApliedStudent->StudentStatus=='permited'){
+                        $StudentStatus = 'permited';
+                        $student = student::where(['AdmissionID' => $adminssionId,'StudentStatus'=>$StudentStatus])->latest()->first();
+                        $AdmissionID = $student->AdmissionID;
+                        $StudentClass = $student->StudentClass;
+                        $studentid = $student->id;
                     }elseif($ApliedStudent->StudentStatus=='Reject'){
                         $message = 'এপ্লিকেশনটি বাতিল করা হয়েছে';
                     }elseif($ApliedStudent->StudentStatus=='Pending'){
