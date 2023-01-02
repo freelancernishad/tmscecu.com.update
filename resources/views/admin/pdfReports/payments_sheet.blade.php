@@ -15,12 +15,12 @@
     .td{
         border: 1px dotted black;
         padding:4px 10px;
-        font-size: 15px;
+        font-size: 11px;
     }
        th{
         border: 1px dotted black;
         padding:4px 10px;
-        font-size: 15px;
+        font-size: 11px;
     }
 
     .li{
@@ -65,6 +65,7 @@
                         <th scope="col">নাম</th>
 
 
+                            <th scope="col" >সে.ফি</th>
                             <th scope="col" >{{ month_en_to_bn('January') }}</th>
                             <th scope="col" >{{ month_en_to_bn('February') }}</th>
                             <th scope="col" >{{ month_en_to_bn('March') }} </th>
@@ -100,6 +101,21 @@
     $studentId = $row->StudentID;
 
     $PDO = \DB::connection()->getPdo();
+
+
+//session_fee
+$session_fee_QUERY = $PDO->prepare("SELECT DISTINCT * FROM `payments` WHERE `studentId`='$studentId' && `studentClass`='$class' && `year`='$year' && `type`='session_fee'");
+$session_fee_QUERY->execute();
+ $session_fee_count = $session_fee_QUERY->rowCount();
+$session_fee_fetch=$session_fee_QUERY->fetchAll(PDO::FETCH_OBJ);
+if($session_fee_count>0){
+    $session_fee_amount= $session_fee_fetch[0]->amount;
+
+}else{
+    $session_fee_amount = 0;
+}
+
+
 
 
 //January
@@ -265,6 +281,7 @@ $totalAmount = $January_amount+$February_amount+$March_amount+$April_amount+$May
                             <tr>
                                 <th scope="col">{{ int_en_to_bn($row->StudentRoll) }}</th>
                                 <th scope="col">{{ $row->StudentName }}</th>
+                                <th scope="col" >{{ int_en_to_bn($session_fee_amount) }}</th>
                                 <th scope="col" >{{ int_en_to_bn($January_amount) }}</th>
                                 <th scope="col" >{{ int_en_to_bn($February_amount) }}</th>
                                 <th scope="col" > {{ int_en_to_bn($March_amount) }}</th>

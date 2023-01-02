@@ -50,6 +50,7 @@
                                 <option value="session_fee">ভর্তি/সেশন ফি</option>
                                 <option value="monthly_fee">মাসিক বেতন</option>
                                 <option value="exam_fee">পরীক্ষার ফি</option>
+                                <option value="marksheet">মার্কশীট</option>
                                 <option value="registration_fee">রেজিস্ট্রেশন ফি</option>
                                 <option value="form_filup_fee">ফরম পূরণ ফি</option>
                             </select>
