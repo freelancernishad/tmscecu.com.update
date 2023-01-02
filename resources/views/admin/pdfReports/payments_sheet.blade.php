@@ -61,24 +61,24 @@
 
                     <tr class="bg-tomato">
 
-                        <th scope="col">রোল</th>
-                        <th scope="col">নাম</th>
+                        <th scope="col" width="5%">রোল</th>
+                        <th scope="col" width="20%">নাম</th>
 
 
-                            <th scope="col" >সে.ফি</th>
-                            <th scope="col" >{{ month_en_to_bn('January') }}</th>
-                            <th scope="col" >{{ month_en_to_bn('February') }}</th>
-                            <th scope="col" >{{ month_en_to_bn('March') }} </th>
-                            <th scope="col" >{{ month_en_to_bn('April') }} </th>
-                            <th scope="col" >{{ month_en_to_bn('May') }} </th>
-                            <th scope="col" >{{ month_en_to_bn('June') }} </th>
-                            <th scope="col" >{{ month_en_to_bn('July') }}</th>
-                            <th scope="col" >{{ month_en_to_bn('August') }}</th>
-                            <th scope="col" >{{ month_en_to_bn('September') }}</th>
-                            <th scope="col" >{{ month_en_to_bn('October') }}</th>
-                            <th scope="col" >{{ month_en_to_bn('November') }}</th>
-                            <th scope="col" >{{ month_en_to_bn('December') }} </th>
-                            <th scope="col" >মোট </th>
+                            <th scope="col" width="5%">সে.ফি</th>
+                            <th scope="col" width="5%">{{ month_en_to_bn('January') }}</th>
+                            <th scope="col" width="5%">{{ month_en_to_bn('February') }}</th>
+                            <th scope="col" width="5%">{{ month_en_to_bn('March') }} </th>
+                            <th scope="col" width="5%">{{ month_en_to_bn('April') }} </th>
+                            <th scope="col" width="5%">{{ month_en_to_bn('May') }} </th>
+                            <th scope="col" width="5%">{{ month_en_to_bn('June') }} </th>
+                            <th scope="col" width="5%">{{ month_en_to_bn('July') }}</th>
+                            <th scope="col" width="5%">{{ month_en_to_bn('August') }}</th>
+                            <th scope="col" width="5%">{{ month_en_to_bn('September') }}</th>
+                            <th scope="col" width="5%">{{ month_en_to_bn('October') }}</th>
+                            <th scope="col" width="5%">{{ month_en_to_bn('November') }}</th>
+                            <th scope="col" width="5%">{{ month_en_to_bn('December') }} </th>
+                            <th scope="col" width="5%">মোট </th>
 
 
 
