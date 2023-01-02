@@ -105,7 +105,7 @@
 
 
 //session_fee
-$session_fee_QUERY = $PDO->prepare("SELECT DISTINCT * FROM `payments` WHERE `studentId`='$studentId' && `admissionId`='$admissionId' && `year`='$year' && `type`='session_fee'");
+$session_fee_QUERY = $PDO->prepare("SELECT DISTINCT * FROM `payments` WHERE `admissionId`='$admissionId' && `studentClass`='$class' && `year`='$year' && `type`='session_fee'");
 $session_fee_QUERY->execute();
  $session_fee_count = $session_fee_QUERY->rowCount();
 $session_fee_fetch=$session_fee_QUERY->fetchAll(PDO::FETCH_OBJ);
