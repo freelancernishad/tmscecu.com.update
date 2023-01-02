@@ -275,7 +275,7 @@ if($December_count>0){
 }
 
 
-$totalAmount = $January_amount+$February_amount+$March_amount+$April_amount+$May_amount+$June_amount+$July_amount+$August_amount+$September_amount+$October_amount+$November_amount+$December_amount;
+$totalAmount = $session_fee_amount+$January_amount+$February_amount+$March_amount+$April_amount+$May_amount+$June_amount+$July_amount+$August_amount+$September_amount+$October_amount+$November_amount+$December_amount;
 
 @endphp
 
