@@ -13,12 +13,12 @@
             text-align:center;
         }
     .td{
-        border: 1px dotted black;
+        border: 1px solid black;
         padding:4px 10px;
         font-size: 11px;
     }
        th{
-        border: 1px dotted black;
+        border: 1px solid black;
         padding:4px 10px;
         font-size: 11px;
     }
@@ -34,7 +34,7 @@
 		width:100%
 	}
     .result{
-        border-bottom: 1px dotted black;
+        border-bottom: 1px solid black;
         margin-left:10px !important;
     }
     </style>
