@@ -327,8 +327,8 @@ $totalAmount = $January_amount+$February_amount+$March_amount+$April_amount+$May
                 <img width="75px" src="{{ $sign }}" alt="">
 
 
-                    <h3 style="margin:0;text-align:center;">স্বাক্ষর</h3>
-                    <h4 style="margin:0;text-align:center;font-size:16px">অধ্যক্ষ</h4>
+
+                    <h4 style="margin:0;text-align:center;font-size:16px">প্রধান শিক্ষক</h4>
                     <h4 style="margin:0;text-align:center;font-size:16px">{{ sitedetails()->Principals_name}}</h4>
                     <h4 style="margin:0;text-align:center;font-size:16px">{{ sitedetails()->SCHOLL_NAME}}</h4>
                 </td>
