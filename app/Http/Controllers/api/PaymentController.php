@@ -446,30 +446,10 @@ class PaymentController extends Controller
                 'method' => $data['pi_det_info']['pi_name'],
             ];
 
-            // smsSend("Dear ".strtoupper($student->StudentNameEn).",Your Admission Fee has been Paid.Please Wait for Admission Result.Your Application Id- $student->AdmissionID",$student->StudentPhoneNumber);
+
 
             $paymentType = $payment->type;
-
-            // if($student->StudentStatus=='permited'){
-
-            //     $paymentYear = $payment->year;
-            //      $previousStudentCount =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->count();
-
-            //     if($previousStudentCount>0){
-            //           $previousStudent =  student::where(['StudentClass'=>$student->StudentClass,'Year'=>$paymentYear,'StudentGroup'=>$student->StudentGroup])->orderBy('StudentRoll','desc')->latest()->first();
-            //           $newRoll = $previousStudent->StudentRoll+1;
-            //     }else{
-            //         $newRoll = '1';
-            //     }
-            //     $StudentID = StudentId($student->StudentClass, $newRoll,$student->school_id,$student->StudentGroup,date("y", strtotime('01-01-'.$paymentYear)));
-
-            //     $student->update(['StudentRoll' => $newRoll,'StudentID' => $StudentID,'Year' => $paymentYear,'StudentStatus' => 'active']);
-
-            //     $Insertdata['studentRoll'] = $newRoll;
-            //     $Insertdata['studentId'] = $StudentID;
-
-            // }
-
+            // return paymentKhat($paymentType);
             $group = 'Humanities';
             if($student->StudentClass=='Nine' || $student->StudentClass=='Ten'){
                 $group = $student->StudentGroup;
@@ -482,6 +462,15 @@ class PaymentController extends Controller
 
             if($paymentType=='Admission_fee'){
                 $student->update(['StudentStatus' => 'Pending']);
+                SmsNocSmsSend("Dear ".strtoupper($student->StudentNameEn).",Your Admission Fee has been Paid.Please Wait for Admission Result.Your Application Id- $student->AdmissionID",$student->StudentPhoneNumber);
+            }else{
+
+                if($paymentType=='monthly_fee'){
+                    SmsNocSmsSend("$student->StudentName  এর ". month_en_to_bn($payment->month) ." মাসের বেতন ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
+                }else{
+                    SmsNocSmsSend("$student->StudentName এর ". paymentKhat($paymentType) ." ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
+                }
+
             }
 
 

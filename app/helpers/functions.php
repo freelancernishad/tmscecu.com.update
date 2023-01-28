@@ -250,6 +250,25 @@ function subjectCol($subject)
     }
 
 
+   function paymentKhat($name){
+        if($name=='Admission_fee'){
+            return 'ভর্তি ফরম ফি';
+        }elseif($name=='session_fee'){
+            return 'ভর্তি/সেশন ফি';
+        }elseif($name=='monthly_fee'){
+            return 'মাসিক বেতন';
+        }elseif($name=='exam_fee'){
+            return 'পরীক্ষার ফি';
+
+        }elseif($name=='registration_fee'){
+            return 'রেজিস্ট্রেশন ফি';
+        }elseif($name=='form_filup_fee'){
+            return 'ফরম পূরণ ফি';
+        }elseif($name=='marksheet'){
+            return 'মার্কসীট ফি';
+        }
+
+    }
 
 
 function int_en_to_bn($number)
@@ -1378,7 +1397,6 @@ try {
 
 function smsSend($deccription = '', $applicant_mobile = '01909756552')
 {
-
     $messages = array();
     array_push(
         $messages,
@@ -1393,7 +1411,43 @@ function smsSend($deccription = '', $applicant_mobile = '01909756552')
     } catch (Exception $e) {
         array_push($responsemessege, $e->getMessage());
     }
+}
 
+
+function SmsNocSmsSend($deccription = '', $applicant_mobile = '01909756552')
+{
+
+    $smsnocapikey = env('SMSNOCAPYKEY');
+    $smsnocsenderid = env('SMSNOCSENDERID');
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://app.smsnoc.com/api/v3/sms/send',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS =>'{
+"recipient":"88'.$applicant_mobile.'",
+"sender_id":"'.$smsnocsenderid.'",
+"type":"plain",
+"message":"'.$deccription.'"
+}',
+  CURLOPT_HTTPHEADER => array(
+    'Content-Type: application/json',
+    'Accept: application/json',
+    'Authorization: Bearer '.$smsnocapikey.''
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
 
 }
 
