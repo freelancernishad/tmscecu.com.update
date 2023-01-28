@@ -1020,7 +1020,6 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
         $created_at  = date("d-m-Y",strtotime($payment->date));
         $studentClass  = $payment->studentClass;
         $studentRoll  = $payment->studentRoll;
-        $studentRoll  = $payment->studentRoll;
         $StudentName  = $student->StudentName;
         $StudentFatherName  = $student->StudentFatherNameBn;
         $mobile_no  = $student->StudentPhoneNumber;
