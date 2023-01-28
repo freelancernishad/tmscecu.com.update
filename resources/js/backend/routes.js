@@ -28,6 +28,8 @@ let students_attendance_daily = require('./components/students/attendance/daily.
 let students_attendance_edit = require('./components/students/attendance/edit.vue').default;
 let students_attendance_monthly = require('./components/students/attendance/monthly.vue').default;
 
+let setGroup = require('./components/students/setGroup.vue').default;
+
 
 // Staffs Components
 let staffs = require('./components/staffs/index.vue').default;
@@ -157,6 +159,8 @@ export const routes = [
 
 
   // students Routes
+  { path: `${prefix}/setGroup`, component: setGroup, name:'setGroup',meta: { layout: adminlayout } },
+
   { path: `${prefix}/students`, component: students, name:'students',meta: { layout: adminlayout } },
   { path: `${prefix}/students/reports`, component: studentsReports, name:'studentsReports',meta: { layout: adminlayout } },
   { path: `${prefix}/students/image/:id`, component: studentimage, name:'studentImage',meta: { layout: adminlayout } },

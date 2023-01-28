@@ -161,8 +161,47 @@ Route::get('/pdf/{school_id}/{class}/{roll}/{year}/{exam}/{group}', [frontendCon
 
 Route::get('/marksheet/{marksheetCode}', [frontendController::class, 'PublicMarkSheet']);
 
+
 Route::get('/routines/{school_id}/{class}/{year}/download', [RoutineController::class, 'routine_download'])->name('routines.routine_download');
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
+
+
+
+    Route::post('/set/group', function (Request $request) {
+
+        // return $request->all();
+        foreach ($request->AdmissionID as $value) {
+
+
+            $StudentRoll = $request->StudentRoll[$value];
+            $StudentGroup = $request->StudentGroup[$value];
+            $StudentSubject = $request->StudentSubject[$value];
+
+           $updatedata = [
+            'StudentRoll'=>$StudentRoll,
+            'StudentGroup'=>$StudentGroup,
+            'StudentSubject'=>$StudentSubject,
+           ];
+
+           $GetStudent = student::where(['AdmissionID'=>$value])->first();
+           $GetStudent->update($updatedata);
+
+        }
+        return redirect()->back();
+
+    });
+
+    Route::get('/set/group', function (Request $request) {
+
+        $HumanitiesStudnets = student::where(['StudentClass'=>'Nine','StudentGroup'=>'Humanities','Year'=>date('Y'),'StudentStatus'=>'Active'])->orderBy('StudentRoll','asc')->get();
+        $ScienceStudnets = student::where(['StudentClass'=>'Nine','StudentGroup'=>'Science','Year'=>date('Y'),'StudentStatus'=>'Active'])->orderBy('StudentRoll','asc')->get();
+
+        $students = student::where(['StudentClass'=>'Nine','Year'=>date('Y'),'StudentStatus'=>'Active'])->orderBy('StudentRoll','asc')->get();
+
+        return view('groupset',compact('HumanitiesStudnets','ScienceStudnets','students'));
+    });
+
+
     Route::get('/results/publish/{school_id}/{student_class}/{group}/{examType}/{year}', function (Request $request,$school_id, $student_class, $group, $examType, $year) {
         $filter = [
             'school_id' => $school_id,

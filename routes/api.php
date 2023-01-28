@@ -109,7 +109,10 @@ Route::post('/school/settings/submit',[SchoolDetailController::class , 'school_u
 //student routes
 Route::post('/students/reports',[studentsController::class , 'reports']);
 Route::get('/students/all/reports',[studentsController::class , 'allReports']);
+
 Route::get('/students/list',[studentsController::class , 'list']);
+
+Route::get('/students/for/change/group',[studentsController::class , 'listforGroup']);
 
 Route::get('/get/pending/student',[studentsController::class , 'getStudents']);
 

@@ -25,6 +25,11 @@ class studentsController extends Controller
 {
 
 
+    public function listforGroup(Request $request)
+    {
+        $StudentClass = $request->StudentClass;
+       return $HumanitiesStudnets = student::where(['StudentClass'=>$StudentClass,'Year'=>date('Y'),'StudentStatus'=>'Active'])->orderBy('StudentRoll','asc')->get();
+    }
 
 
     public function permissionAction(Request $request)
