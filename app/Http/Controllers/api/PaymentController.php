@@ -810,7 +810,7 @@ class PaymentController extends Controller
         ];
         $redirectutl = ekpayToken($trnx_id, $trns_info, $cust_info);
 
-$redirectutl ='';
+// $redirectutl ='';
         if($type=='marksheet'){
             $studentId = $resultId;
         }else{
