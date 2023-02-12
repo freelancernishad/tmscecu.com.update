@@ -271,6 +271,27 @@ function subjectCol($subject)
     }
 
 
+   function paymentKhaten($name){
+        if($name=='ভর্তি ফরম ফি'){
+            return 'Admission_fee';
+        }elseif($name=='ভর্তি/সেশন ফি'){
+            return 'session_fee';
+        }elseif($name=='মাসিক বেতন'){
+            return 'monthly_fee';
+        }elseif($name=='পরীক্ষার ফি'){
+            return 'exam_fee';
+
+        }elseif($name=='রেজিস্ট্রেশন ফি'){
+            return 'registration_fee';
+        }elseif($name=='ফরম পূরণ ফি'){
+            return 'form_filup_fee';
+        }elseif($name=='মার্কসীট ফি'){
+            return 'marksheet';
+        }
+
+    }
+
+
 function int_en_to_bn($number)
 {
 
@@ -305,6 +326,16 @@ function month_en_to_bn($month)
 
 
     return str_replace($en_month, $bn_month, $month);
+}
+
+function month_bn_to_en($month)
+{
+
+    $bn_month = array('জানুয়ারি', 'ফেব্রুয়ারী', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগষ্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর');
+    $en_month = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+
+
+    return str_replace($bn_month,$en_month, $month);
 }
 function exam_en_to_bn($month)
 {
