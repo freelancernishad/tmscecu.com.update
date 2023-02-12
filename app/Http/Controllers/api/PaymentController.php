@@ -420,6 +420,8 @@ class PaymentController extends Controller
                 $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
                 }elseif($paidPayment->type=='marksheet'){
                 $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
+                }elseif($paidPayment->type=='Admission_fee'){
+                $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
                 }else{
                     $paymentHtml .="<td>".month_en_to_bn($paidPayment->month)."</td>";
                 }
