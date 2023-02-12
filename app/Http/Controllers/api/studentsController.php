@@ -1322,31 +1322,31 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
                                 </tr>
 
                                 <tr class='tr items'>
-                                <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                                <td class='td  defaltfont'>".int_en_to_bn(2)."</td>
                                 <td class='td  defaltfont'>ভর্তি/সেশন ফি</td>
                                 <td class='td  defaltfont'>".int_en_to_bn($sessionFee)."</td>
                                 </tr>
 
                                 <tr class='tr items'>
-                                <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                                <td class='td  defaltfont'>".int_en_to_bn(3)."</td>
                                 <td class='td  defaltfont'>মাসিক বেতন  ($monthname)</td>
                                 <td class='td  defaltfont'>".int_en_to_bn($monthlyAmount)."</td>
                                 </tr>
 
                                 <tr class='tr items'>
-                                <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                                <td class='td  defaltfont'>".int_en_to_bn(4)."</td>
                                 <td class='td  defaltfont'>পরীক্ষার ফি</td>
                                 <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
                                 </tr>
 
                                 <tr class='tr items'>
-                                <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                                <td class='td  defaltfont'>".int_en_to_bn(5)."</td>
                                 <td class='td  defaltfont'>রেজিস্ট্রেশন ফি</td>
                                 <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
                                 </tr>
 
                                 <tr class='tr items'>
-                                <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                                <td class='td  defaltfont'>".int_en_to_bn(6)."</td>
                                 <td class='td  defaltfont'>ফরম পূরণ ফি</td>
                                 <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
                                 </tr>
@@ -1581,31 +1581,31 @@ $AdmissionID = (string)StudentAdmissionId('',$school_id);
                             </tr>
 
                             <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                            <td class='td  defaltfont'>".int_en_to_bn(2)."</td>
                             <td class='td  defaltfont'>ভর্তি/সেশন ফি</td>
                             <td class='td  defaltfont'>".int_en_to_bn($sessionFee)."</td>
                             </tr>
 
                             <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                            <td class='td  defaltfont'>".int_en_to_bn(3)."</td>
                             <td class='td  defaltfont'>মাসিক বেতন  ($monthname)</td>
                             <td class='td  defaltfont'>".int_en_to_bn($monthlyAmount)."</td>
                             </tr>
 
                             <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                            <td class='td  defaltfont'>".int_en_to_bn(4)."</td>
                             <td class='td  defaltfont'>পরীক্ষার ফি</td>
                             <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
                             </tr>
 
                             <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                            <td class='td  defaltfont'>".int_en_to_bn(5)."</td>
                             <td class='td  defaltfont'>রেজিস্ট্রেশন ফি</td>
                             <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
                             </tr>
 
                             <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                            <td class='td  defaltfont'>".int_en_to_bn(6)."</td>
                             <td class='td  defaltfont'>ফরম পূরণ ফি</td>
                             <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
                             </tr>
