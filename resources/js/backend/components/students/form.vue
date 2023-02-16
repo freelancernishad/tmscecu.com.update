@@ -947,6 +947,7 @@ console.log(event.target.result)
                 this.preloader = true;
                 var res = await this.callApi('post',`/api/students/form/submit?submit_type=data_entry`,this.form);
 
+                console.log(res)
                 // this.$router.push({name: 'students'})
 
 

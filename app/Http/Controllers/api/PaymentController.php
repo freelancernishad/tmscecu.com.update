@@ -237,7 +237,13 @@ class PaymentController extends Controller
 
 
         $session_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'session_fee'])->first()->fees;
-        $monthly_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'monthly_fee'])->first()->fees;
+
+        if($student->stipend=='No'){
+            $monthly_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'monthly_fee'])->first()->fees;
+        }else{
+            $monthly_fee = 0;
+        }
+
         $exam_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee'])->first()->fees;
         $registration_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'registration_fee'])->first()->fees;
         $form_filup_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'form_filup_fee'])->first()->fees;
@@ -713,7 +719,13 @@ class PaymentController extends Controller
 
 
         $session_fee = SchoolFee::where(['class'=>$class,'type'=>'session_fee'])->first()->fees;
-        $monthly_fee = SchoolFee::where(['class'=>$class,'type'=>'monthly_fee'])->first()->fees;
+
+        if($student->stipend=='No'){
+            $monthly_fee = SchoolFee::where(['class'=>$class,'type'=>'monthly_fee'])->first()->fees;
+
+        }else{
+            $monthly_fee = 0;
+        }
 
         $MonthName =  date('F');
         $year = date('Y');

@@ -480,6 +480,19 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     {
 
 
+        $id = $r->id;
+        $data = $r->except('AdmissionID','StudentID','StudentPicture');
+
+        if($id){
+            $student = student::find($r->id);
+           return $student->update($data);
+        }
+
+
+
+
+
+
         if(sitedetails()->application=='Off'){
 
             return 444;
@@ -507,13 +520,10 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                 return $resp;
             }
             }
+                $data['StudentID'] = (string)StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
+            }
 
-
-
-             $data['StudentID'] = (string)StudentId($StudentClass,$StudentRoll,$school_id,$StudentGroup);
-        }
-
-$AdmissionID = (string)StudentAdmissionId('',$school_id);
+            $AdmissionID = (string)StudentAdmissionId('',$school_id);
 
 
 
