@@ -669,7 +669,11 @@ class PaymentController extends Controller
             }else{
 
                 if($paymentType=='monthly_fee'){
-                    SmsNocSmsSend("$student->StudentName  এর ". month_en_to_bn($payment->month) ." মাসের বেতন ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
+					if($payment->amount!=0){
+						SmsNocSmsSend("$student->StudentName  এর ". month_en_to_bn($payment->month) ." মাসের বেতন ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
+					}
+
+					
                 }else{
                     SmsNocSmsSend("$student->StudentName এর ". paymentKhat($paymentType) ." ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
                 }
