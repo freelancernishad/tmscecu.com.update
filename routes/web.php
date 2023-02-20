@@ -79,11 +79,11 @@ Route::get('/payment/success', function (Request $request) {
     // return $request->all();
     $transId = $request->transId;
     echo "
-    <h3 style='text-align:center'>Please wait 5 seconds.This page is auto redirect you</h3>
+    <h3 style='text-align:center;'>Please wait 10 seconds.This page will auto redirect you</h3>
     <script>
     setTimeout(() => {
     window.location.href='/payment/success/confirm?transId=$transId'
-    }, 5000);
+    }, 10000);
     </script>
     ";
     // return redirect("/payment/success/confirm?transId=$transId");
