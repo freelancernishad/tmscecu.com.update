@@ -967,12 +967,19 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     public function student_list_pdf(Request $r,$year,$class,$school_id)
     {
         $school_id = sitedetails()->school_id;
+
+
+
         $wd = [
             'school_id'=>$school_id,
             'StudentClass' => $class,
             'Year' => $year,
             'StudentStatus' => 'Active',
         ];
+        if($r->group){
+            $wd['StudentGroup'] = $r->group;
+        }
+
         $data['count'] = DB::table('students')->where($wd)->count();
         if ($data['count'] > 0) {
             $data['rows'] = DB::table('students')->where($wd)->orderBy('StudentRoll','ASC')->get();
@@ -987,6 +994,12 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         // $data['logo'] = $govlogo;
         $fileName = 'students-'.date('Y-m-d H:m:s');
         $data['fileName'] = $fileName;
+        $types = 'school';
+        if($r->types){
+            $types = $r->types;
+        }
+
+        $data['types'] = $types;
         // return $data;
         $pdf = LaravelMpdf::loadView('admin/pdfReports.total_student', $data);
         return $pdf->stream("$fileName.pdf");

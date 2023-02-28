@@ -67,7 +67,7 @@
                                 </div>
 
 
-                                <div class='form-group' v-if="form.student_class == 'Ten'">
+                                <div class='form-group' v-if="form.student_class == 'Nine' || form.student_class == 'Ten'">
                                     <label>গ্রুপ</label>
                                     <select class='form-control' style='width: 100%;' v-model='form.StudentGroup'
                                         id='group' required>
@@ -154,7 +154,7 @@
                         </div>
 
 
-                   
+
 
                         <div v-if="searched==2" v-html="message"></div>
 

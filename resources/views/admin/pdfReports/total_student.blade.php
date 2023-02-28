@@ -57,6 +57,9 @@ if($pdf=='pdf'){
 }
 ?>
 <h3> মোট ছাত্র সংখ্যা :  <?php echo int_en_to_bn($count);    ?></h3><h3> শ্রেণী :  <?php echo class_en_to_bn($rows[0]->StudentClass)	?></h3>
+
+<h3> গ্রুপ :  <?php echo class_en_to_bn($rows[0]->StudentGroup)	?></h3>
+
 <?php
 if ($count>0) {
     ?>
@@ -69,10 +72,11 @@ if ($count>0) {
                 <th class="columnStyleRight" style="font-size: 10pt;">নাম </th>
 
 <?php
-if($pdf=='pdf'){
+if($pdf=='pdf' && $types=='school'){
     ?>
                 <th class="columnStyleRight" style="font-size: 10pt;">মোবাইল নাম্বার </th>
                 <?php } ?>
+
                 <th class="columnStyleRight" style="font-size: 10pt;">পিতার নাম</th>
                 <th class="columnStyleRight" style="font-size: 10pt;">মাতার নাম</th>
                 <th class="columnStyleRight" style="font-size: 10pt;">ঠিকানা </th>
@@ -90,12 +94,12 @@ if($pdf=='pdf'){
                     <td class="columnStyleRight" style="font-size: 10pt;"><?php echo $row->StudentName	?></td>
 
                     <?php
-                    if($pdf=='pdf'){
+                    if($pdf=='pdf'  && $types=='school'){
                         ?>
                     <td class="columnStyleRight" style="font-size: 10pt;"><?php echo class_en_to_bn($row->StudentPhoneNumber)	?> </td>
 <?php } ?>
-                    <td class="columnStyleRight" style="font-size: 10pt;"><?php echo $row->StudentFatherName	?> </td>
-                    <td class="columnStyleRight" style="font-size: 10pt;"><?php echo $row->StudentMotherName	?> </td>
+                    <td class="columnStyleRight" style="font-size: 10pt;"><?php echo $row->StudentFatherNameBn	?> </td>
+                    <td class="columnStyleRight" style="font-size: 10pt;"><?php echo $row->StudentMotherNameBn	?> </td>
                     <td class="columnStyleRight" style="font-size: 10pt;"><?php echo $row->StudentAddress	?> </td>
                 </tr>
             <?php

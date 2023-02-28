@@ -196,7 +196,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         $HumanitiesStudnets = student::where(['StudentClass'=>'Nine','StudentGroup'=>'Humanities','Year'=>date('Y'),'StudentStatus'=>'Active'])->orderBy('StudentRoll','asc')->get();
         $ScienceStudnets = student::where(['StudentClass'=>'Nine','StudentGroup'=>'Science','Year'=>date('Y'),'StudentStatus'=>'Active'])->orderBy('StudentRoll','asc')->get();
 
-        $students = student::where(['StudentClass'=>'Nine','Year'=>date('Y'),'StudentStatus'=>'Active'])->orderBy('StudentRoll','asc')->get();
+        $students = student::where(['StudentClass'=>'Nine','Year'=>date('Y'),'StudentStatus'=>'Active','StudentGroup'=>'Humanities'])->orderBy('StudentRoll','asc')->get();
 
         return view('groupset',compact('HumanitiesStudnets','ScienceStudnets','students'));
     });
