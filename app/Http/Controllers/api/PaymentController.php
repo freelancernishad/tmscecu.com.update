@@ -410,6 +410,7 @@ class PaymentController extends Controller
                     <th>Payment Date</th>
                     <th>Payment Type</th>
                     <th>Fee</th>
+                    <th>Invoice</th>
                 </tr>
             </thead>
             <tbody>";
@@ -433,6 +434,9 @@ class PaymentController extends Controller
                 }
 
                 $paymentHtml .="<td>$paidPayment->amount</td>
+
+                <td><a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$paidPayment->trxid'>রশিদ ডাউনলোড</a></td>
+
                 </tr>
                 ";
             }
@@ -673,7 +677,7 @@ class PaymentController extends Controller
 						SmsNocSmsSend("$student->StudentName  এর ". month_en_to_bn($payment->month) ." মাসের বেতন ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
 					}
 
-					
+
                 }else{
                     SmsNocSmsSend("$student->StudentName এর ". paymentKhat($paymentType) ." ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
                 }
