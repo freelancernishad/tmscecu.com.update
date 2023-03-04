@@ -40,7 +40,11 @@
                     <td>{{ student.StudentFatherNameBn }}</td>
                     <td>{{ student.StudentMotherNameBn }}</td>
                     <td>
-                        <button class="btn btn-info" style="font-size: 17px;" v-if="student.StudentStatus=='permited'" @click="permission(student.id)">ভর্তি নিশ্চিত করুন</button>
+
+                        <button class="btn btn-info" style="font-size: 17px;" v-if="student.StudentStatus=='permited'" @click="permission(student.id,'active')">ভর্তি নিশ্চিত করুন</button>
+
+                        <button class="btn btn-danger" style="font-size: 17px;" v-if="student.StudentStatus=='permited'" @click="permission(student.id,'reject')">ভর্তি বাতিল করুন</button>
+
                         <button class="btn btn-info" style="font-size: 17px;" v-else disabled>ভর্তি নিশ্চিত হয়েছে</button>
                     </td>
                 </tr>
@@ -78,12 +82,18 @@ export default {
             this.students = res.data
         },
 
-        async permission(id){
+        async permission(id,status){
 
+            var txt = '';
+            if(status=='reject'){
+                txt = 'ভর্তি বাতিল করতে Yes বাটন এ চাপ দিন';
+            }else{
+                txt = 'ভর্তি করতে নিশ্চিত থাকলে Yes বাটন এ চাপ দিন';
+            }
 
             Swal.fire({
                 title: 'Are you sure?',
-                text: "ভর্তি করতে নিশ্চিত থাকলে Yes বাটন এ চাপ দিন",
+                text: txt,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -95,7 +105,7 @@ export default {
             }).then(async (result) => {
                 if (result.isConfirmed) {
 
-                    var res  = await this.callApi('post',`/api/student/permission?id=${id}`,[]);
+                    var res  = await this.callApi('post',`/api/student/permission?id=${id}?status=${status}`,[]);
                     var gr = '';
                     if(res.data.StudentClass=='Nine' || res.data.StudentClass=='Ten' ){
                         gr = `Group ${res.data.StudentGroup}`;

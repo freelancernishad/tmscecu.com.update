@@ -281,6 +281,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
     Route::get('student/{school_id}/{class}/{year}/{type}/paymnetsheet', [PaymentController::class, 'paymentsheet']);
 
+
+    Route::get('student/paymnetsheet/annual', [PaymentController::class, 'paymentsheetAnnual']);
+
+
     Route::get('payment/report', [PaymentController::class, 'paymentReport']);
     Route::get('student/report', [studentsController::class, 'reports']);
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\payment;
 use App\Models\school_detail;
 use App\Models\Sonod;
 use App\Models\student;
@@ -10,6 +11,67 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+
+
+
+    function annualAmount($year,$type,$studentClass='',$total=''){
+
+
+
+        $data = [
+            'year'=>$year,
+            'status'=>'Paid'
+        ];
+
+        if($total==''){
+            $data['type'] = $type;
+        }
+
+        if($studentClass!=''){
+            $data['studentClass'] = $studentClass;
+        }
+
+
+        $paymentCount =  payment::where($data)->sum('amount');
+       return int_en_to_bn($paymentCount);
+    }
+
+
+
+    function getAmountByStudent($admissionId,$studentClass,$year,$type,$month=''){
+
+        $data = [
+            'admissionId'=>$admissionId,
+            'studentClass'=>$studentClass,
+            'year'=>$year,
+            'type'=>$type,
+            'status'=>'Paid'
+        ];
+        if($month!=''){
+            $data['month'] = $month;
+        }
+
+// return $data;
+
+
+
+        $paymentCount =  payment::where($data)->count();
+        if($paymentCount>0){
+            $payment =  payment::where($data)->first();
+            $amount= $payment->amount;
+        }else{
+            $amount = 0;
+        }
+        return $amount;
+
+    }
+
+
+
+
+
+
+
 
 
 function PdfMaker($pageSize='A4',$school_id,$html,$Filename,$Watermark=true)

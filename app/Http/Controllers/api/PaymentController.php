@@ -1060,6 +1060,10 @@ class PaymentController extends Controller
     public function paymentReport(Request $request)
     {
 
+            ini_set('max_execution_time', '60000');
+            ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+            ini_set('memory_limit', '12008M');
+
 
         $class = $request->class;
         $type = $request->type;
@@ -1087,6 +1091,11 @@ class PaymentController extends Controller
 
     public function paymentsheet($school_id, $class, $year, $type)
     {
+
+        ini_set('max_execution_time', '60000');
+        ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+        ini_set('memory_limit', '12008M');
+
         $data['class'] = $class;
         $data['year'] = $year;
         $data['type'] = feesconvert($type);
@@ -1096,13 +1105,45 @@ class PaymentController extends Controller
             'Year' => date('Y'),
             'school_id' => $school_id,
         ];
+
         $data['rows'] = DB::table('students')->where($wheredata)->orderBy('StudentRoll', 'ASC')->get();
         $fileName = 'Payments-' . date('Y-m-d H:m:s');
         $data['fileName'] = $fileName;
         $data['sign'] = base64(sitedetails()->PRINCIPALS_Signature);
+
+
+        // return $data;
+
+
+        // return view('admin/pdfReports.payments_sheet', $data);
+
         $pdf = LaravelMpdf::loadView('admin/pdfReports.payments_sheet', $data);
         return $pdf->stream("$fileName.pdf");
-        // return view('dashboard/payments.payments_sheet', $data);
+    }
+
+
+    public function paymentsheetAnnual(Request $request)
+    {
+
+        ini_set('max_execution_time', '60000');
+        ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+        ini_set('memory_limit', '12008M');
+
+
+
+
+
+
+        $school_id = $request->school_id;
+        $fileName = 'Annually-report-'.date('Y').'-'.time().'.pdf';
+
+        // return $data;
+
+
+        // return view('admin/pdfReports.payments_sheet_annually');
+
+        $pdf = LaravelMpdf::loadView('admin/pdfReports.payments_sheet_annually', compact('school_id','fileName'));
+        return $pdf->stream("$fileName.pdf");
     }
 
 

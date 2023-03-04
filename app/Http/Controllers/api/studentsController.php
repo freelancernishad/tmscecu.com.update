@@ -34,9 +34,18 @@ class studentsController extends Controller
 
     public function permissionAction(Request $request)
     {
-        $id =  $request->id;
 
+
+        $id =  $request->id;
+        $status =  $request->status;
         $student = student::find($id);
+
+        if($status=='reject'){
+            return $student->update(['StudentStatus' => 'reject']);
+        }
+
+
+
         $group = 'Humanities';
         if($student->StudentClass=='Nine' || $student->StudentClass=='Ten'){
             $group = $student->StudentGroup;
