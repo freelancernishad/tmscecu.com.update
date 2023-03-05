@@ -86,6 +86,9 @@ Route::post('/payment/data/search',[PaymentController::class ,'Search']);
 
 Route::get('student/applicant/copy/{applicant_id}',[studentsController::class , 'applicant_copy_html']);
 
+Route::get('get/balance',[MessageController::class ,'getBalance']);
+
+
 Route::get('/users/get',[MessageController::class ,'usersget']);
 Route::get('/conversion/get',[MessageController::class ,'conversionget']);
 Route::get('/messages/get',[MessageController::class ,'messagesget']);

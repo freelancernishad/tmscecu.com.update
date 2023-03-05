@@ -14,6 +14,33 @@ class MessageController extends Controller
 {
 
 
+    public function getBalance(Request $request)
+    {
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://app.smsnoc.com/api/v3/balance',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Accept: application/json',
+    'Authorization: Bearer 84|BaOz8apODMcnLGbcGSkxa1JLgkmjHOeLGG47kjGc '
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+return $response;
+
+    }
+
 public function usersget(Request $request)
 {
         $result = QueryBuilder::for(User::class)

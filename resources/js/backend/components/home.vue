@@ -141,6 +141,25 @@
 
 
 
+                    <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="dashboard-summery-one mg-b-20">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <div class="item-icon bg-light-yellow">
+                                        <i class="flaticon-couple text-orange"></i>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="item-content">
+                                        <div class="item-title">SMS BALANCE</div>
+                                        <div class="item-number"><span  >{{smsDetails.remaining_unit}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
 
 
 
@@ -453,6 +472,7 @@ export default {
          this.totalearn();
          this.visitors();
          this.attendacereport();
+         this.getSmsNoc();
     },
 
     props: {
@@ -536,7 +556,8 @@ export default {
                 responsive: true,
                 maintainAspectRatio: false,
             },
-            reports:{}
+            reports:{},
+            smsDetails:{}
 
 
         };
@@ -546,6 +567,12 @@ export default {
         filteratten(){
             this.attendacereport();
         },
+
+        async getSmsNoc(){
+            var res = await this.callApi('get','/api/get/balance',[]);
+            this.smsDetails = res.data.data;
+        },
+
 
             getmonth(){
                 const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
