@@ -92,7 +92,22 @@
                 </thead>
                 <tbody class="listofbody">
 
-
+@php
+$session_fee_amount_total = 0;
+$January_amount_total = 0;
+$February_amount_total = 0;
+$March_amount_total = 0;
+$April_amount_total = 0;
+$May_amount_total = 0;
+$June_amount_total = 0;
+$July_amount_total = 0;
+$August_amount_total = 0;
+$September_amount_total = 0;
+$October_amount_total = 0;
+$November_amount_total = 0;
+$December_amount_total = 0;
+$totalAmount_total = 0;
+@endphp
 
 
 
@@ -108,7 +123,6 @@
 
     $session_fee_amount = getAmountByStudent($admissionId,$class,$year,'session_fee');
     $January_amount = getAmountByStudent($admissionId,$class,$year,'monthly_fee','January');
-
     $February_amount = getAmountByStudent($admissionId,$class,$year,'monthly_fee','February');
     // print_r($February_amount);
     // die();
@@ -122,23 +136,35 @@
     $October_amount = getAmountByStudent($admissionId,$class,$year,'monthly_fee','October');
     $November_amount = getAmountByStudent($admissionId,$class,$year,'monthly_fee','November');
     $December_amount = getAmountByStudent($admissionId,$class,$year,'monthly_fee','December');
-
-
+    
+    $session_fee_amount_total += $session_fee_amount;
+    $January_amount_total += $January_amount;
+    $February_amount_total += $February_amount;
+    $March_amount_total += $March_amount;
+    $April_amount_total += $April_amount;
+    $May_amount_total += $May_amount;
+    $June_amount_total += $June_amount;
+    $July_amount_total += $July_amount;
+    $August_amount_total += $August_amount;
+    $September_amount_total += $September_amount;
+    $October_amount_total += $October_amount;
+    $November_amount_total += $November_amount;
+    $December_amount_total += $December_amount;
 
 $totalAmount = $session_fee_amount+$January_amount+$February_amount+$March_amount+$April_amount+$May_amount+$June_amount+$July_amount+$August_amount+$September_amount+$October_amount+$November_amount+$December_amount;
+
+$totalAmount_total = $totalAmount;
 
 @endphp
 
                             <tr>
                                 <th scope="col">{{ int_en_to_bn($row->StudentRoll) }}</th>
                                 <th scope="col">{{ $row->StudentName }}</th>
-
                                 <th scope="col"> @if ($row->stipend=='Yes')
                                     <img width="15px" src="{{ base64('right.png') }}" alt="">
                                     @else
                                     <img width="15px" src="{{ base64('false.jpg') }}" alt="">
                                     @endif </th>
-
                                 <th scope="col" >{{ int_en_to_bn($session_fee_amount) }}</th>
                                 <th scope="col" >{{ int_en_to_bn($January_amount) }}</th>
                                 <th scope="col" >{{ int_en_to_bn($February_amount) }}</th>
@@ -153,14 +179,28 @@ $totalAmount = $session_fee_amount+$January_amount+$February_amount+$March_amoun
                                 <th scope="col" >{{ int_en_to_bn($November_amount) }}</th>
                                 <th scope="col" > {{ int_en_to_bn($December_amount) }}</th>
                                 <th scope="col" > {{ int_en_to_bn($totalAmount) }}</th>
-
-
-
-
                             </tr>
 
                             @endforeach
 
+                            <tr>
+                                <th colspan="3" scope="col">মোট</th>
+                          
+                                <th scope="col" >{{ int_en_to_bn($session_fee_amount_total) }}</th>
+                                <th scope="col" >{{ int_en_to_bn($January_amount_total) }}</th>
+                                <th scope="col" >{{ int_en_to_bn($February_amount_total) }}</th>
+                                <th scope="col" > {{ int_en_to_bn($March_amount_total) }}</th>
+                                <th scope="col" > {{ int_en_to_bn($April_amount_total) }}</th>
+                                <th scope="col" > {{ int_en_to_bn($May_amount_total) }}</th>
+                                <th scope="col" >{{ int_en_to_bn($June_amount_total) }} </th>
+                                <th scope="col" >{{ int_en_to_bn($July_amount_total) }}</th>
+                                <th scope="col" >{{ int_en_to_bn($August_amount_total) }}</th>
+                                <th scope="col" >{{ int_en_to_bn($September_amount_total) }}</th>
+                                <th scope="col" >{{ int_en_to_bn($October_amount_total) }}</th>
+                                <th scope="col" >{{ int_en_to_bn($November_amount_total) }}</th>
+                                <th scope="col" > {{ int_en_to_bn($December_amount_total) }}</th>
+                                <th scope="col" > {{ int_en_to_bn($totalAmount_total) }}</th>
+                            </tr>
 
                 </tbody>
             </table>
