@@ -360,12 +360,20 @@ class PaymentController extends Controller
         $totalAmount = 0;
             foreach ($monthlyPaid as $value) {
                 $totalAmount += $value['amount'];
-                $paymentHtml .="
-                <tr style='text-align:center'>
-                <td>".$value['key']."</td>
-                <td>".$value['amount']."</td>
-                </tr>
-                ";
+
+
+                if($value['amount']!=0){
+
+                    $paymentHtml .="
+                    <tr style='text-align:center'>
+                    <td>".$value['key']."</td>
+                    <td>".$value['amount']."</td>
+                    </tr>
+                    ";
+                }
+
+
+
             }
 
 
@@ -416,19 +424,24 @@ class PaymentController extends Controller
             <tbody>";
 
             foreach ($paidPayments as $paidPayment) {
-                $paymentHtml .="
-                <tr style='text-align:center'>
 
-                <td>".date('d-m-Y h:i A',strtotime($paidPayment->updated_at))."</td>
+                if($paidPayment->amount!=0){
 
-                ";
 
-                if($paidPayment->type=='session_fee'){
-                $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
+
+                    $paymentHtml .="
+                    <tr style='text-align:center'>
+
+                    <td>".date('d-m-Y h:i A',strtotime($paidPayment->updated_at))."</td>
+
+                    ";
+
+                    if($paidPayment->type=='session_fee'){
+                        $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
                 }elseif($paidPayment->type=='marksheet'){
-                $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
+                    $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
                 }elseif($paidPayment->type=='Admission_fee'){
-                $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
+                    $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
                 }else{
                     $paymentHtml .="<td>".month_en_to_bn($paidPayment->month)."</td>";
                 }
@@ -439,6 +452,7 @@ class PaymentController extends Controller
 
                 </tr>
                 ";
+            }
             }
 
 
