@@ -79,15 +79,15 @@ Route::post('update/users',[RoleController::class,'updateuser']);
 Route::post('/ipn',[PaymentController::class ,'ipn']);
 
 
+Route::get('/get/annually/report',[PaymentController::class ,'getAnnuallyReport']);
+
+
 
 Route::post('/payment/report',[PaymentController::class ,'reports']);
 Route::get('/payment/counting',[PaymentController::class ,'paymentCounting']);
 Route::post('/payment/data/search',[PaymentController::class ,'Search']);
 
 Route::get('student/applicant/copy/{applicant_id}',[studentsController::class , 'applicant_copy_html']);
-
-Route::get('get/balance',[MessageController::class ,'getBalance']);
-
 
 Route::get('/users/get',[MessageController::class ,'usersget']);
 Route::get('/conversion/get',[MessageController::class ,'conversionget']);

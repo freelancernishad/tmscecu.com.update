@@ -360,20 +360,12 @@ class PaymentController extends Controller
         $totalAmount = 0;
             foreach ($monthlyPaid as $value) {
                 $totalAmount += $value['amount'];
-
-
-                if($value['amount']!=0){
-
-                    $paymentHtml .="
-                    <tr style='text-align:center'>
-                    <td>".$value['key']."</td>
-                    <td>".$value['amount']."</td>
-                    </tr>
-                    ";
-                }
-
-
-
+                $paymentHtml .="
+                <tr style='text-align:center'>
+                <td>".$value['key']."</td>
+                <td>".$value['amount']."</td>
+                </tr>
+                ";
             }
 
 
@@ -424,24 +416,19 @@ class PaymentController extends Controller
             <tbody>";
 
             foreach ($paidPayments as $paidPayment) {
+                $paymentHtml .="
+                <tr style='text-align:center'>
 
-                if($paidPayment->amount!=0){
+                <td>".date('d-m-Y h:i A',strtotime($paidPayment->updated_at))."</td>
 
+                ";
 
-
-                    $paymentHtml .="
-                    <tr style='text-align:center'>
-
-                    <td>".date('d-m-Y h:i A',strtotime($paidPayment->updated_at))."</td>
-
-                    ";
-
-                    if($paidPayment->type=='session_fee'){
-                        $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
+                if($paidPayment->type=='session_fee'){
+                $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
                 }elseif($paidPayment->type=='marksheet'){
-                    $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
+                $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
                 }elseif($paidPayment->type=='Admission_fee'){
-                    $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
+                $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
                 }else{
                     $paymentHtml .="<td>".month_en_to_bn($paidPayment->month)."</td>";
                 }
@@ -452,7 +439,6 @@ class PaymentController extends Controller
 
                 </tr>
                 ";
-            }
             }
 
 
@@ -1159,6 +1145,81 @@ class PaymentController extends Controller
         $pdf = LaravelMpdf::loadView('admin/pdfReports.payments_sheet_annually', compact('school_id','fileName'));
         return $pdf->stream("$fileName.pdf");
     }
+
+
+    public function getAnnuallyReport()
+    {
+        $html = '';
+
+
+        $html .="
+
+        <table border='1' width='100%'>
+        <thead>
+            <tr>
+                <th colspan='9' style='font-size:25px;text-align:center'><span>বার্ষিক প্রতিবেদন</span></th>
+            </tr>
+        </thead>
+
+        <tr align='center'>
+            <td class='td'>শ্রেণি</td>
+            <td class='td'>ভর্তি ফরম ফি</td>
+            <td class='td'>ভর্তি/সেশন ফি</td>
+            <td class='td'>মাসিক বেতন</td>
+            <td class='td'>পরীক্ষার ফি</td>
+            <td class='td'>রেজিস্ট্রেশন ফি</td>
+            <td class='td'>ফরম পূরণ ফি</td>
+            <td class='td'>মার্কসীট ফি</td>
+            <td class='td'>সর্বমোট</td>
+        </tr>";
+
+
+
+        foreach (class_list() as $class){
+
+
+
+        $html .="
+        <tr  align='center'>
+            <td class='td'>". class_en_to_bn($class) ."</td>
+            <td class='td'>". annualAmount(date('Y'),'Admission_fee',$class) ."</td>
+            <td class='td'>". annualAmount(date('Y'),'session_fee',$class) ."</td>
+            <td class='td'>". annualAmount(date('Y'),'monthly_fee',$class) ."</td>
+            <td class='td'>". annualAmount(date('Y'),'exam_fee',$class) ."</td>
+            <td class='td'>". annualAmount(date('Y'),'registration_fee',$class) ."</td>
+            <td class='td'>". annualAmount(date('Y'),'form_filup_fee',$class) ."</td>
+            <td class='td'>". annualAmount(date('Y'),'marksheet',$class) ."</td>
+
+            <td class='td'>". annualAmount(date('Y'),'marksheet',$class, 'total') ."</td>
+        </tr>";
+
+        }
+
+        $html .="
+        <tr align='center'>
+            <td class='td'>মোট</td>
+            <td class='td'>". annualAmount(date('Y'),'Admission_fee') ."</td>
+            <td class='td'>". annualAmount(date('Y'),'session_fee') ."</td>
+            <td class='td'>". annualAmount(date('Y'),'monthly_fee') ."</td>
+            <td class='td'>". annualAmount(date('Y'),'exam_fee') ."</td>
+            <td class='td'>". annualAmount(date('Y'),'registration_fee') ."</td>
+            <td class='td'>". annualAmount(date('Y'),'form_filup_fee') ."</td>
+            <td class='td'>". annualAmount(date('Y'),'marksheet') ."</td>
+
+            <td class='td'>". annualAmount(date('Y'),'','','Subtotal') ."</td>
+        </tr>
+
+
+    </table>
+
+        ";
+
+
+        return $html;
+
+    }
+
+
 
 
 

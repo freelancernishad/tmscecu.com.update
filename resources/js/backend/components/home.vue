@@ -212,9 +212,15 @@
 
                 <div class="row">
 
+                    <div class="col-md-12 mb-3">
+                        <a target="_blank" style="float: right;font-size: 18px;margin-bottom: 10px;" href="/dashboard/student/paymnetsheet/annual?school_id=125983" class="btn btn-info">Download Annual Reports</a>
+                        <div class="table-responsive" v-html="annuallyReports"></div>
+                    </div>
                     <div class="col-md-12">
 
                         <a target="_blank" style="float: right;font-size: 18px;margin-bottom: 10px;" :href="'/dashboard/download/student/reports?school_id='+school_id+'&type=pdf'" class="btn btn-info">Download Reports</a>
+
+
 
 
 
@@ -557,7 +563,8 @@ export default {
                 maintainAspectRatio: false,
             },
             reports:{},
-            smsDetails:{}
+            smsDetails:{},
+            annuallyReports:{},
 
 
         };
@@ -572,6 +579,12 @@ export default {
             var res = await this.callApi('get','/api/get/balance',[]);
             this.smsDetails = res.data.data;
         },
+
+        async getSmsNoc(){
+            var res = await this.callApi('get','/api/get/annually/report',[]);
+            this.annuallyReports = res.data;
+        },
+
 
 
             getmonth(){
