@@ -12,8 +12,8 @@
                                         curentdate
                                 }}
                             </span>
-                            <!-- <span style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{ curenttime }}</span> -->
-                            <!-- <span style="">Visitors : {{ visitors }}</span> -->
+                             <span style="border-right: 1px solid #ffffff85; padding: 8px 10px;margin-right: 9px;">{{ curenttime }}</span>
+                             <span style="">Visitors : {{ visitors }}</span>
                         </div>
                     </div>
                 </div>
@@ -212,11 +212,13 @@ export default {
         // console.log(this.school_detials)
         this.$store.commit('setschoolinfo', this.school_detials)
         this.$store.commit('setUpdateClasses', this.classesList)
+        this.getvisitors();
 
     },
     data() {
         return {
             curentdate:'',
+            visitors:0,
             // schooldetails:{},
         }
     },
@@ -231,6 +233,15 @@ export default {
         }
     },
     methods: {
+
+
+        getvisitors() {
+            axios
+                .get(`/api/visitorcount`)
+                .then(({ data }) => (this.visitors = data*2))
+                .catch();
+        },
+
 
 
         // getSchoolData(){
