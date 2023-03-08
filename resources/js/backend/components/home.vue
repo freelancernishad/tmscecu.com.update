@@ -469,6 +469,7 @@ export default {
 
     },
     async created() {
+        this.getSmsNoc();
         this.getReports();
         this.getmonth();
          this.totalstudent();
@@ -478,7 +479,7 @@ export default {
          this.totalearn();
          this.visitors();
          this.attendacereport();
-         this.getSmsNoc();
+         this.getAnnualReport();
     },
 
     props: {
@@ -580,7 +581,7 @@ export default {
             this.smsDetails = res.data.data;
         },
 
-        async getSmsNoc(){
+        async getAnnualReport(){
             var res = await this.callApi('get','/api/get/annually/report',[]);
             this.annuallyReports = res.data;
         },
