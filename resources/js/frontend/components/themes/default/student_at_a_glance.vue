@@ -104,7 +104,7 @@
         </tr>
     </table>
 
-    <adsense ad-client="ca-pub-9489624253487221" ad-format="fluid" ad-slot="4940322175" ad-layout-key="-fb+5w+4e-db+86"></adsense>
+    <!-- <adsense ad-client="ca-pub-9489624253487221" ad-format="fluid" ad-slot="4940322175" ad-layout-key="-fb+5w+4e-db+86"></adsense> -->
 
 
 

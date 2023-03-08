@@ -142,8 +142,8 @@
                         <div class="col-md-4">
                             <ul class="footerList">
                                 <li style="font-size:font-size:15px"> <b> পরিকল্পনা ও বাস্তবায়নে:</b>
-                                    <h3 class="mt-1">{{ schoolSettings.Principals_name }}</h3>
-                                    <h3 class="">প্রধান শিক্ষক</h3>
+                                    <h3 class="mt-1">মোঃ আবু ফরহাদ</h3>
+                                    <h3 class="">সহকারী শিক্ষক</h3>
                                     <h3 class="">{{ schoolSettings.SCHOLL_NAME }}</h3>
 
 
@@ -164,21 +164,35 @@
                             </ul> -->
                         </div>
 
-
+<!--
 
                         <div class="col-md-4">
                             <ul class="footerList">
                                 <li style="font-size:font-size:15px"> </li>
                                 <li
                                     style="font-size:font-size:15px;    display: flex;justify-content: end;align-items: center;">
-                                    <!-- <img style="width:40px !important" :src="$asseturl + 'assets/img/bd-logo.png'"alt=""> -->
+                                     <img style="width:40px !important" :src="$asseturl + 'assets/img/bd-logo.png'"alt="">
                                     <span style="padding: 0 0px;text-align:right"> <b> কারিগরি সহায়তায়:</b> <br/>
                                         <a target="_blank" href="https://api.whatsapp.com/send?phone=8801909756552&text=I%27m%20interested%20in%20your%20services">Md Nishad Hossain</a>
                                         Director of Softweb
                                     </span>
                                 </li>
                             </ul>
+                        </div> -->
+
+                        <div class="col-md-4">
+                            <ul class="footerList">
+                                <li></li>
+                                <li style="display: flex; justify-content: center; align-items: center;">
+                                    <img :src="$asseturl+'Soft-Web-Sys.png'" alt="" style="width: 40px !important;">
+                                    <span style="padding: 0px 15px;"><b> কারিগরি সহায়তায়:</b> <br>
+                                        <a target="_blank" href="https://softwebsys.com/"> সফটওয়েব সিস্টেম সল্যুশন</a>
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
+
+
                         </div>
                         </div>
 
@@ -239,4 +253,17 @@ export default {
 }
 </script>
 <style>
+ul.footerList li a {
+    border-right: 0 dotted #5a5454;
+    color: #0e0e0e;
+    display: block;
+    font-size: 13px;
+    padding: 6px 0;
+}
+ul.footerList li a:hover {
+    background: #fff!important;
+    border-radius: 0!important;
+    color: #0e56a1!important;
+    text-decoration: none!important;
+}
 </style>

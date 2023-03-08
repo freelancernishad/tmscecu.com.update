@@ -230,6 +230,11 @@
 
 
 <tr align="center">
+
+    <th colspan="14" style="vertical-align: middle;font-size: 22px;"> <span>অধ্যয়নরত শিক্ষার্থীর তথ্য</span></th>
+</tr>
+
+<tr align="center">
     <td rowspan="2" style="vertical-align: middle;">শ্রেণী</td>
     <td rowspan="2" style="vertical-align: middle;">ছাত্র</td>
     <td rowspan="2" style="vertical-align: middle;">ছাত্রী</td>
