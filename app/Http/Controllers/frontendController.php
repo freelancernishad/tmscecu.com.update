@@ -138,24 +138,24 @@ class frontendController extends Controller
                 'StudentClass' => $class[$i],
             ];
             $totalStudentcount = DB::table('students')->where($whereTotal)->count();
-            $students[class_en_to_bn($class[$i])]['totalStudent'] = $totalStudentcount;
+            $students[class_en_to_bn($class[$i])]['totalStudent'] =int_en_to_bn( $totalStudentcount);
             $totalStudent += $totalStudentcount;
 
 
             //maleStudent
             $maleStudentcount = $this->studentCount($school_id,'StudentGender','Male',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['maleStudent'] = $maleStudentcount;
+            $students[class_en_to_bn($class[$i])]['maleStudent'] =int_en_to_bn( $maleStudentcount);
             $maleStudent += $maleStudentcount;
             //FemaleStudent
             $FemaleStudentcount = $this->studentCount($school_id,'StudentGender','Female',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['FemaleStudent'] =$FemaleStudentcount;
+            $students[class_en_to_bn($class[$i])]['FemaleStudent'] =int_en_to_bn($FemaleStudentcount);
             $FemaleStudent += $FemaleStudentcount;
 
 
 
             //IslamStudent
             $IslamStudentcount = $this->studentCount($school_id,'StudentReligion','Islam',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['IslamStudent'] =$IslamStudentcount;
+            $students[class_en_to_bn($class[$i])]['IslamStudent'] =int_en_to_bn($IslamStudentcount);
             $IslamStudent += $IslamStudentcount;
 
 
@@ -168,7 +168,7 @@ class frontendController extends Controller
                 'StudentClass' => $class[$i],
             ];
            $IslamStudentMalecount = DB::table('students')->where($whereIslamMale)->count();
-          $students[class_en_to_bn($class[$i])]['IslamStudentMale'] =$IslamStudentMalecount;
+          $students[class_en_to_bn($class[$i])]['IslamStudentMale'] =int_en_to_bn($IslamStudentMalecount);
           $IslamStudentMale += $IslamStudentMalecount;
 
 
@@ -183,7 +183,7 @@ class frontendController extends Controller
                 'StudentClass' => $class[$i],
             ];
            $IslamStudentFemalecount = DB::table('students')->where($whereIslamFemale)->count();
-          $students[class_en_to_bn($class[$i])]['IslamStudentFemale'] =$IslamStudentFemalecount;
+          $students[class_en_to_bn($class[$i])]['IslamStudentFemale'] =int_en_to_bn($IslamStudentFemalecount);
           $IslamStudentFemale += $IslamStudentMalecount;
 
 
@@ -197,7 +197,7 @@ class frontendController extends Controller
                 'StudentClass' => $class[$i],
             ];
            $HinduStudentMalecount = DB::table('students')->where($whereHinduMale)->count();
-          $students[class_en_to_bn($class[$i])]['HinduStudentMale'] =$HinduStudentMalecount;
+          $students[class_en_to_bn($class[$i])]['HinduStudentMale'] =int_en_to_bn($HinduStudentMalecount);
           $HinduStudentMale += $HinduStudentMalecount;
 
 
@@ -212,7 +212,7 @@ class frontendController extends Controller
                 'StudentClass' => $class[$i],
             ];
            $HinduStudentFemalecount = DB::table('students')->where($whereHinduFemale)->count();
-          $students[class_en_to_bn($class[$i])]['HinduStudentFemale'] =$HinduStudentFemalecount;
+          $students[class_en_to_bn($class[$i])]['HinduStudentFemale'] =int_en_to_bn($HinduStudentFemalecount);
           $HinduStudentFemale += $HinduStudentFemalecount;
 
 
@@ -221,14 +221,14 @@ class frontendController extends Controller
 
             //HinduStudent
             $HinduStudentcount = $this->studentCount($school_id,'StudentReligion','Hindu',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['HinduStudent'] =$HinduStudentcount;
+            $students[class_en_to_bn($class[$i])]['HinduStudent'] =int_en_to_bn($HinduStudentcount);
             $HinduStudent += $HinduStudentcount;
 
 
 
             //stipendStudent
             $stipendStudentcount = $this->studentCount($school_id,'stipend','Yes',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['stipendStudent'] =$stipendStudentcount;
+            $students[class_en_to_bn($class[$i])]['stipendStudent'] =int_en_to_bn($stipendStudentcount);
             $stipendStudent += $stipendStudentcount;
 
 
@@ -241,7 +241,7 @@ class frontendController extends Controller
                 'StudentClass' => $class[$i],
             ];
            $stipendStudentMalecount = DB::table('students')->where($wherestipendMale)->count();
-          $students[class_en_to_bn($class[$i])]['stipendStudentMale'] =$stipendStudentMalecount;
+          $students[class_en_to_bn($class[$i])]['stipendStudentMale'] =int_en_to_bn($stipendStudentMalecount);
           $stipendStudentMale += $stipendStudentMalecount;
 
 
@@ -254,7 +254,7 @@ class frontendController extends Controller
                 'StudentClass' => $class[$i],
             ];
            $stipendStudentFemalecount = DB::table('students')->where($wherestipendFemale)->count();
-          $students[class_en_to_bn($class[$i])]['stipendStudentFemale'] =$stipendStudentFemalecount;
+          $students[class_en_to_bn($class[$i])]['stipendStudentFemale'] =int_en_to_bn($stipendStudentFemalecount);
           $stipendStudentFemale += $stipendStudentFemalecount;
 
 
@@ -269,35 +269,35 @@ class frontendController extends Controller
             // শিক্ষার্থীর ধরন
             //WorkingStudent
             $WorkingStudentcount = $this->studentCount($school_id,'StudentCategory','কর্মজীবী শিক্ষার্থী',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['WorkingStudent'] =$WorkingStudentcount;
+            $students[class_en_to_bn($class[$i])]['WorkingStudent'] =int_en_to_bn($WorkingStudentcount);
             $WorkingStudent += $WorkingStudentcount;
 
             //landless_guardiansStudent
             $landless_guardiansStudentcount = $this->studentCount($school_id,'StudentCategory','ভূমিহীন অভিভাবকের সন্তান',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['landless_guardiansStudent'] =$landless_guardiansStudentcount;
+            $students[class_en_to_bn($class[$i])]['landless_guardiansStudent'] =int_en_to_bn($landless_guardiansStudentcount);
             $landless_guardiansStudent += $landless_guardiansStudentcount;
 
 
             //MinorityStudent
             $MinorityStudentcount = $this->studentCount($school_id,'StudentCategory','ক্ষুদ্র নৃ-গোষ্ঠী শিক্ষার্থী',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['MinorityStudent'] =$MinorityStudentcount;
+            $students[class_en_to_bn($class[$i])]['MinorityStudent'] =int_en_to_bn($MinorityStudentcount);
             $MinorityStudent += $MinorityStudentcount;
 
 
             //special_needsStudent
             $special_needsStudentcount = $this->studentCount($school_id,'StudentCategory','বিশেষ চাহিদা সম্পন্ন শিক্ষার্থী',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['special_needsStudent'] =$special_needsStudentcount;
+            $students[class_en_to_bn($class[$i])]['special_needsStudent'] =int_en_to_bn($special_needsStudentcount);
             $special_needsStudent += $special_needsStudentcount;
 
 
             //OrphanStudent
             $OrphanStudentcount = $this->studentCount($school_id,'StudentCategory','অনাথ/এতিম শিক্ষার্থী',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['OrphanStudent'] =$OrphanStudentcount;
+            $students[class_en_to_bn($class[$i])]['OrphanStudent'] =int_en_to_bn($OrphanStudentcount);
             $OrphanStudent += $OrphanStudentcount;
 
             //categoryOtherStudent
             $categoryOtherStudentcount = $this->studentCount($school_id,'StudentCategory','অন্যান্য',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['categoryOtherStudent'] =$categoryOtherStudentcount;
+            $students[class_en_to_bn($class[$i])]['categoryOtherStudent'] =int_en_to_bn($categoryOtherStudentcount);
             $categoryOtherStudent += $categoryOtherStudentcount;
             // শিক্ষার্থীর ধরন
 
@@ -306,24 +306,24 @@ class frontendController extends Controller
             // কোটা
             //freedom_fightersStudent
             $freedom_fightersStudentcount = $this->studentCount($school_id,'StudentKota','মুক্তিযোদ্ধার সন্তান/নাতী-নাতনী',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['freedom_fightersStudent'] =$freedom_fightersStudentcount;
+            $students[class_en_to_bn($class[$i])]['freedom_fightersStudent'] =int_en_to_bn($freedom_fightersStudentcount);
             $freedom_fightersStudent += $freedom_fightersStudentcount;
 
 
             //committeeStudent
             $committeeStudentcount = $this->studentCount($school_id,'StudentKota','অত্র বিদ্যালয়ে কর্মরত শিক্ষক, কর্মচারী ও ম্যানেজিং কমিটির সন্তান',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['committeeStudent'] =$committeeStudentcount;
+            $students[class_en_to_bn($class[$i])]['committeeStudent'] =int_en_to_bn($committeeStudentcount);
             $committeeStudent += $committeeStudentcount;
 
 
             //OrphanStudent
             $disabledStudentcount = $this->studentCount($school_id,'StudentKota','প্রতিবন্ধী',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['disabledStudent'] =$disabledStudentcount;
+            $students[class_en_to_bn($class[$i])]['disabledStudent'] =int_en_to_bn($disabledStudentcount);
             $disabledStudent += $disabledStudentcount;
 
             //There_is_no_quotaStudent
             $There_is_no_quotaStudentcount = $this->studentCount($school_id,'StudentKota','কোনো কোটা নেই',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['There_is_no_quotaStudent'] =$There_is_no_quotaStudentcount;
+            $students[class_en_to_bn($class[$i])]['There_is_no_quotaStudent'] =int_en_to_bn($There_is_no_quotaStudentcount);
             $There_is_no_quotaStudent += $There_is_no_quotaStudentcount;
             // কোটা
 
@@ -333,62 +333,62 @@ class frontendController extends Controller
 
             //businessmanStudent
             $businessmanStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','ব্যবসায়ি',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['businessmanStudent'] =$businessmanStudentcount;
+            $students[class_en_to_bn($class[$i])]['businessmanStudent'] =int_en_to_bn($businessmanStudentcount);
             $businessmanStudent += $businessmanStudentcount;
 
             //farmerStudent
             $farmerStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','কৃষক',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['farmerStudent'] =$farmerStudentcount;
+            $students[class_en_to_bn($class[$i])]['farmerStudent'] =int_en_to_bn($farmerStudentcount);
             $farmerStudent += $farmerStudentcount;
 
             //agricultural_laborerStudent
             $agricultural_laborerStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','কৃষি শ্রমিক',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['agricultural_laborerStudent'] =$agricultural_laborerStudentcount;
+            $students[class_en_to_bn($class[$i])]['agricultural_laborerStudent'] =int_en_to_bn($agricultural_laborerStudentcount);
             $agricultural_laborerStudent += $agricultural_laborerStudentcount;
 
             //doctorStudent
             $doctorStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','ডাক্তার',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['doctorStudent'] =$doctorStudentcount;
+            $students[class_en_to_bn($class[$i])]['doctorStudent'] =int_en_to_bn($doctorStudentcount);
             $doctorStudent += $doctorStudentcount;
 
             //fishermanStudent
             $fishermanStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','জেলে',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['fishermanStudent'] =$fishermanStudentcount;
+            $students[class_en_to_bn($class[$i])]['fishermanStudent'] =int_en_to_bn($fishermanStudentcount);
             $fishermanStudent += $fishermanStudentcount;
 
             //Government_jobStudent
             $Government_jobStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','সরকারি চাকুরি',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['Government_jobStudent'] =$Government_jobStudentcount;
+            $students[class_en_to_bn($class[$i])]['Government_jobStudent'] =int_en_to_bn($Government_jobStudentcount);
             $Government_jobStudent += $Government_jobStudentcount;
 
             //blacksmith_potterStudent
             $blacksmith_potterStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','কামার/কুমোর',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['blacksmith_potterStudent'] =$blacksmith_potterStudentcount;
+            $students[class_en_to_bn($class[$i])]['blacksmith_potterStudent'] =int_en_to_bn($blacksmith_potterStudentcount);
             $blacksmith_potterStudent += $blacksmith_potterStudentcount;
 
             //expatriateStudent
             $expatriateStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','প্রবাসি',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['expatriateStudent'] =$expatriateStudentcount;
+            $students[class_en_to_bn($class[$i])]['expatriateStudent'] =int_en_to_bn($expatriateStudentcount);
             $expatriateStudent += $expatriateStudentcount;
 
             //small_businessStudent
             $small_businessStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','ক্ষুদ্র ব্যবসায়ি',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['small_businessStudent'] =$small_businessStudentcount;
+            $students[class_en_to_bn($class[$i])]['small_businessStudent'] =int_en_to_bn($small_businessStudentcount);
             $small_businessStudent += $small_businessStudentcount;
 
             //teacherStudent
             $teacherStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','শিক্ষক',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['teacherStudent'] =$teacherStudentcount;
+            $students[class_en_to_bn($class[$i])]['teacherStudent'] =int_en_to_bn($teacherStudentcount);
             $teacherStudent += $teacherStudentcount;
 
             //There_is_no_quotaStudent
             $Non_agricultural_workersStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','অকৃষি শ্রমিক',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['Non_agricultural_workersStudent'] =$Non_agricultural_workersStudentcount;
+            $students[class_en_to_bn($class[$i])]['Non_agricultural_workersStudent'] =int_en_to_bn($Non_agricultural_workersStudentcount);
             $Non_agricultural_workersStudent += $Non_agricultural_workersStudentcount;
 
             //There_is_no_quotaStudent
             $Occupation_of_guardian_otherStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','অন্যান্য',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['Occupation_of_guardian_otherStudent'] =$Occupation_of_guardian_otherStudentcount;
+            $students[class_en_to_bn($class[$i])]['Occupation_of_guardian_otherStudent'] =int_en_to_bn($Occupation_of_guardian_otherStudentcount);
             $Occupation_of_guardian_otherStudent += $Occupation_of_guardian_otherStudentcount;
 
             // অভিভাবকের পেশা
@@ -403,17 +403,17 @@ class frontendController extends Controller
 
             //science
             $scienceStudentcount = $this->studentCount($school_id,'StudentGroup','Science',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['scienceStudent'] = $scienceStudentcount;
+            $students[class_en_to_bn($class[$i])]['scienceStudent'] =int_en_to_bn( $scienceStudentcount);
             $scienceStudent += $scienceStudentcount;
 
             //HumanitiesStudent
             $HumanitiesStudentcount = $this->studentCount($school_id,'StudentGroup','Humanities',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['HumanitiesStudent'] = $HumanitiesStudentcount;
+            $students[class_en_to_bn($class[$i])]['HumanitiesStudent'] =int_en_to_bn( $HumanitiesStudentcount);
             $HumanitiesStudent += $HumanitiesStudentcount;
 
             //CommerceStudent
             $CommerceStudentcount = $this->studentCount($school_id,'StudentGroup','Commerce',$class[$i]);
-            $students[class_en_to_bn($class[$i])]['CommerceStudent'] = $CommerceStudentcount;
+            $students[class_en_to_bn($class[$i])]['CommerceStudent'] =int_en_to_bn( $CommerceStudentcount);
             $CommerceStudent += $CommerceStudentcount;
         }
 
@@ -421,53 +421,53 @@ class frontendController extends Controller
 
 
         $data['data'] = $students;
-        $data['countdata']['মোট শিক্ষার্থীর সংখ্যা'] = $totalStudent;
-        $data['countdata']['ছাত্র'] = $maleStudent;
-        $data['countdata']['ছাত্রী'] = $FemaleStudent;
-        $data['countdata']['বিজ্ঞান বিভাগ'] = $scienceStudent;
-        $data['countdata']['মানবিক বিভাগ'] = $HumanitiesStudent;
+        $data['countdata']['মোট শিক্ষার্থীর সংখ্যা'] = int_en_to_bn($totalStudent);
+        $data['countdata']['ছাত্র'] = int_en_to_bn($maleStudent);
+        $data['countdata']['ছাত্রী'] = int_en_to_bn($FemaleStudent);
+        $data['countdata']['বিজ্ঞান বিভাগ'] = int_en_to_bn($scienceStudent);
+        $data['countdata']['মানবিক বিভাগ'] = int_en_to_bn($HumanitiesStudent);
 
 
 
-        $data['totalStudent'] = $totalStudent;
-        $data['maleStudent'] = $maleStudent;
-        $data['FemaleStudent'] = $FemaleStudent;
-        $data['scienceStudent'] = $scienceStudent;
-        $data['HumanitiesStudent'] = $HumanitiesStudent;
+        $data['totalStudent'] = int_en_to_bn($totalStudent);
+        $data['maleStudent'] = int_en_to_bn($maleStudent);
+        $data['FemaleStudent'] = int_en_to_bn($FemaleStudent);
+        $data['scienceStudent'] = int_en_to_bn($scienceStudent);
+        $data['HumanitiesStudent'] = int_en_to_bn($HumanitiesStudent);
 
-        $data['IslamStudentMale'] = $IslamStudentMale;
-        $data['IslamStudentFemale'] = $IslamStudentFemale;
-        $data['IslamStudent'] = $IslamStudent;
-        $data['HinduStudentMale'] = $HinduStudentMale;
-        $data['HinduStudentFemale'] = $HinduStudentFemale;
-        $data['HinduStudent'] = $HinduStudent;
+        $data['IslamStudentMale'] = int_en_to_bn($IslamStudentMale);
+        $data['IslamStudentFemale'] = int_en_to_bn($IslamStudentFemale);
+        $data['IslamStudent'] = int_en_to_bn($IslamStudent);
+        $data['HinduStudentMale'] = int_en_to_bn($HinduStudentMale);
+        $data['HinduStudentFemale'] = int_en_to_bn($HinduStudentFemale);
+        $data['HinduStudent'] = int_en_to_bn($HinduStudent);
 
 
-        $data['stipendStudentMale'] = $stipendStudentMale;
-        $data['stipendStudentFemale'] = $stipendStudentFemale;
-        $data['stipendStudent'] = $stipendStudent;
-        $data['WorkingStudent'] = $WorkingStudent;
-        $data['landless_guardiansStudent'] = $landless_guardiansStudent;
-        $data['MinorityStudent'] = $MinorityStudent;
-        $data['special_needsStudent'] = $special_needsStudent;
-        $data['OrphanStudent'] = $OrphanStudent;
-        $data['categoryOtherStudent'] = $categoryOtherStudent;
-        $data['freedom_fightersStudent'] = $freedom_fightersStudent;
-        $data['committeeStudent'] = $committeeStudent;
-        $data['disabledStudent'] = $disabledStudent;
-        $data['There_is_no_quotaStudent'] = $There_is_no_quotaStudent;
-        $data['businessmanStudent'] = $businessmanStudent;
-        $data['farmerStudent'] = $farmerStudent;
-        $data['agricultural_laborerStudent'] = $agricultural_laborerStudent;
-        $data['doctorStudent'] = $doctorStudent;
-        $data['fishermanStudent'] = $fishermanStudent;
-        $data['Government_jobStudent'] = $Government_jobStudent;
-        $data['blacksmith_potterStudent'] = $blacksmith_potterStudent;
-        $data['expatriateStudent'] = $expatriateStudent;
-        $data['small_businessStudent'] = $small_businessStudent;
-        $data['teacherStudent'] = $teacherStudent;
-        $data['Non_agricultural_workersStudent'] = $Non_agricultural_workersStudent;
-        $data['Occupation_of_guardian_otherStudent'] = $Occupation_of_guardian_otherStudent;
+        $data['stipendStudentMale'] = int_en_to_bn($stipendStudentMale);
+        $data['stipendStudentFemale'] = int_en_to_bn($stipendStudentFemale);
+        $data['stipendStudent'] = int_en_to_bn($stipendStudent);
+        $data['WorkingStudent'] = int_en_to_bn($WorkingStudent);
+        $data['landless_guardiansStudent'] = int_en_to_bn($landless_guardiansStudent);
+        $data['MinorityStudent'] = int_en_to_bn($MinorityStudent);
+        $data['special_needsStudent'] = int_en_to_bn($special_needsStudent);
+        $data['OrphanStudent'] = int_en_to_bn($OrphanStudent);
+        $data['categoryOtherStudent'] = int_en_to_bn($categoryOtherStudent);
+        $data['freedom_fightersStudent'] = int_en_to_bn($freedom_fightersStudent);
+        $data['committeeStudent'] = int_en_to_bn($committeeStudent);
+        $data['disabledStudent'] = int_en_to_bn($disabledStudent);
+        $data['There_is_no_quotaStudent'] = int_en_to_bn($There_is_no_quotaStudent);
+        $data['businessmanStudent'] = int_en_to_bn($businessmanStudent);
+        $data['farmerStudent'] = int_en_to_bn($farmerStudent);
+        $data['agricultural_laborerStudent'] = int_en_to_bn($agricultural_laborerStudent);
+        $data['doctorStudent'] = int_en_to_bn($doctorStudent);
+        $data['fishermanStudent'] = int_en_to_bn($fishermanStudent);
+        $data['Government_jobStudent'] = int_en_to_bn($Government_jobStudent);
+        $data['blacksmith_potterStudent'] = int_en_to_bn($blacksmith_potterStudent);
+        $data['expatriateStudent'] = int_en_to_bn($expatriateStudent);
+        $data['small_businessStudent'] = int_en_to_bn($small_businessStudent);
+        $data['teacherStudent'] = int_en_to_bn($teacherStudent);
+        $data['Non_agricultural_workersStudent'] = int_en_to_bn($Non_agricultural_workersStudent);
+        $data['Occupation_of_guardian_otherStudent'] = int_en_to_bn($Occupation_of_guardian_otherStudent);
 
 
         $type = $request->type;
