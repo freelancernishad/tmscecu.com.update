@@ -106,7 +106,7 @@
 
                                 <li class="ps-3 pb-1"><a class="text-black"  href="http://debiganj.panchagarh.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> দেবীগঞ্জ উপজেলা</a></li>
 
-                                <li class="ps-3 pb-1"><a class="text-black"  href="http://tepriganjup.panchagarh.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> টেপ্রীগঞ্জ ইউনিয়ন</a></li>
+                                <li class="ps-3 pb-1"><a class="text-black"  href="https://tepriganj.uniontax.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> টেপ্রীগঞ্জ ইউনিয়ন</a></li>
 
 
                             </ul>
