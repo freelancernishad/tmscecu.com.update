@@ -63,6 +63,8 @@ class User {
         dates.push(today)
         today = yyyy + '-' + mm;
         dates.push(today)
+        today = dd + '-' + mm + '-' + yyyy + ' ' + hrs + ':' + mins + ' ' + ampm;
+        dates.push(today)
         return dates;
     }
     responseAfterLogin(res) {
