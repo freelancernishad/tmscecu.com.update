@@ -119,11 +119,11 @@
 
 
                         <li class="nav-item sidebar-nav-item"  v-if="$localStorage.getItem('role')=='admin'" :class="{ active: selected == 2 }">
-                            <a href="javascript:void(0)" class="nav-link" @click="submenu(2)"><i class="flaticon-multiple-users-silhouette"></i><span>Teachers</span></a>
+                            <a href="javascript:void(0)" class="nav-link" @click="submenu(2)"><i class="flaticon-multiple-users-silhouette"></i><span>Staffs</span></a>
                         <transition name="slide">
                             <ul class="nav sub-group-menu menu-open child" v-if="selected == 2" style="display:block">
                                 <li class="nav-item">
-                                    <router-link   :to="{name:'staffs'}" class="nav-link"><i class="fas fa-angle-right"></i> All Teachers</router-link>
+                                    <router-link   :to="{name:'staffs'}" class="nav-link"><i class="fas fa-angle-right"></i> All Staffs</router-link>
                                 </li>
                                 <li class="nav-item" >
                                     <router-link   :to="{name:'staffsattendance'}" class="nav-link"><i class="fas fa-angle-right"></i> Attendence</router-link>
