@@ -105,7 +105,7 @@
                         <tr v-for="(report,index) in reports" :key="index">
                             <th scope="col">{{ index+1 }}</th>
 
-                            <td>{{ dateformatGlobal(report.date)[3] }}</td>
+                            <td>{{ dateformatGlobal(report.created_at)[6] }}</td>
 
                             <td>{{ report.trxid }}</td>
                             <td>{{ report.studentRoll }}</td>
