@@ -51,8 +51,8 @@
     <p style="margin-bottom:30px">{{ Notices.description }}</p>
 
 
-        <a  v-if="Notices.file" :href="(Notices.file)" style="margin-top: 25px;"><img :src="$asseturl+'assets/img/png-pdf.png'" style="width: 18px;margin-right: 9px;" alt="">{{ Notices.title }}</a>
-    <iframe v-if="Notices.file" width="100%"  style="height:100vh;margin-top: 15px;" :src="$asseturl+Notices.file" frameborder="0"></iframe>
+        <a  v-if="Notices.file" :href="Notices.file" style="margin-top: 25px;"><img :src="$asseturl+'assets/img/png-pdf.png'" style="width: 18px;margin-right: 9px;" alt="">{{ Notices.title }}</a>
+    <iframe v-if="Notices.file" width="100%"  style="height:100vh;margin-top: 15px;" :src="Notices.file" frameborder="0"></iframe>
 
 
 

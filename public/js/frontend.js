@@ -6597,7 +6597,7 @@ var render = function render() {
     },
     attrs: {
       width: "100%",
-      src: _vm.$asseturl + _vm.Notices.file,
+      src: _vm.Notices.file,
       frameborder: "0"
     }
   }) : _vm._e()])])])]), _vm._v(" "), _vm._m(1)])])]), _vm._v(" "), _c("side-bar", {
