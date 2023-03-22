@@ -990,7 +990,7 @@ function fileupload2($file, $path)
     }
     $destinationPath =env('FILE_PATH').$path. $base64;
     file_put_contents($destinationPath, $base64_decode);
-    return $destinationPath;
+    return asset($destinationPath);
 
 }
 
