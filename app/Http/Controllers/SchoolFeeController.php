@@ -20,6 +20,16 @@ class SchoolFeeController extends Controller
         if($class && $type){
             return SchoolFee::where(['class'=>$class,'type'=>$type])->latest()->first();
         }
+        if($type){
+
+            $fees =  SchoolFee::where(['type'=>$type])->latest()->get();
+            $classes =  class_list();
+            $datas = [
+                'fees'=>$fees,
+                'classes'=>$classes,
+            ];
+            return $datas;
+        }
 
 
         return SchoolFee::all();
@@ -52,9 +62,10 @@ class SchoolFeeController extends Controller
      * @param  \App\Models\SchoolFee  $schoolFee
      * @return \Illuminate\Http\Response
      */
-    public function show(SchoolFee $schoolFee)
+    public function show(SchoolFee $schoolFee,$id)
     {
-        //
+        return SchoolFee::find($id);
+        return $schoolFee;
     }
 
     /**
@@ -77,7 +88,19 @@ class SchoolFeeController extends Controller
      */
     public function update(Request $request, SchoolFee $schoolFee)
     {
-        //
+
+
+
+        $data = $request->all();
+        $schoolfee = SchoolFee::find($request->id);
+        // if($request->status==true){
+        //     $data['status'] = 1;
+        // }else{
+        //     $data['status'] = 0;
+        // }
+
+        $schoolfee->update($data);
+
     }
 
     /**

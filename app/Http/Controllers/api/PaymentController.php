@@ -244,7 +244,9 @@ class PaymentController extends Controller
             $monthly_fee = 0;
         }
 
-        $exam_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee'])->first()->fees;
+
+
+
         $registration_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'registration_fee'])->first()->fees;
         $form_filup_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'form_filup_fee'])->first()->fees;
 
@@ -321,6 +323,7 @@ class PaymentController extends Controller
                 array_push($monthlyPaid,[
                     'key'=>month_en_to_bn($value),
                     'amount'=>$monthly_fee,
+                    'sub_type'=>'',
                 ]);
             }
 
@@ -344,6 +347,25 @@ class PaymentController extends Controller
 
 
 
+        $Half_yearly_examinationExam_feeCount = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee','sub_type'=>'Half_yearly_examination','status'=>1])->count();
+
+        if($Half_yearly_examinationExam_feeCount){
+            $Half_yearly_examinationExam_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee','sub_type'=>'Half_yearly_examination'])->first()->fees;
+
+            $Half_yearly_examinationExam_feeStatusCount =  $this->PaymentCount(['type' => 'exam_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023','ex_name' => 'Half_yearly_examination'],'count');
+            if(!$Half_yearly_examinationExam_feeStatusCount){
+                $insertedData = array(["key"=>"অর্ধ বার্ষিক পরীক্ষার ফি","amount"=>$Half_yearly_examinationExam_fee,"sub_type"=>'Half_yearly_examination']);
+                array_splice($monthlyPaid, 6, 0, $insertedData);
+            }
+        }
+
+
+
+
+
+
+
+
 
         $paymentHtml = "
         <h2 class='text-center' style='font-size: 30px;'>বকেয়া</h2>
@@ -357,16 +379,18 @@ class PaymentController extends Controller
                 </tr>
             </thead>
             <tbody>";
+
         $totalAmount = 0;
             foreach ($monthlyPaid as $value) {
                 $totalAmount += $value['amount'];
-                $paymentHtml .="
-                <tr style='text-align:center'>
-                <td>".$value['key']."</td>
-                <td>".$value['amount']."</td>
-                </tr>
-                ";
+                    $paymentHtml .="
+                    <tr style='text-align:center'>
+                    <td>".$value['key']."</td>
+                    <td>".$value['amount']."</td>
+                    </tr>
+                    ";
             }
+
 
 
             $paymentHtml .= "</tbody>
@@ -429,13 +453,30 @@ class PaymentController extends Controller
                 $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
                 }elseif($paidPayment->type=='Admission_fee'){
                 $paymentHtml .="<td>".paymentKhat($paidPayment->type)."</td>";
+                }elseif($paidPayment->type=='exam_fee'){
+                $paymentHtml .="<td>".paymentKhat($paidPayment->type)." (".ex_name($paidPayment->ex_name).")</td>";
                 }else{
                     $paymentHtml .="<td>".month_en_to_bn($paidPayment->month)."</td>";
                 }
 
                 $paymentHtml .="<td>$paidPayment->amount</td>
 
-                <td><a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$paidPayment->trxid'>রশিদ ডাউনলোড</a></td>
+                <td>";
+                if($paidPayment->type=='exam_fee'){
+
+                    $paymentHtml .="
+
+                    <a class='btn btn-warning' target='_blank' href='/student/exam/admit/$paidPayment->admissionId/$paidPayment->ex_name'>প্রবেশ পত্র</a>
+                    <a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$paidPayment->trxid'>রশিদ ডাউনলোড</a>
+
+                    ";
+                }else{
+
+                    $paymentHtml .="<a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$paidPayment->trxid'>রশিদ ডাউনলোড</a>";
+                }
+
+
+                $paymentHtml .="</td>
 
                 </tr>
                 ";
@@ -759,8 +800,10 @@ class PaymentController extends Controller
         array_push($monthlyPaid,[
             'key'=>'ভর্তি/সেশন ফি',
             'amount'=>$session_fee,
+            'sub_type'=>'',
         ]);
       }
+
 
 
       foreach ($allMonth as $value) {
@@ -776,6 +819,7 @@ class PaymentController extends Controller
             array_push($monthlyPaid,[
                 'key'=>month_en_to_bn($value),
                 'amount'=>$monthly_fee,
+                'sub_type'=>'',
             ]);
         }
 
@@ -795,7 +839,26 @@ class PaymentController extends Controller
               }
           }
       }
-      $amount =  $totalamount;
+
+
+
+      $Half_yearly_examinationExam_feeCount = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Half_yearly_examination','status'=>1])->count();
+
+      if($Half_yearly_examinationExam_feeCount){
+        $Half_yearly_examinationExam_fee = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Half_yearly_examination'])->first()->fees;
+        $insertedData = array(["key"=>"exam_fee","amount"=>$Half_yearly_examinationExam_fee,"sub_type"=>'Half_yearly_examination']);
+          array_splice($monthlyPaid, 6, 0, $insertedData);
+      }else{
+        $Half_yearly_examinationExam_fee = 0;
+      }
+
+
+
+
+
+
+
+       $amount =  $totalamount+$Half_yearly_examinationExam_fee;
 
 
 
@@ -853,12 +916,17 @@ class PaymentController extends Controller
 
 
 
+
         if($type=='allBokeya'){
             foreach ($monthlyPaid as $value) {
 
 
+
                 $typesC = $value['key'];
                 if($typesC=='ভর্তি/সেশন ফি'){
+                    $types = paymentKhaten($value['key']);
+                    $monthName = date('F');
+                }elseif($typesC=='exam_fee'){
                     $types = paymentKhaten($value['key']);
                     $monthName = date('F');
                 }else{
@@ -878,6 +946,7 @@ class PaymentController extends Controller
                     'method' => '',
                     'amount' => $value['amount'],
                     'type' => $types,
+                    'ex_name' => $value['sub_type'],
                     'paymentUrl' => $redirectutl,
                     'date' => date("Y-m-d"),
                     'year' => $paymentYear,
@@ -888,6 +957,7 @@ class PaymentController extends Controller
                 }else{
                     $Insertdata['month'] =  $monthName;
                 }
+
                 payment::create($Insertdata);
 
             }
@@ -918,8 +988,7 @@ class PaymentController extends Controller
         }
 
 
-
-
+die();
         return redirect($redirectutl);
     }
     public function payments(Request $request)

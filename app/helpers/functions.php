@@ -74,7 +74,7 @@ use Intervention\Image\Facades\Image;
 
 
 
-function PdfMaker($pageSize='A4',$school_id,$html,$Filename,$Watermark=true)
+function PdfMaker($pageSize='A4',$school_id,$html,$Filename,$Watermark=true,$customposion='')
 {
     $schoolDetails = school_detail::where('school_id',$school_id)->first();
 
@@ -91,8 +91,22 @@ function PdfMaker($pageSize='A4',$school_id,$html,$Filename,$Watermark=true)
     $mpdf->defaultheaderfontstyle = 'B';
     $mpdf->defaultheaderline = 0;
     $mpdf->showWatermarkImage = $Watermark;
-    // $mpdf->WriteHTML('<watermarkimage src="'.base64($schoolDetails->logo).'" alpha="0.1" size="80,80" />');
-    $mpdf->SetWatermarkImage(base64($schoolDetails->logo),0.15);
+
+    if($customposion){
+
+        $mpdf->WriteHTML("<watermarkimage src='".base64($schoolDetails->logo)."'  $customposion/>");
+    }else{
+
+        $mpdf->SetWatermarkImage(base64($schoolDetails->logo),0.15);
+    }
+
+    // $mpdf->SetWatermarkImage(base64($schoolDetails->logo));
+
+
+
+
+    // $mpdf->WriteHTML('<style>.watermark-image { width: 10mm; height: 10mm; }</style>');
+    // $mpdf->WriteHTML('<div class="watermark-image"></div>');
     // $mpdf->SetWatermarkImage(base64($schoolDetails->logo),0.15,array(130,130),array(155,50));
     $mpdf->WriteHTML($html);
     $mpdf->Output($Filename, 'I');
@@ -312,6 +326,46 @@ function subjectCol($subject)
     }
 
 
+   function ex_name($name){
+        if($name=='Half_yearly_examination'){
+            return 'অর্ধ বার্ষিক পরীক্ষা';
+        }elseif($name=='Half_yearly_evaluation'){
+            return 'অর্ধ বার্ষিক মূল্যায়ন';
+        }elseif($name=='Annual_Examination'){
+            return 'বার্ষিক পরীক্ষা';
+        }elseif($name=='Annual_assessment'){
+            return 'বার্ষিক মূল্যায়ন';
+        }elseif($name=='Model_test_exam'){
+            return 'মডেল টেস্ট পরীক্ষা';
+        }elseif($name=='Pre_selection_examination'){
+            return 'প্রাক-নির্বাচনী পরীক্ষা';
+        }elseif($name=='Selective_Exam'){
+            return 'নির্বাচনী পরীক্ষা';
+        }elseif($name=='Continuous_assessment'){
+            return 'ধারাবাহিক মূল্যায়ন';
+        }elseif($name=='Summative_Assessment'){
+            return 'সামষ্টিক মূল্যায়ন';
+        }
+
+    }
+
+
+   function ex_name_list($name='en'){
+
+        $ex_en_name = ['Half_yearly_examination','Half_yearly_evaluation','Annual_Examination','Annual_assessment','Model_test_exam','Pre_selection_examination','Selective_Exam','Continuous_assessment','Summative_Assessment'];
+
+
+       $ex_bn_name =  ['অর্ধ বার্ষিক পরীক্ষার ফি','অর্ধ বার্ষিক মূল্যায়ন','বার্ষিক পরীক্ষা','বার্ষিক মূল্যায়ন','মডেল টেস্ট পরীক্ষা','প্রাক-নির্বাচনী পরীক্ষা','নির্বাচনী পরীক্ষা','ধারাবাহিক মূল্যায়ন','সামষ্টিক মূল্যায়ন'];
+
+       if($name=='en'){
+        return $ex_en_name;
+       }else{
+        return $ex_bn_name;
+       }
+
+    }
+
+
    function paymentKhat($name){
         if($name=='Admission_fee'){
             return 'ভর্তি ফরম ফি';
@@ -349,6 +403,8 @@ function subjectCol($subject)
             return 'form_filup_fee';
         }elseif($name=='মার্কসীট ফি'){
             return 'marksheet';
+        }else{
+            return $name;
         }
 
     }
@@ -379,6 +435,18 @@ function class_en_to_bn($class)
 
     return str_replace($en, $bn, $class);
 }
+
+function genderConvert($text){
+    if($text=='Male'){
+        return 'ছেলে';
+    }elseif($text=='Female'){
+        return 'মেয়ে';
+    }else{
+        return 'অন্যান্য';
+    }
+}
+
+
 
 function month_en_to_bn($month)
 {
@@ -2955,14 +3023,14 @@ function promoteClass($oldclass)
 
 
 
-function SchoolPad($school_id)
+function SchoolPad($school_id,$marginBottom='20px')
 {
     $schoolDetails = school_detail::where('school_id',$school_id)->first();
 
 
     $html = "
 
-    <table width='100%' style='margin-bottom:20px' border='0'>
+    <table width='100%' style='margin-bottom:$marginBottom' border='0'>
         <tr>
             <td width='110px' style='border:0 !important'>
                 <img width='75px'  style='overflow:hidden;float:right' src='".base64($schoolDetails->logo)."' alt=''>

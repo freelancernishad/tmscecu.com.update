@@ -308,9 +308,9 @@
     <a href="javascript:void(0)" class="nav-link" @click="submenu(8)"><i class="flaticon-script"></i><span>Settings</span></a>
     <transition name="slide">
     <ul class="nav sub-group-menu menu-open child" v-if="selected == 8" style="display:block">
-        <li class="nav-item">
-            <router-link    :to="{name:'settings'}" class="nav-link"><i class="fas fa-angle-right"></i> School Profile</router-link>
-        </li>
+
+        <li class="nav-item"><router-link    :to="{name:'fees',params:{name:'exam_fee'}}" class="nav-link"><i class="fas fa-angle-right"></i> Exam Fees</router-link></li>
+        <li class="nav-item"><router-link    :to="{name:'settings'}" class="nav-link"><i class="fas fa-angle-right"></i> School Profile</router-link></li>
         <li class="nav-item"><router-link    :to="{name:'seoSettings'}" class="nav-link"><i class="fas fa-angle-right"></i> Seo Settings</router-link></li>
         <li class="nav-item"><router-link    :to="{name:'sliderSettings'}" class="nav-link"><i class="fas fa-angle-right"></i> Slider</router-link></li>
 

@@ -136,6 +136,13 @@ let onlineexamstart = require('./components/onlineexam/start.vue').default;
 let onlineexamresult = require('./components/onlineexam/result.vue').default;
 let onlineexamView = require('./components/onlineexam/view.vue').default;
 let onlineexamnew = require('./components/onlineexam/form.vue').default;
+
+
+
+let fees = require('./components/fees/index.vue').default;
+let feesedit = require('./components/fees/edit.vue').default;
+
+
 let PageNotFound = require('./components/404.vue').default;
 
 
@@ -302,6 +309,11 @@ export const routes = [
   { path: `${prefix}/onlineexam/view/:id`, component: onlineexamView, name:'onlineexamView',meta: { layout: adminlayout } },
   { path: `${prefix}/onlineexam/edit/:id`, component: onlineexamnew, name:'onlineexamEdit',meta: { layout: adminlayout } },
   { path: `${prefix}/onlineexam/new`, component: onlineexamnew, name:'onlineexamnew',meta: { layout: adminlayout } },
+
+
+
+  { path: `${prefix}/fees/:name`, component: fees, name:'fees',meta: { layout: adminlayout } },
+  { path: `${prefix}/fees/edit/:id`, component: feesedit, name:'feesedit',meta: { layout: adminlayout } },
 
 
 

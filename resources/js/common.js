@@ -41,6 +41,82 @@ export default {
                 return e.response
             }
         },
+
+
+        ex_name(name){
+            if(name=='Half_yearly_examination'){
+                return 'অর্ধ বার্ষিক পরীক্ষার ফি';
+            }else if(name=='Half_yearly_evaluation'){
+                return 'অর্ধ বার্ষিক মূল্যায়ন';
+            }else if(name=='Annual_Examination'){
+                return 'বার্ষিক পরীক্ষা';
+            }else if(name=='Annual_assessment'){
+                return 'বার্ষিক মূল্যায়ন';
+            }else if(name=='Model_test_exam'){
+                return 'মডেল টেস্ট পরীক্ষা';
+            }else if(name=='Pre_selection_examination'){
+                return 'প্রাক-নির্বাচনী পরীক্ষা';
+            }else if(name=='Selective_Exam'){
+                return 'নির্বাচনী পরীক্ষা';
+            }else if(name=='Continuous_assessment'){
+                return 'ধারাবাহিক মূল্যায়ন';
+            }else if(name=='Summative_Assessment'){
+                return 'সামষ্টিক মূল্যায়ন';
+            }
+
+        },
+
+
+         class_en_to_bn(name){
+
+            if(name=='Play'){
+                return 'শিশু শ্রেণি';
+            }else if(name=='Nursery'){
+                return 'নার্সারি';
+            }else if(name=='One'){
+                return 'প্রথম শ্রেণি';
+            }else if(name=='Two'){
+                return 'দ্বিতীয় শ্রেণি';
+            }else if(name=='Three'){
+                return 'তৃতীয় শ্রেণী';
+            }else if(name=='Four'){
+                return 'চতুর্থ শ্রেণী';
+            }else if(name=='Five'){
+                return 'পঞ্চম শ্রেণী';
+            }else if(name=='Six'){
+                return 'ষষ্ঠ শ্রেণী';
+            }else if(name=='Seven'){
+                return 'সপ্তম শ্রেণী';
+            }else if(name=='Eight'){
+                return 'অষ্টম শ্রেণী';
+            }else if(name=='Nine'){
+                return 'নবম শ্রেণী';
+            }else if(name=='Ten'){
+                return 'দশম শ্রেণী';
+            }else{
+
+                return 'কোনো শ্রেণি নেই';
+            }
+
+            },
+
+
+
+
+
+
+
+
+            feeStatusText(status){
+                if(status==1){
+                    return '<span class="badge badge-pill badge-success">Active</span>';
+                }else if(status==0){
+                    return '<span class="badge badge-pill badge-danger">Deactive</span>';
+                }
+            },
+
+
+
         async schoolDetial(type=''){
             var res = await this.callApi('get',`/api/school/settings?school_id=${this.school_id}&front=${type}`,[]);
             this.schoolinfo = res.data
@@ -77,6 +153,8 @@ export default {
             } else if (text == 'সেশন ফি') {
                 result = 'Session_fee';
             } else if (text == 'Exam_fee') {
+                result = 'পরিক্ষার ফি';
+            } else if (text == 'exam_fee') {
                 result = 'পরিক্ষার ফি';
             } else if (text == 'পরিক্ষার ফি') {
                 result = 'Exam_fee';

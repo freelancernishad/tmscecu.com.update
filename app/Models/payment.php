@@ -22,6 +22,7 @@ class payment extends Model
         'amount',
         'bokeya',
         'type',
+        'ex_name',
         'paymentUrl',
         'ipnResponse',
         'type_name',

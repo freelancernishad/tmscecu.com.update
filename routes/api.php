@@ -274,6 +274,11 @@ Route::get('result/log',[ResultLogController::class,'indexlist']);
 
 Route::get('/answeres',[OnlineexamController::class , 'answeres']);
 
+
+Route::get('/school/fees',[SchoolFeeController::class , 'index']);
+Route::get('/school/fees/{id}',[SchoolFeeController::class , 'show']);
+Route::post('/school/update/fees',[SchoolFeeController::class , 'update']);
+
     // Route::prefix('v1')->group(function () {
 
 

@@ -75,6 +75,8 @@ Route::get('/inviceverify', function (Request $request) {
     $trx = $request->trx;
     return redirect("/student/applicant/invoice/$trx");
 });
+
+
 Route::get('/payment/success', function (Request $request) {
     // return $request->all();
     $transId = $request->transId;
@@ -147,6 +149,7 @@ Route::get('pdfgen', function () {
 
 Route::get('student/applicant/copy/{applicant_id}', [studentsController::class, 'applicant_copy']);
 Route::get('student/applicant/invoice/{trxid}', [studentsController::class, 'applicant_invoice']);
+Route::get('/student/exam/admit/{admissionId}/{ex_name}', [studentsController::class, 'exam_admit']);
 
 Route::get('download/mark', [resultController::class, 'marksheet']);
 

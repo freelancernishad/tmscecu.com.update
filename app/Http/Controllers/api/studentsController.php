@@ -1040,6 +1040,9 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     }
 
 
+
+
+
     public function invoice($payment,$student){
 
         $school_id = $student->school_id;
@@ -1735,6 +1738,185 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     }
 
 
+
+    public function exam_admit($admissionId,$ex_name)
+    {
+
+
+        $paymentStatus =  payment::where(['admissionId'=>$admissionId,'type'=>'exam_fee','ex_name'=>$ex_name,'status'=>'Paid','year'=>date('Y')])->count();
+
+
+        if($paymentStatus>0){
+
+            $student = student::where(['AdmissionID'=>$admissionId])->first();
+            $pdfFileName = 'Admit-card-'.$student->AdmissionID.'.pdf';
+
+            return PdfMaker('A4',$student->school_id,$this->admitCard($student,$ex_name),$pdfFileName,true,'alpha="0.15" size="80,80" position="65,30"');
+        }else{
+            echo "
+                <h1 style='text-align:center;color:red'>দয়া করে পেমেন্ট মেনু থেকে ".ex_name($ex_name)." এর ফি পরিশোধ করে প্রবেশ পত্র নিন।</h1>
+                লিঙ্কঃ <a href='/student/payment'>এখানে ক্লিক করে পেমেন্ট মেনুতে যান।</a>
+            ";
+        }
+
+
+
+
+
+    }
+
+
+    public function admitCard($student,$ex_name)
+    {
+
+        $school_details = school_detail::where('school_id',$student->school_id)->first();
+
+
+        $html = '';
+        $html="
+        <!DOCTYPE HTML>
+<html lang='en-US'>
+<head>
+<meta charset='UTF-8'>
+<title>Admit-card-$student->AdmissionID.pdf</title>
+<style>
+@page {
+    margin: 25px;
+    margin-top:30px;
+   }
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .rootContainer {
+        margin: 5px;
+        border: 1px solid;
+        padding: 5px 21px;
+    }
+    .tableTag, .tableTag td, .tableTag th {
+    border: 1px solid #6c6c6c;
+    border-collapse: collapse;
+    padding: 3px 7px;
+    font-size:11px;
+    }
+    td.tableRowHead {
+        background: #e9e9e9;
+        color: black !important;
+        font-size:12px;
+    }
+    .fontsize1{
+        font-size:16px;
+    }
+    .fontsize2{
+        font-size:25px;
+    }
+    .copyTitle{
+        font-size:23px;
+        color:#3E4D5B;
+    }
+
+    .examNameHead{
+        width:200px;
+        text-align:center;
+        margin:0 auto;
+    }
+
+    .examNamePara{
+        border:1px solid #160089;
+        background:#160089;
+        color:white;
+        font-size:20px;
+        padding:5px 10px;
+        margin:0px;
+    }
+
+    .sileColor{
+        color:#9750c9;
+        z-index:-1'
+    }
+
+</style>
+</head>
+<body>
+
+    ".SchoolPad($student->school_id,'3px')."
+
+
+    <div class='examNameHead' style='margin-top:-20px'>
+        <p class='examNamePara'>প্রবেশ পত্র</p>
+        <p style='margin:0px !important;margin-top:10px;font-size:18px'>".ex_name($ex_name)."</p>
+    </div>
+
+
+    <table class='tableTag' width='100%' border='1'>
+
+        <tr>
+            <td width='17%'>রোল নং</td>
+            <td width='33%'>".int_en_to_bn($student->StudentRoll)."</td>
+            <td width='17%'>এডমিশন আইডি </td>
+            <td width='33%'>".int_en_to_bn($student->AdmissionID)."</td>
+        </tr>
+
+        <tr>
+            <td>নাম (বাংলা)</td>
+            <td>$student->StudentName</td>
+            <td>নাম (ইংলিশ)</td>
+            <td>".strtoupper($student->StudentNameEn)."</td>
+
+        </tr>
+
+        <tr>
+            <td>শ্রেণি</td>
+            <td>".class_en_to_bn($student->StudentClass)."</td>
+            <td>লিঙ্গ</td>
+            <td>".genderConvert($student->StudentGender)."</td>
+
+        </tr>
+
+        <tr>
+            <td>পিতার নাম (বাংলা)</td>
+            <td>$student->StudentFatherNameBn</td>
+            <td>মাতার নাম (বাংলা)</td>
+            <td>$student->StudentMotherNameBn</td>
+        </tr>
+
+        <tr>
+            <td>পিতার নাম (ইংলিশ)</td>
+            <td>".strtoupper($student->StudentFatherName)."</td>
+            <td>মাতার নাম (ইংলিশ)</td>
+            <td>".strtoupper($student->StudentMotherName)."</td>
+        </tr>
+
+        <tr>
+            <td>ঠিকানা</td>
+            <td colspan='3'>বিভাগঃ- $student->division, জেলাঃ- $student->district, উপজেলাঃ- $student->upazila, ইউনিয়নঃ- $student->union, পোস্ট অফিসঃ- $student->post_office(".int_en_to_bn($student->AreaPostalCode)."), গ্রামঃ- $student->StudentAddress</td>
+        </tr>
+
+
+
+    </table>
+
+    <table width='100%' style='margin-top:20px;margin-bottom:15px'>
+        <tr>
+            <td width='70%'></td>
+            <td widrh='30%' style='text-align:center'>
+            <img width='170px'  src='".base64($school_details->PRINCIPALS_Signature)."' />
+                <p class='sileColor'>$school_details->Principals_name</p>
+                <p class='sileColor'>প্রধান শিক্ষক</p>
+                <p class='sileColor'>$school_details->SCHOLL_NAME</p>
+                <p class='sileColor'>$school_details->SCHOLL_ADDRESS</p>
+
+            </td>
+        </tr>
+
+    </table>
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+</body>
+</html>
+        ";
+return $html;
+    }
 
 
 

@@ -13,5 +13,6 @@ class SchoolFee extends Model
         'class',
         'type',
         'fees',
+        'status',
     ];
 }
