@@ -42,7 +42,7 @@
 
                         <label for="">ফি স্ট্যাটাস</label> <br/>
                         <label class="switch">
-                            <input type="checkbox" v-model="form.status">
+                            <input type="checkbox" v-model="form.status" >
                             <span class="slider round"></span>
                         </label>
 
@@ -76,6 +76,15 @@ export default {
         async getData(){
             var res = await this.callApi('get',`/api/school/fees/${this.$route.params.id}`,[]);
             this.form = res.data
+
+            if(res.data.status=='0'){
+                this.form['status'] = false
+            }else{
+
+                this.form['status'] = true
+            }
+
+
             this.preloader = false;
         },
 
