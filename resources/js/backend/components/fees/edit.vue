@@ -95,7 +95,7 @@ export default {
                 axios.post(`/api/school/update/fees`,this.form)
                 .then(({data}) => {
 
-                    this.getData();
+                    this.$router.go(-1)
                 })
                 .catch(() => {})
         }
