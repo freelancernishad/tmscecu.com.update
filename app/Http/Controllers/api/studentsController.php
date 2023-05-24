@@ -1751,6 +1751,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             $student = student::where(['AdmissionID'=>$admissionId])->first();
             $pdfFileName = 'Admit-card-'.$student->AdmissionID.'.pdf';
 
+
             return PdfMaker('A4',$student->school_id,$this->admitCard($student,$ex_name),$pdfFileName,true,'alpha="0.15" size="80,80" position="65,30"');
         }else{
             echo "
@@ -1770,6 +1771,18 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     {
 
         $school_details = school_detail::where('school_id',$student->school_id)->first();
+
+
+        $qrurl = url("/student/exam/admit/$student->AdmissionID/$ex_name");
+
+        // $qrurl = url("/verification/sonod/$row->id");
+        //in Controller
+        $qrcode = \QrCode::size(70)
+            ->format('svg')
+            ->generate($qrurl);
+            $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
+
+
 
 
         $html = '';
@@ -1797,12 +1810,12 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     border: 1px solid #6c6c6c;
     border-collapse: collapse;
     padding: 3px 7px;
-    font-size:11px;
+    font-size:14px;
     }
     td.tableRowHead {
         background: #e9e9e9;
         color: black !important;
-        font-size:12px;
+        font-size:14px;
     }
     .fontsize1{
         font-size:16px;
@@ -1839,10 +1852,32 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 </head>
 <body>
 
-    ".SchoolPad($student->school_id,'3px')."
+
+<table width='100%'>
+<tr>
+    <td width='110px'>
+        <img width='75px'  style='overflow:hidden;float:right' src='".base64($school_details->logo)."' alt=''>
+    </td>
+    <td>
+        <p class='fontsize2'>$school_details->SCHOLL_NAME</p>
+        <p class='fontsize1'>$school_details->SCHOLL_ADDRESS </p>
+        <p class='fontsize1' style='font-size:12px'>website: www.tepriganjhighschool.edu.bd </p>
+    </td>
+    <td style='text-align: right'>
+    <div class='imgdiv'>
+    <img width='100px'  style='overflow:hidden;float:right' src='".base64($student->StudentPicture)."' alt=''>
+    </div>
+    </td>
+</tr>
+</table>
 
 
-    <div class='examNameHead' style='margin-top:-20px'>
+
+
+
+
+
+    <div class='examNameHead' style='margin-top:20px'>
         <p class='examNamePara'>প্রবেশ পত্র</p>
         <p style='margin:0px !important;margin-top:10px;font-size:18px'>".ex_name($ex_name)."</p>
     </div>
@@ -1860,8 +1895,8 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         <tr>
             <td>নাম (বাংলা)</td>
             <td>$student->StudentName</td>
-            <td>নাম (ইংলিশ)</td>
-            <td>".strtoupper($student->StudentNameEn)."</td>
+            <td>নাম (ইংরেজি)</td>
+            <td style='font-size:11px'>".strtoupper($student->StudentNameEn)."</td>
 
         </tr>
 
@@ -1881,15 +1916,15 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         </tr>
 
         <tr>
-            <td>পিতার নাম (ইংলিশ)</td>
-            <td>".strtoupper($student->StudentFatherName)."</td>
-            <td>মাতার নাম (ইংলিশ)</td>
-            <td>".strtoupper($student->StudentMotherName)."</td>
+            <td>পিতার নাম (ইংরেজি)</td>
+            <td style='font-size:11px'>".strtoupper($student->StudentFatherName)."</td>
+            <td>মাতার নাম (ইংরেজি)</td>
+            <td style='font-size:11px'>".strtoupper($student->StudentMotherName)."</td>
         </tr>
 
         <tr>
             <td>ঠিকানা</td>
-            <td colspan='3'>বিভাগঃ- $student->division, জেলাঃ- $student->district, উপজেলাঃ- $student->upazila, ইউনিয়নঃ- $student->union, পোস্ট অফিসঃ- $student->post_office(".int_en_to_bn($student->AreaPostalCode)."), গ্রামঃ- $student->StudentAddress</td>
+            <td colspan='3'>গ্রামঃ- $student->StudentAddress, পোস্ট অফিসঃ- $student->post_office(".int_en_to_bn($student->AreaPostalCode)."), ইউনিয়নঃ- $student->union, উপজেলাঃ- $student->upazila, জেলাঃ- $student->district, বিভাগঃ- $student->division  </td>
         </tr>
 
 
@@ -1898,7 +1933,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
     <table width='100%' style='margin-top:20px;margin-bottom:15px'>
         <tr>
-            <td width='70%'></td>
+            <td width='70%' style='text-align:left'>$qrcode</td>
             <td widrh='30%' style='text-align:center'>
             <img width='170px'  src='".base64($school_details->PRINCIPALS_Signature)."' />
                 <p class='sileColor'>$school_details->Principals_name</p>
