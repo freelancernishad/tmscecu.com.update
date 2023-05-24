@@ -65,7 +65,10 @@
 export default {
     data() {
         return {
-            form:{},
+            form:{
+                fees:0,
+                status:0,
+            },
             preloader:true,
         }
     },
