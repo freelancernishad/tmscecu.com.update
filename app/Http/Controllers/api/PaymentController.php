@@ -988,7 +988,7 @@ class PaymentController extends Controller
         }
 
 
-die();
+
         return redirect($redirectutl);
     }
     public function payments(Request $request)

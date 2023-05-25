@@ -163,8 +163,7 @@ li.page-item.active button {
         <component :is="$route.meta.layout || 'div'"   :user="{{Auth::user()}}"   :classes-list="{{ $classess }}" :school_detials="{{ $school_detials }}">
             <router-view />
           </component>
-
-</div>
+    </div>
 
 
 
