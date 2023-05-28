@@ -1336,6 +1336,16 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                 }
 
 
+                                $exam_fee = 0;
+                                $ex_name = '';
+                                $exam_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'exam_fee'])->count();
+                                if($exam_feeCount>0){
+                                    $exam_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'exam_fee'])->first();
+                                   $exam_fee  = $exam_feeTd->amount;
+                                   $ex_name  = $exam_feeTd->ex_name;
+                                }
+
+
                                  $paymentss = payment::where(['trxid'=>$invoiceId,'status'=>'Paid'])->get();
 
                                  $monthname = "";
@@ -1370,8 +1380,8 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
                                 <tr class='tr items'>
                                 <td class='td  defaltfont'>".int_en_to_bn(4)."</td>
-                                <td class='td  defaltfont'>পরীক্ষার ফি</td>
-                                <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
+                                <td class='td  defaltfont'>পরীক্ষার ফি (".ex_name($ex_name).")</td>
+                                <td class='td  defaltfont'>".int_en_to_bn($exam_fee)."</td>
                                 </tr>
 
                                 <tr class='tr items'>
@@ -1387,7 +1397,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                 </tr>
 
                                 ";
-                                 $totalAmount = $sessionFee+$monthlyAmount;
+                                $totalAmount = $sessionFee+$monthlyAmount+$exam_fee;
 
 
                             }else{
@@ -1594,6 +1604,15 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                $sessionFee  = $paymentSession->amount;
                             }
 
+                            $exam_fee = 0;
+                            $ex_name = '';
+                            $exam_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'exam_fee'])->count();
+                            if($exam_feeCount>0){
+                                $exam_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'exam_fee'])->first();
+                               $exam_fee  = $exam_feeTd->amount;
+                               $ex_name  = $exam_feeTd->ex_name;
+                            }
+
 
                              $paymentss = payment::where(['trxid'=>$invoiceId,'status'=>'Paid'])->get();
 
@@ -1627,11 +1646,13 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                             <td class='td  defaltfont'>".int_en_to_bn($monthlyAmount)."</td>
                             </tr>
 
+
                             <tr class='tr items'>
                             <td class='td  defaltfont'>".int_en_to_bn(4)."</td>
-                            <td class='td  defaltfont'>পরীক্ষার ফি</td>
-                            <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
+                            <td class='td  defaltfont'>পরীক্ষার ফি (".ex_name($ex_name).")</td>
+                            <td class='td  defaltfont'>".int_en_to_bn($exam_fee)."</td>
                             </tr>
+
 
                             <tr class='tr items'>
                             <td class='td  defaltfont'>".int_en_to_bn(5)."</td>
@@ -1646,7 +1667,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                             </tr>
 
                             ";
-                             $totalAmount = $sessionFee+$monthlyAmount;
+                             $totalAmount = $sessionFee+$monthlyAmount+$exam_fee;
 
 
                         }else{
@@ -1879,7 +1900,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
     <div class='examNameHead' style='margin-top:20px'>
         <p class='examNamePara'>প্রবেশ পত্র</p>
-        <p style='margin:0px !important;margin-top:10px;font-size:18px'>".ex_name($ex_name)."</p>
+        <p style='margin:0px !important;margin-top:10px;font-size:18px'>".ex_name($ex_name)."- ২০২৩</p>
     </div>
 
 
