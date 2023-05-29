@@ -347,17 +347,31 @@ class PaymentController extends Controller
 
 
 
-        $Half_yearly_examinationExam_feeCount = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee','sub_type'=>'Half_yearly_examination','status'=>1])->count();
 
-        if($Half_yearly_examinationExam_feeCount){
-            $Half_yearly_examinationExam_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee','sub_type'=>'Half_yearly_examination'])->first()->fees;
 
-            $Half_yearly_examinationExam_feeStatusCount =  $this->PaymentCount(['type' => 'exam_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023','ex_name' => 'Half_yearly_examination'],'count');
-            if(!$Half_yearly_examinationExam_feeStatusCount){
-                $insertedData = array(["key"=>"অর্ধ বার্ষিক পরীক্ষার ফি","amount"=>$Half_yearly_examinationExam_fee,"sub_type"=>'Half_yearly_examination']);
-                array_splice($monthlyPaid, 6, 0, $insertedData);
+
+
+
+        $ex_name_list = ex_name_list();
+        foreach ($ex_name_list as $exName) {
+
+        $Exam_feeCount = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee','sub_type'=>$exName,'status'=>1])->count();
+        if($Exam_feeCount){
+           $Schoolfee = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee','sub_type'=>$exName])->first();;
+            $exFee = $Schoolfee->fees;
+            $index_number = $Schoolfee->index_number;
+            $Exam_feeStatusCount =  $this->PaymentCount(['type' => 'exam_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023','ex_name' => $exName],'count');
+
+            if(!$Exam_feeStatusCount){
+                $insertedData = array(["key"=>ex_name($exName),"amount"=>$exFee,"sub_type"=>$exName]);
+                array_splice($monthlyPaid, $index_number, 0, $insertedData);
             }
         }
+        }
+
+
+
+
 
 
 
@@ -842,14 +856,23 @@ class PaymentController extends Controller
 
 
 
-      $Half_yearly_examinationExam_feeCount = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Half_yearly_examination','status'=>1])->count();
 
-      if($Half_yearly_examinationExam_feeCount){
-        $Half_yearly_examinationExam_fee = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Half_yearly_examination'])->first()->fees;
-        $insertedData = array(["key"=>"exam_fee","amount"=>$Half_yearly_examinationExam_fee,"sub_type"=>'Half_yearly_examination']);
-          array_splice($monthlyPaid, 6, 0, $insertedData);
-      }else{
-        $Half_yearly_examinationExam_fee = 0;
+      $ex_name_list = ex_name_list();
+      foreach ($ex_name_list as $exName) {
+
+      $Exam_feeCount = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>$exName,'status'=>1])->count();
+      if($Exam_feeCount){
+         $Schoolfee = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>$exName])->first();;
+          $exFee = $Schoolfee->fees;
+          $totalamount +=  $exFee;
+          $index_number = $Schoolfee->index_number;
+          $Exam_feeStatusCount =  $this->PaymentCount(['type' => 'exam_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023','ex_name' => $exName],'count');
+
+          if(!$Exam_feeStatusCount){
+              $insertedData = array(["key"=>'exam_fee',"amount"=>$exFee,"sub_type"=>$exName]);
+              array_splice($monthlyPaid, $index_number, 0, $insertedData);
+          }
+      }
       }
 
 
@@ -857,8 +880,23 @@ class PaymentController extends Controller
 
 
 
+    //   $Half_yearly_examinationExam_feeCount = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Half_yearly_examination','status'=>1])->count();
 
-       $amount =  $totalamount+$Half_yearly_examinationExam_fee;
+    //   if($Half_yearly_examinationExam_feeCount){
+    //     $Half_yearly_examinationExam_fee = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Half_yearly_examination'])->first()->fees;
+    //     $insertedData = array(["key"=>"exam_fee","amount"=>$Half_yearly_examinationExam_fee,"sub_type"=>'Half_yearly_examination']);
+    //       array_splice($monthlyPaid, 6, 0, $insertedData);
+    //   }else{
+    //     $Half_yearly_examinationExam_fee = 0;
+    //   }
+
+
+
+
+
+
+
+       $amount =  $totalamount;
 
 
 
