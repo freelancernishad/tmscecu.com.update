@@ -24,8 +24,8 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 logo school_logo" style="display: flex;">
                                 <img class="img-fluid" width="75px" :src="$asseturl+schoolSettings.logo" alt="">
                                 <span class="text-dark" style="font-size:20px;display: flex;flex-direction: column;justify-content: center;margin-left: 15px;">
-                                <span style="font-size: 25px;border-bottom: 1px solid #6db5ae;">{{ schoolSettings.SCHOLL_NAME }}</span>
-                                <span style="font-size: 15px;color: #570abd;font-weight: 600;letter-spacing: 2px;">TEPRIGANJ ADARSHA B.L HIGH SCHOOL</span>
+                                <span style="font-size: 25px;border-bottom: 1px solid #6db5ae;    color: tomato;">{{ schoolSettings.SCHOLL_NAME }}</span>
+                                <span style="font-size: 15px;color: rgb(10 189 115);font-weight: 600;letter-spacing: 2px;">TEPRIGANJ ADARSHA B.L HIGH SCHOOL</span>
                                 </span>
 
 
@@ -42,7 +42,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon" style="    filter: invert(17);"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto mb-2 mb-lg-0">
@@ -264,6 +264,12 @@ export default {
 }
 </script>
 <style>
+
+.bg-primary {
+    background-color: #160089!important;
+}
+
+
 ul.footerList li a {
     border-right: 0 dotted #5a5454;
     color: #0e0e0e;

@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(sitedetails()->logo) }}" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css?v-1.0.0') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css?v-1.0.1') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pro.min.css') }}">
     <script type="text/javascript" src="{{asset('assets/js/jquery-1.12.4.min.js')}}"></script>
 
@@ -100,6 +100,23 @@ h5 {
 .form-control {
     font-family: 'Kalpurush' !important;
 }
+.form-control {
+    border: 1px solid #954913 !important;
+    color: #954913 !important;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ff0000 !important;
+    outline: 0;
+    box-shadow: 0 0 0 black !important;
+}
+.btn-info {
+    color: #fff;
+    background-color: #160089 !important;
+    border-color: #160089 !important;
+}
 </style>
 
 {{-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9489624253487221" crossorigin="anonymous"></script> --}}
@@ -148,7 +165,7 @@ h5 {
 
 
 
-    <script src="{{ asset('js/frontend.js?ver=1.2.1') }}" async ></script>
+    <script src="{{ asset('js/frontend.js?ver=1.2.2') }}" async ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>

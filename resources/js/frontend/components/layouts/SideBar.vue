@@ -39,7 +39,7 @@
                         <div class="custom_bg py-2">
                             <ul style="padding-left:0">
 
-                                <li class="ps-3 pb-3" v-for="notice in notices"><router-link class="text-black"  :to="{name:'noticesingle',params:{id:notice.id,title:notice.title}}"> <i class="fas fa-angle-double-right"></i> {{ notice.title.slice(0, 30)+'...' }}</router-link></li>
+                                <li class="ps-3 pb-3" v-for="notice in notices"><router-link class="text-black" style="color: #160089;"  :to="{name:'noticesingle',params:{id:notice.id,title:notice.title}}"> <i class="fas fa-angle-double-right"></i> {{ notice.title.slice(0, 30)+'...' }}</router-link></li>
 
                             </ul>
                             <router-link style="    padding: 2px 9px;float: right;background: #545454;margin-bottom: 8px;color: white;border-radius: 3px;" :to="{name:'frontnotice'}">সকল নোটিশ দেখুন</router-link>
@@ -80,33 +80,33 @@
                         </div>
                         <div class="custom_bg py-2">
                             <ul class="list-unstyled" style="padding-left:0">
-                                <li class="ps-3 pb-1"><a class="text-black"  href="http://www.moedu.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> শিক্ষা মন্ত্রণালয়</a></li>
+                                <li class="ps-3 pb-1"><a class="text-black" style="color: #160089;"  href="http://www.moedu.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> শিক্ষা মন্ত্রণালয়</a></li>
 
-                                <li class="ps-3 pb-1"><a class="text-black"  href="http://www.dshe.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর</a></li>
+                                <li class="ps-3 pb-1"><a class="text-black" style="color: #160089;"  href="http://www.dshe.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর</a></li>
 
-                                <li class="ps-3 pb-1"><a class="text-black"  href="https://dhakaeducationboard.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i>ঢাকা শিক্ষাবোর্ড</a></li>
-
-
-                                <li class="ps-3 pb-1"><a class="text-black"  href="http://www.dinajpureducationboard.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i>দিনাজপুর শিক্ষাবোর্ড</a></li>
+                                <li class="ps-3 pb-1"><a class="text-black" style="color: #160089;"  href="https://dhakaeducationboard.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> ঢাকা শিক্ষাবোর্ড</a></li>
 
 
-                                <li class="ps-3 pb-1"><a class="text-black"  href="https://dinajpurboard.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i>শিক্ষাবোর্ড,দিনাজপুর</a></li>
+                                <li class="ps-3 pb-1"><a class="text-black" style="color: #160089;"  href="http://www.dinajpureducationboard.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> দিনাজপুর শিক্ষাবোর্ড</a></li>
 
 
-                                <li class="ps-3 pb-1"><a class="text-black"  href="http://www.educationboardresults.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i>বোর্ড রেজাল্ট</a></li>
+                                <li class="ps-3 pb-1"><a class="text-black" style="color: #160089;"  href="https://dinajpurboard.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> শিক্ষাবোর্ড,দিনাজপুর</a></li>
 
 
-                                <li class="ps-3 pb-1"><a class="text-black"  href="http://www.banbeis.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> ব্যানবেইজ</a></li>
-                                <!-- <li class="ps-3 pb-1"><a class="text-black"  href="http://www.nctb.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> এনসিটিবি</a></li> -->
+                                <li class="ps-3 pb-1"><a class="text-black" style="color: #160089;"  href="http://www.educationboardresults.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> বোর্ড রেজাল্ট</a></li>
 
 
-                                <!-- <li class="ps-3 pb-1"><a class="text-black"  href="https://www.teachers.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> শিক্ষক বাতায়ন</a></li> -->
+                                <li class="ps-3 pb-1"><a class="text-black" style="color: #160089;"  href="http://www.banbeis.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> ব্যানবেইজ</a></li>
+                                <!-- <li class="ps-3 pb-1"><a class="text-black" style="color: #160089;"  href="http://www.nctb.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> এনসিটিবি</a></li> -->
 
-                                <li class="ps-3 pb-1"><a class="text-black"  href="http://www.panchagarh.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> পঞ্চগড় জেলা</a></li>
 
-                                <li class="ps-3 pb-1"><a class="text-black"  href="http://debiganj.panchagarh.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> দেবীগঞ্জ উপজেলা</a></li>
+                                <!-- <li class="ps-3 pb-1"><a class="text-black" style="color: #160089;"  href="https://www.teachers.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> শিক্ষক বাতায়ন</a></li> -->
 
-                                <li class="ps-3 pb-1"><a class="text-black"  href="https://tepriganj.uniontax.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> টেপ্রীগঞ্জ ইউনিয়ন</a></li>
+                                <li class="ps-3 pb-1"><a class="text-black" style="color: #160089;"  href="http://www.panchagarh.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> পঞ্চগড় জেলা</a></li>
+
+                                <li class="ps-3 pb-1"><a class="text-black" style="color: #160089;"  href="http://debiganj.panchagarh.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> দেবীগঞ্জ উপজেলা</a></li>
+
+                                <li class="ps-3 pb-1"><a class="text-black" style="color: #160089;"  href="https://tepriganj.uniontax.gov.bd/" target="_blank"> <i class="fas fa-angle-double-right"></i> টেপ্রীগঞ্জ ইউনিয়ন</a></li>
 
 
                             </ul>

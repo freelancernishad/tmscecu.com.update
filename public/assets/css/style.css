@@ -86,10 +86,9 @@ width: 100% !important;
 
 
 
-
 .topHeader {
-    background: #9e5bba;
-    border-bottom: 2px solid #ff0000a8;
+    background: #30cf7e;
+    border-bottom: 2px solid #005affa8;
     overflow: hidden;
     padding: 0 17px;
 }
@@ -124,7 +123,7 @@ h3.searchHeader {
 }
 
 h3.searchHeader {
-    background: #159513;
+    background: #954913;
     color: white;
     padding: 5px 1px;
     position: relative;
@@ -189,7 +188,7 @@ ul.submenu.list-unstyled {
     z-index: 99;
     background: #9e5bba;
     width: max-content;
-    border-top: 3px solid #159513;
+    border-top: 3px solid #954913;
     display: none;
 }
 
@@ -205,7 +204,7 @@ ul.submenu.list-unstyled li a {
 }
 
 ul.submenu.list-unstyled li a:hover {
-    background: #159513ed;
+    background: #954913ed;
 }
 
 
@@ -230,7 +229,7 @@ h6.serviceTitle.position-relative.upsheba {
 
 h6.serviceTitle.position-relative.upsheba {
     margin-bottom: 19 px;
-    background: #159513;
+    background: #954913;
     color: white;
 }
 
@@ -272,7 +271,7 @@ h6.serviceTitle {
 }
 
 h6.serviceTitle.position-relative {
-    background: #159513;
+    background: #954913;
     color: white;
 }
 
@@ -299,7 +298,7 @@ h6.serviceTitle.position-relative {
 }
 
 .sidebarTitle {
-    background: #159513;
+    background: #954913;
     padding: 9px 8px;
 }
 

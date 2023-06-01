@@ -1419,18 +1419,7 @@ label.form_label {
     color: #007bff;
     font-weight: 600;
 }
-.form-control {
-    border: 1px solid #022c32 !important;
-    color: #007BFF !important;
-    font-family: sans-serif;
-}
-.form-control:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color: #ff0000 !important;
-    outline: 0;
-    box-shadow: 0 0 0 black !important;
-}
+
 
 p.help.is-danger {
     font-size: 15px;
