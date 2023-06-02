@@ -892,25 +892,30 @@ class PaymentController extends Controller
       if($Exam_feeCount){
          $Schoolfee = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>$exName])->first();;
           $exFee = $Schoolfee->fees;
-          $totalamount +=  $exFee;
+
           $index_number = $Schoolfee->index_number;
           $Exam_feeStatusCount =  $this->PaymentCount(['type' => 'exam_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023','ex_name' => $exName],'count');
 
           if(!$Exam_feeStatusCount){
+            $totalamount +=  $exFee;
               $insertedData = array(["key"=>'exam_fee',"amount"=>$exFee,"sub_type"=>$exName]);
               array_splice($monthlyPaid, $index_number, 0, $insertedData);
           }
       }
       }
+
+
+
       $Registration_feeCount = SchoolFee::where(['class'=>$class,'type'=>'registration_fee','status'=>1])->count();
       if($Registration_feeCount){
          $Schoolfee = SchoolFee::where(['class'=>$class,'type'=>'registration_fee'])->first();;
           $RegFee = $Schoolfee->fees;
-          $totalamount +=  $RegFee;
+
           $index_number = $Schoolfee->index_number;
           $Registration_feeStatusCount =  $this->PaymentCount(['type' => 'registration_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023'],'count');
 
           if(!$Registration_feeStatusCount){
+            $totalamount +=  $RegFee;
               $insertedData = array(["key"=>'registration_fee',"amount"=>$RegFee,"sub_type"=>'']);
               array_splice($monthlyPaid, $index_number, 0, $insertedData);
           }
@@ -922,11 +927,12 @@ class PaymentController extends Controller
       if($Form_filup_feeCount){
          $Schoolfee = SchoolFee::where(['class'=>$class,'type'=>'form_filup_fee'])->first();;
           $FornFee = $Schoolfee->fees;
-          $totalamount +=  $FornFee;
+
           $index_number = $Schoolfee->index_number;
           $Form_filup_feeStatusCount =  $this->PaymentCount(['type' => 'form_filup_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023'],'count');
 
           if(!$Form_filup_feeStatusCount){
+            $totalamount +=  $FornFee;
               $insertedData = array(["key"=>'form_filup_fee',"amount"=>$FornFee,"sub_type"=>'']);
               array_splice($monthlyPaid, $index_number, 0, $insertedData);
           }
