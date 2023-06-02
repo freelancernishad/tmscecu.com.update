@@ -146,6 +146,8 @@ export default {
             var result;
             if (text == 'Monthly_fee') {
                 result = 'মাসিক বেতন';
+            }else if (text == 'monthly_fee') {
+                result = 'মাসিক বেতন';
             } else if (text == 'মাসিক বেতন') {
                 result = 'Monthly_fee';
             } else if (text == 'Session_fee') {
@@ -158,6 +160,22 @@ export default {
                 result = 'পরিক্ষার ফি';
             } else if (text == 'পরিক্ষার ফি') {
                 result = 'Exam_fee';
+            } else if (text == 'Admission_fee') {
+                result = 'ফর্ম ফি';
+            } else if (text == 'ফর্ম ফি') {
+                result = 'Admission_fee';
+            } else if (text == 'registration_fee') {
+                result = 'রেজিস্ট্রেশন ফি';
+            } else if (text == 'রেজিস্ট্রেশন ফি') {
+                result = 'registration_fee';
+            } else if (text == 'form_filup_fee') {
+                result = 'ফরম পূরণ ফি';
+            } else if (text == 'ফরম পূরণ ফি') {
+                result = 'form_filup_fee';
+            } else if (text == 'session_fee') {
+                result = 'ভর্তি/সেশন ফি';
+            } else if (text == 'ভর্তি/সেশন ফি') {
+                result = 'session_fee';
             } else if (text == 'Other') {
                 result = 'অন্যান্য';
             } else if (text == 'অন্যান্য') {
