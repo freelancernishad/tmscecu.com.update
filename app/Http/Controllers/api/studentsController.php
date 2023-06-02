@@ -1345,6 +1345,20 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                    $ex_name  = $exam_feeTd->ex_name;
                                 }
 
+                                $registration_fee = 0;
+                                $registration_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee'])->count();
+                                if($registration_feeCount>0){
+                                    $registration_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee'])->first();
+                                   $registration_fee  = $registration_feeTd->amount;
+                                }
+
+                                $form_filup_fee = 0;
+                                $form_filup_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee'])->count();
+                                if($form_filup_feeCount>0){
+                                    $form_filup_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee'])->first();
+                                   $form_filup_fee  = $form_filup_feeTd->amount;
+                                }
+
 
                                  $paymentss = payment::where(['trxid'=>$invoiceId,'status'=>'Paid'])->get();
 
@@ -1387,17 +1401,17 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                 <tr class='tr items'>
                                 <td class='td  defaltfont'>".int_en_to_bn(5)."</td>
                                 <td class='td  defaltfont'>রেজিস্ট্রেশন ফি</td>
-                                <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
+                                <td class='td  defaltfont'>".int_en_to_bn($registration_fee)."</td>
                                 </tr>
 
                                 <tr class='tr items'>
                                 <td class='td  defaltfont'>".int_en_to_bn(6)."</td>
                                 <td class='td  defaltfont'>ফরম পূরণ ফি</td>
-                                <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
+                                <td class='td  defaltfont'>".int_en_to_bn($form_filup_fee)."</td>
                                 </tr>
 
                                 ";
-                                $totalAmount = $sessionFee+$monthlyAmount+$exam_fee;
+                                $totalAmount = $sessionFee+$monthlyAmount+$exam_fee+$registration_fee+$form_filup_fee;
 
 
                             }else{
@@ -1612,6 +1626,20 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                $exam_fee  = $exam_feeTd->amount;
                                $ex_name  = $exam_feeTd->ex_name;
                             }
+                            $registration_fee = 0;
+                            $registration_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee'])->count();
+                            if($registration_feeCount>0){
+                                $registration_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee'])->first();
+                               $registration_fee  = $registration_feeTd->amount;
+                            }
+
+                            $form_filup_fee = 0;
+                            $form_filup_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee'])->count();
+                            if($form_filup_feeCount>0){
+                                $form_filup_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee'])->first();
+                               $form_filup_fee  = $form_filup_feeTd->amount;
+                            }
+
 
 
                              $paymentss = payment::where(['trxid'=>$invoiceId,'status'=>'Paid'])->get();
@@ -1657,17 +1685,17 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                             <tr class='tr items'>
                             <td class='td  defaltfont'>".int_en_to_bn(5)."</td>
                             <td class='td  defaltfont'>রেজিস্ট্রেশন ফি</td>
-                            <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
+                            <td class='td  defaltfont'>".int_en_to_bn($registration_fee)."</td>
                             </tr>
 
                             <tr class='tr items'>
                             <td class='td  defaltfont'>".int_en_to_bn(6)."</td>
                             <td class='td  defaltfont'>ফরম পূরণ ফি</td>
-                            <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
+                            <td class='td  defaltfont'>".int_en_to_bn($form_filup_fee)."</td>
                             </tr>
 
                             ";
-                             $totalAmount = $sessionFee+$monthlyAmount+$exam_fee;
+                            $totalAmount = $sessionFee+$monthlyAmount+$exam_fee+$registration_fee+$form_filup_fee;
 
 
                         }else{

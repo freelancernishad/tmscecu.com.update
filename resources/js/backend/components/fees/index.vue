@@ -33,7 +33,9 @@
                         <tr v-for="(fee,index2) in feeData" :key="fee.class+fee.id">
                             <td>{{ int_en_to_bn(index2+1) }}</td>
                             <!-- <td>{{ class_en_to_bn(fee.class) }}</td> -->
-                            <td>{{ ex_name(fee.sub_type) }}</td>
+                            <td v-if="fee.type=='exam_fee'">{{ ex_name(fee.sub_type) }}</td>
+                            <td v-else>{{ feesconvert(fee.type) }}</td>
+
                             <td>{{ fee.fees }}</td>
                             <td v-html="feeStatusText(fee.status)"></td>
                             <td><router-link :to="{name:'feesedit',params:{id:fee.id}}" class="btn btn-info">Edit</router-link> </td>
@@ -69,8 +71,17 @@ export default {
             preloader:false,
         }
     },
+    watch: {
+        '$route': {
+            handler(newValue, oldValue) {
+                this.getExamFees();
+            },
+            deep: true
+        }
+    },
     methods: {
         async getExamFees(){
+            this.preloader = true
             var res = await this.callApi('get',`/api/school/fees?type=${this.$route.params.name}`);
 
 
@@ -79,7 +90,7 @@ export default {
 
                 this.feeDatas[className] = res.data.fees.filter(fee => fee.class == className);
             });
-
+this.preloader = false
 
 
 

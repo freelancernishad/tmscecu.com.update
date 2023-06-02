@@ -371,6 +371,34 @@ class PaymentController extends Controller
 
 
 
+        $Registration_feeCount = SchoolFee::where(['class'=>$StudentClass,'type'=>'registration_fee','status'=>1])->count();
+        if($Registration_feeCount){
+           $Schoolfee = SchoolFee::where(['class'=>$StudentClass,'type'=>'registration_fee'])->first();;
+            $RegFee = $Schoolfee->fees;
+            $index_number = $Schoolfee->index_number;
+            $Registration_feeStatusCount =  $this->PaymentCount(['type' => 'registration_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023'],'count');
+
+            if(!$Registration_feeStatusCount){
+                $insertedData = array(["key"=>'রেজিস্ট্রেশন ফি',"amount"=>$RegFee,"sub_type"=>'']);
+                array_splice($monthlyPaid, $index_number, 0, $insertedData);
+            }
+        }
+
+
+
+        $Form_filup_feeCount = SchoolFee::where(['class'=>$StudentClass,'type'=>'form_filup_fee','status'=>1])->count();
+        if($Form_filup_feeCount){
+           $Schoolfee = SchoolFee::where(['class'=>$StudentClass,'type'=>'form_filup_fee'])->first();;
+            $FornFee = $Schoolfee->fees;
+            $index_number = $Schoolfee->index_number;
+            $Form_filup_feeStatusCount =  $this->PaymentCount(['type' => 'form_filup_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023'],'count');
+
+            if(!$Form_filup_feeStatusCount){
+                $insertedData = array(["key"=>'ফরম পূরণ ফি',"amount"=>$FornFee,"sub_type"=>'']);
+                array_splice($monthlyPaid, $index_number, 0, $insertedData);
+            }
+        }
+
 
 
 
@@ -874,6 +902,35 @@ class PaymentController extends Controller
           }
       }
       }
+      $Registration_feeCount = SchoolFee::where(['class'=>$class,'type'=>'registration_fee','status'=>1])->count();
+      if($Registration_feeCount){
+         $Schoolfee = SchoolFee::where(['class'=>$class,'type'=>'registration_fee'])->first();;
+          $RegFee = $Schoolfee->fees;
+          $totalamount +=  $RegFee;
+          $index_number = $Schoolfee->index_number;
+          $Registration_feeStatusCount =  $this->PaymentCount(['type' => 'registration_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023'],'count');
+
+          if(!$Registration_feeStatusCount){
+              $insertedData = array(["key"=>'registration_fee',"amount"=>$RegFee,"sub_type"=>'']);
+              array_splice($monthlyPaid, $index_number, 0, $insertedData);
+          }
+      }
+
+
+
+      $Form_filup_feeCount = SchoolFee::where(['class'=>$class,'type'=>'form_filup_fee','status'=>1])->count();
+      if($Form_filup_feeCount){
+         $Schoolfee = SchoolFee::where(['class'=>$class,'type'=>'form_filup_fee'])->first();;
+          $FornFee = $Schoolfee->fees;
+          $totalamount +=  $FornFee;
+          $index_number = $Schoolfee->index_number;
+          $Form_filup_feeStatusCount =  $this->PaymentCount(['type' => 'form_filup_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023'],'count');
+
+          if(!$Form_filup_feeStatusCount){
+              $insertedData = array(["key"=>'form_filup_fee',"amount"=>$FornFee,"sub_type"=>'']);
+              array_splice($monthlyPaid, $index_number, 0, $insertedData);
+          }
+      }
 
 
 
@@ -965,6 +1022,12 @@ class PaymentController extends Controller
                     $types = paymentKhaten($value['key']);
                     $monthName = date('F');
                 }elseif($typesC=='exam_fee'){
+                    $types = paymentKhaten($value['key']);
+                    $monthName = date('F');
+                }elseif($typesC=='registration_fee'){
+                    $types = paymentKhaten($value['key']);
+                    $monthName = date('F');
+                }elseif($typesC=='form_filup_fee'){
                     $types = paymentKhaten($value['key']);
                     $monthName = date('F');
                 }else{
