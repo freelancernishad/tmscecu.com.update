@@ -500,15 +500,15 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
 
 
-
-
-        if(sitedetails()->application=='Off'){
-
-            return 444;
+        $submit_type = $r->submit_type;
+        if($submit_type!='data_entry'){
+            if(sitedetails()->application=='Off'){
+                return 444;
+            }
         }
 
 
-        $submit_type = $r->submit_type;
+
         $id = $r->id;
         $data = $r->except('AdmissionID','StudentID','StudentPicture');
         $school_id = $r->school_id;
