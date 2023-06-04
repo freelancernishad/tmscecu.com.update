@@ -1910,7 +1910,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
     <td>
         <p class='fontsize2'>$school_details->SCHOLL_NAME</p>
         <p class='fontsize1'>$school_details->SCHOLL_ADDRESS </p>
-        <p class='fontsize1' style='font-size:12px'>website: www.tmscedu.com </p>
+        <p class='fontsize1' style='font-size:12px'>website: www.tepriganjhighschool.edu.bd </p>
     </td>
     <td style='text-align: right'>
     <div class='imgdiv'>
