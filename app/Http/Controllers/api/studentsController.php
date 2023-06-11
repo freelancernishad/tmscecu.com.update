@@ -2279,11 +2279,14 @@ return $html;
             ini_set('memory_limit', '12008M');
              $students = student::where(['StudentClass'=>$class,'StudentStatus'=>'active'])->orderBy('StudentRoll','asc')->get();
 
+             $icon1 =  base64('icons/13.jpg');
+             $icon2 =  base64('icons/12.jpg');
+             $icon3 =  base64('icons/11.jpg');
 
 
 
            $fileName = "Studnents-report" ;
-           $pdf = LaravelMpdf::loadView('admin/pdfReports.students_mullayon', compact('students','class','fileName'));
+           $pdf = LaravelMpdf::loadView('admin/pdfReports.students_mullayon', compact('students','class','fileName','icon1','icon2','icon3'));
            return $pdf->stream("$fileName.pdf");
 
 

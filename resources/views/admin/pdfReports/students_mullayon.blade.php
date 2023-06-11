@@ -84,7 +84,7 @@
 
 
             <tr>
-                <th class="columnStyleLeft" style="font-size: 10pt;">রোল নং</th>
+                <th class="columnStyleLeft" width='5%' style="font-size: 10pt;">রোল নং</th>
                 <th class="columnStyleRight" colspan="3" style="font-size: 10pt;">নাম </th>
                 <th class="columnStyleRight" style="font-size: 10pt;"></th>
                 <th class="columnStyleRight" style="font-size: 10pt;"></th>
@@ -106,18 +106,77 @@
                     <td class="columnStyleLeft" style="font-size: 10pt;"><?php echo int_en_to_bn($row->StudentRoll) ?></td>
                     <td class="columnStyleRight"  colspan="3" style="font-size: 10pt;"><?php echo $row->StudentName	?></td>
 
-                    <th class="columnStyleRight" style="font-size: 10pt;">
-                        {{ base64('icons/squar-outline-hi.png') }} &nbsp;{{ base64('icons/pngtree-black-ring-png-image_2319165.png') }} &nbsp;{{ base64('icons/800px-Regular_triangle.svg.png') }}</th>
-                    <th class="columnStyleRight" style="font-size: 10pt;"></th>
-                    <th class="columnStyleRight" style="font-size: 10pt;"></th>
-                    <th class="columnStyleRight" style="font-size: 10pt;"></th>
-                    <th class="columnStyleRight" style="font-size: 10pt;"></th>
-                    <th class="columnStyleRight" style="font-size: 10pt;"></th>
-                    <th class="columnStyleRight" style="font-size: 10pt;"></th>
-                    <th class="columnStyleRight" style="font-size: 10pt;"></th>
-                    <th class="columnStyleRight" style="font-size: 10pt;"></th>
-                    <th class="columnStyleRight" style="font-size: 10pt;"></th>
-                    <th class="columnStyleRight" style="font-size: 10pt;"></th>
+                    <th class="columnStyleRight" width='10%' style="font-size: 10pt;">
+                        <img width='14px' style="float: left" src="{{ $icon1 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon2 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon3 }}" alt="">
+                    </th>
+
+
+                    <th class="columnStyleRight" width='10%' style="font-size: 10pt;">
+                        <img width='14px' style="float: left" src="{{ $icon1 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon2 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon3 }}" alt="">
+                    </th>
+
+
+                    <th class="columnStyleRight" width='10%' style="font-size: 10pt;">
+                        <img width='14px' style="float: left" src="{{ $icon1 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon2 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon3 }}" alt="">
+                    </th>
+
+
+                    <th class="columnStyleRight" width='10%' style="font-size: 10pt;">
+                        <img width='14px' style="float: left" src="{{ $icon1 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon2 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon3 }}" alt="">
+                    </th>
+
+
+                    <th class="columnStyleRight" width='10%' style="font-size: 10pt;">
+                        <img width='14px' style="float: left" src="{{ $icon1 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon2 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon3 }}" alt="">
+                    </th>
+
+
+                    <th class="columnStyleRight" width='10%' style="font-size: 10pt;">
+                        <img width='14px' style="float: left" src="{{ $icon1 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon2 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon3 }}" alt="">
+                    </th>
+
+
+                    <th class="columnStyleRight" width='10%' style="font-size: 10pt;">
+                        <img width='14px' style="float: left" src="{{ $icon1 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon2 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon3 }}" alt="">
+                    </th>
+
+
+                    <th class="columnStyleRight" width='10%' style="font-size: 10pt;">
+                        <img width='14px' style="float: left" src="{{ $icon1 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon2 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon3 }}" alt="">
+                    </th>
+
+
+                    <th class="columnStyleRight" width='10%' style="font-size: 10pt;">
+                        <img width='14px' style="float: left" src="{{ $icon1 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon2 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon3 }}" alt="">
+                    </th>
+
+
+                    <th class="columnStyleRight" width='10%' style="font-size: 10pt;">
+                        <img width='14px' style="float: left" src="{{ $icon1 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon2 }}" alt="">
+                        <img width='14px' style="float: left" src="{{ $icon3 }}" alt="">
+                    </th>
+
+
+
                 </tr>
 
   @endforeach
