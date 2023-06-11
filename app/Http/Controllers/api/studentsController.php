@@ -2268,4 +2268,35 @@ return $html;
             ";
 return $html;
         }
+
+
+
+
+
+        function Mullayon($class,$bisoy) {
+            ini_set('max_execution_time', '60000');
+            ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+            ini_set('memory_limit', '12008M');
+             $students = student::where(['StudentClass'=>$class,'StudentStatus'=>'active'])->orderBy('StudentRoll','asc')->get();
+
+
+
+
+           $fileName = "Studnents-report" ;
+           $pdf = LaravelMpdf::loadView('admin/pdfReports.students_mullayon', compact('students','class','fileName'));
+           return $pdf->stream("$fileName.pdf");
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
 }

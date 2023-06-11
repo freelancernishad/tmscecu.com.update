@@ -151,6 +151,11 @@ Route::get('student/applicant/copy/{applicant_id}', [studentsController::class, 
 Route::get('student/applicant/invoice/{trxid}', [studentsController::class, 'applicant_invoice']);
 Route::get('/student/exam/admit/{admissionId}/{ex_name}', [studentsController::class, 'exam_admit']);
 
+
+Route::get('student/m/{class}/{bisoy}', [studentsController::class, 'Mullayon']);
+
+
+
 Route::get('download/mark', [resultController::class, 'marksheet']);
 
 
