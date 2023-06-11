@@ -66,7 +66,7 @@
 
 
             <tr>
-                <td colspan="3" style="padding:18px;">শ্রেণি </td>
+                <td colspan="3" style="padding:18px;">শ্রেণি :- {{ class_en_to_bn($class) }} </td>
                 <td colspan="6" style="padding:18px;">বিষয় </td>
                 <td colspan="5" style="padding:18px;">শিক্ষকের নাম ও স্বাক্ষর </td>
             </tr>
@@ -96,7 +96,7 @@
                 <th class="columnStyleRight" style="font-size: 10pt;"></th>
                 <th class="columnStyleRight" style="font-size: 10pt;"></th>
                 <th class="columnStyleRight" style="font-size: 10pt;"></th>
-      
+
 
             </tr>
 
