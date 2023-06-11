@@ -53,7 +53,7 @@
 
 
             <tr>
-                <td colspan="14" style="font-size: 18px;text-align:center;padding:10px;">সন্নাসিক সামষ্টিক মূল্যায়ন</td>
+                <td colspan="14" style="font-size: 18px;text-align:center;padding:10px;">ষাণ্মাসিক/বার্ষিক সামষ্টিক মূল্যায়ন</td>
             </tr>
 
 
@@ -85,7 +85,7 @@
 
             <tr>
                 <th class="columnStyleLeft" width='5%' style="font-size: 10pt;">রোল নং</th>
-                <th class="columnStyleRight" colspan="3" style="font-size: 10pt;">নাম </th>
+                <th class="columnStyleRight" width='15%' colspan="3" style="font-size: 10pt;">নাম </th>
                 <th class="columnStyleRight" style="font-size: 10pt;"></th>
                 <th class="columnStyleRight" style="font-size: 10pt;"></th>
                 <th class="columnStyleRight" style="font-size: 10pt;"></th>
