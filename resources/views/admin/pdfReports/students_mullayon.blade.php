@@ -53,14 +53,14 @@
 
 
             <tr>
-                <td colspan="15" style="font-size: 18px;text-align:center;padding:10px;">সন্নাসিক সামষ্টিক মূল্যায়ন</td>
+                <td colspan="14" style="font-size: 18px;text-align:center;padding:10px;">সন্নাসিক সামষ্টিক মূল্যায়ন</td>
             </tr>
 
 
             <tr>
                 <td colspan="2" style="font-size: 18px;text-align:center;padding:10px;">প্রতিষ্ঠানের নাম </td>
                 <td colspan="7" style="font-size: 18px;padding:10px;">{{ sitedetails()->SCHOLL_NAME}} </td>
-                <td colspan="6" >তারিখ </td>
+                <td colspan="5" >তারিখ </td>
             </tr>
 
 
@@ -68,14 +68,14 @@
             <tr>
                 <td colspan="3" style="padding:18px;">শ্রেণি </td>
                 <td colspan="6" style="padding:18px;">বিষয় </td>
-                <td colspan="6" style="padding:18px;">শিক্ষকের নাম ও স্বাক্ষর </td>
+                <td colspan="5" style="padding:18px;">শিক্ষকের নাম ও স্বাক্ষর </td>
             </tr>
 
 
 
             <tr>
                 <td colspan="4"></td>
-                <td colspan="11" style="text-align: center">প্রযোজ্য PI/BI নং  </td>
+                <td colspan="10" style="text-align: center">প্রযোজ্য PI/BI নং  </td>
 
             </tr>
 
