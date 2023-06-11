@@ -2273,11 +2273,19 @@ return $html;
 
 
 
-        function Mullayon($class,$bisoy) {
+        function Mullayon(Request $request, $class,$bisoy) {
             ini_set('max_execution_time', '60000');
             ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
             ini_set('memory_limit', '12008M');
-             $students = student::where(['StudentClass'=>$class,'StudentStatus'=>'active'])->orderBy('StudentRoll','asc')->get();
+
+            if($request->StudentReligion){
+                $StudentReligion = $request->StudentReligion;
+                $students = student::where(['StudentClass'=>$class,'StudentStatus'=>'active','StudentReligion'=>$StudentReligion])->orderBy('StudentRoll','asc')->get();
+            }else{
+                $students = student::where(['StudentClass'=>$class,'StudentStatus'=>'active'])->orderBy('StudentRoll','asc')->get();
+            }
+
+
 
              $icon1 =  base64('icons/13.jpg');
              $icon2 =  base64('icons/12.jpg');
