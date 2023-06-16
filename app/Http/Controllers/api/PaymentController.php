@@ -781,6 +781,175 @@ class PaymentController extends Controller
 
 
     }
+
+
+
+
+    public function ReCallIpn(Request $request)
+    {
+
+        $trnx_id = $request->trnx_id;
+        $trans_date = date("Y-m-d", strtotime($request->trans_date));
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://pg.ekpay.gov.bd/ekpaypg/v1/get-status',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+
+         "trnx_id":"'.$trnx_id.'",
+         "trans_date":"'.$trans_date.'"
+
+        }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json'
+          ),
+        ));
+
+        $response1 = curl_exec($curl);
+
+        curl_close($curl);
+         $data =  json_decode($response1);
+
+
+
+
+
+        // $data = $request->all();
+
+
+
+        Log::info(json_encode($data));
+        $student = student::find($data->cust_info->cust_id);
+        $trnx_id = $data->trnx_info->mer_trnx_id;
+
+
+
+
+            $payments = payment::where('trxid', $trnx_id)->get();
+
+
+        foreach ($payments as $payment) {
+
+
+        $Insertdata = [];
+
+        if ($data->msg_code == '1020') {
+            $Insertdata = [
+                'status' => 'Paid',
+                'method' => $data->pi_det_info->pi_name,
+            ];
+
+
+
+            $paymentType = $payment->type;
+            // return paymentKhat($paymentType);
+            $group = 'Humanities';
+            if($student->StudentClass=='Nine' || $student->StudentClass=='Ten'){
+                $group = $student->StudentGroup;
+
+            }
+
+            if($student->StudentStatus=='Approve'){
+                $student->update(['StudentStatus' => 'permited','StudentGroup'=>$group]);
+            }
+
+            if($paymentType=='Admission_fee'){
+                $student->update(['StudentStatus' => 'Pending']);
+                SmsNocSmsSend("Dear ".strtoupper($student->StudentNameEn).",Your Admission Fee has been Paid.Please Wait for Admission Result.Your Application Id- $student->AdmissionID",$student->StudentPhoneNumber);
+            }else{
+
+                if($paymentType=='monthly_fee'){
+					if($payment->amount!=0){
+						SmsNocSmsSend("$student->StudentName  এর ". month_en_to_bn($payment->month) ." মাসের বেতন ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
+					}
+
+
+                }else{
+                    SmsNocSmsSend("$student->StudentName এর ". paymentKhat($paymentType) ." ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
+                }
+
+            }
+
+
+        } else {
+            $Insertdata = ['status' => 'Failed',];
+        }
+
+        $Insertdata['ipnResponse'] = json_encode($data);
+        // return $Insertdata;
+         $payment->update($Insertdata);
+        }
+
+
+    }
+
+
+
+
+
+    public function AkpayPaymentCheck(Request $request)
+    {
+
+        $trnx_id = $request->trnx_id;
+        $trans_date = date("Y-m-d", strtotime($request->trans_date));
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://pg.ekpay.gov.bd/ekpaypg/v1/get-status',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+
+         "trnx_id":"'.$trnx_id.'",
+         "trans_date":"'.$trans_date.'"
+
+        }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json'
+          ),
+        ));
+
+        $response1 = curl_exec($curl);
+
+        curl_close($curl);
+
+
+        $myserver = Payment::where(['trxId'=>$trnx_id])->first();
+
+
+      return   $data =  [
+        'myserver'=>$myserver,
+        'akpay'=> json_decode($response1),
+      ];
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public function paymentCreate(Request $request)
     {
 

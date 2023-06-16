@@ -137,7 +137,7 @@ let onlineexamresult = require('./components/onlineexam/result.vue').default;
 let onlineexamView = require('./components/onlineexam/view.vue').default;
 let onlineexamnew = require('./components/onlineexam/form.vue').default;
 
-
+let trxcheck = require('./components/trxcheck.vue').default;
 
 let fees = require('./components/fees/index.vue').default;
 let feesedit = require('./components/fees/edit.vue').default;
@@ -317,6 +317,8 @@ export const routes = [
 
 
 
+
+  { path:  `${prefix}/check/trx`, component: trxcheck, name:'trxcheck',meta: { layout: adminlayout } },
 
 
 
