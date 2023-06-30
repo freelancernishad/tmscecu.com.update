@@ -18,8 +18,8 @@
 
 
                             <span v-for="notice in noticesIN" :key="notice.id+'notice'">
-                                <router-link :to="{name:'noticesingle',params:{id:notice.id,title:notice.title}}" class="notice-a text-dark">{{ notice.title.slice(0, 30)+'...' }} </router-link>
                                 <span><img draggable="false" :src="$asseturl+schoolSettings.logo" alt="" width="20px"></span>
+                                <router-link :to="{name:'noticesingle',params:{id:notice.id,title:notice.title}}" class="notice-a text-dark">{{ notice.title.slice(0, 30)+'...' }} </router-link>
                             </span>
 
 
@@ -108,12 +108,13 @@
             <div class="col-lg-5 col-md-12 text-center">
                 <img draggable="false" :src="$asseturl+schoolSettings.logo" alt="" srcset="" class="img-fluid p-3 shadow-lg"
                     style="width: 308px;">
+
+            </div>
+            <div class="col-md-12 col-lg-7">
                 <p style="color: #180092;
                 margin: 9px;
                 font-size: 23px;">আমাদের প্রতিষ্ঠানের ইতিহাস
                 </p>
-            </div>
-            <div class="col-md-12 col-lg-7">
                 <p class="mb-3" style="text-align: justify;
                 color: #000000;
                 font-weight: 500;"> {{  schoolSettings.HISTORY_OF_THE_ORGANIZATION }}
