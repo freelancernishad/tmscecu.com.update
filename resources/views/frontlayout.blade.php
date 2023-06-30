@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(sitedetails()->logo) }}" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css?v-1.0.1') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css?v-1.0.2') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pro.min.css') }}">
     <script type="text/javascript" src="{{asset('assets/js/jquery-1.12.4.min.js')}}"></script>
 
@@ -165,7 +165,7 @@ h5 {
 
 
 
-    <script src="{{ asset('js/frontend.js?ver=1.2.31') }}" async ></script>
+    <script src="{{ asset('js/frontend.js?ver=1.2.32') }}" async ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>

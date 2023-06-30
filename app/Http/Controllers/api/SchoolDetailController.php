@@ -252,7 +252,7 @@ class SchoolDetailController extends Controller
         $VICE_PRINCIPALS_IMGAGECount =  count(explode(';', $request->VICE_PRINCIPALS_IMGAGE));
         if ($VICE_PRINCIPALS_IMGAGECount > 1) {
 
-            $data['VICE_PRINCIPALS_IMGAGE'] = fileupload($request->VICE_PRINCIPALS_IMGAGE, 'backend/VICE_PRINCIPALS_IMGAGE/', 500, 300);
+            $data['VICE_PRINCIPALS_IMGAGE'] = fileupload($request->VICE_PRINCIPALS_IMGAGE, 'backend/VICE_PRINCIPALS_IMGAGE/', 300, 300);
 
         }
 

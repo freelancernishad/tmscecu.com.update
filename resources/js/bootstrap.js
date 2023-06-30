@@ -2,6 +2,8 @@ import Vue from 'vue'
 
 // console.log(window.location.port)
 
+
+
 if(window.location.port=='8000'){
 Vue.prototype.$asseturl = '/'
 Vue.prototype.$withWWW = 2

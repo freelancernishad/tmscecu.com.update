@@ -88,7 +88,7 @@ import {
     FluxPagination,
     FluxPreloader,
 } from "vue-flux";
-import FlipCard from "./layouts/FlipCard.vue";
+import FlipCard from "./layouts/default/FlipCard.vue";
 export default {
     created() {
         // if (!User.loggedIn()) {

@@ -465,6 +465,33 @@ export default {
         },
 
 
+        int_bn_to_en(text='০') {
+            var result;
+            if (text == '০') {
+                result = '০';
+            } else if (text == '১') {
+                result = '1';
+            } else if (text == '২') {
+                result = '2';
+            } else if (text == '৩') {
+                result = '3';
+            } else if (text == '৪') {
+                result = '4';
+            } else if (text == '৫') {
+                result = '5';
+            } else if (text == '৬') {
+                result = '6';
+            } else if (text == '৭') {
+                result = '7';
+            } else if (text == '৮') {
+                result = '8';
+            } else if (text == '৯') {
+                result = '9';
+            }
+            return result;
+        },
+
+
 
 
     },

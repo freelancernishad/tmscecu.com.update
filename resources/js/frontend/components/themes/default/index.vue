@@ -1,218 +1,206 @@
 <template>
     <div>
-        <loader v-if="preloader" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="25" speed="2"
-            bg="#343a40" objectbg="#999793" opacity="80" disableScrolling="false" name="loading"></loader>
-
-
-        <!-- Slider -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div id="carouselExampleCaptions" class="my-1 carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
+        <div class="row">
+            <div class="mainBody col-md-9 mt-3">
 
 
 
-                            <button v-for="(slide,index) in schooldetails.slider" type="button" data-bs-target="#carouselExampleCaptions" :data-bs-slide-to="index"
-                            :class="{'active' : index == 0 ? true : false }" aria-current="true" aria-label="Slide 1"></button>
+                <div class="pmCover">
+                    <vue-flux :options="vfOptions" :images="vfImages" :transitions="vfTransitions" ref="slider">
+                        <template v-slot:preloader>
+                            <flux-preloader />
+                        </template>
+                    </vue-flux>
+                </div>
 
 
 
 
+                <div class="card">
+                    <div class="card-body">
+                        <h1>নোটিশ বোর্ড</h1>
+                        <ul style="padding-left:0;margin-left: 55px;margin-top: 13px;">
+
+<li class="ps-3 pb-1" v-for="notice in noticesIN"><router-link class="text-dark noticeitems"  :to="{name:'noticesingle',params:{id:notice.id,title:notice.title}}"> <i class="fas fa-angle-double-right"></i> {{ notice.title.slice(0, 80)+'...' }}</router-link></li>
+
+</ul>
+<router-link style="    padding: 2px 9px;float: right;background: #545454;margin-bottom: 8px;color: white;border-radius: 3px;" :to="{name:'frontnotice'}">সকল নোটিশ দেখুন</router-link>
+                    </div>
+                </div>
 
 
 
 
+                <div class="services mt-3">
+
+
+<div class="row">
 
 
 
-
-
-
+                        <div class="col-md-12">
+                            <h6 class="serviceTitle position-relative defaltColor">
+                                প্রতিষ্ঠানের ইতিহাস
+                            </h6>
                         </div>
-                        <div class="carousel-inner">
-
-
-
-
-
-
-                            <div v-for="(slide,index) in schooldetails.slider" class="carousel-item"  :class="{'active' : index == 0 ? true : false }">
-                                <img width="100%" class="img-fluid" :src="ASSETURL+slide"  alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                </div>
-                            </div>
-
-
-
-
-
+                        <div class="col-md-12">
+                            <p  style="text-align: justify;">{{  schoolSettings.HISTORY_OF_THE_ORGANIZATION }}</p>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
+
+
+                        <div class="col-md-12">
+                            <h6 class="serviceTitle position-relative defaltColor">
+                                প্রধান শিক্ষকের বাণী
+                            </h6>
+
+                            <p style="text-align: justify;">{{  schoolSettings.PRINCIPALS_WORDS }}</p>
+                        </div>
+
+
+                        <!-- <div class="col-md-6">
+                            <h6 class="serviceTitle position-relative defaltColor">
+                               সভাপতির বাণী
+                            </h6>
+
+                            <p>{{  schoolSettings.VICE_PRINCIPALS_STATEMENT }}</p>
+                        </div> -->
+
+
+
                     </div>
                 </div>
             </div>
+            <side-bar class-name="col-md-3"></side-bar>
         </div>
 
-    <!-- Header End -->
-
-    <!-- Main Start -->
-    <main class="container-fluid">
-        <div class="row">
-            <!-- Left Main -->
-            <div class="col-lg-9 my-3">
-                <!-- School History -->
-                <section class="school_history mb-5">
-                    <div class="section_title">
-                        <h4 class="bg-primary p-2 text-light">প্রতিষ্ঠানের ইতিহাস</h4>
-                    </div>
-                    <div class="row">
-                        <div class="school_image col-lg-4 col-sm-12 col-md-6">
-                            <img class="img-fluid" :src="ASSETURL+schooldetails.HISTORY_OF_THE_ORGANIZATION_IMAGE" alt="">
-                        </div>
-                        <div class="school_details col-lg-8 col-sm-12 col-md-6">
-                            <p class="text-justify">{{ schooldetails.HISTORY_OF_THE_ORGANIZATION }} </p>
-                        </div>
-                    </div>
-                </section>
-                <!-- Senior Person Speech -->
-                <section class="speech mb-5">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="section_title">
-                                <h4 class="bg-primary p-2 text-light">অধ্যক্ষের বাণী</h4>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-sm-12 col-md-6  principle_photo">
-                                    <img class="img-fluid" :src="ASSETURL+schooldetails.PRINCIPALS_IMGAGE" alt="">
-                                </div>
-                                <div class="col-lg-8 col-sm-12 col-md-6  principle_speech text-justify">
-{{ schooldetails.PRINCIPALS_WORDS }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="section_title">
-                                <h4 class="bg-primary p-2 text-light">উপ অধ্যক্ষের বাণী</h4>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-sm-12 col-md-6  vice_principle_photo">
-                                    <img class="img-fluid" :src="ASSETURL+schooldetails.VICE_PRINCIPALS_IMGAGE" alt="">
-                                </div>
-                                <div class="col-lg-8 col-sm-12 col-md-6  vice_principle_speech text-justify">
-                                    {{ schooldetails.VICE_PRINCIPALS_STATEMENT }}
-                                     </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- Info Section -->
-                <section class="info">
-                    <div class="row mb-3">
-                        <div class="col-lg-6 col-md-6 col-sm-12  ">
-                            <div class="custom_bg pb-2">
-                                <div class="section_title">
-                                    <h4 class="bg-primary p-2 text-light">ছাত্র-ছাত্রীদের তথ্য</h4>
-                                </div>
-                                <div class="student_info d-flex align-items-center">
-                                    <div class="student_logo p-2">
-                                        <img class="img-fluid" src="https://via.placeholder.com/150" alt="">
-                                    </div>
-                                    <div class="student_service">
-                                        <ul>
-                                            <li><i class="fas fa-angle-double-right"></i> ছাত্র-ছাত্রীর আসন সংখ্যা </li>
-                                            <li><i class="fas fa-angle-double-right"></i> ভর্তি তথ্য </li>
-                                            <li><i class="fas fa-angle-double-right"></i> নোটিশ </li>
-                                            <li><i class="fas fa-angle-double-right"></i> রুটিন </li>
-                                            <li><i class="fas fa-angle-double-right"></i> কৃতি শিক্ষার্থী</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 ">
-                            <div class="custom_bg pb-2">
-                                <div class="section_title">
-                                    <h4 class="bg-primary p-2 text-light">শিক্ষকদের তথ্য</h4>
-                                </div>
-                                <div class="student_info d-flex align-items-center">
-                                    <div class="student_logo p-2">
-                                        <img class="img-fluid" src="https://via.placeholder.com/150" alt="">
-                                    </div>
-                                    <div class="student_service">
-                                        <ul>
-                                            <li><i class="fas fa-angle-double-right"></i> ছাত্র-ছাত্রীর আসন সংখ্যা </li>
-                                            <li><i class="fas fa-angle-double-right"></i> ভর্তি তথ্য </li>
-                                            <li><i class="fas fa-angle-double-right"></i> নোটিশ </li>
-                                            <li><i class="fas fa-angle-double-right"></i> রুটিন </li>
-                                            <li><i class="fas fa-angle-double-right"></i> কৃতি শিক্ষার্থী</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
-            </div>
-
-
-    <rightsidebar/>
-
-
-        </div>
-    </main>
-    <!-- Main End -->
-
+        <b-modal :id="actionModalhome.id" size="xl" title="ইউনিয়ন নির্বাচন করুন" ok-only>
+                    <union-select :custom-url="actionModalhome.title" />
+        </b-modal>
 
     </div>
 </template>
-
 <script>
+import {
+    VueFlux,
+    FluxCaption,
+    FluxControls,
+    FluxIndex,
+    FluxPagination,
+    FluxPreloader,
+} from "vue-flux";
 
-
+let FlipCard = require(`../../layouts/default/FlipCard.vue`)
 export default {
+    created() {
+        // if (!User.loggedIn()) {
+        //     this.$router.push({ name: "/login" });
+        // }
+    },
+    components: {
+        VueFlux,
+        FluxCaption,
+        FluxControls,
+        FluxIndex,
+        FluxPagination,
+        FluxPreloader,
+        FlipCard,
+    },
+    data() {
+        return {
+            selectedUser: '',
+            flipped: false,
+            vfOptions: {
+                autoplay: true,
+            },
+            vfImages: [
+                // this.$asseturl + "assets/img/padmabanner.jpeg",
+            //    "https://tepriganjhighschool.edu.bd/public/backend/slider/1670087505____66768.jpeg",
 
-	created(){
-  this.school_id = getschoolid
-  this.ASSETURL = ASSETURL
-	},
+            ],
+            vfTransitions: [
+                "fade",
+                "blinds2d",
+                "blinds3d",
+                "blocks1",
+                "blocks2",
+                "book",
+                "camera",
+                "concentric",
+                "cube",
+                "explode",
 
-	data () {
-		return {
-            schooldetails:{},
-             school_id:null,
-             ASSETURL: '',
-             preloader: true,
+                "fall",
+                "kenburn",
+                "round1",
+                "round2",
+                "slide",
+                "swipe",
+                "warp",
+                "waterfall",
+                "wave",
+                "zip",
+            ],
+            actionModalhome: {
+                id: 'action-modal-home',
+                title: '',
+                status: '',
+                content: {},
 
-		}
-	},
+                content_id: '',
+            },
+            noticesIN: {},
+            //   vfCaptions: [],
+        };
+    },
+    mounted() {
+        // this.schoolDetial('front');
+        setTimeout(() => {
 
-	methods: {
+            this.sliderimage();
+        }, 2000);
+        this.noticeFunIn();
+        this.visitorcount();
+    },
+    methods: {
 
-        getSchoolData(){
-            axios.get(`/api/school/settings?school_id=${this.school_id}&front=front`)
-                .then(({ data }) => {
-                    this.schooldetails = data;
-                     this.preloader = false;
-                })
-                .catch()
+        async visitorcount(){
+            var res = await this.callApi('post',`/api/visitorcreate`,[]);
+        },
+
+        async noticeFunIn(){
+            var res = await this.callApi('get',`/api/notice?sidebar=5`,[]);
+            this.noticesIN = res.data.data
         },
 
 
-	},
-	mounted(){
-this.getSchoolData()
+        sliderimage(){
+            // console.log(this.schoolSettings.slider)
+            this.schoolSettings.slider.forEach(element => {
+                this.vfImages.push(this.$asseturl + element)
+            });
+        },
 
-	}
-}
+
+
+        sendInfo(item, button) {
+            this.actionModalhome.title = item;
+            this.selectedUser = item;
+            this.$root.$emit('bv::show::modal', this.actionModalhome.id, button)
+
+            // console.log(item)
+        },
+    },
+};
 </script>
+<style lang="css" scoped>
+a.prev {
+    display: none !important;
+}
+
+a.next {
+    display: none !important;
+}
+.noticeitems:hover {
+    border-bottom: 1px solid black;
+}
+</style>

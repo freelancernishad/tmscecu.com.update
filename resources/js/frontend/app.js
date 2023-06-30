@@ -1,6 +1,11 @@
 require('../bootstrap');
 import Vue from 'vue'
 
+// Vue.prototype.$themes = 'theme1'
+// Vue.prototype.$themes = 'default'
+const themeName = 'theme1';
+
+
 
 import { BButton, BModal,VBModal  } from 'bootstrap-vue'
 Vue.component('b-modal', BModal)
@@ -21,16 +26,24 @@ Vue.prototype.$appUrl = window.location.origin
 import Notification from '../helpers/Notification';
 window.Notification = Notification
 
-import UnionSelect from './components/layouts/unonselect.vue'
+
+
+let UnionSelect = require(`./components/layouts/${themeName}/unonselect.vue`).default;
+// import UnionSelect from "./components/layouts/" + theme + "/unonselect.vue";
 Vue.component('UnionSelect', UnionSelect);
+
 
 import adsense from './components/Adsense.vue'
 Vue.component('adsense', adsense);
 
 
 
-import SideBar from './components/layouts/SideBar.vue'
+// import SideBar from `./components/layouts/${this.$themes}/SideBar.vue`
+let SideBar = require(`./components/layouts/${themeName}/SideBar.vue`).default;
 Vue.component('SideBar', SideBar);
+
+
+
 import store from '../store'
 window.Reload = new Vue();
 import Swal from 'sweetalert2'
