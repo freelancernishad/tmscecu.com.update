@@ -85,7 +85,7 @@
                     <p class="mb-0 quoates-name text-center" style="color: var(--my-blue-color);">{{ schoolSettings.Principals_name }} </p>
                     <p class="mb-0 quoates-name text-center" style="  color: #008249;"> প্রধান শিক্ষক</p>
                 </div>
-                <p class="limited-tags p-3 w-50 quoates-descrip">
+                <p class="limited-tags p-3 w-50 quoates-descrip" style="text-align: justify;">
                     {{  schoolSettings.PRINCIPALS_WORDS }}
 
                 </p>
@@ -97,7 +97,7 @@
                     <p class="mb-0 quoates-name text-center" style="color: var(--my-blue-color);">{{  schoolSettings.Vice_Principals_name }} </p>
                     <p class="mb-0 quoates-name text-center" style="  color: #008249;"> সহকারী প্রধান শিক্ষক </p>
                 </div>
-                <p class=" limited-tags p-3 w-50 quoates-descrip">
+                <p class=" limited-tags p-3 w-50 quoates-descrip" style="text-align: justify;">
                     {{  schoolSettings.VICE_PRINCIPALS_STATEMENT }}
 
                 </p>
