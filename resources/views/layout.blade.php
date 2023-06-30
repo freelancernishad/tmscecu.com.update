@@ -168,7 +168,7 @@ li.page-item.active button {
 
 
 
-<script src="{{ asset('js/backend.js?ver=1.2.32') }}"></script>
+<script src="{{ asset('js/backend.js?ver=1.2.34') }}"></script>
 
 
 

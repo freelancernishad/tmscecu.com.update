@@ -24,7 +24,7 @@
                 <img draggable="false" class="img-fluid" :src="$asseturl+schoolSettings.logo" alt="" style="width: 100px;">
             </div>
             <div>
-                <h2 class="fw-bold text-left text-success name" style="font-size: 25px;">{{ schoolSettings.SCHOLL_NAME }}</h2>
+                <h2 class="fw-bold text-left text-dark name" style="font-size: 25px;">{{ schoolSettings.SCHOLL_NAME }}</h2>
                 <p class="text-left fw-bold f13" style="color: var(--my-blue-color);font-size: 16px;">TEPRIGANJ ADARSHA BL HIGH SCHOOL</p>
             </div>
             <div class="contact-info">
@@ -93,18 +93,15 @@
 <li><a  href="http://www.moedu.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; শিক্ষা মন্ত্রণালয়</a></li>
 
 <li><a  href="http://www.dshe.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর</a></li>
+
 <li><a  href="http://www.emis.gov.bd" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; EMIS</a></li>
+<li><a  href="http://www.ntrca.gov.bd" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; NTRCA</a></li>
 
 
 
 
-<li><a  href="http://www.dinajpureducationboard.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; দিনাজপুর শিক্ষাবোর্ড</a></li>
 
 
-<li><a  href="https://dinajpurboard.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; শিক্ষাবোর্ড,দিনাজপুর</a></li>
-
-
-<li><a  href="http://www.educationboardresults.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; বোর্ড রেজাল্ট</a></li>
 
 
 <li><a  href="http://www.banbeis.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; ব্যানবেইজ</a></li>
@@ -120,25 +117,39 @@
                     <div class="sidebarTitle mb-3 defaltColor"><h4 class="text-center">অন্যান্য</h4></div>
                     <ul class="list-unstyled importantLInk" style="padding: 0px 11px;">
 
-                        <li><a  href="https://dhakaeducationboard.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; ঢাকা শিক্ষাবোর্ড</a></li>
+                        <li><a  href="https://bangladesh.gov.bd/index.php" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; জাতীয় তথ্য বাতায়ন</a></li>
 
-                        <li><a  href="http://www.rajshahieducationboard.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; রাজশাহী শিক্ষাবোর্ড</a></li>
+                        <li><a  href="https://muktopaath.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; মুক্তপাঠ </a></li>
 
 
                         <li><a  href="http://www.panchagarh.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; পঞ্চগড় জেলা</a></li>
 
-<li><a  href="http://debiganj.panchagarh.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; দেবীগঞ্জ উপজেলা</a></li>
+                        <li><a  href="http://debiganj.panchagarh.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; দেবীগঞ্জ উপজেলা</a></li>
 
-<li><a  href="https://tepriganj.uniontax.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; টেপ্রীগঞ্জ ইউনিয়ন</a></li>
+                        <li><a  href="https://tepriganj.uniontax.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; টেপ্রীগঞ্জ ইউনিয়ন</a></li>
+
+
 
                     </ul>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="imbox">
-                    <div class="sidebarTitle mb-3 defaltColor"><h4 class="text-center">নোটিশ বোর্ড</h4></div>
+                    <div class="sidebarTitle mb-3 defaltColor"><h4 class="text-center">শিক্ষাবোর্ড</h4></div>
                     <ul class="list-unstyled importantLInk" style="padding: 0px 11px;">
-                        <!-- <li><i class="fas fa-check-circle"></i> &nbsp;<a href="/tenderview/2" class="">Test</a></li> -->
+                        <li><a  href="https://dhakaeducationboard.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; ঢাকা শিক্ষাবোর্ড</a></li>
+
+                        <li><a  href="http://www.rajshahieducationboard.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; রাজশাহী শিক্ষাবোর্ড</a></li>
+
+                        <li><a  href="http://www.dinajpureducationboard.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; দিনাজপুর শিক্ষাবোর্ড</a></li>
+
+
+                        <li><a  href="https://dinajpurboard.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; শিক্ষাবোর্ড,দিনাজপুর</a></li>
+
+                        <li><a  href="http://www.educationboardresults.gov.bd/" target="_blank"> <i class="fas fa-check-circle"></i> &nbsp; বোর্ড রেজাল্ট</a></li>
+
+
+
                     </ul>
                 </div>
             </div>
@@ -286,11 +297,11 @@ ul.footerList li a:hover {
 }
 
 .num {
-  font-family: "Noto Sans Bengali", sans-serif;
+  /* font-family: "Noto Sans Bengali", sans-serif; */
 }
 
 * {
-  font-family: "Hind Siliguri", sans-serif;
+  /* font-family: "Hind Siliguri", sans-serif; */
   padding: 0;
 }
 

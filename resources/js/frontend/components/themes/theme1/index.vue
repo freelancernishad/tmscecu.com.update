@@ -18,7 +18,7 @@
 
 
                             <span v-for="notice in noticesIN" :key="notice.id+'notice'">
-                                <router-link :to="{name:'noticesingle',params:{id:notice.id,title:notice.title}}" class="notice-a">{{ notice.title.slice(0, 30)+'...' }} </router-link>
+                                <router-link :to="{name:'noticesingle',params:{id:notice.id,title:notice.title}}" class="notice-a text-dark">{{ notice.title.slice(0, 30)+'...' }} </router-link>
                                 <span><img draggable="false" :src="$asseturl+schoolSettings.logo" alt="" width="20px"></span>
                             </span>
 
@@ -30,26 +30,26 @@
         </div>
 
 
-<!--
+
         <div class="bg-white container d-flex justify-content-between my-5 py-4 gap-2">
             <div class="d-flex flex-column gap-4 img-thumbnail">
-                <img draggable="false" src="img/a.jpg" class="img-fluid" alt="">
+                <img draggable="false" :src="$asseturl+'frontend/a.jpg'" class="img-fluid" alt="">
                 <a href="https://mujib100.gov.bd/" target="_blank" class="btn btn-danger rounded-4">মুজিব কর্ণার</a>
             </div>
             <div class="d-flex flex-column gap-4 img-thumbnail contact-info">
-                <img draggable="false" src="img/b.jpg" class="img-fluid" alt="">
+                <img draggable="false" :src="$asseturl+'frontend/b.jpg'" class="img-fluid" alt="">
                 <p class="fs-5 mb-0 text-center">বাংলাদেশের স্বাধীনতা ও বিজয় অর্জনের ৫০ বছর পূর্তি
                 </p>
             </div>
             <div class="d-flex flex-column gap-4 img-thumbnail">
-                <img draggable="false" src="img/c.jpg" class="img-fluid" alt="">
+                <img draggable="false" :src="$asseturl+'frontend/c.jpg'" class="img-fluid" alt="">
                 <a href="https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6%E0%A7%87%E0%A6%B0_%E0%A6%B8%E0%A7%8D%E0%A6%AC%E0%A6%BE%E0%A6%A7%E0%A7%80%E0%A6%A8%E0%A6%A4%E0%A6%BE%E0%A6%B0_%E0%A6%B8%E0%A7%81%E0%A6%AC%E0%A6%B0%E0%A7%8D%E0%A6%A3%E0%A6%9C%E0%A6%AF%E0%A6%BC%E0%A6%A8%E0%A7%8D%E0%A6%A4%E0%A7%80"
                     target="_blank" class="btn btn-success rounded-4">সুবর্ণজয়ন্তী
                     কর্ণার</a>
             </div>
 
         </div>
- -->
+
 
 
         <!-- slider & notice -->
@@ -70,7 +70,7 @@
                 </div>
 
                 <marquee direction="up" onmouseover="this.stop();" onmouseout="this.start();" class="mb-3 px-2 py-3 limited-tags scrolling-hide">
-                    <router-link v-for="notice in noticesIN" :key="notice.id+'notice1'" :to="{name:'noticesingle',params:{id:notice.id,title:notice.title}}" class="bg-white mb-2 p-3">{{ notice.title.slice(0, 30)+'...' }} </router-link>
+                    <router-link v-for="notice in noticesIN" :key="notice.id+'notice1'" :to="{name:'noticesingle',params:{id:notice.id,title:notice.title}}" class="bg-white mb-2 p-3 text-dark">{{ notice.title.slice(0, 30)+'...' }} </router-link>
                 </marquee>
 
 
