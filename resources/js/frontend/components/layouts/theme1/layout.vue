@@ -24,7 +24,7 @@
                 <img draggable="false" class="img-fluid" :src="$asseturl+schoolSettings.logo" alt="" style="width: 100px;">
             </div>
             <div>
-                <h2 class="fw-bold text-left text-dark name" style="font-size: 25px;">{{ schoolSettings.SCHOLL_NAME }}</h2>
+                <h2 class="fw-bold text-left text-dark name" style="font-size: 25px;    border-bottom: 1px solid #271054;">{{ schoolSettings.SCHOLL_NAME }}</h2>
                 <p class="text-left fw-bold f13" style="color: var(--my-blue-color);font-size: 16px;">TEPRIGANJ ADARSHA BL HIGH SCHOOL</p>
             </div>
             <div class="contact-info">
@@ -349,11 +349,11 @@ h2 {
 }
 
 .quoates-logo {
-  max-width: 100px;
-  border-style: solid;
-  border-color: #2e3192;
-  border-width: 5px;
-  border-radius: 50px;
+    max-width: 160px;
+    border-style: solid;
+    border-color: #2e3192;
+    border-width: 2px;
+    border-radius: 50px;
 }
 
 .quoates-name {

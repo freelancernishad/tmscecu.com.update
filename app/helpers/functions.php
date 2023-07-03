@@ -331,7 +331,7 @@ function subjectCol($subject)
             return 'অর্ধ বার্ষিক পরীক্ষা';
         }elseif($name=='Half_yearly_evaluation'){
             return 'অর্ধ বার্ষিক মূল্যায়ন';
-        }elseif($name=='Annual_Examination'){
+        }elseif($name=='Annual Examination'){
             return 'বার্ষিক পরীক্ষা';
         }elseif($name=='Annual_assessment'){
             return 'বার্ষিক মূল্যায়ন';
@@ -352,7 +352,7 @@ function subjectCol($subject)
 
    function ex_name_list($name='en'){
 
-        $ex_en_name = ['Half_yearly_examination','Half_yearly_evaluation','Annual_Examination','Annual_assessment','Model_test_exam','Pre_selection_examination','Selective_Exam','Continuous_assessment','Summative_Assessment'];
+        $ex_en_name = ['Half_yearly_examination','Half_yearly_evaluation','Annual Examination','Annual_assessment','Model_test_exam','Pre_selection_examination','Selective_Exam','Continuous_assessment','Summative_Assessment'];
 
 
        $ex_bn_name =  ['অর্ধ বার্ষিক পরীক্ষার ফি','অর্ধ বার্ষিক মূল্যায়ন','বার্ষিক পরীক্ষা','বার্ষিক মূল্যায়ন','মডেল টেস্ট পরীক্ষা','প্রাক-নির্বাচনী পরীক্ষা','নির্বাচনী পরীক্ষা','ধারাবাহিক মূল্যায়ন','সামষ্টিক মূল্যায়ন'];
@@ -1880,7 +1880,7 @@ $Fgg = 0;
 
         // print_r($sub.',');
         // print_r(Greeting($subMark,$SUBJECT_TOTAL,'point'));
-        if ($class == "Six" || $class == "Seven") {
+        if ($class == "Six" || $class == "Seven" || $class == "Eight") {
             if (subjectCol($sub) == 'Bangla_1st') {
                 $sub_d1 = json_decode($results['Bangla_1st_d']);
                 if ($sub_d) {
@@ -2002,39 +2002,45 @@ $Fgg = 0;
                 array_push($greating, $great);
             }
             $GPA += $gg;
-        } elseif ($class == "Eight") {
-            if (subjectCol($sub) == 'Bangla_1st') {
-                if (json_decode($results['Bangla_1st_d'])) {
-                    $SUBJECT_TOTAL1 = json_decode($results['Bangla_1st_d'])->SUBJECT_TOTAL;
-                } else {
-                    $SUBJECT_TOTAL1 = 100;
-                }
-                $subMark1 = $results['Bangla_1st'];
-                $gg1 = Greeting($subMark1, $SUBJECT_TOTAL1, 'point');
-                $gg = $gg1;
-                $great = Greeting($subMark1, $SUBJECT_TOTAL1, 'greed');
-            } elseif (subjectCol($sub) == 'Bangla_2nd') {
-                $gg = 0;
-            } elseif (subjectCol($sub) == 'English_1st') {
-                if (json_decode($results['English_1st_d'])) {
-                    $SUBJECT_TOTAL1 = json_decode($results['English_1st_d'])->SUBJECT_TOTAL;
-                } else {
-                    $SUBJECT_TOTAL1 = 100;
-                }
-                $subMark1 = $results['English_1st'];
-                $gg1 = Greeting($subMark1, $SUBJECT_TOTAL1, 'point');
-                $gg = $gg1;
-                // return  $greating;
-            } elseif (subjectCol($sub) == 'English_2nd') {
-                $gg = 0;
-            } else {
-                $gg = Greeting($subMark, $SUBJECT_TOTAL, 'point');
-                $great = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
-                array_push($greating, $great);
-            }
-            $GPA += $gg;
+        }
 
-        } elseif ($class == "Nine" || $class == "Ten") {
+
+        // elseif ($class == "Eight") {
+        //     if (subjectCol($sub) == 'Bangla_1st') {
+        //         if (json_decode($results['Bangla_1st_d'])) {
+        //             $SUBJECT_TOTAL1 = json_decode($results['Bangla_1st_d'])->SUBJECT_TOTAL;
+        //         } else {
+        //             $SUBJECT_TOTAL1 = 100;
+        //         }
+        //         $subMark1 = $results['Bangla_1st'];
+        //         $gg1 = Greeting($subMark1, $SUBJECT_TOTAL1, 'point');
+        //         $gg = $gg1;
+        //         $great = Greeting($subMark1, $SUBJECT_TOTAL1, 'greed');
+        //     } elseif (subjectCol($sub) == 'Bangla_2nd') {
+        //         $gg = 0;
+        //     } elseif (subjectCol($sub) == 'English_1st') {
+        //         if (json_decode($results['English_1st_d'])) {
+        //             $SUBJECT_TOTAL1 = json_decode($results['English_1st_d'])->SUBJECT_TOTAL;
+        //         } else {
+        //             $SUBJECT_TOTAL1 = 100;
+        //         }
+        //         $subMark1 = $results['English_1st'];
+        //         $gg1 = Greeting($subMark1, $SUBJECT_TOTAL1, 'point');
+        //         $gg = $gg1;
+        //         // return  $greating;
+        //     } elseif (subjectCol($sub) == 'English_2nd') {
+        //         $gg = 0;
+        //     } else {
+        //         $gg = Greeting($subMark, $SUBJECT_TOTAL, 'point');
+        //         $great = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
+        //         array_push($greating, $great);
+        //     }
+        //     $GPA += $gg;
+
+        // }
+
+        
+        elseif ($class == "Nine" || $class == "Ten") {
             if (subjectCol($sub) == 'Bangla_1st') {
                 $sub_d1 = json_decode($results['Bangla_1st_d']);
                 if ($sub_d) {

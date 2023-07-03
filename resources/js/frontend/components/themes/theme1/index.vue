@@ -81,7 +81,7 @@
         <div class="container d-flex gap-4 my-3  py-3 d-flex-res p-0">
             <div class="bg-white d-flex res-quates shadow w-50">
                 <div class="py-4 text-center w-50">
-                    <img draggable="false" :src="$asseturl+schoolSettings.PRINCIPALS_IMGAGE" alt="" srcset="" width="80px" height="80px"
+                    <img draggable="false" :src="$asseturl+schoolSettings.PRINCIPALS_IMGAGE" alt="" srcset="" width="160px"
                         class="mb-2 quoates-logo">
                     <p class="mb-0 quoates-name text-center" style="color: var(--my-blue-color);">{{ schoolSettings.Principals_name }} </p>
                     <p class="mb-0 quoates-name text-center" style="  color: #008249;"> প্রধান শিক্ষক</p>
@@ -93,8 +93,7 @@
             </div>
             <div class="bg-white d-flex w-50 res-quates shadow">
                 <div class="py-4 text-center w-50">
-                    <img draggable="false" :src="$asseturl+schoolSettings.VICE_PRINCIPALS_IMGAGE" alt="" srcset="" style="width: 80px;
-                        height: 80px;" class="mb-2 quoates-logo">
+                    <img draggable="false" :src="$asseturl+schoolSettings.VICE_PRINCIPALS_IMGAGE" alt="" srcset="" width="160px" class="mb-2 quoates-logo">
                     <p class="mb-0 quoates-name text-center" style="color: var(--my-blue-color);">{{  schoolSettings.Vice_Principals_name }} </p>
                     <p class="mb-0 quoates-name text-center" style="  color: #008249;"> সহকারী প্রধান শিক্ষক </p>
                 </div>
@@ -113,7 +112,7 @@
             </div>
             <div class="col-md-12 col-lg-7">
                 <p style="color: #180092;
-                margin: 9px;
+                margin-bottom: 9px;
                 font-size: 23px;">আমাদের প্রতিষ্ঠানের ইতিহাস
                 </p>
                 <p class="mb-3" style="text-align: justify;
