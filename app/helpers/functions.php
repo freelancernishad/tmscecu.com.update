@@ -2034,8 +2034,6 @@ $Fgg = 0;
             }
             $GPA += $gg;
 
-            // $great = Greeting($subMark,$SUBJECT_TOTAL,'greed');
-            // array_push($greating,[subjectCol($sub).'cq'=>$great]);
         } elseif ($class == "Nine" || $class == "Ten") {
             if (subjectCol($sub) == 'Bangla_1st') {
                 $sub_d1 = json_decode($results['Bangla_1st_d']);

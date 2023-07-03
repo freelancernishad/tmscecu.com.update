@@ -640,7 +640,12 @@ class SchoolDetailController extends Controller
 
             // $data = ["Weakly Examination", "ADMITION TEST RESULT", "First Terminals Examination", "Second Terminals Examination", "Annual Examination", "Test Examination"];
 
-            $data = ["Admission Result", "Half Yearly", "Annual Examination","Model Test","Pre-Test","Test"];
+
+            // $data = ["Admission Result", "Half Yearly", "Annual Examination","Model Test","Pre-Test","Test"];
+            $data = ex_name_list('en');
+
+
+
         } else if ($type == 'religions') {
             $data = ["Islam", "Hindu", "Other"];
         }

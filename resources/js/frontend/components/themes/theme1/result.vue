@@ -39,7 +39,7 @@
                                     <select class="form-control" style="width: 100%;" v-model="filterdata.examType"
                                         @change="callSubjects" id="ExamType" required>
                                         <option value="">select</option>
-                                        <option v-for="exam in exams">{{ exam }}</option>
+                                        <option v-for="exam in exams">{{ ex_name(exam) }}</option>
                                     </select>
                                 </div>
                             </div>

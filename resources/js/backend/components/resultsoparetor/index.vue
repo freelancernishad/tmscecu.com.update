@@ -42,7 +42,10 @@
                                         <select class="form-control" style="width: 100%;" v-model="filterdata.examType" onchange=""
                                             id="ExamType" required>
                                             <option value="">select</option>
-                               <option v-for="exam in exams">{{ exam }}</option>
+
+                                                <option v-for="exam in exam_names" :value="exam">{{ ex_name(exam) }}</option>
+
+
                                         </select>
                                     </div>
 
@@ -116,6 +119,7 @@ export default {
 
 			groups: {},
 			exams: {},
+			exam_names: {},
 			religions: {},
 			subjects: {},
             preloader:false,
@@ -187,11 +191,26 @@ export default {
 
 
         callSubjects(){
+            if(this.filterdata.student_class=='Ten'){
+                var result =  this.exams.filter(exam => exam == 'Pre_selection_examination' );
+                this.filterdata.examType = 'Pre_selection_examination'
+            }else{
+                var result =  this.exams.filter(exam => exam == 'Half_yearly_examination' );
+                this.filterdata.examType = 'Half_yearly_examination'
+            }
+
+            this.exam_names = result;
+
+
             if(this.filterdata.student_class=='Nine' || this.filterdata.student_class=='Ten'){
             }else{
                 this.filterdata.group = 'All'
             }
             this.subjects =  this.all_list('subjects',this.filterdata.student_class,this.filterdata.group);
+
+
+
+
         },
 
 
