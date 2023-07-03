@@ -43,7 +43,7 @@ export default {
         },
 
 
-        ex_name(name){
+        ex_fee_name(name){
             if(name=='Half_yearly_examination'){
                 return 'অর্ধ বার্ষিক পরীক্ষার ফি';
             }else if(name=='Half_yearly_evaluation'){
@@ -62,6 +62,29 @@ export default {
                 return 'ধারাবাহিক মূল্যায়ন ফি';
             }else if(name=='Summative_Assessment'){
                 return 'সামষ্টিক মূল্যায়ন ফি';
+            }
+
+        },
+
+        ex_name(name){
+            if(name=='Half_yearly_examination'){
+                return 'অর্ধ বার্ষিক পরীক্ষা';
+            }else if(name=='Half_yearly_evaluation'){
+                return 'অর্ধ বার্ষিক মূল্যায়ন';
+            }else if(name=='Annual Examination'){
+                return 'বার্ষিক পরীক্ষা';
+            }else if(name=='Annual_assessment'){
+                return 'বার্ষিক মূল্যায়ন';
+            }else if(name=='Model_test_exam'){
+                return 'মডেল টেস্ট পরীক্ষা';
+            }else if(name=='Pre_selection_examination'){
+                return 'প্রাক-নির্বাচনী পরীক্ষা';
+            }else if(name=='Selective_Exam'){
+                return 'নির্বাচনী পরীক্ষা';
+            }else if(name=='Continuous_assessment'){
+                return 'ধারাবাহিক মূল্যায়ন';
+            }else if(name=='Summative_Assessment'){
+                return 'সামষ্টিক মূল্যায়ন';
             }
 
         },

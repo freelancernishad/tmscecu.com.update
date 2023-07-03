@@ -33,7 +33,7 @@
                         <tr v-for="(fee,index2) in feeData" :key="fee.class+fee.id">
                             <td>{{ int_en_to_bn(index2+1) }}</td>
                             <!-- <td>{{ class_en_to_bn(fee.class) }}</td> -->
-                            <td v-if="fee.type=='exam_fee'">{{ ex_name(fee.sub_type) }}</td>
+                            <td v-if="fee.type=='exam_fee'">{{ ex_fee_name(fee.sub_type) }}</td>
                             <td v-else>{{ feesconvert(fee.type) }}</td>
 
                             <td>{{ fee.fees }}</td>
