@@ -354,6 +354,7 @@ h2 {
     border-color: #2e3192;
     border-width: 2px;
     border-radius: 50px;
+    height: 160px;
 }
 
 .quoates-name {
