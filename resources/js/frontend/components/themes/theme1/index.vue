@@ -37,7 +37,7 @@
                 <!-- <a href="https://mujib100.gov.bd/" target="_blank" class="btn btn-danger rounded-4">মুজিব কর্ণার</a> -->
             </div>
             <div class="d-flex flex-column gap-4 img-thumbnail contact-info" style="width: 30%;">
-                <img draggable="false" :src="$asseturl+'frontend/19.gif'" class="img-fluid" alt="">
+                <img draggable="false" :src="$asseturl+'frontend/8.gif'" class="img-fluid" alt="">
                 <!-- <p class="fs-5 mb-0 text-center">বাংলাদেশের স্বাধীনতা ও বিজয় অর্জনের ৫০ বছর পূর্তি</p> -->
             </div>
             <div class="d-flex flex-column gap-4 img-thumbnail" style="width: 30%;">
