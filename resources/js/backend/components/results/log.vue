@@ -36,7 +36,7 @@
                             <td v-if="result.class=='Nine' || result.class=='Ten'">{{ result.group, }}</td>
                             <td v-else >N/A</td>
 
-                            <td>{{ result.examName }}</td>
+                            <td>{{ ex_name(result.examName) }}</td>
                             <td>{{ result.subject }}</td>
                             <td>{{ result.year }}</td>
                             <td>{{ dateformatGlobal(result.created_at)[3] }}</td>
