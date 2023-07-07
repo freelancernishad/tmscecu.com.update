@@ -128,7 +128,7 @@
                             <td v-if="result.class=='Nine' || result.class=='Ten'">{{ result.class_group, }}</td>
                             <td v-else >N/A</td>
 
-                            <td>{{ result.exam_name }}</td>
+                            <td>{{ ex_name(result.exam_name) }}</td>
                             <td>{{ result.year }}</td>
                             <td>
 
