@@ -888,7 +888,7 @@ function allList($type = '', $class = '', $group = '')
             $data = ["বাংলা", "ইংরেজি", "গণিত", "বাংলাদেশ ও বিশ্ব পরিচয়", "বিজ্ঞান", "ধর্ম"];
         } elseif ($class == 'six' || $class == 'seven' || $class == 'eight') {
             $data = ["বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান", "বাংলাদেশ ও বিশ্ব পরিচয়", "ধর্ম ও নৈতিক শিক্ষা", "তথ্য ও যোগাযোগ প্রযুক্তি", "কৃষি শিক্ষা"];
-        } 
+        }
         // elseif ($class == 'eight') {
         //     $data = ["বাংলা", "ইংরেজি", "গণিত", "বিজ্ঞান", "বাংলাদেশ ও বিশ্ব পরিচয়", "ধর্ম ও নৈতিক শিক্ষা", "তথ্য ও যোগাযোগ প্রযুক্তি", "কৃষি শিক্ষা"];
         // }
@@ -2331,6 +2331,7 @@ function SubjectDetailsMark($results,$subjextName ='Bangla_1st',$type='all')
 function resultDetails($results,$type='ragular')
 {
 
+    // return $results->exam_name;
      $GpaResult = StudentFailedCount($results);
 
 
@@ -2350,10 +2351,18 @@ function resultDetails($results,$type='ragular')
         if($results->failed>0){
             $totalMark .="";
         }else{
-            $totalMark .="<tr>
+
+            if($results->exam_name==='Annual Examination'){
+                $totalMark .="<tr>
                 <td>Next Class Roll</td>
                 <td colspan='3'><span id='i_name'>$results->nextroll</span></td>
             </tr>";
+        }else{
+            $totalMark .="";
+        }
+
+
+
         }
 
 
@@ -2381,10 +2390,16 @@ function resultDetails($results,$type='ragular')
             if($results->failed>0){
                 $totalMark .="";
             }else{
-                $totalMark .="<tr>
+
+                if($results->exam_name==='Annual Examination'){
+                    $totalMark .="<tr>
                     <td>Next Class Roll</td>
                     <td colspan='3'><span id='i_name'>$results->nextroll</span></td>
                 </tr>";
+            }else{
+                $totalMark .="";
+            }
+
             }
 
         }
@@ -2447,7 +2462,7 @@ function resultDetails($results,$type='ragular')
         </tr>
         <tr>
             <td>Exam Name</td>
-            <td>$results->exam_name</td>
+            <td>".ex_name($results->exam_name)."</td>
             <td>Year</td>
             <td>$results->year</td>
         </tr>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\StudentResult;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\payment;
 use App\Models\ResultLog;
 use App\Models\school_detail;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -458,13 +459,73 @@ class resultController extends Controller
                 AllowedFilter::exact('Bangla_1st'),
                 AllowedFilter::exact('id')
             ]);
-        $results = $result->first();
+         $results = $result->first();
+
+
+
 
         $count = $result->count();
+
+
+
+
         // return $results;
         // return $this->Greeting(80,100,'greed');
         $html  = "";
+
+
+
         if ($count > 0) {
+
+            $studentFilter = [
+                'StudentClass'=>$results->class,
+                'StudentRoll'=>$results->roll,
+                'StudentStatus'=>'Active',
+                'StudentGroup'=>$results->class_group,
+                'Year'=>'2023',
+            ];
+        $AdmissionID = student::where($studentFilter)->first()->AdmissionID;
+
+     $paymentFilter = [
+        'admissionId'=>$AdmissionID,
+        'type'=>'exam_fee',
+        'ex_name'=>$results->exam_name,
+        'year'=>$results->year,
+        'status'=>'Paid',
+     ];
+      $payment = payment::where($paymentFilter)->count();
+
+            if($payment<1){
+                $html  .= "     <table class='width-50 table table-sm mt-3' width='100%' >";
+                $html  .= "
+                <tbody>
+                    <tr class=''>
+                        <td class='pl-5 pr-5'> <b>
+                                <center>
+                                    <h2 style='font-size:30px;color:red'>দুঃখিত </h2>
+                                    <h4 style='font-size:20px;color:red'>ফলাফল এর জন্য বিদ্যালয়ে যোগাযোগ করুন</h4>
+                                </center>
+                            </b></td>
+                    </tr>
+                </tbody>
+                </table>
+                ";
+                return $html;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             $Fgg = 0;
             if ($results->status == 'Draft') {
                 $html  .= "     <table class='width-50 table table-sm mt-3' width='100%' >";
@@ -503,7 +564,7 @@ class resultController extends Controller
                     <tr class='table-danger'>
                         <td class='pl-5 pr-5' > <b>
                                 <center>
-                                    <h4>Result Cannot Find!</h4>
+                                    <h4>Result Cannot Found!</h4>
                                 </center>
                             </b></td>
                     </tr>
