@@ -1826,7 +1826,7 @@ if($class=='Six' || $class=='Seven' || $class=='Eight'){
 
 $Fgg = 0;
 
-    $subjects =  allList('subjects', $class, $class_group);
+     $subjects =  allList('subjects', $class, $class_group);
     $greating = [];
     $GPA = 0.00;
     $totalMark = 0;
@@ -1883,7 +1883,7 @@ $Fgg = 0;
 
         // print_r($sub.',');
         // print_r(Greeting($subMark,$SUBJECT_TOTAL,'point'));
-        if ($class == "Six" || $class == "Seven" || $class == "Eight") {
+        if ($class == "Six" || $class == "Seven") {
             if (subjectCol($sub) == 'Bangla_1st') {
                 $sub_d1 = json_decode($results['Bangla_1st_d']);
                 if ($sub_d) {
@@ -1972,29 +1972,12 @@ $Fgg = 0;
                 $gg1 =  ($subMark1 + $subMark2) / 2;
                 $gg = Greeting($gg1, $ggTo, 'point');
                 $CQ1great = Greeting($subMark1, $SUBJECT_TOTAL1, 'greed');
-                // $MCQ1great = Greeting($MCQ1,30,'greed');
                 $CQ2great = Greeting($subMark2, $SUBJECT_TOTAL2, 'greed');
-                // $MCQ2great = Greeting($MCQ2,20,'greed');
-                // array_push($greating,[subjectCol($sub).'cq'=>$CQ1great]);
-                // array_push($greating,[subjectCol($sub).'cq'=>$CQ2great]);
-
-
-                // $enArray = [$CQ1great,$CQ2great];
-
-                // if (in_array('F', $enArray)) {
-                //     $gread1 = 'F';
-                // } else {
-                //     $gread1 = 'pass';
-                // }
 
 
                 array_push($greating, $CQ1great);
                 array_push($greating, $CQ2great);
 
-
-
-                // array_push($greating,$MCQ1great);
-                // array_push($greating,$MCQ2great);
             } elseif (subjectCol($sub) == 'English_2nd') {
                 $gg = 0;
             } else {
@@ -2007,6 +1990,116 @@ $Fgg = 0;
             $GPA += $gg;
         }
 
+
+        elseif ($class == "Eight") {
+            if (subjectCol($sub) == 'Bangla_1st') {
+                $sub_d1 = json_decode($results['Bangla_1st_d']);
+                if ($sub_d) {
+                    $SUBJECT_TOTAL1 = $sub_d1->SUBJECT_TOTAL;
+                    $CQ1 = $sub_d1->CQ;
+                    $MCQ1 = $sub_d1->MCQ;
+                    $EXTRA1 = $sub_d1->EXTRA;
+                } else {
+                    $SUBJECT_TOTAL1 = 100;
+                    $CQ1 = 0;
+                    $MCQ1 = 0;
+                    $EXTRA1 = 0;
+                }
+                $subMark1 = $results['Bangla_1st'];
+                $sub_d2 = json_decode($results['Bangla_2nd_d']);
+                if ($sub_d) {
+                    $SUBJECT_TOTAL2 = $sub_d2->SUBJECT_TOTAL;
+                    $CQ2 = $sub_d2->CQ;
+                    $MCQ2 = $sub_d2->MCQ;
+                    $EXTRA2 = $sub_d2->EXTRA;
+                } else {
+                    $SUBJECT_TOTAL2 = 100;
+                    $CQ2 = 0;
+                    $MCQ2 = 0;
+                    $EXTRA2 = 0;
+                }
+                $subMark2 = $results['Bangla_2nd'];
+                //   return  $gg1 = Greeting($subMark1,$SUBJECT_TOTAL1,'point');
+                //     $gg2 = Greeting($subMark2,$SUBJECT_TOTAL2,'point');
+                $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
+                $gg1 =  ($subMark1 + $subMark2) / 2;
+                $gg = Greeting($gg1, $ggTo, 'point');
+
+                $CQ1great = Greeting($CQ1, 70, 'greed');
+                $MCQ1great = Greeting($MCQ1, 30, 'greed');
+
+                $CQ2great = Greeting($CQ2, 30, 'greed');
+                $MCQ2great = Greeting($MCQ2, 20, 'greed');
+
+
+                // $bang1Arr = [$CQ1great,$MCQ1great];
+                // $bang2Arr = [$CQ2great,$MCQ2great];
+
+                $gread1 = Greeting($gg1, 70, 'greed');
+
+                // if (in_array('F', $bang1Arr)) {
+                //     $gread1 = 'F';
+                // } else {
+                //     $gread1 = 'pass';
+                // }
+                // if (in_array('F', $bang2Arr)) {
+                //     $gread2 = 'F';
+                // } else {
+                //     $gread2 = 'pass';
+                // }
+
+
+                array_push($greating, $gread1);
+                // array_push($greating, $gread2);
+
+
+
+            } elseif (subjectCol($sub) == 'Bangla_2nd') {
+                $gg = 0;
+            } elseif (subjectCol($sub) == 'English_1st') {
+                $sub_d1 = json_decode($results['English_1st_d']);
+                if ($sub_d) {
+                    $SUBJECT_TOTAL1 = $sub_d1->SUBJECT_TOTAL;
+                    $CQ1 = $sub_d1->CQ;
+                    $MCQ1 = $sub_d1->MCQ;
+                    $EXTRA1 = $sub_d1->EXTRA;
+                } else {
+                    $SUBJECT_TOTAL1 = 100;
+                    $CQ1 = 0;
+                    $MCQ1 = 0;
+                    $EXTRA1 = 0;
+                }
+                $subMark1 = $results['English_1st'];
+                $sub_d2 = json_decode($results['English_2nd_d']);
+                if ($sub_d) {
+                    $SUBJECT_TOTAL2 = $sub_d2->SUBJECT_TOTAL;
+                    $CQ2 = $sub_d2->CQ;
+                    $MCQ2 = $sub_d2->MCQ;
+                    $EXTRA2 = $sub_d2->EXTRA;
+                } else {
+                    $SUBJECT_TOTAL2 = 100;
+                    $CQ2 = 0;
+                    $MCQ2 = 0;
+                    $EXTRA2 = 0;
+                }
+                $subMark2 = $results['English_2nd'];
+                $ggTo = ($SUBJECT_TOTAL1 + $SUBJECT_TOTAL2) / 2;
+                $gg1 =  ($subMark1 + $subMark2) / 2;
+                $gg = Greeting($gg1, $ggTo, 'point');
+                $CQ1great = Greeting($CQ1, $SUBJECT_TOTAL1, 'greed');
+                $CQ2great = Greeting($CQ2, $SUBJECT_TOTAL2, 'greed');
+                array_push($greating, $CQ1great);
+                array_push($greating, $CQ2great);
+            } elseif (subjectCol($sub) == 'English_2nd') {
+                $gg = 0;
+            } else {
+                $gg = Greeting($subMark, $SUBJECT_TOTAL, 'point');
+                $great = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
+                array_push($greating, $great);
+            }
+            $GPA += $gg;
+
+        }
 
         // elseif ($class == "Eight") {
         //     if (subjectCol($sub) == 'Bangla_1st') {
@@ -2152,16 +2245,29 @@ $Fgg = 0;
             } elseif (subjectCol($sub) == 'English_2nd') {
                 $gg = 0;
             } elseif (subjectCol($sub) == 'Agriculture') {
-                if ($results[subjectCol($sub)]) {
-                    $Fgg += Greeting($subMark, $SUBJECT_TOTAL, 'point');
-                    $gg = 0;
-                } else {
-                    $Fgg += 0;
-                    $gg = 0;
+
+
+                if($class == "Eight"){
+                    $gg = Greeting($subMark, $SUBJECT_TOTAL, 'point');
+                }else{
+                    if ($results[subjectCol($sub)]) {
+                        $Fgg += Greeting($subMark, $SUBJECT_TOTAL, 'point');
+                        $gg = 0;
+                    } else {
+                        $Fgg += 0;
+                        $gg = 0;
+                    }
                 }
+
                 array_push($greating, [subjectCol($sub) . 'cq' => 'Agree']);
                 array_push($greating, [subjectCol($sub) . 'mcq' => 'Agree']);
+
+
+
+
             } elseif (subjectCol($sub) == 'Higher_Mathematics') {
+
+
                 if ($results[subjectCol($sub)]) {
                     $Fgg += Greeting($subMark, $SUBJECT_TOTAL, 'point');
                     $gg = 0;
@@ -2170,6 +2276,9 @@ $Fgg = 0;
                 }
                 array_push($greating, [subjectCol($sub) . 'cq' => 'higher']);
                 array_push($greating, [subjectCol($sub) . 'mcq' => 'higher']);
+
+
+
             } elseif (subjectCol($sub) == 'ICT') {
 
                 $CQgreat = Greeting($MCQ, 25, 'greed');
@@ -2235,11 +2344,15 @@ $Fgg = 0;
     }
     $finalTotalGpa =  $GPA + $fourthSub;
     $subDe = 0;
-    if ($class == "Six" || $class == "Seven") {
+    if ($class == "Six" || $class == "Seven" || $class == "Eight") {
         $subDe = $i - 2;
-    } elseif ($class == "Eight") {
-        $subDe = $i;
-    } elseif ($class == "Nine" || $class == "Ten") {
+    }
+
+    // elseif ($class == "Eight") {
+    //     $subDe = $i;
+    // }
+
+    elseif ($class == "Nine" || $class == "Ten") {
         $subDe = $i - 4;
     }
     //    return $subDe;

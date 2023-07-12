@@ -1670,7 +1670,7 @@ return redirect()->back();
             // $subjectsGroup = $this->GetSubject($request->class, $resValue->class_group);
             $subjectsGroup =  allList('subjects', $request->class, $resValue->class_group);
             $failed = StudentFailedCount($resValue, 'failed');
-            $Gpa = StudentFailedCount($resValue, 'result');
+             $Gpa = StudentFailedCount($resValue, 'result');
             $total = 0;
             foreach ($subjects as $value) {
                 // print_r($value);
