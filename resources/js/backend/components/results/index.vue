@@ -33,6 +33,7 @@
                                     </div>
 
                                 </div>
+
                                 <div class="col-md-3"  v-if="filterdata.student_class=='Nine' || filterdata.student_class=='Ten'" >
                                 <div class='form-group' >
                                     <label>Group:</label>
@@ -43,6 +44,7 @@
 
                                     </select></div>
                                 </div>
+
 
                                 <div class="col-md-3">
                                     <div class="form-group">

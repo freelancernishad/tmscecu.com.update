@@ -25,18 +25,35 @@
                     </div>
                     <div class="dropdown">
                         <!-- {{ url('/school/student/'.$class.'/'.$year.'/'.$type.'/sheet') }} -->
-                        <a target="_blank" :href="'/dashboard/student/' + school_id + '/' + payment_class + '/' + year + '/' + type + '/paymnetsheet'"
+                        <a target="_blank" :href="'/dashboard/student/' + school_id + '/' + payment_class + '/' + year + '/' + type + '/paymnetsheet?group='+ this.group"
                             class="btn-fill-lmd text-light gradient-dodger-blue" style="float:right;margin-bottom:10px"
                             rel="noopener noreferrer">Download Full Year Sheet</a>
                     </div>
                 </div>
                 <div class="row gutters-8">
+
+
                     <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
-                        <select class="form-control" v-model="payment_class" id="payment_class" required>
+                        <select class="form-control" v-model="payment_class" id="payment_class" @change="callSubjects"  required>
                             <option value="">SELECT CLASS</option>
                             <option v-for="classlist in classess">{{  classlist  }}</option>
                         </select>
                     </div>
+
+
+
+                    <div class="col-md-3"  v-if="payment_class=='Nine' || payment_class=='Ten'" >
+                                <div class='form-group' >
+
+                                    <select class='form-control' style='width: 100%;' v-model='group' id='group' required>
+                                    <option value=''>select</option>
+                                    <option v-for="group in groups">{{ group }}</option>
+
+
+                                    </select></div>
+                                </div>
+
+
                     <div class="col-3-xxxl col-xl-4 col-lg-3 col-12 form-group">
                         <select class="form-control" v-model="year" id="year" required>
                             <option value="">SELECT YEAR</option>
@@ -162,10 +179,12 @@ export default {
     },
     data() {
         return {
+            groups: {},
             payment_class: null,
             year: null,
             month: null,
             type: null,
+            group: null,
             examType: '',
             students: [],
             payments: [],
@@ -185,6 +204,15 @@ export default {
         }
     },
     methods: {
+
+
+        callSubjects(){
+            if(this.filterdata.student_class=='Nine' || this.filterdata.student_class=='Ten'){
+            }else{
+                this.filterdata.group = 'All'
+            }
+        },
+
         filter() {
             this.preloader = true;
             this.newsearch = 'oldsearch',
@@ -193,9 +221,9 @@ export default {
                 this.paidclass = 'badge badge-pill badge-danger d-block mg-t-8';
             }
             // console.log(this.$router.currentRoute.path)
-            if (this.$router.currentRoute.path == `/school/payment/${this.payment_class}/${this.year}/${this.month}/${this.type}?type_name=${this.examType}`) {
+            if (this.$router.currentRoute.path == `/school/payment/${this.payment_class}/${this.year}/${this.month}/${this.type}?group=${this.group}&type_name=${this.examType}`) {
             } else {
-                this.$router.push({ name: 'paymentsearch', params: { classname: this.payment_class, year: this.year, month: this.month, type: this.type },query:{type_name:this.examType} })
+                this.$router.push({ name: 'paymentsearch', params: { classname: this.payment_class, year: this.year, month: this.month, type: this.type },query:{group:this.group,type_name:this.examType} })
             }
             this.allstudents();
             this.allpayments();
@@ -203,7 +231,7 @@ export default {
         allstudents() {
             this.statustext = 'Looding...'
             var url = '';
-            url = `/api/students/single?filter[StudentClass]=${this.payment_class}&filter[Year]=${this.year}&filter[school_id]=${this.school_id}&filter[StudentStatus]=Active`;
+            url = `/api/students/single?filter[StudentClass]=${this.payment_class}&filter[Year]=${this.year}&filter[school_id]=${this.school_id}&filter[StudentGroup]=${this.group}&filter[StudentStatus]=Active`;
             axios.get(url)
                 .then(({ data }) => {
                     this.students = data
@@ -251,7 +279,7 @@ export default {
             var res = await this.callApi('get',`/api/years/list?type=year`,[]);
             this.years = res.data;
         },
-            async all_list(){
+            async all_lists(){
             var res = await this.callApi('get',`/api/years/list?type=exams`,[]);
             this.exams = res.data;
         },
@@ -260,14 +288,19 @@ export default {
 
     },
     mounted() {
+
         this.yearslist();
        this.monthslist();
-       this.all_list();
+       this.all_lists();
+       this.groups =  this.all_list('groups');
         this.payment_class = this.$route.params.classname
+        this.group = this.$route.query.group
         this.year = this.$route.params.year
         this.month = this.$route.params.month
         this.type = this.$route.params.type
+
         setTimeout(() => {
+
             this.allstudents();
             this.allpayments();
         }, 1000);

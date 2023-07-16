@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Rakibhstu\Banglanumber\NumberToBangla;
-use Meneses\LaravelMpdf\Facades\LaravelMpdf;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
 class PaymentController extends Controller
 {
 
@@ -1406,7 +1406,7 @@ class PaymentController extends Controller
     {
 
             ini_set('max_execution_time', '60000');
-            ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+            ini_set("pcre.backtrack_limit", "50000000000000000000000");
             ini_set('memory_limit', '12008M');
 
 
@@ -1434,11 +1434,11 @@ class PaymentController extends Controller
 
 
 
-    public function paymentsheet($school_id, $class, $year, $type)
+    public function paymentsheet(Request $request,$school_id, $class, $year, $type)
     {
 
         ini_set('max_execution_time', '60000');
-        ini_set("pcre.backtrack_limit", "5000000000000000050000000000000000");
+        ini_set("pcre.backtrack_limit", "500000000000000000");
         ini_set('memory_limit', '12008M');
 
         $data['class'] = $class;
@@ -1450,6 +1450,13 @@ class PaymentController extends Controller
             'Year' => date('Y'),
             'school_id' => $school_id,
         ];
+
+        $group = $request->group;
+        $data['group'] = $group;
+        if($class=='Nine' || $class=='Ten'){
+            $wheredata['StudentGroup'] = $group;
+        }
+
 
         $data['rows'] = DB::table('students')->where($wheredata)->orderBy('StudentRoll', 'ASC')->get();
         $fileName = 'Payments-' . date('Y-m-d H:m:s');
