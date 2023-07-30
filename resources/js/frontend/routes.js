@@ -32,6 +32,7 @@ let frontblogsingle = require(`./components/themes/theme1/blogsingle.vue`).defau
 let frontcontact_us = require(`./components/themes/theme1/contact_us.vue`).default;
 let student_register = require(`./components/themes/theme1/register.vue`).default;
 let payment = require(`./components/themes/theme1/payment2.vue`).default;
+let tc = require(`./components/themes/theme1/tc.vue`).default;
 
 
 let reject = require('./components/reject.vue').default;
@@ -60,6 +61,7 @@ export const routes = [
     { path: `${prefix}contact-us`, component: frontcontact_us, name:'frontcontact_us' ,meta: { layout: layout } },
     { path: `${prefix}student/register`, component: student_register, name:'student_register' ,meta: { layout: layout } },
     { path: `${prefix}student/payment`, component: payment, name:'payment' ,meta: { layout: layout } },
+    { path: `${prefix}student/tc`, component: tc, name:'tc' ,meta: { layout: layout } },
 
     { path:  `${prefix}reject/:id`, component: reject, name:'reject',meta: { layout: layout } },
 

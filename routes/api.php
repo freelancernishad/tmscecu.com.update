@@ -92,7 +92,9 @@ Route::post('/payment/report',[PaymentController::class ,'reports']);
 Route::get('/payment/counting',[PaymentController::class ,'paymentCounting']);
 Route::post('/payment/data/search',[PaymentController::class ,'Search']);
 
+
 Route::get('student/applicant/copy/{applicant_id}',[studentsController::class , 'applicant_copy_html']);
+Route::post('/student/data/search',[studentsController::class ,'Search']);
 
 
 Route::get('get/balance',[MessageController::class ,'getBalance']);

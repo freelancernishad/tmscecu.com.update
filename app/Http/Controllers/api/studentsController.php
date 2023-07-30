@@ -2303,6 +2303,20 @@ return $html;
 
 
 
+        function Search(Request $request){
+
+            
+            $student_class = $request->student_class;
+            $StudentGroup = $request->StudentGroup;
+            $StudentRoll = $request->StudentRoll;
+            $year = $request->yea;
+
+
+            $student = student::where()->first();
+
+
+
+        }
 
 
 
