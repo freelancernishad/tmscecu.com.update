@@ -4395,8 +4395,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         StudentRoll: '',
         year: ''
       },
+      f: {
+        studentId: '',
+        group: '',
+        roll: '',
+        year: '',
+        sscRoll: '',
+        sscReg: '',
+        sscGpa: '',
+        dateOfBirth: '',
+        fatherName: '',
+        motherName: '',
+        division: '',
+        district: '',
+        upazila: '',
+        union: '',
+        post_office: '',
+        StudentAddress: ''
+      },
       student: {},
-      searched: 0
+      searched: 1
     };
   },
   methods: {
@@ -4415,9 +4433,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 res = _context.sent;
+
+                if (res.status == 200) {
+                  _this.student = res.data;
+                  _this.f = {
+                    studentId: res.data.id,
+                    group: res.data.StudentGroup,
+                    roll: res.data.StudentRoll,
+                    year: res.data.Year,
+                    sscRoll: '',
+                    sscReg: '',
+                    sscGpa: '',
+                    dateOfBirth: res.data.StudentDateOfBirth,
+                    fatherName: res.data.StudentFatherNameBn,
+                    motherName: res.data.StudentMotherNameBn,
+                    division: res.data.division,
+                    district: res.data.district,
+                    upazila: res.data.upazila,
+                    union: res.data.union,
+                    post_office: res.data.post_office,
+                    StudentAddress: res.data.StudentAddress
+                  }, _this.searched = 1;
+                } else {
+                  Notification.customError2('কোনো তথ্য খুঁজে পাওয়া যায় নি!');
+                  _this.searched = 0;
+                }
+
                 _this.preloader = false;
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -11051,10 +11095,496 @@ var render = function render() {
     on: {
       click: _vm.PaymentSearch
     }
-  }, [_vm._v("খুঁজুন")])])], 1);
+  }, [_vm._v("খুঁজুন")])]), _vm._v(" "), _c("div", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("form", {
+    staticClass: "row",
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.formsubmit.apply(null, arguments);
+      }
+    }
+  }, [_c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("গ্রুপ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.group,
+      expression: "f.group"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.f.group
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "group", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("রোল")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.roll,
+      expression: "f.roll"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.f.roll
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "roll", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("সাল ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.year,
+      expression: "f.year"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.f.year
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "year", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("এসএসসি রোল")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.sscRoll,
+      expression: "f.sscRoll"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.f.sscRoll
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "sscRoll", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("এসএসসি রেজিস্ট্রেশন নাম্বার")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.sscReg,
+      expression: "f.sscReg"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.f.sscReg
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "sscReg", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("এসএসসি ফলাফল GPA ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.sscGpa,
+      expression: "f.sscGpa"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.f.sscGpa
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "sscGpa", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("জন্ম তারিখ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.dateOfBirth,
+      expression: "f.dateOfBirth"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "date"
+    },
+    domProps: {
+      value: _vm.f.dateOfBirth
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "dateOfBirth", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("পিতার নাম (বাংলা)")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.fatherName,
+      expression: "f.fatherName"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.f.fatherName
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "fatherName", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("মাতার নাম  (বাংলা)")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.motherName,
+      expression: "f.motherName"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.f.motherName
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "motherName", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("বিভাগ")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.division,
+      expression: "f.division"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      name: "বিভাগ"
+    },
+    domProps: {
+      value: _vm.f.division
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "division", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("জেলা")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.district,
+      expression: "f.district"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      name: "জেলা"
+    },
+    domProps: {
+      value: _vm.f.district
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "district", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("উপজেলা/থানা")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.upazila,
+      expression: "f.upazila"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      name: "উপজেলা/থানা"
+    },
+    domProps: {
+      value: _vm.f.upazila
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "upazila", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("ইউনিয়ন")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.union,
+      expression: "f.union"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      name: "ইউনিয়ন"
+    },
+    domProps: {
+      value: _vm.f.union
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "union", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("পোষ্ট অফিস")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.post_office,
+      expression: "f.post_office"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      name: "পোষ্ট অফিস"
+    },
+    domProps: {
+      value: _vm.f.post_office
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "post_office", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label"
+  }, [_vm._v("গ্রাম")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.StudentAddress,
+      expression: "f.StudentAddress"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      placeholder: "গ্রাম",
+      name: "গ্রাম"
+    },
+    domProps: {
+      value: _vm.f.StudentAddress
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "StudentAddress", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _vm._m(1)])])])])], 1);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "card-header"
+  }, [_c("h2", {
+    staticClass: "text-center"
+  }, [_vm._v("প্রসংশা পত্রের জন্য আবেদন করুন")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "col-md-12"
+  }, [_c("button", {
+    staticClass: "btn btn-info"
+  }, [_vm._v("Submit")])]);
+}];
 render._withStripped = true;
 
 

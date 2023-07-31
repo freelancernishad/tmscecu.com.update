@@ -2305,14 +2305,30 @@ return $html;
 
         function Search(Request $request){
 
-            
+
             $student_class = $request->student_class;
             $StudentGroup = $request->StudentGroup;
             $StudentRoll = $request->StudentRoll;
-            $year = $request->yea;
+            $year = $request->year;
+
+             $filter = [
+                'StudentClass'=>$student_class,
+                'StudentGroup'=>$StudentGroup,
+                'StudentRoll'=>$StudentRoll,
+                'Year'=>$year,
+                'StudentStatus'=>'old'
+            ];
 
 
-            $student = student::where()->first();
+             $student = student::where($filter)->first();
+             if($student){
+
+                return response()->json($student, 200);
+            }else{
+                return response()->json($student, 404);
+
+            }
+
 
 
 
