@@ -4397,6 +4397,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       f: {
         studentId: '',
+        name: '',
         group: '',
         roll: '',
         year: '',
@@ -4438,6 +4439,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.student = res.data;
                   _this.f = {
                     studentId: res.data.id,
+                    name: res.data.StudentName,
                     group: res.data.StudentGroup,
                     roll: res.data.StudentRoll,
                     year: res.data.Year,
@@ -4467,6 +4469,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
+      }))();
+    },
+    formsubmit: function formsubmit() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var res;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.callApi('post', "/api/tc", _this2.f);
+
+              case 2:
+                res = _context2.sent;
+                // console.log(res.data)
+                window.location.href = res.data;
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   },
@@ -11317,6 +11344,36 @@ var render = function render() {
         if ($event.target.composing) return;
 
         _vm.$set(_vm.f, "dateOfBirth", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    staticClass: "form_label",
+    attrs: {
+      "for": ""
+    }
+  }, [_vm._v("নাম (বাংলা)")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.f.name,
+      expression: "f.name"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.f.name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.f, "name", $event.target.value);
       }
     }
   })])]), _vm._v(" "), _c("div", {

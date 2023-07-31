@@ -9,6 +9,7 @@ use App\Models\school_detail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\TC;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Rakibhstu\Banglanumber\NumberToBangla;
@@ -731,41 +732,46 @@ class PaymentController extends Controller
         $Insertdata = [];
 
         if ($data['msg_code'] == '1020') {
+
+
+
             $Insertdata = [
                 'status' => 'Paid',
                 'method' => $data['pi_det_info']['pi_name'],
             ];
-
-
-
             $paymentType = $payment->type;
             // return paymentKhat($paymentType);
-            $group = 'Humanities';
-            if($student->StudentClass=='Nine' || $student->StudentClass=='Ten'){
-                $group = $student->StudentGroup;
 
-            }
 
-            if($student->StudentStatus=='Approve'){
-                $student->update(['StudentStatus' => 'permited','StudentGroup'=>$group]);
-            }
-
-            if($paymentType=='Admission_fee'){
-                $student->update(['StudentStatus' => 'Pending']);
-                SmsNocSmsSend("Dear ".strtoupper($student->StudentNameEn).",Your Admission Fee has been Paid.Please Wait for Admission Result.Your Application Id- $student->AdmissionID",$student->StudentPhoneNumber);
+            if($paymentType=='TC'){
+                $tc = TC::where(['studentId'=>$student->id])->find();
+                $tc->update(['status'=>'active','paymentStatus'=>'Paid']);
             }else{
-
-                if($paymentType=='monthly_fee'){
-					if($payment->amount!=0){
-						SmsNocSmsSend("$student->StudentName  এর ". month_en_to_bn($payment->month) ." মাসের বেতন ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
-					}
-
-
+                $group = 'Humanities';
+                if($student->StudentClass=='Nine' || $student->StudentClass=='Ten'){
+                    $group = $student->StudentGroup;
+                }
+                if($student->StudentStatus=='Approve'){
+                    $student->update(['StudentStatus' => 'permited','StudentGroup'=>$group]);
+                }
+                if($paymentType=='Admission_fee'){
+                    $student->update(['StudentStatus' => 'Pending']);
+                    SmsNocSmsSend("Dear ".strtoupper($student->StudentNameEn).",Your Admission Fee has been Paid.Please Wait for Admission Result.Your Application Id- $student->AdmissionID",$student->StudentPhoneNumber);
                 }else{
-                    SmsNocSmsSend("$student->StudentName এর ". paymentKhat($paymentType) ." ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
+                    if($paymentType=='monthly_fee'){
+                        if($payment->amount!=0){
+                            SmsNocSmsSend("$student->StudentName  এর ". month_en_to_bn($payment->month) ." মাসের বেতন ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
+                        }
+                    }else{
+                        SmsNocSmsSend("$student->StudentName এর ". paymentKhat($paymentType) ." ". int_en_to_bn($payment->amount) ." টাকা জমা হয়েছে ",$student->StudentPhoneNumber);
+                    }
                 }
 
             }
+
+
+
+
 
 
         } else {

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TCController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\api\smsController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\api\BlogController;
 use App\Http\Controllers\frontendController;
 use  App\Http\Controllers\api\authController;
 use App\Http\Controllers\api\EventController;
+use App\Http\Controllers\ResultLogController;
 use App\Http\Controllers\SchoolFeeController;
 use App\Http\Controllers\api\resultController;
 use App\Http\Controllers\api\staffsController;
@@ -19,12 +21,11 @@ use App\Http\Controllers\OnlineexamController;
 use App\Http\Controllers\api\GalleryController;
 use App\Http\Controllers\api\PaymentController;
 use App\Http\Controllers\api\RoutineController;
+
 use App\Http\Controllers\api\HomeworkController;
 use App\Http\Controllers\api\studentsController;
-
 use App\Http\Controllers\QuestionbankController;
 use App\Http\Controllers\api\SchoolDetailController;
-use App\Http\Controllers\ResultLogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,8 @@ Route::group([
 });
 
 
-
+Route::post('/tc', [TCController::class, 'createTC']);
+Route::get('/tc/{id}', [TCController::class, 'getTC']);
 
 
 

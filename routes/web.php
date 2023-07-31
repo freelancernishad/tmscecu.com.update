@@ -20,6 +20,8 @@ use App\Http\Controllers\api\PaymentController;
 use App\Http\Controllers\api\RoutineController;
 use App\Http\Controllers\api\studentsController;
 use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\TCController;
+use App\Models\TC;
 use Meneses\LaravelMpdf\Facades\LaravelMpdf;
 /*
 |--------------------------------------------------------------------------
@@ -80,16 +82,33 @@ Route::get('/inviceverify', function (Request $request) {
 Route::get('/payment/success', function (Request $request) {
     // return $request->all();
     $transId = $request->transId;
+
+    $payment = payment::where(['trxid'=>$transId])->first();
+    $type = $payment->type;
+
+    if($type=='TC'){
+        $url = "/payment/success/confirm?transId=$transId";
+    }else{
+        $url = "/tc/success/confirm?transId=$transId";
+
+    }
+
+
+
     echo "
     <h3 style='text-align:center;'>Please wait 10 seconds.This page will auto redirect you</h3>
     <script>
     setTimeout(() => {
-    window.location.href='/payment/success/confirm?transId=$transId'
+    window.location.href='$transId'
     }, 10000);
     </script>
     ";
     // return redirect("/payment/success/confirm?transId=$transId");
 });
+
+
+
+
 Route::get('/payment/success/confirm', function (Request $request) {
     // return $request->all();
     $transId = $request->transId;
@@ -116,6 +135,37 @@ Route::get('/payment/success/confirm', function (Request $request) {
     }
     // return redirect("/student/applicant/copy/$payment->admissionId");
 });
+
+
+
+
+
+
+Route::get('/tc/success/confirm', function (Request $request) {
+    // return $request->all();
+    $transId = $request->transId;
+    $payment = payment::where(['trxid' => $transId, 'status' => 'Paid'])->first();
+    if($payment){
+        $tc = TC::where(['studentId'=>$payment->studentId,'status'=>'active','paymentStatus'=>'Paid'])->first();
+        if($tc){
+            $paymentType = $payment->type;
+            return redirect(url('/student/tc/' . $tc->token));
+        }else{
+            return "Data Not Found";
+        }
+    }else{
+        return "Data Not Found";
+    }
+
+});
+
+
+
+
+
+
+
+
 Route::get('/payment/fail', function (Request $request) {
     $transId = $request->transId;
     $payment = payment::where('trxid', $transId)->first();
@@ -150,6 +200,9 @@ Route::get('pdfgen', function () {
 Route::get('student/applicant/copy/{applicant_id}', [studentsController::class, 'applicant_copy']);
 Route::get('student/applicant/invoice/{trxid}', [studentsController::class, 'applicant_invoice']);
 Route::get('/student/exam/admit/{admissionId}/{ex_name}', [studentsController::class, 'exam_admit']);
+
+
+Route::get('/student/tc/{token}', [TCController::class, 'tc']);
 
 
 Route::get('student/m/{class}/{bisoy}', [studentsController::class, 'Mullayon']);

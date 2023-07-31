@@ -410,6 +410,20 @@ function subjectCol($subject)
     }
 
 
+
+
+function YearConvert($text)
+{
+
+    $en_digits = array('এক হাজার নয় শত');
+    $bn_digits = array('উনিশ’শ');
+
+    return str_replace($en_digits, $bn_digits, $text);
+}
+
+
+
+
 function int_en_to_bn($number)
 {
 
@@ -418,6 +432,9 @@ function int_en_to_bn($number)
 
     return str_replace($en_digits, $bn_digits, $number);
 }
+
+
+
 function int_bn_to_en($number)
 {
 

@@ -106,6 +106,14 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
+                                    <label for="" class="form_label">নাম (বাংলা)</label>
+                                    <input type="text" v-model="f.name" class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group">
                                     <label for="" class="form_label">পিতার নাম (বাংলা)</label>
                                     <input type="text" v-model="f.fatherName" class="form-control">
                                 </div>
@@ -222,6 +230,7 @@ export default {
             },
             f:{
                 studentId:'',
+                name:'',
                 group:'',
                 roll:'',
                 year:'',
@@ -258,6 +267,7 @@ export default {
 
                 this.f = {
                     studentId:res.data.id,
+                    name:res.data.StudentName,
                     group:res.data.StudentGroup,
                     roll:res.data.StudentRoll,
                     year:res.data.Year,
@@ -289,6 +299,11 @@ export default {
             this.preloader = false
         },
 
+        async formsubmit(){
+            var res = await this.callApi('post',`/api/tc`,this.f);
+            // console.log(res.data)
+            window.location.href = res.data;
+        },
 
 
 
