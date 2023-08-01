@@ -130,7 +130,7 @@ class TCController extends Controller
         if($tc){
             $student = student::find($tc->studentId);
             $pdfFileName = 'tc.pdf';
-            return PdfMaker('A4',$student->school_id,$this->tcCard($tc,$student->school_id),$pdfFileName,true,'alpha="0.15" size="100,100" position="55,55"');
+            return PdfMaker('A4-L',$student->school_id,$this->tcCard($tc,$student->school_id),$pdfFileName,true,'alpha="0.15" size="100,100" position="97,65"');
         }else{
             return "Data Not Found";
         }
@@ -227,7 +227,7 @@ class TCController extends Controller
         font-size:20px;
     }
     .fontsize2{
-        font-size:35px;
+        font-size:40px;
     }
     .copyTitle{
         font-size:23px;
@@ -250,8 +250,9 @@ class TCController extends Controller
     }
 
     .sileColor{
-        color:#9750c9;
-        z-index:-1'
+        color:black;
+        z-index:-1;
+        font-size:19px !important;
     }
 
 </style>
@@ -260,15 +261,15 @@ class TCController extends Controller
 
 <div class='mainborder1'>
 <div class='mainborder2'>
-<table width='70%' style='margin:0 auto'>
+<table width='70%' style='margin:0 auto;margin-top:10px'>
 <tr>
     <td width='110px'>
-        <img width='75px'  style='overflow:hidden;float:right' src='".base64($school_details->logo)."' alt=''>
+        <img width='100px'  style='overflow:hidden;float:right' src='".base64($school_details->logo)."' alt=''>
     </td>
-    <td>
+    <td style='text-align:center'>
         <p class='fontsize2'>$school_details->SCHOLL_NAME</p>
-        <p class='fontsize1'>ডাক- টেপ্রীগঞ্জ, উপজেলা- দেবীগঞ্জ, জেলা- পঞ্চগড়</p>
-        <p class='fontsize1'>স্থাপিতঃ ১৯৬৫ইং বিদ্যালয় কোড-৮৬৮৪ ।  <span style='font-size:14px'> EIIN No 12593</span> </p>
+        <p class='fontsize1'>ডাকঘর- টেপ্রীগঞ্জ, উপজেলা- দেবীগঞ্জ, জেলা- পঞ্চগড়</p>
+        <p class='fontsize1'>স্থাপিতঃ ১৯৬৫ইং , <span style='font-size:14px'> MPO Code 7903061301</span> ,  <span style='font-size:14px'> EIIN No 125983</span> </p>
         <p class='fontsize1' style='font-size:12px'>website: www.tepriganjhighschool.edu.bd </p>
     </td>
     <td style='text-align: right'>
@@ -291,7 +292,7 @@ class TCController extends Controller
     </p>
 </div>
 
-    <table width='80%' style='margin:0 auto'>
+    <table width='95%' style='margin:20px auto'>
         <tr>
             <td><p>ক্রমিক নং : 55</p></td>
             <td style='text-align:right'><p>তারিখ : $releaseDate</p></td>
@@ -305,13 +306,13 @@ class TCController extends Controller
 </div>
 
 <div style='margin: 0 12px;'>
-    <div style='line-height: 25px; font-size:20px;text-align:justify'>
+    <div style='line-height: 30px; font-size:25px;text-align:justify'>
         <div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; এতদ্বারা প্রত্যয়ন করা যাইতেছে যে - $tc->name,
-            পিতা - $tc->fatherName, মাতা - $tc->motherName । গ্রামঃ $tc->StudentAddress, ডাকঘরঃ $tc->post_office, উপজেলাঃ $tc->upazila, জেলাঃ $tc->district, সে অত্র বিদ্যালয়ের ".int_en_to_bn($tc->academic_year)." শিক্ষাবর্ষের একজন নিয়মিত ছাত্র ছিল এবং মাধ্যমিক ও উচ্চ মাধ্যমিক শিক্ষা বোর্ড, দিনাজপুর কর্তৃক গৃহীত ".int_en_to_bn($tc->year)." খ্রি. সালের মাধ্যমিক স্কুল সার্টিফিকেট পরীক্ষায় বিজ্ঞান শাখা হইতে <span style='font-size:14px'>GPA</span> ".int_en_to_bn($tc->sscGpa)." অর্জন করিয়া কৃতকার্য হইয়াছে। উক্ত পরীক্ষায় তাহার রোল নম্বর ".int_en_to_bn($tc->sscRoll).", রেজিঃ নং ".int_en_to_bn($tc->sscReg)." এবং জন্ম তারিখ $dateOfBirth (কথায়) $dateOfBirth_date $dateOfBirth_month $dateOfBirth_year ।
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; এই মর্মে প্রত্যয়ন করা যাইতেছে যে - $tc->name,
+            পিতা - $tc->fatherName, মাতা - $tc->motherName, গ্রাম - $tc->StudentAddress, ডাকঘর - $tc->post_office, উপজেলা - $tc->upazila, জেলা - $tc->district । সে অত্র বিদ্যালয়ের ".int_en_to_bn($tc->academic_year)." শিক্ষাবর্ষের একজন নিয়মিত শিক্ষার্থী ছিল এবং মাধ্যমিক ও উচ্চ মাধ্যমিক শিক্ষা বোর্ড, দিনাজপুর কর্তৃক গৃহীত ".int_en_to_bn($tc->year)."ইং সালের মাধ্যমিক স্কুল সার্টিফিকেট পরীক্ষায় বিজ্ঞান বিভাগ হইতে <span style='font-size:14px'>GPA</span> ".int_en_to_bn($tc->sscGpa)." অর্জন করিয়া কৃতকার্য হইয়াছে। উক্ত পরীক্ষায় তাহার রোল নম্বর - ".int_en_to_bn($tc->sscRoll).", রেজিষ্ট্রেশন নং - ".int_en_to_bn($tc->sscReg)." এবং জন্ম তারিখ - $dateOfBirth (কথায়) $dateOfBirth_date $dateOfBirth_month $dateOfBirth_year ।
         </div>
         <div style='margin-top: 15px;'>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; আমার জানামতে সে উন্নত চরিত্রের অধিকারী এবং অত্র প্রতিষ্ঠানে অধ্যয়নকালে রাষ্ট্র বা শৃঙ্খলা পরিপন্থী কার্যকলাপে  জড়িত ছিল না। <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; আমার জানামতে সে উন্নত চরিত্রের অধিকারী এবং অত্র প্রতিষ্ঠানে অধ্যয়নকালে রাষ্ট্র বা শৃঙ্খলা পরিপন্থী কার্যকলাপে জড়িত ছিল না। <br />
             <div style='margin-top: 10px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;আমি তাহার সর্বাঙ্গীন উন্নতি কামনা করি।  </div>
         </div>
     </div>
@@ -321,22 +322,23 @@ class TCController extends Controller
 
 
 
-    <table width='100%' style='margin-top:20px;margin-bottom:15px'>
+    <table width='100%' style='margin-top:85px;margin-bottom:15px'>
         <tr>
-        <td widrh='30%' style='text-align:left'>
+        <td widrh='20%' style='text-align:left'>
 
-        <p class='sileColor'>যাচাই কারীর স্বাক্ষর</p>
+        <p class='sileColor'>যাচাইকারীর স্বাক্ষর</p>
         <p class='sileColor'>তারিখঃ</p>
 
 
     </td>
-            <td width='40%' style='text-align:center'>$qrcode</td>
-            <td widrh='30%' style='text-align:center'>
+            <td width='60%' style='text-align:center;padding-left:80px'>$qrcode</td>
+            <td widrh='20%' style='text-align:center'>
 
                 <p class='sileColor'>$school_details->Principals_name</p>
                 <p class='sileColor'>প্রধান শিক্ষক</p>
                 <p class='sileColor'>$school_details->SCHOLL_NAME</p>
                 <p class='sileColor'>$school_details->SCHOLL_ADDRESS</p>
+
 
             </td>
         </tr>
