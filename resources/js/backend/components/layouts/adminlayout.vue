@@ -315,7 +315,10 @@
 
         <li class="nav-item"><router-link    :to="{name:'fees',params:{name:'session_fee'}}" class="nav-link"><i class="fas fa-angle-right"></i> Session Fees</router-link></li>
         <li class="nav-item"><router-link    :to="{name:'fees',params:{name:'registration_fee'}}" class="nav-link"><i class="fas fa-angle-right"></i> Registration Fees</router-link></li>
+
         <li class="nav-item"><router-link    :to="{name:'fees',params:{name:'form_filup_fee'}}" class="nav-link"><i class="fas fa-angle-right"></i> Form Filup Fees</router-link></li>
+
+        <li class="nav-item"><router-link    :to="{name:'fees',params:{name:'letter_of_appreciation'}}" class="nav-link"><i class="fas fa-angle-right"></i> প্রশংসা পত্রের ফি</router-link></li>
 
 
 

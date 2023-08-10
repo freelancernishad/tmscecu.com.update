@@ -2366,6 +2366,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         result = 'ভর্তি/সেশন ফি';
       } else if (text == 'ভর্তি/সেশন ফি') {
         result = 'session_fee';
+      } else if (text == 'letter_of_appreciation') {
+        result = 'প্রশংসা পত্র ফি';
+      } else if (text == 'প্রশংসা পত্র ফি') {
+        result = 'letter_of_appreciation';
       } else if (text == 'Other') {
         result = 'অন্যান্য';
       } else if (text == 'অন্যান্য') {

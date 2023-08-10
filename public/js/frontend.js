@@ -4393,7 +4393,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         student_class: 'Ten',
         StudentGroup: 'Humanities',
         StudentRoll: '',
-        year: ''
+        year: '2022'
       },
       f: {
         studentId: '',
@@ -4415,7 +4415,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         StudentAddress: ''
       },
       student: {},
-      searched: 1
+      searched: 0
     };
   },
   methods: {
@@ -4423,7 +4423,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var res;
+        var res, tc, studentData;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -4436,26 +4436,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context.sent;
 
                 if (res.status == 200) {
-                  _this.student = res.data;
+                  tc = res.data.tc;
+                  studentData = res.data.student;
+                  _this.student = studentData;
                   _this.f = {
-                    studentId: res.data.id,
-                    name: res.data.StudentName,
-                    group: res.data.StudentGroup,
-                    roll: res.data.StudentRoll,
-                    year: res.data.Year,
-                    sscRoll: '',
-                    sscReg: '',
-                    sscGpa: '',
-                    dateOfBirth: res.data.StudentDateOfBirth,
-                    fatherName: res.data.StudentFatherNameBn,
-                    motherName: res.data.StudentMotherNameBn,
-                    division: res.data.division,
-                    district: res.data.district,
-                    upazila: res.data.upazila,
-                    union: res.data.union,
-                    post_office: res.data.post_office,
-                    StudentAddress: res.data.StudentAddress
-                  }, _this.searched = 1;
+                    studentId: studentData.id,
+                    name: studentData.StudentName,
+                    group: studentData.StudentGroup,
+                    roll: studentData.StudentRoll,
+                    year: studentData.Year,
+                    dateOfBirth: studentData.StudentDateOfBirth,
+                    fatherName: studentData.StudentFatherNameBn,
+                    motherName: studentData.StudentMotherNameBn,
+                    division: studentData.division,
+                    district: studentData.district,
+                    upazila: studentData.upazila,
+                    union: studentData.union,
+                    post_office: studentData.post_office,
+                    StudentAddress: studentData.StudentAddress
+                  };
+
+                  if (tc.sscRoll) {
+                    _this.f.sscRoll = tc.sscRoll;
+                  }
+
+                  if (tc.sscReg) {
+                    _this.f.sscReg = tc.sscReg;
+                  }
+
+                  if (tc.sscGpa) {
+                    _this.f.sscGpa = tc.sscGpa;
+                  }
+
+                  _this.searched = 1;
+                } else if (res.status == 422) {
+                  Notification.customError2('এই প্রশংসা পত্রটির জন্য একবার পেমেন্ট করা হয়েছে এবং নেওয়া হয়েছে । প্রশংসা পত্রটি আবার প্রয়োজন হলে বিদ্যালয়ে যোগাযোগ করুন');
+                  _this.searched = 0;
                 } else {
                   Notification.customError2('কোনো তথ্য খুঁজে পাওয়া যায় নি!');
                   _this.searched = 0;
@@ -6214,20 +6230,6 @@ var render = function render() {
       id: "navbarDropdown"
     }
   }, [_vm._v("\n                                পরীক্ষার ফলাফল\n                            ")])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("router-link", {
-    staticClass: "text-light px-3 nav-link",
-    attrs: {
-      to: "/routine"
-    }
-  }, [_vm._v("রুটিন")])], 1), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("router-link", {
-    staticClass: "text-light px-3 nav-link",
-    attrs: {
-      to: "/blogs"
-    }
-  }, [_vm._v("ব্লগ")])], 1), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("router-link", {
     staticClass: "text-light px-3 nav-link",
@@ -11019,7 +11021,7 @@ var render = function render() {
     staticClass: "container"
   }, [_c("h2", {
     staticClass: "ms-2 mt-2"
-  }, [_vm._v("পেমেন্ট")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("প্রশংসা পত্র")]), _vm._v(" "), _c("div", {
     staticClass: "monthly_fee"
   }, [_c("div", {
     staticClass: "other"
@@ -11102,7 +11104,8 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text"
+      type: "text",
+      disabled: ""
     },
     domProps: {
       value: _vm.form.year
@@ -11122,7 +11125,7 @@ var render = function render() {
     on: {
       click: _vm.PaymentSearch
     }
-  }, [_vm._v("খুঁজুন")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("খুঁজুন")])]), _vm._v(" "), _vm.searched ? _c("div", {
     staticClass: "container"
   }, [_c("div", {
     staticClass: "card"
@@ -11154,7 +11157,8 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text"
+      type: "text",
+      required: ""
     },
     domProps: {
       value: _vm.f.group
@@ -11184,7 +11188,8 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text"
+      type: "text",
+      required: ""
     },
     domProps: {
       value: _vm.f.roll
@@ -11214,7 +11219,8 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text"
+      type: "text",
+      required: ""
     },
     domProps: {
       value: _vm.f.year
@@ -11244,7 +11250,8 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text"
+      type: "text",
+      required: ""
     },
     domProps: {
       value: _vm.f.sscRoll
@@ -11274,7 +11281,8 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text"
+      type: "text",
+      required: ""
     },
     domProps: {
       value: _vm.f.sscReg
@@ -11304,7 +11312,8 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text"
+      type: "text",
+      required: ""
     },
     domProps: {
       value: _vm.f.sscGpa
@@ -11334,7 +11343,8 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "date"
+      type: "date",
+      required: ""
     },
     domProps: {
       value: _vm.f.dateOfBirth
@@ -11364,7 +11374,8 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text"
+      type: "text",
+      required: ""
     },
     domProps: {
       value: _vm.f.name
@@ -11394,7 +11405,8 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text"
+      type: "text",
+      required: ""
     },
     domProps: {
       value: _vm.f.fatherName
@@ -11424,7 +11436,8 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text"
+      type: "text",
+      required: ""
     },
     domProps: {
       value: _vm.f.motherName
@@ -11455,7 +11468,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      name: "বিভাগ"
+      name: "বিভাগ",
+      required: ""
     },
     domProps: {
       value: _vm.f.division
@@ -11486,7 +11500,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      name: "জেলা"
+      name: "জেলা",
+      required: ""
     },
     domProps: {
       value: _vm.f.district
@@ -11517,7 +11532,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      name: "উপজেলা/থানা"
+      name: "উপজেলা/থানা",
+      required: ""
     },
     domProps: {
       value: _vm.f.upazila
@@ -11548,7 +11564,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      name: "ইউনিয়ন"
+      name: "ইউনিয়ন",
+      required: ""
     },
     domProps: {
       value: _vm.f.union
@@ -11579,7 +11596,8 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      name: "পোষ্ট অফিস"
+      name: "পোষ্ট অফিস",
+      required: ""
     },
     domProps: {
       value: _vm.f.post_office
@@ -11608,7 +11626,8 @@ var render = function render() {
     attrs: {
       type: "text",
       placeholder: "গ্রাম",
-      name: "গ্রাম"
+      name: "গ্রাম",
+      required: ""
     },
     domProps: {
       value: _vm.f.StudentAddress
@@ -11620,7 +11639,7 @@ var render = function render() {
         _vm.$set(_vm.f, "StudentAddress", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _vm._m(1)])])])])], 1);
+  })])]), _vm._v(" "), _vm._m(1)])])])]) : _vm._e()], 1);
 };
 
 var staticRenderFns = [function () {
@@ -12336,6 +12355,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         result = 'ভর্তি/সেশন ফি';
       } else if (text == 'ভর্তি/সেশন ফি') {
         result = 'session_fee';
+      } else if (text == 'letter_of_appreciation') {
+        result = 'প্রশংসা পত্র ফি';
+      } else if (text == 'প্রশংসা পত্র ফি') {
+        result = 'letter_of_appreciation';
       } else if (text == 'Other') {
         result = 'অন্যান্য';
       } else if (text == 'অন্যান্য') {

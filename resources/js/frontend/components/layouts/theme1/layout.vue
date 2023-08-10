@@ -71,9 +71,13 @@
                         <li class="nav-item dropdown"><router-link to="/result" class="text-light px-3 nav-link"
                                 id="navbarDropdown">
                                 পরীক্ষার ফলাফল
-                            </router-link></li>
+                            </router-link>
+                        </li>
+<!--
                         <li class="nav-item"><router-link to="/routine" class="text-light px-3 nav-link">রুটিন</router-link></li>
-                        <li class="nav-item"><router-link to="/blogs" class="text-light px-3 nav-link">ব্লগ</router-link></li>
+                        <li class="nav-item"><router-link to="/blogs" class="text-light px-3 nav-link">ব্লগ</router-link></li> -->
+
+
                         <li class="nav-item"><router-link to="/contact-us" class="text-light px-3 nav-link">যোগাযোগ</router-link></li>
                         <li class="nav-item"><router-link to="/login" class="text-light px-3 nav-link">লগইন</router-link></li>
                     </ul>

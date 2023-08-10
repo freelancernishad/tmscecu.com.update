@@ -12,6 +12,7 @@ use App\Models\StudentResult;
 use App\Imports\studentsImport;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\TC;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -2321,11 +2322,20 @@ return $html;
 
 
              $student = student::where($filter)->first();
+
              if($student){
 
-                return response()->json($student, 200);
+                $tc = TC::where(['studentId'=>$student->id,'status'=>'active','paymentStatus'=>'Paid'])->first();
+                if($tc){
+                    return response()->json(['student'=>$student,'tc'=>$tc], 422);
+                }else{
+                    $tc = TC::where(['studentId'=>$student->id])->first();
+                    return response()->json(['student'=>$student,'tc'=>$tc], 200);
+                }
+
             }else{
-                return response()->json($student, 404);
+                $tc = [];
+                return response()->json(['student'=>$student,'tc'=>$tc], 404);
 
             }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TC;
 use App\Models\payment;
 use App\Models\school_detail;
+use App\Models\SchoolFee;
 use App\Models\student;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -15,12 +16,6 @@ class TCController extends Controller
 {
     public function createTC(Request $request)
     {
-
-
-
-
-
-
             $studentId = $request->studentId;
 
             $student = student::find($studentId);
@@ -72,7 +67,14 @@ class TCController extends Controller
                 $studentMobile = int_bn_to_en($student->StudentPhoneNumber);
             }
 
-            $amount = 250;
+            $fees = SchoolFee::where(['class'=>'Ten','type'=>'letter_of_appreciation'])->first();
+            if($fees){
+                $amount = $fees->fees;
+            }else{
+                $amount = 250;
+            }
+
+
             $trnx_id = time().rand(1,50);
         $cust_info = [
             "cust_email" => "",
@@ -144,7 +146,7 @@ class TCController extends Controller
         $school_details = school_detail::where('school_id',$school_id)->first();
 
 
-        $qrurl = url("/student/exam/admit/");
+        $qrurl = url("/student/tc/$tc->token");
 
         // $qrurl = url("/verification/sonod/$row->id");
         //in Controller
