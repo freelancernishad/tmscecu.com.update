@@ -99,7 +99,7 @@ Route::get('/payment/success', function (Request $request) {
     <h3 style='text-align:center;'>Please wait 10 seconds.This page will auto redirect you</h3>
     <script>
     setTimeout(() => {
-    window.location.href='$transId'
+    window.location.href='$url'
     }, 10000);
     </script>
     ";

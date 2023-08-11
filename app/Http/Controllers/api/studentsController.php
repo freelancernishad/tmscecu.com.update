@@ -2323,6 +2323,7 @@ return $html;
 
              $student = student::where($filter)->first();
 
+
              if($student){
 
                 $tc = TC::where(['studentId'=>$student->id,'status'=>'active','paymentStatus'=>'Paid'])->first();

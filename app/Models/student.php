@@ -16,6 +16,7 @@ class student extends Model
         'AdmissionID',
         'StudentID',
         'StudentRoll',
+        'sscroll',
         'StudentClass',
         'StudentGender',
         'StudentReligion',

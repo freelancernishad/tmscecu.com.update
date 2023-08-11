@@ -141,6 +141,14 @@
 
                 <div class="col-md-4 mt-3">
                     <div class="form-group">
+                        <label class="form_label">এসএসসি রোল</label>
+                        <input class="form-control" style="text-transform:uppercase"  type="text"  placeholder="এসএসসি রোল"  name="এসএসসি রোল" v-model="form.sscroll"   />
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 mt-3">
+                    <div class="form-group">
                         <label class="form_label">লিঙ্গ</label>
                         <select class="form-control" style="width: 100%;" v-model="form.StudentGender" >
                             <option value="">

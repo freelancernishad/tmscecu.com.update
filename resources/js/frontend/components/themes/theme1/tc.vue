@@ -8,7 +8,7 @@
                     <div class="monthly_fee">
                         <div class="other">
                             <div class='form-group'>
-                                <label>গ্রুপ</label>
+                                <label>দশম শ্রেণির গ্রুপ</label>
                                 <select class='form-control' style='width: 100%;' v-model='form.StudentGroup'
                                     id='group' required>
                                     <option value=''>select</option>
@@ -17,15 +17,15 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="">রোল</label>
+                                <label for=""> দশম শ্রেণির রোল/এসএসসি রোল </label>
                                 <input type="text" v-model="form.StudentRoll" class="form-control">
                             </div>
 
-
+<!--
                             <div class="form-group">
                                 <label for="">সাল</label>
                                 <input type="text" v-model="form.year" class="form-control" disabled>
-                            </div>
+                            </div> -->
 
 
                         </div>
@@ -64,8 +64,30 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="" class="form_label">সাল </label>
-                                    <input type="text" v-model="f.year" class="form-control" required>
+                                    <label for="" class="form_label">এসএসসি পরীক্ষার সাল </label>
+                                    <select v-model="f.year" class="form-control" required>
+                                        <option value="">নির্বাচন করুন</option>
+                                        <option>2019</option>
+                                        <option>2020</option>
+                                        <option>2021</option>
+                                        <option>2022</option>
+                                        <option>2023</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="" class="form_label">শিক্ষাবর্ষ </label>
+
+                                    <select v-model="f.academic_year" class="form-control" required>
+                                        <option value="">নির্বাচন করুন</option>
+                                        <option>2019-2020</option>
+                                        <option>2020-2021</option>
+                                        <option>2021-2022</option>
+                                    </select>
+
                                 </div>
                             </div>
 
@@ -234,6 +256,7 @@ export default {
                 group:'',
                 roll:'',
                 year:'',
+                academic_year:'',
                 sscRoll:'',
                 sscReg:'',
                 sscGpa:'',
@@ -275,7 +298,7 @@ export default {
                     name:studentData.StudentName,
                     group:studentData.StudentGroup,
                     roll:studentData.StudentRoll,
-                    year:studentData.Year,
+                    year:Number(studentData.Year)+1,
 
 
 
@@ -290,16 +313,16 @@ export default {
                     StudentAddress:studentData.StudentAddress,
                 };
 
-                if(tc.sscRoll){
-                    this.f.sscRoll=tc.sscRoll;
-                }
-                if(tc.sscReg){
-                    this.f.sscReg=tc.sscReg;
-                }
+                // if(tc.sscRoll){
+                //     this.f.sscRoll=tc.sscRoll;
+                // }
+                // if(tc.sscReg){
+                //     this.f.sscReg=tc.sscReg;
+                // }
 
-                if(tc.sscGpa){
-                    this.f.sscGpa=tc.sscGpa;
-                }
+                // if(tc.sscGpa){
+                //     this.f.sscGpa=tc.sscGpa;
+                // }
 
 
                 this.searched = 1

@@ -30,7 +30,7 @@ class TCController extends Controller
             }else{
                 $random = Str::random(40);
                 $tcData['token'] = $random;
-                $tcData['academic_year'] = '2021-2022';
+                // $tcData['academic_year'] = '2021-2022';
                 $tcData['status'] = 'Pending';
                 $tcData['paymentStatus'] = 'Unpaid';
                 $tc = TC::create($tcData);
@@ -297,7 +297,7 @@ class TCController extends Controller
     <table width='95%' style='margin:20px auto'>
         <tr>
             <td><p>ক্রমিক নং : 55</p></td>
-            <td style='text-align:right'><p>তারিখ : $releaseDate</p></td>
+            <td style='text-align:right'><p>তারিখ : $releaseDate ইং</p></td>
         </tr>
     </table>
 
