@@ -130,8 +130,11 @@ Route::get('/payment/success/confirm', function (Request $request) {
         $AdmissionID = $payment->admissionId;
         $student = student::where(['AdmissionID' => $AdmissionID])->first();
         return view('applicationSuccess', compact('payment', 'student'));
+    }else if ($paymentType == 'TC') {
+           return redirect(url('/tc/success/confirm?transId=' . $transId));
+
     } else {
-        return redirect(url('/student/applicant/invoice/' . $transId));
+       return redirect(url('/student/applicant/invoice/' . $transId));
     }
     // return redirect("/student/applicant/copy/$payment->admissionId");
 });
