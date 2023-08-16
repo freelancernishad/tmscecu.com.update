@@ -2315,13 +2315,27 @@ return $html;
              $filter = [
                 'StudentClass'=>$student_class,
                 'StudentGroup'=>$StudentGroup,
-                'StudentRoll'=>$StudentRoll,
+
+
+
                 'Year'=>$year,
                 'StudentStatus'=>'old'
             ];
 
 
-             $student = student::where($filter)->first();
+
+                $student = Student::where($filter)
+                    ->where(function ($query) use ($StudentRoll) {
+                        $query->where('StudentRoll', $StudentRoll)
+                              ->orWhere('sscroll', $StudentRoll);
+                    })
+                    ->first();
+
+
+
+
+
+            //  $student = student::where($filter)->first();
 
 
              if($student){
