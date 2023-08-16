@@ -744,7 +744,8 @@ class PaymentController extends Controller
 
 
             if($paymentType=='TC'){
-                $tc = TC::where(['studentId'=>$student->id])->find();
+
+                 $tc = TC::where(['studentId'=>$student->id])->first();
                 $tc->update(['status'=>'active','paymentStatus'=>'Paid']);
             }else{
                 $group = 'Humanities';
