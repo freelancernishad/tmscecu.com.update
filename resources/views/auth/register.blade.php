@@ -55,6 +55,7 @@
                                     <option value="data_entry_oparetor">ডাঁটা এন্ট্রি অপারেটর</option>
                                     <option value="application_permission">আবেদনের অনুমতি</option>
                                     <option value="camera_man">ক্যামেরা ম্যান</option>
+                                    <option value="tcVerifications">প্রশংসা পত্র অনুমতি</option>
 
                                 </select>
 

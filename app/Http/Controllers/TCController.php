@@ -15,6 +15,38 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 class TCController extends Controller
 {
 
+    function index(Request $request){
+
+        if($request->search){
+                    $query = TC::where(['status' => 'active', 'paymentStatus' => 'Paid'])
+        ->when($request->has('search'), function ($query) use ($request) {
+            $searchTerm = $request->search;
+            $query->where(function ($query) use ($searchTerm) {
+                $query->where('sl', $searchTerm)
+                    ->orWhere('name', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('fatherName', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('motherName', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('sscRoll', $searchTerm)
+                    ->orWhere('sscGpa', $searchTerm)
+                    ->orWhere('sscReg', $searchTerm);
+            });
+        })
+        ->orderBy('id', 'desc')
+        ->get();
+
+        return $query;
+
+        }else{
+
+            return TC::where(['status'=>'active','paymentStatus'=>'Paid'])->orderBy('id','desc')->get();
+        }
+
+
+
+
+    }
+
+
     function tcSL(){
         $latestData = Tc::latest()->first();
         if($latestData){

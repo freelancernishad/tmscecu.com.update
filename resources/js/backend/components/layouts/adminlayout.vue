@@ -383,6 +383,8 @@ export default {
                 this.$router.push({name:'fileupload'});
             }else if(this.user.role=='application_permission'){
                 this.$router.push({name:'applicationPermission'});
+            }else if(this.user.role=='tcVerifications'){
+                this.$router.push({name:'tcVerifications'});
             }
         }
         this.$store.commit('setUpdateUser', this.user)

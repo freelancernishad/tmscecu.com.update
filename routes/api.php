@@ -61,6 +61,7 @@ Route::group([
 });
 
 
+Route::get('/tc', [TCController::class, 'index']);
 Route::post('/tc', [TCController::class, 'createTC']);
 Route::get('/tc/{id}', [TCController::class, 'getTC']);
 

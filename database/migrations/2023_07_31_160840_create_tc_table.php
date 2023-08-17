@@ -16,6 +16,7 @@ class CreateTcTable extends Migration
         Schema::create('tc', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('studentId');
+            $table->string('sl');
             $table->string('token');
             $table->string('group');
             $table->string('academic_year');
