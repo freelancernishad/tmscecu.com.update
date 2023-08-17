@@ -12,6 +12,7 @@ class TC extends Model
     protected $guarded = [];
 
     protected $fillable = [
+      'sl',
       'token',
       'studentId',
       'name',

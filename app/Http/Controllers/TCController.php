@@ -14,6 +14,23 @@ use Rakibhstu\Banglanumber\NumberToBangla;
 
 class TCController extends Controller
 {
+
+    function tcSL(){
+        $latestData = Tc::latest()->first();
+        if($latestData){
+            if($latestData->sl){
+                return (int)$latestData->sl+1;
+
+            }else{
+
+                return "20230001";
+            }
+        }else{
+            return "20230001";
+        }
+    }
+
+
     public function createTC(Request $request)
     {
             $studentId = $request->studentId;
@@ -25,6 +42,8 @@ class TCController extends Controller
 
             $getTc = TC::where(['studentId'=>$studentId])->first();
             if($getTc){
+
+
                  $getTc->update($tcData);
                  $tc = $getTc;
             }else{
@@ -33,6 +52,9 @@ class TCController extends Controller
                 // $tcData['academic_year'] = '2021-2022';
                 $tcData['status'] = 'Pending';
                 $tcData['paymentStatus'] = 'Unpaid';
+                $tcData['sl'] = $this->tcSL();
+
+
                 $tc = TC::create($tcData);
             }
 
@@ -296,7 +318,7 @@ class TCController extends Controller
 
     <table width='95%' style='margin:20px auto'>
         <tr>
-            <td><p>ক্রমিক নং : 55</p></td>
+            <td><p>ক্রমিক নং : $tc->sl</p></td>
             <td style='text-align:right'><p>তারিখ : $releaseDate ইং</p></td>
         </tr>
     </table>
