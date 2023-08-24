@@ -182,7 +182,11 @@ class TCController extends Controller
 
     function tc($token){
 
+
+
         $tc = TC::where(['token'=>$token,'status'=>'active','paymentStatus'=>'Paid'])->first();
+
+
         if($tc){
             $student = student::find($tc->studentId);
             $pdfFileName = 'tc.pdf';
@@ -204,10 +208,16 @@ class TCController extends Controller
 
         // $qrurl = url("/verification/sonod/$row->id");
         //in Controller
-        $qrcode = \QrCode::size(70)
-            ->format('svg')
-            ->generate($qrurl);
-            $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $qrcode);
+
+        // $qrcode = \QrCode::size(70)
+        //     ->format('svg')
+        //     ->generate($qrurl);
+        //     $qrcode = str_replace('<?xml version="1.0" encoding="UTF-8"', '', $qrcode);
+
+
+
+              $qrcode = "<img src='https://chart.apis.google.com/chart?cht=qr&chl=$qrurl&chs=130'/>";
+
 
 
             $releaseDate =  int_en_to_bn(date("d/m/Y", strtotime($tc->created_at)));
@@ -385,7 +395,7 @@ class TCController extends Controller
 
 
 
-    <table width='100%' style='margin-top:85px;margin-bottom:15px'>
+    <table width='100%' style='margin-top:60px;margin-bottom:15px'>
         <tr>
         <td widrh='20%' style='text-align:left'>
 
