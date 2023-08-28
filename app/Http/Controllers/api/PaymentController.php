@@ -1529,6 +1529,7 @@ class PaymentController extends Controller
             <td class='td'>রেজিস্ট্রেশন ফি</td>
             <td class='td'>ফরম পূরণ ফি</td>
             <td class='td'>মার্কসীট ফি</td>
+            <td class='td'>প্রশংসা পত্র</td>
             <td class='td'>সর্বমোট</td>
         </tr>";
 
@@ -1547,7 +1548,7 @@ class PaymentController extends Controller
             <td class='td'>". annualAmount(date('Y'),'exam_fee',$class) ."</td>
             <td class='td'>". annualAmount(date('Y'),'registration_fee',$class) ."</td>
             <td class='td'>". annualAmount(date('Y'),'form_filup_fee',$class) ."</td>
-            <td class='td'>". annualAmount(date('Y'),'marksheet',$class) ."</td>
+            <td class='td'>". annualAmount(date('Y'),'TC',$class) ."</td>
 
             <td class='td'>". annualAmount(date('Y'),'marksheet',$class, 'total') ."</td>
         </tr>";
@@ -1564,6 +1565,7 @@ class PaymentController extends Controller
             <td class='td'>". annualAmount(date('Y'),'registration_fee') ."</td>
             <td class='td'>". annualAmount(date('Y'),'form_filup_fee') ."</td>
             <td class='td'>". annualAmount(date('Y'),'marksheet') ."</td>
+            <td class='td'>". annualAmount(date('Y'),'TC') ."</td>
 
             <td class='td'>". annualAmount(date('Y'),'','','Subtotal') ."</td>
         </tr>
