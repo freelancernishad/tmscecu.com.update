@@ -1548,6 +1548,7 @@ class PaymentController extends Controller
             <td class='td'>". annualAmount(date('Y'),'exam_fee',$class) ."</td>
             <td class='td'>". annualAmount(date('Y'),'registration_fee',$class) ."</td>
             <td class='td'>". annualAmount(date('Y'),'form_filup_fee',$class) ."</td>
+            <td class='td'>". annualAmount(date('Y'),'marksheet',$class) ."</td>
             <td class='td'>". annualAmount(date('Y'),'TC',$class) ."</td>
 
             <td class='td'>". annualAmount(date('Y'),'marksheet',$class, 'total') ."</td>
