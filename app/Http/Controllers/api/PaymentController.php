@@ -1516,7 +1516,7 @@ class PaymentController extends Controller
         <table border='1' width='100%'>
         <thead>
             <tr>
-                <th colspan='9' style='font-size:25px;text-align:center'><span>বার্ষিক প্রতিবেদন</span></th>
+                <th colspan='10' style='font-size:25px;text-align:center'><span>বার্ষিক প্রতিবেদন</span></th>
             </tr>
         </thead>
 
