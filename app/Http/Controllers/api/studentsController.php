@@ -2326,8 +2326,8 @@ return $html;
 
                 $student = Student::where($filter)
                     ->where(function ($query) use ($StudentRoll) {
-                        $query->where('StudentRoll', $StudentRoll)
-                              ->orWhere('sscroll', $StudentRoll);
+                        $query->where('StudentRoll', $StudentRoll);
+                            //   ->orWhere('sscroll', $StudentRoll);
                     })
                     ->first();
 
