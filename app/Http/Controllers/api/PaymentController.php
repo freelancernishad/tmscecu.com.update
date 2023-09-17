@@ -524,15 +524,23 @@ class PaymentController extends Controller
                 <td>";
                 if($paidPayment->type=='exam_fee'){
 
-                    $paymentHtml .="
+                    $paidPaymentDate = strtotime($paidPayment->date);
+                    $currentDate = strtotime("now");
+                    $twoMonthsLater = strtotime("1 months", $paidPaymentDate);
+                    if($twoMonthsLater>$currentDate){
+
+                        $paymentHtml .="
+                        <a class='btn btn-warning' target='_blank' href='/student/exam/admit/$paidPayment->admissionId/$paidPayment->ex_name'>প্রবেশ পত্র</a>";
+
+                    }
 
 
-                    <a class='btn btn-warning' target='_blank' href='/student/exam/admit/$paidPayment->admissionId/$paidPayment->ex_name'>প্রবেশ পত্র</a>
-
-
-                    <a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$paidPayment->trxid'>রশিদ ডাউনলোড</a>
+                    $paymentHtml .="<a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$paidPayment->trxid'>রশিদ ডাউনলোড</a>
 
                     ";
+
+
+
                 }else{
 
                     $paymentHtml .="<a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$paidPayment->trxid'>রশিদ ডাউনলোড</a>";
