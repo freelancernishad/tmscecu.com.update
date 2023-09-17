@@ -45,7 +45,7 @@
                     <td>{{ student.motherName }}</td>
                     <td>
 
-                        <a class="btn btn-info" target="_blank" style="font-size: 17px;" :href="`/student/tc/${student.token}`" >ডাউনলোড করুন</a>
+                        <!-- <a class="btn btn-info" target="_blank" style="font-size: 17px;" :href="`/student/tc/${student.token}`" >ডাউনলোড করুন</a> -->
 
                     </td>
                 </tr>

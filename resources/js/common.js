@@ -50,6 +50,8 @@ export default {
                 return 'অর্ধ বার্ষিক মূল্যায়ন ফি';
             }else if(name=='Annual Examination'){
                 return 'বার্ষিক পরীক্ষার ফি';
+            }else if(name=='Annual_Examination'){
+                return 'বার্ষিক পরীক্ষার ফি';
             }else if(name=='Annual_assessment'){
                 return 'বার্ষিক মূল্যায়ন ফি';
             }else if(name=='Model_test_exam'){
@@ -72,6 +74,8 @@ export default {
             }else if(name=='Half_yearly_evaluation'){
                 return 'অর্ধ বার্ষিক মূল্যায়ন';
             }else if(name=='Annual Examination'){
+                return 'বার্ষিক পরীক্ষা';
+            }else if(name=='Annual_Examination'){
                 return 'বার্ষিক পরীক্ষা';
             }else if(name=='Annual_assessment'){
                 return 'বার্ষিক মূল্যায়ন';
