@@ -1074,16 +1074,47 @@ class PaymentController extends Controller
 
           $CurrenMonthNumber = month_to_number($cuddentMonth);
           $valueMonthNumber = month_to_number($value);
-          if($cuddentdata<11){
-              $CurrenMonthNumber = $CurrenMonthNumber-1;
-              if($CurrenMonthNumber==$valueMonthNumber){
-                  break;
-              }
-          }else{
-              if($cuddentMonth==$value){
-                  break;
-              }
-          }
+
+
+
+        $Annual_assessment_feeCount = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Annual_assessment','status'=>1])->count();
+
+        $Annual_Examination_feeCount = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Annual_Examination','status'=>1])->count();
+
+        $Selective_Exam_feeCount = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Selective_Exam','status'=>1])->count();
+
+
+
+            if($Annual_assessment_feeCount>0){
+            }elseif($Annual_Examination_feeCount>0){
+            }elseif($Selective_Exam_feeCount>0){
+            }else{
+
+                if($cuddentdata<11){
+                    $CurrenMonthNumber = $CurrenMonthNumber-1;
+                    if($CurrenMonthNumber==$valueMonthNumber){
+                        break;
+                    }
+                }else{
+                    if($cuddentMonth==$value){
+                        break;
+                    }
+                }
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
       }
 
 
