@@ -17,6 +17,7 @@ class TC extends Model
       'studentId',
       'name',
       'academic_year',
+      'student_type',
       'group',
       'roll',
       'year',

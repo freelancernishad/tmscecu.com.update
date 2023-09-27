@@ -244,6 +244,16 @@ class TCController extends Controller
 
 
 
+            $group = $tc->student_type;
+            $typeName = 'নিয়মিত';
+            if($group=='regular'){
+                $typeName = 'নিয়মিত';
+            }else{
+                $typeName = 'অনিয়মিত';
+            }
+
+
+
 
         $html = '';
         $html="
@@ -382,7 +392,7 @@ class TCController extends Controller
     <div style='line-height: 30px; font-size:25px;text-align:justify'>
         <div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; এই মর্মে প্রত্যয়ন করা যাইতেছে যে - $tc->name,
-            পিতা - $tc->fatherName, মাতা - $tc->motherName, গ্রাম - $tc->StudentAddress, ডাকঘর - $tc->post_office, উপজেলা - $tc->upazila, জেলা - $tc->district । সে অত্র বিদ্যালয়ের ".int_en_to_bn($tc->academic_year)." শিক্ষাবর্ষের একজন নিয়মিত শিক্ষার্থী ছিল এবং মাধ্যমিক ও উচ্চ মাধ্যমিক শিক্ষা বোর্ড, দিনাজপুর কর্তৃক গৃহীত ".int_en_to_bn($tc->year)."ইং সালের মাধ্যমিক স্কুল সার্টিফিকেট পরীক্ষায় $groupName বিভাগ হইতে <span style='font-size:14px'>GPA</span> ".int_en_to_bn($tc->sscGpa)." অর্জন করিয়া কৃতকার্য হইয়াছে। উক্ত পরীক্ষায় তাহার রোল নম্বর - ".int_en_to_bn($tc->sscRoll).", রেজিষ্ট্রেশন নং - ".int_en_to_bn($tc->sscReg)." এবং জন্ম তারিখ - $dateOfBirth (কথায়) $dateOfBirth_date $dateOfBirth_month $dateOfBirth_year ।
+            পিতা - $tc->fatherName, মাতা - $tc->motherName, গ্রাম - $tc->StudentAddress, ডাকঘর - $tc->post_office, উপজেলা - $tc->upazila, জেলা - $tc->district । সে অত্র বিদ্যালয়ের ".int_en_to_bn($tc->academic_year)." শিক্ষাবর্ষের একজন $typeName শিক্ষার্থী ছিল এবং মাধ্যমিক ও উচ্চ মাধ্যমিক শিক্ষা বোর্ড, দিনাজপুর কর্তৃক গৃহীত ".int_en_to_bn($tc->year)."ইং সালের মাধ্যমিক স্কুল সার্টিফিকেট পরীক্ষায় $groupName বিভাগ হইতে <span style='font-size:14px'>GPA</span> ".int_en_to_bn($tc->sscGpa)." অর্জন করিয়া কৃতকার্য হইয়াছে। উক্ত পরীক্ষায় তাহার রোল নম্বর - ".int_en_to_bn($tc->sscRoll).", রেজিষ্ট্রেশন নং - ".int_en_to_bn($tc->sscReg)." এবং জন্ম তারিখ - $dateOfBirth (কথায়) $dateOfBirth_date $dateOfBirth_month $dateOfBirth_year ।
         </div>
         <div style='margin-top: 15px;'>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; আমার জানামতে সে উন্নত চরিত্রের অধিকারী এবং অত্র প্রতিষ্ঠানে অধ্যয়নকালে রাষ্ট্র বা শৃঙ্খলা পরিপন্থী কার্যকলাপে জড়িত ছিল না। <br />
@@ -390,7 +400,6 @@ class TCController extends Controller
         </div>
     </div>
 </main>
-
 
 
 

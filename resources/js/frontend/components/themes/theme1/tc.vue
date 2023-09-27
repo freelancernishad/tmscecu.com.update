@@ -91,6 +91,19 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="" class="form_label">ছাত্র/ছাত্রীর ধরণ </label>
+
+                                    <select v-model="f.student_type" class="form-control" required>
+                                        <option value="">নির্বাচন করুন</option>
+                                        <option value="regular">নিয়মিত</option>
+                                        <option  value="iregular">অনিয়মিত</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
 
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -257,6 +270,7 @@ export default {
                 roll:'',
                 year:'',
                 academic_year:'',
+                student_type:'',
                 sscRoll:'',
                 sscReg:'',
                 sscGpa:'',
