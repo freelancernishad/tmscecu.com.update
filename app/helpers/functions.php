@@ -38,7 +38,7 @@ use Intervention\Image\Facades\Image;
 
 
 
-    function getAmountByStudent($admissionId,$studentClass,$year,$type,$month=''){
+    function getAmountByStudent($admissionId,$studentClass,$year,$type,$month='',$exam_name = ''){
 
         $data = [
             'admissionId'=>$admissionId,
@@ -47,9 +47,15 @@ use Intervention\Image\Facades\Image;
             'type'=>$type,
             'status'=>'Paid'
         ];
+
         if($month!=''){
             $data['month'] = $month;
         }
+
+        if($type=='exam_fee'){
+            $data['ex_name'] = $exam_name;
+        }
+
 
 // return $data;
 
@@ -474,6 +480,20 @@ function month_en_to_bn($month)
 
     return str_replace($en_month, $bn_month, $month);
 }
+
+
+function month_en_to_bn_sort($month)
+{
+
+    $bn_month = array('জা.', 'ফে.', 'মার্চ', 'এ.', 'মে', 'জুন', 'জু.', 'আ.', 'সে.', 'অ.', 'ন.', 'ডি.');
+    $en_month = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+
+
+    return str_replace($en_month, $bn_month, $month);
+}
+
+
+
 
 function month_bn_to_en($month)
 {
