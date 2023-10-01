@@ -130,8 +130,17 @@ $totalAmount_total = 0;
 
     $session_fee_amount = getAmountByStudent($admissionId,$class,$year,'session_fee');
 
+    if($class=="Ten"){
 
-    $exam_fee_amount = getAmountByStudent($admissionId,$class,$year,'exam_fee','');
+        $exam_fee_amount = getAmountByStudent($admissionId,$class,$year,'exam_fee','','Pre_selection_examination');
+    }elseif($class=="Nine"){
+        $exam_fee_amount = getAmountByStudent($admissionId,$class,$year,'exam_fee','','Half_yearly_examination');
+    }else{
+        $exam_fee_amount = getAmountByStudent($admissionId,$class,$year,'exam_fee','','Half_yearly_examination');
+
+    }
+
+
     $Selective_Exam_exam_fee_amount = getAmountByStudent($admissionId,$class,$year,'exam_fee','','Selective_Exam');
 
 
