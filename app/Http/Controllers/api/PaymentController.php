@@ -333,7 +333,7 @@ class PaymentController extends Controller
 
         $Annual_assessment_feeCount = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee','sub_type'=>'Annual_assessment','status'=>1])->count();
 
-        $Annual_Examination_feeCount = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee','sub_type'=>'Annual_Examination','status'=>1])->count();
+        $Annual_Examination_feeCount = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee','sub_type'=>'Annual Examination','status'=>1])->count();
 
         $Selective_Exam_feeCount = SchoolFee::where(['class'=>$StudentClass,'type'=>'exam_fee','sub_type'=>'Selective_Exam','status'=>1])->count();
 
@@ -346,7 +346,6 @@ class PaymentController extends Controller
 
                 if($cuddentdata<11){
                     $CurrenMonthNumber = $CurrenMonthNumber-1;
-
                     if($CurrenMonthNumber==$valueMonthNumber){
                         break;
                     }
@@ -1079,7 +1078,7 @@ class PaymentController extends Controller
 
         $Annual_assessment_feeCount = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Annual_assessment','status'=>1])->count();
 
-        $Annual_Examination_feeCount = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Annual_Examination','status'=>1])->count();
+        $Annual_Examination_feeCount = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Annual Examination','status'=>1])->count();
 
         $Selective_Exam_feeCount = SchoolFee::where(['class'=>$class,'type'=>'exam_fee','sub_type'=>'Selective_Exam','status'=>1])->count();
 
