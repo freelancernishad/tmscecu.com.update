@@ -76,6 +76,10 @@ class student extends Model
 
     ];
 
+    public function assessments()
+    {
+        return $this->hasMany(AssessmentRecord::class);
+    }
 
     public function Payments(){
         return $this->belongsTo(payment::class, 'StudentID', 'studentId');

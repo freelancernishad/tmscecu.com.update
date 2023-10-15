@@ -26,6 +26,7 @@ use App\Http\Controllers\api\HomeworkController;
 use App\Http\Controllers\api\studentsController;
 use App\Http\Controllers\QuestionbankController;
 use App\Http\Controllers\api\SchoolDetailController;
+use App\Http\Controllers\AssessmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -288,6 +289,14 @@ Route::get('/answeres',[OnlineexamController::class , 'answeres']);
 Route::get('/school/fees',[SchoolFeeController::class , 'index']);
 Route::get('/school/fees/{id}',[SchoolFeeController::class , 'show']);
 Route::post('/school/update/fees',[SchoolFeeController::class , 'update']);
+
+
+
+
+
+Route::get('/assessments',[AssessmentController::class , 'getStudentAssessment']);
+Route::post('/assessments',[AssessmentController::class , 'store']);
+Route::get('/assessment/students',[AssessmentController::class , 'getStudent']);
 
     // Route::prefix('v1')->group(function () {
 
