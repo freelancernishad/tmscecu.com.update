@@ -87,9 +87,9 @@ Route::get('/payment/success', function (Request $request) {
     $type = $payment->type;
 
     if($type=='TC'){
-        $url = "/payment/success/confirm?transId=$transId";
-    }else{
         $url = "/tc/success/confirm?transId=$transId";
+    }else{
+        $url = "/payment/success/confirm?transId=$transId";
 
     }
 
