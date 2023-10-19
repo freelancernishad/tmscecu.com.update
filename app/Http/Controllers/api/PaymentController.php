@@ -538,8 +538,7 @@ class PaymentController extends Controller
                 }elseif($paidPayment->type=='marksheet'){
 
                     $restult = StudentResult::find($paidPayment->studentId);
-                    $resultcode = $restult->class.$restult->roll.$restult->year.time();
-                   $restult->update(['marksheetCode'=>$resultcode]);
+
 
                         $paymentHtml .="
                         <a class='btn btn-warning' target='_blank' href='/marksheet/$restult->marksheetCode'>মার্কসীট ডাউনলোড</a>";
