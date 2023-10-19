@@ -1,19 +1,21 @@
 <?php
 namespace App\Http\Controllers\api;
-use App\Models\payment;
+use App\Models\TC;
 // use PDF;
+use App\Models\payment;
 use App\Models\student;
 use App\Models\SchoolFee;
 use Illuminate\Http\Request;
 use App\Models\school_detail;
+use App\Models\StudentResult;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Models\TC;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Rakibhstu\Banglanumber\NumberToBangla;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
+
 class PaymentController extends Controller
 {
 
@@ -527,19 +529,24 @@ class PaymentController extends Controller
                     $currentDate = strtotime("now");
                     $twoMonthsLater = strtotime("1 months", $paidPaymentDate);
                     if($twoMonthsLater>$currentDate){
-
                         $paymentHtml .="
                         <a class='btn btn-warning' target='_blank' href='/student/exam/admit/$paidPayment->admissionId/$paidPayment->ex_name'>প্রবেশ পত্র</a>";
-
                     }
+                    $paymentHtml .="<a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$paidPayment->trxid'>রশিদ ডাউনলোড</a>
 
+                    ";
+                }elseif($paidPayment->type=='marksheet'){
+
+                    $restult = StudentResult::find($paidPayment->studentId);
+                    $resultcode = $restult->class.$restult->roll.$restult->year.time();
+                   $restult->update(['marksheetCode'=>$resultcode]);
+
+                        $paymentHtml .="
+                        <a class='btn btn-warning' target='_blank' href='/marksheet/$restult->marksheetCode'>মার্কসীট ডাউনলোড</a>";
 
                     $paymentHtml .="<a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$paidPayment->trxid'>রশিদ ডাউনলোড</a>
 
                     ";
-
-
-
                 }else{
 
                     $paymentHtml .="<a class='btn btn-info' target='_blank' href='/student/applicant/invoice/$paidPayment->trxid'>রশিদ ডাউনলোড</a>";
