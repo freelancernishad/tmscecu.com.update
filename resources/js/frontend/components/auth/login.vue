@@ -161,10 +161,10 @@ export default {
 
                                     window.location.href = "/dashboard/student/img";
                                 }else if(res.role=='tcVerifications'){
-
                                     window.location.href = "/dashboard/tc/verifications";
+                                }else if(res.role=='assessment'){
+                                    window.location.href = "/dashboard/assessments/single/create";
                                 }else{
-
                                     window.location.href = "/dashboard";
                                 }
 

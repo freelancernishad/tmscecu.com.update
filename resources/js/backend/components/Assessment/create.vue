@@ -1,5 +1,11 @@
 <template>
     <div>
+        <loader v-if="preloader == true" object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2"
+            bg="#343a40" objectbg="#999793" opacity="80" disableScrolling="false" name="circular"></loader>
+
+
+
+
 
           <!-- Breadcubs Area Start Here -->
     <div class="breadcrumbs-area">
@@ -13,6 +19,9 @@
     </div>
     <!-- Breadcubs Area End Here -->
 
+
+
+    <router-link style="float: right;padding: 0 31px;" :to="{ name: 'logout' }"><i class="flaticon-turn-off"></i>Logout</router-link>
 
       <form @submit.prevent="submitAssessment">
 
@@ -107,14 +116,14 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Chapter Name</label>
-                        <input type="text" v-model="assessmentData.chapter_name" class="form-control">
+                        <input type="text" v-model="assessmentData.chapter_name" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Teacher Name</label>
-                        <input type="text" v-model="assessmentData.teacher_name" class="form-control">
+                        <input type="text" v-model="assessmentData.teacher_name" class="form-control" required>
                     </div>
                 </div>
 
@@ -122,10 +131,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Note</label>
-                        <input type="text" v-model="assessmentData.note" class="form-control">
+                        <input type="text" v-model="assessmentData.note" class="form-control" required>
                     </div>
                 </div>
 
+                <div class="col-md-12">
+                    <button type="button" @click="getStudents" class="btn btn-info mt-3 mb-5" style="font-size: 20px;">তালিকা খুজুন</button>
+                </div>
 
 
               </div>
@@ -134,6 +146,9 @@
 
 
 
+
+
+        <div class="container">
 
 
 
@@ -145,14 +160,16 @@
         <table border="1" width="100%">
   <thead>
     <tr>
-      <th>Student Name</th>
-      <th class="text-center">Score</th>
+      <th width="10%" class="text-center">Roll</th>
+      <th  width="40%" class="text-center">Name</th>
+      <th width="50%"  class="text-center">Score</th>
     </tr>
   </thead>
   <tbody>
     <tr v-for="(student, index) in students" :key="student.id">
-      <td>{{ student.StudentName }}</td>
-      <td>
+      <td class="text-center">{{ student.StudentRoll }}</td>
+      <td class="text-center">{{ student.StudentName }}</td>
+      <td class="text-center">
         <input class="d-none" type="radio" v-model="assessmentData.studentData[index].score" value="1" :id="'PI1_' + student.id" />
         <label class="checkboxlabel" :for="'PI1_' + student.id"><i class="fa-regular fa-square"></i></label>
         <input class="d-none" type="radio" v-model="assessmentData.studentData[index].score" value="2" :id="'PI2_' + student.id" />
@@ -168,14 +185,17 @@
   </tbody>
 </table>
 
+<div class="text-center">
+
+    <button type="submit" class="btn btn-success mt-3 mb-5" style="font-size: 20px;">Create Assessment</button>
+</div>
+
+</div>
 
 
 
 
 
-
-
-        <button type="submit">Create Assessment</button>
       </form>
     </div>
   </template>
@@ -184,6 +204,7 @@
   export default {
     data() {
       return {
+        preloader:false,
         students: [],
         assessmentData: {
           report_name: 'continuous_assessment',
@@ -199,38 +220,46 @@
       };
     },
     methods: {
+
+
+
+
+
         async submitAssessment() {
-            try {
-            const response = await axios.post('/api/assessments', this.assessmentData);
-            console.log(response)
-            // Handle a successful response (e.g., show a success message)
-            } catch (error) {
-            // Handle any errors
+            this.preloader = true
+            const response = await  this.callApi('post','/api/assessments', this.assessmentData);
+            // console.log(response)
+            if(response.status==201){
+                Notification.customSuccess('Success');
+            }else if(response.status==400){
+                Notification.customError('Bad Request');
             }
-  },
+            this.preloader = false
+        },
 
 
       async getStudents(){
-        var res = await this.callApi('get',`/api/assessment/students`,[]);
+        this.preloader = true
+        var res = await this.callApi('get',`/api/assessment/students?class=${this.assessmentData.class}`,[]);
         this.students = res.data;
         this.assessmentData.studentData = this.students.map((student) => ({
           student_id: student.id,
           score: null,
-
         }));
+        this.preloader = false
       }
 
 
 
     },
     mounted() {
-        this.getStudents();
+        // this.getStudents();
       // Fetch the list of students from the Laravel API
     },
   };
   </script>
 
-<style>
+<style scoped>
   label.checkboxlabel {
       font-size: 15px;
       padding: 0px 6px;
@@ -239,10 +268,13 @@
 
 
   input[type=radio]:checked+label.checkboxlabel {
-    background: #120220;
-    padding: 0px 6px;
-    color: #fff;
-    font-size: 15px;
-}
+        background: #120220;
+        padding: 0px 6px;
+        color: #fff;
+        font-size: 15px;
+    }
 
+    td label i {
+        font-size: 25px;
+    }
 </style>

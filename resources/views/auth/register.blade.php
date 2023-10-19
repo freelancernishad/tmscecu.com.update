@@ -56,6 +56,7 @@
                                     <option value="application_permission">আবেদনের অনুমতি</option>
                                     <option value="camera_man">ক্যামেরা ম্যান</option>
                                     <option value="tcVerifications">প্রশংসা পত্র অনুমতি</option>
+                                    <option value="assessment">Assessment</option>
 
                                 </select>
 

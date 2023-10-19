@@ -332,7 +332,13 @@ export const routes = [
   { path:  `${prefix}/check/trx`, component: trxcheck, name:'trxcheck',meta: { layout: adminlayout } },
 
 
+
+
   { path:  `${prefix}/assessments/create`, component: Assessmentcreate, name:'Assessmentcreate',meta: { layout: adminlayout } },
+
+
+
+  { path:  `${prefix}/assessments/single/create`, component: Assessmentcreate, name:'Assessmentsinglecreate',meta: { layout: blanklayout } },
 
 
 

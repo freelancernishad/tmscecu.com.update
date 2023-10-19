@@ -12,13 +12,14 @@ class AssessmentController extends Controller
 
     function getStudentAssessment(){
 
-        return student::where('StudentClass','Six')->with('assessments')->get();
+        return student::where(['StudentClass'=>'Six','Year'=>date('Y'),'StudentStatus'=>'Active'])->orderBy('StudentRoll','desc')->with('assessments')->get();
     }
 
 
 
-    function getStudent(){
-        return student::where('StudentClass','Six')->get();
+    function getStudent(Request $request){
+        $class = $request->class;
+        return student::where(['StudentClass'=>$class,'Year'=>date('Y'),'StudentStatus'=>'Active'])->orderBy('StudentRoll','asc')->get();
     }
 
 
@@ -27,6 +28,15 @@ class AssessmentController extends Controller
 
 
 
+        $class = $request->class;
+        $subject = $request->subject;
+        $type = $request->type;
+
+        $checkAssessment = Assessment::where(['class'=>$class,'subject'=>$subject,'type'=>$type])->count();
+        if($checkAssessment) {
+            return response()->json(['message' => 'already inserted'], 400);
+        }
+
 
 
 
@@ -34,11 +44,8 @@ class AssessmentController extends Controller
             'report_name', 'date', 'class', 'subject', 'type', 'chapter_name', 'teacher_name', 'note',
         ]));
 
-
-
         // Create assessment records for selected students
         foreach ($request->input('studentData') as $stu) {
-
 
             $student = student::find($stu['student_id']);
             $assessmentRecord = new AssessmentRecord([
@@ -56,10 +63,8 @@ class AssessmentController extends Controller
                 'teacher_name' => $request->teacher_name,
                 'note' => $request->note,
             ]);
-
             $assessmentRecord->save();
         }
-
         return response()->json(['message' => 'Assessment created successfully'], 201);
     }
 

@@ -228,6 +228,25 @@
 
 
 
+<li class="nav-item sidebar-nav-item"  :class="{ active: selected == 40 }">
+    <a href="javascript:void(0)" class="nav-link" @click="submenu(40)"><i class="flaticon-shopping-list"></i><span>Assessment</span></a>
+    <transition name="slide">
+    <ul class="nav sub-group-menu menu-open child" v-if="selected == 40" style="display:block">
+
+        <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link"><i class="fas fa-angle-right"></i>Assessment List</a>
+        </li>
+
+        <li class="nav-item">
+            <router-link   :to="{name:'Assessmentcreate'}" class="nav-link"><i class="fas fa-angle-right"></i>New Assessment</router-link>
+        </li>
+
+
+    </ul>
+</transition>
+</li>
+
+
 <li class="nav-item sidebar-nav-item"  :class="{ active: selected == 4 }">
     <a href="javascript:void(0)" class="nav-link" @click="submenu(4)"><i class="flaticon-shopping-list"></i><span>Result</span></a>
     <transition name="slide">
@@ -385,6 +404,8 @@ export default {
                 this.$router.push({name:'applicationPermission'});
             }else if(this.user.role=='tcVerifications'){
                 this.$router.push({name:'tcVerifications'});
+            }else if(this.user.role=='assessment'){
+                this.$router.push({name:'Assessmentsinglecreate'});
             }
         }
         this.$store.commit('setUpdateUser', this.user)
