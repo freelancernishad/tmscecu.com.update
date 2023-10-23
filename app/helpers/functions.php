@@ -356,6 +356,20 @@ function subjectCol($subject)
     }
 
 
+   function form_name($name){
+        if($name=='board_fee'){
+            return 'বোর্ড ফি';
+        }elseif($name=='center_fee'){
+            return 'কেন্দ্র ফি';
+        }elseif($name=='late_fees'){
+            return 'বিলম্ব ফি';
+        }elseif($name=='other_fee'){
+            return 'বিবিদ ফি';
+        }
+
+    }
+
+
    function ex_name_list($name='en'){
 
         $ex_en_name = ['Half_yearly_examination','Half_yearly_evaluation','Annual Examination','Annual_assessment','Model_test_exam','Pre_selection_examination','Selective_Exam','Continuous_assessment','Summative_Assessment'];
