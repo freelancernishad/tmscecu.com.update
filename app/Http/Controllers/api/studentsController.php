@@ -544,6 +544,36 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
         }
 
 
+        $StudentBirthCCount =  count(explode(';', $r->StudentBirthC));
+        if ($StudentBirthCCount > 1) {
+            $data['StudentBirthC'] =  fileupload($r->StudentBirthC, 'backend/students/');
+        }
+
+
+        $fatherNidFCount =  count(explode(';', $r->fatherNidF));
+        if ($fatherNidFCount > 1) {
+            $data['fatherNidF'] =  fileupload($r->fatherNidF, 'backend/students/');
+        }
+
+
+        $fatherNidBCount =  count(explode(';', $r->fatherNidB));
+        if ($fatherNidBCount > 1) {
+            $data['fatherNidB'] =  fileupload($r->fatherNidB, 'backend/students/');
+        }
+
+
+        $motherNidFCount =  count(explode(';', $r->motherNidF));
+        if ($motherNidFCount > 1) {
+            $data['motherNidF'] =  fileupload($r->motherNidF, 'backend/students/');
+        }
+
+
+        $motherNidBCount =  count(explode(';', $r->motherNidB));
+        if ($motherNidBCount > 1) {
+            $data['motherNidB'] =  fileupload($r->motherNidB, 'backend/students/');
+        }
+
+
 
 
         if ($id == '') {

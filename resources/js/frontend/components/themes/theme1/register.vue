@@ -481,6 +481,10 @@
                           </p>
                     </div>
                 </div>
+
+
+
+
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="form_label">পোস্টাল কোড / পোস্ট কোড</label>
@@ -492,17 +496,30 @@
                 </div>
 
 
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form_label">ছাত্র/ছাত্রীর জন্ম নিবন্ধন কপি </label>
+                            <input type="file" id="fileupload2" class="form-control"  @change="FileSelected2($event, 'StudentBirthC')" required />
+                            <label for="fileupload2">
+                            <img width="100%" height="100%" :src="form.StudentBirthC" v-if="form.StudentBirthC" alt="" />
+                        </label>
+                    </div>
+                </div>
+
+
+
+
                 <div class="col-md-12">
-				<div class="fileUpload" style="    position: relative !important;">
-				<label for="fileupload" id="fileChoiceLable">
-					<img width="100%" height="100%" :src="form.StudentPicture" v-if="form.StudentPicture" alt="" />
-                    <span style="text-align: center;" v-else >Click Here to Upload Student Image <br> 300x300</span>
-
-				</label>
-					<input type="file" id="fileupload" style="display:none"  @change="FileSelected($event, 'StudentPicture')" />
-
-				</div>
-            </div>
+                    <div class="fileUpload" style="    position: relative !important;">
+                        <label for="fileupload" id="fileChoiceLable">
+                            <img width="100%" height="100%" :src="form.StudentPicture" v-if="form.StudentPicture" alt="" />
+                            <span style="text-align: center;" v-else >Click Here to Upload Student Image <br> 300x300</span>
+                        </label>
+                            <input type="file" id="fileupload" style="display:none"  @change="FileSelected($event, 'StudentPicture')" />
+                    </div>
+                </div>
 
 
                 </div>
@@ -704,6 +721,71 @@
                           </p>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form_label">পিতার আইডি কার্ডের সামনের কপি</label>
+                            <input type="file" id="fileupload2" class="form-control"  @change="FileSelected2($event, 'fatherNidF')" required />
+                            <label for="fileupload2">
+                            <img width="100%" height="100%" :src="form.fatherNidF" v-if="form.fatherNidF" alt="" />
+                        </label>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form_label">পিতার আইডি কার্ডের পিছনের কপি</label>
+                            <input type="file" id="fileupload2" class="form-control"  @change="FileSelected2($event, 'fatherNidB')" required />
+                            <label for="fileupload2">
+                            <img width="100%" height="100%" :src="form.fatherNidB" v-if="form.fatherNidB" alt="" />
+                        </label>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form_label">মাতার আইডি কার্ডের সামনের কপি</label>
+                            <input type="file" id="fileupload2" class="form-control"  @change="FileSelected2($event, 'motherNidF')" required />
+                            <label for="fileupload2">
+                            <img width="100%" height="100%" :src="form.motherNidF" v-if="form.motherNidF" alt="" />
+                        </label>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form_label">মাতার আইডি কার্ডের পিছনের কপি</label>
+                            <input type="file" id="fileupload2" class="form-control"  @change="FileSelected2($event, 'motherNidB')" required />
+                            <label for="fileupload2">
+                            <img width="100%" height="100%" :src="form.motherNidB" v-if="form.motherNidB" alt="" />
+                        </label>
+                    </div>
+                </div>
+
+
+
+
+
 
 
 <!--
@@ -988,6 +1070,15 @@ export default {
             StudentMotherNid:'',
             StudentFatherBCN:'',
             StudentMotherBCN:'',
+
+            fatherNidF:'',
+            fatherNidB:'',
+            motherNidF:'',
+            motherNidB:'',
+
+
+
+
             guardNameBn:'',
             guardName:'',
             guardNid:'',
@@ -1023,6 +1114,7 @@ export default {
             StudentStatus:'Pending',
             StudentTranferFrom:'',
             StudentPicture:'',
+            StudentBirthC:'',
             JoiningDate:'',
             StudentTranferStatus:'',
             AplicationStatus:'',
@@ -1156,52 +1248,53 @@ export default {
 
         FileSelected($event, parent_index) {
             let file = $event.target.files[0];
-            // console.log(file)
             if (file.size > 5048576) {
                 Notification.image_validation();
             } else {
                 let reader = new FileReader;
                 reader.onload = event => {
-
-
-// console.log(event.target.result)
-
-   //Initiate the JavaScript Image object.
-   var image = new Image();
-
- //Set the Base64 string return from FileReader as source.
- image.src = event.target.result;
-
- //Validate the File Height and Width.
-
- var formThis = this;
-
- image.onload = function () {
-    var height = this.height;
-     var width = this.width;
-    //  console.log( width,height)
-     if (height===width) {
-        formThis.form[parent_index] = event.target.result
-         return false;
-     }
-     alert("Uploaded image has valid Height and Width.");
-     return true;
- };
-
-
-
-
-
-
-
-
-
-
-
+                var image = new Image();
+                image.src = event.target.result;
+                var formThis = this;
+                    image.onload = function () {
+                        var height = this.height;
+                        var width = this.width;
+                        //  console.log( width,height)
+                        if (height===width) {
+                            formThis.form[parent_index] = event.target.result
+                            return false;
+                        }
+                        alert("Uploaded image has valid Height and Width.");
+                        return true;
+                    };
                 };
                 reader.readAsDataURL(file)
             }
-            //   console.log($event.target.result);
+        },
+
+
+
+        FileSelected2($event, parent_index) {
+            let file = $event.target.files[0];
+                let reader = new FileReader;
+                reader.onload = event => {
+                var image = new Image();
+                image.src = event.target.result;
+                var formThis = this;
+                    image.onload = function () {
+                        var height = this.height;
+                        var width = this.width;
+                        //  console.log( width,height)
+                        // if (height===width) {
+                            formThis.form[parent_index] = event.target.result
+                            return false;
+                        // }
+
+                        return true;
+                    };
+                };
+                reader.readAsDataURL(file)
+
         },
 
 
@@ -1231,44 +1324,55 @@ export default {
         nextTab(){
             //Validate input
 
-            if(this.form.StudentPicture){
-            this.$root.$validator.validate('step'+(this.currentActive+ 1)+'.*').then(valid => {
-
-                // console.log(valid)
 
 
-                if(this.currentActive==0){
-                    // if (valid && this.studentEmailstatus){
-                    if (valid){
-                        this.currentActive++;
-                        this.tabs.forEach(tab => {
-                            tab.isActive = false;
-                        });
 
-                        this.tabs[this.currentActive].isActive = true;
+            if(!this.form.StudentBirthC){
+                Notification.customError2('ছাত্র/ছাত্রীর জন্ম নিবন্ধন কপি is required!');
+                this.preloader = false;
+            }else if(!this.form.StudentPicture){
+                Notification.customError2('Student image is required!');
+                this.preloader = false;
+            }else{
+
+                this.$root.$validator.validate('step'+(this.currentActive+ 1)+'.*').then(valid => {
+                    if(this.currentActive==0){
+                        if (valid){
+                            this.currentActive++;
+                            this.tabs.forEach(tab => {
+                                tab.isActive = false;
+                            });
+                            this.tabs[this.currentActive].isActive = true;
+                        }
+                    }else if(this.currentActive==1){
+
+                            if (valid){
+                                if(!this.form.fatherNidF){
+                                    Notification.customError2('পিতার আইডি কার্ডের সামনের কপি is required!');
+                                    this.preloader = false;
+                                }else if(!this.form.fatherNidB){
+                                    Notification.customError2('পিতার আইডি কার্ডের পিছনের কপি is required!');
+                                    this.preloader = false;
+                                }else if(!this.form.motherNidF){
+                                    Notification.customError2('মাতার আইডি কার্ডের সামনের কপি is required!');
+                                    this.preloader = false;
+                                }else if(!this.form.motherNidB){
+                                    Notification.customError2('মাতার আইডি কার্ডের পিছনের কপি is required!');
+                                    this.preloader = false;
+                                }else{
+                                    this.currentActive++;
+                                    this.tabs.forEach(tab => {
+                                        tab.isActive = false;
+                                    });
+                                    this.tabs[this.currentActive].isActive = true;
+                                }
+                            }
+
+
+
                     }
-                }else if(this.currentActive==1){
-                    // if (valid && this.parentEmailstatus){
-                    if (valid){
-                        this.currentActive++;
-                        this.tabs.forEach(tab => {
-                            tab.isActive = false;
-                        });
-                        this.tabs[this.currentActive].isActive = true;
-                    }
-                }
-
-
-
-
-
-
-            });
-        }else{
-                        Notification.customError2('Student image is required!');
-                          this.preloader = false;
-                    }
-
+                });
+            }
 
 
 

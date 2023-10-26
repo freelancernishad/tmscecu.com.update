@@ -1237,7 +1237,7 @@ class PaymentController extends Controller
 
             $studentRestult = StudentResult::where(['stu_id'=>$StudentUID,'exam_name'=>'Selective_Exam'])->first();
             $greed = $studentRestult->greed;
-            if($greed=='F'){
+            if($greed!='F'){
             if($StudentGroup=='Humanities'){
                 $board_fee = 1535;
                 $totalamount +=  $board_fee;

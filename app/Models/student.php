@@ -71,6 +71,11 @@ class student extends Model
         'StudentTranferStatus',
         'AplicationStatus',
         'ThisMonthPaymentStatus',
+        'StudentBirthC',
+        'fatherNidF',
+        'fatherNidB',
+        'motherNidF',
+        'motherNidB',
 
 
 
