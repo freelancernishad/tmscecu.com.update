@@ -1501,7 +1501,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
                                 <tr class='tr items'>
                                 <td class='td  defaltfont'>".int_en_to_bn(8)."</td>
-                                <td class='td  defaltfont'>ফরম পূরণ (বিবিদ ফি)</td>
+                                <td class='td  defaltfont'>ফরম পূরণ (বিবিধ ফি)</td>
                                 <td class='td  defaltfont'>".int_en_to_bn($Fother_fee)."</td>
                                 </tr>
 
@@ -1806,7 +1806,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                             </tr>
                             <tr class='tr items'>
                             <td class='td  defaltfont'>".int_en_to_bn(8)."</td>
-                            <td class='td  defaltfont'>ফরম পূরণ (বিবিদ ফি)</td>
+                            <td class='td  defaltfont'>ফরম পূরণ (বিবিধ ফি)</td>
                             <td class='td  defaltfont'>".int_en_to_bn($Fother_fee)."</td>
                             </tr>
 
