@@ -156,6 +156,7 @@ Route::get('/student/attendance/count',[studentsController::class , 'student_att
 Route::post('/student/attendance/submit',[studentsController::class , 'student_attendance_submit']);
 Route::get('/student/attendance/row',[studentsController::class , 'student_attendance_row']);
 
+Route::get('/get/form/fillup/students',[studentsController::class , 'formfillupstudents']);
 
 
 Route::post('/student/transferto/old',[studentsController::class , 'transertoOld']);

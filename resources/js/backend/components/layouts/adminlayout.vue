@@ -406,6 +406,8 @@ export default {
                 this.$router.push({name:'tcVerifications'});
             }else if(this.user.role=='assessment'){
                 this.$router.push({name:'Assessmentsinglecreate'});
+            }else if(this.user.role=='formfill'){
+                this.$router.push({name:'formFillupList'});
             }
         }
         this.$store.commit('setUpdateUser', this.user)

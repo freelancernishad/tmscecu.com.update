@@ -2479,4 +2479,13 @@ return $html;
 
 
 
+        function formfillupstudents() {
+
+          return  $studentsWithPaidFormFillupFee = Student::whereHas('paymentform', function ($query) {
+                $query->where('type', 'form_filup_fee')->where('status', 'Paid');
+            })->orderBy('StudentRoll','asc')->get();
+        }
+
+
+
 }

@@ -164,6 +164,8 @@ export default {
                                     window.location.href = "/dashboard/tc/verifications";
                                 }else if(res.role=='assessment'){
                                     window.location.href = "/dashboard/assessments/single/create";
+                                }else if(res.role=='formfill'){
+                                    window.location.href = "/dashboard/form/fill/up";
                                 }else{
                                     window.location.href = "/dashboard";
                                 }

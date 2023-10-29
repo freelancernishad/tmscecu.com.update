@@ -89,4 +89,11 @@ class student extends Model
     public function Payments(){
         return $this->belongsTo(payment::class, 'StudentID', 'studentId');
     }
+
+
+    public function paymentform()
+        {
+            return $this->hasMany(Payment::class, 'AdmissionID', 'AdmissionID');
+        }
+
 }

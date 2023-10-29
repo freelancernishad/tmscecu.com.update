@@ -143,6 +143,7 @@ let onlineexamnew = require('./components/onlineexam/form.vue').default;
 let trxcheck = require('./components/trxcheck.vue').default;
 
 let Assessmentcreate = require('./components/Assessment/create.vue').default;
+let formFillupList = require('./components/formfilup/list.vue').default;
 
 
 let fees = require('./components/fees/index.vue').default;
@@ -339,6 +340,9 @@ export const routes = [
 
 
   { path:  `${prefix}/assessments/single/create`, component: Assessmentcreate, name:'Assessmentsinglecreate',meta: { layout: blanklayout } },
+
+
+  { path:  `${prefix}/form/fill/up`, component: formFillupList, name:'formFillupList',meta: { layout: blanklayout } },
 
 
 
