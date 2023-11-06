@@ -354,6 +354,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
     Route::get('download/student/reports', [frontendController::class, 'student_at_a_glance']);
 
+    Route::get('/get/form/fillup/students',[studentsController::class , 'formfillupstudentsPdf']);
+
+
 
     Route::get('/result_sheet/pdf/{school_id}/{group}/{class}/{exam}/All/{date}', [resultController::class, 'resultViewpdf']);
     Route::get('/student_list/pdf/{year}/{class}/{school_id}', [studentsController::class, 'student_list_pdf']);

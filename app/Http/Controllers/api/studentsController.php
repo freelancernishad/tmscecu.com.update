@@ -2487,5 +2487,22 @@ return $html;
         }
 
 
+        function formfillupstudentsPdf() {
+
+            $students = Student::whereHas('paymentform', function ($query) {
+                $query->where('type', 'form_filup_fee')->where('status', 'Paid');
+            })->orderBy('StudentRoll','asc')->get();
+
+
+
+
+            $fileName = "Form-fillup-report" ;
+            $pdf = LaravelMpdf::loadView('admin/pdfReports.form_fillup_report', compact('students'));
+            return $pdf->stream("$fileName.pdf");
+
+
+        }
+
+
 
 }
