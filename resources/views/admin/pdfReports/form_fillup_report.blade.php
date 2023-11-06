@@ -45,6 +45,7 @@
             <thead>
                 <tr>
 
+                    <th scope="col" v-if="form.type=='Admission_fee'">ক্রমিক নং</th>
                     <th scope="col" v-if="form.type=='Admission_fee'">রোল</th>
                     {{-- <th scope="col" v-else>Roll</th> --}}
                     <th  class="tablecolhide" scope="col">নাম</th>
@@ -56,11 +57,15 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $i = 1;
+                @endphp
 
                 @foreach($students as $key => $value)
                 <tr>
 
-                    <td>{{ $value->StudentRoll }}</td>
+                    <td>{{ int_en_to_bn($i) }}</td>
+                    <td>{{ int_en_to_bn($value->StudentRoll) }}</td>
                     <td>{{ $value->StudentName }}</td>
                     <td>{{ $value->StudentClass }}</td>
                     <td>{{ $value->StudentGroup }}</td>
@@ -68,6 +73,9 @@
                     <td>{{ $value->StudentMotherNameBn }}</td>
                     <td>{{ $value->StudentAddress }}</td>
                 </tr>
+                @php
+                $i++;
+            @endphp
 
                 @endforeach
 
