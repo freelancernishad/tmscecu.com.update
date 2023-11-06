@@ -14,7 +14,13 @@
             </div>
             <!-- Breadcubs Area End Here -->
 
+
             <router-link style="float: right;padding: 0 31px;" :to="{ name: 'logout' }"><i class="flaticon-turn-off"></i>Logout</router-link>
+
+
+
+            <a target="_blank" href="/dashboard/get/form/fillup/students" class="btn btn-info">Pdf Report Daownload</a>
+
             <div class="card">
                 <div class="card-body">
 
