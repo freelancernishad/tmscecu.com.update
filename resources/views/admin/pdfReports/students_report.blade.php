@@ -55,6 +55,7 @@
                     <th scope="col">পিতার নাম</th>
                     <th scope="col">মাতার নাম</th>
                     <th  class="tablecolhide" scope="col">ঠিকানা</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -68,6 +69,8 @@
                     <td>{{ $value->StudentFatherNameBn }}</td>
                     <td>{{ $value->StudentMotherNameBn }}</td>
                     <td>{{ $value->StudentAddress }}</td>
+                    <td>{{ $value->StudentBirthCertificateNo }}</td>
+                    <td>{{ $value->StudentDateOfBirth }}</td>
                 </tr>
 
                 @endforeach
