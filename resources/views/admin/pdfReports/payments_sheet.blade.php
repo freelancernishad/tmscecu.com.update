@@ -84,6 +84,7 @@
                             <th scope="col" width="5%">{{ month_en_to_bn_sort('December') }} </th>
                             <th scope="col" width="5%">পঃফি </th>
                             <th scope="col" width="5%">পঃফি(নি.প.) </th>
+                            <th scope="col" width="5%">পঃফি(বা.প.) </th>
                             <th scope="col" width="5%">মোট </th>
 
 
@@ -101,6 +102,7 @@
 $session_fee_amount_total = 0;
 $exam_fee_amount_total = 0;
 $Selective_Exam_exam_fee_amount_total = 0;
+$Annual_Examination_exam_fee_amount_total = 0;
 $January_amount_total = 0;
 $February_amount_total = 0;
 $March_amount_total = 0;
@@ -142,6 +144,7 @@ $totalAmount_total = 0;
 
 
     $Selective_Exam_exam_fee_amount = getAmountByStudent($admissionId,$class,$year,'exam_fee','','Selective_Exam');
+    $Annual_Examination_exam_fee_amount = getAmountByStudent($admissionId,$class,$year,'exam_fee','','Annual Examination');
 
 
 
@@ -164,6 +167,7 @@ $totalAmount_total = 0;
     $session_fee_amount_total += $session_fee_amount;
     $exam_fee_amount_total += $exam_fee_amount;
     $Selective_Exam_exam_fee_amount_total += $Selective_Exam_exam_fee_amount;
+    $Annual_Examination_exam_fee_amount_total += $Annual_Examination_exam_fee_amount;
     $January_amount_total += $January_amount;
     $February_amount_total += $February_amount;
     $March_amount_total += $March_amount;
@@ -177,7 +181,7 @@ $totalAmount_total = 0;
     $November_amount_total += $November_amount;
     $December_amount_total += $December_amount;
 
-$totalAmount = $session_fee_amount+$January_amount+$February_amount+$March_amount+$April_amount+$May_amount+$June_amount+$July_amount+$August_amount+$September_amount+$October_amount+$November_amount+$December_amount+$exam_fee_amount+$Selective_Exam_exam_fee_amount;
+$totalAmount = $session_fee_amount+$January_amount+$February_amount+$March_amount+$April_amount+$May_amount+$June_amount+$July_amount+$August_amount+$September_amount+$October_amount+$November_amount+$December_amount+$exam_fee_amount+$Selective_Exam_exam_fee_amount+$Annual_Examination_exam_fee_amount;
 
 $totalAmount_total += $totalAmount;
 
@@ -206,6 +210,7 @@ $totalAmount_total += $totalAmount;
                                 <th scope="col" > {{ int_en_to_bn($December_amount) }}</th>
                                 <th scope="col" > {{ int_en_to_bn($exam_fee_amount) }}</th>
                                 <th scope="col" > {{ int_en_to_bn($Selective_Exam_exam_fee_amount) }}</th>
+                                <th scope="col" > {{ int_en_to_bn($Annual_Examination_exam_fee_amount) }}</th>
                                 <th scope="col" > {{ int_en_to_bn($totalAmount) }}</th>
                             </tr>
 
@@ -229,6 +234,7 @@ $totalAmount_total += $totalAmount;
                                 <th scope="col" > {{ int_en_to_bn($December_amount_total) }}</th>
                                 <th scope="col" > {{ int_en_to_bn($exam_fee_amount_total) }}</th>
                                 <th scope="col" > {{ int_en_to_bn($Selective_Exam_exam_fee_amount_total) }}</th>
+                                <th scope="col" > {{ int_en_to_bn($Annual_Examination_exam_fee_amount_total) }}</th>
                                 <th scope="col" > {{ int_en_to_bn($totalAmount_total) }}</th>
                             </tr>
 
