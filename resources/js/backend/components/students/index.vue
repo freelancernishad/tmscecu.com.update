@@ -156,7 +156,12 @@
                                     <th class="tablecolhide">পিতার নাম</th>
                                     <th class="tablecolhide">মাতার নাম</th>
 
-                                  <th class="tablecolhide">উপবৃত্তি</th>
+
+
+                                  <th class="tablecolhide" v-if="$route.params.status=='Pending'">স্কুল</th>
+                                  <th class="tablecolhide" v-else>উপবৃত্তি</th>
+
+
                                   <th class="tablecolhide" v-if="$route.params.status=='Pending'">আবেদনের তারিখ</th>
                                     <!-- <th class="tablecolhide" @click="sortby('StudentPhoneNumber')">ফোন</th>  -->
                                     <th>Action</th>
@@ -200,7 +205,8 @@
                                     <td class="tablecolhide">{{ student.StudentClass }}</td>
                                     <td class="tablecolhide" style="text-transform: uppercase;">{{ student.StudentFatherNameBn }}</td>
                                     <td class="tablecolhide" style="text-transform: uppercase;">{{ student.StudentMotherNameBn }}</td>
-                                    <td class="tablecolhide">{{ student.stipend }}</td>
+                                    <td class="tablecolhide"  v-if="$route.params.status=='Pending'">{{ student.preSchool }}</td>
+                                    <td class="tablecolhide" v-else>{{ student.stipend }}</td>
                                     <td class="tablecolhide" v-if="$route.params.status=='Pending'">{{ dateformatGlobal(student.JoiningDate)[3] }}</td>
                                     <!-- <td class="tablecolhide">{{ student.StudentPhoneNumber }}</td> -->
                                     <td>
