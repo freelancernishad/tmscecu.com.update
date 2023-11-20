@@ -67,7 +67,7 @@ Route::get('/sent/ekpay/ip', function () {
 
 $curl = curl_init();
 
-$apiUrl = 'https://tepriganjhighschool.edu.bd/get/ekpay/ip';
+return $apiUrl = 'https://tepriganjhighschool.edu.bd/get/ekpay/ip';
 curl_setopt_array($curl, array(
   CURLOPT_URL => $apiUrl,
   CURLOPT_RETURNTRANSFER => true,
