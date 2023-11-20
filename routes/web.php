@@ -60,6 +60,45 @@ Route::get('genrate-sitemap', function () {
     // this will generate file mysitemap.xml to your public folder
     return redirect(url('sitemap.xml'));
 });
+
+Route::get('/sent/ekpay/ip', function () {
+
+
+
+$curl = curl_init();
+
+$apiUrl = url('get/ekpay/ip');
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $apiUrl,
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+
+});
+
+Route::get('/get/ekpay/ip', function () {
+
+    Log::info($_SERVER['REMOTE_ADDR']);
+    return $_SERVER['REMOTE_ADDR'];
+
+});
+
+
+
+
+
+
+
 Route::get('/smstest', function () {
     $details = [
         'title' => 'Mail from ItSolutionStuff.com',
