@@ -79,7 +79,7 @@ class studentsController extends Controller
 
                 $StudentPhoneNumber =  int_bn_to_en($student->StudentPhoneNumber);
 
-                smsSend(strtoupper($student->StudentName)." এর ".class_en_to_bn($student->StudentClass)."তে ভর্তি নিশ্চিত হয়েছে। রোল ".int_en_to_bn($student->StudentRoll), $StudentPhoneNumber);
+                SmsNocSmsSend(strtoupper($student->StudentName)." এর ".class_en_to_bn($student->StudentClass)."তে ভর্তি নিশ্চিত হয়েছে। রোল ".int_en_to_bn($student->StudentRoll), $StudentPhoneNumber);
 
                 return $student;
 
@@ -160,7 +160,7 @@ class studentsController extends Controller
 
         //    echo  "Congratulations ".strtoupper($student->StudentNameEn).", Your admission application has been accepted. Contact the school with required documents by 29-12-2022 to confirm admission. Head Master,Tepriganj High School";
 
-            smsSend("Congratulations ".strtoupper($student->StudentNameEn).", Your admission application has been accepted. Contact the school with required documents by 29-12-2022 to confirm admission. Head Master,Tepriganj Adarsha B.L High School", $StudentPhoneNumber);
+            SmsNocSmsSend("Congratulations ".strtoupper($student->StudentNameEn).", Your admission application has been accepted. Contact the school with required documents by 29-12-2022 to confirm admission. Head Master,Tepriganj Adarsha B.L High School", $StudentPhoneNumber);
 
 
             // smsSend('অভিনন্দন, আপনার ভর্তির আবেদনটি গ্রহন করা হয়েছে। ভর্তি নিশ্চিত করতে 29-12-2022 এর মধ্যে প্রয়োজনীয় কাগজপত্র নিয়ে বিদ্যালয়ে যোগাযোগ করুন', $StudentPhoneNumber);
@@ -583,7 +583,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             if($submit_type=='data_entry'){
                 $data['StudentStatus'] = $r->StudentStatus;
             }
-            smsSend("Dear ".strtoupper($r->StudentNameEn).",Your Admission Apply has been Submit.Please Payment Your Application Fee.Your Application Id- $AdmissionID",$r->StudentPhoneNumber);
+            SmsNocSmsSend("Dear ".strtoupper($r->StudentNameEn).",Your Admission Apply has been Submit.Please Payment Your Application Fee.Your Application Id- $AdmissionID",$r->StudentPhoneNumber);
             $result =   student::create($data);
         } else {
             $student = student::find($r->id);
