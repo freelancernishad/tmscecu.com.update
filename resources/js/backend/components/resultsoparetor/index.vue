@@ -159,6 +159,7 @@ export default {
 	methods: {
           async filter(){
 
+
             var res = await this.callApi('post',`/api/resultlogCount`,this.filterdata);
 
             if(res.data){

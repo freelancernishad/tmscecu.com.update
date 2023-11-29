@@ -14,12 +14,16 @@ class ResultLogController extends Controller
      */
     public function index(Request $request)
     {
+       $examType =  $request->examType;
+       if($examType=='Annual_Examination'){
+        $examType = 'Annual Examination';
+       }
 
         $logData = [
             'class'=>$request->student_class,
             'group'=> $request->group,
             'subject'=>$request->subject,
-            'examName'=>$request->examType,
+            'examName'=>$examType,
             'month'=>date('F', strtotime($request->date)),
             'year'=>date('Y', strtotime($request->date)),
             'status'=>'1',
