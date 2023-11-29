@@ -15,14 +15,25 @@ class ResultLogController extends Controller
     public function index(Request $request)
     {
        $examType =  $request->examType;
-       if($examType=='Annual_Examination'){
-        $examType = 'Annual Examination';
-       }
+    //    if($examType=='Annual_Examination'){
+    //     $examType = 'Annual Examination';
+    //    }
+
+    $subject = $request->subject;
+        if($subject=='ধর্ম ও নৈতিক শিক্ষা'){
+            if($request->religion=='Hindu'){
+                $subject = 'হিন্দু-ধর্ম';
+            }else{
+                $subject = 'ইসলাম-ধর্ম';
+            }
+        }
+
+
 
         $logData = [
             'class'=>$request->student_class,
             'group'=> $request->group,
-            'subject'=>$request->subject,
+            'subject'=>$subject,
             'examName'=>$examType,
             'month'=>date('F', strtotime($request->date)),
             'year'=>date('Y', strtotime($request->date)),
