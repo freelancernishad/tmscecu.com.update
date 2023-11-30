@@ -223,7 +223,7 @@ function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='paymen
    ];
 
    // 148.163.122.80
-   $post = json_encode($post);
+    $post = json_encode($post);
    Log::info($post);
 
    $ch = curl_init($Apiurl.'/merchant-api');
@@ -235,11 +235,12 @@ function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='paymen
    $response = curl_exec($ch);
    curl_close($ch);
 
+//    return $response;
 /*      echo '<pre>';
    print_r($response); */
 
    Log::info($response);
-     $response = json_decode($response);
+   $response = json_decode($response);
    $sToken =  $response->secure_token;
 
 
@@ -423,6 +424,8 @@ function subjectCol($subject)
             return 'form_filup_fee';
         }elseif($name=='মার্কসীট ফি'){
             return 'marksheet';
+        }elseif($name=='অবসর ও কল্যাণ ট্রাস্ট'){
+            return 'Pension_and_Welfare_Trust';
         }else{
             return $name;
         }
@@ -1662,7 +1665,7 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 
 curl_close($curl);
-echo $response;
+// echo $response;
 
 }
 
