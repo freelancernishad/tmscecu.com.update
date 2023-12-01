@@ -160,7 +160,9 @@ class studentsController extends Controller
 
         //    echo  "Congratulations ".strtoupper($student->StudentNameEn).", Your admission application has been accepted. Contact the school with required documents by 29-12-2022 to confirm admission. Head Master,Tepriganj High School";
 
-            SmsNocSmsSend("Congratulations ".strtoupper($student->StudentNameEn).", Your admission application has been accepted. Contact the school with required documents by 29-12-2022 to confirm admission. Head Master,Tepriganj Adarsha B.L High School", $StudentPhoneNumber);
+            SmsNocSmsSend("অভিনন্দন $student->StudentName, আপনার ভর্তি নিশ্চিত করতে ০৭-১২-২০২৩ এর মধ্যে প্রয়োজনীয় কাগজপত্র ও ভর্তি ফি নিয়ে বিদ্যালয়ে যোগাযোগ করুন", $StudentPhoneNumber);
+
+            // SmsNocSmsSend("Congratulations ".strtoupper($student->StudentNameEn).", Your admission application has been accepted. Contact the school with required documents by 29-12-2022 to confirm admission. Head Master,Tepriganj Adarsha B.L High School", $StudentPhoneNumber);
 
 
             // smsSend('অভিনন্দন, আপনার ভর্তির আবেদনটি গ্রহন করা হয়েছে। ভর্তি নিশ্চিত করতে 29-12-2022 এর মধ্যে প্রয়োজনীয় কাগজপত্র নিয়ে বিদ্যালয়ে যোগাযোগ করুন', $StudentPhoneNumber);

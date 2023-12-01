@@ -332,7 +332,7 @@ class PaymentController extends Controller
 
 
 
-        $Pension_and_Welfare_Trust_feeCount =  $this->PaymentCount(['type' => 'Pension_and_Welfare_Trust','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023'],'count');
+        $Pension_and_Welfare_Trust_feeCount =  $this->PaymentCount(['type' => 'Pension_and_Welfare_Trust','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2024'],'count');
 
         if(!$Pension_and_Welfare_Trust_feeCount){
             array_push($monthlyPaid,[
