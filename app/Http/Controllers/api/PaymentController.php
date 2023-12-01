@@ -349,11 +349,17 @@ class PaymentController extends Controller
 
 
                 if($studentStatus=='Approve'){
-                    array_push($monthlyPaid,[
-                        'key'=>month_en_to_bn('January'),
-                        'amount'=>$monthly_fee,
-                        'sub_type'=>'',
-                    ]);
+
+                    $monthly_feeCount =    $this->PaymentCount(['type' => 'monthly_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023','month' => 'January'],'count');
+                    if($monthly_feeCount>0){
+                    }else{
+                        array_push($monthlyPaid,[
+                            'key'=>month_en_to_bn('January'),
+                            'amount'=>$monthly_fee,
+                            'sub_type'=>'',
+                        ]);
+                    }
+
                 }else{
                     foreach ($allMonth as $value) {
                         $monthly_feeCount =    $this->PaymentCount(['type' => 'monthly_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2023','month' => $value],'count');
