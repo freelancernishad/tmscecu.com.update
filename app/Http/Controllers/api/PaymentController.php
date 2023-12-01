@@ -100,8 +100,8 @@ class PaymentController extends Controller
                 $ApliedStudentCount = student::where(['AdmissionID' => $adminssionId])->count();
                 if($ApliedStudentCount>0){
 
-                return    $ApliedStudent = student::where(['AdmissionID' => $adminssionId])->latest()->first();
-                    $studentStatus = $ApliedStudent->StudentStatus;
+                    $ApliedStudent = student::where(['AdmissionID' => $adminssionId])->latest()->first();
+                   return $studentStatus = $ApliedStudent->StudentStatus;
                     if($ApliedStudent->StudentStatus=='Approve'){
                         // $message = "
                         // <h2 style='color:green;text-align:center;font-size: 25px; green;margin-bottom: 22px;margin-top: 22px;'>আবেদনটি অনুমোদন করা হয়েছে। ভর্তির জন্য প্রয়োজনীয় কাগজপত্র বিদ্যালয়ে জমা দিন</h2>
