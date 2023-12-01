@@ -1181,7 +1181,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
         }
         .defaltfont {
-            font-size: 16px;
+            font-size: 14px;
         }
 
 
@@ -1510,7 +1510,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                 </tr>
 
                                 <tr class='tr items'>
-                                <td class='td  defaltfont'>".int_en_to_bn(8)."</td>
+                                <td class='td  defaltfont'>".int_en_to_bn(9)."</td>
                                 <td class='td  defaltfont'>ফরম পূরণ (বিবিধ ফি)</td>
                                 <td class='td  defaltfont'>".int_en_to_bn($Fother_fee)."</td>
                                 </tr>
@@ -1518,7 +1518,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
 
                                 <tr class='tr items'>
-                                <td class='td  defaltfont'>".int_en_to_bn(9)."</td>
+                                <td class='td  defaltfont'>".int_en_to_bn(10)."</td>
                                 <td class='td  defaltfont'>অবসর ও কল্যাণ ট্রাস্ট</td>
                                 <td class='td  defaltfont'>".int_en_to_bn($pension_and_Welfare_TrustFee)."</td>
                                 </tr>
@@ -1823,14 +1823,14 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                             <td class='td  defaltfont'>".int_en_to_bn($late_fees)."</td>
                             </tr>
                             <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(8)."</td>
+                            <td class='td  defaltfont'>".int_en_to_bn(9)."</td>
                             <td class='td  defaltfont'>ফরম পূরণ (বিবিধ ফি)</td>
                             <td class='td  defaltfont'>".int_en_to_bn($Fother_fee)."</td>
                             </tr>
 
 
                             <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(9)."</td>
+                            <td class='td  defaltfont'>".int_en_to_bn(10)."</td>
                             <td class='td  defaltfont'>অবসর ও কল্যাণ ট্রাস্ট</td>
                             <td class='td  defaltfont'>".int_en_to_bn($pension_and_Welfare_TrustFee)."</td>
                             </tr>
