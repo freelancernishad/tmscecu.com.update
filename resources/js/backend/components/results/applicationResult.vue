@@ -168,19 +168,16 @@ export default {
             if (!this.allSelected) {
                 this.students.forEach((student ,index)=> {
                     this.actioncheck.push(student.id);
-
                     this.form.studentDatas.push(student.id);
-
-
-
-
                 })
             }
-
-
             // console.log(this.form.studentDatas);
-
         },
+
+
+
+
+
         async getNewStudents(){
             this.preloader = true
             var status = 'Pending';
