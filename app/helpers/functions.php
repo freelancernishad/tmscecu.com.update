@@ -401,8 +401,8 @@ function subjectCol($subject)
             return 'রেজিস্ট্রেশন ফি';
         }elseif($name=='form_filup_fee'){
             return 'ফরম পূরণ ফি';
-        }elseif($name=='অবসর ও কল্যাণ ট্রাস্ট'){
-            return 'Pension_and_Welfare_Trust';
+        }elseif($name=='Pension_and_Welfare_Trust'){
+            return 'অবসর ও কল্যাণ ট্রাস্ট';
         }elseif($name=='marksheet'){
             return 'মার্কসীট ফি';
         }
