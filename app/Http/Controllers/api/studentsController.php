@@ -1518,13 +1518,13 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
 
                                 <tr class='tr items'>
-                                <td class='td  defaltfont'>".int_en_to_bn(2)."</td>
+                                <td class='td  defaltfont'>".int_en_to_bn(9)."</td>
                                 <td class='td  defaltfont'>অবসর ও কল্যাণ ট্রাস্ট</td>
                                 <td class='td  defaltfont'>".int_en_to_bn($pension_and_Welfare_TrustFee)."</td>
                                 </tr>
 
                                 ";
-                                $totalAmount = $sessionFee+$monthlyAmount+$exam_fee+$registration_fee+$board_fee+$center_fee+$late_fees+$Fother_fee;
+                                $totalAmount = $sessionFee+$monthlyAmount+$exam_fee+$registration_fee+$board_fee+$center_fee+$late_fees+$Fother_fee+$pension_and_Welfare_TrustFee;
 
 
                             }else{
@@ -1828,8 +1828,15 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                             <td class='td  defaltfont'>".int_en_to_bn($Fother_fee)."</td>
                             </tr>
 
+
+                            <tr class='tr items'>
+                            <td class='td  defaltfont'>".int_en_to_bn(9)."</td>
+                            <td class='td  defaltfont'>অবসর ও কল্যাণ ট্রাস্ট</td>
+                            <td class='td  defaltfont'>".int_en_to_bn($pension_and_Welfare_TrustFee)."</td>
+                            </tr>
+
                             ";
-                            $totalAmount = $sessionFee+$monthlyAmount+$exam_fee+$registration_fee+$board_fee+$center_fee+$late_fees+$Fother_fee;
+                            $totalAmount = $sessionFee+$monthlyAmount+$exam_fee+$registration_fee+$board_fee+$center_fee+$late_fees+$Fother_fee+$pension_and_Welfare_TrustFee;
 
                         }else{
                             $index = 1;
