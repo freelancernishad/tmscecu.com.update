@@ -99,6 +99,7 @@ class PaymentController extends Controller
 
                 $ApliedStudentCount = student::where(['AdmissionID' => $adminssionId])->count();
                 if($ApliedStudentCount>0){
+
                     $ApliedStudent = student::where(['AdmissionID' => $adminssionId])->latest()->first();
                     $studentStatus = $ApliedStudent->StudentStatus;
                     if($ApliedStudent->StudentStatus=='Approve'){
@@ -252,11 +253,11 @@ class PaymentController extends Controller
 
         $session_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'session_fee'])->first()->fees;
 
-        if($student->stipend=='No'){
+        // if($student->stipend=='No'){
             $monthly_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'monthly_fee'])->first()->fees;
-        }else{
-            $monthly_fee = 0;
-        }
+        // }else{
+        //     $monthly_fee = 0;
+        // }
 
 
 
