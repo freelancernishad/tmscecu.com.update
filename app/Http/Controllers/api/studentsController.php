@@ -1353,6 +1353,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                    'board_fee'=>'বোর্ড ফি',
                                    'center_fee'=>'কেন্দ্র ফি',
                                    'late_fees'=>'বিলম্ব ফি',
+                                   'Pension_and_Welfare_Trust'=>'অবসর ও কল্যাণ ট্রাস্ট',
                             ];
 
                             $kahts = json_decode(json_encode($khat));
@@ -1368,6 +1369,13 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                 if($paymentSessionCount>0){
                                     $paymentSession = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'session_fee'])->first();
                                    $sessionFee  = $paymentSession->amount;
+                                }
+
+                                $pension_and_Welfare_TrustFee = 0;
+                                $paymentPension_and_Welfare_TrustCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'pension_and_Welfare_Trust'])->count();
+                                if($paymentPension_and_Welfare_TrustCount>0){
+                                    $paymentPension_and_Welfare_Trust = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'pension_and_Welfare_Trust'])->first();
+                                   $pension_and_Welfare_TrustFee  = $paymentPension_and_Welfare_Trust->amount;
                                 }
 
 
@@ -1505,6 +1513,14 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                 <td class='td  defaltfont'>".int_en_to_bn(8)."</td>
                                 <td class='td  defaltfont'>ফরম পূরণ (বিবিধ ফি)</td>
                                 <td class='td  defaltfont'>".int_en_to_bn($Fother_fee)."</td>
+                                </tr>
+
+
+
+                                <tr class='tr items'>
+                                <td class='td  defaltfont'>".int_en_to_bn(2)."</td>
+                                <td class='td  defaltfont'>অবসর ও কল্যাণ ট্রাস্ট</td>
+                                <td class='td  defaltfont'>".int_en_to_bn($pension_and_Welfare_TrustFee)."</td>
                                 </tr>
 
                                 ";
