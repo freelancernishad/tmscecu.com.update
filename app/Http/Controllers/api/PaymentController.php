@@ -136,7 +136,7 @@ class PaymentController extends Controller
                         // $message = 'এপ্লিকেশনটি অনুমোদন করা হয়েছে ';
 
                         $StudentStatus = 'Approve';
-                        $student = student::where(['AdmissionID' => $adminssionId,'StudentStatus'=>$StudentStatus])->latest()->first();
+                       return $student = student::where(['AdmissionID' => $adminssionId,'StudentStatus'=>$StudentStatus])->latest()->first();
                         $AdmissionID = $student->AdmissionID;
                         $StudentClass = $student->StudentClass;
                         $studentid = $student->id;
@@ -253,11 +253,11 @@ class PaymentController extends Controller
 
         $session_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'session_fee'])->first()->fees;
 
-        // if($student->stipend=='No'){
+        if($student->stipend=='No'){
             $monthly_fee = SchoolFee::where(['class'=>$StudentClass,'type'=>'monthly_fee'])->first()->fees;
-        // }else{
-        //     $monthly_fee = 0;
-        // }
+        }else{
+            $monthly_fee = 0;
+        }
 
 
 
