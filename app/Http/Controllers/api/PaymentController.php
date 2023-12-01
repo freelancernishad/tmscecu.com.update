@@ -100,7 +100,7 @@ class PaymentController extends Controller
                 $ApliedStudentCount = student::where(['AdmissionID' => $adminssionId])->count();
                 if($ApliedStudentCount>0){
 
-                    $ApliedStudent = student::where(['AdmissionID' => $adminssionId])->latest()->first();
+                    return $ApliedStudent = student::where(['AdmissionID' => $adminssionId])->latest()->first();
                    return $studentStatus = $ApliedStudent->StudentStatus;
                     if($ApliedStudent->StudentStatus=='Approve'){
                         // $message = "
