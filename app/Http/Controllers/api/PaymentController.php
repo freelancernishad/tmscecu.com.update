@@ -272,9 +272,9 @@ class PaymentController extends Controller
 
         $year = date('Y');
         $yearSession = date('Y');
-        if($MonthName=='December'){
-            $yearSession = date('Y')+1;
-        }
+        // if($MonthName=='December'){
+        //     $yearSession = date('Y')+1;
+        // }
 
 
 
