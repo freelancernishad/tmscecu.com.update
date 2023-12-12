@@ -13,7 +13,7 @@ use App\Models\ResultLog;
 use App\Models\school_detail;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
-use Meneses\LaravelMpdf\Facades\LaravelMpdf;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
 
 class resultController extends Controller
 {
