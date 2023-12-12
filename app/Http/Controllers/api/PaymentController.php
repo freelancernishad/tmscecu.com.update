@@ -331,7 +331,7 @@ class PaymentController extends Controller
             ]);
         }
 
-
+        if($studentStatus=='Approve'){
 
         $Pension_and_Welfare_Trust_feeCount =  $this->PaymentCount(['type' => 'Pension_and_Welfare_Trust','admissionId' => $AdmissionID,'status' => 'Paid','year' => '2024'],'count');
 
@@ -341,7 +341,7 @@ class PaymentController extends Controller
                 'amount'=>100,
             ]);
         }
-
+    }
         // return $monthlyPaid;
 
 
