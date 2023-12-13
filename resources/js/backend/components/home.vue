@@ -569,7 +569,7 @@ export default {
 
     data() {
         return {
-
+            paymentYear:2024,
             year:new Date().getFullYear(),
             totalstudents:0,
             marksheetDownload:0,
