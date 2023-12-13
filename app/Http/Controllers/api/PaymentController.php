@@ -1716,8 +1716,17 @@ class PaymentController extends Controller
     }
 
 
-    public function getAnnuallyReport()
+    public function getAnnuallyReport(Request $request)
     {
+
+
+        if($request->year){
+            $year = $request->year;
+        }else{
+            $year = date('Y');
+
+        }
+
         $html = '';
 
 
@@ -1752,16 +1761,16 @@ class PaymentController extends Controller
         $html .="
         <tr  align='center'>
             <td class='td'>". class_en_to_bn($class) ."</td>
-            <td class='td'>". annualAmount(date('Y'),'Admission_fee',$class) ."</td>
-            <td class='td'>". annualAmount(date('Y'),'session_fee',$class) ."</td>
-            <td class='td'>". annualAmount(date('Y'),'monthly_fee',$class) ."</td>
-            <td class='td'>". annualAmount(date('Y'),'exam_fee',$class) ."</td>
-            <td class='td'>". annualAmount(date('Y'),'registration_fee',$class) ."</td>
-            <td class='td'>". annualAmount(date('Y'),'form_filup_fee',$class) ."</td>
-            <td class='td'>". annualAmount(date('Y'),'marksheet',$class) ."</td>
-            <td class='td'>". annualAmount(date('Y'),'TC',$class) ."</td>
+            <td class='td'>". annualAmount($year,'Admission_fee',$class) ."</td>
+            <td class='td'>". annualAmount($year,'session_fee',$class) ."</td>
+            <td class='td'>". annualAmount($year,'monthly_fee',$class) ."</td>
+            <td class='td'>". annualAmount($year,'exam_fee',$class) ."</td>
+            <td class='td'>". annualAmount($year,'registration_fee',$class) ."</td>
+            <td class='td'>". annualAmount($year,'form_filup_fee',$class) ."</td>
+            <td class='td'>". annualAmount($year,'marksheet',$class) ."</td>
+            <td class='td'>". annualAmount($year,'TC',$class) ."</td>
 
-            <td class='td'>". annualAmount(date('Y'),'marksheet',$class, 'total') ."</td>
+            <td class='td'>". annualAmount($year,'marksheet',$class, 'total') ."</td>
         </tr>";
 
         }
@@ -1769,16 +1778,16 @@ class PaymentController extends Controller
         $html .="
         <tr align='center'>
             <td class='td'>মোট</td>
-            <td class='td'>". annualAmount(date('Y'),'Admission_fee') ."</td>
-            <td class='td'>". annualAmount(date('Y'),'session_fee') ."</td>
-            <td class='td'>". annualAmount(date('Y'),'monthly_fee') ."</td>
-            <td class='td'>". annualAmount(date('Y'),'exam_fee') ."</td>
-            <td class='td'>". annualAmount(date('Y'),'registration_fee') ."</td>
-            <td class='td'>". annualAmount(date('Y'),'form_filup_fee') ."</td>
-            <td class='td'>". annualAmount(date('Y'),'marksheet') ."</td>
-            <td class='td'>". annualAmount(date('Y'),'TC') ."</td>
+            <td class='td'>". annualAmount($year,'Admission_fee') ."</td>
+            <td class='td'>". annualAmount($year,'session_fee') ."</td>
+            <td class='td'>". annualAmount($year,'monthly_fee') ."</td>
+            <td class='td'>". annualAmount($year,'exam_fee') ."</td>
+            <td class='td'>". annualAmount($year,'registration_fee') ."</td>
+            <td class='td'>". annualAmount($year,'form_filup_fee') ."</td>
+            <td class='td'>". annualAmount($year,'marksheet') ."</td>
+            <td class='td'>". annualAmount($year,'TC') ."</td>
 
-            <td class='td'>". annualAmount(date('Y'),'','','Subtotal') ."</td>
+            <td class='td'>". annualAmount($year,'','','Subtotal') ."</td>
         </tr>
 
 
