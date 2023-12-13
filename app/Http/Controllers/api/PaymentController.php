@@ -1743,6 +1743,7 @@ class PaymentController extends Controller
             <td class='td'>শ্রেণি</td>
             <td class='td'>ভর্তি ফরম ফি</td>
             <td class='td'>ভর্তি/সেশন ফি</td>
+            <td class='td'>অ ও ক ট্রাস্ট</td>
             <td class='td'>মাসিক বেতন</td>
             <td class='td'>পরীক্ষার ফি</td>
             <td class='td'>রেজিস্ট্রেশন ফি</td>
@@ -1763,6 +1764,7 @@ class PaymentController extends Controller
             <td class='td'>". class_en_to_bn($class) ."</td>
             <td class='td'>". annualAmount($year,'Admission_fee',$class) ."</td>
             <td class='td'>". annualAmount($year,'session_fee',$class) ."</td>
+            <td class='td'>". annualAmount($year,'Pension_and_Welfare_Trust',$class) ."</td>
             <td class='td'>". annualAmount($year,'monthly_fee',$class) ."</td>
             <td class='td'>". annualAmount($year,'exam_fee',$class) ."</td>
             <td class='td'>". annualAmount($year,'registration_fee',$class) ."</td>
@@ -1780,6 +1782,7 @@ class PaymentController extends Controller
             <td class='td'>মোট</td>
             <td class='td'>". annualAmount($year,'Admission_fee') ."</td>
             <td class='td'>". annualAmount($year,'session_fee') ."</td>
+            <td class='td'>". annualAmount($year,'Pension_and_Welfare_Trust') ."</td>
             <td class='td'>". annualAmount($year,'monthly_fee') ."</td>
             <td class='td'>". annualAmount($year,'exam_fee') ."</td>
             <td class='td'>". annualAmount($year,'registration_fee') ."</td>
