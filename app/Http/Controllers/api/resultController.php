@@ -503,7 +503,7 @@ class resultController extends Controller
     $paymentFilterMonth = [
         'admissionId'=>$AdmissionID,
         'type'=>'monthly_fee',
-        'month'=>'Decemberd',
+        'month'=>'December',
         'year'=>$results->year,
         'status'=>'Paid',
      ];
