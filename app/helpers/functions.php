@@ -2525,18 +2525,14 @@ function resultDetails($results,$type='ragular')
         if($results->failed>0){
             $totalMark .="";
         }else{
-
             if($results->exam_name==='Annual Examination'){
                 $totalMark .="<tr>
-                <td>Next Class Roll</td>
-                <td colspan='3'><span id='i_name'>$results->nextroll</span></td>
-            </tr>";
-        }else{
-            $totalMark .="";
-        }
-
-
-
+                    <td>Next Class Roll</td>
+                    <td colspan='3'><span id='i_name'>$results->nextroll</span></td>
+                </tr>";
+            }else{
+                $totalMark .="";
+            }
         }
 
 
@@ -2552,29 +2548,42 @@ function resultDetails($results,$type='ragular')
 
             </tr>";
         }else{
+            if($results->class=='Six' || $results->class=='Seven'){
+                $totalMark = "";
+                    if($results->exam_name==='Annual Examination'){
+                        $totalMark .="<tr>
+                            <td>Next Class Roll</td>
+                            <td colspan='3'><span id='i_name'>$results->nextroll</span></td>
+                        </tr>";
+                    }else{
+                        $totalMark .="";
+                    }
 
-            $totalMark = "
-            <tr>
-                <td>Result</td>
-                <td>GPA=$GpaResult</td>
-                <td>Total Mark</td>
-                <td>$MarkResult</td>
-            </tr>";
-
-            if($results->failed>0){
-                $totalMark .="";
             }else{
 
-                if($results->exam_name==='Annual Examination'){
-                    $totalMark .="<tr>
-                    <td>Next Class Roll</td>
-                    <td colspan='3'><span id='i_name'>$results->nextroll</span></td>
+                $totalMark = "
+                <tr>
+                    <td>Result</td>
+                    <td>GPA=$GpaResult</td>
+                    <td>Total Mark</td>
+                    <td>$MarkResult</td>
                 </tr>";
-            }else{
-                $totalMark .="";
+                if($results->failed>0){
+                    $totalMark .="";
+                }else{
+                    if($results->exam_name==='Annual Examination'){
+                        $totalMark .="<tr>
+                            <td>Next Class Roll</td>
+                            <td colspan='3'><span id='i_name'>$results->nextroll</span></td>
+                        </tr>";
+                    }else{
+                        $totalMark .="";
+                    }
+                }
             }
 
-            }
+
+
 
         }
 
