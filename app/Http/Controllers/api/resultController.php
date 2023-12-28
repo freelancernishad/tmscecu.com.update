@@ -584,12 +584,20 @@ class resultController extends Controller
 
                 $html .= resultDetails($results);
 
-                $html  .= "<div  style='text-align: center;'><a target='_blank' href='/payment?studentId=$student->id&type=marksheet&resultId=$results->id' class='btn btn-info' style='font-size: 25px;'>ডাউনলোড মার্কশীট</a></div>";
 
-                $html  .= "<h4 style='text-align: center;color: #007BFF;font-size: 25px;margin: 11px 2px;'>অথবা</h4>";
+                if($request->filter['class']=='Six' || $request->filter['class']=='Seven'){}else{
+                    $html  .= "<div  style='text-align: center;'><a target='_blank' href='/payment?studentId=$student->id&type=marksheet&resultId=$results->id' class='btn btn-info' style='font-size: 25px;'>ডাউনলোড মার্কশীট</a></div>";
 
-                $html  .= "<h2 style='text-align:center;font-size:20px;color:#007BFF'>মার্কশীট সংগ্রহ করতে বিদ্যালয়ে যোগাযোগ করুন </h2>";
-                //    $html .= ResultGradeList($results);
+                    $html  .= "<h4 style='text-align: center;color: #007BFF;font-size: 25px;margin: 11px 2px;'>অথবা</h4>";
+
+                    $html  .= "<h2 style='text-align:center;font-size:20px;color:#007BFF'>মার্কশীট সংগ্রহ করতে বিদ্যালয়ে যোগাযোগ করুন </h2>";
+                    //    $html .= ResultGradeList($results);
+                }
+
+
+
+
+
 
             }
         } else {
