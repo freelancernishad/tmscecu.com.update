@@ -2409,9 +2409,9 @@ $Fgg = 0;
         $subDe = $i - 2;
     }
 
-    // elseif ($class == "Eight") {
-    //     $subDe = $i;
-    // }
+    elseif ($class == "Eight") {
+        $subDe = $i;
+    }
 
     elseif ($class == "Nine" || $class == "Ten") {
         $subDe = $i - 4;
