@@ -2405,7 +2405,7 @@ $Fgg = 0;
     }
     $finalTotalGpa =  $GPA + $fourthSub;
     $subDe = 0;
-    if ($class == "Six" || $class == "Seven" || $class == "Eight") {
+    if ($class == "Six" || $class == "Seven") {
         $subDe = $i - 2;
     }
 
