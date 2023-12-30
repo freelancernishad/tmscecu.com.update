@@ -38,7 +38,7 @@
 
 
 
-    {!! SchoolPad($results[0]->school_id) !!}
+    {!! SchoolPad($school_id) !!}
 
     <div class="header">
 

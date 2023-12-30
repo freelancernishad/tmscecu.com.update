@@ -331,11 +331,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
          if($veiwType=='noticePdf'){
 
 
-            return PdfMaker('A4',$school_id,view('admin/pdfReports.promotionResult',compact('results','pdfFileName','veiwType','schoolDetails')),$pdfFileName);
+            return PdfMaker('A4',$school_id,view('admin/pdfReports.promotionResult',compact('results','pdfFileName','veiwType','schoolDetails','school_id')),$pdfFileName);
 
 
          }elseif($veiwType=='schoolPdf'){
-            return PdfMaker('A4',$school_id,view('admin/pdfReports.promotionResult',compact('results','pdfFileName','veiwType','schoolDetails')),$pdfFileName);
+            return PdfMaker('A4',$school_id,view('admin/pdfReports.promotionResult',compact('results','pdfFileName','veiwType','schoolDetails','school_id')),$pdfFileName);
          }else{
              return view('resultpublish', compact('results','filter','schoolDetails'));
 
