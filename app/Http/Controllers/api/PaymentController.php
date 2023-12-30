@@ -488,24 +488,23 @@ class PaymentController extends Controller
 
 
 
-                 $studentRestult = StudentResult::where(['stu_id'=>$StudentUID,'exam_name'=>'Selective_Exam'])->first();
-
-                $greed = $studentRestult->greed;
-                if($greed=='F'){
-
-                    $insertedData = array(["key"=>'ফরম পূরণ ফি',"amount"=>'আপনি নির্বাচনী পরিক্ষায় পাস না করায় ফরম পূরণ ফি দিতে পারবেন না। দয়াকরে বিদ্যালয়ে যোগাযোগ করুন।',"sub_type"=>'']);
-                    array_splice($monthlyPaid, $index_number, 0, $insertedData);
-                }else{
-
-
-                    if($StudentGroup=='Humanities'){
-                    $insertedData = array(["key"=>'ফরম পূরণ ফি',"amount"=>2220,"sub_type"=>'']);
-                    array_splice($monthlyPaid, $index_number, 0, $insertedData);
-                }else{
-                    $insertedData = array(["key"=>'ফরম পূরণ ফি',"amount"=>2340,"sub_type"=>'']);
-                    array_splice($monthlyPaid, $index_number, 0, $insertedData);
+                 $studentRestultCount = StudentResult::where(['stu_id'=>$StudentUID,'exam_name'=>'Selective_Exam'])->count();
+                if($studentRestultCount>0){
+                    $studentRestult = StudentResult::where(['stu_id'=>$StudentUID,'exam_name'=>'Selective_Exam'])->first();
+                    $greed = $studentRestult->greed;
+                    if($greed=='F'){
+                        $insertedData = array(["key"=>'ফরম পূরণ ফি',"amount"=>'আপনি নির্বাচনী পরিক্ষায় পাস না করায় ফরম পূরণ ফি দিতে পারবেন না। দয়াকরে বিদ্যালয়ে যোগাযোগ করুন।',"sub_type"=>'']);
+                        array_splice($monthlyPaid, $index_number, 0, $insertedData);
+                    }else{
+                        if($StudentGroup=='Humanities'){
+                            $insertedData = array(["key"=>'ফরম পূরণ ফি',"amount"=>2220,"sub_type"=>'']);
+                            array_splice($monthlyPaid, $index_number, 0, $insertedData);
+                        }else{
+                            $insertedData = array(["key"=>'ফরম পূরণ ফি',"amount"=>2340,"sub_type"=>'']);
+                            array_splice($monthlyPaid, $index_number, 0, $insertedData);
+                        }
+                    }
                 }
-            }
 
 
 
