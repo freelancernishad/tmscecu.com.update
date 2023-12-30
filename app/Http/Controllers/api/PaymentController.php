@@ -1227,6 +1227,7 @@ class PaymentController extends Controller
                         $monthly_feeCountJ =    $this->PaymentCount(['type' => 'monthly_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession,'month' => 'January'],'count');
                         if($monthly_feeCountJ>0){
                         }else{
+                            $totalamount +=  $monthly_fee;
                             array_push($monthlyPaid,[
                                 'key'=>month_en_to_bn('January'),
                                 'amount'=>$monthly_fee,
