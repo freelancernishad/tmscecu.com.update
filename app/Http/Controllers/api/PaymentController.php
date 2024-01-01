@@ -355,7 +355,7 @@ class PaymentController extends Controller
                         'sub_type'=>'',
                     ]);
                 }else{
-                    if($MonthName=='December'){
+                    if($MonthName=='December' || $MonthName=='January'){
 
 
 
