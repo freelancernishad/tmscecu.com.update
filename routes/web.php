@@ -316,8 +316,15 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
         $veiwType = $request->veiwType;
         // $filter['status'] = 'Published';
         if($veiwType=='noticePdf'){
+            if($student_class=='Six' || $student_class=='Seven'){
 
-            $results = StudentResult::where($filter)->where('FinalResultStutus','!=','inhaled')->where('GPA','!=','F')->orderBy('failed', 'asc')->orderBy('total', 'desc')->get();
+                $results = StudentResult::where($filter)->where('FinalResultStutus','!=','inhaled')->orderBy('failed', 'asc')->orderBy('total', 'desc')->get();
+            }else{
+                
+                $results = StudentResult::where($filter)->where('FinalResultStutus','!=','inhaled')->where('GPA','!=','F')->orderBy('failed', 'asc')->orderBy('total', 'desc')->get();
+            }
+
+
         }else{
             $results = StudentResult::where($filter)->orderBy('failed', 'asc')->orderBy('total', 'desc')->get();
 
@@ -331,11 +338,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
          if($veiwType=='noticePdf'){
 
 
-            return PdfMaker('A4',$school_id,view('admin/pdfReports.promotionResult',compact('results','pdfFileName','veiwType','schoolDetails')),$pdfFileName);
+            return PdfMaker('A4',$school_id,view('admin/pdfReports.promotionResult',compact('results','pdfFileName','veiwType','schoolDetails','school_id')),$pdfFileName);
 
 
          }elseif($veiwType=='schoolPdf'){
-            return PdfMaker('A4',$school_id,view('admin/pdfReports.promotionResult',compact('results','pdfFileName','veiwType','schoolDetails')),$pdfFileName);
+            return PdfMaker('A4',$school_id,view('admin/pdfReports.promotionResult',compact('results','pdfFileName','veiwType','schoolDetails','school_id')),$pdfFileName);
          }else{
              return view('resultpublish', compact('results','filter','schoolDetails'));
 
