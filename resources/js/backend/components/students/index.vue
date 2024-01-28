@@ -136,6 +136,11 @@
                 <a v-if="searchtype == 'filterclass'"
                     class="btn-fill-lg font-normal text-light gradient-pastel-green float-right" target="_blank"
                     :href="'/dashboard/student_list/pdf/' + year + '/' + student_class + '/' + school_id" >Download Student List</a>
+
+                <a v-if="searchtype == 'filterclass'"
+                    class="btn-fill-lg font-normal text-light gradient-pastel-green float-right" target="_blank"
+                    :href="'/dashboard/student_list_stipend/pdf/' + year + '/' + student_class + '/' + school_id" >উপবৃত্তি তালিকা </a>
+
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
