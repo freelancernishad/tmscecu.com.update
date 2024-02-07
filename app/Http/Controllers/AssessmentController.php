@@ -12,7 +12,7 @@ class AssessmentController extends Controller
 
 
     function demofunction() {
-        return 'demo function for test';
+        return 'demo function for test 0';
     }
 
 
