@@ -10,6 +10,15 @@ use App\Models\student;
 class AssessmentController extends Controller
 {
 
+
+    function demofunction() {
+        return 'demo function for test';
+    }
+
+
+
+
+
     function getStudentAssessment(){
 
         return student::where(['StudentClass'=>'Six','Year'=>date('Y'),'StudentStatus'=>'Active'])->orderBy('StudentRoll','desc')->with('assessments')->get();
