@@ -27,7 +27,7 @@
                     <p class=" mb-0">পদবী : {{ staff.TeacherPosition }} </p>
                     <p class=" mb-0">শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }} </p>
                     <p class=" mb-0">ঠিকানা : {{ staff.TeacherAddress }}</p>
-                    <p class=" mb-0 num">মোবাইল : {{ staff.TeacherPhoneNumber }}</p>
+                    <!-- <p class=" mb-0 num">মোবাইল : {{ staff.TeacherPhoneNumber }}</p> -->
                     <p class=" mb-0 num">ইমেইল : <a :href="'mailto:'+staff.TeacherEmail">{{ staff.TeacherEmail }}</a></p>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                     <p class=" mb-0">পদবী : {{ staff.TeacherPosition }} </p>
                     <p class=" mb-0">শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }} </p>
                     <p class=" mb-0">ঠিকানা : {{ staff.TeacherAddress }}</p>
-                    <p class=" mb-0 num">মোবাইল : {{ staff.TeacherPhoneNumber }}</p>
+                    <!-- <p class=" mb-0 num">মোবাইল : {{ staff.TeacherPhoneNumber }}</p> -->
                     <p class=" mb-0 num">ইমেইল : <a :href="'mailto:'+staff.TeacherEmail">{{ staff.TeacherEmail }}</a></p>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                     <p class=" mb-0">পদবী : {{ staff.TeacherPosition }} </p>
                     <p class=" mb-0">শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }} </p>
                     <p class=" mb-0">ঠিকানা : {{ staff.TeacherAddress }}</p>
-                    <p class=" mb-0 num">মোবাইল : {{ staff.TeacherPhoneNumber }}</p>
+                    <!-- <p class=" mb-0 num">মোবাইল : {{ staff.TeacherPhoneNumber }}</p> -->
                     <p class=" mb-0 num">ইমেইল : <a :href="'mailto:'+staff.TeacherEmail">{{ staff.TeacherEmail }}</a></p>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                     <p class=" mb-0">পদবী : {{ staff.TeacherPosition }} </p>
                     <p class=" mb-0">শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }} </p>
                     <p class=" mb-0">ঠিকানা : {{ staff.TeacherAddress }}</p>
-                    <p class=" mb-0 num">মোবাইল : {{ staff.TeacherPhoneNumber }}</p>
+                    <!-- <p class=" mb-0 num">মোবাইল : {{ staff.TeacherPhoneNumber }}</p> -->
                     <p class=" mb-0 num">ইমেইল : <a :href="'mailto:'+staff.TeacherEmail">{{ staff.TeacherEmail }}</a></p>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                     <p class=" mb-0">পদবী : {{ staff.TeacherPosition }} </p>
                     <p class=" mb-0">শিক্ষাগত যোগ্যতা : {{ staff.TeacherQualification }} </p>
                     <p class=" mb-0">ঠিকানা : {{ staff.TeacherAddress }}</p>
-                    <p class=" mb-0 num">মোবাইল : {{ staff.TeacherPhoneNumber }}</p>
+                    <!-- <p class=" mb-0 num">মোবাইল : {{ staff.TeacherPhoneNumber }}</p> -->
                     <p class=" mb-0 num">ইমেইল : <a :href="'mailto:'+staff.TeacherEmail">{{ staff.TeacherEmail }}</a></p>
                 </div>
             </div>
