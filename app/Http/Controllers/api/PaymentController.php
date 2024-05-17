@@ -388,6 +388,15 @@ class PaymentController extends Controller
                 }else{
 
 
+                    $Pension_and_Welfare_Trust_feeCount =  $this->PaymentCount(['type' => 'Pension_and_Welfare_Trust','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession],'count');
+
+                    if(!$Pension_and_Welfare_Trust_feeCount){
+                        array_push($monthlyPaid,[
+                            'key'=>'অবসর ও কল্যাণ ট্রাস্ট',
+                            'amount'=>100,
+                        ]);
+                    }
+
 
                     foreach ($allMonth as $value) {
                         $monthly_feeCount =    $this->PaymentCount(['type' => 'monthly_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession,'month' => $value],'count');
