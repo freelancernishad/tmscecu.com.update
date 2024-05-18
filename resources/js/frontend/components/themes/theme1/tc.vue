@@ -261,7 +261,7 @@ export default {
                 student_class: 'Ten',
                 StudentGroup: 'Humanities',
                 StudentRoll: '',
-                year: '2022',
+                year: '2023',
             },
             f:{
                 studentId:'',
