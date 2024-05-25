@@ -25,7 +25,7 @@ use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
 class studentsController extends Controller
 {
 
-    function sentDataToAnotherSchool(Request $request) {
+    function addAnotherSchoolData(Request $request) {
         $datas = $request->all();
         $datas['StudentRoll'] = time();
 
