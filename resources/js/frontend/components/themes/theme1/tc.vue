@@ -72,6 +72,7 @@
                                         <option>2021</option>
                                         <option>2022</option>
                                         <option>2023</option>
+                                        <option>2024</option>
                                     </select>
                                 </div>
                             </div>
@@ -86,6 +87,7 @@
                                         <option>2019-2020</option>
                                         <option>2020-2021</option>
                                         <option>2021-2022</option>
+                                        <option>2022-2023</option>
                                     </select>
 
                                 </div>
@@ -99,6 +101,7 @@
                                         <option value="">নির্বাচন করুন</option>
                                         <option value="regular">নিয়মিত</option>
                                         <option  value="iregular">অনিয়মিত</option>
+                                        <option  value="quality_improvement">মানউন্নয়ন</option>
                                     </select>
 
                                 </div>
