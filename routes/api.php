@@ -160,6 +160,7 @@ Route::get('/get/form/fillup/students',[studentsController::class , 'formfillups
 
 
 Route::post('/student/transferto/old',[studentsController::class , 'transertoOld']);
+Route::post('/another/school/data',[studentsController::class , 'addAnotherSchoolData']);
 
 
 
