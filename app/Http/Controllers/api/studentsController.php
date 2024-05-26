@@ -2118,7 +2118,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
 
     <div class='examNameHead' style='margin-top:20px'>
         <p class='examNamePara'>প্রবেশ পত্র</p>
-        <p style='margin:0px !important;margin-top:10px;font-size:18px'>".ex_name($ex_name)."- ২০২৩</p>
+        <p style='margin:0px !important;margin-top:10px;font-size:18px'>".ex_name($ex_name)."- ২০২৪</p>
     </div>
 
 
