@@ -193,7 +193,7 @@ export default {
 
         callSubjects(){
             if(this.filterdata.student_class=='Ten' || this.filterdata.student_class=='Nine' || this.filterdata.student_class=='Eight'){
-                var result =  this.exams.filter(exam => exam == 'Annual Examination' );
+                var result =  this.exams.filter(exam => exam == 'Pre_selection_examination' );
                 this.filterdata.examType = 'Annual Examination'
             }else{
                 var result =  this.exams.filter(exam => exam == 'Pre_selection_examination' );
