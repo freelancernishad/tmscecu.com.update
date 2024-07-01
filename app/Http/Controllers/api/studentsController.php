@@ -585,7 +585,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
             if($submit_type=='data_entry'){
                 $data['StudentStatus'] = $r->StudentStatus;
             }
-            smsSend("Dear ".strtoupper($r->StudentNameEn).",Your Admission Apply has been Submit.Please Payment Your Application Fee.Your Application Id- $AdmissionID",$r->StudentPhoneNumber);
+            // smsSend("Dear ".strtoupper($r->StudentNameEn).",Your Admission Apply has been Submit.Please Payment Your Application Fee.Your Application Id- $AdmissionID",$r->StudentPhoneNumber);
             $result =   student::create($data);
         } else {
             $student = student::find($r->id);
