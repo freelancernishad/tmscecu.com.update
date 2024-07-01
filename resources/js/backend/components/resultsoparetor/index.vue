@@ -196,8 +196,8 @@ export default {
                 var result =  this.exams.filter(exam => exam == 'Annual Examination' );
                 this.filterdata.examType = 'Annual Examination'
             }else{
-                var result =  this.exams.filter(exam => exam == 'Annual_assessment' );
-                this.filterdata.examType = 'Annual_assessment'
+                var result =  this.exams.filter(exam => exam == 'Pre_selection_examination' );
+                this.filterdata.examType = 'Pre_selection_examination'
             }
 
             this.exam_names = result;
