@@ -216,7 +216,7 @@ class TCController extends Controller
 
 
 
-              $qrcode = "<img src='https://api.qrserver.com/v1/create-qr-code/?data=$qrurl&size=130x130'/>";
+              $qrcode = "<img src='https://api.qrserver.com/v1/create-qr-code/?data=$qrurl&size=100x100'/>";
 
 
 
