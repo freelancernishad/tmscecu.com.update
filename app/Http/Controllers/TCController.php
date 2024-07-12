@@ -248,6 +248,8 @@ class TCController extends Controller
             $typeName = 'নিয়মিত';
             if($group=='regular'){
                 $typeName = 'নিয়মিত';
+            }elseif($group=='quality_improvement'){
+                $typeName = 'মানউন্নয়ন';
             }else{
                 $typeName = 'অনিয়মিত';
             }
