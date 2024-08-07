@@ -509,7 +509,8 @@ class resultController extends Controller
      ];
 
       $payment = payment::where($paymentFilter)->count();
-       $paymentMonth = payment::where($paymentFilterMonth)->count();
+    //    $paymentMonth = payment::where($paymentFilterMonth)->count();
+        $paymentMonth = 1;
       if($paymentMonth<1){
         $html  .= "     <table class='width-50 table table-sm mt-3' width='100%' >";
         $html  .= "
