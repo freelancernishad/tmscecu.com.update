@@ -30,6 +30,8 @@
         </div>
 
 
+        <GoogleAd />
+
 
         <div class="bg-white container d-flex justify-content-between my-5 py-4 gap-2">
             <div class="d-flex flex-column gap-4 img-thumbnail" style="width: 30%;">
@@ -51,7 +53,7 @@
 
         </div>
 
-
+        <GoogleAd />
 
         <!-- slider & notice -->
 
@@ -109,6 +111,9 @@
                 </p>
             </div>
         </div>
+
+        <GoogleAd />
+
         <!-- history of the school -->
         <div class="container mx-auto d-flex fs-5  py-4 row">
             <div class="col-lg-5 col-md-12 text-center">
@@ -130,6 +135,10 @@
                         class="fa-book-open fa-solid me-2"></i>আরো পড়ুন</a>
             </div>
         </div>
+
+        <GoogleAd />
+
+
         <!-- image and videos gallery -->
 
         <!-- <div class="bg-white container mx-auto px-1 py-4 row shadow">
