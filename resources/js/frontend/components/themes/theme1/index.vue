@@ -53,12 +53,7 @@
 
         </div>
 
-        <GoogleAd
-  ad-client="ca-pub-9489624253487221"
-  ad-slot="1884709186"
-  ad-format="auto"
-  full-width-responsive="true"
-/>
+        <GoogleAd ad-slot="7185137326"/>
 
         <!-- slider & notice -->
 
@@ -86,12 +81,7 @@
         </div>
 
 
-        <GoogleAd
-  ad-client="ca-pub-9489624253487221"
-  ad-slot="7185137326"
-  ad-format="auto"
-  full-width-responsive="true"
-/>
+        <GoogleAd ad-slot="1533355390"/>
 
 
 
@@ -122,12 +112,7 @@
             </div>
         </div>
 
-        <GoogleAd
-  ad-client="ca-pub-9489624253487221"
-  ad-slot="9651518566"
-  ad-format="auto"
-  full-width-responsive="true"
-/>
+        <GoogleAd ad-slot="9651518566"/>
 
 
         <!-- history of the school -->
@@ -152,12 +137,7 @@
             </div>
         </div>
 
-        <GoogleAd
-  ad-client="ca-pub-9489624253487221"
-  ad-slot="5281028714"
-  ad-format="auto"
-  full-width-responsive="true"
-/>
+        <GoogleAd ad-slot="5281028714"/>
 
 
         <!-- image and videos gallery -->
