@@ -57,7 +57,7 @@
   ad-client="ca-pub-9489624253487221"
   ad-slot="1884709186"
   ad-format="auto"
-  full-width-responsive="false"
+  full-width-responsive="true"
 />
 
         <!-- slider & notice -->
@@ -90,7 +90,7 @@
   ad-client="ca-pub-9489624253487221"
   ad-slot="7185137326"
   ad-format="auto"
-  full-width-responsive="false"
+  full-width-responsive="true"
 />
 
 
