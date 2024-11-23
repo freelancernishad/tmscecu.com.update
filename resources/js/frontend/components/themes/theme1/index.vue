@@ -53,7 +53,12 @@
 
         </div>
 
-        <GoogleAd />
+        <GoogleAd
+  ad-client="ca-pub-1234567890123456"
+  ad-slot="9876543210"
+  ad-format="rectangle"
+  full-width-responsive="false"
+/>
 
         <!-- slider & notice -->
 
@@ -81,7 +86,12 @@
         </div>
 
 
-        <GoogleAd />
+        <GoogleAd
+  ad-client="ca-pub-1234567890123456"
+  ad-slot="9876543210"
+  ad-format="rectangle"
+  full-width-responsive="false"
+/>
 
 
 
