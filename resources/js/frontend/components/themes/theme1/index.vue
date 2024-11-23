@@ -77,6 +77,12 @@
 
             </div>
         </div>
+
+
+        <GoogleAd />
+
+
+
         <!-- quotes section-->
         <div class="container d-flex gap-4 my-3  py-3 d-flex-res p-0">
             <div class="bg-white d-flex res-quates shadow w-50">
@@ -210,6 +216,8 @@ import {
 
 let FlipCard = require(`../../layouts/theme1/FlipCard.vue`)
 
+import GoogleAd from "../../GoogleAd.vue";
+
 export default {
     created() {
 
@@ -226,6 +234,7 @@ export default {
         FluxPagination,
         FluxPreloader,
         FlipCard,
+        GoogleAd
     },
     data() {
         return {
