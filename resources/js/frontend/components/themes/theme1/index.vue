@@ -54,9 +54,9 @@
         </div>
 
         <GoogleAd
-  ad-client="ca-pub-1234567890123456"
-  ad-slot="9876543210"
-  ad-format="rectangle"
+  ad-client="ca-pub-9489624253487221"
+  ad-slot="1884709186"
+  ad-format="auto"
   full-width-responsive="false"
 />
 
@@ -87,9 +87,9 @@
 
 
         <GoogleAd
-  ad-client="ca-pub-1234567890123456"
-  ad-slot="9876543210"
-  ad-format="rectangle"
+  ad-client="ca-pub-9489624253487221"
+  ad-slot="7185137326"
+  ad-format="auto"
   full-width-responsive="false"
 />
 
@@ -122,7 +122,13 @@
             </div>
         </div>
 
-        <GoogleAd />
+        <GoogleAd
+  ad-client="ca-pub-9489624253487221"
+  ad-slot="9651518566"
+  ad-format="auto"
+  full-width-responsive="true"
+/>
+
 
         <!-- history of the school -->
         <div class="container mx-auto d-flex fs-5  py-4 row">
@@ -146,7 +152,12 @@
             </div>
         </div>
 
-        <GoogleAd />
+        <GoogleAd
+  ad-client="ca-pub-9489624253487221"
+  ad-slot="5281028714"
+  ad-format="auto"
+  full-width-responsive="true"
+/>
 
 
         <!-- image and videos gallery -->
