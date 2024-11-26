@@ -661,6 +661,7 @@ $data['year'] = $year;
             'exam_name' => $exam_name,
             'class_group' => $group,
         ];
+        $schoolDetails = school_detail::where('school_id',$school_id)->first();
         $check = DB::table('student_results')->where($wd)->count();
         if ($check > 0) {
             $results = StudentResult::where($wd)->first();
@@ -669,6 +670,10 @@ $data['year'] = $year;
             'margin_right' => 5,
             'margin_top' => 6,
             'margin_bottom' => 6,]);
+
+            $mpdf->showWatermarkImage = true;
+            $mpdf->WriteHTML("<watermarkimage src='".base64($schoolDetails->logo)."'  alpha='0.15' size='150,150' position='30,65'/> ");
+
 
             // $mpdf = new \Mpdf\Mpdf([
             //     'mode' => 'utf-8', 'format' => 'A4', 'default_font' => 'bangla', 'margin_left' => 5,

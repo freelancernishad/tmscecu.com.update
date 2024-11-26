@@ -2342,6 +2342,7 @@ $Fgg = 0;
 
             } elseif (subjectCol($sub) == 'ICT') {
 
+                $gg = Greeting($subMark, $SUBJECT_TOTAL, 'point');
                 $CQgreat = Greeting($MCQ, 25, 'greed');
 
 
@@ -2391,12 +2392,16 @@ $Fgg = 0;
                 array_push($greating, $gread);
                 // array_push($greating, $MCQgreat);
             }
+
             $GPA += $gg;
             // $great = Greeting($subMark, $SUBJECT_TOTAL, 'greed');
         }
+        Log::info("name = $results->name roll- $results->roll   sub- ".subjectCol($sub)."  = ".$gg);
+        // Log::info("GPA sub = ".$GPA);
         //  array_push($greating,$great);
         $i++;
     }
+    Log::info("GPA= ".$GPA);
     //   return $Fgg;
     if ($Fgg > 2) {
         $fourthSub = $Fgg - 2;
@@ -2404,6 +2409,7 @@ $Fgg = 0;
         $fourthSub = 0;
     }
     $finalTotalGpa =  $GPA + $fourthSub;
+    Log::info("finalTotalGpa= ".$finalTotalGpa);
     $subDe = 0;
     if ($class == "Six" || $class == "Seven") {
         $subDe = $i - 2;
@@ -2414,7 +2420,11 @@ $Fgg = 0;
     }
 
     elseif ($class == "Nine" || $class == "Ten") {
-        $subDe = $i - 4;
+        if($results->class_group=='Humanities'){
+            $subDe = $i - 3;
+        }else{
+            $subDe = $i - 4;
+        }
     }
     //    return $subDe;
     // return $greating;
@@ -2428,6 +2438,7 @@ foreach ($greating as  $value) {
 
 
 
+Log::info("subDe= ".$subDe);
 
     if (in_array('F', $greating)) {
         $GpaResult = 'F';
@@ -2439,7 +2450,7 @@ foreach ($greating as  $value) {
     }
 
 
-
+    Log::info("GpaResult= ".$GpaResult);
 
     if($type=='result'){
 
