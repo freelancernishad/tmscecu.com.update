@@ -1441,8 +1441,18 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                 $registration_fee = 0;
                                 $registration_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee'])->count();
                                 if($registration_feeCount>0){
-                                    $registration_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee'])->first();
+
+                                    $registration_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee','ex_name'=>''])->first();
                                    $registration_fee  = $registration_feeTd->amount;
+                                }
+
+
+                                $registration_other_fee = 0;
+                                $registration_other_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee'])->count();
+                                if($registration_other_feeCount>0){
+
+                                    $registration_other_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee','ex_name'=>'other_fee'])->first();
+                                   $registration_other_fee  = $registration_other_feeTd->amount;
                                 }
 
 
@@ -1537,6 +1547,13 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                 </tr>
 
 
+                                <tr class='tr items'>
+                                <td class='td  defaltfont'>".int_en_to_bn(5)."</td>
+                                <td class='td  defaltfont'>রেজিস্ট্রেশন ফি (বিবিধ ফি)</td>
+                                <td class='td  defaltfont'>".int_en_to_bn($registration_other_fee)."</td>
+                                </tr>
+
+
 
 
                                 <tr class='tr items'>
@@ -1574,7 +1591,7 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                 </tr>
 
                                 ";
-                                $totalAmount = $sessionFee+$monthlyAmount+$exam_fee+$registration_fee+$board_fee+$center_fee+$late_fees+$Fother_fee+$pension_and_Welfare_TrustFee;
+                                $totalAmount = $sessionFee+$monthlyAmount+$exam_fee+$registration_fee+$registration_other_fee+$board_fee+$center_fee+$late_fees+$Fother_fee+$pension_and_Welfare_TrustFee;
 
 
                             }else{
@@ -1763,7 +1780,10 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                                 'monthly_fee'=>'মাসিক বেতন',
                                 'exam_fee'=>'পরীক্ষার ফি',
                                 'registration_fee'=>'রেজিস্ট্রেশন ফি',
-                                'form_filup_fee'=>'ফরম পূরণ ফি',
+                                'board_fee'=>'বোর্ড ফি',
+                                'center_fee'=>'কেন্দ্র ফি',
+                                'late_fees'=>'বিলম্ব ফি',
+                                'Pension_and_Welfare_Trust'=>'অবসর ও কল্যাণ ট্রাস্ট',
                          ];
 
                          $kahts = json_decode(json_encode($khat));
@@ -1774,143 +1794,208 @@ public function usercreate($school_id,$name,$email,$password,$id,$class,$type)
                          if($paymentCount>1){
 
 
-                            $sessionFee = 0;
-                            $paymentSessionCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'session_fee'])->count();
-                            if($paymentSessionCount>0){
-                                $paymentSession = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'session_fee'])->first();
-                               $sessionFee  = $paymentSession->amount;
-                            }
-
-                            $exam_fee = 0;
-                            $ex_name = '';
-                            $exam_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'exam_fee'])->count();
-                            if($exam_feeCount>0){
-                                $exam_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'exam_fee'])->first();
-                               $exam_fee  = $exam_feeTd->amount;
-                               $ex_name  = $exam_feeTd->ex_name;
-                            }
-                            $registration_fee = 0;
-                            $registration_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee'])->count();
-                            if($registration_feeCount>0){
-                                $registration_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee'])->first();
-                               $registration_fee  = $registration_feeTd->amount;
-                            }
-
-                            $form_filup_fee = 0;
-                            $form_filup_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee'])->count();
-                            if($form_filup_feeCount>0){
-                                $form_filup_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee'])->first();
-                               $form_filup_fee  = $form_filup_feeTd->amount;
-                            }
-
-
-
-                             $paymentss = payment::where(['trxid'=>$invoiceId,'status'=>'Paid'])->get();
-
-                             $monthname = "";
-                             $monthlyAmount = 0;
-                             foreach ($paymentss as $paymentSingle) {
-                                if($paymentSingle->type=='monthly_fee'){
-                                    // array_push($monthname,month_en_to_bn($paymentSingle->month));
-                                    $monthname .= month_en_to_bn($paymentSingle->month).",";
-                                    $monthlyAmount += $paymentSingle->amount;
-                                }
+                             $sessionFee = 0;
+                             $paymentSessionCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'session_fee'])->count();
+                             if($paymentSessionCount>0){
+                                 $paymentSession = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'session_fee'])->first();
+                                $sessionFee  = $paymentSession->amount;
                              }
 
-                            $html .="
-
-                            <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
-                            <td class='td  defaltfont'>ভর্তি ফরম ফি</td>
-                            <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
-                            </tr>
-
-                            <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(2)."</td>
-                            <td class='td  defaltfont'>ভর্তি/সেশন ফি</td>
-                            <td class='td  defaltfont'>".int_en_to_bn($sessionFee)."</td>
-                            </tr>
-
-                            <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(3)."</td>
-                            <td class='td  defaltfont'>মাসিক বেতন  ($monthname)</td>
-                            <td class='td  defaltfont'>".int_en_to_bn($monthlyAmount)."</td>
-                            </tr>
+                             $pension_and_Welfare_TrustFee = 0;
+                             $paymentPension_and_Welfare_TrustCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'pension_and_Welfare_Trust'])->count();
+                             if($paymentPension_and_Welfare_TrustCount>0){
+                                 $paymentPension_and_Welfare_Trust = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'pension_and_Welfare_Trust'])->first();
+                                $pension_and_Welfare_TrustFee  = $paymentPension_and_Welfare_Trust->amount;
+                             }
 
 
-                            <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(4)."</td>
-                            <td class='td  defaltfont'>পরীক্ষার ফি (".ex_name($ex_name).")</td>
-                            <td class='td  defaltfont'>".int_en_to_bn($exam_fee)."</td>
-                            </tr>
+                             $exam_fee = 0;
+                             $ex_name = '';
+                             $exam_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'exam_fee'])->count();
+                             if($exam_feeCount>0){
+                                 $exam_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'exam_fee'])->first();
+                                $exam_fee  = $exam_feeTd->amount;
+                                $ex_name  = $exam_feeTd->ex_name;
+                             }
+
+                             $registration_fee = 0;
+                             $registration_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee'])->count();
+                             if($registration_feeCount>0){
+
+                                 $registration_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee','ex_name'=>''])->first();
+                                $registration_fee  = $registration_feeTd->amount;
+                             }
 
 
-                            <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(5)."</td>
-                            <td class='td  defaltfont'>রেজিস্ট্রেশন ফি</td>
-                            <td class='td  defaltfont'>".int_en_to_bn($registration_fee)."</td>
-                            </tr>
+                             $registration_other_fee = 0;
+                             $registration_other_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee'])->count();
+                             if($registration_other_feeCount>0){
+
+                                 $registration_other_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'registration_fee','ex_name'=>'other_fee'])->first();
+                                $registration_other_fee  = $registration_other_feeTd->amount;
+                             }
 
 
 
-                            <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(6)."</td>
-                            <td class='td  defaltfont'>ফরম পূরণ (বোর্ড ফি)</td>
-                            <td class='td  defaltfont'>".int_en_to_bn($board_fee)."</td>
-                            </tr>
+
+                             $form_filup_fee = 0;
+                             $form_filup_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee'])->count();
+                             if($form_filup_feeCount>0){
+                                 $form_filup_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee'])->first();
+                                $form_filup_fee  = $form_filup_feeTd->amount;
+                             }
 
 
-                            <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(7)."</td>
-                            <td class='td  defaltfont'>ফরম পূরণ (কেন্দ্র ফি)</td>
-                            <td class='td  defaltfont'>".int_en_to_bn($center_fee)."</td>
-                            </tr>
+//////////////////////////////////////
+
+                             $board_fee = 0;
+                             $board_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee','ex_name'=>'board_fee'])->count();
+                             if($board_feeCount>0){
+                                 $board_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee','ex_name'=>'board_fee'])->first();
+                                $board_fee  = $board_feeTd->amount;
+                             }
 
 
-                            <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(8)."</td>
-                            <td class='td  defaltfont'>ফরম পূরণ (বিলম্ব ফি)</td>
-                            <td class='td  defaltfont'>".int_en_to_bn($late_fees)."</td>
-                            </tr>
-                            <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(9)."</td>
-                            <td class='td  defaltfont'>ফরম পূরণ (বিবিধ ফি)</td>
-                            <td class='td  defaltfont'>".int_en_to_bn($Fother_fee)."</td>
-                            </tr>
+                             $center_fee = 0;
+                             $center_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee','ex_name'=>'center_fee'])->count();
+                             if($center_feeCount>0){
+                                 $center_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee','ex_name'=>'center_fee'])->first();
+                                $center_fee  = $center_feeTd->amount;
+                             }
 
 
-                            <tr class='tr items'>
-                            <td class='td  defaltfont'>".int_en_to_bn(10)."</td>
-                            <td class='td  defaltfont'>অবসর ও কল্যাণ ট্রাস্ট</td>
-                            <td class='td  defaltfont'>".int_en_to_bn($pension_and_Welfare_TrustFee)."</td>
-                            </tr>
+                             $late_fees = 0;
+                             $late_feesCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee','ex_name'=>'late_fees'])->count();
+                             if($late_feesCount>0){
+                                 $late_feesTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee','ex_name'=>'late_fees'])->first();
+                                $late_fees  = $late_feesTd->amount;
+                             }
 
-                            ";
-                            $totalAmount = $sessionFee+$monthlyAmount+$exam_fee+$registration_fee+$board_fee+$center_fee+$late_fees+$Fother_fee+$pension_and_Welfare_TrustFee;
+                             $Fother_fee = 0;
+                             $other_feeCount = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee','ex_name'=>'other_fee'])->count();
+                             if($other_feeCount>0){
+                                 $other_feeTd = payment::where(['trxid'=>$invoiceId,'status'=>'Paid','type'=>'form_filup_fee','ex_name'=>'other_fee'])->first();
+                                $Fother_fee  = $other_feeTd->amount;
+                             }
 
-                        }else{
-                            $index = 1;
-                            foreach ($khat as $key=>$value) {
-                                if($value=='মাসিক বেতন'){
-                                    $html .="  <tr class='tr items'>
-                                    <td class='td  defaltfont'>".int_en_to_bn($index)."</td>
-                                    <td class='td  defaltfont'>$value</td>";
-                                }else{
-                                    $html .="  <tr class='tr items'>
-                                    <td class='td  defaltfont'>".int_en_to_bn($index)."</td>
-                                    <td class='td  defaltfont'>$value</td>";
-                                }
-                                if($key==$payment->type){
-                                    $html .=" <td class='td  defaltfont'>".int_en_to_bn($amount)."</td>";
-                                }else{
-                                    $html .=" <td class='td  defaltfont'>".int_en_to_bn(0)."</td>";
-                                };
-                                $html.="  </tr>";
-                                $index++;
-                            }
-                            $totalAmount = $amount;
-                        }
 
+
+////////////////////////////////////////
+
+                              $paymentss = payment::where(['trxid'=>$invoiceId,'status'=>'Paid'])->get();
+
+                              $monthname = "";
+                              $monthlyAmount = 0;
+                              foreach ($paymentss as $paymentSingle) {
+                                 if($paymentSingle->type=='monthly_fee'){
+                                     // array_push($monthname,month_en_to_bn($paymentSingle->month));
+                                     $monthname .= month_en_to_bn($paymentSingle->month).",";
+                                     $monthlyAmount += $paymentSingle->amount;
+                                 }
+                              }
+
+                             $html .="
+
+                             <tr class='tr items'>
+                             <td class='td  defaltfont'>".int_en_to_bn(1)."</td>
+                             <td class='td  defaltfont'>ভর্তি ফরম ফি</td>
+                             <td class='td  defaltfont'>".int_en_to_bn(0)."</td>
+                             </tr>
+
+                             <tr class='tr items'>
+                             <td class='td  defaltfont'>".int_en_to_bn(2)."</td>
+                             <td class='td  defaltfont'>ভর্তি/সেশন ফি</td>
+                             <td class='td  defaltfont'>".int_en_to_bn($sessionFee)."</td>
+                             </tr>
+
+                             <tr class='tr items'>
+                             <td class='td  defaltfont'>".int_en_to_bn(3)."</td>
+                             <td class='td  defaltfont'>মাসিক বেতন  ($monthname)</td>
+                             <td class='td  defaltfont'>".int_en_to_bn($monthlyAmount)."</td>
+                             </tr>
+
+                             <tr class='tr items'>
+                             <td class='td  defaltfont'>".int_en_to_bn(4)."</td>
+                             <td class='td  defaltfont'>পরীক্ষার ফি (".ex_name($ex_name).")</td>
+                             <td class='td  defaltfont'>".int_en_to_bn($exam_fee)."</td>
+                             </tr>
+
+                             <tr class='tr items'>
+                             <td class='td  defaltfont'>".int_en_to_bn(5)."</td>
+                             <td class='td  defaltfont'>রেজিস্ট্রেশন ফি</td>
+                             <td class='td  defaltfont'>".int_en_to_bn($registration_fee)."</td>
+                             </tr>
+
+
+                             <tr class='tr items'>
+                             <td class='td  defaltfont'>".int_en_to_bn(5)."</td>
+                             <td class='td  defaltfont'>রেজিস্ট্রেশন ফি (বিবিধ ফি)</td>
+                             <td class='td  defaltfont'>".int_en_to_bn($registration_other_fee)."</td>
+                             </tr>
+
+
+
+
+                             <tr class='tr items'>
+                             <td class='td  defaltfont'>".int_en_to_bn(6)."</td>
+                             <td class='td  defaltfont'>ফরম পূরণ (বোর্ড ফি)</td>
+                             <td class='td  defaltfont'>".int_en_to_bn($board_fee)."</td>
+                             </tr>
+
+
+                             <tr class='tr items'>
+                             <td class='td  defaltfont'>".int_en_to_bn(7)."</td>
+                             <td class='td  defaltfont'>ফরম পূরণ (কেন্দ্র ফি)</td>
+                             <td class='td  defaltfont'>".int_en_to_bn($center_fee)."</td>
+                             </tr>
+
+
+                             <tr class='tr items'>
+                             <td class='td  defaltfont'>".int_en_to_bn(8)."</td>
+                             <td class='td  defaltfont'>ফরম পূরণ (বিলম্ব ফি)</td>
+                             <td class='td  defaltfont'>".int_en_to_bn($late_fees)."</td>
+                             </tr>
+
+                             <tr class='tr items'>
+                             <td class='td  defaltfont'>".int_en_to_bn(9)."</td>
+                             <td class='td  defaltfont'>ফরম পূরণ (বিবিধ ফি)</td>
+                             <td class='td  defaltfont'>".int_en_to_bn($Fother_fee)."</td>
+                             </tr>
+
+
+
+                             <tr class='tr items'>
+                             <td class='td  defaltfont'>".int_en_to_bn(10)."</td>
+                             <td class='td  defaltfont'>অবসর ও কল্যাণ ট্রাস্ট</td>
+                             <td class='td  defaltfont'>".int_en_to_bn($pension_and_Welfare_TrustFee)."</td>
+                             </tr>
+
+                             ";
+                             $totalAmount = $sessionFee+$monthlyAmount+$exam_fee+$registration_fee+$registration_other_fee+$board_fee+$center_fee+$late_fees+$Fother_fee+$pension_and_Welfare_TrustFee;
+
+
+                         }else{
+                             $index = 1;
+                             foreach ($khat as $key=>$value) {
+                                 if($value=='মাসিক বেতন'){
+                                     $html .="  <tr class='tr items'>
+                                     <td class='td  defaltfont'>".int_en_to_bn($index)."</td>
+                                     <td class='td  defaltfont'>$value</td>";
+                                 }else{
+                                     $html .="  <tr class='tr items'>
+                                     <td class='td  defaltfont'>".int_en_to_bn($index)."</td>
+                                     <td class='td  defaltfont'>$value</td>";
+                                 }
+                                 if($key==$payment->type){
+                                     $html .=" <td class='td  defaltfont'>".int_en_to_bn($amount)."</td>";
+                                 }else{
+                                     $html .=" <td class='td  defaltfont'>".int_en_to_bn(0)."</td>";
+                                 };
+                                 $html.="  </tr>";
+                                 $index++;
+                             }
+                             $totalAmount = $amount;
+                         }
 
 
 

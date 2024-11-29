@@ -643,6 +643,8 @@ class PaymentController extends Controller
                 $paymentHtml .="<td>".paymentKhat($paidPayment->type)." (".ex_name($paidPayment->ex_name).")</td>";
                 }elseif($paidPayment->type=='form_filup_fee'){
                 $paymentHtml .="<td>".paymentKhat($paidPayment->type)." (".form_name($paidPayment->ex_name).")</td>";
+                }elseif($paidPayment->type=='registration_fee'){
+                $paymentHtml .="<td>".paymentKhat($paidPayment->type)." (".form_name($paidPayment->ex_name).")</td>";
                 }else{
                     $paymentHtml .="<td>".month_en_to_bn($paidPayment->month)."</td>";
                 }
@@ -1326,9 +1328,16 @@ class PaymentController extends Controller
           $Registration_feeStatusCount =  $this->PaymentCount(['type' => 'registration_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession],'count');
 
           if(!$Registration_feeStatusCount){
-            $totalamount +=  $RegFee;
-              $insertedData = array(["key"=>'registration_fee',"amount"=>$RegFee,"sub_type"=>'']);
+            $other_fee = 75;
+            $totalamount +=  $RegFee-$other_fee;
+              $insertedData = array(["key"=>'registration_fee',"amount"=>$RegFee-$other_fee,"sub_type"=>'']);
               array_splice($monthlyPaid, $index_number, 0, $insertedData);
+
+              $totalamount +=  $other_fee;
+              $insertedData = array(["key"=>'registration_fee',"amount"=>$other_fee,"sub_type"=>'other_fee']);
+              array_splice($monthlyPaid, $index_number, 0, $insertedData);
+
+
           }
       }
 
