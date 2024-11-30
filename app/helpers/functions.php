@@ -1822,7 +1822,7 @@ function characterCount($string)
  function StudentAdmissionId($admition_id='',$school_id)
 {
     $regYear = date("Y");
-    $studentCount =  student::where(['school_id'=>$school_id,'Year'=>$regYear,'StudentStatus'=>'Applied'])->count();
+    $studentCount =  student::where(['school_id'=>$school_id,'Year'=>$regYear,'StudentStatus'=>'Pending'])->count();
     if($studentCount>0){
     $student =  student::where(['school_id'=>$school_id,'Year'=>$regYear])->orderBy('id','desc')->latest()->first();
     $admition_id = $student->AdmissionID;
