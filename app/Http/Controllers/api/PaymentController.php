@@ -506,10 +506,10 @@ class PaymentController extends Controller
                         array_splice($monthlyPaid, $index_number, 0, $insertedData);
                     }else{
                         if($StudentGroup=='Humanities'){
-                            $insertedData = array(["key"=>'ফরম পূরণ ফি',"amount"=>2220,"sub_type"=>'']);
+                            $insertedData = array(["key"=>'ফরম পূরণ ফি',"amount"=>2120,"sub_type"=>'']);
                             array_splice($monthlyPaid, $index_number, 0, $insertedData);
                         }else{
-                            $insertedData = array(["key"=>'ফরম পূরণ ফি',"amount"=>2340,"sub_type"=>'']);
+                            $insertedData = array(["key"=>'ফরম পূরণ ফি',"amount"=>2240,"sub_type"=>'']);
                             array_splice($monthlyPaid, $index_number, 0, $insertedData);
                         }
                     }
@@ -1360,7 +1360,7 @@ class PaymentController extends Controller
                 $greed = $studentRestult->greed;
                 if($greed!='F'){
                     if($StudentGroup=='Humanities'){
-                        $board_fee = 1535;
+                        $board_fee = 1635;
                         $totalamount +=  $board_fee;
                         $insertedData = array(["key"=>'form_filup_fee',"amount"=>$board_fee,"sub_type"=>'board_fee']);
                         array_splice($monthlyPaid, $index_number, 0, $insertedData);
@@ -1368,16 +1368,16 @@ class PaymentController extends Controller
                         $totalamount +=  $center_fee;
                         $insertedData = array(["key"=>'form_filup_fee',"amount"=>$center_fee,"sub_type"=>'center_fee']);
                         array_splice($monthlyPaid, $index_number, 0, $insertedData);
-                        $late_fees = 100;
+                        $late_fees = 0;
                         $totalamount +=  $late_fees;
                         $insertedData = array(["key"=>'form_filup_fee',"amount"=>$late_fees,"sub_type"=>'late_fees']);
                         array_splice($monthlyPaid, $index_number, 0, $insertedData);
-                        $other_fee = 100;
+                        $other_fee = 0;
                         $totalamount +=  $other_fee;
                         $insertedData = array(["key"=>'form_filup_fee',"amount"=>$other_fee,"sub_type"=>'other_fee']);
                         array_splice($monthlyPaid, $index_number, 0, $insertedData);
                     }else{
-                        $board_fee = 1625;
+                        $board_fee = 1725;
                         $totalamount +=  $board_fee;
                         $insertedData = array(["key"=>'form_filup_fee',"amount"=>$board_fee,"sub_type"=>'board_fee']);
                         array_splice($monthlyPaid, $index_number, 0, $insertedData);
@@ -1385,11 +1385,11 @@ class PaymentController extends Controller
                         $totalamount +=  $center_fee;
                         $insertedData = array(["key"=>'form_filup_fee',"amount"=>$center_fee,"sub_type"=>'center_fee']);
                         array_splice($monthlyPaid, $index_number, 0, $insertedData);
-                        $late_fees = 100;
+                        $late_fees = 0;
                         $totalamount +=  $late_fees;
                         $insertedData = array(["key"=>'form_filup_fee',"amount"=>$late_fees,"sub_type"=>'late_fees']);
                         array_splice($monthlyPaid, $index_number, 0, $insertedData);
-                        $other_fee = 100;
+                        $other_fee = 0;
                         $totalamount +=  $other_fee;
                         $insertedData = array(["key"=>'form_filup_fee',"amount"=>$other_fee,"sub_type"=>'other_fee']);
                         array_splice($monthlyPaid, $index_number, 0, $insertedData);
