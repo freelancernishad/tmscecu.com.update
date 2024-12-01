@@ -355,37 +355,37 @@ class PaymentController extends Controller
                         'sub_type'=>'',
                     ]);
                 }else{
-                    if($MonthName=='December' || $MonthName=='January'){
+                    // if($MonthName=='December' || $MonthName=='January'){
 
 
 
 
-        $Pension_and_Welfare_Trust_feeCount =  $this->PaymentCount(['type' => 'Pension_and_Welfare_Trust','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession],'count');
+        // $Pension_and_Welfare_Trust_feeCount =  $this->PaymentCount(['type' => 'Pension_and_Welfare_Trust','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession],'count');
 
-        if(!$Pension_and_Welfare_Trust_feeCount){
-            array_push($monthlyPaid,[
-                'key'=>'অবসর ও কল্যাণ ট্রাস্ট',
-                'amount'=>100,
-            ]);
-        }
-
-
-
-                    $monthly_feeCountJ =    $this->PaymentCount(['type' => 'monthly_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession,'month' => 'January'],'count');
-                    if($monthly_feeCountJ>0){
-                    }else{
-                        array_push($monthlyPaid,[
-                            'key'=>month_en_to_bn('January'),
-                            'amount'=>$monthly_fee,
-                            'sub_type'=>'',
-                        ]);
-                    }
+        // if(!$Pension_and_Welfare_Trust_feeCount){
+        //     array_push($monthlyPaid,[
+        //         'key'=>'অবসর ও কল্যাণ ট্রাস্ট',
+        //         'amount'=>100,
+        //     ]);
+        // }
 
 
 
+        //             $monthly_feeCountJ =    $this->PaymentCount(['type' => 'monthly_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession,'month' => 'January'],'count');
+        //             if($monthly_feeCountJ>0){
+        //             }else{
+        //                 array_push($monthlyPaid,[
+        //                     'key'=>month_en_to_bn('January'),
+        //                     'amount'=>$monthly_fee,
+        //                     'sub_type'=>'',
+        //                 ]);
+        //             }
 
 
-                }else{
+
+
+
+                // }else{
 
 
                     $Pension_and_Welfare_Trust_feeCount =  $this->PaymentCount(['type' => 'Pension_and_Welfare_Trust','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession],'count');
@@ -437,7 +437,7 @@ class PaymentController extends Controller
                         }
                     }
 
-                }
+                // }
 
 
 
@@ -1219,12 +1219,12 @@ class PaymentController extends Controller
             'sub_type'=>'',
         ]);
     }else{
-        if($MonthName=='December' || $MonthName=='January'){
+        // if($MonthName=='December' || $MonthName=='January'){
 
 
 
 
-            $Pension_and_Welfare_Trust_feeCount =  $this->PaymentCount(['type' => 'Pension_and_Welfare_Trust','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession],'count');
+            // $Pension_and_Welfare_Trust_feeCount =  $this->PaymentCount(['type' => 'Pension_and_Welfare_Trust','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession],'count');
 
             // if(!$Pension_and_Welfare_Trust_feeCount){
             //     array_push($monthlyPaid,[
@@ -1235,22 +1235,22 @@ class PaymentController extends Controller
 
 
 
-                        $monthly_feeCountJ =    $this->PaymentCount(['type' => 'monthly_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession,'month' => 'January'],'count');
-                        if($monthly_feeCountJ>0){
-                        }else{
-                            $totalamount +=  $monthly_fee;
-                            array_push($monthlyPaid,[
-                                'key'=>month_en_to_bn('January'),
-                                'amount'=>$monthly_fee,
-                                'sub_type'=>'',
-                            ]);
-                        }
+                        // $monthly_feeCountJ =    $this->PaymentCount(['type' => 'monthly_fee','admissionId' => $AdmissionID,'status' => 'Paid','year' => $yearSession,'month' => 'January'],'count');
+                        // if($monthly_feeCountJ>0){
+                        // }else{
+                        //     $totalamount +=  $monthly_fee;
+                        //     array_push($monthlyPaid,[
+                        //         'key'=>month_en_to_bn('January'),
+                        //         'amount'=>$monthly_fee,
+                        //         'sub_type'=>'',
+                        //     ]);
+                        // }
 
 
 
 
 
-                    }else{
+                    // }else{
 
 
                         foreach ($allMonth as $value) {
@@ -1291,7 +1291,7 @@ class PaymentController extends Controller
                                     }
                                 }
                           }
-                    }
+                    // }
 
 
 
@@ -1482,9 +1482,9 @@ class PaymentController extends Controller
         //     $paymentYear = $amountYear+1;
         // }
 
-        if($currentmonth=='December'){
-            $paymentYear = $amountYear+1;
-        }
+        // if($currentmonth=='December'){
+        //     $paymentYear = $amountYear+1;
+        // }
 
 
 
