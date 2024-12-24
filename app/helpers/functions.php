@@ -319,7 +319,7 @@ function subjectCol($subject)
             return 'Higher_Mathematics';
         }else{
 
-            $orginal = array("বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান","পদার্থবিজ্ঞান", "রসায়ন", "জীব বিজ্ঞান", "বাংলাদেশ ও বিশ্ব পরিচয়","ভূগোল ও পরিবেশ", "অর্থনীতি", "বাংলাদেশ ও বিশ্ব সভ্যতার ইতিহাস", "ধর্ম ও নৈতিক শিক্ষা","ইসলাম-ধর্ম","হিন্দু-ধর্ম", "কৃষি শিক্ষা", "উচ্চতর গণিত", "তথ্য ও যোগাযোগ প্রযুক্তি");
+            $orginal = array("বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান","পদার্থবিজ্ঞান", "রসায়ন", "জীব বিজ্ঞান", "বাংলাদেশ ও বিশ্ব পরিচয়","ভূগোল ও পরিবেশ", "অর্থনীতি", "বাংলাদেশ ও বিশ্ব সভ্যতার ইতিহাস", "ধর্ম ও নৈতিক শিক্ষা","ইসলাম-ধর্ম","হিন্দু-ধর্ম", "কৃষি শিক্ষা", "উচ্চতর গণিত", "তথ্য ও যোগাযোগ প্রযুক্তি","শারিরীক শিক্ষা ও স্বাস্থ্য","চারু ও কারু কলা");
 
             $colname = array("Bangla_1st","Bangla_2nd","English_1st","English_2nd","Math","Science","physics","Chemistry","Biology","B_and_B","vugol","orthoniti","itihas","Religion","ReligionIslam","ReligionHindu","Agriculture","Higher_Mathematics","ICT","Physical_Education_and_Health","Arts_and_Crafts","Work_and_life_oriented_education","Career_Education");
 

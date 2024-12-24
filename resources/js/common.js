@@ -285,9 +285,9 @@ export default {
                 str = "Higher_Mathematics";
             } else if (str == 'তথ্য ও যোগাযোগ প্রযুক্তি') {
                 str = "ICT";
-            } else if (str == 'শারীরিক শিক্ষা ও স্বাস্থ্য') {
+            } else if (str == 'শারিরীক শিক্ষা ও স্বাস্থ্য') {
                 str = "Physical_Education_and_Health";
-            } else if (str == 'চারু ও কারুকলা') {
+            } else if (str == 'চারু ও কারু কলা') {
                 str = "Arts_and_Crafts";
             } else if (str == 'কর্ম ও জীবনমুখী শিক্ষা') {
                 str = "Work_and_life_oriented_education";
@@ -395,9 +395,9 @@ export default {
             } else if (str == 'ICT') {
                 str = "তথ্য ও যোগাযোগ প্রযুক্তি";
             } else if (str == 'Physical_Education_and_Health') {
-                str = "শারীরিক শিক্ষা ও স্বাস্থ্য";
+                str = "শারিরীক শিক্ষা ও স্বাস্থ্য";
             } else if (str == 'Arts_and_Crafts') {
-                str = "চারু ও কারুকলা";
+                str = "চারু ও কারু কলা";
             } else if (str == 'Work_and_life_oriented_education') {
                 str = "কর্ম ও জীবনমুখী শিক্ষা";
             } else if (str == 'Career_Education') {
