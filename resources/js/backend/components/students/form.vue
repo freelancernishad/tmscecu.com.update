@@ -672,7 +672,7 @@
                             </option>
                             <option>ব্যবসায়ি</option>
                             <option>কৃষক</option>
-                            <option>কৃষি শ্রমিক</option>
+                            <option>জীবন ও জীবিকা শ্রমিক</option>
                             <option>ডাক্তার</option>
                             <option>জেলে</option>
                             <option>সরকারি চাকুরি</option>

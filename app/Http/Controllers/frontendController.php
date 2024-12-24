@@ -342,7 +342,7 @@ class frontendController extends Controller
             $farmerStudent += $farmerStudentcount;
 
             //agricultural_laborerStudent
-            $agricultural_laborerStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','কৃষি শ্রমিক',$class[$i]);
+            $agricultural_laborerStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','জীবন ও জীবিকা শ্রমিক',$class[$i]);
             $students[class_en_to_bn($class[$i])]['agricultural_laborerStudent'] =int_en_to_bn($agricultural_laborerStudentcount);
             $agricultural_laborerStudent += $agricultural_laborerStudentcount;
 
@@ -382,7 +382,7 @@ class frontendController extends Controller
             $teacherStudent += $teacherStudentcount;
 
             //There_is_no_quotaStudent
-            $Non_agricultural_workersStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','অকৃষি শ্রমিক',$class[$i]);
+            $Non_agricultural_workersStudentcount = $this->studentCount($school_id,'StudentFatherOccupation','অজীবন ও জীবিকা শ্রমিক',$class[$i]);
             $students[class_en_to_bn($class[$i])]['Non_agricultural_workersStudent'] =int_en_to_bn($Non_agricultural_workersStudentcount);
             $Non_agricultural_workersStudent += $Non_agricultural_workersStudentcount;
 

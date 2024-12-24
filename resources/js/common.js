@@ -271,7 +271,7 @@ export default {
                 str = "orthoniti";
             } else if (str == 'বাংলাদেশ ও বিশ্ব সভ্যতার ইতিহাস') {
                 str = "itihas";
-            } else if (str == 'বাংলাদেশ ও বিশ্ব পরিচয়') {
+            } else if (str == 'ইতিহাস ও সামাজিক বিজ্ঞান') {
                 str = "B_and_B";
             } else if (str == 'ধর্ম ও নৈতিক শিক্ষা') {
                 str = "Religion";
@@ -279,15 +279,15 @@ export default {
                 str = "ReligionIslam";
             } else if (str == 'হিন্দু-ধর্ম') {
                 str = "ReligionHindu";
-            } else if (str == 'কৃষি শিক্ষা') {
+            } else if (str == 'জীবন ও জীবিকা শিক্ষা') {
                 str = "Agriculture";
             } else if (str == 'উচ্চতর গণিত') {
                 str = "Higher_Mathematics";
-            } else if (str == 'তথ্য ও যোগাযোগ প্রযুক্তি') {
+            } else if (str == 'ডিজিটাল প্রযুক্তি') {
                 str = "ICT";
             } else if (str == 'শারিরীক শিক্ষা ও স্বাস্থ্য') {
                 str = "Physical_Education_and_Health";
-            } else if (str == 'চারু ও কারু কলা') {
+            } else if (str == 'শিল্প ও সংস্কৃতি') {
                 str = "Arts_and_Crafts";
             } else if (str == 'কর্ম ও জীবনমুখী শিক্ষা') {
                 str = "Work_and_life_oriented_education";
@@ -310,12 +310,12 @@ export default {
             //         "ভূগোল":"vugol",
             //         "অর্থনীতি":"orthoniti",
             //         "ইতিহাস":"itihas",
-            //         "বাংলাদেশ ও বিশ্ব পরিচয়":"B_and_B",
+            //         "ইতিহাস ও সামাজিক বিজ্ঞান":"B_and_B",
             //         "ধর্ম":"Religion",
             //         "ইসলাম-ধর্ম":"ReligionIslam",
             //         "হিন্দু-ধর্ম":"ReligionHindu",
-            //         "কৃষি":"Agriculture",
-            //         "তথ্য ও যোগাযোগ প্রযুক্তি":"ICT",
+            //         "জীবন ও জীবিকা":"Agriculture",
+            //         "ডিজিটাল প্রযুক্তি":"ICT",
             // }
             //     for (var x in banglaNumber) {
             //         str = str.replace(new RegExp(x, 'g'), banglaNumber[x]);
@@ -381,7 +381,7 @@ export default {
             } else if (str == 'itihas') {
                 str = "বাংলাদেশ ও বিশ্ব সভ্যতার ইতিহাস";
             } else if (str == 'B_and_B') {
-                str = "বাংলাদেশ ও বিশ্ব পরিচয়";
+                str = "ইতিহাস ও সামাজিক বিজ্ঞান";
             } else if (str == 'Religion') {
                 str = "ধর্ম ও নৈতিক শিক্ষা";
             } else if (str == 'ReligionIslam') {
@@ -391,13 +391,13 @@ export default {
             } else if (str == 'Higher_Mathematics') {
                 str = "উচ্চতর গণিত";
             } else if (str == 'Agriculture') {
-                str = "কৃষি শিক্ষা";
+                str = "জীবন ও জীবিকা শিক্ষা";
             } else if (str == 'ICT') {
-                str = "তথ্য ও যোগাযোগ প্রযুক্তি";
+                str = "ডিজিটাল প্রযুক্তি";
             } else if (str == 'Physical_Education_and_Health') {
                 str = "শারিরীক শিক্ষা ও স্বাস্থ্য";
             } else if (str == 'Arts_and_Crafts') {
-                str = "চারু ও কারু কলা";
+                str = "শিল্প ও সংস্কৃতি";
             } else if (str == 'Work_and_life_oriented_education') {
                 str = "কর্ম ও জীবনমুখী শিক্ষা";
             } else if (str == 'Career_Education') {
@@ -421,12 +421,12 @@ export default {
             //     "vugol": "ভূগোল",
             //     "orthoniti": "অর্থনীতি",
             //     "itihas": "ইতিহাস",
-            //     "B_and_B": "বাংলাদেশ ও বিশ্ব পরিচয়",
+            //     "B_and_B": "ইতিহাস ও সামাজিক বিজ্ঞান",
             //     "Religion": "ধর্ম",
             //     "ReligionIslam": "ইসলাম-ধর্ম",
             //     "ReligionHindu": "হিন্দু-ধর্ম",
-            //     "Agriculture": "কৃষি",
-            //     "ICT": "তথ্য ও যোগাযোগ প্রযুক্তি"
+            //     "Agriculture": "জীবন ও জীবিকা",
+            //     "ICT": "ডিজিটাল প্রযুক্তি"
             // }
             // for (var x in banglaNumber) {
             //     str = str.replace(new RegExp(x, 'g'), banglaNumber[x]);

@@ -712,7 +712,7 @@
                             <option>প্রবাসি</option>
                             <option>ক্ষুদ্র ব্যবসায়ি</option>
                             <option>শিক্ষক</option>
-                            <option>অকৃষি শ্রমিক</option>
+                            <option>অজীবন ও জীবিকা শ্রমিক</option>
                             <option>অন্যান্য</option>
                         </select>
 

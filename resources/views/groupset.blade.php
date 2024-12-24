@@ -49,7 +49,7 @@
                 </select></td>
                 <td><select  class="subject"  name="StudentSubject[{{ $student->AdmissionID }}]" >
                     <option value="">Select</option>
-                    <option @php if($student->StudentSubject=='Agriculture'){echo 'selected'; }@endphp value="Agriculture">কৃষি শিক্ষা</option>
+                    <option @php if($student->StudentSubject=='Agriculture'){echo 'selected'; }@endphp value="Agriculture">জীবন ও জীবিকা</option>
                     <option @php if($student->StudentSubject=='Higher_Mathematics'){echo 'selected'; }@endphp value="Higher_Mathematics">উচ্চতর গণিত</option>
                 </select></td>
 

@@ -26,7 +26,7 @@
                             <b>বিষয়: </b>
                             <select  class="subject"  >
                                 <option value="">Select</option>
-                                <option value="Agriculture">কৃষি শিক্ষা</option>
+                                <option value="Agriculture">জীবন ও জীবিকা</option>
                                 <option value="Higher_Mathematics">উচ্চতর গণিত</option>
                             </select> <br>
 
@@ -56,7 +56,7 @@
                             <b>নাম: </b>{{ ScienceStudnet.StudentName }} <br>
                             <b>বিষয়: </b><select  class="subject" >
                                 <option value="">Select</option>
-                                <option value="Agriculture">কৃষি শিক্ষা</option>
+                                <option value="Agriculture">জীবন ও জীবিকা</option>
                                 <option value="Higher_Mathematics">উচ্চতর গণিত</option>
                             </select> <br>
 
