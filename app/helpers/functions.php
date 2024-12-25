@@ -281,7 +281,7 @@ function ekpayToken($trnx_id=123456789,$trns_info=[],$cust_info=[],$path='paymen
             $data = 'Chemistry';
         }elseif($banglaSubject=='জীব বিজ্ঞান'){
             $data = 'Biology';
-        }elseif($banglaSubject=='ইতিহাস ও সামাজিক বিজ্ঞান'){
+        }elseif($banglaSubject=='বাংলাদেশ ও বিশ্ব পরিচয়'){
             $data = 'Bangladesh and Global Studies';
         }elseif($banglaSubject=='ইতিহাস ও সামাজিক বিজ্ঞান'){
             $data = 'Bangladesh and Global Studies';
@@ -319,9 +319,11 @@ function subjectCol($subject)
             return 'physics';
         }else if($subject=='উচ্চতর গণিত'){
             return 'Higher_Mathematics';
+        }else if($subject=='ইতিহাস ও সামাজিক বিজ্ঞান'){
+            return 'B_and_B';
         }else{
 
-            $orginal = array("বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান","পদার্থবিজ্ঞান", "রসায়ন", "জীব বিজ্ঞান", "ইতিহাস ও সামাজিক বিজ্ঞান", "ইতিহাস ও সামাজিক বিজ্ঞান","ভূগোল ও পরিবেশ", "অর্থনীতি", "বাংলাদেশ ও বিশ্ব সভ্যতার ইতিহাস", "ধর্ম ও নৈতিক শিক্ষা","ইসলাম-ধর্ম","হিন্দু-ধর্ম", "জীবন ও জীবিকা", "উচ্চতর গণিত", "ডিজিটাল প্রযুক্তি","স্বাস্থ্য ও সুরক্ষা","শিল্প ও সংস্কৃতি");
+            $orginal = array("বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান","পদার্থবিজ্ঞান", "রসায়ন", "জীব বিজ্ঞান", "বাংলাদেশ ও বিশ্ব পরিচয়", "ইতিহাস ও সামাজিক বিজ্ঞান","ভূগোল ও পরিবেশ", "অর্থনীতি", "বাংলাদেশ ও বিশ্ব সভ্যতার ইতিহাস", "ধর্ম ও নৈতিক শিক্ষা","ইসলাম-ধর্ম","হিন্দু-ধর্ম", "জীবন ও জীবিকা", "উচ্চতর গণিত", "ডিজিটাল প্রযুক্তি","স্বাস্থ্য ও সুরক্ষা","শিল্প ও সংস্কৃতি");
 
             $colname = array("Bangla_1st","Bangla_2nd","English_1st","English_2nd","Math","Science","physics","Chemistry","Biology","B_and_B","B_and_B","vugol","orthoniti","itihas","Religion","ReligionIslam","ReligionHindu","Agriculture","Higher_Mathematics","ICT","Physical_Education_and_Health","Arts_and_Crafts","Work_and_life_oriented_education","Career_Education");
 
