@@ -279,7 +279,7 @@ export default {
                 str = "ReligionIslam";
             } else if (str == 'হিন্দু-ধর্ম') {
                 str = "ReligionHindu";
-            } else if (str == 'জীবন ও জীবিকা শিক্ষা') {
+            } else if (str == 'জীবন ও জীবিকা') {
                 str = "Agriculture";
             } else if (str == 'উচ্চতর গণিত') {
                 str = "Higher_Mathematics";
@@ -391,7 +391,7 @@ export default {
             } else if (str == 'Higher_Mathematics') {
                 str = "উচ্চতর গণিত";
             } else if (str == 'Agriculture') {
-                str = "জীবন ও জীবিকা শিক্ষা";
+                str = "জীবন ও জীবিকা";
             } else if (str == 'ICT') {
                 str = "ডিজিটাল প্রযুক্তি";
             } else if (str == 'Physical_Education_and_Health') {
