@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\api;
 
 use PDF;
+use App\Models\payment;
 use App\Models\student;
+use App\Models\ResultLog;
 use Illuminate\Http\Request;
+use App\Models\school_detail;
 use App\Models\StudentResult;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Models\payment;
-use App\Models\ResultLog;
-use App\Models\school_detail;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf;
@@ -586,14 +587,14 @@ class resultController extends Controller
                 $html .= resultDetails($results);
 
 
-                if($request->filter['class']=='Six' || $request->filter['class']=='Seven'){}else{
+                // if($request->filter['class']=='Six' || $request->filter['class']=='Seven'){}else{
                     $html  .= "<div  style='text-align: center;'><a target='_blank' href='/payment?studentId=$student->id&type=marksheet&resultId=$results->id' class='btn btn-info' style='font-size: 25px;'>ডাউনলোড মার্কশীট</a></div>";
 
                     $html  .= "<h4 style='text-align: center;color: #007BFF;font-size: 25px;margin: 11px 2px;'>অথবা</h4>";
 
                     $html  .= "<h2 style='text-align:center;font-size:20px;color:#007BFF'>মার্কশীট সংগ্রহ করতে বিদ্যালয়ে যোগাযোগ করুন </h2>";
                     //    $html .= ResultGradeList($results);
-                }
+                // }
 
 
 
@@ -823,7 +824,7 @@ return redirect()->back();
             'exam_name' => $request->exam_name,
             'class_group' => $request->class_group,
         ];
-        $result = StudentResult::where($filter)->get();
+        $result = StudentResult::orderBy('roll','asc')->where($filter)->get();
         $totalmark = [];
         $totalfailed = [];
         $i = 0;
@@ -855,7 +856,9 @@ return redirect()->back();
             }
             $total =  $this->sumNumber($totalmark[$studentresult->roll]);
             $failed = StudentFailedCount($value, 'failed');
+
              $Gparesult = StudentFailedCount($value, 'result');
+
 
               $greedRes = gpaToGreed($Gparesult);
 
@@ -917,7 +920,7 @@ return redirect()->back();
             'class' => $student_class,
             'exam_name' => $exam,
         ];
-        $data['rows'] = StudentResult::where($resultW)->orderBy('roll', 'ASC')->get();
+        $data['rows'] = StudentResult::where($resultW)->orderBy('roll', 'asc')->get();
         $data['sign'] = base64(sitedetails()->PRINCIPALS_Signature);
 
         $pdfFileName = $student_class.'-'.$group.'-'.$exam.'.pdf';
@@ -1609,7 +1612,10 @@ return redirect()->back();
         } elseif ($class == 'three' || $class == 'four' || $class == 'five') {
             $data = ["বাংলা", "ইংরেজি", "গণিত", "ইতিহাস ও সামাজিক বিজ্ঞান", "বিজ্ঞান", "ধর্ম"];
         } elseif ($class == 'six' || $class == 'seven' || $class == 'eight') {
-            $data = ["বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান", "ইতিহাস ও সামাজিক বিজ্ঞান", "ধর্ম ও নৈতিক শিক্ষা", "জীবন ও জীবিকা", "ডিজিটাল প্রযুক্তি", "শারীরিক শিক্ষা ও স্বাস্থ্য", "চারু ও কারুকলা", "কর্ম ও জীবনমুখী শিক্ষা"];
+
+            $data = ["বাংলা", "ইংরেজি", "গণিত", "বিজ্ঞান", "ইতিহাস ও সামাজিক বিজ্ঞান", "ধর্ম ও নৈতিক শিক্ষা", "জীবন ও জীবিকা", "ডিজিটাল প্রযুক্তি"];
+
+            // $data = ["বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "বিজ্ঞান", "ইতিহাস ও সামাজিক বিজ্ঞান", "ধর্ম ও নৈতিক শিক্ষা", "জীবন ও জীবিকা", "ডিজিটাল প্রযুক্তি", "শারীরিক শিক্ষা ও স্বাস্থ্য", "চারু ও কারুকলা", "কর্ম ও জীবনমুখী শিক্ষা"];
         } elseif ($class == 'nine' || $class == 'ten') {
             if ($group == 'science') {
                 $data = ["বাংলা ১ম", "বাংলা ২য়", "ইংরেজি ১ম", "ইংরেজি ২য়", "গণিত", "পদার্থবিজ্ঞান", "রসায়ন", "জীব বিজ্ঞান", "ইতিহাস ও সামাজিক বিজ্ঞান", "ধর্ম ও নৈতিক শিক্ষা", "জীবন ও জীবিকা", "উচ্চতর গণিত", "ডিজিটাল প্রযুক্তি", "শারীরিক শিক্ষা ও স্বাস্থ্য", "চারু ও কারুকলা", "ক্যারিয়ার শিক্ষা"];
@@ -1637,7 +1643,7 @@ return redirect()->back();
         $subjects =  allList('subjects', $request->class, $request->group);
         $resultlast = StudentResult::where($filter)->latest('id')->first();
         $status = $resultlast->status;
-        $result = StudentResult::where($filter)->get();
+        $result = StudentResult::orderBy('roll','asc')->where($filter)->get();
 
         $gpa5Count  = StudentResult::where($filter)->where('greed','A+')->count();
         $gpa4Count  = StudentResult::where($filter)->where('greed','A')->count();
@@ -1822,7 +1828,7 @@ return redirect()->back();
         $subjects =  allList('subjects', $class, $group);
         $resultlast = StudentResult::where($filter)->latest('id')->first();
         $status = $resultlast->status;
-        $result = StudentResult::where($filter)->get();
+        $result = StudentResult::where($filter)->orderBy('roll','asc')->get();
         $html = "
         <style>
           td{
