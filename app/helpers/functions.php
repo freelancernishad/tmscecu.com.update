@@ -2088,7 +2088,7 @@ function resultDetails($results,$type='ragular')
         }else{
             if($results->class=='Six' || $results->class=='Seven'){
                 $totalMark = "";
-                    if($results->exam_name==='Annual_assessment'){
+                    if($results->exam_name==='Annual Examination'){
                         $totalMark .="<tr>
                             <td>Next Class Roll</td>
                             <td colspan='3'><span id='i_name'>$results->nextroll</span></td>
