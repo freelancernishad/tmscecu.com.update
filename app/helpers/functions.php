@@ -2236,7 +2236,7 @@ function ResultGradeList($results,$type='ragular')
 
     foreach ($subjects as $sub) {
         $html .= "<tr class='table-primar'  >";
-        if ($class == "Six" || $class == "Seven") {
+        if ($class == "Six" || $class == "Seven" || $class == "Eight" || $class == "Nine") {
 
                 $html .= " <td class='pl-5 pr-5'> ".BanglaSubToEnglish($sub)."</td>";
 
