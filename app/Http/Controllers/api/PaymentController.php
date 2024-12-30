@@ -1169,9 +1169,9 @@ class PaymentController extends Controller
         $yearSession = $student->Year;
         // $yearSession = date('Y');
 
-        // if($MonthName=='December'){
-        //     $yearSession = date('Y')+1;
-        // }
+        if($MonthName=='December'){
+            $yearSession = date('Y')+1;
+        }
 
         if($student->Year)
 
