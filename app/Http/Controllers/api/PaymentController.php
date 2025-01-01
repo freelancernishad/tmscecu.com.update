@@ -1283,16 +1283,19 @@ class PaymentController extends Controller
                                 }elseif($Selective_Exam_feeCount>0){
                                 }else{
 
-                                    if($cuddentdata<11){
-                                        $CurrenMonthNumber = $CurrenMonthNumber-1;
-                                        if($CurrenMonthNumber==$valueMonthNumber){
-                                            break;
-                                        }
-                                    }else{
-                                        if($cuddentMonth==$value){
-                                            break;
-                                        }
+                                    if($cuddentMonth==$value){
+                                        break;
                                     }
+                                    // if($cuddentdata<11){
+                                    //     $CurrenMonthNumber = $CurrenMonthNumber-1;
+                                    //     if($CurrenMonthNumber==$valueMonthNumber){
+                                    //         break;
+                                    //     }
+                                    // }else{
+                                    //     if($cuddentMonth==$value){
+                                    //         break;
+                                    //     }
+                                    // }
                                 }
                           }
                     // }
