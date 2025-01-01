@@ -422,16 +422,20 @@ class PaymentController extends Controller
                         }else{
 
 
-                            if($cuddentdata<11){
-                                $CurrenMonthNumber = $CurrenMonthNumber-1;
-                                if($CurrenMonthNumber==$valueMonthNumber){
-                                    break;
-                                }
-                            }else{
-                                if($cuddentMonth==$value){
-                                    break;
-                                }
+                            if($cuddentMonth==$value){
+                                break;
                             }
+                            // if($cuddentdata<11){
+                            //     $CurrenMonthNumber = $CurrenMonthNumber-1;
+                            //     if($CurrenMonthNumber==$valueMonthNumber){
+                            //         break;
+                            //     }
+
+                            // }else{
+                            //     if($cuddentMonth==$value){
+                            //         break;
+                            //     }
+                            // }
 
 
                         }
